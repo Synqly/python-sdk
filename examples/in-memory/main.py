@@ -1,5 +1,8 @@
 import os
 
+from synqly_management import SynqlyManagement
+from synqly_management import CreateAccountRequest
+
 SYNQLY_ORG_ID = os.getenv('SYNQLY_ORG_ID')
 SYNQLY_ORG_TOKEN = os.getenv('SYNQLY_ORG_TOKEN')
 
@@ -8,14 +11,17 @@ class App:
         self.tenants = []
     
     # Add a new tenant to the app's tenant pool
-    def new_tenant(self, id):
+    def new_tenant(self, tenant_id):
         # Make sure the tenant doesn't already exist
         for tenant in self.tenants:
             if tenant.id == id:
                 raise Exception("Duplicate tenant id: " + id)
             
         # Create a Synqly Account for the new tenant
-        synqly_management_client = SynqlyManagementClient(SYNQLY_ORG_ID, SYNQLY_ORG_TOKEN)
+        synqly_management_client = SynqlyManagement(token=SYNQLY_ORG_TOKEN)
+
+        account_request = CreateAccountRequest(name=tenant_id)
+        synqly_management_client.accounts.create_account(account_request)
             
     def configure_event_logging(tenant_id):
         # Find the tenant
