@@ -5,8 +5,8 @@ description = ""
 readme = "README.md"
 authors = []
 packages = [
-    { include = "synqly_engine", from = "client/engine"},
-    { include = "synqly_management", from = "client/management"}
+    { include = "engine", from = "src"},
+    { include = "management", from = "src"}
 ]
 
 [tool.poetry.dependencies]

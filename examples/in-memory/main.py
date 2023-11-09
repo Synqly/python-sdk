@@ -1,7 +1,7 @@
 import os
 
-from synqly_management import SynqlyManagement
-from synqly_management import CreateAccountRequest
+from management import SynqlyManagement
+from management import CreateAccountRequest
 
 SYNQLY_ORG_ID = os.getenv('SYNQLY_ORG_ID')
 SYNQLY_ORG_TOKEN = os.getenv('SYNQLY_ORG_TOKEN')
