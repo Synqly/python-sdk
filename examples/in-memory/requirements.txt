@@ -1,1 +1,1 @@
-// TODO
+git+https://${GITHUB_USERNAME}:${GITHUB_TOKEN}@github.com/Synqly/python-sdk.git
