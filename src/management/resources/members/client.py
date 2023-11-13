@@ -9,15 +9,18 @@ import pydantic
 from ...core.api_error import ApiError
 from ...core.client_wrapper import AsyncClientWrapper, SyncClientWrapper
 from ...core.jsonable_encoder import jsonable_encoder
+from ...core.remove_none_from_dict import remove_none_from_dict
 from ..common.errors.bad_request_error import BadRequestError
 from ..common.errors.conflict_error import ConflictError
+from ..common.errors.forbidden_error import ForbiddenError
 from ..common.errors.not_found_error import NotFoundError
+from ..common.errors.unauthorized_error import UnauthorizedError
 from ..common.types.error_body import ErrorBody
 from ..member_base.types.create_member_request import CreateMemberRequest
 from ..member_base.types.create_member_response import CreateMemberResponse
 from ..member_base.types.member_id import MemberId
 from .types.get_member_response import GetMemberResponse
-from .types.list_member_response import ListMemberResponse
+from .types.list_members_response import ListMembersResponse
 from .types.patch_member_response import PatchMemberResponse
 from .types.update_member_request import UpdateMemberRequest
 from .types.update_member_response import UpdateMemberResponse
@@ -30,20 +33,51 @@ class MembersClient:
     def __init__(self, *, client_wrapper: SyncClientWrapper):
         self._client_wrapper = client_wrapper
 
-    def list_member(self) -> ListMemberResponse:
+    def list_members(
+        self,
+        *,
+        limit: typing.Optional[int] = None,
+        start_after: typing.Optional[str] = None,
+        end_before: typing.Optional[str] = None,
+        order: typing.Union[typing.Optional[str], typing.List[str]],
+        filter: typing.Union[typing.Optional[str], typing.List[str]],
+    ) -> ListMembersResponse:
         """
         List all members
+
+        Parameters:
+            - limit: typing.Optional[int]. Number of `Member` objects to return in this page. Defaults to 100.
+
+            - start_after: typing.Optional[str]. Return `Member` objects starting after this `name`.
+
+            - end_before: typing.Optional[str]. Return `Member` objects ending before this `name`.
+
+            - order: typing.Union[typing.Optional[str], typing.List[str]]. Select a field to order the results by. Defaults to `name`. To control the direction of the sorting, append
+                                                                           `[asc]` or `[desc]` to the field name. For example, `name[desc]` will sort the results by `name` in descending order.
+                                                                           The ordering defaults to `asc` if not specified. May be used multiple times to order by multiple fields, and the
+                                                                           ordering is applied in the order the fields are specified.
+
+            - filter: typing.Union[typing.Optional[str], typing.List[str]]. Filter results by this query. For more information on filtering, refer to our Filtering Guide. Defaults to no filter.
+                                                                            If used more than once, the queries are ANDed together.
+
         """
         _response = self._client_wrapper.httpx_client.request(
             "GET",
             urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", "v1/members"),
+            params=remove_none_from_dict(
+                {"limit": limit, "start_after": start_after, "end_before": end_before, "order": order, "filter": filter}
+            ),
             headers=self._client_wrapper.get_headers(),
             timeout=60,
         )
         if 200 <= _response.status_code < 300:
-            return pydantic.parse_obj_as(ListMemberResponse, _response.json())  # type: ignore
+            return pydantic.parse_obj_as(ListMembersResponse, _response.json())  # type: ignore
         if _response.status_code == 404:
             raise NotFoundError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+        if _response.status_code == 403:
+            raise ForbiddenError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+        if _response.status_code == 401:
+            raise UnauthorizedError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
         try:
             _response_json = _response.json()
         except JSONDecodeError:
@@ -67,6 +101,10 @@ class MembersClient:
             return pydantic.parse_obj_as(GetMemberResponse, _response.json())  # type: ignore
         if _response.status_code == 404:
             raise NotFoundError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+        if _response.status_code == 403:
+            raise ForbiddenError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+        if _response.status_code == 401:
+            raise UnauthorizedError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
         try:
             _response_json = _response.json()
         except JSONDecodeError:
@@ -93,6 +131,10 @@ class MembersClient:
             raise BadRequestError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
         if _response.status_code == 404:
             raise NotFoundError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+        if _response.status_code == 403:
+            raise ForbiddenError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+        if _response.status_code == 401:
+            raise UnauthorizedError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
         try:
             _response_json = _response.json()
         except JSONDecodeError:
@@ -123,6 +165,10 @@ class MembersClient:
             raise NotFoundError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
         if _response.status_code == 409:
             raise ConflictError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+        if _response.status_code == 403:
+            raise ForbiddenError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+        if _response.status_code == 401:
+            raise UnauthorizedError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
         try:
             _response_json = _response.json()
         except JSONDecodeError:
@@ -153,6 +199,10 @@ class MembersClient:
             raise BadRequestError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
         if _response.status_code == 404:
             raise NotFoundError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+        if _response.status_code == 403:
+            raise ForbiddenError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+        if _response.status_code == 401:
+            raise UnauthorizedError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
         try:
             _response_json = _response.json()
         except JSONDecodeError:
@@ -176,6 +226,10 @@ class MembersClient:
             return
         if _response.status_code == 404:
             raise NotFoundError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+        if _response.status_code == 403:
+            raise ForbiddenError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+        if _response.status_code == 401:
+            raise UnauthorizedError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
         try:
             _response_json = _response.json()
         except JSONDecodeError:
@@ -187,20 +241,51 @@ class AsyncMembersClient:
     def __init__(self, *, client_wrapper: AsyncClientWrapper):
         self._client_wrapper = client_wrapper
 
-    async def list_member(self) -> ListMemberResponse:
+    async def list_members(
+        self,
+        *,
+        limit: typing.Optional[int] = None,
+        start_after: typing.Optional[str] = None,
+        end_before: typing.Optional[str] = None,
+        order: typing.Union[typing.Optional[str], typing.List[str]],
+        filter: typing.Union[typing.Optional[str], typing.List[str]],
+    ) -> ListMembersResponse:
         """
         List all members
+
+        Parameters:
+            - limit: typing.Optional[int]. Number of `Member` objects to return in this page. Defaults to 100.
+
+            - start_after: typing.Optional[str]. Return `Member` objects starting after this `name`.
+
+            - end_before: typing.Optional[str]. Return `Member` objects ending before this `name`.
+
+            - order: typing.Union[typing.Optional[str], typing.List[str]]. Select a field to order the results by. Defaults to `name`. To control the direction of the sorting, append
+                                                                           `[asc]` or `[desc]` to the field name. For example, `name[desc]` will sort the results by `name` in descending order.
+                                                                           The ordering defaults to `asc` if not specified. May be used multiple times to order by multiple fields, and the
+                                                                           ordering is applied in the order the fields are specified.
+
+            - filter: typing.Union[typing.Optional[str], typing.List[str]]. Filter results by this query. For more information on filtering, refer to our Filtering Guide. Defaults to no filter.
+                                                                            If used more than once, the queries are ANDed together.
+
         """
         _response = await self._client_wrapper.httpx_client.request(
             "GET",
             urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", "v1/members"),
+            params=remove_none_from_dict(
+                {"limit": limit, "start_after": start_after, "end_before": end_before, "order": order, "filter": filter}
+            ),
             headers=self._client_wrapper.get_headers(),
             timeout=60,
         )
         if 200 <= _response.status_code < 300:
-            return pydantic.parse_obj_as(ListMemberResponse, _response.json())  # type: ignore
+            return pydantic.parse_obj_as(ListMembersResponse, _response.json())  # type: ignore
         if _response.status_code == 404:
             raise NotFoundError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+        if _response.status_code == 403:
+            raise ForbiddenError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+        if _response.status_code == 401:
+            raise UnauthorizedError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
         try:
             _response_json = _response.json()
         except JSONDecodeError:
@@ -224,6 +309,10 @@ class AsyncMembersClient:
             return pydantic.parse_obj_as(GetMemberResponse, _response.json())  # type: ignore
         if _response.status_code == 404:
             raise NotFoundError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+        if _response.status_code == 403:
+            raise ForbiddenError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+        if _response.status_code == 401:
+            raise UnauthorizedError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
         try:
             _response_json = _response.json()
         except JSONDecodeError:
@@ -250,6 +339,10 @@ class AsyncMembersClient:
             raise BadRequestError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
         if _response.status_code == 404:
             raise NotFoundError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+        if _response.status_code == 403:
+            raise ForbiddenError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+        if _response.status_code == 401:
+            raise UnauthorizedError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
         try:
             _response_json = _response.json()
         except JSONDecodeError:
@@ -280,6 +373,10 @@ class AsyncMembersClient:
             raise NotFoundError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
         if _response.status_code == 409:
             raise ConflictError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+        if _response.status_code == 403:
+            raise ForbiddenError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+        if _response.status_code == 401:
+            raise UnauthorizedError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
         try:
             _response_json = _response.json()
         except JSONDecodeError:
@@ -310,6 +407,10 @@ class AsyncMembersClient:
             raise BadRequestError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
         if _response.status_code == 404:
             raise NotFoundError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+        if _response.status_code == 403:
+            raise ForbiddenError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+        if _response.status_code == 401:
+            raise UnauthorizedError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
         try:
             _response_json = _response.json()
         except JSONDecodeError:
@@ -333,6 +434,10 @@ class AsyncMembersClient:
             return
         if _response.status_code == 404:
             raise NotFoundError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+        if _response.status_code == 403:
+            raise ForbiddenError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+        if _response.status_code == 401:
+            raise UnauthorizedError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
         try:
             _response_json = _response.json()
         except JSONDecodeError:

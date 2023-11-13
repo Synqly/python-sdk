@@ -6,24 +6,11 @@ import typing
 import pydantic
 
 from ....core.datetime_utils import serialize_datetime
-from ...accounts.types.account_id import AccountId
-from ...integrations.types.integration_id import IntegrationId
-from ...member_base.types.member_id import MemberId
-from .http_method import HttpMethod
+from ...member_base.types.member import Member
 
 
-class Audit(pydantic.BaseModel):
-    environment: str
-    created_at: dt.datetime = pydantic.Field(description="Time when the API request occurred.")
-    remote_addr: str
-    method: HttpMethod
-    path: str
-    code: str
-    body: typing.Optional[typing.Any]
-    status: typing.Optional[str]
-    member_id: typing.Optional[MemberId]
-    account_id: typing.Optional[AccountId]
-    integration_id: typing.Optional[IntegrationId]
+class ListMembersResponse(pydantic.BaseModel):
+    result: typing.List[Member]
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}

@@ -6,11 +6,17 @@ import typing
 import pydantic
 
 from ....core.datetime_utils import serialize_datetime
-from .audit import Audit
 
 
-class ListAuditResponse(pydantic.BaseModel):
-    result: typing.List[Audit]
+class AzureMonitorLogsConfig(pydantic.BaseModel):
+    """
+    Configuration specific to Azure Monitor Logs
+    """
+
+    client_id: str = pydantic.Field(description="Azure Client (Application) ID.")
+    tenant_id: str = pydantic.Field(description="Azure Directory (tenant) ID.")
+    rule_id: str = pydantic.Field(description="Data Collection Rule immutable ID.")
+    stream_name: str = pydantic.Field(description="Name of the Data Collection Rule stream.")
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}

@@ -8,12 +8,12 @@ import pydantic
 from ....core.datetime_utils import serialize_datetime
 from ...credentials.types.credential_id import CredentialId
 from ...transforms.types.transform_id import TransformId
-from .event_provider_type_config import EventProviderTypeConfig
+from .siem_provider_type_config import SiemProviderTypeConfig
 
 
-class EventConfig(pydantic.BaseModel):
+class SiemConfig(pydantic.BaseModel):
     """
-    Configuration for an Event Provider
+    Configuration for a SIEM Provider
     """
 
     credential_id: CredentialId
@@ -23,7 +23,7 @@ class EventConfig(pydantic.BaseModel):
     transforms: typing.Optional[typing.List[TransformId]] = pydantic.Field(
         description="Optional list of transformations used to modify requests before they are sent to the external service."
     )
-    config: EventProviderTypeConfig
+    config: SiemProviderTypeConfig
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}

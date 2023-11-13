@@ -6,11 +6,11 @@ import typing
 import pydantic
 
 from ....core.datetime_utils import serialize_datetime
-from .account import Account
+from .credential import Credential
 
 
-class ListAccountResponse(pydantic.BaseModel):
-    result: typing.List[Account]
+class ListCredentialsResponse(pydantic.BaseModel):
+    result: typing.List[Credential]
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}

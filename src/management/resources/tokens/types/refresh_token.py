@@ -7,12 +7,14 @@ import pydantic
 
 from ....core.datetime_utils import serialize_datetime
 from ...common.types.base import Base
+from ...common.types.id import Id
 from ...token_base.types.token_id import TokenId
 from ...token_base.types.token_pair import TokenPair
 
 
 class RefreshToken(Base):
     id: TokenId
+    member_id: typing.Optional[Id] = pydantic.Field(alias="memberId", description="Member Id")
     expires: dt.datetime = pydantic.Field(description="Time when this token expires and can no longer be used again.")
     token_ttl: str = pydantic.Field(alias="tokenTtl", description="Token time-to-live")
     primary: TokenPair = pydantic.Field(description="Primary running access and refresh tokens")
