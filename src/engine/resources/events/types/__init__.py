@@ -13,7 +13,6 @@ from .event import (
     Event_SecurityFinding,
     Event_WebResourceAccessActivity,
 )
-from .list_events_response import ListEventsResponse
 
 __all__ = [
     "Event",
@@ -27,5 +26,4 @@ __all__ = [
     "Event_ScheduledJobActivity",
     "Event_SecurityFinding",
     "Event_WebResourceAccessActivity",
-    "ListEventsResponse",
 ]

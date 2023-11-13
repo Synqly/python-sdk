@@ -6,10 +6,11 @@ import httpx
 
 from .core.client_wrapper import AsyncClientWrapper, SyncClientWrapper
 from .environment import SynqlyEngineEnvironment
-from .resources.events.client import AsyncEventsClient, EventsClient
 from .resources.hooks.client import AsyncHooksClient, HooksClient
 from .resources.identity.client import AsyncIdentityClient, IdentityClient
 from .resources.notifications.client import AsyncNotificationsClient, NotificationsClient
+from .resources.siem.client import AsyncSiemClient, SiemClient
+from .resources.sink.client import AsyncSinkClient, SinkClient
 from .resources.storage.client import AsyncStorageClient, StorageClient
 from .resources.ticketing.client import AsyncTicketingClient, TicketingClient
 from .resources.vulnerabilities.client import AsyncVulnerabilitiesClient, VulnerabilitiesClient
@@ -29,10 +30,11 @@ class SynqlyEngine:
             token=token,
             httpx_client=httpx.Client(timeout=timeout),
         )
-        self.events = EventsClient(client_wrapper=self._client_wrapper)
         self.hooks = HooksClient(client_wrapper=self._client_wrapper)
         self.identity = IdentityClient(client_wrapper=self._client_wrapper)
         self.notifications = NotificationsClient(client_wrapper=self._client_wrapper)
+        self.siem = SiemClient(client_wrapper=self._client_wrapper)
+        self.sink = SinkClient(client_wrapper=self._client_wrapper)
         self.storage = StorageClient(client_wrapper=self._client_wrapper)
         self.ticketing = TicketingClient(client_wrapper=self._client_wrapper)
         self.vulnerabilities = VulnerabilitiesClient(client_wrapper=self._client_wrapper)
@@ -52,10 +54,11 @@ class AsyncSynqlyEngine:
             token=token,
             httpx_client=httpx.AsyncClient(timeout=timeout),
         )
-        self.events = AsyncEventsClient(client_wrapper=self._client_wrapper)
         self.hooks = AsyncHooksClient(client_wrapper=self._client_wrapper)
         self.identity = AsyncIdentityClient(client_wrapper=self._client_wrapper)
         self.notifications = AsyncNotificationsClient(client_wrapper=self._client_wrapper)
+        self.siem = AsyncSiemClient(client_wrapper=self._client_wrapper)
+        self.sink = AsyncSinkClient(client_wrapper=self._client_wrapper)
         self.storage = AsyncStorageClient(client_wrapper=self._client_wrapper)
         self.ticketing = AsyncTicketingClient(client_wrapper=self._client_wrapper)
         self.vulnerabilities = AsyncVulnerabilitiesClient(client_wrapper=self._client_wrapper)

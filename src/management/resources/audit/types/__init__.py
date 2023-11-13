@@ -2,6 +2,6 @@
 
 from .audit import Audit
 from .http_method import HttpMethod
-from .list_audit_response import ListAuditResponse
+from .list_audit_events_response import ListAuditEventsResponse
 
-__all__ = ["Audit", "HttpMethod", "ListAuditResponse"]
+__all__ = ["Audit", "HttpMethod", "ListAuditEventsResponse"]

@@ -9,34 +9,31 @@ import pydantic
 from ...core.api_error import ApiError
 from ...core.client_wrapper import AsyncClientWrapper, SyncClientWrapper
 from ...core.jsonable_encoder import jsonable_encoder
-from ...core.remove_none_from_dict import remove_none_from_dict
 from ..common.errors.bad_request_error import BadRequestError
 from ..common.errors.forbidden_error import ForbiddenError
 from ..common.errors.not_found_error import NotFoundError
 from ..common.errors.unauthorized_error import UnauthorizedError
 from ..common.types.error_body import ErrorBody
+from ..events.types.event import Event
 
 # this is used as the default value for optional parameters
 OMIT = typing.cast(typing.Any, ...)
 
 
-class HooksClient:
+class SinkClient:
     def __init__(self, *, client_wrapper: SyncClientWrapper):
         self._client_wrapper = client_wrapper
 
-    def proxy_hook(self, *, token: str, request: typing.Any) -> None:
+    def post_events(self, *, request: typing.List[Event]) -> None:
         """
-        Proxy webhook messages from webhook providers to webhook recievers
+        Writes a batch of `Event` objects to the Sink configured with the token used for authentication.
 
         Parameters:
-            - token: str. Optional: if you can't use the HTTP Authorization bearer, specify integration access token here.
-
-            - request: typing.Any.
+            - request: typing.List[Event].
         """
         _response = self._client_wrapper.httpx_client.request(
             "POST",
-            urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", "v1/hooks"),
-            params=remove_none_from_dict({"token": token}),
+            urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", "v1/sink/events"),
             json=jsonable_encoder(request),
             headers=self._client_wrapper.get_headers(),
             timeout=60,
@@ -58,23 +55,20 @@ class HooksClient:
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
 
-class AsyncHooksClient:
+class AsyncSinkClient:
     def __init__(self, *, client_wrapper: AsyncClientWrapper):
         self._client_wrapper = client_wrapper
 
-    async def proxy_hook(self, *, token: str, request: typing.Any) -> None:
+    async def post_events(self, *, request: typing.List[Event]) -> None:
         """
-        Proxy webhook messages from webhook providers to webhook recievers
+        Writes a batch of `Event` objects to the Sink configured with the token used for authentication.
 
         Parameters:
-            - token: str. Optional: if you can't use the HTTP Authorization bearer, specify integration access token here.
-
-            - request: typing.Any.
+            - request: typing.List[Event].
         """
         _response = await self._client_wrapper.httpx_client.request(
             "POST",
-            urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", "v1/hooks"),
-            params=remove_none_from_dict({"token": token}),
+            urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", "v1/sink/events"),
             json=jsonable_encoder(request),
             headers=self._client_wrapper.get_headers(),
             timeout=60,

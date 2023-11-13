@@ -12,7 +12,6 @@ from .types import (
     Event_ScheduledJobActivity,
     Event_SecurityFinding,
     Event_WebResourceAccessActivity,
-    ListEventsResponse,
 )
 
 __all__ = [
@@ -27,5 +26,4 @@ __all__ = [
     "Event_ScheduledJobActivity",
     "Event_SecurityFinding",
     "Event_WebResourceAccessActivity",
-    "ListEventsResponse",
 ]

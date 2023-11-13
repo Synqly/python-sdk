@@ -9,16 +9,19 @@ import pydantic
 from ...core.api_error import ApiError
 from ...core.client_wrapper import AsyncClientWrapper, SyncClientWrapper
 from ...core.jsonable_encoder import jsonable_encoder
+from ...core.remove_none_from_dict import remove_none_from_dict
 from ..accounts.types.account_id import AccountId
 from ..common.errors.bad_request_error import BadRequestError
 from ..common.errors.conflict_error import ConflictError
+from ..common.errors.forbidden_error import ForbiddenError
 from ..common.errors.not_found_error import NotFoundError
+from ..common.errors.unauthorized_error import UnauthorizedError
 from ..common.types.error_body import ErrorBody
 from .types.create_integration_request import CreateIntegrationRequest
 from .types.create_integration_response import CreateIntegrationResponse
 from .types.get_integration_response import GetIntegrationResponse
 from .types.integration_id import IntegrationId
-from .types.list_integration_response import ListIntegrationResponse
+from .types.list_integrations_response import ListIntegrationsResponse
 from .types.patch_integration_response import PatchIntegrationResponse
 from .types.update_integration_request import UpdateIntegrationRequest
 from .types.update_integration_response import UpdateIntegrationResponse
@@ -31,24 +34,55 @@ class IntegrationsClient:
     def __init__(self, *, client_wrapper: SyncClientWrapper):
         self._client_wrapper = client_wrapper
 
-    def list_integration(self, account_id: AccountId) -> ListIntegrationResponse:
+    def list_integrations(
+        self,
+        account_id: AccountId,
+        *,
+        limit: typing.Optional[int] = None,
+        start_after: typing.Optional[str] = None,
+        end_before: typing.Optional[str] = None,
+        order: typing.Union[typing.Optional[str], typing.List[str]],
+        filter: typing.Union[typing.Optional[str], typing.List[str]],
+    ) -> ListIntegrationsResponse:
         """
         Returns a list of all `Integration` objects belonging to the
         `Account` matching `{accountId}`.
 
         Parameters:
             - account_id: AccountId.
+
+            - limit: typing.Optional[int]. Number of `Integration` objects to return in this page. Defaults to 100.
+
+            - start_after: typing.Optional[str]. Return `Integration` objects starting after this `name`.
+
+            - end_before: typing.Optional[str]. Return `Integration` objects ending before this `name`.
+
+            - order: typing.Union[typing.Optional[str], typing.List[str]]. Select a field to order the results by. Defaults to `name`. To control the direction of the sorting, append
+                                                                           `[asc]` or `[desc]` to the field name. For example, `name[desc]` will sort the results by `name` in descending order.
+                                                                           The ordering defaults to `asc` if not specified. May be used multiple times to order by multiple fields, and the
+                                                                           ordering is applied in the order the fields are specified.
+
+            - filter: typing.Union[typing.Optional[str], typing.List[str]]. Filter results by this query. For more information on filtering, refer to our Filtering Guide. Defaults to no filter.
+                                                                            If used more than once, the queries are ANDed together.
+
         """
         _response = self._client_wrapper.httpx_client.request(
             "GET",
             urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", f"v1/integrations/{account_id}"),
+            params=remove_none_from_dict(
+                {"limit": limit, "start_after": start_after, "end_before": end_before, "order": order, "filter": filter}
+            ),
             headers=self._client_wrapper.get_headers(),
             timeout=60,
         )
         if 200 <= _response.status_code < 300:
-            return pydantic.parse_obj_as(ListIntegrationResponse, _response.json())  # type: ignore
+            return pydantic.parse_obj_as(ListIntegrationsResponse, _response.json())  # type: ignore
         if _response.status_code == 404:
             raise NotFoundError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+        if _response.status_code == 403:
+            raise ForbiddenError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+        if _response.status_code == 401:
+            raise UnauthorizedError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
         try:
             _response_json = _response.json()
         except JSONDecodeError:
@@ -77,6 +111,10 @@ class IntegrationsClient:
             return pydantic.parse_obj_as(GetIntegrationResponse, _response.json())  # type: ignore
         if _response.status_code == 404:
             raise NotFoundError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+        if _response.status_code == 403:
+            raise ForbiddenError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+        if _response.status_code == 401:
+            raise UnauthorizedError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
         try:
             _response_json = _response.json()
         except JSONDecodeError:
@@ -109,6 +147,10 @@ class IntegrationsClient:
             raise BadRequestError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
         if _response.status_code == 404:
             raise NotFoundError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+        if _response.status_code == 403:
+            raise ForbiddenError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+        if _response.status_code == 401:
+            raise UnauthorizedError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
         try:
             _response_json = _response.json()
         except JSONDecodeError:
@@ -146,6 +188,10 @@ class IntegrationsClient:
             raise NotFoundError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
         if _response.status_code == 409:
             raise ConflictError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+        if _response.status_code == 403:
+            raise ForbiddenError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+        if _response.status_code == 401:
+            raise UnauthorizedError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
         try:
             _response_json = _response.json()
         except JSONDecodeError:
@@ -185,6 +231,10 @@ class IntegrationsClient:
             raise BadRequestError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
         if _response.status_code == 404:
             raise NotFoundError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+        if _response.status_code == 403:
+            raise ForbiddenError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+        if _response.status_code == 401:
+            raise UnauthorizedError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
         try:
             _response_json = _response.json()
         except JSONDecodeError:
@@ -214,6 +264,10 @@ class IntegrationsClient:
             return
         if _response.status_code == 404:
             raise NotFoundError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+        if _response.status_code == 403:
+            raise ForbiddenError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+        if _response.status_code == 401:
+            raise UnauthorizedError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
         try:
             _response_json = _response.json()
         except JSONDecodeError:
@@ -225,24 +279,55 @@ class AsyncIntegrationsClient:
     def __init__(self, *, client_wrapper: AsyncClientWrapper):
         self._client_wrapper = client_wrapper
 
-    async def list_integration(self, account_id: AccountId) -> ListIntegrationResponse:
+    async def list_integrations(
+        self,
+        account_id: AccountId,
+        *,
+        limit: typing.Optional[int] = None,
+        start_after: typing.Optional[str] = None,
+        end_before: typing.Optional[str] = None,
+        order: typing.Union[typing.Optional[str], typing.List[str]],
+        filter: typing.Union[typing.Optional[str], typing.List[str]],
+    ) -> ListIntegrationsResponse:
         """
         Returns a list of all `Integration` objects belonging to the
         `Account` matching `{accountId}`.
 
         Parameters:
             - account_id: AccountId.
+
+            - limit: typing.Optional[int]. Number of `Integration` objects to return in this page. Defaults to 100.
+
+            - start_after: typing.Optional[str]. Return `Integration` objects starting after this `name`.
+
+            - end_before: typing.Optional[str]. Return `Integration` objects ending before this `name`.
+
+            - order: typing.Union[typing.Optional[str], typing.List[str]]. Select a field to order the results by. Defaults to `name`. To control the direction of the sorting, append
+                                                                           `[asc]` or `[desc]` to the field name. For example, `name[desc]` will sort the results by `name` in descending order.
+                                                                           The ordering defaults to `asc` if not specified. May be used multiple times to order by multiple fields, and the
+                                                                           ordering is applied in the order the fields are specified.
+
+            - filter: typing.Union[typing.Optional[str], typing.List[str]]. Filter results by this query. For more information on filtering, refer to our Filtering Guide. Defaults to no filter.
+                                                                            If used more than once, the queries are ANDed together.
+
         """
         _response = await self._client_wrapper.httpx_client.request(
             "GET",
             urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", f"v1/integrations/{account_id}"),
+            params=remove_none_from_dict(
+                {"limit": limit, "start_after": start_after, "end_before": end_before, "order": order, "filter": filter}
+            ),
             headers=self._client_wrapper.get_headers(),
             timeout=60,
         )
         if 200 <= _response.status_code < 300:
-            return pydantic.parse_obj_as(ListIntegrationResponse, _response.json())  # type: ignore
+            return pydantic.parse_obj_as(ListIntegrationsResponse, _response.json())  # type: ignore
         if _response.status_code == 404:
             raise NotFoundError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+        if _response.status_code == 403:
+            raise ForbiddenError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+        if _response.status_code == 401:
+            raise UnauthorizedError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
         try:
             _response_json = _response.json()
         except JSONDecodeError:
@@ -271,6 +356,10 @@ class AsyncIntegrationsClient:
             return pydantic.parse_obj_as(GetIntegrationResponse, _response.json())  # type: ignore
         if _response.status_code == 404:
             raise NotFoundError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+        if _response.status_code == 403:
+            raise ForbiddenError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+        if _response.status_code == 401:
+            raise UnauthorizedError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
         try:
             _response_json = _response.json()
         except JSONDecodeError:
@@ -303,6 +392,10 @@ class AsyncIntegrationsClient:
             raise BadRequestError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
         if _response.status_code == 404:
             raise NotFoundError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+        if _response.status_code == 403:
+            raise ForbiddenError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+        if _response.status_code == 401:
+            raise UnauthorizedError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
         try:
             _response_json = _response.json()
         except JSONDecodeError:
@@ -340,6 +433,10 @@ class AsyncIntegrationsClient:
             raise NotFoundError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
         if _response.status_code == 409:
             raise ConflictError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+        if _response.status_code == 403:
+            raise ForbiddenError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+        if _response.status_code == 401:
+            raise UnauthorizedError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
         try:
             _response_json = _response.json()
         except JSONDecodeError:
@@ -379,6 +476,10 @@ class AsyncIntegrationsClient:
             raise BadRequestError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
         if _response.status_code == 404:
             raise NotFoundError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+        if _response.status_code == 403:
+            raise ForbiddenError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+        if _response.status_code == 401:
+            raise UnauthorizedError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
         try:
             _response_json = _response.json()
         except JSONDecodeError:
@@ -408,6 +509,10 @@ class AsyncIntegrationsClient:
             return
         if _response.status_code == 404:
             raise NotFoundError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+        if _response.status_code == 403:
+            raise ForbiddenError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+        if _response.status_code == 401:
+            raise UnauthorizedError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
         try:
             _response_json = _response.json()
         except JSONDecodeError:

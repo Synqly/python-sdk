@@ -6,7 +6,7 @@ from .create_account_request import CreateAccountRequest
 from .create_account_response import CreateAccountResponse
 from .create_account_response_result import CreateAccountResponseResult
 from .get_account_response import GetAccountResponse
-from .list_account_response import ListAccountResponse
+from .list_accounts_response import ListAccountsResponse
 from .patch_account_response import PatchAccountResponse
 from .update_account_request import UpdateAccountRequest
 from .update_account_response import UpdateAccountResponse
@@ -18,7 +18,7 @@ __all__ = [
     "CreateAccountResponse",
     "CreateAccountResponseResult",
     "GetAccountResponse",
-    "ListAccountResponse",
+    "ListAccountsResponse",
     "PatchAccountResponse",
     "UpdateAccountRequest",
     "UpdateAccountResponse",

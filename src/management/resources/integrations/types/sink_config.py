@@ -6,17 +6,24 @@ import typing
 import pydantic
 
 from ....core.datetime_utils import serialize_datetime
+from ...credentials.types.credential_id import CredentialId
+from ...transforms.types.transform_id import TransformId
+from .sink_provider_type_config import SinkProviderTypeConfig
 
 
-class AzureConfig(pydantic.BaseModel):
+class SinkConfig(pydantic.BaseModel):
     """
-    Configuration specific to Azure Monitor Logs
+    Configuration for a Sink Provider
     """
 
-    client_id: str = pydantic.Field(description="Azure Client (Application) ID.")
-    tenant_id: str = pydantic.Field(description="Azure Directory (tenant) ID.")
-    rule_id: str = pydantic.Field(description="Data Collection Rule immutable ID.")
-    stream_name: str = pydantic.Field(description="Name of the Data Collection Rule stream.")
+    credential_id: CredentialId
+    url: typing.Optional[str] = pydantic.Field(
+        description="URL used for connecting to the external service. If not provided, will connect to the default endpoint for the Provider"
+    )
+    transforms: typing.Optional[typing.List[TransformId]] = pydantic.Field(
+        description="Optional list of transformations used to modify requests before they are sent to the external service."
+    )
+    config: SinkProviderTypeConfig
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}

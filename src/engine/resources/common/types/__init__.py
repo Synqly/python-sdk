@@ -4,5 +4,6 @@ from .base import Base
 from .error_body import ErrorBody
 from .error_param import ErrorParam
 from .id import Id
+from .order_options import OrderOptions
 
-__all__ = ["Base", "ErrorBody", "ErrorParam", "Id"]
+__all__ = ["Base", "ErrorBody", "ErrorParam", "Id", "OrderOptions"]

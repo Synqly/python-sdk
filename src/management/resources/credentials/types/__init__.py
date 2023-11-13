@@ -9,7 +9,7 @@ from .credential_config import CredentialConfig, CredentialConfig_Aws, Credentia
 from .credential_id import CredentialId
 from .credential_type import CredentialType
 from .get_credential_response import GetCredentialResponse
-from .list_credential_response import ListCredentialResponse
+from .list_credentials_response import ListCredentialsResponse
 from .patch_credential_response import PatchCredentialResponse
 from .token_credential import TokenCredential
 from .update_credential_request import UpdateCredentialRequest
@@ -28,7 +28,7 @@ __all__ = [
     "CredentialId",
     "CredentialType",
     "GetCredentialResponse",
-    "ListCredentialResponse",
+    "ListCredentialsResponse",
     "PatchCredentialResponse",
     "TokenCredential",
     "UpdateCredentialRequest",

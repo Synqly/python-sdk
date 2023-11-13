@@ -6,11 +6,11 @@ import typing
 import pydantic
 
 from ....core.datetime_utils import serialize_datetime
-from ...member_base.types.member import Member
 
 
-class ListMemberResponse(pydantic.BaseModel):
-    result: typing.List[Member]
+class QuerySiemEventsResponse(pydantic.BaseModel):
+    result: typing.List[typing.Dict[str, typing.Any]] = pydantic.Field(description="List of events")
+    cursor: str = pydantic.Field(description="Cursor to use to retrieve the next page of results")
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}

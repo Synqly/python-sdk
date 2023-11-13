@@ -22,6 +22,7 @@ class Member(Base):
     ttl: str
     token_ttl: str
     expires: dt.datetime
+    pin_expires: dt.datetime
     roles: typing.List[Role] = pydantic.Field(description="Roles granted to this member. Tokens inherit this access.")
 
     def json(self, **kwargs: typing.Any) -> str:

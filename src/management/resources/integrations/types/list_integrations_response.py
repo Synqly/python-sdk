@@ -9,7 +9,7 @@ from ....core.datetime_utils import serialize_datetime
 from .integration import Integration
 
 
-class ListIntegrationResponse(pydantic.BaseModel):
+class ListIntegrationsResponse(pydantic.BaseModel):
     result: typing.List[Integration]
 
     def json(self, **kwargs: typing.Any) -> str:
