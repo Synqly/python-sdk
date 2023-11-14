@@ -6,11 +6,20 @@ import typing
 import pydantic
 
 from ....core.datetime_utils import serialize_datetime
-from .credential_response import CredentialResponse
+from ...accounts.types.account_id import AccountId
+from ...common.types.base import Base
+from .credential_id import CredentialId
+from .credential_type import CredentialType
 
 
-class CreateCredentialResponse(pydantic.BaseModel):
-    result: CredentialResponse
+class CredentialResponse(Base):
+    """
+    Response object for a Credential
+    """
+
+    id: CredentialId
+    account_id: AccountId = pydantic.Field(description="Account that manages this credential.")
+    config: typing.Optional[CredentialType]
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}
@@ -23,4 +32,5 @@ class CreateCredentialResponse(pydantic.BaseModel):
     class Config:
         frozen = True
         smart_union = True
+        allow_population_by_field_name = True
         json_encoders = {dt.datetime: serialize_datetime}
