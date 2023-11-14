@@ -22,10 +22,10 @@ class App:
 
     def _cleanup_handler( self ):
         print("Cleaning up...")
-        for tenant in self.tenants:
-            # Delete the Synqly Account
-            tenant.synqly_management_client.accounts.delete_account(tenant.synqly_account_id)
-            print("Cleaned up Account " + tenant.synqly_account_id)
+        # for tenant in self.tenants:
+        #     # Delete the Synqly Account
+        #     tenant.synqly_management_client.accounts.delete_account(tenant.synqly_account_id)
+        #     print("Cleaned up Account " + tenant.synqly_account_id)
         self.terminated = True
     
     # Add a new tenant to the app's tenant pool
@@ -45,32 +45,42 @@ class App:
         # Add the new tenant to the tenant pool. The Event Logger client will be
         # initialized in configure_event_logging, so leave it as None for now.
         self.tenants.append(Tenant(
+            tenant_name=new_tenant_name,
             synqly_account_id=account_id, 
             synqly_management_client=management_client, 
             synqly_event_logger=None))
             
-    def configure_event_logging(self, tenant_id, siem_provider_type, siem_provider_token):
+    def configure_event_logging(self, tenant_name, siem_provider_type, siem_provider_token):
         # Locate the tenant in our App's tenant pool
         tenant = None
         for t in self.tenants:
-            if t.synqly_account_id == tenant_id:
+            print ("Found synqly account: "+t.tenant_name)
+            if t.tenant_name == tenant_name:
                 tenant = t
                 break
         
         if tenant is None:
-            raise Exception(tenant_id + " not found")
+            raise Exception(tenant_name + " not found")
         
+        # If a Token is not provided, set a default value to pass SDK type checks
+        if siem_provider_token is None:
+            siem_provider_token = "No Auth Needed"
+
         # We need to save the Provider credentials in Synqly before configuring the Integration
 	    # We will use the Synqly Client we created for the tenant to do this
-        credential = tenant.synqly_management_client.credentials.create_credential(
-            mgmt.CreateCredentialRequest(
+        credential = None
+        tenant.synqly_management_client.credentials.create_credential(
+            account_id = tenant.synqly_account_id,
+            request = mgmt.CreateCredentialRequest(
                 name = "{} authentication token".format(siem_provider_type),
                 config = mgmt.CredentialConfig_Token(
-                    secret = siem_provider_token
+                    secret = siem_provider_token,
+                    type="token"
                 )
             )
         )
 
+        print("Created credential: " + credential.result.credential.id)
         # Generate Provider configuration based on which provider type was selected.
         # A Provider configuration object references a Credential object, and acts
         # as the basis for initializing an Integration.
@@ -98,7 +108,7 @@ class App:
         )
 
     # Return Synqly Provider configuration for a Splunk provider
-    def splunk_config(splunk_url, credential_id):
+    def splunk_config(self, splunk_url, credential_id):
         return mgmt.ProviderConfig_Siem(
             mgmt.SiemConfig(
                 url = splunk_url,
@@ -117,20 +127,21 @@ class App:
     
     # Return Synqly Provider configuration for an in-memory mock SIEM. Intended for
     # testing without the need for an external provider.
-    def in_mem_config():
+    def in_mem_config(self):
         return mgmt.ProviderConfig_Siem(
             url = None,
             credential_id = "not used for in memory provider",
         )
 
-    def background_job():
+    def background_job(self):
         while not self.terminated:
             print("Hi")
             pass
     
 
 class Tenant:
-    def __init__(self, synqly_account_id, synqly_management_client, synqly_event_logger):
+    def __init__(self, tenant_name, synqly_account_id, synqly_management_client, synqly_event_logger):
+        self.tenant_name = tenant_name
         self.synqly_account_id = synqly_account_id
         self.synqly_management_client = synqly_management_client
         self.synqly_event_logger = synqly_event_logger
