@@ -22,10 +22,10 @@ class App:
 
     def _cleanup_handler( self ):
         print("Cleaning up...")
-        # for tenant in self.tenants:
-        #     # Delete the Synqly Account
-        #     tenant.synqly_management_client.accounts.delete_account(tenant.synqly_account_id)
-        #     print("Cleaned up Account " + tenant.synqly_account_id)
+        for tenant in self.tenants:
+            # Delete the Synqly Account
+            tenant.synqly_management_client.accounts.delete_account(tenant.synqly_account_id)
+            print("Cleaned up Account " + tenant.synqly_account_id)
         self.terminated = True
     
     # Add a new tenant to the app's tenant pool
@@ -68,8 +68,7 @@ class App:
 
         # We need to save the Provider credentials in Synqly before configuring the Integration
 	    # We will use the Synqly Client we created for the tenant to do this
-        credential = None
-        tenant.synqly_management_client.credentials.create_credential(
+        credential = tenant.synqly_management_client.credentials.create_credential(
             account_id = tenant.synqly_account_id,
             request = mgmt.CreateCredentialRequest(
                 name = "{} authentication token".format(siem_provider_type),
@@ -79,6 +78,7 @@ class App:
                 )
             )
         )
+        print ("Credential response "+str(credential))
 
         print("Created credential: " + credential.result.credential.id)
         # Generate Provider configuration based on which provider type was selected.
