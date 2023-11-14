@@ -2,7 +2,6 @@
 
 import datetime as dt
 import typing
-import uuid
 
 import pydantic
 
@@ -29,7 +28,7 @@ class Container(pydantic.BaseModel):
     orchestrator: typing.Optional[str] = pydantic.Field(
         description="The orchestrator managing the container, such as ECS, EKS, K8s, or OpenShift."
     )
-    pod_uuid: typing.Optional[uuid.UUID] = pydantic.Field(
+    pod_uuid: typing.Optional[str] = pydantic.Field(
         description="The unique identifier of the pod (or equivalent) that the container is executing on."
     )
     runtime: typing.Optional[str] = pydantic.Field(
