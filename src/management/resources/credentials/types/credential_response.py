@@ -18,7 +18,7 @@ class CredentialResponse(Base):
 
     id: CredentialId
     account_id: AccountId = pydantic.Field(description="Account that manages this credential.")
-    config: str
+    config: typing.Any
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}
