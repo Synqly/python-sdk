@@ -2,7 +2,6 @@
 
 import datetime as dt
 import typing
-import uuid
 
 import pydantic
 
@@ -25,7 +24,7 @@ class Session(pydantic.BaseModel):
     is_remote: typing.Optional[bool] = pydantic.Field(description="The indication of whether the session is remote.")
     issuer: typing.Optional[str] = pydantic.Field(description="The identifier of the session issuer.")
     uid: typing.Optional[str] = pydantic.Field(description="The unique identifier of the session.")
-    uuid: typing.Optional[uuid.UUID] = pydantic.Field(description="The universally unique identifier of the session.")
+    uuid: typing.Optional[str] = pydantic.Field(description="The universally unique identifier of the session.")
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}
