@@ -1,1 +1,3 @@
-git+https://${GITHUB_USERNAME}:${GITHUB_TOKEN}@github.com/Synqly/python-sdk.git
+# git+https://${GITHUB_USERNAME}:${GITHUB_TOKEN}@github.com/Synqly/python-sdk.git
+
+~/python-sdk

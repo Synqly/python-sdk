@@ -9,6 +9,7 @@ from ....core.datetime_utils import serialize_datetime
 from ...accounts.types.account_id import AccountId
 from ...common.types.base import Base
 from .credential_id import CredentialId
+from .credential_type import CredentialType
 
 
 class CredentialResponse(Base):
@@ -18,7 +19,8 @@ class CredentialResponse(Base):
 
     id: CredentialId
     account_id: AccountId = pydantic.Field(description="Account that manages this credential.")
-    config: typing.Any
+    config: typing.Dict[str, CredentialType]
+
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}

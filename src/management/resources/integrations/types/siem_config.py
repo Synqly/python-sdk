@@ -23,7 +23,7 @@ class SiemConfig(pydantic.BaseModel):
     transforms: typing.Optional[typing.List[TransformId]] = pydantic.Field(
         description="Optional list of transformations used to modify requests before they are sent to the external service."
     )
-    config: SiemProviderTypeConfig
+    config: typing.Optional[SiemProviderTypeConfig]
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}
