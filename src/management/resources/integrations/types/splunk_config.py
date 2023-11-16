@@ -6,6 +6,7 @@ import typing
 import pydantic
 
 from ....core.datetime_utils import serialize_datetime
+from ...credentials.types.credential_id import CredentialId
 
 
 class SplunkConfig(pydantic.BaseModel):
@@ -24,6 +25,12 @@ class SplunkConfig(pydantic.BaseModel):
     )
     source_type: typing.Optional[str] = pydantic.Field(
         description="Splunk source type to send events to. If not provided, will use the default source type for the Splunk collector."
+    )
+    search_service_url: typing.Optional[str] = pydantic.Field(
+        description="Optional URL used for connecting to the Splunk search service. If not provided, the events query will be disabled."
+    )
+    search_service_token_id: typing.Optional[CredentialId] = pydantic.Field(
+        description="Optional token used for connecting to the Splunk search service. If not provided, the events query will be disabled."
     )
 
     def json(self, **kwargs: typing.Any) -> str:

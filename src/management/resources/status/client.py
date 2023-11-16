@@ -17,6 +17,7 @@ from ..common.errors.unauthorized_error import UnauthorizedError
 from ..common.types.error_body import ErrorBody
 from ..integrations.types.integration_id import IntegrationId
 from .types.get_status_response import GetStatusResponse
+from .types.get_status_timeseries import GetStatusTimeseries
 from .types.list_status_events_response import ListStatusEventsResponse
 from .types.list_status_response import ListStatusResponse
 
@@ -141,7 +142,15 @@ class StatusClient:
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
     def list_status_events(
-        self, account_id: AccountId, integration_id: IntegrationId, *, cursor: str, limit: int
+        self,
+        account_id: AccountId,
+        integration_id: IntegrationId,
+        *,
+        limit: typing.Optional[int] = None,
+        start_after: typing.Optional[str] = None,
+        end_before: typing.Optional[str] = None,
+        order: typing.Optional[str] = None,
+        filter: typing.Union[typing.Optional[str], typing.List[str]],
     ) -> ListStatusEventsResponse:
         """
         Returns integration `Status` object list of `StatusEvent` objects.
@@ -151,21 +160,57 @@ class StatusClient:
 
             - integration_id: IntegrationId.
 
-            - cursor: str. Start search from cursor position
+            - limit: typing.Optional[int]. Number of `StatusEvent` objects to return in this page. Defaults to 100.
 
-            - limit: int. Number of tickets to return. Default 50. Max 100.
+            - start_after: typing.Optional[str]. Return `StatusEvent` objects starting after this `created_at`.
+
+            - end_before: typing.Optional[str]. Return `StatusEvent` objects ending before this `created_at`.
+
+            - order: typing.Optional[str]. The order defaults to created_at[asc] and can changed to descending order by specifying created_at[desc].
+
+            - filter: typing.Union[typing.Optional[str], typing.List[str]]. Filter results by this query. For more information on filtering, refer to our Filtering Guide. Defaults to no filter.
+                                                                            If used more than once, the queries are ANDed together.
+
         """
         _response = self._client_wrapper.httpx_client.request(
             "GET",
             urllib.parse.urljoin(
                 f"{self._client_wrapper.get_base_url()}/", f"v1/status/{account_id}/{integration_id}/events"
             ),
-            params=remove_none_from_dict({"cursor": cursor, "limit": limit}),
+            params=remove_none_from_dict(
+                {"limit": limit, "start_after": start_after, "end_before": end_before, "order": order, "filter": filter}
+            ),
             headers=self._client_wrapper.get_headers(),
             timeout=60,
         )
         if 200 <= _response.status_code < 300:
             return pydantic.parse_obj_as(ListStatusEventsResponse, _response.json())  # type: ignore
+        if _response.status_code == 404:
+            raise NotFoundError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+        if _response.status_code == 400:
+            raise BadRequestError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+        if _response.status_code == 403:
+            raise ForbiddenError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+        if _response.status_code == 401:
+            raise UnauthorizedError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+        try:
+            _response_json = _response.json()
+        except JSONDecodeError:
+            raise ApiError(status_code=_response.status_code, body=_response.text)
+        raise ApiError(status_code=_response.status_code, body=_response_json)
+
+    def get_status_timeseries(self) -> GetStatusTimeseries:
+        """
+        Returns organization last hour usage timeseries.
+        """
+        _response = self._client_wrapper.httpx_client.request(
+            "GET",
+            urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", "v1/status/timeseries"),
+            headers=self._client_wrapper.get_headers(),
+            timeout=60,
+        )
+        if 200 <= _response.status_code < 300:
+            return pydantic.parse_obj_as(GetStatusTimeseries, _response.json())  # type: ignore
         if _response.status_code == 404:
             raise NotFoundError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
         if _response.status_code == 400:
@@ -301,7 +346,15 @@ class AsyncStatusClient:
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
     async def list_status_events(
-        self, account_id: AccountId, integration_id: IntegrationId, *, cursor: str, limit: int
+        self,
+        account_id: AccountId,
+        integration_id: IntegrationId,
+        *,
+        limit: typing.Optional[int] = None,
+        start_after: typing.Optional[str] = None,
+        end_before: typing.Optional[str] = None,
+        order: typing.Optional[str] = None,
+        filter: typing.Union[typing.Optional[str], typing.List[str]],
     ) -> ListStatusEventsResponse:
         """
         Returns integration `Status` object list of `StatusEvent` objects.
@@ -311,21 +364,57 @@ class AsyncStatusClient:
 
             - integration_id: IntegrationId.
 
-            - cursor: str. Start search from cursor position
+            - limit: typing.Optional[int]. Number of `StatusEvent` objects to return in this page. Defaults to 100.
 
-            - limit: int. Number of tickets to return. Default 50. Max 100.
+            - start_after: typing.Optional[str]. Return `StatusEvent` objects starting after this `created_at`.
+
+            - end_before: typing.Optional[str]. Return `StatusEvent` objects ending before this `created_at`.
+
+            - order: typing.Optional[str]. The order defaults to created_at[asc] and can changed to descending order by specifying created_at[desc].
+
+            - filter: typing.Union[typing.Optional[str], typing.List[str]]. Filter results by this query. For more information on filtering, refer to our Filtering Guide. Defaults to no filter.
+                                                                            If used more than once, the queries are ANDed together.
+
         """
         _response = await self._client_wrapper.httpx_client.request(
             "GET",
             urllib.parse.urljoin(
                 f"{self._client_wrapper.get_base_url()}/", f"v1/status/{account_id}/{integration_id}/events"
             ),
-            params=remove_none_from_dict({"cursor": cursor, "limit": limit}),
+            params=remove_none_from_dict(
+                {"limit": limit, "start_after": start_after, "end_before": end_before, "order": order, "filter": filter}
+            ),
             headers=self._client_wrapper.get_headers(),
             timeout=60,
         )
         if 200 <= _response.status_code < 300:
             return pydantic.parse_obj_as(ListStatusEventsResponse, _response.json())  # type: ignore
+        if _response.status_code == 404:
+            raise NotFoundError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+        if _response.status_code == 400:
+            raise BadRequestError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+        if _response.status_code == 403:
+            raise ForbiddenError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+        if _response.status_code == 401:
+            raise UnauthorizedError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+        try:
+            _response_json = _response.json()
+        except JSONDecodeError:
+            raise ApiError(status_code=_response.status_code, body=_response.text)
+        raise ApiError(status_code=_response.status_code, body=_response_json)
+
+    async def get_status_timeseries(self) -> GetStatusTimeseries:
+        """
+        Returns organization last hour usage timeseries.
+        """
+        _response = await self._client_wrapper.httpx_client.request(
+            "GET",
+            urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", "v1/status/timeseries"),
+            headers=self._client_wrapper.get_headers(),
+            timeout=60,
+        )
+        if 200 <= _response.status_code < 300:
+            return pydantic.parse_obj_as(GetStatusTimeseries, _response.json())  # type: ignore
         if _response.status_code == 404:
             raise NotFoundError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
         if _response.status_code == 400:

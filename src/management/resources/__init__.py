@@ -58,6 +58,7 @@ from .credentials import (
     CreateCredentialResponse,
     Credential,
     CredentialConfig,
+    CredentialConfigNoSecret,
     CredentialConfig_Aws,
     CredentialConfig_Basic,
     CredentialConfig_Token,
@@ -129,7 +130,16 @@ from .members import (
 )
 from .organization_base import OrganizationId
 from .permissions import Action, BlockedApi, Object, Permission, Role
-from .status import GetStatusResponse, ListStatusEventsResponse, ListStatusResponse, Status, StatusEvent
+from .status import (
+    GetStatusResponse,
+    GetStatusTimeseries,
+    GetStatusTimeseriesResult,
+    ListStatusEventsResponse,
+    ListStatusResponse,
+    Status,
+    StatusEvent,
+    TimeseriesResult,
+)
 from .token_base import Token, TokenId, TokenPair
 from .tokens import GetTokenResponse, ListTokensResponse, RefreshToken, RefreshTokenResponse, ResetTokenResponse
 from .transforms import (
@@ -176,6 +186,7 @@ __all__ = [
     "CreateTransformResponse",
     "Credential",
     "CredentialConfig",
+    "CredentialConfigNoSecret",
     "CredentialConfig_Aws",
     "CredentialConfig_Basic",
     "CredentialConfig_Token",
@@ -191,6 +202,8 @@ __all__ = [
     "GetIntegrationResponse",
     "GetMemberResponse",
     "GetStatusResponse",
+    "GetStatusTimeseries",
+    "GetStatusTimeseriesResult",
     "GetTokenResponse",
     "GetTransformResponse",
     "HooksConfig",
@@ -254,6 +267,7 @@ __all__ = [
     "StatusEvent",
     "StorageConfig",
     "TicketConfig",
+    "TimeseriesResult",
     "Token",
     "TokenCredential",
     "TokenId",
