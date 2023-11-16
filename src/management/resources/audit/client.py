@@ -39,9 +39,7 @@ class AuditClient:
 
             - end_before: typing.Optional[str]. Return `Audit` objects ending before this `created_at`.
 
-            - order: typing.Optional[str]. Select a field to order the results by. Defaults to `created_at[desc]`. To control the direction of the sorting, append
-                                           `[asc]` or `[desc]` to the field name. `Audit` order only supports the `created_at` field.
-                                           The ordering defaults to `asc` if not specified.
+            - order: typing.Optional[str]. The order defaults to created_at[asc] and can changed to descending order by specifying created_at[desc].
 
             - filter: typing.Union[typing.Optional[str], typing.List[str]]. Filter results by this query. For more information on filtering, refer to our Filtering Guide. Defaults to no filter.
                                                                             If used more than once, the queries are ANDed together.
@@ -94,9 +92,7 @@ class AsyncAuditClient:
 
             - end_before: typing.Optional[str]. Return `Audit` objects ending before this `created_at`.
 
-            - order: typing.Optional[str]. Select a field to order the results by. Defaults to `created_at[desc]`. To control the direction of the sorting, append
-                                           `[asc]` or `[desc]` to the field name. `Audit` order only supports the `created_at` field.
-                                           The ordering defaults to `asc` if not specified.
+            - order: typing.Optional[str]. The order defaults to created_at[asc] and can changed to descending order by specifying created_at[desc].
 
             - filter: typing.Union[typing.Optional[str], typing.List[str]]. Filter results by this query. For more information on filtering, refer to our Filtering Guide. Defaults to no filter.
                                                                             If used more than once, the queries are ANDed together.

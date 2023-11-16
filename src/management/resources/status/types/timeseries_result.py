@@ -6,11 +6,20 @@ import typing
 import pydantic
 
 from ....core.datetime_utils import serialize_datetime
-from .credential_response import CredentialResponse
 
 
-class GetCredentialResponse(pydantic.BaseModel):
-    result: CredentialResponse
+class TimeseriesResult(pydantic.BaseModel):
+    """
+    Status timeseries object
+    """
+
+    created_at: dt.datetime = pydantic.Field(description="Interval time")
+    requests: int = pydantic.Field(description="Request count")
+    failed: int = pydantic.Field(description="Failed count")
+    cpu_time: int = pydantic.Field(description="Cpu time in microseconds")
+    db_ops: int = pydantic.Field(description="Database operations count")
+    api_ops: int = pydantic.Field(description="API operations count")
+    in_bytes: int = pydantic.Field(description="API input byte count")
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}

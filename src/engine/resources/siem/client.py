@@ -56,23 +56,35 @@ class SiemClient:
             raise ApiError(status_code=_response.status_code, body=_response.text)
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
-    def query_events(self, *, limit: int, cursor: str, order_by: str, order: str) -> QuerySiemEventsResponse:
+    def query_events(
+        self,
+        *,
+        cursor: typing.Optional[str] = None,
+        limit: typing.Optional[int] = None,
+        order: typing.Union[typing.Optional[str], typing.List[str]],
+        filter: typing.Union[typing.Optional[str], typing.List[str]],
+    ) -> QuerySiemEventsResponse:
         """
         Queries events from the SIEM configured with the token used for authentication.
 
         Parameters:
-            - limit: int. Number of events to return. Defaults to 100.
+            - cursor: typing.Optional[str]. Cursor to use to retrieve the next page of results.
 
-            - cursor: str. Cursor to use to retrieve the next page of results.
+            - limit: typing.Optional[int]. Number of `Account` objects to return in this page. Defaults to 100.
 
-            - order_by: str. Name of the field to order results by.
+            - order: typing.Union[typing.Optional[str], typing.List[str]]. Select a field to order the results by. Defaults to `time`. To control the direction of the sorting, append
+                                                                           `[asc]` or `[desc]` to the field name. For example, `name[desc]` will sort the results by `name` in descending order.
+                                                                           The ordering defaults to `asc` if not specified. May be used multiple times to order by multiple fields, and the
+                                                                           ordering is applied in the order the fields are specified.
 
-            - order: str. The value is either 'asc' or 'desc'.
+            - filter: typing.Union[typing.Optional[str], typing.List[str]]. Filter results by this query. For more information on filtering, refer to our Filtering Guide. Defaults to no filter.
+                                                                            If used more than once, the queries are ANDed together.
+
         """
         _response = self._client_wrapper.httpx_client.request(
             "GET",
             urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", "v1/siem/events"),
-            params=remove_none_from_dict({"limit": limit, "cursor": cursor, "order_by": order_by, "order": order}),
+            params=remove_none_from_dict({"cursor": cursor, "limit": limit, "order": order, "filter": filter}),
             headers=self._client_wrapper.get_headers(),
             timeout=60,
         )
@@ -127,23 +139,35 @@ class AsyncSiemClient:
             raise ApiError(status_code=_response.status_code, body=_response.text)
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
-    async def query_events(self, *, limit: int, cursor: str, order_by: str, order: str) -> QuerySiemEventsResponse:
+    async def query_events(
+        self,
+        *,
+        cursor: typing.Optional[str] = None,
+        limit: typing.Optional[int] = None,
+        order: typing.Union[typing.Optional[str], typing.List[str]],
+        filter: typing.Union[typing.Optional[str], typing.List[str]],
+    ) -> QuerySiemEventsResponse:
         """
         Queries events from the SIEM configured with the token used for authentication.
 
         Parameters:
-            - limit: int. Number of events to return. Defaults to 100.
+            - cursor: typing.Optional[str]. Cursor to use to retrieve the next page of results.
 
-            - cursor: str. Cursor to use to retrieve the next page of results.
+            - limit: typing.Optional[int]. Number of `Account` objects to return in this page. Defaults to 100.
 
-            - order_by: str. Name of the field to order results by.
+            - order: typing.Union[typing.Optional[str], typing.List[str]]. Select a field to order the results by. Defaults to `time`. To control the direction of the sorting, append
+                                                                           `[asc]` or `[desc]` to the field name. For example, `name[desc]` will sort the results by `name` in descending order.
+                                                                           The ordering defaults to `asc` if not specified. May be used multiple times to order by multiple fields, and the
+                                                                           ordering is applied in the order the fields are specified.
 
-            - order: str. The value is either 'asc' or 'desc'.
+            - filter: typing.Union[typing.Optional[str], typing.List[str]]. Filter results by this query. For more information on filtering, refer to our Filtering Guide. Defaults to no filter.
+                                                                            If used more than once, the queries are ANDed together.
+
         """
         _response = await self._client_wrapper.httpx_client.request(
             "GET",
             urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", "v1/siem/events"),
-            params=remove_none_from_dict({"limit": limit, "cursor": cursor, "order_by": order_by, "order": order}),
+            params=remove_none_from_dict({"cursor": cursor, "limit": limit, "order": order, "filter": filter}),
             headers=self._client_wrapper.get_headers(),
             timeout=60,
         )

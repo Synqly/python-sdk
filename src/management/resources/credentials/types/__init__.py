@@ -6,6 +6,7 @@ from .create_credential_request import CreateCredentialRequest
 from .create_credential_response import CreateCredentialResponse
 from .credential import Credential
 from .credential_config import CredentialConfig, CredentialConfig_Aws, CredentialConfig_Basic, CredentialConfig_Token
+from .credential_config_no_secret import CredentialConfigNoSecret
 from .credential_id import CredentialId
 from .credential_response import CredentialResponse
 from .credential_type import CredentialType
@@ -23,6 +24,7 @@ __all__ = [
     "CreateCredentialResponse",
     "Credential",
     "CredentialConfig",
+    "CredentialConfigNoSecret",
     "CredentialConfig_Aws",
     "CredentialConfig_Basic",
     "CredentialConfig_Token",

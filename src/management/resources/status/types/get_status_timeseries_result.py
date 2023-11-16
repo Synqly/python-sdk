@@ -6,11 +6,18 @@ import typing
 import pydantic
 
 from ....core.datetime_utils import serialize_datetime
-from .credential_response import CredentialResponse
+from .timeseries_result import TimeseriesResult
 
 
-class GetCredentialResponse(pydantic.BaseModel):
-    result: CredentialResponse
+class GetStatusTimeseriesResult(pydantic.BaseModel):
+    """
+    Status timeseries object
+    """
+
+    start_time: dt.datetime = pydantic.Field(description="start time")
+    end_time: dt.datetime = pydantic.Field(description="end time")
+    interval: str = pydantic.Field(description="interval duration")
+    series: typing.List[TimeseriesResult]
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}

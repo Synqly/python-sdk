@@ -6,11 +6,10 @@ import typing
 import pydantic
 
 from ....core.datetime_utils import serialize_datetime
-from .credential_response import CredentialResponse
 
 
-class GetCredentialResponse(pydantic.BaseModel):
-    result: CredentialResponse
+class CredentialConfigNoSecret(pydantic.BaseModel):
+    type: str
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}
