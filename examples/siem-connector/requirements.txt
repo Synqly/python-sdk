@@ -1,3 +1,8 @@
+# Install SynqlyPythonClient via locally cached Github Personal Access Token
+git+https://github.com/Synqly/python-sdk.git
+
+# Install SynqlyPythonClient via Github Personal Access Token environment variables
 # git+https://${GITHUB_USERNAME}:${GITHUB_TOKEN}@github.com/Synqly/python-sdk.git
 
-~/python-sdk
+# Install SynqlyPythonClient via SSH
+# git+ssh://git@github.com/Synqly/python-sdk.git
