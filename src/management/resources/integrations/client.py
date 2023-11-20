@@ -45,7 +45,7 @@ class IntegrationsClient:
         filter: typing.Union[typing.Optional[str], typing.List[str]],
     ) -> ListIntegrationsResponse:
         """
-        Returns a list of all `Integration` objects match query params.
+        Returns a list of all `Integration` objects that match the query params.
 
         Parameters:
             - limit: typing.Optional[int]. Number of `Integration` objects to return in this page. Defaults to 100.
@@ -341,7 +341,7 @@ class AsyncIntegrationsClient:
         filter: typing.Union[typing.Optional[str], typing.List[str]],
     ) -> ListIntegrationsResponse:
         """
-        Returns a list of all `Integration` objects match query params.
+        Returns a list of all `Integration` objects that match the query params.
 
         Parameters:
             - limit: typing.Optional[int]. Number of `Integration` objects to return in this page. Defaults to 100.
