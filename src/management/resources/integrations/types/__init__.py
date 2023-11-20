@@ -11,6 +11,7 @@ from .hooks_config import HooksConfig
 from .identity_config import IdentityConfig
 from .integration import Integration
 from .integration_id import IntegrationId
+from .list_account_integrations_response import ListAccountIntegrationsResponse
 from .list_integrations_response import ListIntegrationsResponse
 from .notification_config import NotificationConfig
 from .patch_integration_response import PatchIntegrationResponse
@@ -56,6 +57,7 @@ __all__ = [
     "IdentityConfig",
     "Integration",
     "IntegrationId",
+    "ListAccountIntegrationsResponse",
     "ListIntegrationsResponse",
     "NotificationConfig",
     "PatchIntegrationResponse",
