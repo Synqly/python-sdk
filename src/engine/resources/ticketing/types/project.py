@@ -6,11 +6,17 @@ import typing
 import pydantic
 
 from ....core.datetime_utils import serialize_datetime
-from .project import Project
 
 
-class ListProjectsResponse(pydantic.BaseModel):
-    result: typing.List[Project]
+class Project(pydantic.BaseModel):
+    """
+    Project in a ticketing system
+    """
+
+    id: str = pydantic.Field(
+        description="Unique identifier for this project. Use this id in the `project` field of a `Ticket`."
+    )
+    name: str = pydantic.Field(description="Name of the project")
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}

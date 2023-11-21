@@ -7,6 +7,7 @@ from .list_projects_response import ListProjectsResponse
 from .list_tickets_response import ListTicketsResponse
 from .patch_ticket_response import PatchTicketResponse
 from .priority import Priority
+from .project import Project
 from .ticket import Ticket
 from .ticket_id import TicketId
 
@@ -18,6 +19,7 @@ __all__ = [
     "ListTicketsResponse",
     "PatchTicketResponse",
     "Priority",
+    "Project",
     "Ticket",
     "TicketId",
 ]

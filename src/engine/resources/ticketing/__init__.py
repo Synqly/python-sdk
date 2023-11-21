@@ -8,6 +8,7 @@ from .types import (
     ListTicketsResponse,
     PatchTicketResponse,
     Priority,
+    Project,
     Ticket,
     TicketId,
 )
@@ -20,6 +21,7 @@ __all__ = [
     "ListTicketsResponse",
     "PatchTicketResponse",
     "Priority",
+    "Project",
     "Ticket",
     "TicketId",
 ]

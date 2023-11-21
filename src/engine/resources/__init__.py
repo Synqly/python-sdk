@@ -45,6 +45,7 @@ from .ticketing import (
     ListTicketsResponse,
     PatchTicketResponse,
     Priority,
+    Project,
     Ticket,
     TicketId,
 )
@@ -89,6 +90,7 @@ __all__ = [
     "OrderOptions",
     "PatchTicketResponse",
     "Priority",
+    "Project",
     "QuerySiemEventsResponse",
     "SecurityFinding",
     "Ticket",
