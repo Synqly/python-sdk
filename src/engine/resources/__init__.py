@@ -36,7 +36,7 @@ from .notifications import (
     NotificationStatus,
 )
 from .siem import QuerySiemEventsResponse
-from .storage import ListStorageResponse
+from .storage import ListStorageResponse, StoragePath
 from .ticketing import (
     CreateTicketRequest,
     CreateTicketResponse,
@@ -93,6 +93,7 @@ __all__ = [
     "Project",
     "QuerySiemEventsResponse",
     "SecurityFinding",
+    "StoragePath",
     "Ticket",
     "TicketId",
     "UnauthorizedError",

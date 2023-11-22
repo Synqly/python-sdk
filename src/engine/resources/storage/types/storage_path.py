@@ -6,11 +6,10 @@ import typing
 import pydantic
 
 from ....core.datetime_utils import serialize_datetime
-from .storage_path import StoragePath
 
 
-class ListStorageResponse(pydantic.BaseModel):
-    result: typing.List[StoragePath]
+class StoragePath(pydantic.BaseModel):
+    path: str
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}

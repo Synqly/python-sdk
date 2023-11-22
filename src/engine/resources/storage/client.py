@@ -33,7 +33,7 @@ class StorageClient:
         """
         _response = self._client_wrapper.httpx_client.request(
             "GET",
-            urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", f"v1/storage/folder/list/{path}"),
+            urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", f"v1/storage/folders/{path}"),
             headers=self._client_wrapper.get_headers(),
             timeout=60,
         )
@@ -64,7 +64,7 @@ class StorageClient:
         """
         _response = self._client_wrapper.httpx_client.request(
             "POST",
-            urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", f"v1/storage/folder/upload/{path}"),
+            urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", f"v1/storage/files/{path}"),
             json=jsonable_encoder(request),
             headers=self._client_wrapper.get_headers(),
             timeout=60,
@@ -94,8 +94,8 @@ class StorageClient:
             - path: str.
         """
         _response = self._client_wrapper.httpx_client.request(
-            "POST",
-            urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", f"v1/storage/folder/download/{path}"),
+            "GET",
+            urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", f"v1/storage/files/{path}"),
             headers=self._client_wrapper.get_headers(),
             timeout=60,
         )
@@ -123,8 +123,8 @@ class StorageClient:
             - path: str.
         """
         _response = self._client_wrapper.httpx_client.request(
-            "POST",
-            urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", f"v1/storage/folder/delete/{path}"),
+            "DELETE",
+            urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", f"v1/storage/files/{path}"),
             headers=self._client_wrapper.get_headers(),
             timeout=60,
         )
@@ -158,7 +158,7 @@ class AsyncStorageClient:
         """
         _response = await self._client_wrapper.httpx_client.request(
             "GET",
-            urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", f"v1/storage/folder/list/{path}"),
+            urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", f"v1/storage/folders/{path}"),
             headers=self._client_wrapper.get_headers(),
             timeout=60,
         )
@@ -189,7 +189,7 @@ class AsyncStorageClient:
         """
         _response = await self._client_wrapper.httpx_client.request(
             "POST",
-            urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", f"v1/storage/folder/upload/{path}"),
+            urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", f"v1/storage/files/{path}"),
             json=jsonable_encoder(request),
             headers=self._client_wrapper.get_headers(),
             timeout=60,
@@ -219,8 +219,8 @@ class AsyncStorageClient:
             - path: str.
         """
         _response = await self._client_wrapper.httpx_client.request(
-            "POST",
-            urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", f"v1/storage/folder/download/{path}"),
+            "GET",
+            urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", f"v1/storage/files/{path}"),
             headers=self._client_wrapper.get_headers(),
             timeout=60,
         )
@@ -248,8 +248,8 @@ class AsyncStorageClient:
             - path: str.
         """
         _response = await self._client_wrapper.httpx_client.request(
-            "POST",
-            urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", f"v1/storage/folder/delete/{path}"),
+            "DELETE",
+            urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", f"v1/storage/files/{path}"),
             headers=self._client_wrapper.get_headers(),
             timeout=60,
         )
