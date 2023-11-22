@@ -14,7 +14,7 @@ class TimeseriesResult(pydantic.BaseModel):
     """
 
     created_at: dt.datetime = pydantic.Field(description="Interval time")
-    requests: int = pydantic.Field(description="Request count")
+    succeeded: int = pydantic.Field(description="Succeeded count")
     failed: int = pydantic.Field(description="Failed count")
     cpu_time: int = pydantic.Field(description="Cpu time in microseconds")
     db_ops: int = pydantic.Field(description="Database operations count")
