@@ -19,7 +19,9 @@ class Permission(pydantic.BaseModel):
         description='Type of the resource that this permission grants access to. Must be one of the following: "organization, "integration"'
     )
     parent_id: Id = pydantic.Field(description="Token parentId")
+    id: Id = pydantic.Field(description="Token Id")
     organization_id: Id = pydantic.Field(description="Token organizationId")
+    member_id: Id = pydantic.Field(description="Token memberId")
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}
