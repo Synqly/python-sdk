@@ -16,6 +16,7 @@ class Audit(pydantic.BaseModel):
     environment: str
     created_at: dt.datetime = pydantic.Field(description="Time when the API request occurred.")
     remote_addr: str
+    user_agent: str
     method: HttpMethod
     path: str
     code: str
