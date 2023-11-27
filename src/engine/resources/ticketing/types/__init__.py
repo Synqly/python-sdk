@@ -4,10 +4,10 @@ from .create_ticket_request import CreateTicketRequest
 from .create_ticket_response import CreateTicketResponse
 from .get_ticket_response import GetTicketResponse
 from .list_projects_response import ListProjectsResponse
-from .list_tickets_response import ListTicketsResponse
 from .patch_ticket_response import PatchTicketResponse
 from .priority import Priority
 from .project import Project
+from .query_tickets_response import QueryTicketsResponse
 from .ticket import Ticket
 from .ticket_id import TicketId
 
@@ -16,10 +16,10 @@ __all__ = [
     "CreateTicketResponse",
     "GetTicketResponse",
     "ListProjectsResponse",
-    "ListTicketsResponse",
     "PatchTicketResponse",
     "Priority",
     "Project",
+    "QueryTicketsResponse",
     "Ticket",
     "TicketId",
 ]

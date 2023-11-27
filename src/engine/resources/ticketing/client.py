@@ -19,8 +19,8 @@ from .types.create_ticket_request import CreateTicketRequest
 from .types.create_ticket_response import CreateTicketResponse
 from .types.get_ticket_response import GetTicketResponse
 from .types.list_projects_response import ListProjectsResponse
-from .types.list_tickets_response import ListTicketsResponse
 from .types.patch_ticket_response import PatchTicketResponse
+from .types.query_tickets_response import QueryTicketsResponse
 from .types.ticket_id import TicketId
 
 # this is used as the default value for optional parameters
@@ -58,28 +58,40 @@ class TicketingClient:
             raise ApiError(status_code=_response.status_code, body=_response.text)
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
-    def list_tickets(self, *, search: str, project: str, cursor: str, limit: int) -> ListTicketsResponse:
+    def query_tickets(
+        self,
+        *,
+        cursor: typing.Optional[str] = None,
+        limit: typing.Optional[int] = None,
+        order: typing.Union[typing.Optional[str], typing.List[str]],
+        filter: typing.Union[typing.Optional[str], typing.List[str]],
+    ) -> QueryTicketsResponse:
         """
         Returns a list of `Ticket` objects from the token-linked `Integration`.
 
         Parameters:
-            - search: str. String to match against issue text fields
+            - cursor: typing.Optional[str]. Cursor to use to retrieve the next page of results.
 
-            - project: str. Only search in specified project. Default all projects.
+            - limit: typing.Optional[int]. Number of `Account` objects to return in this page. Defaults to 100.
 
-            - cursor: str. Start search from cursor position
+            - order: typing.Union[typing.Optional[str], typing.List[str]]. Select a field to order the results by. Defaults to `time`. To control the direction of the sorting, append
+                                                                           `[asc]` or `[desc]` to the field name. For example, `name[desc]` will sort the results by `name` in descending order.
+                                                                           The ordering defaults to `asc` if not specified. May be used multiple times to order by multiple fields, and the
+                                                                           ordering is applied in the order the fields are specified.
 
-            - limit: int. Number of tickets to return. Default 50. Max 100.
+            - filter: typing.Union[typing.Optional[str], typing.List[str]]. Filter results by this query. For more information on filtering, refer to our Filtering Guide. Defaults to no filter.
+                                                                            If used more than once, the queries are ANDed together.
+
         """
         _response = self._client_wrapper.httpx_client.request(
             "GET",
             urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", "v1/ticketing/tickets"),
-            params=remove_none_from_dict({"search": search, "project": project, "cursor": cursor, "limit": limit}),
+            params=remove_none_from_dict({"cursor": cursor, "limit": limit, "order": order, "filter": filter}),
             headers=self._client_wrapper.get_headers(),
             timeout=60,
         )
         if 200 <= _response.status_code < 300:
-            return pydantic.parse_obj_as(ListTicketsResponse, _response.json())  # type: ignore
+            return pydantic.parse_obj_as(QueryTicketsResponse, _response.json())  # type: ignore
         if _response.status_code == 404:
             raise NotFoundError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
         if _response.status_code == 400:
@@ -219,28 +231,40 @@ class AsyncTicketingClient:
             raise ApiError(status_code=_response.status_code, body=_response.text)
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
-    async def list_tickets(self, *, search: str, project: str, cursor: str, limit: int) -> ListTicketsResponse:
+    async def query_tickets(
+        self,
+        *,
+        cursor: typing.Optional[str] = None,
+        limit: typing.Optional[int] = None,
+        order: typing.Union[typing.Optional[str], typing.List[str]],
+        filter: typing.Union[typing.Optional[str], typing.List[str]],
+    ) -> QueryTicketsResponse:
         """
         Returns a list of `Ticket` objects from the token-linked `Integration`.
 
         Parameters:
-            - search: str. String to match against issue text fields
+            - cursor: typing.Optional[str]. Cursor to use to retrieve the next page of results.
 
-            - project: str. Only search in specified project. Default all projects.
+            - limit: typing.Optional[int]. Number of `Account` objects to return in this page. Defaults to 100.
 
-            - cursor: str. Start search from cursor position
+            - order: typing.Union[typing.Optional[str], typing.List[str]]. Select a field to order the results by. Defaults to `time`. To control the direction of the sorting, append
+                                                                           `[asc]` or `[desc]` to the field name. For example, `name[desc]` will sort the results by `name` in descending order.
+                                                                           The ordering defaults to `asc` if not specified. May be used multiple times to order by multiple fields, and the
+                                                                           ordering is applied in the order the fields are specified.
 
-            - limit: int. Number of tickets to return. Default 50. Max 100.
+            - filter: typing.Union[typing.Optional[str], typing.List[str]]. Filter results by this query. For more information on filtering, refer to our Filtering Guide. Defaults to no filter.
+                                                                            If used more than once, the queries are ANDed together.
+
         """
         _response = await self._client_wrapper.httpx_client.request(
             "GET",
             urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", "v1/ticketing/tickets"),
-            params=remove_none_from_dict({"search": search, "project": project, "cursor": cursor, "limit": limit}),
+            params=remove_none_from_dict({"cursor": cursor, "limit": limit, "order": order, "filter": filter}),
             headers=self._client_wrapper.get_headers(),
             timeout=60,
         )
         if 200 <= _response.status_code < 300:
-            return pydantic.parse_obj_as(ListTicketsResponse, _response.json())  # type: ignore
+            return pydantic.parse_obj_as(QueryTicketsResponse, _response.json())  # type: ignore
         if _response.status_code == 404:
             raise NotFoundError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
         if _response.status_code == 400:

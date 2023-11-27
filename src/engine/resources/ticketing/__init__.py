@@ -5,10 +5,10 @@ from .types import (
     CreateTicketResponse,
     GetTicketResponse,
     ListProjectsResponse,
-    ListTicketsResponse,
     PatchTicketResponse,
     Priority,
     Project,
+    QueryTicketsResponse,
     Ticket,
     TicketId,
 )
@@ -18,10 +18,10 @@ __all__ = [
     "CreateTicketResponse",
     "GetTicketResponse",
     "ListProjectsResponse",
-    "ListTicketsResponse",
     "PatchTicketResponse",
     "Priority",
     "Project",
+    "QueryTicketsResponse",
     "Ticket",
     "TicketId",
 ]

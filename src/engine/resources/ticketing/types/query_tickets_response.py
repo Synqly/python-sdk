@@ -9,7 +9,7 @@ from ....core.datetime_utils import serialize_datetime
 from .ticket import Ticket
 
 
-class ListTicketsResponse(pydantic.BaseModel):
+class QueryTicketsResponse(pydantic.BaseModel):
     result: typing.List[Ticket] = pydantic.Field(description="list of results")
     cursor: str = pydantic.Field(description="Cursor position for subsequent searches")
 
