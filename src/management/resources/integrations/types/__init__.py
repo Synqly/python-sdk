@@ -6,9 +6,11 @@ from .create_integration_request import CreateIntegrationRequest
 from .create_integration_response import CreateIntegrationResponse
 from .create_integration_response_result import CreateIntegrationResponseResult
 from .elasticsearch_config import ElasticsearchConfig
+from .entra_id_config import EntraIdConfig
 from .get_integration_response import GetIntegrationResponse
 from .hooks_config import HooksConfig
 from .identity_config import IdentityConfig
+from .identity_provider_type_config import IdentityProviderTypeConfig, IdentityProviderTypeConfig_EntraId
 from .integration import Integration
 from .integration_id import IntegrationId
 from .list_account_integrations_response import ListAccountIntegrationsResponse
@@ -52,9 +54,12 @@ __all__ = [
     "CreateIntegrationResponse",
     "CreateIntegrationResponseResult",
     "ElasticsearchConfig",
+    "EntraIdConfig",
     "GetIntegrationResponse",
     "HooksConfig",
     "IdentityConfig",
+    "IdentityProviderTypeConfig",
+    "IdentityProviderTypeConfig_EntraId",
     "Integration",
     "IntegrationId",
     "ListAccountIntegrationsResponse",

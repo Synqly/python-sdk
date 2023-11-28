@@ -6,18 +6,18 @@ import typing
 import pydantic
 
 from ....core.datetime_utils import serialize_datetime
-from ...credentials.types.credential_id import CredentialId
-from .identity_provider_type_config import IdentityProviderTypeConfig
 
 
-class IdentityConfig(pydantic.BaseModel):
+class EntraIdConfig(pydantic.BaseModel):
     """
-    Configuration for an Identity Provider
+    Configuration for Microsoft Entra ID tenants
     """
 
-    credential_id: CredentialId
-    url: typing.Optional[str] = pydantic.Field(description="URL used for connecting to the identity provider.")
-    config: IdentityProviderTypeConfig
+    client_id: str = pydantic.Field(description="Azure Client (Application) ID.")
+    tenant_id: str = pydantic.Field(description="Azure Directory (tenant) ID.")
+    scopes: typing.List[str] = pydantic.Field(
+        description="Any custom scopes. Defaults to the primary microsoft graph API default scope."
+    )
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}
