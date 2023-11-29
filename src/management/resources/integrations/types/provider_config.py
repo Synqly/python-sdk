@@ -12,7 +12,7 @@ from .notification_config import NotificationConfig
 from .siem_config import SiemConfig
 from .sink_config import SinkConfig
 from .storage_config import StorageConfig
-from .ticket_config import TicketConfig
+from .ticketing_config import TicketingConfig
 from .vulnerability_config import VulnerabilityConfig
 
 
@@ -70,8 +70,8 @@ class ProviderConfig_Storage(StorageConfig):
         allow_population_by_field_name = True
 
 
-class ProviderConfig_Tickets(TicketConfig):
-    type: typing_extensions.Literal["tickets"]
+class ProviderConfig_Ticketing(TicketingConfig):
+    type: typing_extensions.Literal["ticketing"]
 
     class Config:
         frozen = True
@@ -95,6 +95,6 @@ ProviderConfig = typing.Union[
     ProviderConfig_Siem,
     ProviderConfig_Sink,
     ProviderConfig_Storage,
-    ProviderConfig_Tickets,
+    ProviderConfig_Ticketing,
     ProviderConfig_Vulnerabilities,
 ]

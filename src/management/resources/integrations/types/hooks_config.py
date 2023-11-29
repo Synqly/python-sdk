@@ -23,7 +23,7 @@ class HooksConfig(pydantic.BaseModel):
     target_secret: typing.Optional[CredentialId] = pydantic.Field(
         description="Add optional webhook secure hash for verification"
     )
-    transforms: typing.List[TransformId] = pydantic.Field(
+    transforms: typing.Optional[typing.List[TransformId]] = pydantic.Field(
         description="Optional list of transformations used to modify the webhook responses."
     )
 

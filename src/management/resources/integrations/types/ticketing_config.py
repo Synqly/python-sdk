@@ -10,16 +10,16 @@ from ...credentials.types.credential_id import CredentialId
 from ...transforms.types.transform_id import TransformId
 
 
-class TicketConfig(pydantic.BaseModel):
+class TicketingConfig(pydantic.BaseModel):
     """
-    Configuration for a Ticket Provider
+    Configuration for a Ticketing Provider
     """
 
     credential_id: CredentialId
     endpoint: typing.Optional[str] = pydantic.Field(
         description="Endpoint used for connecting to the external service. If not provided, will connect to the default endpoint for the Provider."
     )
-    transforms: typing.List[TransformId] = pydantic.Field(
+    transforms: typing.Optional[typing.List[TransformId]] = pydantic.Field(
         description="Optional list of transformations used to modify requests before they are sent to the external service."
     )
 

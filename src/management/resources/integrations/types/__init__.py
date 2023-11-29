@@ -25,7 +25,7 @@ from .provider_config import (
     ProviderConfig_Siem,
     ProviderConfig_Sink,
     ProviderConfig_Storage,
-    ProviderConfig_Tickets,
+    ProviderConfig_Ticketing,
     ProviderConfig_Vulnerabilities,
 )
 from .siem_config import SiemConfig
@@ -42,7 +42,7 @@ from .sink_provider_type_config import (
 )
 from .splunk_config import SplunkConfig
 from .storage_config import StorageConfig
-from .ticket_config import TicketConfig
+from .ticketing_config import TicketingConfig
 from .update_integration_request import UpdateIntegrationRequest
 from .update_integration_response import UpdateIntegrationResponse
 from .vulnerability_config import VulnerabilityConfig
@@ -73,7 +73,7 @@ __all__ = [
     "ProviderConfig_Siem",
     "ProviderConfig_Sink",
     "ProviderConfig_Storage",
-    "ProviderConfig_Tickets",
+    "ProviderConfig_Ticketing",
     "ProviderConfig_Vulnerabilities",
     "SiemConfig",
     "SiemProviderTypeConfig",
@@ -85,7 +85,7 @@ __all__ = [
     "SinkProviderTypeConfig_AzureMonitorLogs",
     "SplunkConfig",
     "StorageConfig",
-    "TicketConfig",
+    "TicketingConfig",
     "UpdateIntegrationRequest",
     "UpdateIntegrationResponse",
     "VulnerabilityConfig",

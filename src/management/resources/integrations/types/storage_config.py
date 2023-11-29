@@ -21,7 +21,7 @@ class StorageConfig(pydantic.BaseModel):
     endpoint: typing.Optional[str] = pydantic.Field(
         description="Endpoint used for connecting to the external service. If not provided, will connect to the default endpoint for the Provider."
     )
-    transforms: typing.List[TransformId] = pydantic.Field(
+    transforms: typing.Optional[typing.List[TransformId]] = pydantic.Field(
         description="Optional list of transformations used to modify requests before they are sent to the external service."
     )
 
