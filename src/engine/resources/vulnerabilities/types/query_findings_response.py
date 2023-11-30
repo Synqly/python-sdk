@@ -9,7 +9,7 @@ from ....core.datetime_utils import serialize_datetime
 from .security_finding import SecurityFinding
 
 
-class ListFindingsResponse(pydantic.BaseModel):
+class QueryFindingsResponse(pydantic.BaseModel):
     result: typing.List[SecurityFinding]
     cursor: str
 

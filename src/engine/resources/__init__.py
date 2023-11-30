@@ -49,7 +49,7 @@ from .ticketing import (
     Ticket,
     TicketId,
 )
-from .vulnerabilities import EventId, GetFindingResponse, ListFindingsResponse, SecurityFinding
+from .vulnerabilities import EventId, QueryFindingsResponse, SecurityFinding, VulnerabilitySeverityFilterValue
 
 __all__ = [
     "BadRequestError",
@@ -73,11 +73,9 @@ __all__ = [
     "Event_SecurityFinding",
     "Event_WebResourceAccessActivity",
     "ForbiddenError",
-    "GetFindingResponse",
     "GetNotificationResponse",
     "GetTicketResponse",
     "Id",
-    "ListFindingsResponse",
     "ListIdentityAuditLogResponse",
     "ListProjectsResponse",
     "ListStorageResponse",
@@ -90,6 +88,7 @@ __all__ = [
     "PatchTicketResponse",
     "Priority",
     "Project",
+    "QueryFindingsResponse",
     "QuerySiemEventsResponse",
     "QueryTicketsResponse",
     "SecurityFinding",
@@ -98,6 +97,7 @@ __all__ = [
     "TicketId",
     "UnauthorizedError",
     "UserId",
+    "VulnerabilitySeverityFilterValue",
     "common",
     "events",
     "hooks",
