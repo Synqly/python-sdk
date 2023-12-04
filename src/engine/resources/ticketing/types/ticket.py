@@ -17,19 +17,19 @@ class Ticket(Base):
     """
 
     id: TicketId
-    creator: str = pydantic.Field(description="User who created this ticket.")
-    assignee: str = pydantic.Field(description="Who ticket is assigned to.")
-    contact: str = pydantic.Field(description="Ticket contact information.")
-    description: str = pydantic.Field(description="Ticket description.")
     summary: str = pydantic.Field(description="Ticket summary.")
-    priority: Priority = pydantic.Field(description="The priority of the Ticket")
-    due_date: dt.datetime = pydantic.Field(description="The ticket's due date.")
-    completion_date: dt.datetime = pydantic.Field(description="The ticket's complete date.")
-    status: str = pydantic.Field(description="The current status of the ticket.")
-    project: str = pydantic.Field(description="The ticket project.")
-    issue_type: str = pydantic.Field(description="The ticket's type.")
-    attachments: typing.List[str] = pydantic.Field(description="Associate attachment URLs with ticket")
-    tags: typing.List[str] = pydantic.Field(description="Associate tags with Ticket")
+    creator: typing.Optional[str] = pydantic.Field(description="User who created this ticket.")
+    assignee: typing.Optional[str] = pydantic.Field(description="Who ticket is assigned to.")
+    contact: typing.Optional[str] = pydantic.Field(description="Ticket contact information.")
+    description: typing.Optional[str] = pydantic.Field(description="Ticket description.")
+    priority: typing.Optional[Priority] = pydantic.Field(description="The priority of the Ticket")
+    due_date: typing.Optional[dt.datetime] = pydantic.Field(description="The ticket's due date.")
+    completion_date: typing.Optional[dt.datetime] = pydantic.Field(description="The ticket's complete date.")
+    status: typing.Optional[str] = pydantic.Field(description="The current status of the ticket.")
+    project: typing.Optional[str] = pydantic.Field(description="The ticket project.")
+    issue_type: typing.Optional[str] = pydantic.Field(description="The ticket's type.")
+    attachments: typing.Optional[typing.List[str]] = pydantic.Field(description="Associate attachment URLs with ticket")
+    tags: typing.Optional[typing.List[str]] = pydantic.Field(description="Associate tags with Ticket")
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}

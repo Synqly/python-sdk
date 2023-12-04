@@ -4,6 +4,7 @@ from . import common, events, hooks, identity, notifications, ocsf, siem, sink, 
 from .common import (
     BadRequestError,
     Base,
+    BaseResourceRequest,
     ErrorBody,
     ErrorParam,
     ForbiddenError,
@@ -54,6 +55,7 @@ from .vulnerabilities import EventId, QueryFindingsResponse, SecurityFinding, Vu
 __all__ = [
     "BadRequestError",
     "Base",
+    "BaseResourceRequest",
     "CreateNotificationRequest",
     "CreateNotificationResponse",
     "CreateTicketRequest",

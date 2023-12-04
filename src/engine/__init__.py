@@ -3,6 +3,7 @@
 from .resources import (
     BadRequestError,
     Base,
+    BaseResourceRequest,
     CreateNotificationRequest,
     CreateNotificationResponse,
     CreateTicketRequest,
@@ -64,6 +65,7 @@ from .environment import SynqlyEngineEnvironment
 __all__ = [
     "BadRequestError",
     "Base",
+    "BaseResourceRequest",
     "CreateNotificationRequest",
     "CreateNotificationResponse",
     "CreateTicketRequest",
