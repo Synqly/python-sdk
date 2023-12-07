@@ -21,6 +21,7 @@ class Audit(pydantic.BaseModel):
     path: str
     code: str
     body: typing.Optional[typing.Any]
+    response: typing.Optional[str]
     status: typing.Optional[str]
     member_id: typing.Optional[MemberId]
     account_id: typing.Optional[AccountId]
