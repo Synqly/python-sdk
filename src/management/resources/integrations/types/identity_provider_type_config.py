@@ -7,6 +7,7 @@ import typing
 import typing_extensions
 
 from .entra_id_config import EntraIdConfig
+from .ping_one_config import PingOneConfig
 
 
 class IdentityProviderTypeConfig_EntraId(EntraIdConfig):
@@ -18,4 +19,13 @@ class IdentityProviderTypeConfig_EntraId(EntraIdConfig):
         allow_population_by_field_name = True
 
 
-IdentityProviderTypeConfig = typing.Union[IdentityProviderTypeConfig_EntraId]
+class IdentityProviderTypeConfig_Pingone(PingOneConfig):
+    type: typing_extensions.Literal["pingone"]
+
+    class Config:
+        frozen = True
+        smart_union = True
+        allow_population_by_field_name = True
+
+
+IdentityProviderTypeConfig = typing.Union[IdentityProviderTypeConfig_EntraId, IdentityProviderTypeConfig_Pingone]

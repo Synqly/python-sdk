@@ -10,13 +10,18 @@ from .entra_id_config import EntraIdConfig
 from .get_integration_response import GetIntegrationResponse
 from .hooks_config import HooksConfig
 from .identity_config import IdentityConfig
-from .identity_provider_type_config import IdentityProviderTypeConfig, IdentityProviderTypeConfig_EntraId
+from .identity_provider_type_config import (
+    IdentityProviderTypeConfig,
+    IdentityProviderTypeConfig_EntraId,
+    IdentityProviderTypeConfig_Pingone,
+)
 from .integration import Integration
 from .integration_id import IntegrationId
 from .list_account_integrations_response import ListAccountIntegrationsResponse
 from .list_integrations_response import ListIntegrationsResponse
 from .notification_config import NotificationConfig
 from .patch_integration_response import PatchIntegrationResponse
+from .ping_one_config import PingOneConfig
 from .provider_config import (
     ProviderConfig,
     ProviderConfig_Hooks,
@@ -60,12 +65,14 @@ __all__ = [
     "IdentityConfig",
     "IdentityProviderTypeConfig",
     "IdentityProviderTypeConfig_EntraId",
+    "IdentityProviderTypeConfig_Pingone",
     "Integration",
     "IntegrationId",
     "ListAccountIntegrationsResponse",
     "ListIntegrationsResponse",
     "NotificationConfig",
     "PatchIntegrationResponse",
+    "PingOneConfig",
     "ProviderConfig",
     "ProviderConfig_Hooks",
     "ProviderConfig_Identity",
