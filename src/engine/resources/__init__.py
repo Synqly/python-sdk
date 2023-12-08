@@ -19,6 +19,7 @@ from .events import (
     Event_AccountChange,
     Event_ApiActivity,
     Event_Authentication,
+    Event_DeviceInventoryInfo,
     Event_FileActivity,
     Event_GroupManagement,
     Event_NetworkActivity,
@@ -50,9 +51,17 @@ from .ticketing import (
     Ticket,
     TicketId,
 )
-from .vulnerabilities import EventId, QueryFindingsResponse, SecurityFinding, VulnerabilitySeverityFilterValue
+from .vulnerabilities import (
+    Asset,
+    EventId,
+    QueryFindingsResponse,
+    QueryVulnerabilityAssetsResponse,
+    SecurityFinding,
+    VulnerabilitySeverityFilterValue,
+)
 
 __all__ = [
+    "Asset",
     "BadRequestError",
     "Base",
     "BaseResourceRequest",
@@ -67,6 +76,7 @@ __all__ = [
     "Event_AccountChange",
     "Event_ApiActivity",
     "Event_Authentication",
+    "Event_DeviceInventoryInfo",
     "Event_FileActivity",
     "Event_GroupManagement",
     "Event_NetworkActivity",
@@ -93,6 +103,7 @@ __all__ = [
     "QueryFindingsResponse",
     "QuerySiemEventsResponse",
     "QueryTicketsResponse",
+    "QueryVulnerabilityAssetsResponse",
     "SecurityFinding",
     "StoragePath",
     "Ticket",

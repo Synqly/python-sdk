@@ -11,6 +11,7 @@ from ...ocsf.resources.apiactivity.resources.classes.types.api_activity import A
 from ...ocsf.resources.authentication.resources.classes.types.authentication import Authentication
 from ...ocsf.resources.fileactivity.resources.classes.types.file_activity import FileActivity
 from ...ocsf.resources.groupmanagement.resources.classes.types.group_management import GroupManagement
+from ...ocsf.resources.inventoryinfo.resources.classes.types.inventory_info import InventoryInfo
 from ...ocsf.resources.networkactivity.resources.classes.types.network_activity import NetworkActivity
 from ...ocsf.resources.processactivity.resources.classes.types.process_activity import ProcessActivity
 from ...ocsf.resources.scheduledjobactivity.resources.classes.types.scheduled_job_activity import ScheduledJobActivity
@@ -58,6 +59,15 @@ class Event_FileActivity(FileActivity):
 
 class Event_GroupManagement(GroupManagement):
     class_name: typing_extensions.Literal["Group Management"]
+
+    class Config:
+        frozen = True
+        smart_union = True
+        allow_population_by_field_name = True
+
+
+class Event_DeviceInventoryInfo(InventoryInfo):
+    class_name: typing_extensions.Literal["Device Inventory Info"]
 
     class Config:
         frozen = True
@@ -116,6 +126,7 @@ Event = typing.Union[
     Event_Authentication,
     Event_FileActivity,
     Event_GroupManagement,
+    Event_DeviceInventoryInfo,
     Event_NetworkActivity,
     Event_ProcessActivity,
     Event_ScheduledJobActivity,
