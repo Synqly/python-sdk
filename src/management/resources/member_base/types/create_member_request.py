@@ -11,10 +11,12 @@ from .member_options import MemberOptions
 
 
 class CreateMemberRequest(pydantic.BaseModel):
-    name: str = pydantic.Field(description="Email name to use for this Member.")
-    fullname: str = pydantic.Field(description="User's full name")
-    nickname: str = pydantic.Field(description="User's nickname")
-    picture: str = pydantic.Field(description="Url of user's picture")
+    name: str = pydantic.Field(
+        description="Email name to use for this Member. Also used for duplicate detection and default sort order."
+    )
+    fullname: typing.Optional[str] = pydantic.Field(description="User's full display name")
+    nickname: typing.Optional[str] = pydantic.Field(description="User's nickname")
+    picture: typing.Optional[str] = pydantic.Field(description="Url of user's picture")
     secret: str = pydantic.Field(description="Member secret")
     roles: typing.List[Role] = pydantic.Field(description="Roles granted to this member. Tokens inherit this access.")
     options: MemberOptions

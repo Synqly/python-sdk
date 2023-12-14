@@ -9,7 +9,12 @@ from ....core.datetime_utils import serialize_datetime
 
 
 class CreateAccountRequest(pydantic.BaseModel):
-    name: str = pydantic.Field(description="Name to use for this Account.")
+    name: typing.Optional[str] = pydantic.Field(
+        description="Unique short name for this Account (lowercase [a-z0-9_-], can be used in URLs). Also used for case insenitive duplicate name detection and default sort order. Defaults to AccountId if both name and fullname are not specified."
+    )
+    fullname: typing.Optional[str] = pydantic.Field(
+        description="Human friendly display name for this Account, will auto-generate 'name' field (if 'name' is not specified)"
+    )
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}

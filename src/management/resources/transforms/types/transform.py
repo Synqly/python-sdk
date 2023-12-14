@@ -18,6 +18,7 @@ class Transform(Base):
 
     id: TransformId
     account_id: AccountId = pydantic.Field(description="Account that manages this Transform.")
+    fullname: str = pydantic.Field(description="Human friendly display name for this Organization.")
     patch: str = pydantic.Field(description="JSON Patch transform to apply (rfc6902).")
 
     def json(self, **kwargs: typing.Any) -> str:

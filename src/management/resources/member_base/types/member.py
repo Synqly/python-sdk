@@ -16,7 +16,7 @@ class Member(Base):
     id: MemberId
     state: State
     last_logon: dt.datetime = pydantic.Field(description="Last logon time")
-    fullname: str = pydantic.Field(description="User's full name")
+    fullname: str = pydantic.Field(description="User's full display name")
     nickname: str = pydantic.Field(description="User's nickname")
     picture: str = pydantic.Field(description="Url of user's picture")
     ttl: str

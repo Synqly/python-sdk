@@ -10,7 +10,12 @@ from .credential_config import CredentialConfig
 
 
 class CreateCredentialRequest(pydantic.BaseModel):
-    name: str = pydantic.Field(description="Human readable name for this Integration")
+    name: typing.Optional[str] = pydantic.Field(
+        description="Unique short name for this Credential (lowercase [a-z0-9_-], can be used in URLs). Also used for case insenitive duplicate name detection and default sort order. Defaults to CredentialId if both name and fullname are not specified."
+    )
+    fullname: typing.Optional[str] = pydantic.Field(
+        description="Human friendly display name for this Credential, will auto-generate 'name' field (if 'name' is not specified)"
+    )
     config: typing.Optional[CredentialConfig] = pydantic.Field(description="Credential configuration")
 
     def json(self, **kwargs: typing.Any) -> str:

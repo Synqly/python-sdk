@@ -21,6 +21,7 @@ class Integration(Base):
     """
 
     id: IntegrationId
+    fullname: str = pydantic.Field(description="Human friendly display name for this integration.")
     refresh_token_id: TokenId = pydantic.Field(description="Integration refresh token id")
     account_id: AccountId = pydantic.Field(description="Account that manages this Integration.")
     category: CategoryId = pydantic.Field(description="Id of the categorical type for this Integration.")

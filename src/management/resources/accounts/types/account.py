@@ -13,6 +13,7 @@ from .account_id import AccountId
 
 class Account(Base):
     id: AccountId
+    fullname: str = pydantic.Field(description="Human friendly display name for this account.")
     organization_id: OrganizationId = pydantic.Field(description="Organization that manages this Account.")
 
     def json(self, **kwargs: typing.Any) -> str:

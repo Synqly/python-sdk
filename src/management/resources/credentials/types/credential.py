@@ -19,6 +19,7 @@ class Credential(Base):
 
     id: CredentialId
     account_id: AccountId = pydantic.Field(description="Account that manages this credential.")
+    fullname: str = pydantic.Field(description="Human friendly display name for this Organization")
     config: typing.Optional[CredentialConfig] = pydantic.Field(description="Credential configuration")
 
     def json(self, **kwargs: typing.Any) -> str:

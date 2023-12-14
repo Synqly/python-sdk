@@ -12,7 +12,12 @@ from .provider_config import ProviderConfig
 
 
 class CreateIntegrationRequest(pydantic.BaseModel):
-    name: str = pydantic.Field(description="Human readable name for this Integration")
+    name: typing.Optional[str] = pydantic.Field(
+        description="Unique short name for this Integrations (lowercase [a-z0-9_-], can be used in URLs). Also used for case insenitive duplicate name detection and default sort order. Defaults to IntegrationId if both name and fullname are not specified."
+    )
+    fullname: typing.Optional[str] = pydantic.Field(
+        description="Human friendly display name for this Integrations, will auto-generate 'name' field (if 'name' is not specified)"
+    )
     category: CategoryId
     provider_type: ProviderId = pydantic.Field(description="Provider implementation to use for this Integration.")
     provider_config: typing.Optional[ProviderConfig] = pydantic.Field(
