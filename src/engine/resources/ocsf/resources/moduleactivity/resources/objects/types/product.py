@@ -3,11 +3,14 @@
 import datetime as dt
 import typing
 
-import pydantic
-
 from ........core.datetime_utils import serialize_datetime
 from ...base.types.url_string import UrlString
 from .feature import Feature
+
+try:
+    import pydantic.v1 as pydantic  # type: ignore
+except ImportError:
+    import pydantic  # type: ignore
 
 
 class Product(pydantic.BaseModel):

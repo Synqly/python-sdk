@@ -3,11 +3,14 @@
 import datetime as dt
 import typing
 
-import pydantic
-
 from ....core.datetime_utils import serialize_datetime
 from ...common.types.base_resource_request import BaseResourceRequest
 from .priority import Priority
+
+try:
+    import pydantic.v1 as pydantic  # type: ignore
+except ImportError:
+    import pydantic  # type: ignore
 
 
 class CreateTicketRequest(BaseResourceRequest):

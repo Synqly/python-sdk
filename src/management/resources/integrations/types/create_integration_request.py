@@ -3,12 +3,15 @@
 import datetime as dt
 import typing
 
-import pydantic
-
 from ....core.datetime_utils import serialize_datetime
 from ...capabilities.types.category_id import CategoryId
 from ...capabilities.types.provider_id import ProviderId
 from .provider_config import ProviderConfig
+
+try:
+    import pydantic.v1 as pydantic  # type: ignore
+except ImportError:
+    import pydantic  # type: ignore
 
 
 class CreateIntegrationRequest(pydantic.BaseModel):

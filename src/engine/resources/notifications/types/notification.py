@@ -3,13 +3,16 @@
 import datetime as dt
 import typing
 
-import pydantic
-
 from ....core.datetime_utils import serialize_datetime
 from ...common.types.base import Base
 from ...ticketing.types.priority import Priority
 from .notification_id import NotificationId
 from .notification_status import NotificationStatus
+
+try:
+    import pydantic.v1 as pydantic  # type: ignore
+except ImportError:
+    import pydantic  # type: ignore
 
 
 class Notification(Base):

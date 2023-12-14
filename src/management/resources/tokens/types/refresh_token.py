@@ -3,13 +3,16 @@
 import datetime as dt
 import typing
 
-import pydantic
-
 from ....core.datetime_utils import serialize_datetime
 from ...common.types.base import Base
 from ...common.types.id import Id
 from ...token_base.types.token_id import TokenId
 from ...token_base.types.token_pair import TokenPair
+
+try:
+    import pydantic.v1 as pydantic  # type: ignore
+except ImportError:
+    import pydantic  # type: ignore
 
 
 class RefreshToken(Base):

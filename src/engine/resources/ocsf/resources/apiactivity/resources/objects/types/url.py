@@ -3,13 +3,16 @@
 import datetime as dt
 import typing
 
-import pydantic
-
 from ........core.datetime_utils import serialize_datetime
 from ...base.types.hostname import Hostname
 from ...base.types.port import Port
 from ...base.types.url_string import UrlString
 from .url_category_ids import UrlCategoryIds
+
+try:
+    import pydantic.v1 as pydantic  # type: ignore
+except ImportError:
+    import pydantic  # type: ignore
 
 
 class Url(pydantic.BaseModel):

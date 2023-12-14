@@ -3,14 +3,17 @@
 import datetime as dt
 import typing
 
-import pydantic
-
 from ........core.datetime_utils import serialize_datetime
 from .authorization import Authorization
 from .idp import Idp
 from .process import Process
 from .session import Session
 from .user import User
+
+try:
+    import pydantic.v1 as pydantic  # type: ignore
+except ImportError:
+    import pydantic  # type: ignore
 
 
 class Actor(pydantic.BaseModel):

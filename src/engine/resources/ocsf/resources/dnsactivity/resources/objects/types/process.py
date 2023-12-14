@@ -5,8 +5,6 @@ from __future__ import annotations
 import datetime as dt
 import typing
 
-import pydantic
-
 from ........core.datetime_utils import serialize_datetime
 from ...base.types.process_name import ProcessName
 from ...base.types.timestamp import Timestamp
@@ -17,6 +15,11 @@ from .object import Object
 from .process_integrity_id import ProcessIntegrityId
 from .session import Session
 from .user import User
+
+try:
+    import pydantic.v1 as pydantic  # type: ignore
+except ImportError:
+    import pydantic  # type: ignore
 
 
 class Process(pydantic.BaseModel):

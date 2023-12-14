@@ -3,11 +3,14 @@
 import datetime as dt
 import typing
 
-import pydantic
-
 from ........core.datetime_utils import serialize_datetime
 from ...base.types.hostname import Hostname
 from .dns_query_opcode_id import DnsQueryOpcodeId
+
+try:
+    import pydantic.v1 as pydantic  # type: ignore
+except ImportError:
+    import pydantic  # type: ignore
 
 
 class DnsQuery(pydantic.BaseModel):

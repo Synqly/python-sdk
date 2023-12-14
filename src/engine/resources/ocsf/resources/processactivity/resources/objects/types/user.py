@@ -3,8 +3,6 @@
 import datetime as dt
 import typing
 
-import pydantic
-
 from ........core.datetime_utils import serialize_datetime
 from ...base.types.email_address import EmailAddress
 from ...base.types.user_name import UserName
@@ -12,6 +10,11 @@ from .account import Account
 from .group import Group
 from .organization import Organization
 from .user_type_id import UserTypeId
+
+try:
+    import pydantic.v1 as pydantic  # type: ignore
+except ImportError:
+    import pydantic  # type: ignore
 
 
 class User(pydantic.BaseModel):

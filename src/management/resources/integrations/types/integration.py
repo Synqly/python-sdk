@@ -3,8 +3,6 @@
 import datetime as dt
 import typing
 
-import pydantic
-
 from ....core.datetime_utils import serialize_datetime
 from ...accounts.types.account_id import AccountId
 from ...capabilities.types.category_id import CategoryId
@@ -13,6 +11,11 @@ from ...common.types.base import Base
 from ...token_base.types.token_id import TokenId
 from .integration_id import IntegrationId
 from .provider_config import ProviderConfig
+
+try:
+    import pydantic.v1 as pydantic  # type: ignore
+except ImportError:
+    import pydantic  # type: ignore
 
 
 class Integration(Base):

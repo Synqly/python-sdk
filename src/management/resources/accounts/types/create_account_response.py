@@ -3,10 +3,13 @@
 import datetime as dt
 import typing
 
-import pydantic
-
 from ....core.datetime_utils import serialize_datetime
 from .create_account_response_result import CreateAccountResponseResult
+
+try:
+    import pydantic.v1 as pydantic  # type: ignore
+except ImportError:
+    import pydantic  # type: ignore
 
 
 class CreateAccountResponse(pydantic.BaseModel):

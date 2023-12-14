@@ -3,8 +3,6 @@
 import datetime as dt
 import typing
 
-import pydantic
-
 from ........core.datetime_utils import serialize_datetime
 from ...base.types.timestamp import Timestamp
 from ...objects.types.actor import Actor
@@ -32,6 +30,11 @@ from .rcode_id import RcodeId
 from .severity_id import SeverityId
 from .status_id import StatusId
 from .type_uid import TypeUid
+
+try:
+    import pydantic.v1 as pydantic  # type: ignore
+except ImportError:
+    import pydantic  # type: ignore
 
 
 class DnsActivity(pydantic.BaseModel):

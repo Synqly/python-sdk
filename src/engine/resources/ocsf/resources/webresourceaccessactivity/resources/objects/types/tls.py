@@ -3,13 +3,16 @@
 import datetime as dt
 import typing
 
-import pydantic
-
 from ........core.datetime_utils import serialize_datetime
 from .certificate import Certificate
 from .fingerprint import Fingerprint
 from .san import San
 from .tls_extension import TlsExtension
+
+try:
+    import pydantic.v1 as pydantic  # type: ignore
+except ImportError:
+    import pydantic  # type: ignore
 
 
 class Tls(pydantic.BaseModel):

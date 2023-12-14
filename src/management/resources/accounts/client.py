@@ -4,8 +4,6 @@ import typing
 import urllib.parse
 from json.decoder import JSONDecodeError
 
-import pydantic
-
 from ...core.api_error import ApiError
 from ...core.client_wrapper import AsyncClientWrapper, SyncClientWrapper
 from ...core.jsonable_encoder import jsonable_encoder
@@ -25,6 +23,11 @@ from .types.patch_account_response import PatchAccountResponse
 from .types.update_account_request import UpdateAccountRequest
 from .types.update_account_response import UpdateAccountResponse
 
+try:
+    import pydantic.v1 as pydantic  # type: ignore
+except ImportError:
+    import pydantic  # type: ignore
+
 # this is used as the default value for optional parameters
 OMIT = typing.cast(typing.Any, ...)
 
@@ -39,8 +42,8 @@ class AccountsClient:
         limit: typing.Optional[int] = None,
         start_after: typing.Optional[str] = None,
         end_before: typing.Optional[str] = None,
-        order: typing.Union[typing.Optional[str], typing.List[str]],
-        filter: typing.Union[typing.Optional[str], typing.List[str]],
+        order: typing.Optional[typing.Union[str, typing.List[str]]] = None,
+        filter: typing.Optional[typing.Union[str, typing.List[str]]] = None,
     ) -> ListAccountsResponse:
         """
         Returns a list of all `Account` objects. For more information on
@@ -54,12 +57,12 @@ class AccountsClient:
 
             - end_before: typing.Optional[str]. Return `Account` objects ending before this `name`.
 
-            - order: typing.Union[typing.Optional[str], typing.List[str]]. Select a field to order the results by. Defaults to `name`. To control the direction of the sorting, append
+            - order: typing.Optional[typing.Union[str, typing.List[str]]]. Select a field to order the results by. Defaults to `name`. To control the direction of the sorting, append
                                                                            `[asc]` or `[desc]` to the field name. For example, `name[desc]` will sort the results by `name` in descending order.
                                                                            The ordering defaults to `asc` if not specified. May be used multiple times to order by multiple fields, and the
                                                                            ordering is applied in the order the fields are specified.
 
-            - filter: typing.Union[typing.Optional[str], typing.List[str]]. Filter results by this query. For more information on filtering, refer to our Filtering Guide. Defaults to no filter.
+            - filter: typing.Optional[typing.Union[str, typing.List[str]]]. Filter results by this query. For more information on filtering, refer to our Filtering Guide. Defaults to no filter.
                                                                             If used more than once, the queries are ANDed together.
 
         """
@@ -258,8 +261,8 @@ class AsyncAccountsClient:
         limit: typing.Optional[int] = None,
         start_after: typing.Optional[str] = None,
         end_before: typing.Optional[str] = None,
-        order: typing.Union[typing.Optional[str], typing.List[str]],
-        filter: typing.Union[typing.Optional[str], typing.List[str]],
+        order: typing.Optional[typing.Union[str, typing.List[str]]] = None,
+        filter: typing.Optional[typing.Union[str, typing.List[str]]] = None,
     ) -> ListAccountsResponse:
         """
         Returns a list of all `Account` objects. For more information on
@@ -273,12 +276,12 @@ class AsyncAccountsClient:
 
             - end_before: typing.Optional[str]. Return `Account` objects ending before this `name`.
 
-            - order: typing.Union[typing.Optional[str], typing.List[str]]. Select a field to order the results by. Defaults to `name`. To control the direction of the sorting, append
+            - order: typing.Optional[typing.Union[str, typing.List[str]]]. Select a field to order the results by. Defaults to `name`. To control the direction of the sorting, append
                                                                            `[asc]` or `[desc]` to the field name. For example, `name[desc]` will sort the results by `name` in descending order.
                                                                            The ordering defaults to `asc` if not specified. May be used multiple times to order by multiple fields, and the
                                                                            ordering is applied in the order the fields are specified.
 
-            - filter: typing.Union[typing.Optional[str], typing.List[str]]. Filter results by this query. For more information on filtering, refer to our Filtering Guide. Defaults to no filter.
+            - filter: typing.Optional[typing.Union[str, typing.List[str]]]. Filter results by this query. For more information on filtering, refer to our Filtering Guide. Defaults to no filter.
                                                                             If used more than once, the queries are ANDed together.
 
         """

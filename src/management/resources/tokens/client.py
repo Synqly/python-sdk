@@ -4,8 +4,6 @@ import typing
 import urllib.parse
 from json.decoder import JSONDecodeError
 
-import pydantic
-
 from ...core.api_error import ApiError
 from ...core.client_wrapper import AsyncClientWrapper, SyncClientWrapper
 from ...core.remove_none_from_dict import remove_none_from_dict
@@ -20,6 +18,11 @@ from .types.list_tokens_response import ListTokensResponse
 from .types.refresh_token_response import RefreshTokenResponse
 from .types.reset_token_response import ResetTokenResponse
 
+try:
+    import pydantic.v1 as pydantic  # type: ignore
+except ImportError:
+    import pydantic  # type: ignore
+
 
 class TokensClient:
     def __init__(self, *, client_wrapper: SyncClientWrapper):
@@ -31,8 +34,8 @@ class TokensClient:
         limit: typing.Optional[int] = None,
         start_after: typing.Optional[str] = None,
         end_before: typing.Optional[str] = None,
-        order: typing.Union[typing.Optional[str], typing.List[str]],
-        filter: typing.Union[typing.Optional[str], typing.List[str]],
+        order: typing.Optional[typing.Union[str, typing.List[str]]] = None,
+        filter: typing.Optional[typing.Union[str, typing.List[str]]] = None,
     ) -> ListTokensResponse:
         """
         Returns a list of all `RefreshToken` objects belonging to the Authorization Bearer
@@ -46,12 +49,12 @@ class TokensClient:
 
             - end_before: typing.Optional[str]. Return `Token` objects ending before this `name`.
 
-            - order: typing.Union[typing.Optional[str], typing.List[str]]. Select a field to order the results by. Defaults to `name`. To control the direction of the sorting, append
+            - order: typing.Optional[typing.Union[str, typing.List[str]]]. Select a field to order the results by. Defaults to `name`. To control the direction of the sorting, append
                                                                            `[asc]` or `[desc]` to the field name. For example, `name[desc]` will sort the results by `name` in descending order.
                                                                            The ordering defaults to `asc` if not specified. May be used multiple times to order by multiple fields, and the
                                                                            ordering is applied in the order the fields are specified.
 
-            - filter: typing.Union[typing.Optional[str], typing.List[str]]. Filter results by this query. For more information on filtering, refer to our Filtering Guide. Defaults to no filter.
+            - filter: typing.Optional[typing.Union[str, typing.List[str]]]. Filter results by this query. For more information on filtering, refer to our Filtering Guide. Defaults to no filter.
                                                                             If used more than once, the queries are ANDed together.
 
         """
@@ -210,8 +213,8 @@ class AsyncTokensClient:
         limit: typing.Optional[int] = None,
         start_after: typing.Optional[str] = None,
         end_before: typing.Optional[str] = None,
-        order: typing.Union[typing.Optional[str], typing.List[str]],
-        filter: typing.Union[typing.Optional[str], typing.List[str]],
+        order: typing.Optional[typing.Union[str, typing.List[str]]] = None,
+        filter: typing.Optional[typing.Union[str, typing.List[str]]] = None,
     ) -> ListTokensResponse:
         """
         Returns a list of all `RefreshToken` objects belonging to the Authorization Bearer
@@ -225,12 +228,12 @@ class AsyncTokensClient:
 
             - end_before: typing.Optional[str]. Return `Token` objects ending before this `name`.
 
-            - order: typing.Union[typing.Optional[str], typing.List[str]]. Select a field to order the results by. Defaults to `name`. To control the direction of the sorting, append
+            - order: typing.Optional[typing.Union[str, typing.List[str]]]. Select a field to order the results by. Defaults to `name`. To control the direction of the sorting, append
                                                                            `[asc]` or `[desc]` to the field name. For example, `name[desc]` will sort the results by `name` in descending order.
                                                                            The ordering defaults to `asc` if not specified. May be used multiple times to order by multiple fields, and the
                                                                            ordering is applied in the order the fields are specified.
 
-            - filter: typing.Union[typing.Optional[str], typing.List[str]]. Filter results by this query. For more information on filtering, refer to our Filtering Guide. Defaults to no filter.
+            - filter: typing.Optional[typing.Union[str, typing.List[str]]]. Filter results by this query. For more information on filtering, refer to our Filtering Guide. Defaults to no filter.
                                                                             If used more than once, the queries are ANDed together.
 
         """

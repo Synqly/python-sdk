@@ -4,8 +4,6 @@ import typing
 import urllib.parse
 from json.decoder import JSONDecodeError
 
-import pydantic
-
 from ...core.api_error import ApiError
 from ...core.client_wrapper import AsyncClientWrapper, SyncClientWrapper
 from ...core.remove_none_from_dict import remove_none_from_dict
@@ -17,6 +15,11 @@ from ..common.types.error_body import ErrorBody
 from .types.query_findings_response import QueryFindingsResponse
 from .types.query_vulnerability_assets_response import QueryVulnerabilityAssetsResponse
 
+try:
+    import pydantic.v1 as pydantic  # type: ignore
+except ImportError:
+    import pydantic  # type: ignore
+
 
 class VulnerabilitiesClient:
     def __init__(self, *, client_wrapper: SyncClientWrapper):
@@ -27,7 +30,7 @@ class VulnerabilitiesClient:
         *,
         limit: typing.Optional[int] = None,
         cursor: typing.Optional[str] = None,
-        filter: typing.Union[typing.Optional[str], typing.List[str]],
+        filter: typing.Optional[typing.Union[str, typing.List[str]]] = None,
     ) -> QueryFindingsResponse:
         """
         Query vulnerability findings
@@ -37,7 +40,7 @@ class VulnerabilitiesClient:
 
             - cursor: typing.Optional[str]. Start search from cursor position.
 
-            - filter: typing.Union[typing.Optional[str], typing.List[str]]. Filter results by this query. For more information on filtering, refer to the Vulnerability Filtering Guide.
+            - filter: typing.Optional[typing.Union[str, typing.List[str]]]. Filter results by this query. For more information on filtering, refer to the Vulnerability Filtering Guide.
                                                                             Defaults to no filter. If used more than once, the queries are ANDed together.
 
         """
@@ -69,7 +72,7 @@ class VulnerabilitiesClient:
         *,
         limit: typing.Optional[int] = None,
         cursor: typing.Optional[str] = None,
-        filter: typing.Union[typing.Optional[str], typing.List[str]],
+        filter: typing.Optional[typing.Union[str, typing.List[str]]] = None,
     ) -> QueryVulnerabilityAssetsResponse:
         """
         Query assets in a vulnerability scanning system
@@ -79,7 +82,7 @@ class VulnerabilitiesClient:
 
             - cursor: typing.Optional[str]. Start search from cursor position.
 
-            - filter: typing.Union[typing.Optional[str], typing.List[str]]. Filter results by this query. For more information on filtering, refer to the Vulnerability Filtering Guide.
+            - filter: typing.Optional[typing.Union[str, typing.List[str]]]. Filter results by this query. For more information on filtering, refer to the Vulnerability Filtering Guide.
                                                                             Defaults to no filter. If used more than once, the queries are ANDed together.
 
         """
@@ -116,7 +119,7 @@ class AsyncVulnerabilitiesClient:
         *,
         limit: typing.Optional[int] = None,
         cursor: typing.Optional[str] = None,
-        filter: typing.Union[typing.Optional[str], typing.List[str]],
+        filter: typing.Optional[typing.Union[str, typing.List[str]]] = None,
     ) -> QueryFindingsResponse:
         """
         Query vulnerability findings
@@ -126,7 +129,7 @@ class AsyncVulnerabilitiesClient:
 
             - cursor: typing.Optional[str]. Start search from cursor position.
 
-            - filter: typing.Union[typing.Optional[str], typing.List[str]]. Filter results by this query. For more information on filtering, refer to the Vulnerability Filtering Guide.
+            - filter: typing.Optional[typing.Union[str, typing.List[str]]]. Filter results by this query. For more information on filtering, refer to the Vulnerability Filtering Guide.
                                                                             Defaults to no filter. If used more than once, the queries are ANDed together.
 
         """
@@ -158,7 +161,7 @@ class AsyncVulnerabilitiesClient:
         *,
         limit: typing.Optional[int] = None,
         cursor: typing.Optional[str] = None,
-        filter: typing.Union[typing.Optional[str], typing.List[str]],
+        filter: typing.Optional[typing.Union[str, typing.List[str]]] = None,
     ) -> QueryVulnerabilityAssetsResponse:
         """
         Query assets in a vulnerability scanning system
@@ -168,7 +171,7 @@ class AsyncVulnerabilitiesClient:
 
             - cursor: typing.Optional[str]. Start search from cursor position.
 
-            - filter: typing.Union[typing.Optional[str], typing.List[str]]. Filter results by this query. For more information on filtering, refer to the Vulnerability Filtering Guide.
+            - filter: typing.Optional[typing.Union[str, typing.List[str]]]. Filter results by this query. For more information on filtering, refer to the Vulnerability Filtering Guide.
                                                                             Defaults to no filter. If used more than once, the queries are ANDed together.
 
         """

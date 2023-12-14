@@ -4,8 +4,6 @@ import typing
 import urllib.parse
 from json.decoder import JSONDecodeError
 
-import pydantic
-
 from ...core.api_error import ApiError
 from ...core.client_wrapper import AsyncClientWrapper, SyncClientWrapper
 from ...core.remove_none_from_dict import remove_none_from_dict
@@ -21,6 +19,11 @@ from .types.get_status_timeseries import GetStatusTimeseries
 from .types.list_status_events_response import ListStatusEventsResponse
 from .types.list_status_response import ListStatusResponse
 
+try:
+    import pydantic.v1 as pydantic  # type: ignore
+except ImportError:
+    import pydantic  # type: ignore
+
 
 class StatusClient:
     def __init__(self, *, client_wrapper: SyncClientWrapper):
@@ -32,8 +35,8 @@ class StatusClient:
         limit: typing.Optional[int] = None,
         start_after: typing.Optional[str] = None,
         end_before: typing.Optional[str] = None,
-        order: typing.Union[typing.Optional[str], typing.List[str]],
-        filter: typing.Union[typing.Optional[str], typing.List[str]],
+        order: typing.Optional[typing.Union[str, typing.List[str]]] = None,
+        filter: typing.Optional[typing.Union[str, typing.List[str]]] = None,
     ) -> ListStatusResponse:
         """
         Returns all matching `Status` objects.
@@ -45,12 +48,12 @@ class StatusClient:
 
             - end_before: typing.Optional[str]. Return `Status` objects ending before this `account_id,integration_id`.
 
-            - order: typing.Union[typing.Optional[str], typing.List[str]]. Select a field to order the results by. Defaults to `account_id,integration_id`. To control the direction of the sorting, append
+            - order: typing.Optional[typing.Union[str, typing.List[str]]]. Select a field to order the results by. Defaults to `account_id,integration_id`. To control the direction of the sorting, append
                                                                            `[asc]` or `[desc]` to the field name. For example, `name[desc]` will sort the results by `name` in descending order.
                                                                            The ordering defaults to `asc` if not specified. May be used multiple times to order by multiple fields, and the
                                                                            ordering is applied in the order the fields are specified.
 
-            - filter: typing.Union[typing.Optional[str], typing.List[str]]. Filter results by this query. For more information on filtering, refer to our Filtering Guide. Defaults to no filter.
+            - filter: typing.Optional[typing.Union[str, typing.List[str]]]. Filter results by this query. For more information on filtering, refer to our Filtering Guide. Defaults to no filter.
                                                                             If used more than once, the queries are ANDed together.
 
         """
@@ -150,7 +153,7 @@ class StatusClient:
         start_after: typing.Optional[str] = None,
         end_before: typing.Optional[str] = None,
         order: typing.Optional[str] = None,
-        filter: typing.Union[typing.Optional[str], typing.List[str]],
+        filter: typing.Optional[typing.Union[str, typing.List[str]]] = None,
     ) -> ListStatusEventsResponse:
         """
         Returns integration `Status` object list of `StatusEvent` objects.
@@ -168,7 +171,7 @@ class StatusClient:
 
             - order: typing.Optional[str]. The order defaults to created_at[asc] and can changed to descending order by specifying created_at[desc].
 
-            - filter: typing.Union[typing.Optional[str], typing.List[str]]. Filter results by this query. For more information on filtering, refer to our Filtering Guide. Defaults to no filter.
+            - filter: typing.Optional[typing.Union[str, typing.List[str]]]. Filter results by this query. For more information on filtering, refer to our Filtering Guide. Defaults to no filter.
                                                                             If used more than once, the queries are ANDed together.
 
         """
@@ -236,8 +239,8 @@ class AsyncStatusClient:
         limit: typing.Optional[int] = None,
         start_after: typing.Optional[str] = None,
         end_before: typing.Optional[str] = None,
-        order: typing.Union[typing.Optional[str], typing.List[str]],
-        filter: typing.Union[typing.Optional[str], typing.List[str]],
+        order: typing.Optional[typing.Union[str, typing.List[str]]] = None,
+        filter: typing.Optional[typing.Union[str, typing.List[str]]] = None,
     ) -> ListStatusResponse:
         """
         Returns all matching `Status` objects.
@@ -249,12 +252,12 @@ class AsyncStatusClient:
 
             - end_before: typing.Optional[str]. Return `Status` objects ending before this `account_id,integration_id`.
 
-            - order: typing.Union[typing.Optional[str], typing.List[str]]. Select a field to order the results by. Defaults to `account_id,integration_id`. To control the direction of the sorting, append
+            - order: typing.Optional[typing.Union[str, typing.List[str]]]. Select a field to order the results by. Defaults to `account_id,integration_id`. To control the direction of the sorting, append
                                                                            `[asc]` or `[desc]` to the field name. For example, `name[desc]` will sort the results by `name` in descending order.
                                                                            The ordering defaults to `asc` if not specified. May be used multiple times to order by multiple fields, and the
                                                                            ordering is applied in the order the fields are specified.
 
-            - filter: typing.Union[typing.Optional[str], typing.List[str]]. Filter results by this query. For more information on filtering, refer to our Filtering Guide. Defaults to no filter.
+            - filter: typing.Optional[typing.Union[str, typing.List[str]]]. Filter results by this query. For more information on filtering, refer to our Filtering Guide. Defaults to no filter.
                                                                             If used more than once, the queries are ANDed together.
 
         """
@@ -354,7 +357,7 @@ class AsyncStatusClient:
         start_after: typing.Optional[str] = None,
         end_before: typing.Optional[str] = None,
         order: typing.Optional[str] = None,
-        filter: typing.Union[typing.Optional[str], typing.List[str]],
+        filter: typing.Optional[typing.Union[str, typing.List[str]]] = None,
     ) -> ListStatusEventsResponse:
         """
         Returns integration `Status` object list of `StatusEvent` objects.
@@ -372,7 +375,7 @@ class AsyncStatusClient:
 
             - order: typing.Optional[str]. The order defaults to created_at[asc] and can changed to descending order by specifying created_at[desc].
 
-            - filter: typing.Union[typing.Optional[str], typing.List[str]]. Filter results by this query. For more information on filtering, refer to our Filtering Guide. Defaults to no filter.
+            - filter: typing.Optional[typing.Union[str, typing.List[str]]]. Filter results by this query. For more information on filtering, refer to our Filtering Guide. Defaults to no filter.
                                                                             If used more than once, the queries are ANDed together.
 
         """

@@ -3,12 +3,15 @@
 import datetime as dt
 import typing
 
-import pydantic
-
 from ....core.datetime_utils import serialize_datetime
 from ...credentials.types.credential_id import CredentialId
 from ...transforms.types.transform_id import TransformId
 from .siem_provider_type_config import SiemProviderTypeConfig
+
+try:
+    import pydantic.v1 as pydantic  # type: ignore
+except ImportError:
+    import pydantic  # type: ignore
 
 
 class SiemConfig(pydantic.BaseModel):

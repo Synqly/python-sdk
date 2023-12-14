@@ -3,10 +3,13 @@
 import datetime as dt
 import typing
 
-import pydantic
-
 from ....core.datetime_utils import serialize_datetime
 from .timeseries_result import TimeseriesResult
+
+try:
+    import pydantic.v1 as pydantic  # type: ignore
+except ImportError:
+    import pydantic  # type: ignore
 
 
 class GetStatusTimeseriesResult(pydantic.BaseModel):

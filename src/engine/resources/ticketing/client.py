@@ -4,8 +4,6 @@ import typing
 import urllib.parse
 from json.decoder import JSONDecodeError
 
-import pydantic
-
 from ...core.api_error import ApiError
 from ...core.client_wrapper import AsyncClientWrapper, SyncClientWrapper
 from ...core.jsonable_encoder import jsonable_encoder
@@ -22,6 +20,11 @@ from .types.list_projects_response import ListProjectsResponse
 from .types.patch_ticket_response import PatchTicketResponse
 from .types.query_tickets_response import QueryTicketsResponse
 from .types.ticket_id import TicketId
+
+try:
+    import pydantic.v1 as pydantic  # type: ignore
+except ImportError:
+    import pydantic  # type: ignore
 
 # this is used as the default value for optional parameters
 OMIT = typing.cast(typing.Any, ...)
@@ -63,8 +66,8 @@ class TicketingClient:
         *,
         cursor: typing.Optional[str] = None,
         limit: typing.Optional[int] = None,
-        order: typing.Union[typing.Optional[str], typing.List[str]],
-        filter: typing.Union[typing.Optional[str], typing.List[str]],
+        order: typing.Optional[typing.Union[str, typing.List[str]]] = None,
+        filter: typing.Optional[typing.Union[str, typing.List[str]]] = None,
     ) -> QueryTicketsResponse:
         """
         Returns a list of `Ticket` objects from the token-linked `Integration`.
@@ -74,12 +77,12 @@ class TicketingClient:
 
             - limit: typing.Optional[int]. Number of `Account` objects to return in this page. Defaults to 100.
 
-            - order: typing.Union[typing.Optional[str], typing.List[str]]. Select a field to order the results by. Defaults to `time`. To control the direction of the sorting, append
+            - order: typing.Optional[typing.Union[str, typing.List[str]]]. Select a field to order the results by. Defaults to `time`. To control the direction of the sorting, append
                                                                            `[asc]` or `[desc]` to the field name. For example, `name[desc]` will sort the results by `name` in descending order.
                                                                            The ordering defaults to `asc` if not specified. May be used multiple times to order by multiple fields, and the
                                                                            ordering is applied in the order the fields are specified.
 
-            - filter: typing.Union[typing.Optional[str], typing.List[str]]. Filter results by this query. For more information on filtering, refer to our Filtering Guide. Defaults to no filter.
+            - filter: typing.Optional[typing.Union[str, typing.List[str]]]. Filter results by this query. For more information on filtering, refer to our Filtering Guide. Defaults to no filter.
                                                                             If used more than once, the queries are ANDed together.
 
         """
@@ -236,8 +239,8 @@ class AsyncTicketingClient:
         *,
         cursor: typing.Optional[str] = None,
         limit: typing.Optional[int] = None,
-        order: typing.Union[typing.Optional[str], typing.List[str]],
-        filter: typing.Union[typing.Optional[str], typing.List[str]],
+        order: typing.Optional[typing.Union[str, typing.List[str]]] = None,
+        filter: typing.Optional[typing.Union[str, typing.List[str]]] = None,
     ) -> QueryTicketsResponse:
         """
         Returns a list of `Ticket` objects from the token-linked `Integration`.
@@ -247,12 +250,12 @@ class AsyncTicketingClient:
 
             - limit: typing.Optional[int]. Number of `Account` objects to return in this page. Defaults to 100.
 
-            - order: typing.Union[typing.Optional[str], typing.List[str]]. Select a field to order the results by. Defaults to `time`. To control the direction of the sorting, append
+            - order: typing.Optional[typing.Union[str, typing.List[str]]]. Select a field to order the results by. Defaults to `time`. To control the direction of the sorting, append
                                                                            `[asc]` or `[desc]` to the field name. For example, `name[desc]` will sort the results by `name` in descending order.
                                                                            The ordering defaults to `asc` if not specified. May be used multiple times to order by multiple fields, and the
                                                                            ordering is applied in the order the fields are specified.
 
-            - filter: typing.Union[typing.Optional[str], typing.List[str]]. Filter results by this query. For more information on filtering, refer to our Filtering Guide. Defaults to no filter.
+            - filter: typing.Optional[typing.Union[str, typing.List[str]]]. Filter results by this query. For more information on filtering, refer to our Filtering Guide. Defaults to no filter.
                                                                             If used more than once, the queries are ANDed together.
 
         """

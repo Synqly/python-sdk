@@ -3,14 +3,17 @@
 import datetime as dt
 import typing
 
-import pydantic
-
 from ........core.datetime_utils import serialize_datetime
 from ...base.types.hostname import Hostname
 from ...base.types.ip_address import IpAddress
 from ...base.types.mac_address import MacAddress
 from ...base.types.port import Port
 from .location import Location
+
+try:
+    import pydantic.v1 as pydantic  # type: ignore
+except ImportError:
+    import pydantic  # type: ignore
 
 
 class NetworkProxy(pydantic.BaseModel):

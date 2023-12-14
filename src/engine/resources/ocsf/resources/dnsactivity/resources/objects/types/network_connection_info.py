@@ -3,12 +3,15 @@
 import datetime as dt
 import typing
 
-import pydantic
-
 from ........core.datetime_utils import serialize_datetime
 from .network_connection_info_boundary_id import NetworkConnectionInfoBoundaryId
 from .network_connection_info_direction_id import NetworkConnectionInfoDirectionId
 from .network_connection_info_protocol_ver_id import NetworkConnectionInfoProtocolVerId
+
+try:
+    import pydantic.v1 as pydantic  # type: ignore
+except ImportError:
+    import pydantic  # type: ignore
 
 
 class NetworkConnectionInfo(pydantic.BaseModel):

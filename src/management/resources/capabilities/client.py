@@ -3,8 +3,6 @@
 import urllib.parse
 from json.decoder import JSONDecodeError
 
-import pydantic
-
 from ...core.api_error import ApiError
 from ...core.client_wrapper import AsyncClientWrapper, SyncClientWrapper
 from ...core.remove_none_from_dict import remove_none_from_dict
@@ -14,6 +12,11 @@ from ..common.errors.unauthorized_error import UnauthorizedError
 from ..common.types.error_body import ErrorBody
 from .types.list_category_capabilities_response import ListCategoryCapabilitiesResponse
 from .types.list_provider_capabilities_response import ListProviderCapabilitiesResponse
+
+try:
+    import pydantic.v1 as pydantic  # type: ignore
+except ImportError:
+    import pydantic  # type: ignore
 
 
 class CapabilitiesClient:

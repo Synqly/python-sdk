@@ -3,13 +3,16 @@
 import datetime as dt
 import typing
 
-import pydantic
-
 from ....core.datetime_utils import serialize_datetime
 from ...accounts.types.account_id import AccountId
 from ...common.types.base import Base
 from .credential_config import CredentialConfig
 from .credential_id import CredentialId
+
+try:
+    import pydantic.v1 as pydantic  # type: ignore
+except ImportError:
+    import pydantic  # type: ignore
 
 
 class Credential(Base):

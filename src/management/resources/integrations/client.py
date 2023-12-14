@@ -4,8 +4,6 @@ import typing
 import urllib.parse
 from json.decoder import JSONDecodeError
 
-import pydantic
-
 from ...core.api_error import ApiError
 from ...core.client_wrapper import AsyncClientWrapper, SyncClientWrapper
 from ...core.jsonable_encoder import jsonable_encoder
@@ -27,6 +25,11 @@ from .types.patch_integration_response import PatchIntegrationResponse
 from .types.update_integration_request import UpdateIntegrationRequest
 from .types.update_integration_response import UpdateIntegrationResponse
 
+try:
+    import pydantic.v1 as pydantic  # type: ignore
+except ImportError:
+    import pydantic  # type: ignore
+
 # this is used as the default value for optional parameters
 OMIT = typing.cast(typing.Any, ...)
 
@@ -41,8 +44,8 @@ class IntegrationsClient:
         limit: typing.Optional[int] = None,
         start_after: typing.Optional[str] = None,
         end_before: typing.Optional[str] = None,
-        order: typing.Union[typing.Optional[str], typing.List[str]],
-        filter: typing.Union[typing.Optional[str], typing.List[str]],
+        order: typing.Optional[typing.Union[str, typing.List[str]]] = None,
+        filter: typing.Optional[typing.Union[str, typing.List[str]]] = None,
     ) -> ListIntegrationsResponse:
         """
         Returns a list of all `Integration` objects that match the query params.
@@ -54,12 +57,12 @@ class IntegrationsClient:
 
             - end_before: typing.Optional[str]. Return `Integration` objects ending before this `name`.
 
-            - order: typing.Union[typing.Optional[str], typing.List[str]]. Select a field to order the results by. Defaults to `name`. To control the direction of the sorting, append
+            - order: typing.Optional[typing.Union[str, typing.List[str]]]. Select a field to order the results by. Defaults to `name`. To control the direction of the sorting, append
                                                                            `[asc]` or `[desc]` to the field name. For example, `name[desc]` will sort the results by `name` in descending order.
                                                                            The ordering defaults to `asc` if not specified. May be used multiple times to order by multiple fields, and the
                                                                            ordering is applied in the order the fields are specified.
 
-            - filter: typing.Union[typing.Optional[str], typing.List[str]]. Filter results by this query. For more information on filtering, refer to our Filtering Guide. Defaults to no filter.
+            - filter: typing.Optional[typing.Union[str, typing.List[str]]]. Filter results by this query. For more information on filtering, refer to our Filtering Guide. Defaults to no filter.
                                                                             If used more than once, the queries are ANDed together.
 
         """
@@ -93,8 +96,8 @@ class IntegrationsClient:
         limit: typing.Optional[int] = None,
         start_after: typing.Optional[str] = None,
         end_before: typing.Optional[str] = None,
-        order: typing.Union[typing.Optional[str], typing.List[str]],
-        filter: typing.Union[typing.Optional[str], typing.List[str]],
+        order: typing.Optional[typing.Union[str, typing.List[str]]] = None,
+        filter: typing.Optional[typing.Union[str, typing.List[str]]] = None,
     ) -> ListAccountIntegrationsResponse:
         """
         Returns a list of all `Integration` objects belonging to the
@@ -109,12 +112,12 @@ class IntegrationsClient:
 
             - end_before: typing.Optional[str]. Return `Integration` objects ending before this `name`.
 
-            - order: typing.Union[typing.Optional[str], typing.List[str]]. Select a field to order the results by. Defaults to `name`. To control the direction of the sorting, append
+            - order: typing.Optional[typing.Union[str, typing.List[str]]]. Select a field to order the results by. Defaults to `name`. To control the direction of the sorting, append
                                                                            `[asc]` or `[desc]` to the field name. For example, `name[desc]` will sort the results by `name` in descending order.
                                                                            The ordering defaults to `asc` if not specified. May be used multiple times to order by multiple fields, and the
                                                                            ordering is applied in the order the fields are specified.
 
-            - filter: typing.Union[typing.Optional[str], typing.List[str]]. Filter results by this query. For more information on filtering, refer to our Filtering Guide. Defaults to no filter.
+            - filter: typing.Optional[typing.Union[str, typing.List[str]]]. Filter results by this query. For more information on filtering, refer to our Filtering Guide. Defaults to no filter.
                                                                             If used more than once, the queries are ANDed together.
 
         """
@@ -337,8 +340,8 @@ class AsyncIntegrationsClient:
         limit: typing.Optional[int] = None,
         start_after: typing.Optional[str] = None,
         end_before: typing.Optional[str] = None,
-        order: typing.Union[typing.Optional[str], typing.List[str]],
-        filter: typing.Union[typing.Optional[str], typing.List[str]],
+        order: typing.Optional[typing.Union[str, typing.List[str]]] = None,
+        filter: typing.Optional[typing.Union[str, typing.List[str]]] = None,
     ) -> ListIntegrationsResponse:
         """
         Returns a list of all `Integration` objects that match the query params.
@@ -350,12 +353,12 @@ class AsyncIntegrationsClient:
 
             - end_before: typing.Optional[str]. Return `Integration` objects ending before this `name`.
 
-            - order: typing.Union[typing.Optional[str], typing.List[str]]. Select a field to order the results by. Defaults to `name`. To control the direction of the sorting, append
+            - order: typing.Optional[typing.Union[str, typing.List[str]]]. Select a field to order the results by. Defaults to `name`. To control the direction of the sorting, append
                                                                            `[asc]` or `[desc]` to the field name. For example, `name[desc]` will sort the results by `name` in descending order.
                                                                            The ordering defaults to `asc` if not specified. May be used multiple times to order by multiple fields, and the
                                                                            ordering is applied in the order the fields are specified.
 
-            - filter: typing.Union[typing.Optional[str], typing.List[str]]. Filter results by this query. For more information on filtering, refer to our Filtering Guide. Defaults to no filter.
+            - filter: typing.Optional[typing.Union[str, typing.List[str]]]. Filter results by this query. For more information on filtering, refer to our Filtering Guide. Defaults to no filter.
                                                                             If used more than once, the queries are ANDed together.
 
         """
@@ -389,8 +392,8 @@ class AsyncIntegrationsClient:
         limit: typing.Optional[int] = None,
         start_after: typing.Optional[str] = None,
         end_before: typing.Optional[str] = None,
-        order: typing.Union[typing.Optional[str], typing.List[str]],
-        filter: typing.Union[typing.Optional[str], typing.List[str]],
+        order: typing.Optional[typing.Union[str, typing.List[str]]] = None,
+        filter: typing.Optional[typing.Union[str, typing.List[str]]] = None,
     ) -> ListAccountIntegrationsResponse:
         """
         Returns a list of all `Integration` objects belonging to the
@@ -405,12 +408,12 @@ class AsyncIntegrationsClient:
 
             - end_before: typing.Optional[str]. Return `Integration` objects ending before this `name`.
 
-            - order: typing.Union[typing.Optional[str], typing.List[str]]. Select a field to order the results by. Defaults to `name`. To control the direction of the sorting, append
+            - order: typing.Optional[typing.Union[str, typing.List[str]]]. Select a field to order the results by. Defaults to `name`. To control the direction of the sorting, append
                                                                            `[asc]` or `[desc]` to the field name. For example, `name[desc]` will sort the results by `name` in descending order.
                                                                            The ordering defaults to `asc` if not specified. May be used multiple times to order by multiple fields, and the
                                                                            ordering is applied in the order the fields are specified.
 
-            - filter: typing.Union[typing.Optional[str], typing.List[str]]. Filter results by this query. For more information on filtering, refer to our Filtering Guide. Defaults to no filter.
+            - filter: typing.Optional[typing.Union[str, typing.List[str]]]. Filter results by this query. For more information on filtering, refer to our Filtering Guide. Defaults to no filter.
                                                                             If used more than once, the queries are ANDed together.
 
         """
