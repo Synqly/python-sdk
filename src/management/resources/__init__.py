@@ -9,6 +9,7 @@ from . import (
     integrations,
     member_base,
     members,
+    organization,
     organization_base,
     permissions,
     status,
@@ -134,7 +135,8 @@ from .members import (
     UpdateMemberRequest,
     UpdateMemberResponse,
 )
-from .organization_base import OrganizationId
+from .organization import PatchOrganizationResponse, UpdateOrganizationRequest, UpdateOrganizationResponse
+from .organization_base import GetOrganizationResponse, Organization, OrganizationId
 from .permissions import Action, BlockedApi, Object, Permission, Role
 from .status import (
     GetStatusResponse,
@@ -208,6 +210,7 @@ __all__ = [
     "GetCredentialResponse",
     "GetIntegrationResponse",
     "GetMemberResponse",
+    "GetOrganizationResponse",
     "GetStatusResponse",
     "GetStatusTimeseries",
     "GetStatusTimeseriesResult",
@@ -241,11 +244,13 @@ __all__ = [
     "NotificationConfig",
     "Object",
     "Options",
+    "Organization",
     "OrganizationId",
     "PatchAccountResponse",
     "PatchCredentialResponse",
     "PatchIntegrationResponse",
     "PatchMemberResponse",
+    "PatchOrganizationResponse",
     "PatchTransformResponse",
     "Permission",
     "PingOneConfig",
@@ -295,6 +300,8 @@ __all__ = [
     "UpdateIntegrationResponse",
     "UpdateMemberRequest",
     "UpdateMemberResponse",
+    "UpdateOrganizationRequest",
+    "UpdateOrganizationResponse",
     "UpdateTransformRequest",
     "UpdateTransformResponse",
     "Usage",
@@ -307,6 +314,7 @@ __all__ = [
     "integrations",
     "member_base",
     "members",
+    "organization",
     "organization_base",
     "permissions",
     "status",
