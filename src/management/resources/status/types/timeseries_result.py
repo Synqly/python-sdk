@@ -20,8 +20,6 @@ class TimeseriesResult(pydantic.BaseModel):
     succeeded: int = pydantic.Field(description="Succeeded count")
     failed: int = pydantic.Field(description="Failed count")
     cpu_time: int = pydantic.Field(description="Cpu time in microseconds")
-    db_ops: int = pydantic.Field(description="Database operations count")
-    api_ops: int = pydantic.Field(description="API operations count")
     in_bytes: int = pydantic.Field(description="API input byte count")
 
     def json(self, **kwargs: typing.Any) -> str:
