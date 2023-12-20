@@ -33,7 +33,7 @@ class OrganizationClient:
 
     def get_organization(self) -> GetOrganizationResponse:
         """
-        Retrieve an Organization by ID
+        Retrieve Organization
         """
         _response = self._client_wrapper.httpx_client.request(
             "GET",
@@ -57,7 +57,7 @@ class OrganizationClient:
 
     def update_organization(self, *, request: UpdateOrganizationRequest) -> UpdateOrganizationResponse:
         """
-        Update a Organization by ID
+        Update Organization
 
         Parameters:
             - request: UpdateOrganizationRequest.
@@ -89,7 +89,7 @@ class OrganizationClient:
 
     def patch_organization(self, *, request: typing.List[typing.Dict[str, typing.Any]]) -> PatchOrganizationResponse:
         """
-        Update a Organization by ID
+        Patch Organization
 
         Parameters:
             - request: typing.List[typing.Dict[str, typing.Any]].
@@ -124,7 +124,7 @@ class AsyncOrganizationClient:
 
     async def get_organization(self) -> GetOrganizationResponse:
         """
-        Retrieve an Organization by ID
+        Retrieve Organization
         """
         _response = await self._client_wrapper.httpx_client.request(
             "GET",
@@ -148,7 +148,7 @@ class AsyncOrganizationClient:
 
     async def update_organization(self, *, request: UpdateOrganizationRequest) -> UpdateOrganizationResponse:
         """
-        Update a Organization by ID
+        Update Organization
 
         Parameters:
             - request: UpdateOrganizationRequest.
@@ -182,7 +182,7 @@ class AsyncOrganizationClient:
         self, *, request: typing.List[typing.Dict[str, typing.Any]]
     ) -> PatchOrganizationResponse:
         """
-        Update a Organization by ID
+        Patch Organization
 
         Parameters:
             - request: typing.List[typing.Dict[str, typing.Any]].
