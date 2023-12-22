@@ -1,1 +1,9 @@
+# Visual Studio file
 .vscode
+
+# Python SDK example cache
+__pycache__
+**/__pycache__
+
+# MacOS specific files
+.DS_Store
