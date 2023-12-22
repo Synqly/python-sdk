@@ -43,15 +43,16 @@ class App:
         """
         Deletes Synqly resources created by the example program.
         """
-        print("\nCleaning up...")
-        for tenant in self.tenants.values():
-            # Delete the Synqly Account
-            tenant.synqly_management_client.accounts.delete_account(
-                tenant.synqly_account_id
-            )
-            print("Cleaned up Account " + tenant.synqly_account_id)
-        self.tenants = {}
-        self.terminated = True
+        if len(self.tenants) != 0:
+            print("\nCleaning up Synqly Resources:")
+            for tenant in self.tenants.values():
+                # Delete the Synqly Account
+                tenant.synqly_management_client.accounts.delete_account(
+                    tenant.synqly_account_id
+                )
+                print("Cleaned up Account " + tenant.synqly_account_id)
+            self.tenants = {}
+            self.terminated = True
 
     def new_tenant(self, synqly_org_token, new_tenant_name):
         """

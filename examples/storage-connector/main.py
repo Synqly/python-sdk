@@ -1,11 +1,10 @@
 import os
 import sys
 import argparse
-import time
 from pathlib import Path
 
-# Add the root directory to our path so that we can import common Application
-# logic.
+# Add the root directory to the system path so that we can import common
+# Application logic.
 current_script = Path(__file__).resolve()
 root = current_script.parents[1]
 sys.path.append(str(root))
@@ -145,10 +144,10 @@ def main():
     s3_access_key_id = args.s3_access_key_id
     s3_secret_access_key = args.s3_secret_access_key
 
-    # Initialize an empty application to store our tenants
+    # Initialize an empty application to store tenants
     app = utils.App("storage")
 
-    # Initialize tenants within our Application
+    # Create tenants within the Application
     try:
         app.new_tenant(synqly_org_token, "Tenant ABC")
         print("\nTenant ABC created")
@@ -210,6 +209,7 @@ def main():
         print("Error running background job: " + str(e))
         app._cleanup_handler()
 
+    # Clean up Synqly Accounts and Integrations
     app._cleanup_handler()
 
 
