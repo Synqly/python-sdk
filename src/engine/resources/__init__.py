@@ -28,7 +28,7 @@ from .events import (
     Event_SecurityFinding,
     Event_WebResourceAccessActivity,
 )
-from .identity import ListIdentityAuditLogResponse, UserId
+from .identity import ListIdentityAuditLogResponse, QueryUsersResponse, UserId
 from .notifications import (
     CreateNotificationRequest,
     CreateNotificationResponse,
@@ -103,6 +103,7 @@ __all__ = [
     "QueryFindingsResponse",
     "QuerySiemEventsResponse",
     "QueryTicketsResponse",
+    "QueryUsersResponse",
     "QueryVulnerabilityAssetsResponse",
     "SecurityFinding",
     "StoragePath",
