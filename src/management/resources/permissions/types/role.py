@@ -5,7 +5,9 @@ import typing
 
 from ....core.datetime_utils import serialize_datetime
 from .action import Action
+from .allowed_api import AllowedApi
 from .blocked_api import BlockedApi
+from .constraint import Constraint
 from .object import Object
 
 try:
@@ -19,7 +21,13 @@ class Role(pydantic.BaseModel):
         description='List of actions that this permission grants access to: "create", "read", "update", "delete" and "*". Use "*" to give all action permissions.'
     )
     objects: typing.List[Object] = pydantic.Field(
-        description='List of contained objects ids that this permission grants access to. Use "*" to grant access to all contained objects.'
+        description='List of contained account ids that this permission grants access to. Use "*" to grant access to all contained objects.'
+    )
+    constraints: typing.List[Constraint] = pydantic.Field(
+        description='List of constraints that this permission grants access to. Use "*" to grant access to all constrained objects.'
+    )
+    allowed_apis: typing.Optional[typing.List[AllowedApi]] = pydantic.Field(
+        description="Optional list of APIs that this role allows access to. Can be used to allow access to select APIs like /v1/accounts, v1/credentials and /v1/transforms"
     )
     blocked_apis: typing.Optional[typing.List[BlockedApi]] = pydantic.Field(
         description="Optional list of APIs that this role blocks access to. Can be used to block access to select APIs like /v1/user, v1/tokens and /v1/credentials"
