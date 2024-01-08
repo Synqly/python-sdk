@@ -154,12 +154,16 @@ def main():
     except Exception as e:
         print("Error creating Tenant ABC:" + str(e))
         app._cleanup_handler()
+        # Pass the error up the call chain
+        raise e
     try:
         app.new_tenant(synqly_org_token, "Tenant XYZ")
         print("Tenant XYZ created")
     except Exception as e:
         print("Error creating Tenant XYZ:" + str(e))
         app._cleanup_handler()
+        # Pass the error up the call chain
+        raise e
 
     # Placeholder variables for the IDs of the Credentials we will create
     abc_credential_id = ""
@@ -173,6 +177,8 @@ def main():
     except Exception as e:
         print("Error creating Credential for Tenant ABC: " + str(e))
         app._cleanup_handler()
+        # Pass the error up the call chain
+        raise e
     try:
         xyz_credential_id = app.create_credential(
             "Tenant XYZ",
@@ -182,6 +188,8 @@ def main():
     except Exception as e:
         print("Error creating Credential for Tenant XYZ: " + str(e))
         app._cleanup_handler()
+        # Pass the error up the call chain
+        raise e
 
     # Configure a mock integration for tenant ABC and an S3 Integration for Tenant XYZ
     try:
@@ -193,6 +201,8 @@ def main():
     except Exception as e:
         print("Error configuring provider integration for Tenant ABC: " + str(e))
         app._cleanup_handler()
+        # Pass the error up the call chain
+        raise e
     try:
         app.configure_integration(
             "Tenant XYZ",
@@ -202,15 +212,22 @@ def main():
     except Exception as e:
         print("Error configuring provider integration for Tenant XYZ: " + str(e))
         app._cleanup_handler()
+        # Pass the error up the call chain
+        raise e
 
     try:
         background_job(app)
     except Exception as e:
         print("Error running background job: " + str(e))
         app._cleanup_handler()
+        # Pass the error up the call chain
+        raise e
 
     # Clean up Synqly Accounts and Integrations
     app._cleanup_handler()
 
 
-main()
+try:
+    main()
+except:
+    sys.exit(1)
