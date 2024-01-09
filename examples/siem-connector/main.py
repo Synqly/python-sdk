@@ -1,260 +1,262 @@
-import os
+import sys
 import time
-import signal
+import argparse
+from pathlib import Path
 
+# Add the root directory to the system path so that we can import common
+# Application logic.
+current_script = Path(__file__).resolve()
+root = current_script.parents[1]
+sys.path.append(str(root))
+
+from shared import utils
+
+# Synqly Python SDK imports
 import engine
-import engine.client as engineClient
 import management as mgmt
-from management.client import SynqlyManagement
 
-SYNQLY_ORG_TOKEN = os.getenv('SYNQLY_ORG_TOKEN')
-SPLUNK_URL = os.getenv('SPLUNK_URL')
-SPLUNK_HEC_TOKEN = os.getenv('SPLUNK_HEC_TOKEN')
 
-# Exception raised when a tenant is not found
-class TenantNotFoundException(Exception):
-    pass
+def parse_args():
+    parser = argparse.ArgumentParser(
+        description="Synqly Python SDK SIEM Connector Example"
+    )
+    parser.add_argument(
+        "--synqly-org-token",
+        dest="synqly_org_token",
+        type=str,
+        required=True,
+        default="",
+        help="Token for authenticating with a Synqly Organization. For more information, see https://docs.synqly.com/reference/api-authentication.",
+    )
+    parser.add_argument(
+        "--splunk-url",
+        dest="splunk_url",
+        type=str,
+        required=True,
+        default="",
+        help="URL of target Splunk HTTP Event Collector (HEC) endpoint, example: 'https://splunk.synqly.com/services/collector/event'",
+    )
+    parser.add_argument(
+        "--splunk-token",
+        dest="splunk_hec_token",
+        type=str,
+        required=True,
+        default="",
+        help="Splunk HTTP Event Collector (HEC) token. For more information, see https://docs.splunk.com/Documentation/Splunk/9.1.2/Data/UsetheHTTPEventCollector.",
+    )
+    parser.add_argument(
+        "--duration-seconds",
+        dest="duration_seconds",
+        type=int,
+        required=False,
+        default=3600,
+        help="Duration in seconds for the data generation loop",
+    )
+    args = parser.parse_args()
+    return args
 
-class App:
-    def __init__(self):
-        self.tenants = {}
-        # Initialize signal handlers to intercept Ctrl-C and perform cleanup
-        signal.signal( signal.SIGINT, lambda signal, frame: self._cleanup_handler() )
-        signal.signal( signal.SIGTERM, lambda signal, frame: self._cleanup_handler() )
-        self.terminated = False
 
-    def _cleanup_handler( self ):
-        print("Cleaning up...")
-        for tenant in self.tenants.values():
-            # Delete the Synqly Account
-            tenant.synqly_management_client.accounts.delete_account(tenant.synqly_account_id)
-            print("Cleaned up Account " + tenant.synqly_account_id)
-        self.terminated = True
+def mock_credential_config():
+    """
+    Helper method to construct a mock CredentialConfig object.
+    """
+    return mgmt.CredentialConfig_Token(type="token", secret="mock")
 
-    # Add a new tenant to the app's tenant pool
-    def new_tenant(self, new_tenant_name):
-        # Make sure the tenant doesn't already exist
-        for tenant in self.tenants.values():
-            if tenant.synqly_account_id == new_tenant_name:
-                raise Exception("Duplicate tenant id: " + id)
 
-        # Create a Synqly Account for the new tenant
-        management_client = SynqlyManagement(token=SYNQLY_ORG_TOKEN)
+def splunk_credential_config(splunk_token):
+    """
+    Helper method to construct a Token CredentialConfig object.
+    """
+    return mgmt.CredentialConfig_Token(type="token", secret=splunk_token)
 
-        account_request = mgmt.CreateAccountRequest(name=new_tenant_name)
-        account_response = management_client.accounts.create_account(request=account_request)
-        account_id = account_response.result.account.id
 
-        # Add the new tenant to the tenant pool. The Event Logger client will be
-        # initialized in configure_event_logging, so leave it as None for now.
-        self.tenants[new_tenant_name] = Tenant(
-            tenant_name=new_tenant_name,
-            synqly_account_id=account_id,
-            synqly_management_client=management_client,
-            synqly_event_logger=None)
+def mock_provider_config(credential_id):
+    return mgmt.ProviderConfig_Siem(type="siem", url=None, credential_id=credential_id)
 
-    def configure_event_logging(self, tenant_name, siem_provider_type, siem_provider_token):
-        # Locate the tenant in our App's tenant pool
-        if tenant_name not in self.tenants.keys():
-            raise TenantNotFoundException(tenant_name + " not found")
 
-        tenant = self.tenants[tenant_name]
+def splunk_provider_config(splunk_url, credential_id):
+    return mgmt.ProviderConfig_Siem(
+        type="siem",
+        url=splunk_url,
+        credential_id=credential_id,
+        config=mgmt.SiemProviderTypeConfig_Splunk(
+            type="splunk",
+            # Do not verify the Splunk server's TLS certificate. This
+            # is not recommended for production use; it is set
+            # here because Splunk HEC endpoints use self-signed
+            # "SplunkServerDefaultCert" certificates by default.
+            skip_tls_verify=True,
+        ),
+    )
 
-        # If a Token is not provided, set a default value to pass SDK type checks
-        if siem_provider_token is None:
-            siem_provider_token = "No Auth Needed"
 
-        # We need to save the Provider credentials in Synqly before configuring the Integration
-	    # We will use the Synqly Client we created for the tenant to do this
-        credential = tenant.synqly_management_client.credentials.create_credential(
-            account_id = tenant.synqly_account_id,
-            request = mgmt.CreateCredentialRequest(
-                name = "{} authentication token".format(siem_provider_type),
-                config = mgmt.CredentialConfig_Token(
-                    secret = siem_provider_token,
-                    type="token"
+def background_job(app, duration_seconds):
+    start_time = time.time()
+    end_time = start_time + duration_seconds
+
+    while not app.terminated:
+        # Check if we have reached the provided duration
+        if end_time < time.time():
+            print(
+                "Max duration of {} seconds reached, terminating...".format(
+                    duration_seconds
                 )
             )
-        )
-        print("Created credential for tenant {} with id {}".format(tenant_name, credential.result.id))
+            app._cleanup_handler()
+            return
 
-        # Generate Provider configuration based on which provider type was selected.
-        # A Provider configuration object references a Credential object, and acts
-        # as the basis for initializing an Integration.
-        provider_config = None
-        if siem_provider_type == "splunk":
-            provider_config = self.splunk_config(SPLUNK_URL, credential.result.id)
-        elif siem_provider_type == "inmem":
-            provider_config = self.in_mem_config(credential.result.id)
-        else:
-            raise Exception("Invalid SIEM provider type: " + siem_provider_type)
+        # Iterate through each tenant and send an event to their Event Logger
+        for tenant in app.tenants.values():
+            print("Doing some work for tenant {}".format(tenant.tenant_name))
 
-        # Create a Synqly SIEM Integration for the tenant
-        integrationReq = mgmt.CreateIntegrationRequest(
-            name = "Background Event Logger",
-            category = "siem",
-            provider_type = siem_provider_type,
-            provider_config = provider_config,
-        )
-        integration = tenant.synqly_management_client.integrations.create_integration(
-            account_id = tenant.synqly_account_id,
-            request = integrationReq)
+            if tenant.synqly_engine_client is None:
+                continue
 
-        print("Created SIEM integration with type {} for tenant {}".format(siem_provider_type, tenant_name))
-
-        # Create an Event Logger for the tenant. The Event Logger is essentially
-        # just a persistent engine Client that's configured to send data to a
-        # specific Synqly Integration.
-        self.tenants[tenant_name].synqly_event_logger = engineClient.SynqlyEngine(
-            token = integration.result.token.access.secret,
-        )
-        print ("Created event logger for tenant " + tenant_name)
-
-    # Return Synqly Provider configuration for a Splunk provider
-    def splunk_config(self, splunk_url, credential_id):
-        return mgmt.ProviderConfig_Siem(
-            type = "siem",
-            url = splunk_url,
-            credential_id = credential_id,
-            config = mgmt.SiemProviderTypeConfig_Splunk(
-                type="splunk",
-                # Do not verify the Splunk server's TLS certificate. This
-                # is not recommended for production use; however, it is set
-                # here because Splunk HEC endpoints use self-signed
-                # "SplunkServerDefaultCert" certificates by default.
-                skip_tls_verify = True,
+            new_event = create_sample_event()
+            # Send an event to the tenant's Event Logger
+            tenant.synqly_engine_client.siem.post_events(
+                request=[new_event],
             )
-        )
+            print("{}: Logged event".format(tenant.tenant_name))
 
-    # Return Synqly Provider configuration for an in-memory mock SIEM. Intended for
-    # testing without the need for an external provider.
-    def in_mem_config(self, credential_id):
-        return mgmt.ProviderConfig_Siem(
-            url = None,
-            credential_id = "not-used",
-            type = "siem"
-        )
-
-    def background_job(self):
-        while not self.terminated:
-            for tenant in self.tenants.values():
-                print("Doing some work for tenant {}".format(tenant.tenant_name))
-
-                if tenant.synqly_event_logger is None:
-                    continue
-
-                new_event = create_sample_event()
-                # Send an event to the tenant's Event Logger
-                tenant.synqly_event_logger.siem.post_events(
-                    request = [new_event],
-                )
-                print("Logged event for tenant {}".format(tenant.tenant_name))
-
-            time.sleep(2)
-            print("")
+        time.sleep(2)
+        print("")
 
 
 def create_sample_event():
     # Currently uses hard-coded numbers to represent OCSF Enums. We aim to add
-    # lexicographic names for these values in the future to make OCSF objects
-    # easier to work with.
+    # enums for these values in the future to make OCSF objects easier to work with.
     return engine.Event_ScheduledJobActivity(
         # OCSF Activity_Update
         activity_id=2,
         # OCSF CategoryUID: 1 - SystemActivity
         category_uid=1,
         # OCSF ClassUID: 1006 - ScheduledJobActivity:
-        class_uid = 1006,
-        class_name = "Scheduled Job Activity",
-
-        cloud = {
+        class_uid=1006,
+        class_name="Scheduled Job Activity",
+        cloud={
             "provider": "AWS",
             "region": "us-east-1",
         },
-
-        disposition_id = 99,
-
+        disposition_id=99,
         # OCSF DeviceType_Server
-        device = {
+        device={
             "type_id": 1,
         },
         # OCSF scheduledJobActivity.Job
-        job = {
+        job={
             # OCSF scheduledJobActivity.File
             "file": {
                 "name": "main.py",
-                "type_id":  1,
+                "type_id": 1,
             },
             "name": "Background Job",
         },
         # OCSF scheduledJobActivity.Metadata
-        metadata = {
+        metadata={
             # OCSF scheduledJobActivity.Product
             "product": {
                 "vendor_name": "Synqly Python SDK",
             },
             "version": "1.0.0",
         },
-        time = time.time(),
+        time=time.time(),
         # OCSF Severity_Informational
         severity_id=1,
         # OCSF Type_ScheduledJobActivity_Update
-        type_uid = 100602,
+        type_uid=100602,
     )
 
-class Tenant:
-    def __init__(self, tenant_name, synqly_account_id, synqly_management_client, synqly_event_logger):
-        self.tenant_name = tenant_name
-        self.synqly_account_id = synqly_account_id
-        self.synqly_management_client = synqly_management_client
-        self.synqly_event_logger = synqly_event_logger
 
 def main():
-    # Environment variables for connecting to Synqly
-    if "SYNQLY_ORG_TOKEN" not in os.environ:
-        print("SYNQLY_ORG_TOKEN environment variable must be set")
-        return
+    # Parse command line arguments
+    args = parse_args()
+    synqly_org_token = args.synqly_org_token
+    splunk_url = args.splunk_url
+    splunk_hec_token = args.splunk_hec_token
+    duration_seconds = args.duration_seconds
 
-    if SYNQLY_ORG_TOKEN == "":
-        print("SYNQLY_ORG_TOKEN environment variable must be set to non-empty strings")
-        return
+    # Initialize an empty application to store tenants
+    app = utils.App("siem")
 
-    if SPLUNK_HEC_TOKEN == "":
-        print("SPLUNK_HEC_TOKEN environment variable must be set to non-empty strings")
-        return
-
-    app = App()
-
+    # Create tenants within the Application
     try:
-        app.new_tenant("Tenant ABC")
-        print("Tenant ABC created")
+        app.new_tenant(synqly_org_token, "Tenant ABC")
+        print("\nTenant ABC created")
     except Exception as e:
         print("Error creating Tenant ABC:" + str(e))
         app._cleanup_handler()
-
     try:
-        app.new_tenant("Tenant XYZ")
-        print ("Tenant XYZ created")
+        app.new_tenant(synqly_org_token, "Tenant XYZ")
+        print("Tenant XYZ created")
     except Exception as e:
         print("Error creating Tenant XYZ:" + str(e))
         app._cleanup_handler()
 
-    try:
-        app.configure_event_logging("Tenant ABC", "splunk", SPLUNK_HEC_TOKEN)
-    except Exception as e:
-        print("Error configuring event logging for Tenant ABC: " + str(e))
-        app._cleanup_handler()
+    # Placeholder variables for the IDs of the Credentials we will create
+    abc_credential_id = ""
+    xyz_credential_id = ""
 
+    # Create a Synqly Credential for each tenant.
     try:
-        app.configure_event_logging("Tenant XYZ", "inmem", "")
+        abc_credential_id = app.create_credential(
+            "Tenant ABC", "mock_siem", mock_credential_config()
+        )
     except Exception as e:
-        print("Error configuring event logging for Tenant XYZ: " + str(e))
+        print("Error creating Credential for Tenant ABC: " + str(e))
         app._cleanup_handler()
-
+        # Pass the error up the call chain
+        raise e
     try:
-        app.background_job()
+        xyz_credential_id = app.create_credential(
+            "Tenant XYZ",
+            "siem",
+            splunk_credential_config(splunk_hec_token),
+        )
     except Exception as e:
+        print("Error creating Credential for Tenant XYZ: " + str(e))
+        app._cleanup_handler()
+        # Pass the error up the call chain
+        raise e
+
+    # Configure a mock integration for tenant ABC and an S3 Integration for Tenant XYZ
+    try:
+        app.configure_integration(
+            "Tenant ABC",
+            "mock_siem",
+            mock_provider_config(abc_credential_id),
+        )
+    except Exception as e:
+        print("Error configuring provider integration for Tenant ABC: " + str(e))
+        app._cleanup_handler()
+        # Pass the error up the call chain
+        raise e
+    try:
+        app.configure_integration(
+            "Tenant XYZ",
+            "splunk",
+            splunk_provider_config(splunk_url, xyz_credential_id),
+        )
+    except Exception as e:
+        print("Error configuring provider integration for Tenant XYZ: " + str(e))
+        app._cleanup_handler()
+        # Pass the error up the call chain
+        raise e
+
+    # Start a background job to generate data
+    try:
+        background_job(app, duration_seconds)
+    except Exception as e:
+        # Run cleanup, then pass the error up the call chain
         print("Error running background job: " + str(e))
         app._cleanup_handler()
+        # Pass the error up the call chain
+        raise e
 
-main()
+    # Clean up Synqly Accounts and Integrations
+    app._cleanup_handler()
+
+try:
+    main()
+except:
+    sys.exit(1)
