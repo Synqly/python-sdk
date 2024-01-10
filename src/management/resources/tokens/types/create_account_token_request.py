@@ -16,11 +16,9 @@ class CreateAccountTokenRequest(pydantic.BaseModel):
     name: typing.Optional[str] = pydantic.Field(
         description="Unique name token. Defaults to generated refresh token id."
     )
-    account_id: AccountId = pydantic.Field(alias="accountId", description="Limit access to only this account.")
+    account_id: AccountId = pydantic.Field(description="Limit access to only this account.")
     category: typing.Optional[str] = pydantic.Field(description="Limit access to only this integration category.")
-    token_ttl: typing.Optional[str] = pydantic.Field(
-        alias="tokenTtl", description="Token time-to-live. Defaults to member TokenTtl."
-    )
+    token_ttl: typing.Optional[str] = pydantic.Field(description="Token time-to-live. Defaults to member TokenTtl.")
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}
@@ -33,5 +31,4 @@ class CreateAccountTokenRequest(pydantic.BaseModel):
     class Config:
         frozen = True
         smart_union = True
-        allow_population_by_field_name = True
         json_encoders = {dt.datetime: serialize_datetime}

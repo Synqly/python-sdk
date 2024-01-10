@@ -7,6 +7,7 @@ from ....core.datetime_utils import serialize_datetime
 from ...common.types.base import Base
 from ...token_base.types.token_id import TokenId
 from .organization_id import OrganizationId
+from .organization_options import OrganizationOptions
 
 try:
     import pydantic.v1 as pydantic  # type: ignore
@@ -23,6 +24,7 @@ class Organization(Base):
         description="Reply-to email address, used for SMTP emails. Defaults to no-reply@synqly.com"
     )
     picture: str = pydantic.Field(description="URL of the organization")
+    options: typing.Optional[OrganizationOptions] = pydantic.Field(description="Organization options")
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}

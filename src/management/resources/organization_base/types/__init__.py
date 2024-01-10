@@ -3,5 +3,6 @@
 from .get_organization_response import GetOrganizationResponse
 from .organization import Organization
 from .organization_id import OrganizationId
+from .organization_options import OrganizationOptions
 
-__all__ = ["GetOrganizationResponse", "Organization", "OrganizationId"]
+__all__ = ["GetOrganizationResponse", "Organization", "OrganizationId", "OrganizationOptions"]

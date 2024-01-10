@@ -4,10 +4,6 @@ import datetime as dt
 import typing
 
 from ....core.datetime_utils import serialize_datetime
-from ...common.types.base import Base
-from ...common.types.id import Id
-from ...token_base.types.token_id import TokenId
-from ...token_base.types.token_pair import TokenPair
 
 try:
     import pydantic.v1 as pydantic  # type: ignore
@@ -15,14 +11,18 @@ except ImportError:
     import pydantic  # type: ignore
 
 
-class RefreshToken(Base):
-    id: TokenId
-    member_id: typing.Optional[Id] = pydantic.Field(description="Member Id")
-    expires: dt.datetime = pydantic.Field(description="Time when this token expires and can no longer be used again.")
-    token_ttl: str = pydantic.Field(description="Token time-to-live")
-    primary: TokenPair = pydantic.Field(description="Primary running access and refresh tokens")
-    secondary: TokenPair = pydantic.Field(
-        description="Temporary secondary TokenPair created after a RefreshToken operation"
+class OrganizationOptions(pydantic.BaseModel):
+    invite_duration: typing.Optional[str] = pydantic.Field(
+        description="Duration new member invitations will be valid. Default: 168h (7 days), minimum 24h, maximum 168h (7 days)."
+    )
+    forgot_duration: typing.Optional[str] = pydantic.Field(
+        description="Duration forgotten password invitations will be valid. Default: 24h, minimum 24h, maximum 168h (7 days)."
+    )
+    password_duration: typing.Optional[str] = pydantic.Field(
+        description="Duration before member password expires, part of required password rotation. Default: 4320h (180 days), minimum: 24h, maximum: 8760h (365 days)."
+    )
+    minimum_password_length: typing.Optional[int] = pydantic.Field(
+        description="Minimum password length. Default: 8, minimum 8, maximum 72."
     )
 
     def json(self, **kwargs: typing.Any) -> str:
@@ -36,5 +36,4 @@ class RefreshToken(Base):
     class Config:
         frozen = True
         smart_union = True
-        allow_population_by_field_name = True
         json_encoders = {dt.datetime: serialize_datetime}
