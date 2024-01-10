@@ -14,6 +14,7 @@ from ..common.errors.not_found_error import NotFoundError
 from ..common.errors.unauthorized_error import UnauthorizedError
 from ..common.types.error_body import ErrorBody
 from ..integrations.types.integration_id import IntegrationId
+from .types.get_integration_timeseries import GetIntegrationTimeseries
 from .types.get_status_response import GetStatusResponse
 from .types.get_status_timeseries import GetStatusTimeseries
 from .types.list_status_events_response import ListStatusEventsResponse
@@ -228,6 +229,44 @@ class StatusClient:
             raise ApiError(status_code=_response.status_code, body=_response.text)
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
+    def get_integration_timeseries(
+        self, account_id: AccountId, integration_id: IntegrationId, *, interval: typing.Optional[str] = None
+    ) -> GetIntegrationTimeseries:
+        """
+        Returns organization last hour usage timeseries.
+
+        Parameters:
+            - account_id: AccountId.
+
+            - integration_id: IntegrationId.
+
+            - interval: typing.Optional[str]. [minute|hour] provide most recent 60 minute or 24 hour timeseries. default: minute
+        """
+        _response = self._client_wrapper.httpx_client.request(
+            "GET",
+            urllib.parse.urljoin(
+                f"{self._client_wrapper.get_base_url()}/", f"v1/status/{account_id}/{integration_id}/timeseries"
+            ),
+            params=remove_none_from_dict({"interval": interval}),
+            headers=self._client_wrapper.get_headers(),
+            timeout=60,
+        )
+        if 200 <= _response.status_code < 300:
+            return pydantic.parse_obj_as(GetIntegrationTimeseries, _response.json())  # type: ignore
+        if _response.status_code == 404:
+            raise NotFoundError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+        if _response.status_code == 400:
+            raise BadRequestError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+        if _response.status_code == 403:
+            raise ForbiddenError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+        if _response.status_code == 401:
+            raise UnauthorizedError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+        try:
+            _response_json = _response.json()
+        except JSONDecodeError:
+            raise ApiError(status_code=_response.status_code, body=_response.text)
+        raise ApiError(status_code=_response.status_code, body=_response_json)
+
 
 class AsyncStatusClient:
     def __init__(self, *, client_wrapper: AsyncClientWrapper):
@@ -418,6 +457,44 @@ class AsyncStatusClient:
         )
         if 200 <= _response.status_code < 300:
             return pydantic.parse_obj_as(GetStatusTimeseries, _response.json())  # type: ignore
+        if _response.status_code == 404:
+            raise NotFoundError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+        if _response.status_code == 400:
+            raise BadRequestError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+        if _response.status_code == 403:
+            raise ForbiddenError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+        if _response.status_code == 401:
+            raise UnauthorizedError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+        try:
+            _response_json = _response.json()
+        except JSONDecodeError:
+            raise ApiError(status_code=_response.status_code, body=_response.text)
+        raise ApiError(status_code=_response.status_code, body=_response_json)
+
+    async def get_integration_timeseries(
+        self, account_id: AccountId, integration_id: IntegrationId, *, interval: typing.Optional[str] = None
+    ) -> GetIntegrationTimeseries:
+        """
+        Returns organization last hour usage timeseries.
+
+        Parameters:
+            - account_id: AccountId.
+
+            - integration_id: IntegrationId.
+
+            - interval: typing.Optional[str]. [minute|hour] provide most recent 60 minute or 24 hour timeseries. default: minute
+        """
+        _response = await self._client_wrapper.httpx_client.request(
+            "GET",
+            urllib.parse.urljoin(
+                f"{self._client_wrapper.get_base_url()}/", f"v1/status/{account_id}/{integration_id}/timeseries"
+            ),
+            params=remove_none_from_dict({"interval": interval}),
+            headers=self._client_wrapper.get_headers(),
+            timeout=60,
+        )
+        if 200 <= _response.status_code < 300:
+            return pydantic.parse_obj_as(GetIntegrationTimeseries, _response.json())  # type: ignore
         if _response.status_code == 404:
             raise NotFoundError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
         if _response.status_code == 400:

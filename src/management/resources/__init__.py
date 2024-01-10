@@ -139,6 +139,8 @@ from .organization import PatchOrganizationResponse, UpdateOrganizationRequest, 
 from .organization_base import GetOrganizationResponse, Organization, OrganizationId
 from .permissions import Action, AllowedApi, BlockedApi, Constraint, Object, Permission, Role
 from .status import (
+    GetIntegrationTimeseries,
+    GetIntegrationTimeseriesResult,
     GetStatusResponse,
     GetStatusTimeseries,
     GetStatusTimeseriesResult,
@@ -221,6 +223,8 @@ __all__ = [
     "GetAccountResponse",
     "GetCredentialResponse",
     "GetIntegrationResponse",
+    "GetIntegrationTimeseries",
+    "GetIntegrationTimeseriesResult",
     "GetMemberResponse",
     "GetOrganizationResponse",
     "GetStatusResponse",
