@@ -6,6 +6,7 @@ import httpx
 
 from .core.client_wrapper import AsyncClientWrapper, SyncClientWrapper
 from .environment import SynqlyEngineEnvironment
+from .resources.assets.client import AssetsClient, AsyncAssetsClient
 from .resources.hooks.client import AsyncHooksClient, HooksClient
 from .resources.identity.client import AsyncIdentityClient, IdentityClient
 from .resources.notifications.client import AsyncNotificationsClient, NotificationsClient
@@ -31,6 +32,7 @@ class SynqlyEngine:
             token=token,
             httpx_client=httpx.Client(timeout=timeout) if httpx_client is None else httpx_client,
         )
+        self.assets = AssetsClient(client_wrapper=self._client_wrapper)
         self.hooks = HooksClient(client_wrapper=self._client_wrapper)
         self.identity = IdentityClient(client_wrapper=self._client_wrapper)
         self.notifications = NotificationsClient(client_wrapper=self._client_wrapper)
@@ -56,6 +58,7 @@ class AsyncSynqlyEngine:
             token=token,
             httpx_client=httpx.AsyncClient(timeout=timeout) if httpx_client is None else httpx_client,
         )
+        self.assets = AsyncAssetsClient(client_wrapper=self._client_wrapper)
         self.hooks = AsyncHooksClient(client_wrapper=self._client_wrapper)
         self.identity = AsyncIdentityClient(client_wrapper=self._client_wrapper)
         self.notifications = AsyncNotificationsClient(client_wrapper=self._client_wrapper)

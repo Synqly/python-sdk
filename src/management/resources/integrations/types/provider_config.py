@@ -6,6 +6,7 @@ import typing
 
 import typing_extensions
 
+from .assets_config import AssetsConfig
 from .hooks_config import HooksConfig
 from .identity_config import IdentityConfig
 from .notification_config import NotificationConfig
@@ -14,6 +15,15 @@ from .sink_config import SinkConfig
 from .storage_config import StorageConfig
 from .ticketing_config import TicketingConfig
 from .vulnerability_config import VulnerabilityConfig
+
+
+class ProviderConfig_Assets(AssetsConfig):
+    type: typing_extensions.Literal["assets"]
+
+    class Config:
+        frozen = True
+        smart_union = True
+        allow_population_by_field_name = True
 
 
 class ProviderConfig_Hooks(HooksConfig):
@@ -89,6 +99,7 @@ class ProviderConfig_Vulnerabilities(VulnerabilityConfig):
 
 
 ProviderConfig = typing.Union[
+    ProviderConfig_Assets,
     ProviderConfig_Hooks,
     ProviderConfig_Identity,
     ProviderConfig_Notifications,

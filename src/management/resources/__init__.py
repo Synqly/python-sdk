@@ -74,6 +74,7 @@ from .credentials import (
     UpdateCredentialResponse,
 )
 from .integrations import (
+    AssetsConfig,
     AwsConfig,
     AzureMonitorLogsConfig,
     CreateIntegrationRequest,
@@ -95,6 +96,7 @@ from .integrations import (
     PatchIntegrationResponse,
     PingOneConfig,
     ProviderConfig,
+    ProviderConfig_Assets,
     ProviderConfig_Hooks,
     ProviderConfig_Identity,
     ProviderConfig_Notifications,
@@ -178,6 +180,7 @@ __all__ = [
     "AccountId",
     "Action",
     "AllowedApi",
+    "AssetsConfig",
     "Audit",
     "AwsConfig",
     "AwsCredential",
@@ -273,6 +276,7 @@ __all__ = [
     "PingOneConfig",
     "Provider",
     "ProviderConfig",
+    "ProviderConfig_Assets",
     "ProviderConfig_Hooks",
     "ProviderConfig_Identity",
     "ProviderConfig_Notifications",
