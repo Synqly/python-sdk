@@ -114,9 +114,9 @@ class StatusClient:
             raise ApiError(status_code=_response.status_code, body=_response.text)
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
-    def delete_status(self, account_id: AccountId, integration_id: IntegrationId) -> None:
+    def reset_status(self, account_id: AccountId, integration_id: IntegrationId) -> None:
         """
-        Deletes the integration `Status` object.
+        Resets the integration `Status` object.
 
         Parameters:
             - account_id: AccountId.
@@ -124,7 +124,7 @@ class StatusClient:
             - integration_id: IntegrationId.
         """
         _response = self._client_wrapper.httpx_client.request(
-            "DELETE",
+            "PUT",
             urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", f"v1/status/{account_id}/{integration_id}"),
             headers=self._client_wrapper.get_headers(),
             timeout=60,
@@ -356,9 +356,9 @@ class AsyncStatusClient:
             raise ApiError(status_code=_response.status_code, body=_response.text)
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
-    async def delete_status(self, account_id: AccountId, integration_id: IntegrationId) -> None:
+    async def reset_status(self, account_id: AccountId, integration_id: IntegrationId) -> None:
         """
-        Deletes the integration `Status` object.
+        Resets the integration `Status` object.
 
         Parameters:
             - account_id: AccountId.
@@ -366,7 +366,7 @@ class AsyncStatusClient:
             - integration_id: IntegrationId.
         """
         _response = await self._client_wrapper.httpx_client.request(
-            "DELETE",
+            "PUT",
             urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", f"v1/status/{account_id}/{integration_id}"),
             headers=self._client_wrapper.get_headers(),
             timeout=60,
