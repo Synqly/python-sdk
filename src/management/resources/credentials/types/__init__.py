@@ -13,6 +13,7 @@ from .credential_type import CredentialType
 from .get_credential_response import GetCredentialResponse
 from .list_credentials_response import ListCredentialsResponse
 from .patch_credential_response import PatchCredentialResponse
+from .secret_credential import SecretCredential
 from .token_credential import TokenCredential
 from .update_credential_request import UpdateCredentialRequest
 from .update_credential_response import UpdateCredentialResponse
@@ -34,6 +35,7 @@ __all__ = [
     "GetCredentialResponse",
     "ListCredentialsResponse",
     "PatchCredentialResponse",
+    "SecretCredential",
     "TokenCredential",
     "UpdateCredentialRequest",
     "UpdateCredentialResponse",
