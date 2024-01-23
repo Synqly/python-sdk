@@ -182,7 +182,7 @@ def main():
     # Create tenants within the Application
     try:
         app.new_tenant(synqly_org_token, "Tenant ABC")
-        print("\nTenant ABC created")
+        print("Tenant ABC created")
     except Exception as e:
         print("Error creating Tenant ABC:" + str(e))
         app._cleanup_handler()
@@ -205,7 +205,6 @@ def main():
     except Exception as e:
         print("Error creating Credential for Tenant ABC: " + str(e))
         app._cleanup_handler()
-        # Pass the error up the call chain
         raise e
     try:
         xyz_credential_id = app.create_credential(
@@ -216,7 +215,6 @@ def main():
     except Exception as e:
         print("Error creating Credential for Tenant XYZ: " + str(e))
         app._cleanup_handler()
-        # Pass the error up the call chain
         raise e
 
     # Configure a mock integration for tenant ABC and an S3 Integration for Tenant XYZ
@@ -229,7 +227,6 @@ def main():
     except Exception as e:
         print("Error configuring provider integration for Tenant ABC: " + str(e))
         app._cleanup_handler()
-        # Pass the error up the call chain
         raise e
     try:
         app.configure_integration(
@@ -240,21 +237,19 @@ def main():
     except Exception as e:
         print("Error configuring provider integration for Tenant XYZ: " + str(e))
         app._cleanup_handler()
-        # Pass the error up the call chain
         raise e
 
     # Start a background job to generate data
     try:
         background_job(app, duration_seconds)
     except Exception as e:
-        # Run cleanup, then pass the error up the call chain
         print("Error running background job: " + str(e))
         app._cleanup_handler()
-        # Pass the error up the call chain
         raise e
 
     # Clean up Synqly Accounts and Integrations
     app._cleanup_handler()
+
 
 try:
     main()

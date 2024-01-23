@@ -188,11 +188,10 @@ def main():
     # Initialize tenants within our Application
     try:
         app.new_tenant(synqly_org_token, "Tenant ABC")
-        print("\nTenant ABC created")
+        print("Tenant ABC created")
     except Exception as e:
         print("Error creating Tenant ABC:" + str(e))
         app._cleanup_handler()
-        # Pass the error up the call chain
         raise e
     try:
         app.new_tenant(synqly_org_token, "Tenant XYZ")
@@ -200,7 +199,6 @@ def main():
     except Exception as e:
         print("Error creating Tenant XYZ:" + str(e))
         app._cleanup_handler()
-        # Pass the error up the call chain
         raise e
 
     # Placeholder variables for the IDs of the Credentials we will create
@@ -215,7 +213,6 @@ def main():
     except Exception as e:
         print("Error creating Credential for Tenant ABC: " + str(e))
         app._cleanup_handler()
-        # Pass the error up the call chain
         raise e
     try:
         xyz_credential_id = app.create_credential(
@@ -226,7 +223,6 @@ def main():
     except Exception as e:
         print("Error creating Credential for Tenant XYZ: " + str(e))
         app._cleanup_handler()
-        # Pass the error up the call chain
         raise e
 
     # Configure a mock integration for tenant ABC and a JIRA Integration for Tenant XYZ
@@ -239,7 +235,6 @@ def main():
     except Exception as e:
         print("Error configuring provider integration for Tenant ABC: " + str(e))
         app._cleanup_handler()
-        # Pass the error up the call chain
         raise e
     try:
         app.configure_integration(
@@ -250,7 +245,6 @@ def main():
     except Exception as e:
         print("Error configuring provider integration for Tenant XYZ: " + str(e))
         app._cleanup_handler()
-        # Pass the error up the call chain
         raise e
 
     # Start a background job to generate data
@@ -259,7 +253,6 @@ def main():
     except Exception as e:
         print("Error running background job: " + str(e))
         app._cleanup_handler()
-        # Pass the error up the call chain
         raise e
 
     app._cleanup_handler()
