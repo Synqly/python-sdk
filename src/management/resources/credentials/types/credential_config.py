@@ -8,6 +8,7 @@ import typing_extensions
 
 from .aws_credential import AwsCredential
 from .basic_credential import BasicCredential
+from .secret_credential import SecretCredential
 from .token_credential import TokenCredential
 
 
@@ -38,4 +39,15 @@ class CredentialConfig_Basic(BasicCredential):
         allow_population_by_field_name = True
 
 
-CredentialConfig = typing.Union[CredentialConfig_Aws, CredentialConfig_Token, CredentialConfig_Basic]
+class CredentialConfig_Secret(SecretCredential):
+    type: typing_extensions.Literal["secret"]
+
+    class Config:
+        frozen = True
+        smart_union = True
+        allow_population_by_field_name = True
+
+
+CredentialConfig = typing.Union[
+    CredentialConfig_Aws, CredentialConfig_Token, CredentialConfig_Basic, CredentialConfig_Secret
+]
