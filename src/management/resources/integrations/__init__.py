@@ -45,6 +45,7 @@ from .types import (
     TicketingConfig,
     UpdateIntegrationRequest,
     UpdateIntegrationResponse,
+    VerifyIntegrationRequest,
     VulnerabilityConfig,
 )
 
@@ -93,5 +94,6 @@ __all__ = [
     "TicketingConfig",
     "UpdateIntegrationRequest",
     "UpdateIntegrationResponse",
+    "VerifyIntegrationRequest",
     "VulnerabilityConfig",
 ]

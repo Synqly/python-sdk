@@ -120,6 +120,7 @@ from .integrations import (
     TicketingConfig,
     UpdateIntegrationRequest,
     UpdateIntegrationResponse,
+    VerifyIntegrationRequest,
     VulnerabilityConfig,
 )
 from .member_base import (
@@ -330,6 +331,7 @@ __all__ = [
     "UpdateTransformRequest",
     "UpdateTransformResponse",
     "Usage",
+    "VerifyIntegrationRequest",
     "VulnerabilityConfig",
     "accounts",
     "audit",

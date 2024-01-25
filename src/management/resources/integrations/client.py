@@ -24,6 +24,7 @@ from .types.list_integrations_response import ListIntegrationsResponse
 from .types.patch_integration_response import PatchIntegrationResponse
 from .types.update_integration_request import UpdateIntegrationRequest
 from .types.update_integration_response import UpdateIntegrationResponse
+from .types.verify_integration_request import VerifyIntegrationRequest
 
 try:
     import pydantic.v1 as pydantic  # type: ignore
@@ -198,6 +199,42 @@ class IntegrationsClient:
         )
         if 200 <= _response.status_code < 300:
             return pydantic.parse_obj_as(CreateIntegrationResponse, _response.json())  # type: ignore
+        if _response.status_code == 400:
+            raise BadRequestError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+        if _response.status_code == 404:
+            raise NotFoundError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+        if _response.status_code == 409:
+            raise ConflictError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+        if _response.status_code == 403:
+            raise ForbiddenError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+        if _response.status_code == 401:
+            raise UnauthorizedError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+        try:
+            _response_json = _response.json()
+        except JSONDecodeError:
+            raise ApiError(status_code=_response.status_code, body=_response.text)
+        raise ApiError(status_code=_response.status_code, body=_response_json)
+
+    def verify_integration(self, account_id: AccountId, *, request: VerifyIntegrationRequest) -> None:
+        """
+        Verifies an ephemeral `Integration` and provider configuration and tests the authentication and provider connectivity.
+        The provider config credential IDs can utilize persistent IDs or use "#/n" reference IDs;
+        where (n) is the zero based offset in the optional credentials list.
+
+        Parameters:
+            - account_id: AccountId.
+
+            - request: VerifyIntegrationRequest.
+        """
+        _response = self._client_wrapper.httpx_client.request(
+            "POST",
+            urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", f"v1/integrations/{account_id}/verify"),
+            json=jsonable_encoder(request),
+            headers=self._client_wrapper.get_headers(),
+            timeout=60,
+        )
+        if 200 <= _response.status_code < 300:
+            return
         if _response.status_code == 400:
             raise BadRequestError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
         if _response.status_code == 404:
@@ -496,6 +533,42 @@ class AsyncIntegrationsClient:
         )
         if 200 <= _response.status_code < 300:
             return pydantic.parse_obj_as(CreateIntegrationResponse, _response.json())  # type: ignore
+        if _response.status_code == 400:
+            raise BadRequestError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+        if _response.status_code == 404:
+            raise NotFoundError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+        if _response.status_code == 409:
+            raise ConflictError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+        if _response.status_code == 403:
+            raise ForbiddenError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+        if _response.status_code == 401:
+            raise UnauthorizedError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+        try:
+            _response_json = _response.json()
+        except JSONDecodeError:
+            raise ApiError(status_code=_response.status_code, body=_response.text)
+        raise ApiError(status_code=_response.status_code, body=_response_json)
+
+    async def verify_integration(self, account_id: AccountId, *, request: VerifyIntegrationRequest) -> None:
+        """
+        Verifies an ephemeral `Integration` and provider configuration and tests the authentication and provider connectivity.
+        The provider config credential IDs can utilize persistent IDs or use "#/n" reference IDs;
+        where (n) is the zero based offset in the optional credentials list.
+
+        Parameters:
+            - account_id: AccountId.
+
+            - request: VerifyIntegrationRequest.
+        """
+        _response = await self._client_wrapper.httpx_client.request(
+            "POST",
+            urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", f"v1/integrations/{account_id}/verify"),
+            json=jsonable_encoder(request),
+            headers=self._client_wrapper.get_headers(),
+            timeout=60,
+        )
+        if 200 <= _response.status_code < 300:
+            return
         if _response.status_code == 400:
             raise BadRequestError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
         if _response.status_code == 404:

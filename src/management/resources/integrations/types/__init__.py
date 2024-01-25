@@ -52,6 +52,7 @@ from .storage_config import StorageConfig
 from .ticketing_config import TicketingConfig
 from .update_integration_request import UpdateIntegrationRequest
 from .update_integration_response import UpdateIntegrationResponse
+from .verify_integration_request import VerifyIntegrationRequest
 from .vulnerability_config import VulnerabilityConfig
 
 __all__ = [
@@ -99,5 +100,6 @@ __all__ = [
     "TicketingConfig",
     "UpdateIntegrationRequest",
     "UpdateIntegrationResponse",
+    "VerifyIntegrationRequest",
     "VulnerabilityConfig",
 ]
