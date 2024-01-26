@@ -14,8 +14,8 @@ except ImportError:
 
 
 class VerifyIntegrationRequest(pydantic.BaseModel):
-    integration: CreateIntegrationRequest = pydantic.Field(alias="Integration")
-    credentials: typing.Optional[typing.List[CreateCredentialRequest]] = pydantic.Field(alias="Credentials")
+    integration: CreateIntegrationRequest
+    credentials: typing.Optional[typing.List[CreateCredentialRequest]]
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}
@@ -28,5 +28,4 @@ class VerifyIntegrationRequest(pydantic.BaseModel):
     class Config:
         frozen = True
         smart_union = True
-        allow_population_by_field_name = True
         json_encoders = {dt.datetime: serialize_datetime}
