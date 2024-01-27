@@ -170,6 +170,7 @@ def create_sample_ticket(tenant, jira_project_key, jira_username):
         priority="LOW",
         # Optional fields
         description=tenant.tenant_name + " requires maintenance.",
+        status="To Do",
     )
 
 
