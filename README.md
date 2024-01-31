@@ -1,3 +1,5 @@
+\*\*\*\*\*\***CONFIDENTIAL**\*\*\*\*\*\*
+
 # Synqly Python SDK
 
 This repository contains the `SynqlyPythonClient` package, which can be used to integrate a Python application with Synqly APIs. 
