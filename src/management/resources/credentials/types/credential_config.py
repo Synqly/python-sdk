@@ -8,6 +8,7 @@ import typing_extensions
 
 from .aws_credential import AwsCredential
 from .basic_credential import BasicCredential
+from .o_auth_client_credential import OAuthClientCredential
 from .secret_credential import SecretCredential
 from .token_credential import TokenCredential
 
@@ -48,6 +49,19 @@ class CredentialConfig_Secret(SecretCredential):
         allow_population_by_field_name = True
 
 
+class CredentialConfig_OAuthClient(OAuthClientCredential):
+    type: typing_extensions.Literal["o_auth_client"]
+
+    class Config:
+        frozen = True
+        smart_union = True
+        allow_population_by_field_name = True
+
+
 CredentialConfig = typing.Union[
-    CredentialConfig_Aws, CredentialConfig_Token, CredentialConfig_Basic, CredentialConfig_Secret
+    CredentialConfig_Aws,
+    CredentialConfig_Token,
+    CredentialConfig_Basic,
+    CredentialConfig_Secret,
+    CredentialConfig_OAuthClient,
 ]

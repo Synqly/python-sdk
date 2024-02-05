@@ -11,12 +11,16 @@ except ImportError:
     import pydantic  # type: ignore
 
 
-class CreateAccountRequest(pydantic.BaseModel):
-    name: typing.Optional[str] = pydantic.Field(
-        description="Unique short name for this Account (lowercase [a-z0-9_-], can be used in URLs). Also used for case insensitive duplicate name detection and default sort order. Defaults to AccountId if both name and fullname are not specified."
-    )
-    fullname: typing.Optional[str] = pydantic.Field(
-        description="Human friendly display name for this Account, will auto-generate 'name' field (if 'name' is not specified)"
+class OAuthClientCredential(pydantic.BaseModel):
+    """
+    A Client ID and secret used for authenticating with OAuth 2.0 compatible service using the client credentials grant.
+    """
+
+    token_url: str = pydantic.Field(description="The OAuth 2.0 token URL for the service provider")
+    client_id: str = pydantic.Field(description="The ID of the client application defined at the service provider")
+    client_secret: str = pydantic.Field(description="Secret value for authentication")
+    extra: typing.Optional[typing.Dict[str, typing.Any]] = pydantic.Field(
+        description="Optional connection specific meta data such as a signing key ID or organization ID"
     )
 
     def json(self, **kwargs: typing.Any) -> str:

@@ -11,6 +11,7 @@ class CredentialType(str, enum.Enum):
     TOKEN = "token"
     BASIC = "basic"
     SECRET = "secret"
+    O_AUTH_CLIENT = "o_auth_client"
 
     def visit(
         self,
@@ -18,6 +19,7 @@ class CredentialType(str, enum.Enum):
         token: typing.Callable[[], T_Result],
         basic: typing.Callable[[], T_Result],
         secret: typing.Callable[[], T_Result],
+        o_auth_client: typing.Callable[[], T_Result],
     ) -> T_Result:
         if self is CredentialType.AWS:
             return aws()
@@ -27,3 +29,5 @@ class CredentialType(str, enum.Enum):
             return basic()
         if self is CredentialType.SECRET:
             return secret()
+        if self is CredentialType.O_AUTH_CLIENT:
+            return o_auth_client()

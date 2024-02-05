@@ -9,6 +9,7 @@ from .credential_config import (
     CredentialConfig,
     CredentialConfig_Aws,
     CredentialConfig_Basic,
+    CredentialConfig_OAuthClient,
     CredentialConfig_Secret,
     CredentialConfig_Token,
 )
@@ -18,6 +19,7 @@ from .credential_response import CredentialResponse
 from .credential_type import CredentialType
 from .get_credential_response import GetCredentialResponse
 from .list_credentials_response import ListCredentialsResponse
+from .o_auth_client_credential import OAuthClientCredential
 from .patch_credential_response import PatchCredentialResponse
 from .secret_credential import SecretCredential
 from .token_credential import TokenCredential
@@ -34,6 +36,7 @@ __all__ = [
     "CredentialConfigNoSecret",
     "CredentialConfig_Aws",
     "CredentialConfig_Basic",
+    "CredentialConfig_OAuthClient",
     "CredentialConfig_Secret",
     "CredentialConfig_Token",
     "CredentialId",
@@ -41,6 +44,7 @@ __all__ = [
     "CredentialType",
     "GetCredentialResponse",
     "ListCredentialsResponse",
+    "OAuthClientCredential",
     "PatchCredentialResponse",
     "SecretCredential",
     "TokenCredential",
