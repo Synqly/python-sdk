@@ -36,7 +36,7 @@ class AccountsClient:
     def __init__(self, *, client_wrapper: SyncClientWrapper):
         self._client_wrapper = client_wrapper
 
-    def list_accounts(
+    def list(
         self,
         *,
         limit: typing.Optional[int] = None,
@@ -89,7 +89,7 @@ class AccountsClient:
             raise ApiError(status_code=_response.status_code, body=_response.text)
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
-    def get_account(self, account_id: AccountId) -> GetAccountResponse:
+    def get(self, account_id: AccountId) -> GetAccountResponse:
         """
         Returns the `Account` object matching `{accountId}`. For more information on
         Organizations and Accounts, refer to our
@@ -118,7 +118,7 @@ class AccountsClient:
             raise ApiError(status_code=_response.status_code, body=_response.text)
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
-    def create_account(self, *, request: CreateAccountRequest) -> CreateAccountResponse:
+    def create(self, *, request: CreateAccountRequest) -> CreateAccountResponse:
         """
         Creates an `Account` object. For more information on Organizations and
         Accounts, refer to our
@@ -152,7 +152,7 @@ class AccountsClient:
             raise ApiError(status_code=_response.status_code, body=_response.text)
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
-    def update_account(self, account_id: AccountId, *, request: UpdateAccountRequest) -> UpdateAccountResponse:
+    def update(self, account_id: AccountId, *, request: UpdateAccountRequest) -> UpdateAccountResponse:
         """
         Updates the `Account` object matching `{accountId}`. For more information on
         Organizations and Accounts, refer to our
@@ -188,7 +188,7 @@ class AccountsClient:
             raise ApiError(status_code=_response.status_code, body=_response.text)
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
-    def patch_account(
+    def patch(
         self, account_id: AccountId, *, request: typing.List[typing.Dict[str, typing.Any]]
     ) -> PatchAccountResponse:
         """
@@ -224,7 +224,7 @@ class AccountsClient:
             raise ApiError(status_code=_response.status_code, body=_response.text)
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
-    def delete_account(self, account_id: AccountId) -> None:
+    def delete(self, account_id: AccountId) -> None:
         """
         Deletes the `Account` matching `{accountId}`. Deleting an `Account` also deletea
         all `Tokens` and `Credentials` belonging to the `Account`.
@@ -257,7 +257,7 @@ class AsyncAccountsClient:
     def __init__(self, *, client_wrapper: AsyncClientWrapper):
         self._client_wrapper = client_wrapper
 
-    async def list_accounts(
+    async def list(
         self,
         *,
         limit: typing.Optional[int] = None,
@@ -310,7 +310,7 @@ class AsyncAccountsClient:
             raise ApiError(status_code=_response.status_code, body=_response.text)
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
-    async def get_account(self, account_id: AccountId) -> GetAccountResponse:
+    async def get(self, account_id: AccountId) -> GetAccountResponse:
         """
         Returns the `Account` object matching `{accountId}`. For more information on
         Organizations and Accounts, refer to our
@@ -339,7 +339,7 @@ class AsyncAccountsClient:
             raise ApiError(status_code=_response.status_code, body=_response.text)
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
-    async def create_account(self, *, request: CreateAccountRequest) -> CreateAccountResponse:
+    async def create(self, *, request: CreateAccountRequest) -> CreateAccountResponse:
         """
         Creates an `Account` object. For more information on Organizations and
         Accounts, refer to our
@@ -373,7 +373,7 @@ class AsyncAccountsClient:
             raise ApiError(status_code=_response.status_code, body=_response.text)
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
-    async def update_account(self, account_id: AccountId, *, request: UpdateAccountRequest) -> UpdateAccountResponse:
+    async def update(self, account_id: AccountId, *, request: UpdateAccountRequest) -> UpdateAccountResponse:
         """
         Updates the `Account` object matching `{accountId}`. For more information on
         Organizations and Accounts, refer to our
@@ -409,7 +409,7 @@ class AsyncAccountsClient:
             raise ApiError(status_code=_response.status_code, body=_response.text)
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
-    async def patch_account(
+    async def patch(
         self, account_id: AccountId, *, request: typing.List[typing.Dict[str, typing.Any]]
     ) -> PatchAccountResponse:
         """
@@ -445,7 +445,7 @@ class AsyncAccountsClient:
             raise ApiError(status_code=_response.status_code, body=_response.text)
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
-    async def delete_account(self, account_id: AccountId) -> None:
+    async def delete(self, account_id: AccountId) -> None:
         """
         Deletes the `Account` matching `{accountId}`. Deleting an `Account` also deletea
         all `Tokens` and `Credentials` belonging to the `Account`.

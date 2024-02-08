@@ -4,8 +4,6 @@ import datetime as dt
 import typing
 
 from ....core.datetime_utils import serialize_datetime
-from ...capabilities.types.category_id import CategoryId
-from ...capabilities.types.provider_id import ProviderId
 from .provider_config import ProviderConfig
 
 try:
@@ -21,11 +19,7 @@ class CreateIntegrationRequest(pydantic.BaseModel):
     fullname: typing.Optional[str] = pydantic.Field(
         description="Human friendly display name for this Integrations, will auto-generate 'name' field (if 'name' is not specified)"
     )
-    category: CategoryId
-    provider_type: ProviderId = pydantic.Field(description="Provider implementation to use for this Integration.")
-    provider_config: typing.Optional[ProviderConfig] = pydantic.Field(
-        description="Custom configuration for the Provider."
-    )
+    provider_config: ProviderConfig = pydantic.Field(description="Provider configuration for this Integration.")
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}

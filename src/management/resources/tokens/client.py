@@ -34,7 +34,7 @@ class TokensClient:
     def __init__(self, *, client_wrapper: SyncClientWrapper):
         self._client_wrapper = client_wrapper
 
-    def create_account_token(self, *, request: CreateAccountTokenRequest) -> CreateAccountTokenResponse:
+    def create(self, *, request: CreateAccountTokenRequest) -> CreateAccountTokenResponse:
         """
         Create a token restricted to an account
 
@@ -64,7 +64,7 @@ class TokensClient:
             raise ApiError(status_code=_response.status_code, body=_response.text)
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
-    def list_tokens(
+    def list(
         self,
         *,
         limit: typing.Optional[int] = None,
@@ -117,7 +117,7 @@ class TokensClient:
             raise ApiError(status_code=_response.status_code, body=_response.text)
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
-    def get_token(self, refresh_token_id: TokenId) -> GetTokenResponse:
+    def get(self, refresh_token_id: TokenId) -> GetTokenResponse:
         """
         Returns the `RefreshToken` object matching `{tokenId}`. For more information on
         Tokens, refer to
@@ -146,7 +146,7 @@ class TokensClient:
             raise ApiError(status_code=_response.status_code, body=_response.text)
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
-    def reset_token(self, refresh_token_id: TokenId) -> ResetTokenResponse:
+    def reset(self, refresh_token_id: TokenId) -> ResetTokenResponse:
         """
         Resets the token value, secondary, and token expiration time for the
         `RefreshToken` object matching `{refreshTokenId}`. An `Organization` token
@@ -177,7 +177,7 @@ class TokensClient:
             raise ApiError(status_code=_response.status_code, body=_response.text)
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
-    def refresh_token(self, refresh_token_id: TokenId) -> RefreshTokenResponse:
+    def refresh(self, refresh_token_id: TokenId) -> RefreshTokenResponse:
         """
         Creates a new primary `TokenPair` object, setting the secondary `TokenPair`
         to the previous primary value. Call `/v1/removeSecondaryToken` to remove
@@ -208,7 +208,7 @@ class TokensClient:
             raise ApiError(status_code=_response.status_code, body=_response.text)
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
-    def remove_secondary_token(self, refresh_token_id: TokenId) -> None:
+    def remove_secondary(self, refresh_token_id: TokenId) -> None:
         """
         Deletes the secondary `TokenPair` for the `RefreshToken` object
         matching `{refreshTokenId}`.
@@ -243,7 +243,7 @@ class AsyncTokensClient:
     def __init__(self, *, client_wrapper: AsyncClientWrapper):
         self._client_wrapper = client_wrapper
 
-    async def create_account_token(self, *, request: CreateAccountTokenRequest) -> CreateAccountTokenResponse:
+    async def create(self, *, request: CreateAccountTokenRequest) -> CreateAccountTokenResponse:
         """
         Create a token restricted to an account
 
@@ -273,7 +273,7 @@ class AsyncTokensClient:
             raise ApiError(status_code=_response.status_code, body=_response.text)
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
-    async def list_tokens(
+    async def list(
         self,
         *,
         limit: typing.Optional[int] = None,
@@ -326,7 +326,7 @@ class AsyncTokensClient:
             raise ApiError(status_code=_response.status_code, body=_response.text)
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
-    async def get_token(self, refresh_token_id: TokenId) -> GetTokenResponse:
+    async def get(self, refresh_token_id: TokenId) -> GetTokenResponse:
         """
         Returns the `RefreshToken` object matching `{tokenId}`. For more information on
         Tokens, refer to
@@ -355,7 +355,7 @@ class AsyncTokensClient:
             raise ApiError(status_code=_response.status_code, body=_response.text)
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
-    async def reset_token(self, refresh_token_id: TokenId) -> ResetTokenResponse:
+    async def reset(self, refresh_token_id: TokenId) -> ResetTokenResponse:
         """
         Resets the token value, secondary, and token expiration time for the
         `RefreshToken` object matching `{refreshTokenId}`. An `Organization` token
@@ -386,7 +386,7 @@ class AsyncTokensClient:
             raise ApiError(status_code=_response.status_code, body=_response.text)
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
-    async def refresh_token(self, refresh_token_id: TokenId) -> RefreshTokenResponse:
+    async def refresh(self, refresh_token_id: TokenId) -> RefreshTokenResponse:
         """
         Creates a new primary `TokenPair` object, setting the secondary `TokenPair`
         to the previous primary value. Call `/v1/removeSecondaryToken` to remove
@@ -417,7 +417,7 @@ class AsyncTokensClient:
             raise ApiError(status_code=_response.status_code, body=_response.text)
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
-    async def remove_secondary_token(self, refresh_token_id: TokenId) -> None:
+    async def remove_secondary(self, refresh_token_id: TokenId) -> None:
         """
         Deletes the secondary `TokenPair` for the `RefreshToken` object
         matching `{refreshTokenId}`.
