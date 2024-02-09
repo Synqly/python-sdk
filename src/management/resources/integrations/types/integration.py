@@ -6,6 +6,7 @@ import typing
 from ....core.datetime_utils import serialize_datetime
 from ...accounts.types.account_id import AccountId
 from ...capabilities.types.category_id import CategoryId
+from ...capabilities.types.provider_id import ProviderId
 from ...common.types.base import Base
 from ...token_base.types.token_id import TokenId
 from .integration_id import IntegrationId
@@ -26,8 +27,11 @@ class Integration(Base):
     fullname: str = pydantic.Field(description="Human friendly display name for this integration.")
     refresh_token_id: TokenId = pydantic.Field(description="Integration refresh token id")
     account_id: AccountId = pydantic.Field(description="Account that manages this Integration.")
-    category: CategoryId = pydantic.Field(description="Id of the Connector Category for this Integration.")
-    provider_config: ProviderConfig = pydantic.Field(description="Provider configuration for this Integration.")
+    category: CategoryId = pydantic.Field(description="Id of the categorical type for this Integration.")
+    provider_type: ProviderId = pydantic.Field(description="Provider implementation to use for this Integration.")
+    provider_config: typing.Optional[ProviderConfig] = pydantic.Field(
+        description="Custom configuration for the Provider."
+    )
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}

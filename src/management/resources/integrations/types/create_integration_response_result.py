@@ -4,7 +4,6 @@ import datetime as dt
 import typing
 
 from ....core.datetime_utils import serialize_datetime
-from ...credentials.types.credential_response import CredentialResponse
 from ...token_base.types.token_pair import TokenPair
 from .integration import Integration
 
@@ -15,7 +14,6 @@ except ImportError:
 
 
 class CreateIntegrationResponseResult(pydantic.BaseModel):
-    credentials_created: typing.Optional[typing.List[CredentialResponse]]
     integration: Integration
     token: TokenPair
 

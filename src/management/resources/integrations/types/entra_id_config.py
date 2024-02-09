@@ -4,8 +4,6 @@ import datetime as dt
 import typing
 
 from ....core.datetime_utils import serialize_datetime
-from ...credentials.types.create_credential_request import CreateCredentialRequest
-from .create_integration_request import CreateIntegrationRequest
 
 try:
     import pydantic.v1 as pydantic  # type: ignore
@@ -13,9 +11,16 @@ except ImportError:
     import pydantic  # type: ignore
 
 
-class VerifyIntegrationRequest(pydantic.BaseModel):
-    integration: CreateIntegrationRequest
-    credentials: typing.Optional[typing.List[CreateCredentialRequest]]
+class EntraIdConfig(pydantic.BaseModel):
+    """
+    Configuration for Microsoft Entra ID tenants
+    """
+
+    client_id: str = pydantic.Field(description="Azure Client (Application) ID.")
+    tenant_id: str = pydantic.Field(description="Azure Directory (tenant) ID.")
+    scopes: typing.List[str] = pydantic.Field(
+        description="Any custom scopes. Defaults to the primary microsoft graph API default scope."
+    )
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}

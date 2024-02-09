@@ -6,37 +6,19 @@ import typing
 
 import typing_extensions
 
-from .assets_armis_centrix import AssetsArmisCentrix
-from .hooks_http import HooksHttp
-from .identity_entra_id import IdentityEntraId
-from .identity_okta import IdentityOkta
-from .identity_ping_one import IdentityPingOne
-from .notifications_jira import NotificationsJira
-from .notifications_mock import NotificationsMock
-from .notifications_slack import NotificationsSlack
-from .notifications_teams import NotificationsTeams
-from .siem_elasticsearch import SiemElasticsearch
-from .siem_mock import SiemMock
-from .siem_splunk import SiemSplunk
-from .sink_aws_security_lake import SinkAwsSecurityLake
-from .sink_aws_sqs import SinkAwsSqs
-from .sink_azure_monitor_logs import SinkAzureMonitorLogs
-from .sink_mock import SinkMock
-from .storage_aws_s_3 import StorageAwsS3
-from .storage_azure_blob import StorageAzureBlob
-from .storage_gcs import StorageGcs
-from .storage_mock import StorageMock
-from .ticketing_jira import TicketingJira
-from .ticketing_mock import TicketingMock
-from .ticketing_pager_duty import TicketingPagerDuty
-from .ticketing_service_now import TicketingServiceNow
-from .vulnerabilities_qualys_cloud import VulnerabilitiesQualysCloud
-from .vulnerabilities_rapid_7_insight_cloud import VulnerabilitiesRapid7InsightCloud
-from .vulnerabilities_tenable_cloud import VulnerabilitiesTenableCloud
+from .assets_config import AssetsConfig
+from .hooks_config import HooksConfig
+from .identity_config import IdentityConfig
+from .notification_config import NotificationConfig
+from .siem_config import SiemConfig
+from .sink_config import SinkConfig
+from .storage_config import StorageConfig
+from .ticketing_config import TicketingConfig
+from .vulnerability_config import VulnerabilityConfig
 
 
-class ProviderConfig_HooksHttp(HooksHttp):
-    type: typing_extensions.Literal["hooks_http"]
+class ProviderConfig_Assets(AssetsConfig):
+    type: typing_extensions.Literal["assets"]
 
     class Config:
         frozen = True
@@ -44,8 +26,8 @@ class ProviderConfig_HooksHttp(HooksHttp):
         allow_population_by_field_name = True
 
 
-class ProviderConfig_AssetsArmisCentrix(AssetsArmisCentrix):
-    type: typing_extensions.Literal["assets_armis_centrix"]
+class ProviderConfig_Hooks(HooksConfig):
+    type: typing_extensions.Literal["hooks"]
 
     class Config:
         frozen = True
@@ -53,8 +35,8 @@ class ProviderConfig_AssetsArmisCentrix(AssetsArmisCentrix):
         allow_population_by_field_name = True
 
 
-class ProviderConfig_IdentityEntraId(IdentityEntraId):
-    type: typing_extensions.Literal["identity_entra_id"]
+class ProviderConfig_Identity(IdentityConfig):
+    type: typing_extensions.Literal["identity"]
 
     class Config:
         frozen = True
@@ -62,8 +44,8 @@ class ProviderConfig_IdentityEntraId(IdentityEntraId):
         allow_population_by_field_name = True
 
 
-class ProviderConfig_IdentityOkta(IdentityOkta):
-    type: typing_extensions.Literal["identity_okta"]
+class ProviderConfig_Notifications(NotificationConfig):
+    type: typing_extensions.Literal["notifications"]
 
     class Config:
         frozen = True
@@ -71,8 +53,8 @@ class ProviderConfig_IdentityOkta(IdentityOkta):
         allow_population_by_field_name = True
 
 
-class ProviderConfig_IdentityPingone(IdentityPingOne):
-    type: typing_extensions.Literal["identity_pingone"]
+class ProviderConfig_Siem(SiemConfig):
+    type: typing_extensions.Literal["siem"]
 
     class Config:
         frozen = True
@@ -80,8 +62,8 @@ class ProviderConfig_IdentityPingone(IdentityPingOne):
         allow_population_by_field_name = True
 
 
-class ProviderConfig_NotificationsJira(NotificationsJira):
-    type: typing_extensions.Literal["notifications_jira"]
+class ProviderConfig_Sink(SinkConfig):
+    type: typing_extensions.Literal["sink"]
 
     class Config:
         frozen = True
@@ -89,8 +71,8 @@ class ProviderConfig_NotificationsJira(NotificationsJira):
         allow_population_by_field_name = True
 
 
-class ProviderConfig_NotificationsMockNotifications(NotificationsMock):
-    type: typing_extensions.Literal["notifications_mock_notifications"]
+class ProviderConfig_Storage(StorageConfig):
+    type: typing_extensions.Literal["storage"]
 
     class Config:
         frozen = True
@@ -98,8 +80,8 @@ class ProviderConfig_NotificationsMockNotifications(NotificationsMock):
         allow_population_by_field_name = True
 
 
-class ProviderConfig_NotificationsSlack(NotificationsSlack):
-    type: typing_extensions.Literal["notifications_slack"]
+class ProviderConfig_Ticketing(TicketingConfig):
+    type: typing_extensions.Literal["ticketing"]
 
     class Config:
         frozen = True
@@ -107,170 +89,8 @@ class ProviderConfig_NotificationsSlack(NotificationsSlack):
         allow_population_by_field_name = True
 
 
-class ProviderConfig_NotificationsTeams(NotificationsTeams):
-    type: typing_extensions.Literal["notifications_teams"]
-
-    class Config:
-        frozen = True
-        smart_union = True
-        allow_population_by_field_name = True
-
-
-class ProviderConfig_SiemElasticsearch(SiemElasticsearch):
-    type: typing_extensions.Literal["siem_elasticsearch"]
-
-    class Config:
-        frozen = True
-        smart_union = True
-        allow_population_by_field_name = True
-
-
-class ProviderConfig_SiemSplunk(SiemSplunk):
-    type: typing_extensions.Literal["siem_splunk"]
-
-    class Config:
-        frozen = True
-        smart_union = True
-        allow_population_by_field_name = True
-
-
-class ProviderConfig_SiemMockSiem(SiemMock):
-    type: typing_extensions.Literal["siem_mock_siem"]
-
-    class Config:
-        frozen = True
-        smart_union = True
-        allow_population_by_field_name = True
-
-
-class ProviderConfig_SinkAwsSecurityLake(SinkAwsSecurityLake):
-    type: typing_extensions.Literal["sink_aws_security_lake"]
-
-    class Config:
-        frozen = True
-        smart_union = True
-        allow_population_by_field_name = True
-
-
-class ProviderConfig_SinkAwsSqs(SinkAwsSqs):
-    type: typing_extensions.Literal["sink_aws_sqs"]
-
-    class Config:
-        frozen = True
-        smart_union = True
-        allow_population_by_field_name = True
-
-
-class ProviderConfig_SinkAzureMonitorLogs(SinkAzureMonitorLogs):
-    type: typing_extensions.Literal["sink_azure_monitor_logs"]
-
-    class Config:
-        frozen = True
-        smart_union = True
-        allow_population_by_field_name = True
-
-
-class ProviderConfig_SinkMockSink(SinkMock):
-    type: typing_extensions.Literal["sink_mock_sink"]
-
-    class Config:
-        frozen = True
-        smart_union = True
-        allow_population_by_field_name = True
-
-
-class ProviderConfig_StorageAwsS3(StorageAwsS3):
-    type: typing_extensions.Literal["storage_aws_s3"]
-
-    class Config:
-        frozen = True
-        smart_union = True
-        allow_population_by_field_name = True
-
-
-class ProviderConfig_StorageAzureBlob(StorageAzureBlob):
-    type: typing_extensions.Literal["storage_azure_blob"]
-
-    class Config:
-        frozen = True
-        smart_union = True
-        allow_population_by_field_name = True
-
-
-class ProviderConfig_StorageGcs(StorageGcs):
-    type: typing_extensions.Literal["storage_gcs"]
-
-    class Config:
-        frozen = True
-        smart_union = True
-        allow_population_by_field_name = True
-
-
-class ProviderConfig_StorageMockStorage(StorageMock):
-    type: typing_extensions.Literal["storage_mock_storage"]
-
-    class Config:
-        frozen = True
-        smart_union = True
-        allow_population_by_field_name = True
-
-
-class ProviderConfig_TicketingJira(TicketingJira):
-    type: typing_extensions.Literal["ticketing_jira"]
-
-    class Config:
-        frozen = True
-        smart_union = True
-        allow_population_by_field_name = True
-
-
-class ProviderConfig_TicketingPagerduty(TicketingPagerDuty):
-    type: typing_extensions.Literal["ticketing_pagerduty"]
-
-    class Config:
-        frozen = True
-        smart_union = True
-        allow_population_by_field_name = True
-
-
-class ProviderConfig_TicketingServicenow(TicketingServiceNow):
-    type: typing_extensions.Literal["ticketing_servicenow"]
-
-    class Config:
-        frozen = True
-        smart_union = True
-        allow_population_by_field_name = True
-
-
-class ProviderConfig_TicketingMockTicketing(TicketingMock):
-    type: typing_extensions.Literal["ticketing_mock_ticketing"]
-
-    class Config:
-        frozen = True
-        smart_union = True
-        allow_population_by_field_name = True
-
-
-class ProviderConfig_VulnerabilitiesRapid7InsightCloud(VulnerabilitiesRapid7InsightCloud):
-    type: typing_extensions.Literal["vulnerabilities_rapid7_insight_cloud"]
-
-    class Config:
-        frozen = True
-        smart_union = True
-        allow_population_by_field_name = True
-
-
-class ProviderConfig_VulnerabilitiesTenableCloud(VulnerabilitiesTenableCloud):
-    type: typing_extensions.Literal["vulnerabilities_tenable_cloud"]
-
-    class Config:
-        frozen = True
-        smart_union = True
-        allow_population_by_field_name = True
-
-
-class ProviderConfig_VulnerabilitiesQualysCloud(VulnerabilitiesQualysCloud):
-    type: typing_extensions.Literal["vulnerabilities_qualys_cloud"]
+class ProviderConfig_Vulnerabilities(VulnerabilityConfig):
+    type: typing_extensions.Literal["vulnerabilities"]
 
     class Config:
         frozen = True
@@ -279,31 +99,13 @@ class ProviderConfig_VulnerabilitiesQualysCloud(VulnerabilitiesQualysCloud):
 
 
 ProviderConfig = typing.Union[
-    ProviderConfig_HooksHttp,
-    ProviderConfig_AssetsArmisCentrix,
-    ProviderConfig_IdentityEntraId,
-    ProviderConfig_IdentityOkta,
-    ProviderConfig_IdentityPingone,
-    ProviderConfig_NotificationsJira,
-    ProviderConfig_NotificationsMockNotifications,
-    ProviderConfig_NotificationsSlack,
-    ProviderConfig_NotificationsTeams,
-    ProviderConfig_SiemElasticsearch,
-    ProviderConfig_SiemSplunk,
-    ProviderConfig_SiemMockSiem,
-    ProviderConfig_SinkAwsSecurityLake,
-    ProviderConfig_SinkAwsSqs,
-    ProviderConfig_SinkAzureMonitorLogs,
-    ProviderConfig_SinkMockSink,
-    ProviderConfig_StorageAwsS3,
-    ProviderConfig_StorageAzureBlob,
-    ProviderConfig_StorageGcs,
-    ProviderConfig_StorageMockStorage,
-    ProviderConfig_TicketingJira,
-    ProviderConfig_TicketingPagerduty,
-    ProviderConfig_TicketingServicenow,
-    ProviderConfig_TicketingMockTicketing,
-    ProviderConfig_VulnerabilitiesRapid7InsightCloud,
-    ProviderConfig_VulnerabilitiesTenableCloud,
-    ProviderConfig_VulnerabilitiesQualysCloud,
+    ProviderConfig_Assets,
+    ProviderConfig_Hooks,
+    ProviderConfig_Identity,
+    ProviderConfig_Notifications,
+    ProviderConfig_Siem,
+    ProviderConfig_Sink,
+    ProviderConfig_Storage,
+    ProviderConfig_Ticketing,
+    ProviderConfig_Vulnerabilities,
 ]
