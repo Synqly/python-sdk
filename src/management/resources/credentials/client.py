@@ -37,7 +37,7 @@ class CredentialsClient:
     def __init__(self, *, client_wrapper: SyncClientWrapper):
         self._client_wrapper = client_wrapper
 
-    def list_credentials(
+    def list(
         self,
         account_id: AccountId,
         *,
@@ -92,7 +92,7 @@ class CredentialsClient:
             raise ApiError(status_code=_response.status_code, body=_response.text)
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
-    def get_credential(self, account_id: AccountId, credential_id: CredentialId) -> GetCredentialResponse:
+    def get(self, account_id: AccountId, credential_id: CredentialId) -> GetCredentialResponse:
         """
         Returns the `Credential` object matching `{credentialId}` where the
         `Credential` belongs to the `Account` matching `{accountId}`.
@@ -124,7 +124,7 @@ class CredentialsClient:
             raise ApiError(status_code=_response.status_code, body=_response.text)
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
-    def create_credential(self, account_id: AccountId, *, request: CreateCredentialRequest) -> CreateCredentialResponse:
+    def create(self, account_id: AccountId, *, request: CreateCredentialRequest) -> CreateCredentialResponse:
         """
         Creates a `Credential` object in the `Account` matching matching
         `{accountId}`. A `Credential` may only by used by a single `Account`;
@@ -161,7 +161,7 @@ class CredentialsClient:
             raise ApiError(status_code=_response.status_code, body=_response.text)
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
-    def update_credential(
+    def update(
         self, account_id: AccountId, credential_id: CredentialId, *, request: UpdateCredentialRequest
     ) -> UpdateCredentialResponse:
         """
@@ -202,7 +202,7 @@ class CredentialsClient:
             raise ApiError(status_code=_response.status_code, body=_response.text)
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
-    def patch_credential(
+    def patch(
         self, account_id: AccountId, credential_id: CredentialId, *, request: typing.List[typing.Dict[str, typing.Any]]
     ) -> PatchCredentialResponse:
         """
@@ -241,7 +241,7 @@ class CredentialsClient:
             raise ApiError(status_code=_response.status_code, body=_response.text)
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
-    def delete_credential(self, account_id: AccountId, credential_id: CredentialId) -> None:
+    def delete(self, account_id: AccountId, credential_id: CredentialId) -> None:
         """
         Deletes the `Credential` object matching `{credentialId}`, where the
         `Credential` belongs to the `Account` matching `{accountId}`.
@@ -278,7 +278,7 @@ class AsyncCredentialsClient:
     def __init__(self, *, client_wrapper: AsyncClientWrapper):
         self._client_wrapper = client_wrapper
 
-    async def list_credentials(
+    async def list(
         self,
         account_id: AccountId,
         *,
@@ -333,7 +333,7 @@ class AsyncCredentialsClient:
             raise ApiError(status_code=_response.status_code, body=_response.text)
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
-    async def get_credential(self, account_id: AccountId, credential_id: CredentialId) -> GetCredentialResponse:
+    async def get(self, account_id: AccountId, credential_id: CredentialId) -> GetCredentialResponse:
         """
         Returns the `Credential` object matching `{credentialId}` where the
         `Credential` belongs to the `Account` matching `{accountId}`.
@@ -365,9 +365,7 @@ class AsyncCredentialsClient:
             raise ApiError(status_code=_response.status_code, body=_response.text)
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
-    async def create_credential(
-        self, account_id: AccountId, *, request: CreateCredentialRequest
-    ) -> CreateCredentialResponse:
+    async def create(self, account_id: AccountId, *, request: CreateCredentialRequest) -> CreateCredentialResponse:
         """
         Creates a `Credential` object in the `Account` matching matching
         `{accountId}`. A `Credential` may only by used by a single `Account`;
@@ -404,7 +402,7 @@ class AsyncCredentialsClient:
             raise ApiError(status_code=_response.status_code, body=_response.text)
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
-    async def update_credential(
+    async def update(
         self, account_id: AccountId, credential_id: CredentialId, *, request: UpdateCredentialRequest
     ) -> UpdateCredentialResponse:
         """
@@ -445,7 +443,7 @@ class AsyncCredentialsClient:
             raise ApiError(status_code=_response.status_code, body=_response.text)
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
-    async def patch_credential(
+    async def patch(
         self, account_id: AccountId, credential_id: CredentialId, *, request: typing.List[typing.Dict[str, typing.Any]]
     ) -> PatchCredentialResponse:
         """
@@ -484,7 +482,7 @@ class AsyncCredentialsClient:
             raise ApiError(status_code=_response.status_code, body=_response.text)
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
-    async def delete_credential(self, account_id: AccountId, credential_id: CredentialId) -> None:
+    async def delete(self, account_id: AccountId, credential_id: CredentialId) -> None:
         """
         Deletes the `Credential` object matching `{credentialId}`, where the
         `Credential` belongs to the `Account` matching `{accountId}`.

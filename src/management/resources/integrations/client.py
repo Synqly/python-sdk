@@ -39,7 +39,7 @@ class IntegrationsClient:
     def __init__(self, *, client_wrapper: SyncClientWrapper):
         self._client_wrapper = client_wrapper
 
-    def list_integrations(
+    def list(
         self,
         *,
         limit: typing.Optional[int] = None,
@@ -90,7 +90,7 @@ class IntegrationsClient:
             raise ApiError(status_code=_response.status_code, body=_response.text)
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
-    def list_account_integrations(
+    def list_for_account(
         self,
         account_id: AccountId,
         *,
@@ -145,7 +145,7 @@ class IntegrationsClient:
             raise ApiError(status_code=_response.status_code, body=_response.text)
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
-    def get_integration(self, account_id: AccountId, integration_id: IntegrationId) -> GetIntegrationResponse:
+    def get(self, account_id: AccountId, integration_id: IntegrationId) -> GetIntegrationResponse:
         """
         Returns the `Integration` object matching `{integrationId}` where
         the `Integration` belongs to the `Account` matching `{accountId}`.
@@ -177,9 +177,7 @@ class IntegrationsClient:
             raise ApiError(status_code=_response.status_code, body=_response.text)
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
-    def create_integration(
-        self, account_id: AccountId, *, request: CreateIntegrationRequest
-    ) -> CreateIntegrationResponse:
+    def create(self, account_id: AccountId, *, request: CreateIntegrationRequest) -> CreateIntegrationResponse:
         """
         Creates an `Integration` object belonging to the `Account` matching
         `{accountId}`. Configures the `Integration` with the Provider specified
@@ -215,7 +213,7 @@ class IntegrationsClient:
             raise ApiError(status_code=_response.status_code, body=_response.text)
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
-    def verify_integration(self, account_id: AccountId, *, request: VerifyIntegrationRequest) -> None:
+    def verify(self, account_id: AccountId, *, request: VerifyIntegrationRequest) -> None:
         """
         Verifies an ephemeral `Integration` and provider configuration and tests the authentication and provider connectivity.
         The provider config credential IDs can utilize persistent IDs or use "#/n" reference IDs;
@@ -251,7 +249,7 @@ class IntegrationsClient:
             raise ApiError(status_code=_response.status_code, body=_response.text)
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
-    def update_integration(
+    def update(
         self, account_id: AccountId, integration_id: IntegrationId, *, request: UpdateIntegrationRequest
     ) -> UpdateIntegrationResponse:
         """
@@ -292,7 +290,7 @@ class IntegrationsClient:
             raise ApiError(status_code=_response.status_code, body=_response.text)
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
-    def patch_integration(
+    def patch(
         self,
         account_id: AccountId,
         integration_id: IntegrationId,
@@ -335,7 +333,7 @@ class IntegrationsClient:
             raise ApiError(status_code=_response.status_code, body=_response.text)
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
-    def delete_integration(self, account_id: AccountId, integration_id: IntegrationId) -> None:
+    def delete(self, account_id: AccountId, integration_id: IntegrationId) -> None:
         """
         Deletes the `Integration` object matching `{integrationId}, where the
         `Integration` belongs to the `Account` matching `{accountId}`. Deleting
@@ -373,7 +371,7 @@ class AsyncIntegrationsClient:
     def __init__(self, *, client_wrapper: AsyncClientWrapper):
         self._client_wrapper = client_wrapper
 
-    async def list_integrations(
+    async def list(
         self,
         *,
         limit: typing.Optional[int] = None,
@@ -424,7 +422,7 @@ class AsyncIntegrationsClient:
             raise ApiError(status_code=_response.status_code, body=_response.text)
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
-    async def list_account_integrations(
+    async def list_for_account(
         self,
         account_id: AccountId,
         *,
@@ -479,7 +477,7 @@ class AsyncIntegrationsClient:
             raise ApiError(status_code=_response.status_code, body=_response.text)
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
-    async def get_integration(self, account_id: AccountId, integration_id: IntegrationId) -> GetIntegrationResponse:
+    async def get(self, account_id: AccountId, integration_id: IntegrationId) -> GetIntegrationResponse:
         """
         Returns the `Integration` object matching `{integrationId}` where
         the `Integration` belongs to the `Account` matching `{accountId}`.
@@ -511,9 +509,7 @@ class AsyncIntegrationsClient:
             raise ApiError(status_code=_response.status_code, body=_response.text)
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
-    async def create_integration(
-        self, account_id: AccountId, *, request: CreateIntegrationRequest
-    ) -> CreateIntegrationResponse:
+    async def create(self, account_id: AccountId, *, request: CreateIntegrationRequest) -> CreateIntegrationResponse:
         """
         Creates an `Integration` object belonging to the `Account` matching
         `{accountId}`. Configures the `Integration` with the Provider specified
@@ -549,7 +545,7 @@ class AsyncIntegrationsClient:
             raise ApiError(status_code=_response.status_code, body=_response.text)
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
-    async def verify_integration(self, account_id: AccountId, *, request: VerifyIntegrationRequest) -> None:
+    async def verify(self, account_id: AccountId, *, request: VerifyIntegrationRequest) -> None:
         """
         Verifies an ephemeral `Integration` and provider configuration and tests the authentication and provider connectivity.
         The provider config credential IDs can utilize persistent IDs or use "#/n" reference IDs;
@@ -585,7 +581,7 @@ class AsyncIntegrationsClient:
             raise ApiError(status_code=_response.status_code, body=_response.text)
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
-    async def update_integration(
+    async def update(
         self, account_id: AccountId, integration_id: IntegrationId, *, request: UpdateIntegrationRequest
     ) -> UpdateIntegrationResponse:
         """
@@ -626,7 +622,7 @@ class AsyncIntegrationsClient:
             raise ApiError(status_code=_response.status_code, body=_response.text)
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
-    async def patch_integration(
+    async def patch(
         self,
         account_id: AccountId,
         integration_id: IntegrationId,
@@ -669,7 +665,7 @@ class AsyncIntegrationsClient:
             raise ApiError(status_code=_response.status_code, body=_response.text)
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
-    async def delete_integration(self, account_id: AccountId, integration_id: IntegrationId) -> None:
+    async def delete(self, account_id: AccountId, integration_id: IntegrationId) -> None:
         """
         Deletes the `Integration` object matching `{integrationId}, where the
         `Integration` belongs to the `Account` matching `{accountId}`. Deleting
