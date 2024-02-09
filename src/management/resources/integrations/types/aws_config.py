@@ -4,8 +4,6 @@ import datetime as dt
 import typing
 
 from ....core.datetime_utils import serialize_datetime
-from ...credentials.types.create_credential_request import CreateCredentialRequest
-from .create_integration_request import CreateIntegrationRequest
 
 try:
     import pydantic.v1 as pydantic  # type: ignore
@@ -13,9 +11,14 @@ except ImportError:
     import pydantic  # type: ignore
 
 
-class VerifyIntegrationRequest(pydantic.BaseModel):
-    integration: CreateIntegrationRequest
-    credentials: typing.Optional[typing.List[CreateCredentialRequest]]
+class AwsConfig(pydantic.BaseModel):
+    """
+    Configuration specific to AWS type Event Providers
+    """
+
+    region: typing.Optional[str] = pydantic.Field(
+        description="Override the default AWS region for this integration. If not present, the region will be infered from the URL."
+    )
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}

@@ -4,8 +4,8 @@ import datetime as dt
 import typing
 
 from ....core.datetime_utils import serialize_datetime
-from ...credentials.types.create_credential_request import CreateCredentialRequest
-from .create_integration_request import CreateIntegrationRequest
+from ...credentials.types.credential_id import CredentialId
+from ...transforms.types.transform_id import TransformId
 
 try:
     import pydantic.v1 as pydantic  # type: ignore
@@ -13,9 +13,19 @@ except ImportError:
     import pydantic  # type: ignore
 
 
-class VerifyIntegrationRequest(pydantic.BaseModel):
-    integration: CreateIntegrationRequest
-    credentials: typing.Optional[typing.List[CreateCredentialRequest]]
+class NotificationConfig(pydantic.BaseModel):
+    """
+    Configuration for a Notification Provider
+    """
+
+    credential_id: CredentialId
+    endpoint: typing.Optional[str] = pydantic.Field(
+        description="Endpoint used for connecting to the external service. If not provided, will connect to the default endpoint for the Provider."
+    )
+    channel: typing.Optional[str] = pydantic.Field(description="Channel specification")
+    transforms: typing.Optional[typing.List[TransformId]] = pydantic.Field(
+        description="Optional list of transformations used to modify requests before they are sent to the external service."
+    )
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}

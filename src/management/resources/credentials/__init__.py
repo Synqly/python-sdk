@@ -2,9 +2,7 @@
 
 from .types import (
     AwsCredential,
-    AwsCredentialId,
     BasicCredential,
-    BasicCredentialId,
     CreateCredentialRequest,
     CreateCredentialResponse,
     Credential,
@@ -21,21 +19,16 @@ from .types import (
     GetCredentialResponse,
     ListCredentialsResponse,
     OAuthClientCredential,
-    OAuthClientCredentialId,
     PatchCredentialResponse,
     SecretCredential,
-    SecretCredentialId,
     TokenCredential,
-    TokenCredentialId,
     UpdateCredentialRequest,
     UpdateCredentialResponse,
 )
 
 __all__ = [
     "AwsCredential",
-    "AwsCredentialId",
     "BasicCredential",
-    "BasicCredentialId",
     "CreateCredentialRequest",
     "CreateCredentialResponse",
     "Credential",
@@ -52,12 +45,9 @@ __all__ = [
     "GetCredentialResponse",
     "ListCredentialsResponse",
     "OAuthClientCredential",
-    "OAuthClientCredentialId",
     "PatchCredentialResponse",
     "SecretCredential",
-    "SecretCredentialId",
     "TokenCredential",
-    "TokenCredentialId",
     "UpdateCredentialRequest",
     "UpdateCredentialResponse",
 ]

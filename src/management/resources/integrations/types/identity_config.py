@@ -4,8 +4,8 @@ import datetime as dt
 import typing
 
 from ....core.datetime_utils import serialize_datetime
-from ...credentials.types.create_credential_request import CreateCredentialRequest
-from .create_integration_request import CreateIntegrationRequest
+from ...credentials.types.credential_id import CredentialId
+from .identity_provider_type_config import IdentityProviderTypeConfig
 
 try:
     import pydantic.v1 as pydantic  # type: ignore
@@ -13,9 +13,14 @@ except ImportError:
     import pydantic  # type: ignore
 
 
-class VerifyIntegrationRequest(pydantic.BaseModel):
-    integration: CreateIntegrationRequest
-    credentials: typing.Optional[typing.List[CreateCredentialRequest]]
+class IdentityConfig(pydantic.BaseModel):
+    """
+    Configuration for an Identity Provider
+    """
+
+    credential_id: CredentialId
+    url: typing.Optional[str] = pydantic.Field(description="URL used for connecting to the identity provider.")
+    config: IdentityProviderTypeConfig
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}

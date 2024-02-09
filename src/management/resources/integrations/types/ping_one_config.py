@@ -4,8 +4,6 @@ import datetime as dt
 import typing
 
 from ....core.datetime_utils import serialize_datetime
-from ...credentials.types.create_credential_request import CreateCredentialRequest
-from .create_integration_request import CreateIntegrationRequest
 
 try:
     import pydantic.v1 as pydantic  # type: ignore
@@ -13,9 +11,14 @@ except ImportError:
     import pydantic  # type: ignore
 
 
-class VerifyIntegrationRequest(pydantic.BaseModel):
-    integration: CreateIntegrationRequest
-    credentials: typing.Optional[typing.List[CreateCredentialRequest]]
+class PingOneConfig(pydantic.BaseModel):
+    """
+    Configuration for the PingOne identity platform
+    """
+
+    client_id: str = pydantic.Field(description="The client ID for the application set up as a worker.")
+    organization_id: str = pydantic.Field(description="The organization ID that the client app is a part of.")
+    auth_url: str = pydantic.Field(description="The URL base for making authentication requests to PingOne.")
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}
