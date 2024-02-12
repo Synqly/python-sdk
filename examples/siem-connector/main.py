@@ -71,15 +71,21 @@ def splunk_credential_config(splunk_token):
 
 
 def mock_provider_config(credential_id):
-    return mgmt.ProviderConfig(mgmt.ProviderConfig_SiemMockSiem(mgmt.SiemMock()))
+    return mgmt.ProviderConfig_SiemMockSiem(
+        type="siem_mock_siem",
+        skip_tls_verify=True,
+    )
 
 
 def splunk_provider_config(splunk_url, credential_id):
-    return mgmt.ProviderConfig(mgmt.SiemSplunk(
-        hec_credential=mgmt.SplunkHecToken_TokenId(credential_id=credential_id),
+    return mgmt.ProviderConfig_SiemSplunk(
+        type="siem_splunk",
+        hec_credential=mgmt.SplunkHecToken_TokenId(
+            type="token_id", value=credential_id
+        ),
         hec_url=splunk_url,
         skip_tls_verify=True,
-    ))
+    )
 
 
 def background_job(app, duration_seconds):
@@ -169,7 +175,7 @@ def main():
     duration_seconds = args.duration_seconds
 
     # Initialize an empty application to store tenants
-    app = utils.App("siem")
+    app = utils.App(connector_type="siem")
 
     # Create tenants within the Application
     try:

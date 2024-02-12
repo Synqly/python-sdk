@@ -75,9 +75,7 @@ class App:
         Each tenant needs an associated Account in Synqly, so we create that now.
         """
         account_request = mgmt.CreateAccountRequest(fullname=new_tenant_name)
-        account_response = management_client.accounts.create(
-            request=account_request
-        )
+        account_response = management_client.accounts.create(request=account_request)
         account_id = account_response.result.account.id
 
         self.tenants[new_tenant_name] = Tenant(
@@ -135,10 +133,8 @@ class App:
             category=self.connector_type,
             provider_config=provider_config,
         )
-        integration_resp = (
-            tenant.synqly_management_client.integrations.create(
-                account_id=tenant.synqly_account_id, request=integration_req
-            )
+        integration_resp = tenant.synqly_management_client.integrations.create(
+            account_id=tenant.synqly_account_id, request=integration_req
         )
         print(
             "Created {} Integration '{}' for {}".format(
