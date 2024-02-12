@@ -71,23 +71,15 @@ def splunk_credential_config(splunk_token):
 
 
 def mock_provider_config(credential_id):
-    return mgmt.ProviderConfig_Siem(type="siem", url=None, credential_id=credential_id)
+    return mgmt.ProviderConfig(mgmt.ProviderConfig_SiemMockSiem(mgmt.SiemMock()))
 
 
 def splunk_provider_config(splunk_url, credential_id):
-    return mgmt.ProviderConfig_Siem(
-        type="siem",
-        url=splunk_url,
-        credential_id=credential_id,
-        config=mgmt.SiemProviderTypeConfig_Splunk(
-            type="splunk",
-            # Do not verify the Splunk server's TLS certificate. This
-            # is not recommended for production use; it is set
-            # here because Splunk HEC endpoints use self-signed
-            # "SplunkServerDefaultCert" certificates by default.
-            skip_tls_verify=True,
-        ),
-    )
+    return mgmt.ProviderConfig(mgmt.SiemSplunk(
+        hec_credential=mgmt.SplunkHecToken_TokenId(credential_id=credential_id),
+        hec_url=splunk_url,
+        skip_tls_verify=True,
+    ))
 
 
 def background_job(app, duration_seconds):
@@ -221,7 +213,6 @@ def main():
     try:
         app.configure_integration(
             "Tenant ABC",
-            "mock_siem",
             mock_provider_config(abc_credential_id),
         )
     except Exception as e:
@@ -231,7 +222,6 @@ def main():
     try:
         app.configure_integration(
             "Tenant XYZ",
-            "splunk",
             splunk_provider_config(splunk_url, xyz_credential_id),
         )
     except Exception as e:
@@ -251,7 +241,4 @@ def main():
     app._cleanup_handler()
 
 
-try:
-    main()
-except:
-    sys.exit(1)
+main()

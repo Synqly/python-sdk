@@ -47,7 +47,7 @@ class App:
             print("\nCleaning up Synqly Resources:")
             for tenant in self.tenants.values():
                 # Delete the Synqly Account
-                tenant.synqly_management_client.accounts.delete_account(
+                tenant.synqly_management_client.accounts.delete(
                     tenant.synqly_account_id
                 )
                 print("Cleaned up Account " + tenant.synqly_account_id)
@@ -65,8 +65,8 @@ class App:
                 raise Exception("Duplicate tenant id: " + id)
 
         """
-        Create a Synqly Management API client. The client stores a token, 
-        allowing us to make calls to the Synqly Management API. The Management 
+        Create a Synqly Management API client. The client stores a token,
+        allowing us to make calls to the Synqly Management API. The Management
         API is used to create Synqly Accounts and Integrations.
         """
         management_client = SynqlyManagement(token=synqly_org_token)
@@ -75,7 +75,7 @@ class App:
         Each tenant needs an associated Account in Synqly, so we create that now.
         """
         account_request = mgmt.CreateAccountRequest(fullname=new_tenant_name)
-        account_response = management_client.accounts.create_account(
+        account_response = management_client.accounts.create(
             request=account_request
         )
         account_id = account_response.result.account.id
@@ -103,7 +103,7 @@ class App:
         """
         First, we create a Credential object using the Synqly Management client.
         """
-        credential = tenant.synqly_management_client.credentials.create_credential(
+        credential = tenant.synqly_management_client.credentials.create(
             # A Credential must belong to a Synqly Account
             account_id=tenant.synqly_account_id,
             request=mgmt.CreateCredentialRequest(
@@ -118,7 +118,7 @@ class App:
         )
         return credential.result.id
 
-    def configure_integration(self, tenant_name, provider_type, provider_config):
+    def configure_integration(self, tenant_name, provider_config):
         """
         Configures a Synqly Integration for a simulated tenant
         """
@@ -133,11 +133,10 @@ class App:
         integration_req = mgmt.CreateIntegrationRequest(
             fullname="Python SDK Integration",
             category=self.connector_type,
-            provider_type=provider_type,
             provider_config=provider_config,
         )
         integration_resp = (
-            tenant.synqly_management_client.integrations.create_integration(
+            tenant.synqly_management_client.integrations.create(
                 account_id=tenant.synqly_account_id, request=integration_req
             )
         )
