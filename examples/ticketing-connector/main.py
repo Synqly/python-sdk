@@ -230,7 +230,6 @@ def main():
     try:
         app.configure_integration(
             "Tenant ABC",
-            "mock_ticketing",
             mock_provider_config(abc_credential_id),
         )
     except Exception as e:
@@ -240,7 +239,6 @@ def main():
     try:
         app.configure_integration(
             "Tenant XYZ",
-            "jira",
             jira_provider_config(jira_url, xyz_credential_id),
         )
     except Exception as e:

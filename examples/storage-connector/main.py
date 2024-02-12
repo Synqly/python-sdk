@@ -145,7 +145,7 @@ def main():
     s3_secret_access_key = args.s3_secret_access_key
 
     # Initialize an empty application to store tenants
-    app = utils.App("storage")
+    app = utils.App(connector_type="storage")
 
     # Create tenants within the Application
     try:
@@ -191,7 +191,6 @@ def main():
     try:
         app.configure_integration(
             "Tenant ABC",
-            "mock_storage",
             mock_provider_config(abc_credential_id),
         )
     except Exception as e:
@@ -201,7 +200,6 @@ def main():
     try:
         app.configure_integration(
             "Tenant XYZ",
-            "aws_s3",
             s3_provider_config(s3_bucket_name, s3_bucket_region, xyz_credential_id),
         )
     except Exception as e:
