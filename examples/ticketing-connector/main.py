@@ -92,18 +92,18 @@ def jira_credential_config(jira_username, jira_token):
 
 
 def mock_provider_config(credential_id):
-    return mgmt.ProviderConfig_Ticketing(
-        type="ticketing",
-        endpoint="mock",
-        credential_id=credential_id,
+    return mgmt.ProviderConfig_TicketingMockTicketing(
+        type="ticketing_mock_ticketing",
     )
 
 
 def jira_provider_config(jira_url, credential_id):
-    return mgmt.ProviderConfig_Ticketing(
-        type="ticketing",
-        endpoint=jira_url,
-        credential_id=credential_id,
+    return mgmt.ProviderConfig_TicketingJira(
+        type="ticketing_jira",
+        url=jira_url,
+        credential=mgmt.JiraCredential_BasicId(
+            type="basic_id", value=credential_id,
+        )
     )
 
 
@@ -230,7 +230,6 @@ def main():
     try:
         app.configure_integration(
             "Tenant ABC",
-            "mock_ticketing",
             mock_provider_config(abc_credential_id),
         )
     except Exception as e:
@@ -240,7 +239,6 @@ def main():
     try:
         app.configure_integration(
             "Tenant XYZ",
-            "jira",
             jira_provider_config(jira_url, xyz_credential_id),
         )
     except Exception as e:
