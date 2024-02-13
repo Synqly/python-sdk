@@ -84,21 +84,20 @@ def s3_credential_config(access_key_id, secret_access_key):
     )
 
 
-def mock_provider_config(credential_id):
-    return mgmt.ProviderConfig_Storage(
-        type="storage",
+def mock_provider_config():
+    return mgmt.ProviderConfig_StorageMockStorage(
+        type="storage_mock_storage",
         bucket="mock",
         region="mock",
-        credential_id=credential_id,
     )
 
 
 def s3_provider_config(bucket_name, bucket_region, credential_id):
-    return mgmt.ProviderConfig_Storage(
-        type="storage",
+    return mgmt.ProviderConfig_StorageAwsS3(
+        type="storage_aws_s3",
         bucket=bucket_name,
         region=bucket_region,
-        credential_id=credential_id,
+        credential=mgmt.AwsS3Credential_AwsId(type="aws_id", value=credential_id),
     )
 
 
@@ -191,7 +190,7 @@ def main():
     try:
         app.configure_integration(
             "Tenant ABC",
-            mock_provider_config(abc_credential_id),
+            mock_provider_config(),
         )
     except Exception as e:
         print("Error configuring provider integration for Tenant ABC: " + str(e))
