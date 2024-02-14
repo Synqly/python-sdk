@@ -240,7 +240,7 @@ from .members import (
 from .meta import GetOpenApiSpecResponse
 from .organization import PatchOrganizationResponse, UpdateOrganizationRequest, UpdateOrganizationResponse
 from .organization_base import GetOrganizationResponse, Organization, OrganizationId, OrganizationOptions
-from .permissions import Action, AllowedApi, BlockedApi, Constraint, Object, Permission, Role
+from .permissions import Action, AllowedApi, Constraint, Object, Permission, Role
 from .status import (
     GetIntegrationTimeseries,
     GetIntegrationTimeseriesResult,
@@ -307,7 +307,6 @@ __all__ = [
     "Base",
     "BasicCredential",
     "BasicCredentialId",
-    "BlockedApi",
     "CapabilitiesProviderConfig",
     "Category",
     "CategoryId",

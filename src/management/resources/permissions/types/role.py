@@ -6,7 +6,6 @@ import typing
 from ....core.datetime_utils import serialize_datetime
 from .action import Action
 from .allowed_api import AllowedApi
-from .blocked_api import BlockedApi
 from .constraint import Constraint
 from .object import Object
 
@@ -28,9 +27,6 @@ class Role(pydantic.BaseModel):
     )
     allowed_apis: typing.Optional[typing.List[AllowedApi]] = pydantic.Field(
         description="Optional list of APIs that this role allows access to. Can be used to allow access to select APIs like /v1/accounts, v1/credentials and /v1/transforms"
-    )
-    blocked_apis: typing.Optional[typing.List[BlockedApi]] = pydantic.Field(
-        description="Optional list of APIs that this role blocks access to. Can be used to block access to select APIs like /v1/user, v1/tokens and /v1/credentials"
     )
 
     def json(self, **kwargs: typing.Any) -> str:

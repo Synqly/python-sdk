@@ -2,10 +2,9 @@
 
 from .action import Action
 from .allowed_api import AllowedApi
-from .blocked_api import BlockedApi
 from .constraint import Constraint
 from .object import Object
 from .permission import Permission
 from .role import Role
 
-__all__ = ["Action", "AllowedApi", "BlockedApi", "Constraint", "Object", "Permission", "Role"]
+__all__ = ["Action", "AllowedApi", "Constraint", "Object", "Permission", "Role"]
