@@ -29,20 +29,28 @@ def parse_args():
         help="Token for authenticating with a Synqly Organization. For more information, see https://docs.synqly.com/reference/api-authentication.",
     )
     parser.add_argument(
-        "--splunk-url",
-        dest="splunk_url",
+        "--sqs-url",
+        dest="sqs_url",
         type=str,
         required=True,
         default="",
-        help="URL of target Splunk HTTP Event Collector (HEC) endpoint, example: 'https://splunk.synqly.com/services/collector/event'",
+        help="URL of the SQS queue. Must be in the format https://sqs.{region}.amazonaws.com/{account_id}/{queue_name}.",
     )
     parser.add_argument(
-        "--splunk-token",
-        dest="splunk_hec_token",
+        "--sqs-access-key-id",
+        dest="sqs_access_key_id",
         type=str,
         required=True,
         default="",
-        help="Splunk HTTP Event Collector (HEC) token. For more information, see https://docs.splunk.com/Documentation/Splunk/9.1.2/Data/UsetheHTTPEventCollector.",
+        help="AWS Access Key ID for an IAM Entity with permissions to read/write to the target SQS queue.",
+    )
+    parser.add_argument(
+        "--sqs-secret-access-key",
+        dest="sqs_secret_access_key",
+        type=str,
+        required=True,
+        default="",
+        help="AWS Secret Access Key for an IAM Entity with permissions to read/write to the target SQS queue.",
     )
     parser.add_argument(
         "--duration-seconds",
@@ -60,31 +68,31 @@ def mock_credential_config():
     """
     Helper method to construct a mock CredentialConfig object.
     """
-    return mgmt.CredentialConfig_Token(type="token", secret="mock")
-
-
-def splunk_credential_config(splunk_token):
-    """
-    Helper method to construct a Token CredentialConfig object.
-    """
-    return mgmt.CredentialConfig_Token(type="token", secret=splunk_token)
-
-
-def mock_provider_config(credential_id):
-    return mgmt.ProviderConfig_SiemMockSiem(
-        type="siem_mock_siem",
-        skip_tls_verify=True,
+    return mgmt.CredentialConfig_Aws(
+        type="aws", access_key_id="mock", secret_access_key="mock"
     )
 
 
-def splunk_provider_config(splunk_url, credential_id):
-    return mgmt.ProviderConfig_SiemSplunk(
-        type="siem_splunk",
-        hec_credential=mgmt.SplunkHecToken_TokenId(
-            type="token_id", value=credential_id
-        ),
-        hec_url=splunk_url,
-        skip_tls_verify=True,
+def sqs_credential_config(access_key_id, secret_access_key):
+    """
+    Helper method to construct an AWS CredentialConfig object.
+    """
+    return mgmt.CredentialConfig_Aws(
+        type="aws", access_key_id=access_key_id, secret_access_key=secret_access_key
+    )
+
+
+def mock_provider_config():
+    return mgmt.ProviderConfig_SinkMockSink(
+        type="sink_mock_sink",
+    )
+
+
+def sqs_provider_config(sqs_url, credential_id):
+    return mgmt.ProviderConfig_SinkAwsSqs(
+        type="sink_aws_sqs",
+        url=sqs_url,
+        credential=mgmt.AwsS3Credential_AwsId(type="aws_id", value=credential_id),
     )
 
 
@@ -112,7 +120,7 @@ def background_job(app, duration_seconds):
 
             new_event = create_sample_event()
             # Send an event to the tenant's Event Logger
-            tenant.synqly_engine_client.siem.post_events(
+            tenant.synqly_engine_client.sink.post_events(
                 request=[new_event],
             )
             print("{}: Logged event".format(tenant.tenant_name))
@@ -170,12 +178,13 @@ def main():
     # Parse command line arguments
     args = parse_args()
     synqly_org_token = args.synqly_org_token
-    splunk_url = args.splunk_url
-    splunk_hec_token = args.splunk_hec_token
+    sqs_url = args.sqs_url
+    sqs_access_key_id = args.sqs_access_key_id
+    sqs_secret_access_key = args.sqs_secret_access_key
     duration_seconds = args.duration_seconds
 
     # Initialize an empty application to store tenants
-    app = utils.App(connector_type="siem")
+    app = utils.App("sink")
 
     # Create tenants within the Application
     try:
@@ -207,8 +216,8 @@ def main():
     try:
         xyz_credential_id = app.create_credential(
             "Tenant XYZ",
-            "siem",
-            splunk_credential_config(splunk_hec_token),
+            "sink",
+            sqs_credential_config(sqs_access_key_id, sqs_secret_access_key),
         )
     except Exception as e:
         print("Error creating Credential for Tenant XYZ: " + str(e))
@@ -219,7 +228,7 @@ def main():
     try:
         app.configure_integration(
             "Tenant ABC",
-            mock_provider_config(abc_credential_id),
+            mock_provider_config(),
         )
     except Exception as e:
         print("Error configuring provider integration for Tenant ABC: " + str(e))
@@ -228,7 +237,7 @@ def main():
     try:
         app.configure_integration(
             "Tenant XYZ",
-            splunk_provider_config(splunk_url, xyz_credential_id),
+            sqs_provider_config(sqs_url, xyz_credential_id),
         )
     except Exception as e:
         print("Error configuring provider integration for Tenant XYZ: " + str(e))
