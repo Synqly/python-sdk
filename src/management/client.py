@@ -8,6 +8,7 @@ from .core.client_wrapper import AsyncClientWrapper, SyncClientWrapper
 from .environment import SynqlyManagementEnvironment
 from .resources.accounts.client import AccountsClient, AsyncAccountsClient
 from .resources.audit.client import AsyncAuditClient, AuditClient
+from .resources.auth.client import AsyncAuthClient, AuthClient
 from .resources.capabilities.client import AsyncCapabilitiesClient, CapabilitiesClient
 from .resources.credentials.client import AsyncCredentialsClient, CredentialsClient
 from .resources.integrations.client import AsyncIntegrationsClient, IntegrationsClient
@@ -36,6 +37,7 @@ class SynqlyManagement:
         )
         self.accounts = AccountsClient(client_wrapper=self._client_wrapper)
         self.audit = AuditClient(client_wrapper=self._client_wrapper)
+        self.auth = AuthClient(client_wrapper=self._client_wrapper)
         self.capabilities = CapabilitiesClient(client_wrapper=self._client_wrapper)
         self.credentials = CredentialsClient(client_wrapper=self._client_wrapper)
         self.integrations = IntegrationsClient(client_wrapper=self._client_wrapper)
@@ -64,6 +66,7 @@ class AsyncSynqlyManagement:
         )
         self.accounts = AsyncAccountsClient(client_wrapper=self._client_wrapper)
         self.audit = AsyncAuditClient(client_wrapper=self._client_wrapper)
+        self.auth = AsyncAuthClient(client_wrapper=self._client_wrapper)
         self.capabilities = AsyncCapabilitiesClient(client_wrapper=self._client_wrapper)
         self.credentials = AsyncCredentialsClient(client_wrapper=self._client_wrapper)
         self.integrations = AsyncIntegrationsClient(client_wrapper=self._client_wrapper)

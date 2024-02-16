@@ -3,6 +3,8 @@
 from . import (
     accounts,
     audit,
+    auth,
+    auth_base,
     capabilities,
     common,
     credentials,
@@ -32,6 +34,7 @@ from .accounts import (
     UpdateAccountResponse,
 )
 from .audit import Audit, HttpMethod, ListAuditEventsResponse
+from .auth_base import AuthCode, LogonRequest, LogonResponse, LogonResponseResult
 from .capabilities import (
     CapabilitiesProviderConfig,
     Category,
@@ -286,6 +289,7 @@ __all__ = [
     "ArmisCredential_TokenId",
     "AssetsArmisCentrix",
     "Audit",
+    "AuthCode",
     "AwsCredential",
     "AwsCredentialId",
     "AwsS3Credential",
@@ -389,6 +393,9 @@ __all__ = [
     "ListStatusResponse",
     "ListTokensResponse",
     "ListTransformsResponse",
+    "LogonRequest",
+    "LogonResponse",
+    "LogonResponseResult",
     "Member",
     "MemberId",
     "MemberOptions",
@@ -529,6 +536,8 @@ __all__ = [
     "VulnerabilitiesTenableCloud",
     "accounts",
     "audit",
+    "auth",
+    "auth_base",
     "capabilities",
     "common",
     "credentials",
