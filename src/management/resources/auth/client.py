@@ -7,6 +7,7 @@ from json.decoder import JSONDecodeError
 from ...core.api_error import ApiError
 from ...core.client_wrapper import AsyncClientWrapper, SyncClientWrapper
 from ...core.jsonable_encoder import jsonable_encoder
+from ..auth_base.types.change_password_response import ChangePasswordResponse
 from ..auth_base.types.logon_request import LogonRequest
 from ..auth_base.types.logon_response import LogonResponse
 from ..common.errors.bad_request_error import BadRequestError
@@ -14,6 +15,7 @@ from ..common.errors.forbidden_error import ForbiddenError
 from ..common.errors.not_found_error import NotFoundError
 from ..common.errors.unauthorized_error import UnauthorizedError
 from ..common.types.error_body import ErrorBody
+from .types.change_password_request import ChangePasswordRequest
 
 try:
     import pydantic.v1 as pydantic  # type: ignore
@@ -44,6 +46,36 @@ class AuthClient:
         )
         if 200 <= _response.status_code < 300:
             return pydantic.parse_obj_as(LogonResponse, _response.json())  # type: ignore
+        if _response.status_code == 400:
+            raise BadRequestError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+        if _response.status_code == 404:
+            raise NotFoundError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+        if _response.status_code == 403:
+            raise ForbiddenError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+        if _response.status_code == 401:
+            raise UnauthorizedError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+        try:
+            _response_json = _response.json()
+        except JSONDecodeError:
+            raise ApiError(status_code=_response.status_code, body=_response.text)
+        raise ApiError(status_code=_response.status_code, body=_response_json)
+
+    def change_password(self, *, request: ChangePasswordRequest) -> ChangePasswordResponse:
+        """
+        Change member password.
+
+        Parameters:
+            - request: ChangePasswordRequest.
+        """
+        _response = self._client_wrapper.httpx_client.request(
+            "POST",
+            urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", "v1/auth/change_password"),
+            json=jsonable_encoder(request),
+            headers=self._client_wrapper.get_headers(),
+            timeout=60,
+        )
+        if 200 <= _response.status_code < 300:
+            return pydantic.parse_obj_as(ChangePasswordResponse, _response.json())  # type: ignore
         if _response.status_code == 400:
             raise BadRequestError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
         if _response.status_code == 404:
@@ -105,6 +137,36 @@ class AsyncAuthClient:
         )
         if 200 <= _response.status_code < 300:
             return pydantic.parse_obj_as(LogonResponse, _response.json())  # type: ignore
+        if _response.status_code == 400:
+            raise BadRequestError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+        if _response.status_code == 404:
+            raise NotFoundError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+        if _response.status_code == 403:
+            raise ForbiddenError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+        if _response.status_code == 401:
+            raise UnauthorizedError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+        try:
+            _response_json = _response.json()
+        except JSONDecodeError:
+            raise ApiError(status_code=_response.status_code, body=_response.text)
+        raise ApiError(status_code=_response.status_code, body=_response_json)
+
+    async def change_password(self, *, request: ChangePasswordRequest) -> ChangePasswordResponse:
+        """
+        Change member password.
+
+        Parameters:
+            - request: ChangePasswordRequest.
+        """
+        _response = await self._client_wrapper.httpx_client.request(
+            "POST",
+            urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", "v1/auth/change_password"),
+            json=jsonable_encoder(request),
+            headers=self._client_wrapper.get_headers(),
+            timeout=60,
+        )
+        if 200 <= _response.status_code < 300:
+            return pydantic.parse_obj_as(ChangePasswordResponse, _response.json())  # type: ignore
         if _response.status_code == 400:
             raise BadRequestError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
         if _response.status_code == 404:

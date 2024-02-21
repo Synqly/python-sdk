@@ -34,7 +34,15 @@ from .accounts import (
     UpdateAccountResponse,
 )
 from .audit import Audit, HttpMethod, ListAuditEventsResponse
-from .auth_base import AuthCode, LogonRequest, LogonResponse, LogonResponseResult
+from .auth import ChangePasswordRequest
+from .auth_base import (
+    AuthCode,
+    ChangePasswordResponse,
+    ChangePasswordResponseResult,
+    LogonRequest,
+    LogonResponse,
+    LogonResponseResult,
+)
 from .capabilities import (
     CapabilitiesProviderConfig,
     Category,
@@ -314,6 +322,9 @@ __all__ = [
     "CapabilitiesProviderConfig",
     "Category",
     "CategoryId",
+    "ChangePasswordRequest",
+    "ChangePasswordResponse",
+    "ChangePasswordResponseResult",
     "ConflictError",
     "Constraint",
     "CreateAccountRequest",
