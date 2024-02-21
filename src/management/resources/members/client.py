@@ -36,7 +36,7 @@ class MembersClient:
     def __init__(self, *, client_wrapper: SyncClientWrapper):
         self._client_wrapper = client_wrapper
 
-    def list_members(
+    def list(
         self,
         *,
         limit: typing.Optional[int] = None,
@@ -87,7 +87,7 @@ class MembersClient:
             raise ApiError(status_code=_response.status_code, body=_response.text)
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
-    def get_member(self, member_id: MemberId) -> GetMemberResponse:
+    def get(self, member_id: MemberId) -> GetMemberResponse:
         """
         Retrieve a Member by ID
 
@@ -114,7 +114,7 @@ class MembersClient:
             raise ApiError(status_code=_response.status_code, body=_response.text)
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
-    def create_member(self, *, request: CreateMemberRequest) -> CreateMemberResponse:
+    def create(self, *, request: CreateMemberRequest) -> CreateMemberResponse:
         """
         Add a new member for this Organization.
 
@@ -146,7 +146,7 @@ class MembersClient:
             raise ApiError(status_code=_response.status_code, body=_response.text)
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
-    def update_member(self, member_id: MemberId, *, request: UpdateMemberRequest) -> UpdateMemberResponse:
+    def update(self, member_id: MemberId, *, request: UpdateMemberRequest) -> UpdateMemberResponse:
         """
         Update a Member by ID
 
@@ -180,9 +180,7 @@ class MembersClient:
             raise ApiError(status_code=_response.status_code, body=_response.text)
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
-    def patch_member(
-        self, member_id: MemberId, *, request: typing.List[typing.Dict[str, typing.Any]]
-    ) -> PatchMemberResponse:
+    def patch(self, member_id: MemberId, *, request: typing.List[typing.Dict[str, typing.Any]]) -> PatchMemberResponse:
         """
         Update a Member by ID
 
@@ -214,7 +212,7 @@ class MembersClient:
             raise ApiError(status_code=_response.status_code, body=_response.text)
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
-    def delete_member(self, member_id: MemberId) -> None:
+    def delete(self, member_id: MemberId) -> None:
         """
         Delete a Member by ID. Also deletes all Tokens for the Member.
 
@@ -246,7 +244,7 @@ class AsyncMembersClient:
     def __init__(self, *, client_wrapper: AsyncClientWrapper):
         self._client_wrapper = client_wrapper
 
-    async def list_members(
+    async def list(
         self,
         *,
         limit: typing.Optional[int] = None,
@@ -297,7 +295,7 @@ class AsyncMembersClient:
             raise ApiError(status_code=_response.status_code, body=_response.text)
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
-    async def get_member(self, member_id: MemberId) -> GetMemberResponse:
+    async def get(self, member_id: MemberId) -> GetMemberResponse:
         """
         Retrieve a Member by ID
 
@@ -324,7 +322,7 @@ class AsyncMembersClient:
             raise ApiError(status_code=_response.status_code, body=_response.text)
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
-    async def create_member(self, *, request: CreateMemberRequest) -> CreateMemberResponse:
+    async def create(self, *, request: CreateMemberRequest) -> CreateMemberResponse:
         """
         Add a new member for this Organization.
 
@@ -356,7 +354,7 @@ class AsyncMembersClient:
             raise ApiError(status_code=_response.status_code, body=_response.text)
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
-    async def update_member(self, member_id: MemberId, *, request: UpdateMemberRequest) -> UpdateMemberResponse:
+    async def update(self, member_id: MemberId, *, request: UpdateMemberRequest) -> UpdateMemberResponse:
         """
         Update a Member by ID
 
@@ -390,7 +388,7 @@ class AsyncMembersClient:
             raise ApiError(status_code=_response.status_code, body=_response.text)
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
-    async def patch_member(
+    async def patch(
         self, member_id: MemberId, *, request: typing.List[typing.Dict[str, typing.Any]]
     ) -> PatchMemberResponse:
         """
@@ -424,7 +422,7 @@ class AsyncMembersClient:
             raise ApiError(status_code=_response.status_code, body=_response.text)
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
-    async def delete_member(self, member_id: MemberId) -> None:
+    async def delete(self, member_id: MemberId) -> None:
         """
         Delete a Member by ID. Also deletes all Tokens for the Member.
 

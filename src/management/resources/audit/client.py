@@ -23,7 +23,7 @@ class AuditClient:
     def __init__(self, *, client_wrapper: SyncClientWrapper):
         self._client_wrapper = client_wrapper
 
-    def list_audit_events(
+    def list(
         self,
         *,
         limit: typing.Optional[int] = None,
@@ -76,7 +76,7 @@ class AsyncAuditClient:
     def __init__(self, *, client_wrapper: AsyncClientWrapper):
         self._client_wrapper = client_wrapper
 
-    async def list_audit_events(
+    async def list(
         self,
         *,
         limit: typing.Optional[int] = None,

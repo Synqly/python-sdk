@@ -23,7 +23,7 @@ class CapabilitiesClient:
     def __init__(self, *, client_wrapper: SyncClientWrapper):
         self._client_wrapper = client_wrapper
 
-    def list_category_capabilities(self, *, category: str) -> ListCategoryCapabilitiesResponse:
+    def list_category(self, *, category: str) -> ListCategoryCapabilitiesResponse:
         """
         Returns a list of all `Capabilities`, optionally filtered by connector.
 
@@ -51,7 +51,7 @@ class CapabilitiesClient:
             raise ApiError(status_code=_response.status_code, body=_response.text)
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
-    def list_provider_capabilities(self, *, provider: str) -> ListProviderCapabilitiesResponse:
+    def list_providers(self, *, provider: str) -> ListProviderCapabilitiesResponse:
         """
         Returns a list of all `Capabilities`, optionally filtered by provider.
 
@@ -84,7 +84,7 @@ class AsyncCapabilitiesClient:
     def __init__(self, *, client_wrapper: AsyncClientWrapper):
         self._client_wrapper = client_wrapper
 
-    async def list_category_capabilities(self, *, category: str) -> ListCategoryCapabilitiesResponse:
+    async def list_category(self, *, category: str) -> ListCategoryCapabilitiesResponse:
         """
         Returns a list of all `Capabilities`, optionally filtered by connector.
 
@@ -112,7 +112,7 @@ class AsyncCapabilitiesClient:
             raise ApiError(status_code=_response.status_code, body=_response.text)
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
-    async def list_provider_capabilities(self, *, provider: str) -> ListProviderCapabilitiesResponse:
+    async def list_providers(self, *, provider: str) -> ListProviderCapabilitiesResponse:
         """
         Returns a list of all `Capabilities`, optionally filtered by provider.
 

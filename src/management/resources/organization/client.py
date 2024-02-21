@@ -31,7 +31,7 @@ class OrganizationClient:
     def __init__(self, *, client_wrapper: SyncClientWrapper):
         self._client_wrapper = client_wrapper
 
-    def get_organization(self) -> GetOrganizationResponse:
+    def get(self) -> GetOrganizationResponse:
         """
         Retrieve Organization
         """
@@ -55,7 +55,7 @@ class OrganizationClient:
             raise ApiError(status_code=_response.status_code, body=_response.text)
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
-    def update_organization(self, *, request: UpdateOrganizationRequest) -> UpdateOrganizationResponse:
+    def update(self, *, request: UpdateOrganizationRequest) -> UpdateOrganizationResponse:
         """
         Update Organization
 
@@ -87,7 +87,7 @@ class OrganizationClient:
             raise ApiError(status_code=_response.status_code, body=_response.text)
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
-    def patch_organization(self, *, request: typing.List[typing.Dict[str, typing.Any]]) -> PatchOrganizationResponse:
+    def patch(self, *, request: typing.List[typing.Dict[str, typing.Any]]) -> PatchOrganizationResponse:
         """
         Patch Organization
 
@@ -122,7 +122,7 @@ class AsyncOrganizationClient:
     def __init__(self, *, client_wrapper: AsyncClientWrapper):
         self._client_wrapper = client_wrapper
 
-    async def get_organization(self) -> GetOrganizationResponse:
+    async def get(self) -> GetOrganizationResponse:
         """
         Retrieve Organization
         """
@@ -146,7 +146,7 @@ class AsyncOrganizationClient:
             raise ApiError(status_code=_response.status_code, body=_response.text)
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
-    async def update_organization(self, *, request: UpdateOrganizationRequest) -> UpdateOrganizationResponse:
+    async def update(self, *, request: UpdateOrganizationRequest) -> UpdateOrganizationResponse:
         """
         Update Organization
 
@@ -178,9 +178,7 @@ class AsyncOrganizationClient:
             raise ApiError(status_code=_response.status_code, body=_response.text)
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
-    async def patch_organization(
-        self, *, request: typing.List[typing.Dict[str, typing.Any]]
-    ) -> PatchOrganizationResponse:
+    async def patch(self, *, request: typing.List[typing.Dict[str, typing.Any]]) -> PatchOrganizationResponse:
         """
         Patch Organization
 

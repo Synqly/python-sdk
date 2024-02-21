@@ -30,7 +30,7 @@ class StatusClient:
     def __init__(self, *, client_wrapper: SyncClientWrapper):
         self._client_wrapper = client_wrapper
 
-    def list_status(
+    def list(
         self,
         *,
         limit: typing.Optional[int] = None,
@@ -83,7 +83,7 @@ class StatusClient:
             raise ApiError(status_code=_response.status_code, body=_response.text)
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
-    def get_status(self, account_id: AccountId, integration_id: IntegrationId) -> GetStatusResponse:
+    def get(self, account_id: AccountId, integration_id: IntegrationId) -> GetStatusResponse:
         """
         Returns the integration `Status` object.
 
@@ -114,7 +114,7 @@ class StatusClient:
             raise ApiError(status_code=_response.status_code, body=_response.text)
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
-    def reset_status(self, account_id: AccountId, integration_id: IntegrationId) -> None:
+    def reset(self, account_id: AccountId, integration_id: IntegrationId) -> None:
         """
         Resets the integration `Status` object.
 
@@ -145,7 +145,7 @@ class StatusClient:
             raise ApiError(status_code=_response.status_code, body=_response.text)
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
-    def list_status_events(
+    def list_events(
         self,
         account_id: AccountId,
         integration_id: IntegrationId,
@@ -203,7 +203,7 @@ class StatusClient:
             raise ApiError(status_code=_response.status_code, body=_response.text)
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
-    def get_status_timeseries(self) -> GetStatusTimeseries:
+    def get_timeseries(self) -> GetStatusTimeseries:
         """
         Returns organization last hour usage timeseries.
         """
@@ -272,7 +272,7 @@ class AsyncStatusClient:
     def __init__(self, *, client_wrapper: AsyncClientWrapper):
         self._client_wrapper = client_wrapper
 
-    async def list_status(
+    async def list(
         self,
         *,
         limit: typing.Optional[int] = None,
@@ -325,7 +325,7 @@ class AsyncStatusClient:
             raise ApiError(status_code=_response.status_code, body=_response.text)
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
-    async def get_status(self, account_id: AccountId, integration_id: IntegrationId) -> GetStatusResponse:
+    async def get(self, account_id: AccountId, integration_id: IntegrationId) -> GetStatusResponse:
         """
         Returns the integration `Status` object.
 
@@ -356,7 +356,7 @@ class AsyncStatusClient:
             raise ApiError(status_code=_response.status_code, body=_response.text)
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
-    async def reset_status(self, account_id: AccountId, integration_id: IntegrationId) -> None:
+    async def reset(self, account_id: AccountId, integration_id: IntegrationId) -> None:
         """
         Resets the integration `Status` object.
 
@@ -387,7 +387,7 @@ class AsyncStatusClient:
             raise ApiError(status_code=_response.status_code, body=_response.text)
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
-    async def list_status_events(
+    async def list_events(
         self,
         account_id: AccountId,
         integration_id: IntegrationId,
@@ -445,7 +445,7 @@ class AsyncStatusClient:
             raise ApiError(status_code=_response.status_code, body=_response.text)
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
-    async def get_status_timeseries(self) -> GetStatusTimeseries:
+    async def get_timeseries(self) -> GetStatusTimeseries:
         """
         Returns organization last hour usage timeseries.
         """

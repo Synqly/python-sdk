@@ -90,7 +90,7 @@ class IntegrationsClient:
             raise ApiError(status_code=_response.status_code, body=_response.text)
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
-    def list_for_account(
+    def list_account(
         self,
         account_id: AccountId,
         *,
@@ -422,7 +422,7 @@ class AsyncIntegrationsClient:
             raise ApiError(status_code=_response.status_code, body=_response.text)
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
-    async def list_for_account(
+    async def list_account(
         self,
         account_id: AccountId,
         *,

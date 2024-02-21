@@ -37,7 +37,7 @@ class TransformsClient:
     def __init__(self, *, client_wrapper: SyncClientWrapper):
         self._client_wrapper = client_wrapper
 
-    def list_transforms(
+    def list(
         self,
         account_id: AccountId,
         *,
@@ -92,7 +92,7 @@ class TransformsClient:
             raise ApiError(status_code=_response.status_code, body=_response.text)
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
-    def get_transform(self, account_id: AccountId, transform_id: TransformId) -> GetTransformResponse:
+    def get(self, account_id: AccountId, transform_id: TransformId) -> GetTransformResponse:
         """
         Returns the `Transform` object matching `{transformId}` where the `Tranform`
         belongs to the `Account` matching `{accountId}`.
@@ -124,7 +124,7 @@ class TransformsClient:
             raise ApiError(status_code=_response.status_code, body=_response.text)
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
-    def create_transform(self, account_id: AccountId, *, request: CreateTransformRequest) -> CreateTransformResponse:
+    def create(self, account_id: AccountId, *, request: CreateTransformRequest) -> CreateTransformResponse:
         """
         Create a `Transform` object belonging to the `Account` matching `{accountId}`.
 
@@ -158,7 +158,7 @@ class TransformsClient:
             raise ApiError(status_code=_response.status_code, body=_response.text)
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
-    def update_transform(
+    def update(
         self, account_id: AccountId, transform_id: TransformId, *, request: UpdateTransformRequest
     ) -> UpdateTransformResponse:
         """
@@ -199,7 +199,7 @@ class TransformsClient:
             raise ApiError(status_code=_response.status_code, body=_response.text)
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
-    def patch_transform(
+    def patch(
         self, account_id: AccountId, transform_id: TransformId, *, request: typing.List[typing.Dict[str, typing.Any]]
     ) -> PatchTransformResponse:
         """
@@ -238,7 +238,7 @@ class TransformsClient:
             raise ApiError(status_code=_response.status_code, body=_response.text)
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
-    def delete_transform(self, account_id: AccountId, transform_id: TransformId) -> None:
+    def delete(self, account_id: AccountId, transform_id: TransformId) -> None:
         """
         Deletes the `Transform` object matching `{transformId}`, where the `Transform`
         belongs to the `Account` matching `{accountId}`.
@@ -275,7 +275,7 @@ class AsyncTransformsClient:
     def __init__(self, *, client_wrapper: AsyncClientWrapper):
         self._client_wrapper = client_wrapper
 
-    async def list_transforms(
+    async def list(
         self,
         account_id: AccountId,
         *,
@@ -330,7 +330,7 @@ class AsyncTransformsClient:
             raise ApiError(status_code=_response.status_code, body=_response.text)
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
-    async def get_transform(self, account_id: AccountId, transform_id: TransformId) -> GetTransformResponse:
+    async def get(self, account_id: AccountId, transform_id: TransformId) -> GetTransformResponse:
         """
         Returns the `Transform` object matching `{transformId}` where the `Tranform`
         belongs to the `Account` matching `{accountId}`.
@@ -362,9 +362,7 @@ class AsyncTransformsClient:
             raise ApiError(status_code=_response.status_code, body=_response.text)
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
-    async def create_transform(
-        self, account_id: AccountId, *, request: CreateTransformRequest
-    ) -> CreateTransformResponse:
+    async def create(self, account_id: AccountId, *, request: CreateTransformRequest) -> CreateTransformResponse:
         """
         Create a `Transform` object belonging to the `Account` matching `{accountId}`.
 
@@ -398,7 +396,7 @@ class AsyncTransformsClient:
             raise ApiError(status_code=_response.status_code, body=_response.text)
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
-    async def update_transform(
+    async def update(
         self, account_id: AccountId, transform_id: TransformId, *, request: UpdateTransformRequest
     ) -> UpdateTransformResponse:
         """
@@ -439,7 +437,7 @@ class AsyncTransformsClient:
             raise ApiError(status_code=_response.status_code, body=_response.text)
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
-    async def patch_transform(
+    async def patch(
         self, account_id: AccountId, transform_id: TransformId, *, request: typing.List[typing.Dict[str, typing.Any]]
     ) -> PatchTransformResponse:
         """
@@ -478,7 +476,7 @@ class AsyncTransformsClient:
             raise ApiError(status_code=_response.status_code, body=_response.text)
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
-    async def delete_transform(self, account_id: AccountId, transform_id: TransformId) -> None:
+    async def delete(self, account_id: AccountId, transform_id: TransformId) -> None:
         """
         Deletes the `Transform` object matching `{transformId}`, where the `Transform`
         belongs to the `Account` matching `{accountId}`.
