@@ -27,7 +27,7 @@ class StorageClient:
     def __init__(self, *, client_wrapper: SyncClientWrapper):
         self._client_wrapper = client_wrapper
 
-    def list_storage(self, path: str) -> ListStorageResponse:
+    def list_files(self, path: str) -> ListStorageResponse:
         """
         Returns a list of contents from the token-linked `Integration`.
 
@@ -56,7 +56,7 @@ class StorageClient:
             raise ApiError(status_code=_response.status_code, body=_response.text)
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
-    def upload_storage(self, path: str, *, request: typing.Any) -> None:
+    def upload_file(self, path: str, *, request: typing.Any) -> None:
         """
         Uploads a file from the provided `{path}` to the token-linked `Integration`.
 
@@ -88,7 +88,7 @@ class StorageClient:
             raise ApiError(status_code=_response.status_code, body=_response.text)
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
-    def download_storage(self, path: str) -> str:
+    def download_file(self, path: str) -> str:
         """
         Downloads a file from the provided `{path}` in the token-linked
         `Integration`.
@@ -118,7 +118,7 @@ class StorageClient:
             raise ApiError(status_code=_response.status_code, body=_response.text)
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
-    def delete_storage(self, path: str) -> None:
+    def delete_file(self, path: str) -> None:
         """
         Deletes a file from the provided `{path}` in the token-linked `Integration`.
 
@@ -152,7 +152,7 @@ class AsyncStorageClient:
     def __init__(self, *, client_wrapper: AsyncClientWrapper):
         self._client_wrapper = client_wrapper
 
-    async def list_storage(self, path: str) -> ListStorageResponse:
+    async def list_files(self, path: str) -> ListStorageResponse:
         """
         Returns a list of contents from the token-linked `Integration`.
 
@@ -181,7 +181,7 @@ class AsyncStorageClient:
             raise ApiError(status_code=_response.status_code, body=_response.text)
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
-    async def upload_storage(self, path: str, *, request: typing.Any) -> None:
+    async def upload_file(self, path: str, *, request: typing.Any) -> None:
         """
         Uploads a file from the provided `{path}` to the token-linked `Integration`.
 
@@ -213,7 +213,7 @@ class AsyncStorageClient:
             raise ApiError(status_code=_response.status_code, body=_response.text)
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
-    async def download_storage(self, path: str) -> str:
+    async def download_file(self, path: str) -> str:
         """
         Downloads a file from the provided `{path}` in the token-linked
         `Integration`.
@@ -243,7 +243,7 @@ class AsyncStorageClient:
             raise ApiError(status_code=_response.status_code, body=_response.text)
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
-    async def delete_storage(self, path: str) -> None:
+    async def delete_file(self, path: str) -> None:
         """
         Deletes a file from the provided `{path}` in the token-linked `Integration`.
 

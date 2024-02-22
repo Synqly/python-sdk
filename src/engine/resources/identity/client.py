@@ -12,7 +12,7 @@ from ..common.errors.forbidden_error import ForbiddenError
 from ..common.errors.not_found_error import NotFoundError
 from ..common.errors.unauthorized_error import UnauthorizedError
 from ..common.types.error_body import ErrorBody
-from .types.list_identity_audit_log_response import ListIdentityAuditLogResponse
+from .types.query_identity_audit_log_response import QueryIdentityAuditLogResponse
 from .types.query_users_response import QueryUsersResponse
 from .types.user_id import UserId
 
@@ -26,14 +26,14 @@ class IdentityClient:
     def __init__(self, *, client_wrapper: SyncClientWrapper):
         self._client_wrapper = client_wrapper
 
-    def list_audit_log(
+    def query_audit_log(
         self,
         *,
         limit: typing.Optional[int] = None,
         cursor: typing.Optional[str] = None,
         order: typing.Optional[typing.Union[str, typing.List[str]]] = None,
         filter: typing.Optional[typing.Union[str, typing.List[str]]] = None,
-    ) -> ListIdentityAuditLogResponse:
+    ) -> QueryIdentityAuditLogResponse:
         """
         Returns a list of `Event` objects from the token-linked audit log.
 
@@ -58,7 +58,7 @@ class IdentityClient:
             timeout=60,
         )
         if 200 <= _response.status_code < 300:
-            return pydantic.parse_obj_as(ListIdentityAuditLogResponse, _response.json())  # type: ignore
+            return pydantic.parse_obj_as(QueryIdentityAuditLogResponse, _response.json())  # type: ignore
         if _response.status_code == 404:
             raise NotFoundError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
         if _response.status_code == 400:
@@ -182,7 +182,7 @@ class IdentityClient:
             raise ApiError(status_code=_response.status_code, body=_response.text)
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
-    def force_reset_password(self, user_id: UserId) -> None:
+    def force_user_password_reset(self, user_id: UserId) -> None:
         """
         Forces a user to reset their password before they can log in again.
 
@@ -213,7 +213,7 @@ class IdentityClient:
             raise ApiError(status_code=_response.status_code, body=_response.text)
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
-    def expire_all_sessions(self, user_id: UserId) -> None:
+    def expire_all_user_sessions(self, user_id: UserId) -> None:
         """
         Logs a user out of all current sessions so they must log in again.
 
@@ -249,14 +249,14 @@ class AsyncIdentityClient:
     def __init__(self, *, client_wrapper: AsyncClientWrapper):
         self._client_wrapper = client_wrapper
 
-    async def list_audit_log(
+    async def query_audit_log(
         self,
         *,
         limit: typing.Optional[int] = None,
         cursor: typing.Optional[str] = None,
         order: typing.Optional[typing.Union[str, typing.List[str]]] = None,
         filter: typing.Optional[typing.Union[str, typing.List[str]]] = None,
-    ) -> ListIdentityAuditLogResponse:
+    ) -> QueryIdentityAuditLogResponse:
         """
         Returns a list of `Event` objects from the token-linked audit log.
 
@@ -281,7 +281,7 @@ class AsyncIdentityClient:
             timeout=60,
         )
         if 200 <= _response.status_code < 300:
-            return pydantic.parse_obj_as(ListIdentityAuditLogResponse, _response.json())  # type: ignore
+            return pydantic.parse_obj_as(QueryIdentityAuditLogResponse, _response.json())  # type: ignore
         if _response.status_code == 404:
             raise NotFoundError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
         if _response.status_code == 400:
@@ -405,7 +405,7 @@ class AsyncIdentityClient:
             raise ApiError(status_code=_response.status_code, body=_response.text)
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
-    async def force_reset_password(self, user_id: UserId) -> None:
+    async def force_user_password_reset(self, user_id: UserId) -> None:
         """
         Forces a user to reset their password before they can log in again.
 
@@ -436,7 +436,7 @@ class AsyncIdentityClient:
             raise ApiError(status_code=_response.status_code, body=_response.text)
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
-    async def expire_all_sessions(self, user_id: UserId) -> None:
+    async def expire_all_user_sessions(self, user_id: UserId) -> None:
         """
         Logs a user out of all current sessions so they must log in again.
 

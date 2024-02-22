@@ -27,7 +27,7 @@ class HooksClient:
     def __init__(self, *, client_wrapper: SyncClientWrapper):
         self._client_wrapper = client_wrapper
 
-    def proxy_hook(self, *, token: str, request: typing.Any) -> None:
+    def proxy(self, *, token: str, request: typing.Any) -> None:
         """
         Proxy webhook messages from webhook providers to webhook recievers
 
@@ -65,7 +65,7 @@ class AsyncHooksClient:
     def __init__(self, *, client_wrapper: AsyncClientWrapper):
         self._client_wrapper = client_wrapper
 
-    async def proxy_hook(self, *, token: str, request: typing.Any) -> None:
+    async def proxy(self, *, token: str, request: typing.Any) -> None:
         """
         Proxy webhook messages from webhook providers to webhook recievers
 

@@ -31,7 +31,7 @@ class NotificationsClient:
     def __init__(self, *, client_wrapper: SyncClientWrapper):
         self._client_wrapper = client_wrapper
 
-    def get_notification(self, notification_id: NotificationId) -> GetNotificationResponse:
+    def get_message(self, notification_id: NotificationId) -> GetNotificationResponse:
         """
         Returns the `Notification` object matching `{notificationId}` from the token-linked
         `Integration`.
@@ -63,7 +63,7 @@ class NotificationsClient:
             raise ApiError(status_code=_response.status_code, body=_response.text)
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
-    def create_notification(self, *, request: CreateNotificationRequest) -> CreateNotificationResponse:
+    def create_message(self, *, request: CreateNotificationRequest) -> CreateNotificationResponse:
         """
         Creates a `Notification` object in the token-linked `Integration`.
 
@@ -93,7 +93,7 @@ class NotificationsClient:
             raise ApiError(status_code=_response.status_code, body=_response.text)
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
-    def clear_notification(self, notification_id: NotificationId) -> None:
+    def clear_message(self, notification_id: NotificationId) -> None:
         """
         Resolves a `Notification` object in the token-linked `Integration`.
 
@@ -129,7 +129,7 @@ class AsyncNotificationsClient:
     def __init__(self, *, client_wrapper: AsyncClientWrapper):
         self._client_wrapper = client_wrapper
 
-    async def get_notification(self, notification_id: NotificationId) -> GetNotificationResponse:
+    async def get_message(self, notification_id: NotificationId) -> GetNotificationResponse:
         """
         Returns the `Notification` object matching `{notificationId}` from the token-linked
         `Integration`.
@@ -161,7 +161,7 @@ class AsyncNotificationsClient:
             raise ApiError(status_code=_response.status_code, body=_response.text)
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
-    async def create_notification(self, *, request: CreateNotificationRequest) -> CreateNotificationResponse:
+    async def create_message(self, *, request: CreateNotificationRequest) -> CreateNotificationResponse:
         """
         Creates a `Notification` object in the token-linked `Integration`.
 
@@ -191,7 +191,7 @@ class AsyncNotificationsClient:
             raise ApiError(status_code=_response.status_code, body=_response.text)
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
-    async def clear_notification(self, notification_id: NotificationId) -> None:
+    async def clear_message(self, notification_id: NotificationId) -> None:
         """
         Resolves a `Notification` object in the token-linked `Integration`.
 

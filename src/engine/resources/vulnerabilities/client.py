@@ -12,8 +12,8 @@ from ..common.errors.forbidden_error import ForbiddenError
 from ..common.errors.not_found_error import NotFoundError
 from ..common.errors.unauthorized_error import UnauthorizedError
 from ..common.types.error_body import ErrorBody
+from .types.query_assets_response import QueryAssetsResponse
 from .types.query_findings_response import QueryFindingsResponse
-from .types.query_vulnerability_assets_response import QueryVulnerabilityAssetsResponse
 
 try:
     import pydantic.v1 as pydantic  # type: ignore
@@ -25,7 +25,7 @@ class VulnerabilitiesClient:
     def __init__(self, *, client_wrapper: SyncClientWrapper):
         self._client_wrapper = client_wrapper
 
-    def query_vulnerability_findings(
+    def query_findings(
         self,
         *,
         limit: typing.Optional[int] = None,
@@ -67,13 +67,13 @@ class VulnerabilitiesClient:
             raise ApiError(status_code=_response.status_code, body=_response.text)
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
-    def query_vulnerability_assets(
+    def query_assets(
         self,
         *,
         limit: typing.Optional[int] = None,
         cursor: typing.Optional[str] = None,
         filter: typing.Optional[typing.Union[str, typing.List[str]]] = None,
-    ) -> QueryVulnerabilityAssetsResponse:
+    ) -> QueryAssetsResponse:
         """
         Query assets in a vulnerability scanning system
 
@@ -94,7 +94,7 @@ class VulnerabilitiesClient:
             timeout=60,
         )
         if 200 <= _response.status_code < 300:
-            return pydantic.parse_obj_as(QueryVulnerabilityAssetsResponse, _response.json())  # type: ignore
+            return pydantic.parse_obj_as(QueryAssetsResponse, _response.json())  # type: ignore
         if _response.status_code == 404:
             raise NotFoundError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
         if _response.status_code == 400:
@@ -114,7 +114,7 @@ class AsyncVulnerabilitiesClient:
     def __init__(self, *, client_wrapper: AsyncClientWrapper):
         self._client_wrapper = client_wrapper
 
-    async def query_vulnerability_findings(
+    async def query_findings(
         self,
         *,
         limit: typing.Optional[int] = None,
@@ -156,13 +156,13 @@ class AsyncVulnerabilitiesClient:
             raise ApiError(status_code=_response.status_code, body=_response.text)
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
-    async def query_vulnerability_assets(
+    async def query_assets(
         self,
         *,
         limit: typing.Optional[int] = None,
         cursor: typing.Optional[str] = None,
         filter: typing.Optional[typing.Union[str, typing.List[str]]] = None,
-    ) -> QueryVulnerabilityAssetsResponse:
+    ) -> QueryAssetsResponse:
         """
         Query assets in a vulnerability scanning system
 
@@ -183,7 +183,7 @@ class AsyncVulnerabilitiesClient:
             timeout=60,
         )
         if 200 <= _response.status_code < 300:
-            return pydantic.parse_obj_as(QueryVulnerabilityAssetsResponse, _response.json())  # type: ignore
+            return pydantic.parse_obj_as(QueryAssetsResponse, _response.json())  # type: ignore
         if _response.status_code == 404:
             raise NotFoundError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
         if _response.status_code == 400:

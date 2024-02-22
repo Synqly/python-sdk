@@ -4,7 +4,7 @@ import datetime as dt
 import typing
 
 from ....core.datetime_utils import serialize_datetime
-from .asset import Asset
+from ...events.types.event import Event
 
 try:
     import pydantic.v1 as pydantic  # type: ignore
@@ -12,9 +12,11 @@ except ImportError:
     import pydantic  # type: ignore
 
 
-class QueryVulnerabilityAssetsResponse(pydantic.BaseModel):
-    result: typing.List[Asset]
-    cursor: str
+class QueryIdentityAuditLogResponse(pydantic.BaseModel):
+    result: typing.List[Event] = pydantic.Field(
+        description="List of events from the audit log. Each event will be one of the OCSF Types Account Change, Authentication, or Group Management."
+    )
+    cursor: str = pydantic.Field(description="Cursor to use to retrieve the next page of results")
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}

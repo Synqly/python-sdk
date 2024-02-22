@@ -3,8 +3,8 @@
 from .types import (
     Asset,
     EventId,
+    QueryAssetsResponse,
     QueryFindingsResponse,
-    QueryVulnerabilityAssetsResponse,
     SecurityFinding,
     VulnerabilitySeverityFilterValue,
 )
@@ -12,8 +12,8 @@ from .types import (
 __all__ = [
     "Asset",
     "EventId",
+    "QueryAssetsResponse",
     "QueryFindingsResponse",
-    "QueryVulnerabilityAssetsResponse",
     "SecurityFinding",
     "VulnerabilitySeverityFilterValue",
 ]

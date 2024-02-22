@@ -42,7 +42,7 @@ from .events import (
     Event_SecurityFinding,
     Event_WebResourceAccessActivity,
 )
-from .identity import ListIdentityAuditLogResponse, QueryUsersResponse, UserId
+from .identity import QueryIdentityAuditLogResponse, QueryUsersResponse, UserId
 from .notifications import (
     CreateNotificationRequest,
     CreateNotificationResponse,
@@ -68,8 +68,8 @@ from .ticketing import (
 from .vulnerabilities import (
     Asset,
     EventId,
+    QueryAssetsResponse,
     QueryFindingsResponse,
-    QueryVulnerabilityAssetsResponse,
     SecurityFinding,
     VulnerabilitySeverityFilterValue,
 )
@@ -103,7 +103,6 @@ __all__ = [
     "GetNotificationResponse",
     "GetTicketResponse",
     "Id",
-    "ListIdentityAuditLogResponse",
     "ListProjectsResponse",
     "ListStorageResponse",
     "NotAllowedError",
@@ -115,12 +114,13 @@ __all__ = [
     "PatchTicketResponse",
     "Priority",
     "Project",
+    "QueryAssetsResponse",
     "QueryDevicesResponse",
     "QueryFindingsResponse",
+    "QueryIdentityAuditLogResponse",
     "QuerySiemEventsResponse",
     "QueryTicketsResponse",
     "QueryUsersResponse",
-    "QueryVulnerabilityAssetsResponse",
     "SecurityFinding",
     "StoragePath",
     "Ticket",

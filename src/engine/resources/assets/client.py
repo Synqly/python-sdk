@@ -24,7 +24,7 @@ class AssetsClient:
     def __init__(self, *, client_wrapper: SyncClientWrapper):
         self._client_wrapper = client_wrapper
 
-    def query_devices_info(
+    def query_devices(
         self,
         *,
         limit: typing.Optional[int] = None,
@@ -76,7 +76,7 @@ class AsyncAssetsClient:
     def __init__(self, *, client_wrapper: AsyncClientWrapper):
         self._client_wrapper = client_wrapper
 
-    async def query_devices_info(
+    async def query_devices(
         self,
         *,
         limit: typing.Optional[int] = None,
