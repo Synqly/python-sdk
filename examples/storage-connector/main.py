@@ -119,14 +119,14 @@ def background_job(app):
         example_file = open(os.path.join(example_dir, "upload_file.txt"))
 
         # Upload a file to the storage Provider
-        upload_resp = tenant.synqly_engine_client.storage.upload_storage(
+        upload_resp = tenant.synqly_engine_client.storage.upload_file(
             path=upload_path,
             request=example_file.read(),
         )
         print("File uploaded to path: " + upload_path)
 
         print("\n{}: Downloading example file".format(tenant.tenant_name))
-        download_resp = tenant.synqly_engine_client.storage.download_storage(
+        download_resp = tenant.synqly_engine_client.storage.download_file(
             path=upload_path
         )
 
