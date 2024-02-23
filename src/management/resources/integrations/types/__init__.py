@@ -40,13 +40,7 @@ from .notifications_jira import NotificationsJira
 from .notifications_mock import NotificationsMock
 from .notifications_slack import NotificationsSlack
 from .notifications_teams import NotificationsTeams
-from .okta_credential import (
-    OktaCredential,
-    OktaCredential_OAuthClient,
-    OktaCredential_OAuthClientId,
-    OktaCredential_Token,
-    OktaCredential_TokenId,
-)
+from .okta_credential import OktaCredential, OktaCredential_OAuthClient, OktaCredential_OAuthClientId
 from .pager_duty_credential import PagerDutyCredential, PagerDutyCredential_Token, PagerDutyCredential_TokenId
 from .patch_integration_response import PatchIntegrationResponse
 from .ping_one_credential import PingOneCredential, PingOneCredential_Token, PingOneCredential_TokenId
@@ -176,8 +170,6 @@ __all__ = [
     "OktaCredential",
     "OktaCredential_OAuthClient",
     "OktaCredential_OAuthClientId",
-    "OktaCredential_Token",
-    "OktaCredential_TokenId",
     "PagerDutyCredential",
     "PagerDutyCredential_Token",
     "PagerDutyCredential_TokenId",
