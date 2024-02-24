@@ -27,8 +27,8 @@ Before it can send message to a Slack channel; however, it must be invited to th
 ## Running the Example
 
 ```
-python3 python/notifications-connector/main.py \
-                --synqly-org-token $SYNQLY_ORG_TOKEN \
-                --slack-channel "#channle-name" \
-                --slack-token "xoxb-xxxxxxxxxxxx-xxxxxxxxxxxx-xxxxxxxxxxxxxxxxxxxxxxxx"
+python3 main.py \
+    --synqly-org-token $SYNQLY_ORG_TOKEN \
+    --slack-channel "#channel-name" \
+    --slack-token "xoxb-xxxxxxxxxxxx-xxxxxxxxxxxx-xxxxxxxxxxxxxxxxxxxxxxxx"
 ```

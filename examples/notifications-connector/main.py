@@ -73,7 +73,7 @@ def slack_provider_config(slack_channel: str, slack_token: str):
 def notify(tenant: utils.Tenant):
     # Send a notification
     print("\nSending notification")
-    send_response = tenant.synqly_engine_client.notifications.create_notification(
+    send_response = tenant.synqly_engine_client.notifications.create_message(
         request=engine.CreateNotificationRequest(
             name="Hello World",
             description="Hello World!",
