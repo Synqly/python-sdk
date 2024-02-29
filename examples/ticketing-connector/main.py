@@ -2,7 +2,7 @@
 Synqly Python SDK Ticketing Example
 
 This example demonstrates how to use the Synqly Python SDK to create a
-Ticketing Integration for a tenant.
+Ticketing Integration
 """
 
 # Standard imports
@@ -43,7 +43,7 @@ def parse_args():
         "--jira-url",
         dest="jira_url",
         type=str,
-        required=True,
+        required=False,
         default="",
         help="URL of target JIRA instance, example: 'https://company.atlassian.net'",
     )
@@ -51,7 +51,7 @@ def parse_args():
         "--jira-username",
         dest="jira_username",
         type=str,
-        required=True,
+        required=False,
         default="",
         help="Username for authenticating with JIRA, example: 'name@company.com'",
     )
@@ -59,13 +59,13 @@ def parse_args():
         "--jira-token",
         dest="jira_token",
         type=str,
-        required=True,
+        required=False,
         default="",
         help="Token for authenticating with JIRA, for more information see https://support.atlassian.com/atlassian-account/docs/manage-api-tokens-for-your-atlassian-account/",
     )
     parser.add_argument(
-        "--jira-project-key",
-        dest="jira_project_key",
+        "--project-key",
+        dest="project_key",
         type=str,
         required=True,
         default="",
@@ -75,14 +75,7 @@ def parse_args():
     return args
 
 
-def mock_credential_config():
-    """
-    Helper method to construct a mock CredentialConfig object.
-    """
-    return mgmt.CredentialConfig_Basic(type="basic", username="mock", secret="mock")
-
-
-def jira_credential_config(jira_username, jira_token):
+def jira_credential_config(jira_username: str, jira_token: str):
     """
     Helper method to construct an AWS CredentialConfig object.
     """
@@ -91,68 +84,92 @@ def jira_credential_config(jira_username, jira_token):
     )
 
 
-def mock_provider_config(credential_id):
+def mock_provider_config():
     return mgmt.ProviderConfig_TicketingMockTicketing(
         type="ticketing_mock_ticketing",
     )
 
 
-def jira_provider_config(jira_url, credential_id):
+def jira_provider_config(jira_url: str, jira_username: str, jira_token: str):
     return mgmt.ProviderConfig_TicketingJira(
         type="ticketing_jira",
         url=jira_url,
-        credential=mgmt.JiraCredential_BasicId(
-            type="basic_id", value=credential_id,
+        credential=mgmt.JiraCredential_Basic(
+            type="basic",
+            username=jira_username,
+            secret=jira_token,
         )
     )
 
 
-def background_job(app, jira_project_key, jira_username):
+def ticketing_actions(tenant: utils.Tenant, project_key: str, username: str):
     """
-    Simulates a background process performing work on behalf of tenants.
-    Iterates through all tenants and, for any tenant with a Synqly Engine
-    Client defined, creates a new ticket. After a short delay,
-    background_job will update the ticket's status to "Done".
+    Performs a few operations with the ticketing connector to show what operations
+    are supported by the Synqly API
     """
     # Iterate through each tenant and send an event to their Event Logger
-    for tenant in app.tenants.values():
-        # Skip tenants that don't have a Synqly Engine Client initialized
-        if tenant.synqly_engine_client is None:
-            continue
+    if tenant.synqly_engine_client is None:
+        raise Exception("no Synqly client for tenant")
 
-        # Create a new ticket
-        print("\nCreating ticket")
-        new_ticket = create_sample_ticket(tenant, jira_project_key, jira_username)
-        create_response = tenant.synqly_engine_client.ticketing.create_ticket(
-            request=new_ticket
+    # Create a new ticket
+    print("\nCreating ticket")
+    new_ticket = create_sample_ticket(tenant, project_key, username)
+    create_response = tenant.synqly_engine_client.ticketing.create_ticket(
+        request=new_ticket
+    )
+    print("Created ticket: {}".format(create_response.result.name))
+
+    # Query ticket details using Synqly
+    print("\nQuerying ticket details")
+    get_response = tenant.synqly_engine_client.ticketing.get_ticket(
+        ticket_id=create_response.result.id
+    )
+    print("Retrieved ticket details: {}".format(get_response.result))
+
+    print("\nWaiting 4 seconds before marking ticket as done...")
+    time.sleep(4)
+
+    # Ticket querying examples
+    tickets_in_project = tenant.synqly_engine_client.ticketing.query_tickets(
+        filter='project[eq]'+project_key,
+    )
+    print('\nQuerying all tickets in project '+project_key)
+    print('Got {} tickets in project {}'.format(len(tickets_in_project.result), project_key))
+
+    # Query for all tickets created by the user that are not "Done"
+    q = tenant.synqly_engine_client.ticketing.query_tickets(
+        filter=[
+            'creator[eq]"'+username+'"',
+            'status[ne]"Done"'
+        ],
+    )
+    print('\nQuerying all tickets created by '+username+' that are not "Done"')
+    print('Got {} tickets created by {}'.format(len(q.result), username))
+
+    # Use a JSON Patch to update the ticket status
+    print('\nUpdating ticket status to "Done"')
+    update_response = tenant.synqly_engine_client.ticketing.patch_ticket(
+        ticket_id=create_response.result.id,
+        request=[{"op": "replace", "path": "/status", "value": "Done"}],
+    )
+    print(
+        'Updated ticket {} status to "{}"'.format(
+            update_response.result.id, update_response.result.status
         )
-        print("Created ticket: {}".format(create_response.result.name))
+    )
 
-        # Query ticket details using Synqly
-        print("\nQuerying ticket details")
-        get_response = tenant.synqly_engine_client.ticketing.get_ticket(
-            ticket_id=create_response.result.id
-        )
-        print(get_response)
-        # print("Retrieved ticket details: {}".format(get_response.result))
-
-        print("\nWaiting 4 seconds before marking ticket as done...")
-        time.sleep(4)
-
-        # Use a JSON Patch to update the ticket status
-        print('\nUpdating ticket status to "Done"')
-        update_response = tenant.synqly_engine_client.ticketing.patch_ticket(
-            ticket_id=create_response.result.id,
-            request=[{"op": "replace", "path": "/status", "value": "Done"}],
-        )
-        print(
-            'Updated ticket {} status to "{}"'.format(
-                update_response.result.id, update_response.result.status
-            )
-        )
+    # Query for all tickets created by the user that are "Done"
+    q = tenant.synqly_engine_client.ticketing.query_tickets(
+        filter=[
+            'creator[eq]"'+username+'"',
+            'status[eq]"Done"'
+        ],
+    )
+    print('\nQuerying all tickets created by '+username+' that are "Done"')
+    print('Got {} tickets created by {}'.format(len(q.result), username))
 
 
-def create_sample_ticket(tenant, jira_project_key, jira_username):
+def create_sample_ticket(tenant: utils.Tenant, project_key: str, username: str):
     """
     Creates a sample ticket for use in the background job.
     """
@@ -161,11 +178,8 @@ def create_sample_ticket(tenant, jira_project_key, jira_username):
         id="SDK Example Ticket",
         name="SDK Example Ticket",
         summary="Sample ticket created by the Synqly Python SDK",
-        # JIRA required fields. These fields are optional at the connector level
-        # (i.e. for all ticketing providers), but must be set when submitting a
-        # ticket to a JIRA integration.
-        project=jira_project_key,
-        creator=jira_username,
+        project=project_key,
+        creator=username,
         issue_type="Bug",
         priority="LOW",
         # Optional fields
@@ -181,74 +195,44 @@ def main():
     jira_url = args.jira_url
     jira_username = args.jira_username
     jira_token = args.jira_token
-    jira_project_key = args.jira_project_key
+    project_key = args.project_key
+
+    if synqly_org_token == "":
+        raise ValueError("Synqly Organization Token is required")
 
     # Initialize an empty application to store our simulated tenants
     app = utils.App("ticketing")
 
+    tenant_name = "Golden Ticket Solutions"
+
     # Initialize tenants within our Application
     try:
-        app.new_tenant(synqly_org_token, "Tenant ABC")
-        print("Tenant ABC created")
+        app.new_tenant(synqly_org_token, tenant_name)
+        print("Tenant {} created".format(tenant_name))
     except Exception as e:
-        print("Error creating Tenant ABC:" + str(e))
-        app._cleanup_handler()
-        raise e
-    try:
-        app.new_tenant(synqly_org_token, "Tenant XYZ")
-        print("Tenant XYZ created")
-    except Exception as e:
-        print("Error creating Tenant XYZ:" + str(e))
+        print("Error creating tenant {}: ".format(tenant_name) + str(e))
         app._cleanup_handler()
         raise e
 
-    # Placeholder variables for the IDs of the Credentials we will create
-    abc_credential_id = ""
-    xyz_credential_id = ""
+    # Configure a ticketing integration based on the configuration. If no jira credentials
+    # are provided, then mock ticket provider is used
+    provider_config: mgmt.ProviderConfig
+    if jira_url != "" and jira_username != "" and jira_token != "":
+        print("Using Jira as the ticketing provider\n")
+        provider_config = jira_provider_config(jira_url, jira_username, jira_token)
+    else:
+        print("WARNING: no Jira credentials provided\nUsing Mock Ticketing as the ticketing provider\n")
+        provider_config = mock_provider_config()
 
-    # Create a Synqly Credential for each tenant.
     try:
-        abc_credential_id = app.create_credential(
-            "Tenant ABC", "mock_ticketing", mock_credential_config()
-        )
+        app.configure_integration(tenant_name, provider_config)
     except Exception as e:
-        print("Error creating Credential for Tenant ABC: " + str(e))
-        app._cleanup_handler()
-        raise e
-    try:
-        xyz_credential_id = app.create_credential(
-            "Tenant XYZ",
-            "jira",
-            jira_credential_config(jira_username, jira_token),
-        )
-    except Exception as e:
-        print("Error creating Credential for Tenant XYZ: " + str(e))
+        print("Error configuring provider integration for tenant {}: ".format(tenant_name) + str(e))
         app._cleanup_handler()
         raise e
 
-    # Configure a mock integration for tenant ABC and a JIRA Integration for Tenant XYZ
     try:
-        app.configure_integration(
-            "Tenant ABC",
-            mock_provider_config(abc_credential_id),
-        )
-    except Exception as e:
-        print("Error configuring provider integration for Tenant ABC: " + str(e))
-        app._cleanup_handler()
-        raise e
-    try:
-        app.configure_integration(
-            "Tenant XYZ",
-            jira_provider_config(jira_url, xyz_credential_id),
-        )
-    except Exception as e:
-        print("Error configuring provider integration for Tenant XYZ: " + str(e))
-        app._cleanup_handler()
-        raise e
-
-    # Start a background job to generate data
-    try:
-        background_job(app, jira_project_key, jira_username)
+        ticketing_actions(app.tenants[tenant_name], project_key, jira_username)
     except Exception as e:
         print("Error running background job: " + str(e))
         app._cleanup_handler()
@@ -259,5 +243,6 @@ def main():
 
 try:
     main()
-except:
+except Exception as e:
+    print("Error: " + str(e))
     sys.exit(1)
