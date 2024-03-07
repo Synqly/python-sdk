@@ -5,7 +5,7 @@ import typing
 
 from ....core.datetime_utils import serialize_datetime
 from ...accounts.types.account_id import AccountId
-from ...integrations.types.integration_id import IntegrationId
+from ...integration_base.types.integration_id import IntegrationId
 from ...member_base.types.member_id import MemberId
 from .http_method import HttpMethod
 

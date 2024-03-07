@@ -3,7 +3,6 @@
 from .types import (
     CapabilitiesProviderConfig,
     Category,
-    CategoryId,
     ListCategoryCapabilitiesResponse,
     ListProviderCapabilitiesResponse,
     Provider,
@@ -14,7 +13,6 @@ from .types import (
 __all__ = [
     "CapabilitiesProviderConfig",
     "Category",
-    "CategoryId",
     "ListCategoryCapabilitiesResponse",
     "ListProviderCapabilitiesResponse",
     "Provider",
