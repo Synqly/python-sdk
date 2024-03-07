@@ -45,10 +45,8 @@ class IdentityClient:
             - order: typing.Optional[typing.Union[str, typing.List[str]]]. Select a field to order the results by. Defaults to `time`. To control the direction of the sorting, append
                                                                            `[asc]` or `[desc]` to the field name. For example, `time[asc]` will sort the results by `time` in ascending order.
                                                                            The ordering defaults to `asc` if not specified.
-
             - filter: typing.Optional[typing.Union[str, typing.List[str]]]. Filter results by this query. For more information on filtering, refer to our Filtering Guide. Defaults to no filter.
                                                                             If used more than once, the queries are ANDed together.
-
         """
         _response = self._client_wrapper.httpx_client.request(
             "GET",
@@ -92,10 +90,8 @@ class IdentityClient:
             - order: typing.Optional[typing.Union[str, typing.List[str]]]. Select a field to order the results by. Defaults to `uid`. To control the direction of the sorting, append
                                                                            `[asc]` or `[desc]` to the field name. For example, `email_addr[asc]` will sort the results by `email_addr` in
                                                                            ascending order. The ordering defaults to `asc` if not specified.
-
             - filter: typing.Optional[typing.Union[str, typing.List[str]]]. Filter results by this query. For more information on filtering, refer to our Filtering Guide. Defaults to no filter.
                                                                             If used more than once, the queries are ANDed together.
-
         """
         _response = self._client_wrapper.httpx_client.request(
             "GET",
@@ -268,10 +264,8 @@ class AsyncIdentityClient:
             - order: typing.Optional[typing.Union[str, typing.List[str]]]. Select a field to order the results by. Defaults to `time`. To control the direction of the sorting, append
                                                                            `[asc]` or `[desc]` to the field name. For example, `time[asc]` will sort the results by `time` in ascending order.
                                                                            The ordering defaults to `asc` if not specified.
-
             - filter: typing.Optional[typing.Union[str, typing.List[str]]]. Filter results by this query. For more information on filtering, refer to our Filtering Guide. Defaults to no filter.
                                                                             If used more than once, the queries are ANDed together.
-
         """
         _response = await self._client_wrapper.httpx_client.request(
             "GET",
@@ -315,10 +309,8 @@ class AsyncIdentityClient:
             - order: typing.Optional[typing.Union[str, typing.List[str]]]. Select a field to order the results by. Defaults to `uid`. To control the direction of the sorting, append
                                                                            `[asc]` or `[desc]` to the field name. For example, `email_addr[asc]` will sort the results by `email_addr` in
                                                                            ascending order. The ordering defaults to `asc` if not specified.
-
             - filter: typing.Optional[typing.Union[str, typing.List[str]]]. Filter results by this query. For more information on filtering, refer to our Filtering Guide. Defaults to no filter.
                                                                             If used more than once, the queries are ANDed together.
-
         """
         _response = await self._client_wrapper.httpx_client.request(
             "GET",

@@ -46,7 +46,6 @@ class AuditClient:
 
             - filter: typing.Optional[typing.Union[str, typing.List[str]]]. Filter results by this query. For more information on filtering, refer to our Filtering Guide. Defaults to no filter.
                                                                             If used more than once, the queries are ANDed together.
-
         """
         _response = self._client_wrapper.httpx_client.request(
             "GET",
@@ -99,7 +98,6 @@ class AsyncAuditClient:
 
             - filter: typing.Optional[typing.Union[str, typing.List[str]]]. Filter results by this query. For more information on filtering, refer to our Filtering Guide. Defaults to no filter.
                                                                             If used more than once, the queries are ANDed together.
-
         """
         _response = await self._client_wrapper.httpx_client.request(
             "GET",

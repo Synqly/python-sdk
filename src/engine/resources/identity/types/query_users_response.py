@@ -4,7 +4,7 @@ import datetime as dt
 import typing
 
 from ....core.datetime_utils import serialize_datetime
-from ...ocsf.resources.authentication.resources.objects.types.user import User
+from ...ocsf.resources.v_1_1_0.resources.authentication.resources.objects.types.user import User
 
 try:
     import pydantic.v1 as pydantic  # type: ignore

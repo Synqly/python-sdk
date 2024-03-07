@@ -42,11 +42,9 @@ class AssetsClient:
 
             - filter: typing.Optional[typing.Union[str, typing.List[str]]]. Filter results by this query. For more information on filtering, refer to the Assets Filtering Guide.
                                                                             Defaults to no filter. If used more than once, the queries are ANDed together.
-
             - order: typing.Optional[str]. Select a field to order the results by. Defaults to `time`. To control the direction of the sorting, append
                                            `[asc]` or `[desc]` to the field name. For example, `time[asc]` will sort the results by `time` in ascending order.
                                            The ordering defaults to `asc` if not specified.
-
         """
         _response = self._client_wrapper.httpx_client.request(
             "GET",
@@ -94,11 +92,9 @@ class AsyncAssetsClient:
 
             - filter: typing.Optional[typing.Union[str, typing.List[str]]]. Filter results by this query. For more information on filtering, refer to the Assets Filtering Guide.
                                                                             Defaults to no filter. If used more than once, the queries are ANDed together.
-
             - order: typing.Optional[str]. Select a field to order the results by. Defaults to `time`. To control the direction of the sorting, append
                                            `[asc]` or `[desc]` to the field name. For example, `time[asc]` will sort the results by `time` in ascending order.
                                            The ordering defaults to `asc` if not specified.
-
         """
         _response = await self._client_wrapper.httpx_client.request(
             "GET",

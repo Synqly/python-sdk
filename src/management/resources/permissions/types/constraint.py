@@ -12,7 +12,7 @@ except ImportError:
 
 
 class Constraint(pydantic.BaseModel):
-    object: str = pydantic.Field(description='Contained object constraint granted access or "*".')
+    object: str = pydantic.Field(description='Contained object constraint granted access or "\*".')
     type: str = pydantic.Field(description='Object type (ie: "category", "tag")')
 
     def json(self, **kwargs: typing.Any) -> str:
