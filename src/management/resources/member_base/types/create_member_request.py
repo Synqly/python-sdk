@@ -5,7 +5,6 @@ import typing
 
 from ....core.datetime_utils import serialize_datetime
 from ...permissions.types.role import Role
-from ...role_base.types.role_name import RoleName
 from .member_options import MemberOptions
 
 try:
@@ -22,12 +21,7 @@ class CreateMemberRequest(pydantic.BaseModel):
     nickname: typing.Optional[str] = pydantic.Field(description="User's nickname")
     picture: typing.Optional[str] = pydantic.Field(description="Url of user's picture")
     secret: str = pydantic.Field(description="Member secret")
-    roles: typing.List[Role] = pydantic.Field(
-        description="Deprecated: Roles granted to this member. Tokens inherit this access."
-    )
-    role_binding: typing.List[RoleName] = pydantic.Field(
-        description="Roles granted to this member. Tokens inherit this access."
-    )
+    roles: typing.List[Role] = pydantic.Field(description="Roles granted to this member. Tokens inherit this access.")
     options: MemberOptions
 
     def json(self, **kwargs: typing.Any) -> str:

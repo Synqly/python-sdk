@@ -15,10 +15,10 @@ from ..common.errors.forbidden_error import ForbiddenError
 from ..common.errors.not_found_error import NotFoundError
 from ..common.errors.unauthorized_error import UnauthorizedError
 from ..common.types.error_body import ErrorBody
-from ..integration_base.types.integration_id import IntegrationId
 from .types.create_integration_request import CreateIntegrationRequest
 from .types.create_integration_response import CreateIntegrationResponse
 from .types.get_integration_response import GetIntegrationResponse
+from .types.integration_id import IntegrationId
 from .types.list_account_integrations_response import ListAccountIntegrationsResponse
 from .types.list_integrations_response import ListIntegrationsResponse
 from .types.patch_integration_response import PatchIntegrationResponse

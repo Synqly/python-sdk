@@ -5,10 +5,10 @@ import typing
 
 from ....core.datetime_utils import serialize_datetime
 from ...accounts.types.account_id import AccountId
-from ...capabilities_base.types.category_id import CategoryId
+from ...capabilities.types.category_id import CategoryId
 from ...common.types.base import Base
-from ...integration_base.types.integration_id import IntegrationId
 from ...token_base.types.token_id import TokenId
+from .integration_id import IntegrationId
 from .provider_config import ProviderConfig
 
 try:

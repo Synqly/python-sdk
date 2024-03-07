@@ -2,6 +2,7 @@
 
 from .capabilities_provider_config import CapabilitiesProviderConfig
 from .category import Category
+from .category_id import CategoryId
 from .list_category_capabilities_response import ListCategoryCapabilitiesResponse
 from .list_provider_capabilities_response import ListProviderCapabilitiesResponse
 from .provider import Provider
@@ -11,6 +12,7 @@ from .provider_id import ProviderId
 __all__ = [
     "CapabilitiesProviderConfig",
     "Category",
+    "CategoryId",
     "ListCategoryCapabilitiesResponse",
     "ListProviderCapabilitiesResponse",
     "Provider",

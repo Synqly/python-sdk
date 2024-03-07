@@ -2,8 +2,6 @@
 
 from .create_account_token_request import CreateAccountTokenRequest
 from .create_account_token_response import CreateAccountTokenResponse
-from .create_token_request import CreateTokenRequest
-from .create_token_response import CreateTokenResponse
 from .get_token_response import GetTokenResponse
 from .list_tokens_response import ListTokensResponse
 from .refresh_token import RefreshToken
@@ -13,8 +11,6 @@ from .reset_token_response import ResetTokenResponse
 __all__ = [
     "CreateAccountTokenRequest",
     "CreateAccountTokenResponse",
-    "CreateTokenRequest",
-    "CreateTokenResponse",
     "GetTokenResponse",
     "ListTokensResponse",
     "RefreshToken",

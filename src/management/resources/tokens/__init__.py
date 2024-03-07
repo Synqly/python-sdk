@@ -3,8 +3,6 @@
 from .types import (
     CreateAccountTokenRequest,
     CreateAccountTokenResponse,
-    CreateTokenRequest,
-    CreateTokenResponse,
     GetTokenResponse,
     ListTokensResponse,
     RefreshToken,
@@ -15,8 +13,6 @@ from .types import (
 __all__ = [
     "CreateAccountTokenRequest",
     "CreateAccountTokenResponse",
-    "CreateTokenRequest",
-    "CreateTokenResponse",
     "GetTokenResponse",
     "ListTokensResponse",
     "RefreshToken",

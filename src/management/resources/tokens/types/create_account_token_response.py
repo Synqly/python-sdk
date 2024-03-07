@@ -13,10 +13,6 @@ except ImportError:
 
 
 class CreateAccountTokenResponse(pydantic.BaseModel):
-    """
-    Deprecated
-    """
-
     result: RefreshToken
 
     def json(self, **kwargs: typing.Any) -> str:

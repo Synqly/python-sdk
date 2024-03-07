@@ -32,6 +32,7 @@ from .identity_entra_id import IdentityEntraId
 from .identity_okta import IdentityOkta
 from .identity_ping_one import IdentityPingOne
 from .integration import Integration
+from .integration_id import IntegrationId
 from .jira_credential import JiraCredential, JiraCredential_Basic, JiraCredential_BasicId
 from .list_account_integrations_response import ListAccountIntegrationsResponse
 from .list_integrations_response import ListIntegrationsResponse
@@ -162,6 +163,7 @@ __all__ = [
     "IdentityOkta",
     "IdentityPingOne",
     "Integration",
+    "IntegrationId",
     "JiraCredential",
     "JiraCredential_Basic",
     "JiraCredential_BasicId",

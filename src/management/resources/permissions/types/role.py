@@ -16,10 +16,6 @@ except ImportError:
 
 
 class Role(pydantic.BaseModel):
-    """
-    Deprecated
-    """
-
     actions: typing.List[Action] = pydantic.Field(
         description='List of actions that this permission grants access to: "create", "read", "update", "delete" and "_". Use "_" to give all action permissions.'
     )

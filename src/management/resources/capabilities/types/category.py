@@ -4,7 +4,7 @@ import datetime as dt
 import typing
 
 from ....core.datetime_utils import serialize_datetime
-from ...capabilities_base.types.category_id import CategoryId
+from .category_id import CategoryId
 from .provider_id import ProviderId
 
 try:
