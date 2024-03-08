@@ -15,6 +15,8 @@ from .resources.integrations.client import AsyncIntegrationsClient, Integrations
 from .resources.members.client import AsyncMembersClient, MembersClient
 from .resources.meta.client import AsyncMetaClient, MetaClient
 from .resources.organization.client import AsyncOrganizationClient, OrganizationClient
+from .resources.permissionset.client import AsyncPermissionsetClient, PermissionsetClient
+from .resources.roles.client import AsyncRolesClient, RolesClient
 from .resources.status.client import AsyncStatusClient, StatusClient
 from .resources.tokens.client import AsyncTokensClient, TokensClient
 from .resources.transforms.client import AsyncTransformsClient, TransformsClient
@@ -44,6 +46,8 @@ class SynqlyManagement:
         self.members = MembersClient(client_wrapper=self._client_wrapper)
         self.meta = MetaClient(client_wrapper=self._client_wrapper)
         self.organization = OrganizationClient(client_wrapper=self._client_wrapper)
+        self.permissionset = PermissionsetClient(client_wrapper=self._client_wrapper)
+        self.roles = RolesClient(client_wrapper=self._client_wrapper)
         self.status = StatusClient(client_wrapper=self._client_wrapper)
         self.tokens = TokensClient(client_wrapper=self._client_wrapper)
         self.transforms = TransformsClient(client_wrapper=self._client_wrapper)
@@ -73,6 +77,8 @@ class AsyncSynqlyManagement:
         self.members = AsyncMembersClient(client_wrapper=self._client_wrapper)
         self.meta = AsyncMetaClient(client_wrapper=self._client_wrapper)
         self.organization = AsyncOrganizationClient(client_wrapper=self._client_wrapper)
+        self.permissionset = AsyncPermissionsetClient(client_wrapper=self._client_wrapper)
+        self.roles = AsyncRolesClient(client_wrapper=self._client_wrapper)
         self.status = AsyncStatusClient(client_wrapper=self._client_wrapper)
         self.tokens = AsyncTokensClient(client_wrapper=self._client_wrapper)
         self.transforms = AsyncTransformsClient(client_wrapper=self._client_wrapper)

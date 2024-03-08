@@ -45,7 +45,9 @@ class Session(pydantic.BaseModel):
     uid_alt: typing.Optional[str] = pydantic.Field(
         description="The alternate unique identifier of the session. e.g. AWS ARN - <code>arn:aws:sts::123344444444:assumed-role/Admin/example-session</code>."
     )
-    uuid: typing.Optional[str] = pydantic.Field(description="The universally unique identifier of the session.")
+    uuid_: typing.Optional[str] = pydantic.Field(
+        alias="uuid", description="The universally unique identifier of the session."
+    )
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}
@@ -58,4 +60,5 @@ class Session(pydantic.BaseModel):
     class Config:
         frozen = True
         smart_union = True
+        allow_population_by_field_name = True
         json_encoders = {dt.datetime: serialize_datetime}

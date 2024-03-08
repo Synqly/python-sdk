@@ -16,6 +16,8 @@ from ..common.types.error_body import ErrorBody
 from ..token_base.types.token_id import TokenId
 from .types.create_account_token_request import CreateAccountTokenRequest
 from .types.create_account_token_response import CreateAccountTokenResponse
+from .types.create_token_request import CreateTokenRequest
+from .types.create_token_response import CreateTokenResponse
 from .types.get_token_response import GetTokenResponse
 from .types.list_tokens_response import ListTokensResponse
 from .types.refresh_token_response import RefreshTokenResponse
@@ -50,6 +52,36 @@ class TokensClient:
         )
         if 200 <= _response.status_code < 300:
             return pydantic.parse_obj_as(CreateAccountTokenResponse, _response.json())  # type: ignore
+        if _response.status_code == 400:
+            raise BadRequestError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+        if _response.status_code == 404:
+            raise NotFoundError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+        if _response.status_code == 403:
+            raise ForbiddenError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+        if _response.status_code == 401:
+            raise UnauthorizedError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+        try:
+            _response_json = _response.json()
+        except JSONDecodeError:
+            raise ApiError(status_code=_response.status_code, body=_response.text)
+        raise ApiError(status_code=_response.status_code, body=_response_json)
+
+    def create_token(self, *, request: CreateTokenRequest) -> CreateTokenResponse:
+        """
+        Create a token restricted to specified resources and permission set. Tokens can only be reduced in scope, never expanded. Permissions are inherited from the token used to call this API. Permissions assigned to the new token will not be persisted, this is not a way to create roles.
+
+        Parameters:
+            - request: CreateTokenRequest.
+        """
+        _response = self._client_wrapper.httpx_client.request(
+            "POST",
+            urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", "v1/tokens/token"),
+            json=jsonable_encoder(request),
+            headers=self._client_wrapper.get_headers(),
+            timeout=60,
+        )
+        if 200 <= _response.status_code < 300:
+            return pydantic.parse_obj_as(CreateTokenResponse, _response.json())  # type: ignore
         if _response.status_code == 400:
             raise BadRequestError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
         if _response.status_code == 404:
@@ -257,6 +289,36 @@ class AsyncTokensClient:
         )
         if 200 <= _response.status_code < 300:
             return pydantic.parse_obj_as(CreateAccountTokenResponse, _response.json())  # type: ignore
+        if _response.status_code == 400:
+            raise BadRequestError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+        if _response.status_code == 404:
+            raise NotFoundError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+        if _response.status_code == 403:
+            raise ForbiddenError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+        if _response.status_code == 401:
+            raise UnauthorizedError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+        try:
+            _response_json = _response.json()
+        except JSONDecodeError:
+            raise ApiError(status_code=_response.status_code, body=_response.text)
+        raise ApiError(status_code=_response.status_code, body=_response_json)
+
+    async def create_token(self, *, request: CreateTokenRequest) -> CreateTokenResponse:
+        """
+        Create a token restricted to specified resources and permission set. Tokens can only be reduced in scope, never expanded. Permissions are inherited from the token used to call this API. Permissions assigned to the new token will not be persisted, this is not a way to create roles.
+
+        Parameters:
+            - request: CreateTokenRequest.
+        """
+        _response = await self._client_wrapper.httpx_client.request(
+            "POST",
+            urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", "v1/tokens/token"),
+            json=jsonable_encoder(request),
+            headers=self._client_wrapper.get_headers(),
+            timeout=60,
+        )
+        if 200 <= _response.status_code < 300:
+            return pydantic.parse_obj_as(CreateTokenResponse, _response.json())  # type: ignore
         if _response.status_code == 400:
             raise BadRequestError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
         if _response.status_code == 404:

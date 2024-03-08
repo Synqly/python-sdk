@@ -17,7 +17,7 @@ class Token(pydantic.BaseModel):
         description="Secret value for the token; used for authentication when making requests."
     )
     expires: dt.datetime = pydantic.Field(description="Time when this token expires and can no longer be used again.")
-    permissions: Permission = pydantic.Field(description="Permissions granted to this token.")
+    permissions: Permission = pydantic.Field(description="Deprecated: Permissions granted to this token.")
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}

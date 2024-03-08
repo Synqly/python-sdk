@@ -27,7 +27,9 @@ class Session(pydantic.BaseModel):
     is_remote: typing.Optional[bool] = pydantic.Field(description="The indication of whether the session is remote.")
     issuer: typing.Optional[str] = pydantic.Field(description="The identifier of the session issuer.")
     uid: typing.Optional[str] = pydantic.Field(description="The unique identifier of the session.")
-    uuid: typing.Optional[str] = pydantic.Field(description="The universally unique identifier of the session.")
+    uuid_: typing.Optional[str] = pydantic.Field(
+        alias="uuid", description="The universally unique identifier of the session."
+    )
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}
@@ -40,4 +42,5 @@ class Session(pydantic.BaseModel):
     class Config:
         frozen = True
         smart_union = True
+        allow_population_by_field_name = True
         json_encoders = {dt.datetime: serialize_datetime}

@@ -13,6 +13,10 @@ except ImportError:
 
 
 class CreateAccountTokenRequest(pydantic.BaseModel):
+    """
+    Deprecated
+    """
+
     name: typing.Optional[str] = pydantic.Field(
         description="Unique name token. Defaults to generated refresh token id."
     )

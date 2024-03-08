@@ -13,7 +13,7 @@ from ..common.errors.forbidden_error import ForbiddenError
 from ..common.errors.not_found_error import NotFoundError
 from ..common.errors.unauthorized_error import UnauthorizedError
 from ..common.types.error_body import ErrorBody
-from ..integrations.types.integration_id import IntegrationId
+from ..integration_base.types.integration_id import IntegrationId
 from .types.get_integration_timeseries import GetIntegrationTimeseries
 from .types.get_status_response import GetStatusResponse
 from .types.get_status_timeseries import GetStatusTimeseries
