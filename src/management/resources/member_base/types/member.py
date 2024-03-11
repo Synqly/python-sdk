@@ -5,7 +5,6 @@ import typing
 
 from ....core.datetime_utils import serialize_datetime
 from ...common.types.base import Base
-from ...permissions.types.role import Role
 from ...role_base.types.role_name import RoleName
 from .member_id import MemberId
 from .state import State
@@ -27,9 +26,6 @@ class Member(Base):
     token_ttl: str
     expires: dt.datetime
     pin_expires: dt.datetime
-    roles: typing.List[Role] = pydantic.Field(
-        description="Deprecated: Roles granted to this member. Tokens inherit this access."
-    )
     role_binding: typing.List[RoleName] = pydantic.Field(
         description="Roles granted to this member. Tokens inherit this access."
     )

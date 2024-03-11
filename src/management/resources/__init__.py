@@ -257,7 +257,7 @@ from .members import (
 from .meta import GetOpenApiSpecResponse
 from .organization import PatchOrganizationResponse, UpdateOrganizationRequest, UpdateOrganizationResponse
 from .organization_base import GetOrganizationResponse, Organization, OrganizationId, OrganizationOptions
-from .permissions import Action, AllowedApi, Constraint, Object, Permission, Role
+from .permissions import Permission
 from .permissionset import (
     AccountsActions,
     AccountsPermissions,
@@ -319,8 +319,6 @@ from .status import (
 )
 from .token_base import Token, TokenId, TokenPair
 from .tokens import (
-    CreateAccountTokenRequest,
-    CreateAccountTokenResponse,
     CreateTokenRequest,
     CreateTokenResponse,
     GetTokenResponse,
@@ -347,9 +345,7 @@ __all__ = [
     "AccountId",
     "AccountsActions",
     "AccountsPermissions",
-    "Action",
     "AdhocRole",
-    "AllowedApi",
     "ApiPermissionMap",
     "ArmisCredential",
     "ArmisCredential_Token",
@@ -391,12 +387,9 @@ __all__ = [
     "ChangePasswordResponse",
     "ChangePasswordResponseResult",
     "ConflictError",
-    "Constraint",
     "CreateAccountRequest",
     "CreateAccountResponse",
     "CreateAccountResponseResult",
-    "CreateAccountTokenRequest",
-    "CreateAccountTokenResponse",
     "CreateCredentialRequest",
     "CreateCredentialResponse",
     "CreateIntegrationRequest",
@@ -496,7 +489,6 @@ __all__ = [
     "NotificationsTeams",
     "OAuthClientCredential",
     "OAuthClientCredentialId",
-    "Object",
     "OktaCredential",
     "OktaCredential_OAuthClient",
     "OktaCredential_OAuthClientId",
@@ -570,7 +562,6 @@ __all__ = [
     "ResetTokenResponse",
     "ResourceRestrictions",
     "Resources",
-    "Role",
     "RoleAccounts",
     "RoleDefinition",
     "RoleId",
