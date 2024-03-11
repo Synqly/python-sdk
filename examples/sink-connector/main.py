@@ -135,6 +135,8 @@ def create_sample_event():
     return engine.Event_ScheduledJobActivity(
         # OCSF Activity_Update
         activity_id=2,
+        # OCSF Action_Update - the action is allowed
+        action_id=1,
         # OCSF CategoryUID: 1 - SystemActivity
         category_uid=1,
         # OCSF ClassUID: 1006 - ScheduledJobActivity:
