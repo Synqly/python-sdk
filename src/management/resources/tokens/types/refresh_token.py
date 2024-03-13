@@ -21,7 +21,7 @@ class RefreshToken(Base):
     expires: dt.datetime = pydantic.Field(description="Time when this token expires and can no longer be used again.")
     token_ttl: str = pydantic.Field(description="Token time-to-live")
     primary: TokenPair = pydantic.Field(description="Primary running access and refresh tokens")
-    secondary: TokenPair = pydantic.Field(
+    secondary: typing.Optional[TokenPair] = pydantic.Field(
         description="Temporary secondary TokenPair created after a RefreshToken operation"
     )
 
