@@ -13,6 +13,7 @@ from ..common.errors.forbidden_error import ForbiddenError
 from ..common.errors.not_found_error import NotFoundError
 from ..common.errors.unauthorized_error import UnauthorizedError
 from ..common.types.error_body import ErrorBody
+from ..common.types.id import Id
 from ..token_base.types.token_id import TokenId
 from .types.create_token_request import CreateTokenRequest
 from .types.create_token_response import CreateTokenResponse
@@ -144,18 +145,23 @@ class TokensClient:
             raise ApiError(status_code=_response.status_code, body=_response.text)
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
-    def reset(self, refresh_token_id: TokenId) -> ResetTokenResponse:
+    def reset(self, owner_id: Id, refresh_token_id: TokenId) -> ResetTokenResponse:
         """
-        Resets the token value, secondary, and token expiration time for the
-        `RefreshToken` object matching `{refreshTokenId}`. An `Organization` token
-        with appropriate permissions can be used to perform this operation.
+        This API can be used to reset `Organization` or `Integration` `RefreshTokens`.
+        Resets the specified `RefreshToken` and expiration time, removes the secondary, and resets access and refresh tokens for the
+        `RefreshToken` object matching `{ownerId}/{refreshTokenId}` where `ownerId` is an `organizationId` or `integrationId`.
+        An `Organization` token with `administrator` permissions can be used to perform this operation.
 
         Parameters:
+            - owner_id: Id.
+
             - refresh_token_id: TokenId.
         """
         _response = self._client_wrapper.httpx_client.request(
             "PUT",
-            urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", f"v1/tokens/{refresh_token_id}/reset"),
+            urllib.parse.urljoin(
+                f"{self._client_wrapper.get_base_url()}/", f"v1/tokens/{owner_id}/{refresh_token_id}/reset"
+            ),
             headers=self._client_wrapper.get_headers(),
             timeout=60,
         )
@@ -351,18 +357,23 @@ class AsyncTokensClient:
             raise ApiError(status_code=_response.status_code, body=_response.text)
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
-    async def reset(self, refresh_token_id: TokenId) -> ResetTokenResponse:
+    async def reset(self, owner_id: Id, refresh_token_id: TokenId) -> ResetTokenResponse:
         """
-        Resets the token value, secondary, and token expiration time for the
-        `RefreshToken` object matching `{refreshTokenId}`. An `Organization` token
-        with appropriate permissions can be used to perform this operation.
+        This API can be used to reset `Organization` or `Integration` `RefreshTokens`.
+        Resets the specified `RefreshToken` and expiration time, removes the secondary, and resets access and refresh tokens for the
+        `RefreshToken` object matching `{ownerId}/{refreshTokenId}` where `ownerId` is an `organizationId` or `integrationId`.
+        An `Organization` token with `administrator` permissions can be used to perform this operation.
 
         Parameters:
+            - owner_id: Id.
+
             - refresh_token_id: TokenId.
         """
         _response = await self._client_wrapper.httpx_client.request(
             "PUT",
-            urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", f"v1/tokens/{refresh_token_id}/reset"),
+            urllib.parse.urljoin(
+                f"{self._client_wrapper.get_base_url()}/", f"v1/tokens/{owner_id}/{refresh_token_id}/reset"
+            ),
             headers=self._client_wrapper.get_headers(),
             timeout=60,
         )
