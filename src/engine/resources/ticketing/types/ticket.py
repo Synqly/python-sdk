@@ -31,7 +31,6 @@ class Ticket(Base):
     status: typing.Optional[str] = pydantic.Field(description="The current status of the ticket.")
     project: typing.Optional[str] = pydantic.Field(description="The ticket project.")
     issue_type: typing.Optional[str] = pydantic.Field(description="The ticket's type.")
-    attachments: typing.Optional[typing.List[str]] = pydantic.Field(description="Associate attachment URLs with ticket")
     tags: typing.Optional[typing.List[str]] = pydantic.Field(description="Associate tags with Ticket")
 
     def json(self, **kwargs: typing.Any) -> str:
