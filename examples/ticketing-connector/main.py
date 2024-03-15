@@ -6,10 +6,11 @@ Ticketing Integration
 """
 
 # Standard imports
-import time
-import sys
 import argparse
+import base64
 from pathlib import Path
+import sys
+import time
 
 # Add the root directory to the system path so that we can import common
 # Application logic.
@@ -146,6 +147,9 @@ def ticketing_actions(tenant: utils.Tenant, project_key: str, username: str):
     print('\nQuerying all tickets created by '+username+' that are not "Done"')
     print('Got {} tickets created by {}'.format(len(q.result), username))
 
+    # Perform attachment actions
+    attachment_actions(tenant, create_response.result.id)
+
     # Use a JSON Patch to update the ticket status
     print('\nUpdating ticket status to "Done"')
     update_response = tenant.synqly_engine_client.ticketing.patch_ticket(
@@ -167,6 +171,42 @@ def ticketing_actions(tenant: utils.Tenant, project_key: str, username: str):
     )
     print('\nQuerying all tickets created by '+username+' that are "Done"')
     print('Got {} tickets created by {}'.format(len(q.result), username))
+
+
+def attachment_actions(tenant: utils.Tenant, ticket_id: str):
+    """
+    Performs a few operations with the attachment connector to show what operations
+    are supported by the Synqly API
+    """
+    # Use the README as an example file to attach
+    file = open(current_script.parents[0] / "README.md", "rb")
+    content = base64.b64encode(file.read())
+
+    # Create a new attachment
+    print("\nCreating attachment")
+    tenant.synqly_engine_client.ticketing.create_attachment(ticket_id=ticket_id,
+        request=engine.CreateAttachmentRequest(
+            file_name="README.md",
+            content=content,
+        ),
+    )
+    print("Added an attachment to ticket {}".format(ticket_id))
+
+    # Query attachment details using Synqly
+    print("\nQuerying attachment details")
+    attachments = tenant.synqly_engine_client.ticketing.list_attachments_metadata(ticket_id)
+    print("Retrieved attachment details: {}".format(attachments.result))
+
+    # Download the attachment
+    print("\nDownloading attachment")
+    download_response = tenant.synqly_engine_client.ticketing.download_attachment(
+        ticket_id=ticket_id, attachment_id=attachments.result[0].id)
+
+    # Write attachment contents to a file -- using /tmp so we don't clutter the repo
+    outfile = "/tmp/"+download_response.result.file_name
+    with open(outfile, "wb") as f:
+        f.write(base64.b64decode(download_response.result.content))
+    print("Downloaded attachment: {} and wrote its contents to {}".format(download_response.result.file_name, outfile))
 
 
 def create_sample_ticket(tenant: utils.Tenant, project_key: str, username: str):
