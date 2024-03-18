@@ -296,6 +296,7 @@ from .permissionset import (
 from .permissionset_base import Permissions
 from .role_base import AdhocRole, Resources, RoleAccounts, RoleId, RoleIntegrations, RoleName
 from .roles import (
+    BuiltinRoles,
     CreateRoleRequest,
     CreateRoleResponse,
     GetRoleResponse,
@@ -378,6 +379,7 @@ __all__ = [
     "Base",
     "BasicCredential",
     "BasicCredentialId",
+    "BuiltinRoles",
     "CapabilitiesActions",
     "CapabilitiesPermissions",
     "CapabilitiesProviderConfig",
