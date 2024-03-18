@@ -8,6 +8,7 @@ from ...core.api_error import ApiError
 from ...core.client_wrapper import AsyncClientWrapper, SyncClientWrapper
 from ...core.jsonable_encoder import jsonable_encoder
 from ...core.remove_none_from_dict import remove_none_from_dict
+from ...core.request_options import RequestOptions
 from ..common.errors.bad_request_error import BadRequestError
 from ..common.errors.forbidden_error import ForbiddenError
 from ..common.errors.not_found_error import NotFoundError
@@ -35,19 +36,42 @@ class TokensClient:
     def __init__(self, *, client_wrapper: SyncClientWrapper):
         self._client_wrapper = client_wrapper
 
-    def create_token(self, *, request: CreateTokenRequest) -> CreateTokenResponse:
+    def create_token(
+        self, *, request: CreateTokenRequest, request_options: typing.Optional[RequestOptions] = None
+    ) -> CreateTokenResponse:
         """
         Create a token restricted to specified resources and permission set. Tokens can only be reduced in scope, never expanded. Permissions are inherited from the token used to call this API. Permissions assigned to the new token will not be persisted, this is not a way to create roles.
 
         Parameters:
             - request: CreateTokenRequest.
+
+            - request_options: typing.Optional[RequestOptions]. Request-specific configuration.
         """
         _response = self._client_wrapper.httpx_client.request(
             "POST",
             urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", "v1/tokens/token"),
-            json=jsonable_encoder(request),
-            headers=self._client_wrapper.get_headers(),
-            timeout=60,
+            params=jsonable_encoder(
+                request_options.get("additional_query_parameters") if request_options is not None else None
+            ),
+            json=jsonable_encoder(request)
+            if request_options is None or request_options.get("additional_body_parameters") is None
+            else {
+                **jsonable_encoder(request),
+                **(jsonable_encoder(remove_none_from_dict(request_options.get("additional_body_parameters", {})))),
+            },
+            headers=jsonable_encoder(
+                remove_none_from_dict(
+                    {
+                        **self._client_wrapper.get_headers(),
+                        **(request_options.get("additional_headers", {}) if request_options is not None else {}),
+                    }
+                )
+            ),
+            timeout=request_options.get("timeout_in_seconds")
+            if request_options is not None and request_options.get("timeout_in_seconds") is not None
+            else 60,
+            retries=0,
+            max_retries=request_options.get("max_retries") if request_options is not None else 0,  # type: ignore
         )
         if 200 <= _response.status_code < 300:
             return pydantic.parse_obj_as(CreateTokenResponse, _response.json())  # type: ignore
@@ -71,8 +95,9 @@ class TokensClient:
         limit: typing.Optional[int] = None,
         start_after: typing.Optional[str] = None,
         end_before: typing.Optional[str] = None,
-        order: typing.Optional[typing.Union[str, typing.List[str]]] = None,
-        filter: typing.Optional[typing.Union[str, typing.List[str]]] = None,
+        order: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
+        filter: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
+        request_options: typing.Optional[RequestOptions] = None,
     ) -> ListTokensResponse:
         """
         Returns a list of all `RefreshToken` objects belonging to the Authorization Bearer
@@ -86,21 +111,46 @@ class TokensClient:
 
             - end_before: typing.Optional[str]. Return `Token` objects ending before this `name`.
 
-            - order: typing.Optional[typing.Union[str, typing.List[str]]]. Select a field to order the results by. Defaults to `name`. To control the direction of the sorting, append
-                                                                           `[asc]` or `[desc]` to the field name. For example, `name[desc]` will sort the results by `name` in descending order.
-                                                                           The ordering defaults to `asc` if not specified. May be used multiple times to order by multiple fields, and the
-                                                                           ordering is applied in the order the fields are specified.
-            - filter: typing.Optional[typing.Union[str, typing.List[str]]]. Filter results by this query. For more information on filtering, refer to our Filtering Guide. Defaults to no filter.
-                                                                            If used more than once, the queries are ANDed together.
+            - order: typing.Optional[typing.Union[str, typing.Sequence[str]]]. Select a field to order the results by. Defaults to `name`. To control the direction of the sorting, append
+                                                                               `[asc]` or `[desc]` to the field name. For example, `name[desc]` will sort the results by `name` in descending order.
+                                                                               The ordering defaults to `asc` if not specified. May be used multiple times to order by multiple fields, and the
+                                                                               ordering is applied in the order the fields are specified.
+            - filter: typing.Optional[typing.Union[str, typing.Sequence[str]]]. Filter results by this query. For more information on filtering, refer to our Filtering Guide. Defaults to no filter.
+                                                                                If used more than once, the queries are ANDed together.
+            - request_options: typing.Optional[RequestOptions]. Request-specific configuration.
         """
         _response = self._client_wrapper.httpx_client.request(
             "GET",
             urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", "v1/tokens"),
-            params=remove_none_from_dict(
-                {"limit": limit, "start_after": start_after, "end_before": end_before, "order": order, "filter": filter}
+            params=jsonable_encoder(
+                remove_none_from_dict(
+                    {
+                        "limit": limit,
+                        "start_after": start_after,
+                        "end_before": end_before,
+                        "order": order,
+                        "filter": filter,
+                        **(
+                            request_options.get("additional_query_parameters", {})
+                            if request_options is not None
+                            else {}
+                        ),
+                    }
+                )
             ),
-            headers=self._client_wrapper.get_headers(),
-            timeout=60,
+            headers=jsonable_encoder(
+                remove_none_from_dict(
+                    {
+                        **self._client_wrapper.get_headers(),
+                        **(request_options.get("additional_headers", {}) if request_options is not None else {}),
+                    }
+                )
+            ),
+            timeout=request_options.get("timeout_in_seconds")
+            if request_options is not None and request_options.get("timeout_in_seconds") is not None
+            else 60,
+            retries=0,
+            max_retries=request_options.get("max_retries") if request_options is not None else 0,  # type: ignore
         )
         if 200 <= _response.status_code < 300:
             return pydantic.parse_obj_as(ListTokensResponse, _response.json())  # type: ignore
@@ -116,7 +166,9 @@ class TokensClient:
             raise ApiError(status_code=_response.status_code, body=_response.text)
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
-    def get(self, refresh_token_id: TokenId) -> GetTokenResponse:
+    def get(
+        self, refresh_token_id: TokenId, *, request_options: typing.Optional[RequestOptions] = None
+    ) -> GetTokenResponse:
         """
         Returns the `RefreshToken` object matching `{tokenId}`. For more information on
         Tokens, refer to
@@ -124,12 +176,30 @@ class TokensClient:
 
         Parameters:
             - refresh_token_id: TokenId.
+
+            - request_options: typing.Optional[RequestOptions]. Request-specific configuration.
         """
         _response = self._client_wrapper.httpx_client.request(
             "GET",
-            urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", f"v1/tokens/{refresh_token_id}/info"),
-            headers=self._client_wrapper.get_headers(),
-            timeout=60,
+            urllib.parse.urljoin(
+                f"{self._client_wrapper.get_base_url()}/", f"v1/tokens/{jsonable_encoder(refresh_token_id)}/info"
+            ),
+            params=jsonable_encoder(
+                request_options.get("additional_query_parameters") if request_options is not None else None
+            ),
+            headers=jsonable_encoder(
+                remove_none_from_dict(
+                    {
+                        **self._client_wrapper.get_headers(),
+                        **(request_options.get("additional_headers", {}) if request_options is not None else {}),
+                    }
+                )
+            ),
+            timeout=request_options.get("timeout_in_seconds")
+            if request_options is not None and request_options.get("timeout_in_seconds") is not None
+            else 60,
+            retries=0,
+            max_retries=request_options.get("max_retries") if request_options is not None else 0,  # type: ignore
         )
         if 200 <= _response.status_code < 300:
             return pydantic.parse_obj_as(GetTokenResponse, _response.json())  # type: ignore
@@ -145,7 +215,9 @@ class TokensClient:
             raise ApiError(status_code=_response.status_code, body=_response.text)
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
-    def reset(self, owner_id: Id, refresh_token_id: TokenId) -> ResetTokenResponse:
+    def reset(
+        self, owner_id: Id, refresh_token_id: TokenId, *, request_options: typing.Optional[RequestOptions] = None
+    ) -> ResetTokenResponse:
         """
         This API can be used to reset `Organization` or `Integration` `RefreshTokens`.
         Resets the specified `RefreshToken` and expiration time, removes the secondary, and resets access and refresh tokens for the
@@ -156,14 +228,34 @@ class TokensClient:
             - owner_id: Id.
 
             - refresh_token_id: TokenId.
+
+            - request_options: typing.Optional[RequestOptions]. Request-specific configuration.
         """
         _response = self._client_wrapper.httpx_client.request(
             "PUT",
             urllib.parse.urljoin(
-                f"{self._client_wrapper.get_base_url()}/", f"v1/tokens/{owner_id}/{refresh_token_id}/reset"
+                f"{self._client_wrapper.get_base_url()}/",
+                f"v1/tokens/{jsonable_encoder(owner_id)}/{jsonable_encoder(refresh_token_id)}/reset",
             ),
-            headers=self._client_wrapper.get_headers(),
-            timeout=60,
+            params=jsonable_encoder(
+                request_options.get("additional_query_parameters") if request_options is not None else None
+            ),
+            json=jsonable_encoder(remove_none_from_dict(request_options.get("additional_body_parameters", {})))
+            if request_options is not None
+            else None,
+            headers=jsonable_encoder(
+                remove_none_from_dict(
+                    {
+                        **self._client_wrapper.get_headers(),
+                        **(request_options.get("additional_headers", {}) if request_options is not None else {}),
+                    }
+                )
+            ),
+            timeout=request_options.get("timeout_in_seconds")
+            if request_options is not None and request_options.get("timeout_in_seconds") is not None
+            else 60,
+            retries=0,
+            max_retries=request_options.get("max_retries") if request_options is not None else 0,  # type: ignore
         )
         if 200 <= _response.status_code < 300:
             return pydantic.parse_obj_as(ResetTokenResponse, _response.json())  # type: ignore
@@ -181,7 +273,9 @@ class TokensClient:
             raise ApiError(status_code=_response.status_code, body=_response.text)
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
-    def refresh(self, refresh_token_id: TokenId) -> RefreshTokenResponse:
+    def refresh(
+        self, refresh_token_id: TokenId, *, request_options: typing.Optional[RequestOptions] = None
+    ) -> RefreshTokenResponse:
         """
         Creates a new primary `TokenPair` object, setting the secondary `TokenPair`
         to the previous primary value. Call `/v1/removeSecondaryToken` to remove
@@ -189,12 +283,33 @@ class TokensClient:
 
         Parameters:
             - refresh_token_id: TokenId.
+
+            - request_options: typing.Optional[RequestOptions]. Request-specific configuration.
         """
         _response = self._client_wrapper.httpx_client.request(
             "PUT",
-            urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", f"v1/tokens/{refresh_token_id}/refresh"),
-            headers=self._client_wrapper.get_headers(),
-            timeout=60,
+            urllib.parse.urljoin(
+                f"{self._client_wrapper.get_base_url()}/", f"v1/tokens/{jsonable_encoder(refresh_token_id)}/refresh"
+            ),
+            params=jsonable_encoder(
+                request_options.get("additional_query_parameters") if request_options is not None else None
+            ),
+            json=jsonable_encoder(remove_none_from_dict(request_options.get("additional_body_parameters", {})))
+            if request_options is not None
+            else None,
+            headers=jsonable_encoder(
+                remove_none_from_dict(
+                    {
+                        **self._client_wrapper.get_headers(),
+                        **(request_options.get("additional_headers", {}) if request_options is not None else {}),
+                    }
+                )
+            ),
+            timeout=request_options.get("timeout_in_seconds")
+            if request_options is not None and request_options.get("timeout_in_seconds") is not None
+            else 60,
+            retries=0,
+            max_retries=request_options.get("max_retries") if request_options is not None else 0,  # type: ignore
         )
         if 200 <= _response.status_code < 300:
             return pydantic.parse_obj_as(RefreshTokenResponse, _response.json())  # type: ignore
@@ -212,19 +327,39 @@ class TokensClient:
             raise ApiError(status_code=_response.status_code, body=_response.text)
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
-    def remove_secondary(self, refresh_token_id: TokenId) -> None:
+    def remove_secondary(
+        self, refresh_token_id: TokenId, *, request_options: typing.Optional[RequestOptions] = None
+    ) -> None:
         """
         Deletes the secondary `TokenPair` for the `RefreshToken` object
         matching `{refreshTokenId}`.
 
         Parameters:
             - refresh_token_id: TokenId.
+
+            - request_options: typing.Optional[RequestOptions]. Request-specific configuration.
         """
         _response = self._client_wrapper.httpx_client.request(
             "DELETE",
-            urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", f"v1/tokens/{refresh_token_id}/secondary"),
-            headers=self._client_wrapper.get_headers(),
-            timeout=60,
+            urllib.parse.urljoin(
+                f"{self._client_wrapper.get_base_url()}/", f"v1/tokens/{jsonable_encoder(refresh_token_id)}/secondary"
+            ),
+            params=jsonable_encoder(
+                request_options.get("additional_query_parameters") if request_options is not None else None
+            ),
+            headers=jsonable_encoder(
+                remove_none_from_dict(
+                    {
+                        **self._client_wrapper.get_headers(),
+                        **(request_options.get("additional_headers", {}) if request_options is not None else {}),
+                    }
+                )
+            ),
+            timeout=request_options.get("timeout_in_seconds")
+            if request_options is not None and request_options.get("timeout_in_seconds") is not None
+            else 60,
+            retries=0,
+            max_retries=request_options.get("max_retries") if request_options is not None else 0,  # type: ignore
         )
         if 200 <= _response.status_code < 300:
             return
@@ -247,19 +382,42 @@ class AsyncTokensClient:
     def __init__(self, *, client_wrapper: AsyncClientWrapper):
         self._client_wrapper = client_wrapper
 
-    async def create_token(self, *, request: CreateTokenRequest) -> CreateTokenResponse:
+    async def create_token(
+        self, *, request: CreateTokenRequest, request_options: typing.Optional[RequestOptions] = None
+    ) -> CreateTokenResponse:
         """
         Create a token restricted to specified resources and permission set. Tokens can only be reduced in scope, never expanded. Permissions are inherited from the token used to call this API. Permissions assigned to the new token will not be persisted, this is not a way to create roles.
 
         Parameters:
             - request: CreateTokenRequest.
+
+            - request_options: typing.Optional[RequestOptions]. Request-specific configuration.
         """
         _response = await self._client_wrapper.httpx_client.request(
             "POST",
             urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", "v1/tokens/token"),
-            json=jsonable_encoder(request),
-            headers=self._client_wrapper.get_headers(),
-            timeout=60,
+            params=jsonable_encoder(
+                request_options.get("additional_query_parameters") if request_options is not None else None
+            ),
+            json=jsonable_encoder(request)
+            if request_options is None or request_options.get("additional_body_parameters") is None
+            else {
+                **jsonable_encoder(request),
+                **(jsonable_encoder(remove_none_from_dict(request_options.get("additional_body_parameters", {})))),
+            },
+            headers=jsonable_encoder(
+                remove_none_from_dict(
+                    {
+                        **self._client_wrapper.get_headers(),
+                        **(request_options.get("additional_headers", {}) if request_options is not None else {}),
+                    }
+                )
+            ),
+            timeout=request_options.get("timeout_in_seconds")
+            if request_options is not None and request_options.get("timeout_in_seconds") is not None
+            else 60,
+            retries=0,
+            max_retries=request_options.get("max_retries") if request_options is not None else 0,  # type: ignore
         )
         if 200 <= _response.status_code < 300:
             return pydantic.parse_obj_as(CreateTokenResponse, _response.json())  # type: ignore
@@ -283,8 +441,9 @@ class AsyncTokensClient:
         limit: typing.Optional[int] = None,
         start_after: typing.Optional[str] = None,
         end_before: typing.Optional[str] = None,
-        order: typing.Optional[typing.Union[str, typing.List[str]]] = None,
-        filter: typing.Optional[typing.Union[str, typing.List[str]]] = None,
+        order: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
+        filter: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
+        request_options: typing.Optional[RequestOptions] = None,
     ) -> ListTokensResponse:
         """
         Returns a list of all `RefreshToken` objects belonging to the Authorization Bearer
@@ -298,21 +457,46 @@ class AsyncTokensClient:
 
             - end_before: typing.Optional[str]. Return `Token` objects ending before this `name`.
 
-            - order: typing.Optional[typing.Union[str, typing.List[str]]]. Select a field to order the results by. Defaults to `name`. To control the direction of the sorting, append
-                                                                           `[asc]` or `[desc]` to the field name. For example, `name[desc]` will sort the results by `name` in descending order.
-                                                                           The ordering defaults to `asc` if not specified. May be used multiple times to order by multiple fields, and the
-                                                                           ordering is applied in the order the fields are specified.
-            - filter: typing.Optional[typing.Union[str, typing.List[str]]]. Filter results by this query. For more information on filtering, refer to our Filtering Guide. Defaults to no filter.
-                                                                            If used more than once, the queries are ANDed together.
+            - order: typing.Optional[typing.Union[str, typing.Sequence[str]]]. Select a field to order the results by. Defaults to `name`. To control the direction of the sorting, append
+                                                                               `[asc]` or `[desc]` to the field name. For example, `name[desc]` will sort the results by `name` in descending order.
+                                                                               The ordering defaults to `asc` if not specified. May be used multiple times to order by multiple fields, and the
+                                                                               ordering is applied in the order the fields are specified.
+            - filter: typing.Optional[typing.Union[str, typing.Sequence[str]]]. Filter results by this query. For more information on filtering, refer to our Filtering Guide. Defaults to no filter.
+                                                                                If used more than once, the queries are ANDed together.
+            - request_options: typing.Optional[RequestOptions]. Request-specific configuration.
         """
         _response = await self._client_wrapper.httpx_client.request(
             "GET",
             urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", "v1/tokens"),
-            params=remove_none_from_dict(
-                {"limit": limit, "start_after": start_after, "end_before": end_before, "order": order, "filter": filter}
+            params=jsonable_encoder(
+                remove_none_from_dict(
+                    {
+                        "limit": limit,
+                        "start_after": start_after,
+                        "end_before": end_before,
+                        "order": order,
+                        "filter": filter,
+                        **(
+                            request_options.get("additional_query_parameters", {})
+                            if request_options is not None
+                            else {}
+                        ),
+                    }
+                )
             ),
-            headers=self._client_wrapper.get_headers(),
-            timeout=60,
+            headers=jsonable_encoder(
+                remove_none_from_dict(
+                    {
+                        **self._client_wrapper.get_headers(),
+                        **(request_options.get("additional_headers", {}) if request_options is not None else {}),
+                    }
+                )
+            ),
+            timeout=request_options.get("timeout_in_seconds")
+            if request_options is not None and request_options.get("timeout_in_seconds") is not None
+            else 60,
+            retries=0,
+            max_retries=request_options.get("max_retries") if request_options is not None else 0,  # type: ignore
         )
         if 200 <= _response.status_code < 300:
             return pydantic.parse_obj_as(ListTokensResponse, _response.json())  # type: ignore
@@ -328,7 +512,9 @@ class AsyncTokensClient:
             raise ApiError(status_code=_response.status_code, body=_response.text)
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
-    async def get(self, refresh_token_id: TokenId) -> GetTokenResponse:
+    async def get(
+        self, refresh_token_id: TokenId, *, request_options: typing.Optional[RequestOptions] = None
+    ) -> GetTokenResponse:
         """
         Returns the `RefreshToken` object matching `{tokenId}`. For more information on
         Tokens, refer to
@@ -336,12 +522,30 @@ class AsyncTokensClient:
 
         Parameters:
             - refresh_token_id: TokenId.
+
+            - request_options: typing.Optional[RequestOptions]. Request-specific configuration.
         """
         _response = await self._client_wrapper.httpx_client.request(
             "GET",
-            urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", f"v1/tokens/{refresh_token_id}/info"),
-            headers=self._client_wrapper.get_headers(),
-            timeout=60,
+            urllib.parse.urljoin(
+                f"{self._client_wrapper.get_base_url()}/", f"v1/tokens/{jsonable_encoder(refresh_token_id)}/info"
+            ),
+            params=jsonable_encoder(
+                request_options.get("additional_query_parameters") if request_options is not None else None
+            ),
+            headers=jsonable_encoder(
+                remove_none_from_dict(
+                    {
+                        **self._client_wrapper.get_headers(),
+                        **(request_options.get("additional_headers", {}) if request_options is not None else {}),
+                    }
+                )
+            ),
+            timeout=request_options.get("timeout_in_seconds")
+            if request_options is not None and request_options.get("timeout_in_seconds") is not None
+            else 60,
+            retries=0,
+            max_retries=request_options.get("max_retries") if request_options is not None else 0,  # type: ignore
         )
         if 200 <= _response.status_code < 300:
             return pydantic.parse_obj_as(GetTokenResponse, _response.json())  # type: ignore
@@ -357,7 +561,9 @@ class AsyncTokensClient:
             raise ApiError(status_code=_response.status_code, body=_response.text)
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
-    async def reset(self, owner_id: Id, refresh_token_id: TokenId) -> ResetTokenResponse:
+    async def reset(
+        self, owner_id: Id, refresh_token_id: TokenId, *, request_options: typing.Optional[RequestOptions] = None
+    ) -> ResetTokenResponse:
         """
         This API can be used to reset `Organization` or `Integration` `RefreshTokens`.
         Resets the specified `RefreshToken` and expiration time, removes the secondary, and resets access and refresh tokens for the
@@ -368,14 +574,34 @@ class AsyncTokensClient:
             - owner_id: Id.
 
             - refresh_token_id: TokenId.
+
+            - request_options: typing.Optional[RequestOptions]. Request-specific configuration.
         """
         _response = await self._client_wrapper.httpx_client.request(
             "PUT",
             urllib.parse.urljoin(
-                f"{self._client_wrapper.get_base_url()}/", f"v1/tokens/{owner_id}/{refresh_token_id}/reset"
+                f"{self._client_wrapper.get_base_url()}/",
+                f"v1/tokens/{jsonable_encoder(owner_id)}/{jsonable_encoder(refresh_token_id)}/reset",
             ),
-            headers=self._client_wrapper.get_headers(),
-            timeout=60,
+            params=jsonable_encoder(
+                request_options.get("additional_query_parameters") if request_options is not None else None
+            ),
+            json=jsonable_encoder(remove_none_from_dict(request_options.get("additional_body_parameters", {})))
+            if request_options is not None
+            else None,
+            headers=jsonable_encoder(
+                remove_none_from_dict(
+                    {
+                        **self._client_wrapper.get_headers(),
+                        **(request_options.get("additional_headers", {}) if request_options is not None else {}),
+                    }
+                )
+            ),
+            timeout=request_options.get("timeout_in_seconds")
+            if request_options is not None and request_options.get("timeout_in_seconds") is not None
+            else 60,
+            retries=0,
+            max_retries=request_options.get("max_retries") if request_options is not None else 0,  # type: ignore
         )
         if 200 <= _response.status_code < 300:
             return pydantic.parse_obj_as(ResetTokenResponse, _response.json())  # type: ignore
@@ -393,7 +619,9 @@ class AsyncTokensClient:
             raise ApiError(status_code=_response.status_code, body=_response.text)
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
-    async def refresh(self, refresh_token_id: TokenId) -> RefreshTokenResponse:
+    async def refresh(
+        self, refresh_token_id: TokenId, *, request_options: typing.Optional[RequestOptions] = None
+    ) -> RefreshTokenResponse:
         """
         Creates a new primary `TokenPair` object, setting the secondary `TokenPair`
         to the previous primary value. Call `/v1/removeSecondaryToken` to remove
@@ -401,12 +629,33 @@ class AsyncTokensClient:
 
         Parameters:
             - refresh_token_id: TokenId.
+
+            - request_options: typing.Optional[RequestOptions]. Request-specific configuration.
         """
         _response = await self._client_wrapper.httpx_client.request(
             "PUT",
-            urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", f"v1/tokens/{refresh_token_id}/refresh"),
-            headers=self._client_wrapper.get_headers(),
-            timeout=60,
+            urllib.parse.urljoin(
+                f"{self._client_wrapper.get_base_url()}/", f"v1/tokens/{jsonable_encoder(refresh_token_id)}/refresh"
+            ),
+            params=jsonable_encoder(
+                request_options.get("additional_query_parameters") if request_options is not None else None
+            ),
+            json=jsonable_encoder(remove_none_from_dict(request_options.get("additional_body_parameters", {})))
+            if request_options is not None
+            else None,
+            headers=jsonable_encoder(
+                remove_none_from_dict(
+                    {
+                        **self._client_wrapper.get_headers(),
+                        **(request_options.get("additional_headers", {}) if request_options is not None else {}),
+                    }
+                )
+            ),
+            timeout=request_options.get("timeout_in_seconds")
+            if request_options is not None and request_options.get("timeout_in_seconds") is not None
+            else 60,
+            retries=0,
+            max_retries=request_options.get("max_retries") if request_options is not None else 0,  # type: ignore
         )
         if 200 <= _response.status_code < 300:
             return pydantic.parse_obj_as(RefreshTokenResponse, _response.json())  # type: ignore
@@ -424,19 +673,39 @@ class AsyncTokensClient:
             raise ApiError(status_code=_response.status_code, body=_response.text)
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
-    async def remove_secondary(self, refresh_token_id: TokenId) -> None:
+    async def remove_secondary(
+        self, refresh_token_id: TokenId, *, request_options: typing.Optional[RequestOptions] = None
+    ) -> None:
         """
         Deletes the secondary `TokenPair` for the `RefreshToken` object
         matching `{refreshTokenId}`.
 
         Parameters:
             - refresh_token_id: TokenId.
+
+            - request_options: typing.Optional[RequestOptions]. Request-specific configuration.
         """
         _response = await self._client_wrapper.httpx_client.request(
             "DELETE",
-            urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", f"v1/tokens/{refresh_token_id}/secondary"),
-            headers=self._client_wrapper.get_headers(),
-            timeout=60,
+            urllib.parse.urljoin(
+                f"{self._client_wrapper.get_base_url()}/", f"v1/tokens/{jsonable_encoder(refresh_token_id)}/secondary"
+            ),
+            params=jsonable_encoder(
+                request_options.get("additional_query_parameters") if request_options is not None else None
+            ),
+            headers=jsonable_encoder(
+                remove_none_from_dict(
+                    {
+                        **self._client_wrapper.get_headers(),
+                        **(request_options.get("additional_headers", {}) if request_options is not None else {}),
+                    }
+                )
+            ),
+            timeout=request_options.get("timeout_in_seconds")
+            if request_options is not None and request_options.get("timeout_in_seconds") is not None
+            else 60,
+            retries=0,
+            max_retries=request_options.get("max_retries") if request_options is not None else 0,  # type: ignore
         )
         if 200 <= _response.status_code < 300:
             return

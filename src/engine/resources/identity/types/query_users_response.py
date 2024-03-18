@@ -13,10 +13,15 @@ except ImportError:
 
 
 class QueryUsersResponse(pydantic.BaseModel):
-    result: typing.List[User] = pydantic.Field(
-        description="List of users in the identity provider, mapped to the OSCF User object."
-    )
-    cursor: str = pydantic.Field(description="Cursor to use to retrieve the next page of results")
+    result: typing.List[User] = pydantic.Field()
+    """
+    List of users in the identity provider, mapped to the OSCF User object.
+    """
+
+    cursor: str = pydantic.Field()
+    """
+    Cursor to use to retrieve the next page of results
+    """
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}
@@ -29,4 +34,5 @@ class QueryUsersResponse(pydantic.BaseModel):
     class Config:
         frozen = True
         smart_union = True
+        extra = pydantic.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}

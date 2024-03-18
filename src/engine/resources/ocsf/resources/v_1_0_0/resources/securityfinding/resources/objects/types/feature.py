@@ -16,9 +16,20 @@ class Feature(pydantic.BaseModel):
     The Feature object provides information about the software product feature that generated a specific event. It encompasses details related to the capabilities, components, user interface (UI) design, and performance upgrades associated with the feature.
     """
 
-    name: typing.Optional[str] = pydantic.Field(description="The name of the feature.")
-    uid: typing.Optional[str] = pydantic.Field(description="The unique identifier of the feature.")
-    version: typing.Optional[str] = pydantic.Field(description="The version of the feature.")
+    name: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    The name of the feature.
+    """
+
+    uid: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    The unique identifier of the feature.
+    """
+
+    version: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    The version of the feature.
+    """
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}
@@ -31,4 +42,5 @@ class Feature(pydantic.BaseModel):
     class Config:
         frozen = True
         smart_union = True
+        extra = pydantic.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}

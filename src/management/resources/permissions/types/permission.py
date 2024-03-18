@@ -15,16 +15,45 @@ except ImportError:
 
 
 class Permission(pydantic.BaseModel):
-    role_binding: typing.List[RoleName] = pydantic.Field(description="Roles granted to this token.")
-    adhoc_role: typing.Optional[AdhocRole] = pydantic.Field(description="Adhoc role granted to this token.")
-    resource_id: Id = pydantic.Field(description="ID of the resource that this permission grants access to.")
-    resource_type: str = pydantic.Field(
-        description='Type of the resource that this permission grants access to. Must be one of the following: "organization, "integration"'
-    )
-    parent_id: Id = pydantic.Field(description="Token parentId")
-    id: Id = pydantic.Field(description="Token Id")
-    organization_id: Id = pydantic.Field(description="Token organizationId")
-    member_id: Id = pydantic.Field(description="Token memberId")
+    role_binding: typing.List[RoleName] = pydantic.Field()
+    """
+    Roles granted to this token.
+    """
+
+    adhoc_role: typing.Optional[AdhocRole] = pydantic.Field(default=None)
+    """
+    Adhoc role granted to this token.
+    """
+
+    resource_id: Id = pydantic.Field()
+    """
+    ID of the resource that this permission grants access to.
+    """
+
+    resource_type: str = pydantic.Field()
+    """
+    Type of the resource that this permission grants access to. Must be one of the following: "organization, "integration"
+    """
+
+    parent_id: Id = pydantic.Field()
+    """
+    Token parentId
+    """
+
+    id: Id = pydantic.Field()
+    """
+    Token Id
+    """
+
+    organization_id: Id = pydantic.Field()
+    """
+    Token organizationId
+    """
+
+    member_id: Id = pydantic.Field()
+    """
+    Token memberId
+    """
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}
@@ -37,4 +66,5 @@ class Permission(pydantic.BaseModel):
     class Config:
         frozen = True
         smart_union = True
+        extra = pydantic.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}

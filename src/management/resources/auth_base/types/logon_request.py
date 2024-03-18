@@ -12,8 +12,15 @@ except ImportError:
 
 
 class LogonRequest(pydantic.BaseModel):
-    name: str = pydantic.Field(description="Email address identifying the member to initiate a session for.")
-    secret: str = pydantic.Field(description="Password of the member to initiate a session for.")
+    name: str = pydantic.Field()
+    """
+    Email address identifying the member to initiate a session for.
+    """
+
+    secret: str = pydantic.Field()
+    """
+    Password of the member to initiate a session for.
+    """
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}
@@ -26,4 +33,5 @@ class LogonRequest(pydantic.BaseModel):
     class Config:
         frozen = True
         smart_union = True
+        extra = pydantic.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}

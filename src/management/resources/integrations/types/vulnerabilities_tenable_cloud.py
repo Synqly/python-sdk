@@ -18,9 +18,10 @@ class VulnerabilitiesTenableCloud(pydantic.BaseModel):
     """
 
     credential: TenableCloudCredential
-    url: typing.Optional[str] = pydantic.Field(
-        description='URL for the Tenable Cloud API. This should be the base URL for the API, without any path components and must be HTTPS. If not provided, defaults to "https://cloud.tenable.com".'
-    )
+    url: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    URL for the Tenable Cloud API. This should be the base URL for the API, without any path components and must be HTTPS. If not provided, defaults to "https://cloud.tenable.com".
+    """
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}
@@ -33,4 +34,5 @@ class VulnerabilitiesTenableCloud(pydantic.BaseModel):
     class Config:
         frozen = True
         smart_union = True
+        extra = pydantic.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}

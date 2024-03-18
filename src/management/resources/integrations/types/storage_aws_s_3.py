@@ -19,14 +19,21 @@ class StorageAwsS3(pydantic.BaseModel):
     """
 
     credential: AwsS3Credential
-    bucket: str = pydantic.Field(description="Name of the s3 bucket where files are stored.")
+    bucket: str = pydantic.Field()
+    """
+    Name of the s3 bucket where files are stored.
+    """
+
     region: str
-    endpoint: typing.Optional[str] = pydantic.Field(
-        description="Endpoint used for connecting to the external service. If not provided, will connect to the default endpoint for the Provider."
-    )
-    transforms: typing.Optional[typing.List[TransformId]] = pydantic.Field(
-        description="Optional list of transformations used to modify requests before they are sent to the external service."
-    )
+    endpoint: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    Endpoint used for connecting to the external service. If not provided, will connect to the default endpoint for the Provider.
+    """
+
+    transforms: typing.Optional[typing.List[TransformId]] = pydantic.Field(default=None)
+    """
+    Optional list of transformations used to modify requests before they are sent to the external service.
+    """
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}
@@ -39,4 +46,5 @@ class StorageAwsS3(pydantic.BaseModel):
     class Config:
         frozen = True
         smart_union = True
+        extra = pydantic.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}

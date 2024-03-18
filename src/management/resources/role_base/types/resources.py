@@ -14,8 +14,8 @@ except ImportError:
 
 
 class Resources(pydantic.BaseModel):
-    accounts: typing.Optional[RoleAccounts]
-    integrations: typing.Optional[RoleIntegrations]
+    accounts: typing.Optional[RoleAccounts] = None
+    integrations: typing.Optional[RoleIntegrations] = None
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}
@@ -28,4 +28,5 @@ class Resources(pydantic.BaseModel):
     class Config:
         frozen = True
         smart_union = True
+        extra = pydantic.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}

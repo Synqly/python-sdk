@@ -16,13 +16,30 @@ class Enrichment(pydantic.BaseModel):
     The Enrichment object provides inline enrichment data for specific attributes of interest within an event. It serves as a mechanism to enhance or supplement the information associated with the event by adding additional relevant details or context.
     """
 
-    data: typing.Any = pydantic.Field(
-        description="The enrichment data associated with the attribute and value. The meaning of this data depends on the type the enrichment record."
-    )
-    name: str = pydantic.Field(description="The name of the attribute to which the enriched data pertains.")
-    provider: typing.Optional[str] = pydantic.Field(description="The enrichment data provider name.")
-    type: typing.Optional[str] = pydantic.Field(description="The enrichment type. For example: <code>location</code>.")
-    value: str = pydantic.Field(description="The value of the attribute to which the enriched data pertains.")
+    data: typing.Any = pydantic.Field()
+    """
+    The enrichment data associated with the attribute and value. The meaning of this data depends on the type the enrichment record.
+    """
+
+    name: str = pydantic.Field()
+    """
+    The name of the attribute to which the enriched data pertains.
+    """
+
+    provider: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    The enrichment data provider name.
+    """
+
+    type: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    The enrichment type. For example: <code>location</code>.
+    """
+
+    value: str = pydantic.Field()
+    """
+    The value of the attribute to which the enriched data pertains.
+    """
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}
@@ -35,4 +52,5 @@ class Enrichment(pydantic.BaseModel):
     class Config:
         frozen = True
         smart_union = True
+        extra = pydantic.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}

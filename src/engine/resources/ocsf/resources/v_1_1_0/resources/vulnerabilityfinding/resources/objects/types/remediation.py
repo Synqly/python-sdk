@@ -17,16 +17,25 @@ class Remediation(pydantic.BaseModel):
     The Remediation object describes the recommended remediation steps to address identified issue(s).
     """
 
-    desc: str = pydantic.Field(description="The description of the remediation strategy.")
-    kb_article_list: typing.Optional[typing.List[KbArticle]] = pydantic.Field(
-        description="A list of KB articles or patches related to an endpoint. A KB Article contains metadata that describes the patch or an update."
-    )
-    kb_articles: typing.Optional[typing.List[str]] = pydantic.Field(
-        description="The KB article/s related to the entity. A KB Article contains metadata that describes the patch or an update."
-    )
-    references: typing.Optional[typing.List[str]] = pydantic.Field(
-        description="A list of supporting URL/s, references that help describe the remediation strategy."
-    )
+    desc: str = pydantic.Field()
+    """
+    The description of the remediation strategy.
+    """
+
+    kb_article_list: typing.Optional[typing.List[KbArticle]] = pydantic.Field(default=None)
+    """
+    A list of KB articles or patches related to an endpoint. A KB Article contains metadata that describes the patch or an update.
+    """
+
+    kb_articles: typing.Optional[typing.List[str]] = pydantic.Field(default=None)
+    """
+    The KB article/s related to the entity. A KB Article contains metadata that describes the patch or an update.
+    """
+
+    references: typing.Optional[typing.List[str]] = pydantic.Field(default=None)
+    """
+    A list of supporting URL/s, references that help describe the remediation strategy.
+    """
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}
@@ -39,4 +48,5 @@ class Remediation(pydantic.BaseModel):
     class Config:
         frozen = True
         smart_union = True
+        extra = pydantic.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}

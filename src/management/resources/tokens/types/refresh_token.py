@@ -17,13 +17,30 @@ except ImportError:
 
 class RefreshToken(Base):
     id: TokenId
-    member_id: typing.Optional[Id] = pydantic.Field(description="Member Id")
-    expires: dt.datetime = pydantic.Field(description="Time when this token expires and can no longer be used again.")
-    token_ttl: str = pydantic.Field(description="Token time-to-live")
-    primary: TokenPair = pydantic.Field(description="Primary running access and refresh tokens")
-    secondary: typing.Optional[TokenPair] = pydantic.Field(
-        description="Temporary secondary TokenPair created after a RefreshToken operation"
-    )
+    member_id: typing.Optional[Id] = pydantic.Field(default=None)
+    """
+    Member Id
+    """
+
+    expires: dt.datetime = pydantic.Field()
+    """
+    Time when this token expires and can no longer be used again.
+    """
+
+    token_ttl: str = pydantic.Field()
+    """
+    Token time-to-live
+    """
+
+    primary: TokenPair = pydantic.Field()
+    """
+    Primary running access and refresh tokens
+    """
+
+    secondary: typing.Optional[TokenPair] = pydantic.Field(default=None)
+    """
+    Temporary secondary TokenPair created after a RefreshToken operation
+    """
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}
@@ -37,4 +54,5 @@ class RefreshToken(Base):
         frozen = True
         smart_union = True
         allow_population_by_field_name = True
+        extra = pydantic.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}

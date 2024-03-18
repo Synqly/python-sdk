@@ -17,14 +17,25 @@ except ImportError:
 
 class RoleDefinition(Base):
     id: RoleId
-    fullname: str = pydantic.Field(description="Full name of role")
-    description: typing.Optional[str] = pydantic.Field(
-        description="Description of the resources included in the role and permissions granted on those resources. Includes details of when to use this role along with the intended personas."
-    )
-    resources: typing.Optional[Resources] = pydantic.Field(
-        description="Selects the resources the permission set applies to."
-    )
-    permission_set: Permissions = pydantic.Field(description="Permission set for this role.")
+    fullname: str = pydantic.Field()
+    """
+    Full name of role
+    """
+
+    description: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    Description of the resources included in the role and permissions granted on those resources. Includes details of when to use this role along with the intended personas.
+    """
+
+    resources: typing.Optional[Resources] = pydantic.Field(default=None)
+    """
+    Selects the resources the permission set applies to.
+    """
+
+    permission_set: Permissions = pydantic.Field()
+    """
+    Permission set for this role.
+    """
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}
@@ -38,4 +49,5 @@ class RoleDefinition(Base):
         frozen = True
         smart_union = True
         allow_population_by_field_name = True
+        extra = pydantic.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}

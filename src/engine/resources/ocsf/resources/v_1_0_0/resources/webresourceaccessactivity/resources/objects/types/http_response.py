@@ -16,20 +16,35 @@ class HttpResponse(pydantic.BaseModel):
     The HTTP Response object contains detailed information about the response sent from a web server to the requester. It encompasses attributes and metadata that describe the response status, headers, body content, and other relevant information.
     """
 
-    code: int = pydantic.Field(description="The numeric code sent from the web server to the requester.")
-    content_type: typing.Optional[str] = pydantic.Field(
-        description="The request header that identifies the original <a target='_blank' href='https://www.iana.org/assignments/media-types/media-types.xhtml'>media type </a> of the resource (prior to any content encoding applied for sending)."
-    )
-    latency: typing.Optional[int] = pydantic.Field(
-        description="TODO: The HTTP response latency. In seconds, milliseconds, etc.?"
-    )
-    length: typing.Optional[int] = pydantic.Field(description="The HTTP response length, in number of bytes.")
-    message: typing.Optional[str] = pydantic.Field(
-        description="The description of the event, as defined by the event source."
-    )
-    status: typing.Optional[str] = pydantic.Field(
-        description="The response status. For example: Kubernetes responseStatus.status."
-    )
+    code: int = pydantic.Field()
+    """
+    The numeric code sent from the web server to the requester.
+    """
+
+    content_type: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    The request header that identifies the original <a target='_blank' href='https://www.iana.org/assignments/media-types/media-types.xhtml'>media type </a> of the resource (prior to any content encoding applied for sending).
+    """
+
+    latency: typing.Optional[int] = pydantic.Field(default=None)
+    """
+    TODO: The HTTP response latency. In seconds, milliseconds, etc.?
+    """
+
+    length: typing.Optional[int] = pydantic.Field(default=None)
+    """
+    The HTTP response length, in number of bytes.
+    """
+
+    message: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    The description of the event, as defined by the event source.
+    """
+
+    status: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    The response status. For example: Kubernetes responseStatus.status.
+    """
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}
@@ -42,4 +57,5 @@ class HttpResponse(pydantic.BaseModel):
     class Config:
         frozen = True
         smart_union = True
+        extra = pydantic.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}

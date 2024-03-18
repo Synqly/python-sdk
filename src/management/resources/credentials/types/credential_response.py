@@ -21,8 +21,16 @@ class CredentialResponse(Base):
     """
 
     id: CredentialId
-    account_id: AccountId = pydantic.Field(description="Account that manages this credential.")
-    fullname: str = pydantic.Field(description="Human friendly display name for this Organization.")
+    account_id: AccountId = pydantic.Field()
+    """
+    Account that manages this credential.
+    """
+
+    fullname: str = pydantic.Field()
+    """
+    Human friendly display name for this Organization.
+    """
+
     config: CredentialConfigNoSecret
 
     def json(self, **kwargs: typing.Any) -> str:
@@ -37,4 +45,5 @@ class CredentialResponse(Base):
         frozen = True
         smart_union = True
         allow_population_by_field_name = True
+        extra = pydantic.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}

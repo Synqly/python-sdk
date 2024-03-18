@@ -4,8 +4,6 @@ from __future__ import annotations
 
 import typing
 
-import typing_extensions
-
 from ...credentials.types.aws_credential import AwsCredential
 from ...credentials.types.aws_credential_id import AwsCredentialId
 
@@ -16,7 +14,7 @@ except ImportError:
 
 
 class AwsSecurityLakeCredential_Aws(AwsCredential):
-    type: typing_extensions.Literal["aws"]
+    type: typing.Literal["aws"]
 
     class Config:
         frozen = True
@@ -25,7 +23,7 @@ class AwsSecurityLakeCredential_Aws(AwsCredential):
 
 
 class AwsSecurityLakeCredential_AwsId(pydantic.BaseModel):
-    type: typing_extensions.Literal["aws_id"]
+    type: typing.Literal["aws_id"]
     value: AwsCredentialId
 
     class Config:

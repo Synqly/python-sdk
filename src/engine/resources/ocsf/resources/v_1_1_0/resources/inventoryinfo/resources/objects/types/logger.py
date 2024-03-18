@@ -19,35 +19,70 @@ class Logger(pydantic.BaseModel):
     The Logger object represents the device and product where events are stored with times for receipt and transmission. This may be at the source device where the event occurred, a remote scanning device, intermediate hops, or the ultimate destination.
     """
 
-    device: typing.Optional[Device] = pydantic.Field(description="The device where the events are logged.")
-    log_level: typing.Optional[str] = pydantic.Field(description="The audit level at which an event was generated.")
-    log_name: typing.Optional[str] = pydantic.Field(
-        description="The event log name. For example, syslog file name or Windows logging subsystem: Security."
-    )
-    log_provider: typing.Optional[str] = pydantic.Field(
-        description="The logging provider or logging service that logged the event. For example, Microsoft-Windows-Security-Auditing."
-    )
-    log_version: typing.Optional[str] = pydantic.Field(
-        description="The event log schema version that specifies the format of the original event. For example syslog version or Cisco Log Schema Version."
-    )
-    logged_time: typing.Optional[Timestamp] = pydantic.Field(
-        description="<p>The time when the logging system collected and logged the event.</p>This attribute is distinct from the event time in that event time typically contain the time extracted from the original event. Most of the time, these two times will be different."
-    )
-    logged_time_dt: typing.Optional[dt.datetime] = pydantic.Field(
-        description="<p>The time when the logging system collected and logged the event.</p>This attribute is distinct from the event time in that event time typically contain the time extracted from the original event. Most of the time, these two times will be different."
-    )
-    name: typing.Optional[str] = pydantic.Field(description="The name of the logging product instance.")
-    product: typing.Optional[Product] = pydantic.Field(
-        description="The product logging the event. This may be the event source product, a management server product, a scanning product, a SIEM, etc."
-    )
-    transmit_time: typing.Optional[Timestamp] = pydantic.Field(
-        description="The time when the event was transmitted from the logging device to it's next destination"
-    )
-    transmit_time_dt: typing.Optional[dt.datetime] = pydantic.Field(
-        description="The time when the event was transmitted from the logging device to it's next destination"
-    )
-    uid: typing.Optional[str] = pydantic.Field(description="The unique identifier of the logging product instance.")
-    version: typing.Optional[str] = pydantic.Field(description="The version of the logging product.")
+    device: typing.Optional[Device] = pydantic.Field(default=None)
+    """
+    The device where the events are logged.
+    """
+
+    log_level: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    The audit level at which an event was generated.
+    """
+
+    log_name: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    The event log name. For example, syslog file name or Windows logging subsystem: Security.
+    """
+
+    log_provider: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    The logging provider or logging service that logged the event. For example, Microsoft-Windows-Security-Auditing.
+    """
+
+    log_version: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    The event log schema version that specifies the format of the original event. For example syslog version or Cisco Log Schema Version.
+    """
+
+    logged_time: typing.Optional[Timestamp] = pydantic.Field(default=None)
+    """
+    <p>The time when the logging system collected and logged the event.</p>This attribute is distinct from the event time in that event time typically contain the time extracted from the original event. Most of the time, these two times will be different.
+    """
+
+    logged_time_dt: typing.Optional[dt.datetime] = pydantic.Field(default=None)
+    """
+    <p>The time when the logging system collected and logged the event.</p>This attribute is distinct from the event time in that event time typically contain the time extracted from the original event. Most of the time, these two times will be different.
+    """
+
+    name: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    The name of the logging product instance.
+    """
+
+    product: typing.Optional[Product] = pydantic.Field(default=None)
+    """
+    The product logging the event. This may be the event source product, a management server product, a scanning product, a SIEM, etc.
+    """
+
+    transmit_time: typing.Optional[Timestamp] = pydantic.Field(default=None)
+    """
+    The time when the event was transmitted from the logging device to it's next destination
+    """
+
+    transmit_time_dt: typing.Optional[dt.datetime] = pydantic.Field(default=None)
+    """
+    The time when the event was transmitted from the logging device to it's next destination
+    """
+
+    uid: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    The unique identifier of the logging product instance.
+    """
+
+    version: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    The version of the logging product.
+    """
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}
@@ -60,4 +95,5 @@ class Logger(pydantic.BaseModel):
     class Config:
         frozen = True
         smart_union = True
+        extra = pydantic.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}

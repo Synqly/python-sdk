@@ -16,10 +16,15 @@ class Remediation(pydantic.BaseModel):
     The Remediation object describes details about recommended remediation strategies.
     """
 
-    desc: typing.Optional[str] = pydantic.Field(description="The description of the remediation strategy.")
-    kb_articles: typing.Optional[typing.List[str]] = pydantic.Field(
-        description="The KB article/s related to the entity"
-    )
+    desc: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    The description of the remediation strategy.
+    """
+
+    kb_articles: typing.Optional[typing.List[str]] = pydantic.Field(default=None)
+    """
+    The KB article/s related to the entity
+    """
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}
@@ -32,4 +37,5 @@ class Remediation(pydantic.BaseModel):
     class Config:
         frozen = True
         smart_union = True
+        extra = pydantic.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}

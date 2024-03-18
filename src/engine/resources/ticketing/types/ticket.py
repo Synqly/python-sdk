@@ -20,18 +20,65 @@ class Ticket(Base):
     """
 
     id: TicketId
-    summary: str = pydantic.Field(description="Ticket summary.")
-    creator: typing.Optional[str] = pydantic.Field(description="User who created this ticket.")
-    assignee: typing.Optional[str] = pydantic.Field(description="Who ticket is assigned to.")
-    contact: typing.Optional[str] = pydantic.Field(description="Ticket contact information.")
-    description: typing.Optional[str] = pydantic.Field(description="Ticket description.")
-    priority: typing.Optional[Priority] = pydantic.Field(description="The priority of the Ticket")
-    due_date: typing.Optional[dt.datetime] = pydantic.Field(description="The ticket's due date.")
-    completion_date: typing.Optional[dt.datetime] = pydantic.Field(description="The ticket's complete date.")
-    status: typing.Optional[str] = pydantic.Field(description="The current status of the ticket.")
-    project: typing.Optional[str] = pydantic.Field(description="The ticket project.")
-    issue_type: typing.Optional[str] = pydantic.Field(description="The ticket's type.")
-    tags: typing.Optional[typing.List[str]] = pydantic.Field(description="Associate tags with Ticket")
+    summary: str = pydantic.Field()
+    """
+    Ticket summary.
+    """
+
+    creator: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    User who created this ticket.
+    """
+
+    assignee: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    Who ticket is assigned to.
+    """
+
+    contact: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    Ticket contact information.
+    """
+
+    description: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    Ticket description.
+    """
+
+    priority: typing.Optional[Priority] = pydantic.Field(default=None)
+    """
+    The priority of the Ticket
+    """
+
+    due_date: typing.Optional[dt.datetime] = pydantic.Field(default=None)
+    """
+    The ticket's due date.
+    """
+
+    completion_date: typing.Optional[dt.datetime] = pydantic.Field(default=None)
+    """
+    The ticket's complete date.
+    """
+
+    status: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    The current status of the ticket.
+    """
+
+    project: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    The ticket project.
+    """
+
+    issue_type: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    The ticket's type.
+    """
+
+    tags: typing.Optional[typing.List[str]] = pydantic.Field(default=None)
+    """
+    Associate tags with Ticket
+    """
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}
@@ -45,4 +92,5 @@ class Ticket(Base):
         frozen = True
         smart_union = True
         allow_population_by_field_name = True
+        extra = pydantic.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}

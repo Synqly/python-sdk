@@ -17,8 +17,16 @@ except ImportError:
 
 
 class LogonResponseResult(pydantic.BaseModel):
-    auth_code: AuthCode = pydantic.Field(description="Authentication result")
-    auth_msg: typing.Optional[str] = pydantic.Field(description="Authentication failure message")
+    auth_code: AuthCode = pydantic.Field()
+    """
+    Authentication result
+    """
+
+    auth_msg: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    Authentication failure message
+    """
+
     refresh_token_id: TokenId
     token: TokenPair
     organization: Organization
@@ -35,4 +43,5 @@ class LogonResponseResult(pydantic.BaseModel):
     class Config:
         frozen = True
         smart_union = True
+        extra = pydantic.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}

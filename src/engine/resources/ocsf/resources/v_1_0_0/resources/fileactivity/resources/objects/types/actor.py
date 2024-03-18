@@ -21,22 +21,35 @@ class Actor(pydantic.BaseModel):
     The Actor object contains details about the user, role, or process that initiated or performed a specific activity.
     """
 
-    authorizations: typing.Optional[typing.List[Authorization]] = pydantic.Field(
-        description="This object provides details such as authorization outcome, associated policies related to activity/event."
-    )
-    idp: typing.Optional[Idp] = pydantic.Field(
-        description="This object describes details about the Identity Provider used."
-    )
-    invoked_by: typing.Optional[str] = pydantic.Field(
-        description="The name of the service that invoked the activity as described in the event."
-    )
-    process: typing.Optional[Process] = pydantic.Field(description="The process that initiated the activity.")
-    session: typing.Optional[Session] = pydantic.Field(
-        description="The user session from which the activity was initiated."
-    )
-    user: typing.Optional[User] = pydantic.Field(
-        description="The user that initiated the activity or the user context from which the activity was initiated."
-    )
+    authorizations: typing.Optional[typing.List[Authorization]] = pydantic.Field(default=None)
+    """
+    This object provides details such as authorization outcome, associated policies related to activity/event.
+    """
+
+    idp: typing.Optional[Idp] = pydantic.Field(default=None)
+    """
+    This object describes details about the Identity Provider used.
+    """
+
+    invoked_by: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    The name of the service that invoked the activity as described in the event.
+    """
+
+    process: typing.Optional[Process] = pydantic.Field(default=None)
+    """
+    The process that initiated the activity.
+    """
+
+    session: typing.Optional[Session] = pydantic.Field(default=None)
+    """
+    The user session from which the activity was initiated.
+    """
+
+    user: typing.Optional[User] = pydantic.Field(default=None)
+    """
+    The user that initiated the activity or the user context from which the activity was initiated.
+    """
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}
@@ -49,4 +62,5 @@ class Actor(pydantic.BaseModel):
     class Config:
         frozen = True
         smart_union = True
+        extra = pydantic.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}

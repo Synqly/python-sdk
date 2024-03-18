@@ -18,12 +18,25 @@ class IdentityPingOne(pydantic.BaseModel):
     """
 
     credential: PingOneCredential
-    url: str = pydantic.Field(
-        description="URL for the PingOne API. This should be the base URL for the API, without any path components."
-    )
-    auth_url: str = pydantic.Field(description="The URL base for making authentication requests to PingOne.")
-    client_id: str = pydantic.Field(description="The client ID for the application set up as a worker.")
-    organization_id: str = pydantic.Field(description="The organization ID that the client app is a part of.")
+    url: str = pydantic.Field()
+    """
+    URL for the PingOne API. This should be the base URL for the API, without any path components.
+    """
+
+    auth_url: str = pydantic.Field()
+    """
+    The URL base for making authentication requests to PingOne.
+    """
+
+    client_id: str = pydantic.Field()
+    """
+    The client ID for the application set up as a worker.
+    """
+
+    organization_id: str = pydantic.Field()
+    """
+    The organization ID that the client app is a part of.
+    """
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}
@@ -36,4 +49,5 @@ class IdentityPingOne(pydantic.BaseModel):
     class Config:
         frozen = True
         smart_union = True
+        extra = pydantic.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}

@@ -18,9 +18,10 @@ class VulnerabilitiesRapid7InsightCloud(pydantic.BaseModel):
     """
 
     credential: Rapid7InsightCloudCredential
-    url: str = pydantic.Field(
-        description='URL for the Rapid7 API. This should be the base URL for the API, without any path components and must be HTTPS. For example, "https://us2.api.insight.rapid7.com".'
-    )
+    url: str = pydantic.Field()
+    """
+    URL for the Rapid7 API. This should be the base URL for the API, without any path components and must be HTTPS. For example, "https://us2.api.insight.rapid7.com".
+    """
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}
@@ -33,4 +34,5 @@ class VulnerabilitiesRapid7InsightCloud(pydantic.BaseModel):
     class Config:
         frozen = True
         smart_union = True
+        extra = pydantic.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}

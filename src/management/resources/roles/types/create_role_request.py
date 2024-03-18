@@ -14,19 +14,30 @@ except ImportError:
 
 
 class CreateRoleRequest(pydantic.BaseModel):
-    name: typing.Optional[str] = pydantic.Field(
-        description="Unique short name for this Role (lowercase [a-z0-9_-], can be used in URLs). Also used for case insensitive duplicate name detection and default sort order. Defaults to RoleId if both name and fullname are not specified."
-    )
-    fullname: typing.Optional[str] = pydantic.Field(
-        description="Human friendly display name for this Role, will auto-generate 'name' field (if 'name' is not specified)"
-    )
-    description: typing.Optional[str] = pydantic.Field(
-        description="Description of the resources included in the role and permissions granted on those resources. Includes details of when to use this role along with the intended personas."
-    )
-    resources: typing.Optional[Resources] = pydantic.Field(
-        description="Selects the resources the permission set applies to."
-    )
-    permission_set: Permissions = pydantic.Field(description="Permission set for this role.")
+    name: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    Unique short name for this Role (lowercase [a-z0-9_-], can be used in URLs). Also used for case insensitive duplicate name detection and default sort order. Defaults to RoleId if both name and fullname are not specified.
+    """
+
+    fullname: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    Human friendly display name for this Role, will auto-generate 'name' field (if 'name' is not specified)
+    """
+
+    description: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    Description of the resources included in the role and permissions granted on those resources. Includes details of when to use this role along with the intended personas.
+    """
+
+    resources: typing.Optional[Resources] = pydantic.Field(default=None)
+    """
+    Selects the resources the permission set applies to.
+    """
+
+    permission_set: Permissions = pydantic.Field()
+    """
+    Permission set for this role.
+    """
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}
@@ -39,4 +50,5 @@ class CreateRoleRequest(pydantic.BaseModel):
     class Config:
         frozen = True
         smart_union = True
+        extra = pydantic.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}

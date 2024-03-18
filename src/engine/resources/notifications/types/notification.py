@@ -21,18 +21,65 @@ class Notification(Base):
     """
 
     id: NotificationId
-    priority: Priority = pydantic.Field(description="Notification priority")
-    notification_status: NotificationStatus = pydantic.Field(description="Notification status")
-    project: str = pydantic.Field(description="Notification project")
-    status: str = pydantic.Field(description="The current status of the notification.")
-    description: str = pydantic.Field(description="Notification description.")
-    summary: str = pydantic.Field(description="Notification summary.")
-    issue_type: str = pydantic.Field(description="The notification's type.")
-    creator: str = pydantic.Field(description="The user who created this notification.")
-    assignee: str = pydantic.Field(description="Who notification is assigned to.")
-    contact: str = pydantic.Field(description="The notification contact information.")
-    tags: typing.List[str] = pydantic.Field(description="Associate tags with Notification")
-    reference: str = pydantic.Field(description="External URL reference")
+    priority: Priority = pydantic.Field()
+    """
+    Notification priority
+    """
+
+    notification_status: NotificationStatus = pydantic.Field()
+    """
+    Notification status
+    """
+
+    project: str = pydantic.Field()
+    """
+    Notification project
+    """
+
+    status: str = pydantic.Field()
+    """
+    The current status of the notification.
+    """
+
+    description: str = pydantic.Field()
+    """
+    Notification description.
+    """
+
+    summary: str = pydantic.Field()
+    """
+    Notification summary.
+    """
+
+    issue_type: str = pydantic.Field()
+    """
+    The notification's type.
+    """
+
+    creator: str = pydantic.Field()
+    """
+    The user who created this notification.
+    """
+
+    assignee: str = pydantic.Field()
+    """
+    Who notification is assigned to.
+    """
+
+    contact: str = pydantic.Field()
+    """
+    The notification contact information.
+    """
+
+    tags: typing.List[str] = pydantic.Field()
+    """
+    Associate tags with Notification
+    """
+
+    reference: str = pydantic.Field()
+    """
+    External URL reference
+    """
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}
@@ -46,4 +93,5 @@ class Notification(Base):
         frozen = True
         smart_union = True
         allow_population_by_field_name = True
+        extra = pydantic.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}

@@ -17,12 +17,25 @@ class Reputation(pydantic.BaseModel):
     The Reputation object describes the reputation/risk score of an entity (e.g. device, user, domain).
     """
 
-    base_score: float = pydantic.Field(description="The reputation score as reported by the event source.")
-    provider: typing.Optional[str] = pydantic.Field(description="The provider of the reputation information.")
-    score: typing.Optional[str] = pydantic.Field(
-        description="The reputation score, normalized to the caption of the score_id value. In the case of 'Other', it is defined by the event source."
-    )
-    score_id: ReputationScoreId = pydantic.Field(description="The normalized reputation score identifier.")
+    base_score: float = pydantic.Field()
+    """
+    The reputation score as reported by the event source.
+    """
+
+    provider: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    The provider of the reputation information.
+    """
+
+    score: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    The reputation score, normalized to the caption of the score_id value. In the case of 'Other', it is defined by the event source.
+    """
+
+    score_id: ReputationScoreId = pydantic.Field()
+    """
+    The normalized reputation score identifier.
+    """
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}
@@ -35,4 +48,5 @@ class Reputation(pydantic.BaseModel):
     class Config:
         frozen = True
         smart_union = True
+        extra = pydantic.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}

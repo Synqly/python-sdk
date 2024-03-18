@@ -17,19 +17,40 @@ class WebResource(pydantic.BaseModel):
     The Web Resource object describes characteristics of a web resource that was affected by the activity/event.
     """
 
-    data: typing.Optional[typing.Any] = pydantic.Field(
-        description="Details of the web resource, e.g, <code>file</code> details, <code>search</code> results or application-defined resource."
-    )
-    desc: typing.Optional[str] = pydantic.Field(description="Description of the web resource.")
-    labels: typing.Optional[typing.List[str]] = pydantic.Field(
-        description="The list of labels/tags associated to a resource."
-    )
-    name: typing.Optional[str] = pydantic.Field(description="The name of the web resource.")
-    type: typing.Optional[str] = pydantic.Field(description="The web resource type as defined by the event source.")
-    uid: typing.Optional[str] = pydantic.Field(description="The unique identifier of the web resource.")
-    url_string: typing.Optional[UrlString] = pydantic.Field(
-        description="The URL pointing towards the source of the web resource."
-    )
+    data: typing.Optional[typing.Any] = pydantic.Field(default=None)
+    """
+    Details of the web resource, e.g, <code>file</code> details, <code>search</code> results or application-defined resource.
+    """
+
+    desc: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    Description of the web resource.
+    """
+
+    labels: typing.Optional[typing.List[str]] = pydantic.Field(default=None)
+    """
+    The list of labels/tags associated to a resource.
+    """
+
+    name: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    The name of the web resource.
+    """
+
+    type: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    The web resource type as defined by the event source.
+    """
+
+    uid: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    The unique identifier of the web resource.
+    """
+
+    url_string: typing.Optional[UrlString] = pydantic.Field(default=None)
+    """
+    The URL pointing towards the source of the web resource.
+    """
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}
@@ -42,4 +63,5 @@ class WebResource(pydantic.BaseModel):
     class Config:
         frozen = True
         smart_union = True
+        extra = pydantic.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}

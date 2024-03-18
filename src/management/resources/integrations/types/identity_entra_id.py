@@ -18,14 +18,25 @@ class IdentityEntraId(pydantic.BaseModel):
     """
 
     credential: EntraIdCredential
-    url: typing.Optional[str] = pydantic.Field(
-        description="Optional URL override for the Microsoft Graph API. This should be the base URL for the API without any path components."
-    )
-    client_id: str = pydantic.Field(description="Azure Client (Application) ID.")
-    tenant_id: str = pydantic.Field(description="Azure Directory (tenant) ID.")
-    scopes: typing.List[str] = pydantic.Field(
-        description="Any custom scopes. Defaults to the primary microsoft graph API default scope."
-    )
+    url: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    Optional URL override for the Microsoft Graph API. This should be the base URL for the API without any path components.
+    """
+
+    client_id: str = pydantic.Field()
+    """
+    Azure Client (Application) ID.
+    """
+
+    tenant_id: str = pydantic.Field()
+    """
+    Azure Directory (tenant) ID.
+    """
+
+    scopes: typing.List[str] = pydantic.Field()
+    """
+    Any custom scopes. Defaults to the primary microsoft graph API default scope.
+    """
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}
@@ -38,4 +49,5 @@ class IdentityEntraId(pydantic.BaseModel):
     class Config:
         frozen = True
         smart_union = True
+        extra = pydantic.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}

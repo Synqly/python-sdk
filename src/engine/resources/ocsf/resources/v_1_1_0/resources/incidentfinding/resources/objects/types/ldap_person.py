@@ -21,66 +21,125 @@ class LdapPerson(pydantic.BaseModel):
     The additional LDAP attributes that describe a person.
     """
 
-    cost_center: typing.Optional[str] = pydantic.Field(description="The cost center associated with the user.")
-    created_time: typing.Optional[Timestamp] = pydantic.Field(description="The timestamp when the user was created.")
-    created_time_dt: typing.Optional[dt.datetime] = pydantic.Field(
-        description="The timestamp when the user was created."
-    )
-    deleted_time: typing.Optional[Timestamp] = pydantic.Field(
-        description="The timestamp when the user was deleted. In Active Directory (AD), when a user is deleted they are moved to a temporary container and then removed after 30 days. So, this field can be populated even after a user is deleted for the next 30 days."
-    )
-    deleted_time_dt: typing.Optional[dt.datetime] = pydantic.Field(
-        description="The timestamp when the user was deleted. In Active Directory (AD), when a user is deleted they are moved to a temporary container and then removed after 30 days. So, this field can be populated even after a user is deleted for the next 30 days."
-    )
-    email_addrs: typing.Optional[typing.List[EmailAddress]] = pydantic.Field(
-        description="A list of additional email addresses for the user."
-    )
-    employee_uid: typing.Optional[str] = pydantic.Field(
-        description="The employee identifier assigned to the user by the organization."
-    )
-    given_name: typing.Optional[str] = pydantic.Field(description="The given or first name of the user.")
-    hire_time: typing.Optional[Timestamp] = pydantic.Field(
-        description="The timestamp when the user was or will be hired by the organization."
-    )
-    hire_time_dt: typing.Optional[dt.datetime] = pydantic.Field(
-        description="The timestamp when the user was or will be hired by the organization."
-    )
-    job_title: typing.Optional[str] = pydantic.Field(description="The user's job title.")
-    labels: typing.Optional[typing.List[str]] = pydantic.Field(
-        description="The labels associated with the user. For example in AD this could be the <code>userType</code>, <code>employeeType</code>. For example: <code>Member, Employee</code>."
-    )
-    last_login_time: typing.Optional[Timestamp] = pydantic.Field(description="The last time when the user logged in.")
-    last_login_time_dt: typing.Optional[dt.datetime] = pydantic.Field(
-        description="The last time when the user logged in."
-    )
-    ldap_cn: typing.Optional[str] = pydantic.Field(
-        description="The LDAP and X.500 <code>commonName</code> attribute, typically the full name of the person. For example, <code>John Doe</code>."
-    )
-    ldap_dn: typing.Optional[str] = pydantic.Field(
-        description="The X.500 Distinguished Name (DN) is a structured string that uniquely identifies an entry, such as a user, in an X.500 directory service For example, <code>cn=John Doe,ou=People,dc=example,dc=com</code>."
-    )
-    leave_time: typing.Optional[Timestamp] = pydantic.Field(
-        description="The timestamp when the user left or will be leaving the organization."
-    )
-    leave_time_dt: typing.Optional[dt.datetime] = pydantic.Field(
-        description="The timestamp when the user left or will be leaving the organization."
-    )
-    location: typing.Optional[Location] = pydantic.Field(
-        description="The geographical location associated with a user. This is typically the user's usual work location."
-    )
-    manager: typing.Optional[User] = pydantic.Field(
-        description="The user's manager. This helps in understanding an org hierarchy. This should only ever be populated once in an event. I.e. there should not be a manager's manager in an event."
-    )
-    modified_time: typing.Optional[Timestamp] = pydantic.Field(
-        description="The timestamp when the user entry was last modified."
-    )
-    modified_time_dt: typing.Optional[dt.datetime] = pydantic.Field(
-        description="The timestamp when the user entry was last modified."
-    )
-    office_location: typing.Optional[str] = pydantic.Field(
-        description="The primary office location associated with the user. This could be any string and isn't a specific address. For example, <code>South East Virtual</code>."
-    )
-    surname: typing.Optional[str] = pydantic.Field(description="The last or family name for the user.")
+    cost_center: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    The cost center associated with the user.
+    """
+
+    created_time: typing.Optional[Timestamp] = pydantic.Field(default=None)
+    """
+    The timestamp when the user was created.
+    """
+
+    created_time_dt: typing.Optional[dt.datetime] = pydantic.Field(default=None)
+    """
+    The timestamp when the user was created.
+    """
+
+    deleted_time: typing.Optional[Timestamp] = pydantic.Field(default=None)
+    """
+    The timestamp when the user was deleted. In Active Directory (AD), when a user is deleted they are moved to a temporary container and then removed after 30 days. So, this field can be populated even after a user is deleted for the next 30 days.
+    """
+
+    deleted_time_dt: typing.Optional[dt.datetime] = pydantic.Field(default=None)
+    """
+    The timestamp when the user was deleted. In Active Directory (AD), when a user is deleted they are moved to a temporary container and then removed after 30 days. So, this field can be populated even after a user is deleted for the next 30 days.
+    """
+
+    email_addrs: typing.Optional[typing.List[EmailAddress]] = pydantic.Field(default=None)
+    """
+    A list of additional email addresses for the user.
+    """
+
+    employee_uid: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    The employee identifier assigned to the user by the organization.
+    """
+
+    given_name: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    The given or first name of the user.
+    """
+
+    hire_time: typing.Optional[Timestamp] = pydantic.Field(default=None)
+    """
+    The timestamp when the user was or will be hired by the organization.
+    """
+
+    hire_time_dt: typing.Optional[dt.datetime] = pydantic.Field(default=None)
+    """
+    The timestamp when the user was or will be hired by the organization.
+    """
+
+    job_title: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    The user's job title.
+    """
+
+    labels: typing.Optional[typing.List[str]] = pydantic.Field(default=None)
+    """
+    The labels associated with the user. For example in AD this could be the <code>userType</code>, <code>employeeType</code>. For example: <code>Member, Employee</code>.
+    """
+
+    last_login_time: typing.Optional[Timestamp] = pydantic.Field(default=None)
+    """
+    The last time when the user logged in.
+    """
+
+    last_login_time_dt: typing.Optional[dt.datetime] = pydantic.Field(default=None)
+    """
+    The last time when the user logged in.
+    """
+
+    ldap_cn: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    The LDAP and X.500 <code>commonName</code> attribute, typically the full name of the person. For example, <code>John Doe</code>.
+    """
+
+    ldap_dn: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    The X.500 Distinguished Name (DN) is a structured string that uniquely identifies an entry, such as a user, in an X.500 directory service For example, <code>cn=John Doe,ou=People,dc=example,dc=com</code>.
+    """
+
+    leave_time: typing.Optional[Timestamp] = pydantic.Field(default=None)
+    """
+    The timestamp when the user left or will be leaving the organization.
+    """
+
+    leave_time_dt: typing.Optional[dt.datetime] = pydantic.Field(default=None)
+    """
+    The timestamp when the user left or will be leaving the organization.
+    """
+
+    location: typing.Optional[Location] = pydantic.Field(default=None)
+    """
+    The geographical location associated with a user. This is typically the user's usual work location.
+    """
+
+    manager: typing.Optional[User] = pydantic.Field(default=None)
+    """
+    The user's manager. This helps in understanding an org hierarchy. This should only ever be populated once in an event. I.e. there should not be a manager's manager in an event.
+    """
+
+    modified_time: typing.Optional[Timestamp] = pydantic.Field(default=None)
+    """
+    The timestamp when the user entry was last modified.
+    """
+
+    modified_time_dt: typing.Optional[dt.datetime] = pydantic.Field(default=None)
+    """
+    The timestamp when the user entry was last modified.
+    """
+
+    office_location: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    The primary office location associated with the user. This could be any string and isn't a specific address. For example, <code>South East Virtual</code>.
+    """
+
+    surname: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    The last or family name for the user.
+    """
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}
@@ -93,6 +152,7 @@ class LdapPerson(pydantic.BaseModel):
     class Config:
         frozen = True
         smart_union = True
+        extra = pydantic.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}
 
 

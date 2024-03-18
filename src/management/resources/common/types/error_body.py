@@ -14,9 +14,9 @@ except ImportError:
 
 class ErrorBody(pydantic.BaseModel):
     status: int
-    message: typing.Optional[str]
-    errors: typing.Optional[typing.List[str]]
-    parameters: typing.Optional[typing.List[ErrorParam]]
+    message: typing.Optional[str] = None
+    errors: typing.Optional[typing.List[str]] = None
+    parameters: typing.Optional[typing.List[ErrorParam]] = None
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}
@@ -29,4 +29,5 @@ class ErrorBody(pydantic.BaseModel):
     class Config:
         frozen = True
         smart_union = True
+        extra = pydantic.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}

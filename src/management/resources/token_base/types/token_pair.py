@@ -13,8 +13,15 @@ except ImportError:
 
 
 class TokenPair(pydantic.BaseModel):
-    access: Token = pydantic.Field(description="Access token contains the bearer secret")
-    refresh: Token = pydantic.Field(description="Refresh token used for RefreshToken API")
+    access: Token = pydantic.Field()
+    """
+    Access token contains the bearer secret
+    """
+
+    refresh: Token = pydantic.Field()
+    """
+    Refresh token used for RefreshToken API
+    """
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}
@@ -27,4 +34,5 @@ class TokenPair(pydantic.BaseModel):
     class Config:
         frozen = True
         smart_union = True
+        extra = pydantic.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}

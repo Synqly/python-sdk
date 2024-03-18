@@ -17,11 +17,30 @@ class Policy(pydantic.BaseModel):
     The Policy object describes the policies that are applicable. <p>Policy attributes provide traceability to the operational state of the security product at the time that the event was captured, facilitating forensics, troubleshooting, and policy tuning/adjustments.</p>
     """
 
-    desc: typing.Optional[str] = pydantic.Field(description="The description of the policy.")
-    group: typing.Optional[Group] = pydantic.Field(description="The policy group.")
-    name: typing.Optional[str] = pydantic.Field(description="The policy name. For example: <code>IAM Policy</code>.")
-    uid: typing.Optional[str] = pydantic.Field(description="A unique identifier of the policy instance.")
-    version: typing.Optional[str] = pydantic.Field(description="The policy version number.")
+    desc: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    The description of the policy.
+    """
+
+    group: typing.Optional[Group] = pydantic.Field(default=None)
+    """
+    The policy group.
+    """
+
+    name: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    The policy name. For example: <code>IAM Policy</code>.
+    """
+
+    uid: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    A unique identifier of the policy instance.
+    """
+
+    version: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    The policy version number.
+    """
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}
@@ -34,4 +53,5 @@ class Policy(pydantic.BaseModel):
     class Config:
         frozen = True
         smart_union = True
+        extra = pydantic.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}

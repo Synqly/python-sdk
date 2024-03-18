@@ -12,8 +12,15 @@ except ImportError:
 
 
 class ChangePasswordRequest(pydantic.BaseModel):
-    old_secret: str = pydantic.Field(description="Old member secret")
-    new_secret: str = pydantic.Field(description="New member secret")
+    old_secret: str = pydantic.Field()
+    """
+    Old member secret
+    """
+
+    new_secret: str = pydantic.Field()
+    """
+    New member secret
+    """
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}
@@ -26,4 +33,5 @@ class ChangePasswordRequest(pydantic.BaseModel):
     class Config:
         frozen = True
         smart_union = True
+        extra = pydantic.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}

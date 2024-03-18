@@ -14,16 +14,36 @@ except ImportError:
 
 
 class CreateMemberRequest(pydantic.BaseModel):
-    name: str = pydantic.Field(
-        description="Email name to use for this Member. Also used for duplicate detection and default sort order."
-    )
-    fullname: typing.Optional[str] = pydantic.Field(description="User's full display name")
-    nickname: typing.Optional[str] = pydantic.Field(description="User's nickname")
-    picture: typing.Optional[str] = pydantic.Field(description="Url of user's picture")
-    secret: str = pydantic.Field(description="Member secret")
-    role_binding: typing.Optional[typing.List[RoleName]] = pydantic.Field(
-        description="Roles granted to this member. Tokens inherit this access. Defaults to `member`."
-    )
+    name: str = pydantic.Field()
+    """
+    Email name to use for this Member. Also used for duplicate detection and default sort order.
+    """
+
+    fullname: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    User's full display name
+    """
+
+    nickname: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    User's nickname
+    """
+
+    picture: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    Url of user's picture
+    """
+
+    secret: str = pydantic.Field()
+    """
+    Member secret
+    """
+
+    role_binding: typing.Optional[typing.List[RoleName]] = pydantic.Field(default=None)
+    """
+    Roles granted to this member. Tokens inherit this access. Defaults to `member`.
+    """
+
     options: MemberOptions
 
     def json(self, **kwargs: typing.Any) -> str:
@@ -37,4 +57,5 @@ class CreateMemberRequest(pydantic.BaseModel):
     class Config:
         frozen = True
         smart_union = True
+        extra = pydantic.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}

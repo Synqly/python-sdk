@@ -12,9 +12,20 @@ except ImportError:
 
 
 class Base(pydantic.BaseModel):
-    name: str = pydantic.Field(description="Human-readable name for this resource")
-    created_at: dt.datetime = pydantic.Field(description="Time object was originally created")
-    updated_at: dt.datetime = pydantic.Field(description="Last time object was updated")
+    name: str = pydantic.Field()
+    """
+    Human-readable name for this resource
+    """
+
+    created_at: dt.datetime = pydantic.Field()
+    """
+    Time object was originally created
+    """
+
+    updated_at: dt.datetime = pydantic.Field()
+    """
+    Last time object was updated
+    """
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}
@@ -27,4 +38,5 @@ class Base(pydantic.BaseModel):
     class Config:
         frozen = True
         smart_union = True
+        extra = pydantic.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}

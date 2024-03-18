@@ -16,11 +16,30 @@ class Image(pydantic.BaseModel):
     The Image object provides a description of a specific Virtual Machine (VM) or Container image. Defined by D3FEND <a target='_blank' href='https://d3fend.mitre.org/dao/artifact/d3f:ContainerImage/'>d3f:ContainerImage</a>.
     """
 
-    labels: typing.Optional[typing.List[str]] = pydantic.Field(description="The image labels.")
-    name: typing.Optional[str] = pydantic.Field(description="The image name. For example: <code>elixir</code>.")
-    path: typing.Optional[str] = pydantic.Field(description="The full path to the image file.")
-    tag: typing.Optional[str] = pydantic.Field(description="The image tag. For example: <code>1.11-alpine</code>.")
-    uid: str = pydantic.Field(description="The unique image ID. For example: <code>77af4d6b9913</code>.")
+    labels: typing.Optional[typing.List[str]] = pydantic.Field(default=None)
+    """
+    The image labels.
+    """
+
+    name: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    The image name. For example: <code>elixir</code>.
+    """
+
+    path: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    The full path to the image file.
+    """
+
+    tag: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    The image tag. For example: <code>1.11-alpine</code>.
+    """
+
+    uid: str = pydantic.Field()
+    """
+    The unique image ID. For example: <code>77af4d6b9913</code>.
+    """
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}
@@ -33,4 +52,5 @@ class Image(pydantic.BaseModel):
     class Config:
         frozen = True
         smart_union = True
+        extra = pydantic.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}

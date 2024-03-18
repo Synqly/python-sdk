@@ -17,17 +17,40 @@ except ImportError:
 
 class Provider(pydantic.BaseModel):
     id: ProviderId
-    name: str = pydantic.Field(description="Name of the Provider.")
-    description: str = pydantic.Field(description="Description of what this Provider does.")
-    categories: typing.List[CategoryId] = pydantic.Field(description="Categories that this Provider implements.")
-    picture: typing.Optional[str] = pydantic.Field(description="URL of the icon representing this type of Provider.")
-    supported_operations: typing.Any = pydantic.Field(description="Operations that this Provider implements.")
-    credentials: typing.List[ProviderCredentialConfig] = pydantic.Field(
-        description="List of credential types that this Provider supports."
-    )
-    provider_config: typing.Dict[str, CapabilitiesProviderConfig] = pydantic.Field(
-        description="Details on the specific configuration options for this Provider."
-    )
+    name: str = pydantic.Field()
+    """
+    Name of the Provider.
+    """
+
+    description: str = pydantic.Field()
+    """
+    Description of what this Provider does.
+    """
+
+    categories: typing.List[CategoryId] = pydantic.Field()
+    """
+    Categories that this Provider implements.
+    """
+
+    picture: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    URL of the icon representing this type of Provider.
+    """
+
+    supported_operations: typing.Any = pydantic.Field()
+    """
+    Operations that this Provider implements.
+    """
+
+    credentials: typing.List[ProviderCredentialConfig] = pydantic.Field()
+    """
+    List of credential types that this Provider supports.
+    """
+
+    provider_config: typing.Dict[str, CapabilitiesProviderConfig] = pydantic.Field()
+    """
+    Details on the specific configuration options for this Provider.
+    """
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}
@@ -40,4 +63,5 @@ class Provider(pydantic.BaseModel):
     class Config:
         frozen = True
         smart_union = True
+        extra = pydantic.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}

@@ -13,12 +13,15 @@ except ImportError:
 
 
 class RoleAccounts(pydantic.BaseModel):
-    ids: typing.List[IntegrationId] = pydantic.Field(
-        description='List of account ids that this role definition grants access to. Use "\*" to grant access to all account ids.'
-    )
-    labels: typing.List[str] = pydantic.Field(
-        description="List of account labels this role definition grants access to."
-    )
+    ids: typing.List[IntegrationId] = pydantic.Field()
+    """
+    List of account ids that this role definition grants access to. Use "\*" to grant access to all account ids.
+    """
+
+    labels: typing.List[str] = pydantic.Field()
+    """
+    List of account labels this role definition grants access to.
+    """
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}
@@ -31,4 +34,5 @@ class RoleAccounts(pydantic.BaseModel):
     class Config:
         frozen = True
         smart_union = True
+        extra = pydantic.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}

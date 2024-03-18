@@ -18,19 +18,40 @@ class Module(pydantic.BaseModel):
     The Module object describes the load attributes of a module.
     """
 
-    base_address: typing.Optional[str] = pydantic.Field(description="The memory address where the module was loaded.")
-    file: typing.Optional[File] = pydantic.Field(description="The module file object.")
-    function_name: typing.Optional[str] = pydantic.Field(
-        description="The entry-point function of the module. The system calls the entry-point function whenever a process or thread loads or unloads the module."
-    )
-    load_type: typing.Optional[str] = pydantic.Field(
-        description="The load type, normalized to the caption of the load_type_id value. In the case of 'Other', it is defined by the event source. It describes how the module was loaded in memory."
-    )
-    load_type_id: ModuleLoadTypeId = pydantic.Field(
-        description="The normalized identifier of the load type. It identifies how the module was loaded in memory."
-    )
-    start_address: typing.Optional[str] = pydantic.Field(description="The start address of the execution.")
-    type: typing.Optional[str] = pydantic.Field(description="The module type.")
+    base_address: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    The memory address where the module was loaded.
+    """
+
+    file: typing.Optional[File] = pydantic.Field(default=None)
+    """
+    The module file object.
+    """
+
+    function_name: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    The entry-point function of the module. The system calls the entry-point function whenever a process or thread loads or unloads the module.
+    """
+
+    load_type: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    The load type, normalized to the caption of the load_type_id value. In the case of 'Other', it is defined by the event source. It describes how the module was loaded in memory.
+    """
+
+    load_type_id: ModuleLoadTypeId = pydantic.Field()
+    """
+    The normalized identifier of the load type. It identifies how the module was loaded in memory.
+    """
+
+    start_address: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    The start address of the execution.
+    """
+
+    type: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    The module type.
+    """
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}
@@ -43,4 +64,5 @@ class Module(pydantic.BaseModel):
     class Config:
         frozen = True
         smart_union = True
+        extra = pydantic.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}

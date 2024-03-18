@@ -16,12 +16,15 @@ class Tactic(pydantic.BaseModel):
     The Tactic object describes the tactic IDs and/or name that are associated with the attack technique, as defined by <a target='_blank' href='https://attack.mitre.org/wiki/ATT&CK_Matrix'>ATT&CK Matrix<sup>TM</sup></a>.
     """
 
-    name: typing.Optional[str] = pydantic.Field(
-        description="The tactic name that is associated with the attack technique, as defined by <a target='_blank' href='https://attack.mitre.org/wiki/ATT&CK_Matrix'>ATT&CK Matrix<sup>TM</sup></a>."
-    )
-    uid: typing.Optional[str] = pydantic.Field(
-        description="The tactic ID that is associated with the attack technique, as defined by <a target='_blank' href='https://attack.mitre.org/wiki/ATT&CK_Matrix'>ATT&CK Matrix<sup>TM</sup></a>."
-    )
+    name: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    The tactic name that is associated with the attack technique, as defined by <a target='_blank' href='https://attack.mitre.org/wiki/ATT&CK_Matrix'>ATT&CK Matrix<sup>TM</sup></a>.
+    """
+
+    uid: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    The tactic ID that is associated with the attack technique, as defined by <a target='_blank' href='https://attack.mitre.org/wiki/ATT&CK_Matrix'>ATT&CK Matrix<sup>TM</sup></a>.
+    """
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}
@@ -34,4 +37,5 @@ class Tactic(pydantic.BaseModel):
     class Config:
         frozen = True
         smart_union = True
+        extra = pydantic.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}

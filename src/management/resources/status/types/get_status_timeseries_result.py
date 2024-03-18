@@ -17,9 +17,21 @@ class GetStatusTimeseriesResult(pydantic.BaseModel):
     Status timeseries object
     """
 
-    start_time: dt.datetime = pydantic.Field(description="start time")
-    end_time: dt.datetime = pydantic.Field(description="end time")
-    interval: str = pydantic.Field(description="interval duration")
+    start_time: dt.datetime = pydantic.Field()
+    """
+    start time
+    """
+
+    end_time: dt.datetime = pydantic.Field()
+    """
+    end time
+    """
+
+    interval: str = pydantic.Field()
+    """
+    interval duration
+    """
+
     series: typing.List[TimeseriesResult]
 
     def json(self, **kwargs: typing.Any) -> str:
@@ -33,4 +45,5 @@ class GetStatusTimeseriesResult(pydantic.BaseModel):
     class Config:
         frozen = True
         smart_union = True
+        extra = pydantic.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}

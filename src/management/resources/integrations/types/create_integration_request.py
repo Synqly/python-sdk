@@ -13,13 +13,20 @@ except ImportError:
 
 
 class CreateIntegrationRequest(pydantic.BaseModel):
-    name: typing.Optional[str] = pydantic.Field(
-        description="Unique short name for this Integrations (lowercase [a-z0-9_-], can be used in URLs). Also used for case insensitive duplicate name detection and default sort order. Defaults to IntegrationId if both name and fullname are not specified."
-    )
-    fullname: typing.Optional[str] = pydantic.Field(
-        description="Human friendly display name for this Integrations, will auto-generate 'name' field (if 'name' is not specified)"
-    )
-    provider_config: ProviderConfig = pydantic.Field(description="Provider configuration for this Integration.")
+    name: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    Unique short name for this Integrations (lowercase [a-z0-9_-], can be used in URLs). Also used for case insensitive duplicate name detection and default sort order. Defaults to IntegrationId if both name and fullname are not specified.
+    """
+
+    fullname: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    Human friendly display name for this Integrations, will auto-generate 'name' field (if 'name' is not specified)
+    """
+
+    provider_config: ProviderConfig = pydantic.Field()
+    """
+    Provider configuration for this Integration.
+    """
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}
@@ -32,4 +39,5 @@ class CreateIntegrationRequest(pydantic.BaseModel):
     class Config:
         frozen = True
         smart_union = True
+        extra = pydantic.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}

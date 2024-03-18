@@ -17,21 +17,40 @@ class Response(pydantic.BaseModel):
     The Response Elements object describes characteristics of an API response.
     """
 
-    code: typing.Optional[int] = pydantic.Field(description="The numeric response sent to a request.")
-    containers: typing.Optional[typing.List[Container]] = pydantic.Field(
-        description="When working with containerized applications, the set of containers which write to the standard the output of a particular logging driver. For example, this may be the set of containers involved in handling api requests and responses for a containerized application."
-    )
-    data: typing.Optional[typing.Any] = pydantic.Field(
-        description="The additional data that is associated with the api response."
-    )
-    error: typing.Optional[str] = pydantic.Field(description="Error Code")
-    error_message: typing.Optional[str] = pydantic.Field(description="Error Message")
-    flags: typing.Optional[typing.List[str]] = pydantic.Field(
-        description="The list of communication flags, normalized to the captions of the flag_ids values. In the case of 'Other', they are defined by the event source."
-    )
-    message: typing.Optional[str] = pydantic.Field(
-        description="The description of the event/finding, as defined by the source."
-    )
+    code: typing.Optional[int] = pydantic.Field(default=None)
+    """
+    The numeric response sent to a request.
+    """
+
+    containers: typing.Optional[typing.List[Container]] = pydantic.Field(default=None)
+    """
+    When working with containerized applications, the set of containers which write to the standard the output of a particular logging driver. For example, this may be the set of containers involved in handling api requests and responses for a containerized application.
+    """
+
+    data: typing.Optional[typing.Any] = pydantic.Field(default=None)
+    """
+    The additional data that is associated with the api response.
+    """
+
+    error: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    Error Code
+    """
+
+    error_message: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    Error Message
+    """
+
+    flags: typing.Optional[typing.List[str]] = pydantic.Field(default=None)
+    """
+    The list of communication flags, normalized to the captions of the flag_ids values. In the case of 'Other', they are defined by the event source.
+    """
+
+    message: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    The description of the event/finding, as defined by the source.
+    """
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}
@@ -44,4 +63,5 @@ class Response(pydantic.BaseModel):
     class Config:
         frozen = True
         smart_union = True
+        extra = pydantic.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}

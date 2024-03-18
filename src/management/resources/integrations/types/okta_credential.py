@@ -4,8 +4,6 @@ from __future__ import annotations
 
 import typing
 
-import typing_extensions
-
 from ...credentials.types.o_auth_client_credential import OAuthClientCredential
 from ...credentials.types.o_auth_client_credential_id import OAuthClientCredentialId
 from ...credentials.types.token_credential import TokenCredential
@@ -18,7 +16,7 @@ except ImportError:
 
 
 class OktaCredential_Token(TokenCredential):
-    type: typing_extensions.Literal["token"]
+    type: typing.Literal["token"]
 
     class Config:
         frozen = True
@@ -27,7 +25,7 @@ class OktaCredential_Token(TokenCredential):
 
 
 class OktaCredential_TokenId(pydantic.BaseModel):
-    type: typing_extensions.Literal["token_id"]
+    type: typing.Literal["token_id"]
     value: TokenCredentialId
 
     class Config:
@@ -36,7 +34,7 @@ class OktaCredential_TokenId(pydantic.BaseModel):
 
 
 class OktaCredential_OAuthClient(OAuthClientCredential):
-    type: typing_extensions.Literal["o_auth_client"]
+    type: typing.Literal["o_auth_client"]
 
     class Config:
         frozen = True
@@ -45,7 +43,7 @@ class OktaCredential_OAuthClient(OAuthClientCredential):
 
 
 class OktaCredential_OAuthClientId(pydantic.BaseModel):
-    type: typing_extensions.Literal["o_auth_client_id"]
+    type: typing.Literal["o_auth_client_id"]
     value: OAuthClientCredentialId
 
     class Config:

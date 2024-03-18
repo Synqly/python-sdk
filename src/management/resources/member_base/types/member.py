@@ -18,17 +18,34 @@ except ImportError:
 class Member(Base):
     id: MemberId
     state: State
-    last_logon: dt.datetime = pydantic.Field(description="Last logon time")
-    fullname: str = pydantic.Field(description="User's full display name")
-    nickname: str = pydantic.Field(description="User's nickname")
-    picture: str = pydantic.Field(description="Url of user's picture")
+    last_logon: dt.datetime = pydantic.Field()
+    """
+    Last logon time
+    """
+
+    fullname: str = pydantic.Field()
+    """
+    User's full display name
+    """
+
+    nickname: str = pydantic.Field()
+    """
+    User's nickname
+    """
+
+    picture: str = pydantic.Field()
+    """
+    Url of user's picture
+    """
+
     ttl: str
     token_ttl: str
     expires: dt.datetime
     pin_expires: dt.datetime
-    role_binding: typing.List[RoleName] = pydantic.Field(
-        description="Roles granted to this member. Tokens inherit this access."
-    )
+    role_binding: typing.List[RoleName] = pydantic.Field()
+    """
+    Roles granted to this member. Tokens inherit this access.
+    """
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}
@@ -42,4 +59,5 @@ class Member(Base):
         frozen = True
         smart_union = True
         allow_population_by_field_name = True
+        extra = pydantic.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}

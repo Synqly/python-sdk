@@ -18,11 +18,30 @@ class SinkAzureMonitorLogs(pydantic.BaseModel):
     """
 
     credential: AzureMonitorLogsCredential
-    url: str = pydantic.Field(description="URL of the Azure data collection endpoint.")
-    client_id: str = pydantic.Field(description="Azure Client (Application) ID.")
-    tenant_id: str = pydantic.Field(description="Azure Directory (tenant) ID.")
-    rule_id: str = pydantic.Field(description="Data Collection Rule immutable ID.")
-    stream_name: str = pydantic.Field(description="Name of the Data Collection Rule stream.")
+    url: str = pydantic.Field()
+    """
+    URL of the Azure data collection endpoint.
+    """
+
+    client_id: str = pydantic.Field()
+    """
+    Azure Client (Application) ID.
+    """
+
+    tenant_id: str = pydantic.Field()
+    """
+    Azure Directory (tenant) ID.
+    """
+
+    rule_id: str = pydantic.Field()
+    """
+    Data Collection Rule immutable ID.
+    """
+
+    stream_name: str = pydantic.Field()
+    """
+    Name of the Data Collection Rule stream.
+    """
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}
@@ -35,4 +54,5 @@ class SinkAzureMonitorLogs(pydantic.BaseModel):
     class Config:
         frozen = True
         smart_union = True
+        extra = pydantic.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}

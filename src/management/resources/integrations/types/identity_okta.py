@@ -18,9 +18,10 @@ class IdentityOkta(pydantic.BaseModel):
     """
 
     credential: OktaCredential
-    url: str = pydantic.Field(
-        description='URL for the Okta API. This should be the base URL for the API, without any path components and must be HTTPS. For example, "https://tenant.okta.com".'
-    )
+    url: str = pydantic.Field()
+    """
+    URL for the Okta API. This should be the base URL for the API, without any path components and must be HTTPS. For example, "https://tenant.okta.com".
+    """
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}
@@ -33,4 +34,5 @@ class IdentityOkta(pydantic.BaseModel):
     class Config:
         frozen = True
         smart_union = True
+        extra = pydantic.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}

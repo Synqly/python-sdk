@@ -18,12 +18,15 @@ class NotificationsSlack(pydantic.BaseModel):
     """
 
     credential: SlackCredential
-    channel: str = pydantic.Field(
-        description="The channel to send notifications to. Should be the ID of the desired channel."
-    )
-    url: typing.Optional[str] = pydantic.Field(
-        description='Optional URL override for the Slack API. This should include the full path to the API endpoint. Defaults to "https://slack.com_api_chat.postMessage".'
-    )
+    channel: str = pydantic.Field()
+    """
+    The channel to send notifications to. Should be the ID of the desired channel.
+    """
+
+    url: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    Optional URL override for the Slack API. This should include the full path to the API endpoint. Defaults to "https://slack.com_api_chat.postMessage".
+    """
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}
@@ -36,4 +39,5 @@ class NotificationsSlack(pydantic.BaseModel):
     class Config:
         frozen = True
         smart_union = True
+        extra = pydantic.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}

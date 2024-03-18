@@ -18,11 +18,30 @@ class StatusEvent(pydantic.BaseModel):
     Status event object
     """
 
-    account_id: AccountId = pydantic.Field(description="Account owner")
-    integration_id: IntegrationId = pydantic.Field(description="Integration object")
-    created_at: dt.datetime = pydantic.Field(description="Time created")
-    error: typing.Optional[str] = pydantic.Field(description="Error message")
-    request: int = pydantic.Field(description="Request number")
+    account_id: AccountId = pydantic.Field()
+    """
+    Account owner
+    """
+
+    integration_id: IntegrationId = pydantic.Field()
+    """
+    Integration object
+    """
+
+    created_at: dt.datetime = pydantic.Field()
+    """
+    Time created
+    """
+
+    error: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    Error message
+    """
+
+    request: int = pydantic.Field()
+    """
+    Request number
+    """
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}
@@ -35,4 +54,5 @@ class StatusEvent(pydantic.BaseModel):
     class Config:
         frozen = True
         smart_union = True
+        extra = pydantic.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}

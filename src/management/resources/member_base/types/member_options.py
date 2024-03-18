@@ -13,15 +13,20 @@ except ImportError:
 
 
 class MemberOptions(pydantic.BaseModel):
-    ttl: str = pydantic.Field(
-        description="Optional member time-to-live duration. After a member expires, system requires a change password to re-enable member. Minimum 1 day, Maximum 1 year, Default 180 days."
-    )
-    options: typing.List[Options] = pydantic.Field(
-        description='Options: "expired" will force change password on first logon.'
-    )
-    token_ttl: str = pydantic.Field(
-        description="Optional token time-to-live duration. Tokens are created for this member with this duration as their TTL. Minimum 10 miniutes, Maximum 1 week, Defaults 1 hour."
-    )
+    ttl: str = pydantic.Field()
+    """
+    Optional member time-to-live duration. After a member expires, system requires a change password to re-enable member. Minimum 1 day, Maximum 1 year, Default 180 days.
+    """
+
+    options: typing.List[Options] = pydantic.Field()
+    """
+    Options: "expired" will force change password on first logon.
+    """
+
+    token_ttl: str = pydantic.Field()
+    """
+    Optional token time-to-live duration. Tokens are created for this member with this duration as their TTL. Minimum 10 miniutes, Maximum 1 week, Defaults 1 hour.
+    """
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}
@@ -34,4 +39,5 @@ class MemberOptions(pydantic.BaseModel):
     class Config:
         frozen = True
         smart_union = True
+        extra = pydantic.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}

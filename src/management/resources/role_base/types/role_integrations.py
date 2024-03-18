@@ -13,9 +13,10 @@ except ImportError:
 
 
 class RoleIntegrations(pydantic.BaseModel):
-    categories: typing.List[CategoryId] = pydantic.Field(
-        description='List of categories ids that this role definition grants access to. Use "\*" to grant access to all category ids.'
-    )
+    categories: typing.List[CategoryId] = pydantic.Field()
+    """
+    List of categories ids that this role definition grants access to. Use "\*" to grant access to all category ids.
+    """
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}
@@ -28,4 +29,5 @@ class RoleIntegrations(pydantic.BaseModel):
     class Config:
         frozen = True
         smart_union = True
+        extra = pydantic.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}

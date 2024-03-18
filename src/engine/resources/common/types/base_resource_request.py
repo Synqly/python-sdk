@@ -12,7 +12,10 @@ except ImportError:
 
 
 class BaseResourceRequest(pydantic.BaseModel):
-    name: str = pydantic.Field(description="Human-readable name for this resource")
+    name: str = pydantic.Field()
+    """
+    Human-readable name for this resource
+    """
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}
@@ -25,4 +28,5 @@ class BaseResourceRequest(pydantic.BaseModel):
     class Config:
         frozen = True
         smart_union = True
+        extra = pydantic.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}

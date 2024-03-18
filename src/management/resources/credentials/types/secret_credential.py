@@ -16,7 +16,10 @@ class SecretCredential(pydantic.BaseModel):
     Secret value such as password or webhook url
     """
 
-    secret: str = pydantic.Field(description="Secret value")
+    secret: str = pydantic.Field()
+    """
+    Secret value
+    """
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}
@@ -29,4 +32,5 @@ class SecretCredential(pydantic.BaseModel):
     class Config:
         frozen = True
         smart_union = True
+        extra = pydantic.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}

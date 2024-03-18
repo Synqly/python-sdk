@@ -16,13 +16,30 @@ class Group(pydantic.BaseModel):
     The Group object represents a collection or association of entities, such as users, policies, or devices. It serves as a logical grouping mechanism to organize and manage entities with similar characteristics or permissions within a system or organization.
     """
 
-    desc: typing.Optional[str] = pydantic.Field(description="The group description.")
-    name: typing.Optional[str] = pydantic.Field(description="The group name.")
-    privileges: typing.Optional[typing.List[str]] = pydantic.Field(description="The group privileges.")
-    type: typing.Optional[str] = pydantic.Field(description="The type of the group or account.")
-    uid: typing.Optional[str] = pydantic.Field(
-        description="The unique identifier of the group. For example, for Windows events this is the security identifier (SID) of the group."
-    )
+    desc: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    The group description.
+    """
+
+    name: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    The group name.
+    """
+
+    privileges: typing.Optional[typing.List[str]] = pydantic.Field(default=None)
+    """
+    The group privileges.
+    """
+
+    type: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    The type of the group or account.
+    """
+
+    uid: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    The unique identifier of the group. For example, for Windows events this is the security identifier (SID) of the group.
+    """
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}
@@ -35,4 +52,5 @@ class Group(pydantic.BaseModel):
     class Config:
         frozen = True
         smart_union = True
+        extra = pydantic.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}

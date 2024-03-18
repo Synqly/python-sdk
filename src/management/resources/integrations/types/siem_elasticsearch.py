@@ -18,10 +18,15 @@ class SiemElasticsearch(pydantic.BaseModel):
     """
 
     credential: ElasticsearchCredential
-    url: str = pydantic.Field(
-        description='URL for the Elasticsearch API. This should be the base URL for the API, without any path components and must be HTTPS. For example, "https://tenant.elastic.com".'
-    )
-    index: str = pydantic.Field(description="Elasticsearch index to send events to.")
+    url: str = pydantic.Field()
+    """
+    URL for the Elasticsearch API. This should be the base URL for the API, without any path components and must be HTTPS. For example, "https://tenant.elastic.com".
+    """
+
+    index: str = pydantic.Field()
+    """
+    Elasticsearch index to send events to.
+    """
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}
@@ -34,4 +39,5 @@ class SiemElasticsearch(pydantic.BaseModel):
     class Config:
         frozen = True
         smart_union = True
+        extra = pydantic.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}

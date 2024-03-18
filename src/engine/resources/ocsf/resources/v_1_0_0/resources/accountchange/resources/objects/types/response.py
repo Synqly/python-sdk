@@ -16,15 +16,30 @@ class Response(pydantic.BaseModel):
     The Response Elements object describes characteristics of an API response.
     """
 
-    code: typing.Optional[int] = pydantic.Field(description="The numeric response sent to a request.")
-    error: typing.Optional[str] = pydantic.Field(description="Error Code")
-    error_message: typing.Optional[str] = pydantic.Field(description="Error Message")
-    flags: typing.Optional[typing.List[str]] = pydantic.Field(
-        description="The list of communication flags, normalized to the captions of the flag_ids values. In the case of 'Other', they are defined by the event source."
-    )
-    message: typing.Optional[str] = pydantic.Field(
-        description="The description of the event, as defined by the event source."
-    )
+    code: typing.Optional[int] = pydantic.Field(default=None)
+    """
+    The numeric response sent to a request.
+    """
+
+    error: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    Error Code
+    """
+
+    error_message: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    Error Message
+    """
+
+    flags: typing.Optional[typing.List[str]] = pydantic.Field(default=None)
+    """
+    The list of communication flags, normalized to the captions of the flag_ids values. In the case of 'Other', they are defined by the event source.
+    """
+
+    message: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    The description of the event, as defined by the event source.
+    """
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}
@@ -37,4 +52,5 @@ class Response(pydantic.BaseModel):
     class Config:
         frozen = True
         smart_union = True
+        extra = pydantic.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}

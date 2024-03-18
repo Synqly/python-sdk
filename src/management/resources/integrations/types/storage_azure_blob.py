@@ -19,10 +19,15 @@ class StorageAzureBlob(pydantic.BaseModel):
     """
 
     credential: AzureBlobCredential
-    bucket: str = pydantic.Field(description="Name of the blob container where files are stored.")
-    transforms: typing.Optional[typing.List[TransformId]] = pydantic.Field(
-        description="Optional list of transformations used to modify requests before they are sent to the external service."
-    )
+    bucket: str = pydantic.Field()
+    """
+    Name of the blob container where files are stored.
+    """
+
+    transforms: typing.Optional[typing.List[TransformId]] = pydantic.Field(default=None)
+    """
+    Optional list of transformations used to modify requests before they are sent to the external service.
+    """
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}
@@ -35,4 +40,5 @@ class StorageAzureBlob(pydantic.BaseModel):
     class Config:
         frozen = True
         smart_union = True
+        extra = pydantic.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}

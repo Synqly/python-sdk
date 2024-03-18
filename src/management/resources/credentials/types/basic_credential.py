@@ -16,8 +16,15 @@ class BasicCredential(pydantic.BaseModel):
     Username and secret used to authenticate with an external service.
     """
 
-    username: str = pydantic.Field(description="Username value for authentication")
-    secret: str = pydantic.Field(description="Secret value for authentication")
+    username: str = pydantic.Field()
+    """
+    Username value for authentication
+    """
+
+    secret: str = pydantic.Field()
+    """
+    Secret value for authentication
+    """
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}
@@ -30,4 +37,5 @@ class BasicCredential(pydantic.BaseModel):
     class Config:
         frozen = True
         smart_union = True
+        extra = pydantic.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}

@@ -18,11 +18,20 @@ class Attack(pydantic.BaseModel):
     The Attack object describes the technique and associated tactics related to an attack. See <a target='_blank' href='https://attack.mitre.org'>MITRE ATT&CK®</a>.
     """
 
-    tactics: typing.List[Tactic] = pydantic.Field(
-        description="The a list of tactic ID's/names that are associated with the attack technique, as defined by <a target='_blank' href='https://attack.mitre.org/wiki/ATT&CK_Matrix'>ATT&CK Matrix<sup>TM</sup></a>."
-    )
-    technique: Technique = pydantic.Field(description="The attack technique.")
-    version: str = pydantic.Field(description="The ATT&CK Matrix version.")
+    tactics: typing.List[Tactic] = pydantic.Field()
+    """
+    The a list of tactic ID's/names that are associated with the attack technique, as defined by <a target='_blank' href='https://attack.mitre.org/wiki/ATT&CK_Matrix'>ATT&CK Matrix<sup>TM</sup></a>.
+    """
+
+    technique: Technique = pydantic.Field()
+    """
+    The attack technique.
+    """
+
+    version: str = pydantic.Field()
+    """
+    The ATT&CK Matrix version.
+    """
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}
@@ -35,4 +44,5 @@ class Attack(pydantic.BaseModel):
     class Config:
         frozen = True
         smart_union = True
+        extra = pydantic.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}

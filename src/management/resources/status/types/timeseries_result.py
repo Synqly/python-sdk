@@ -16,11 +16,30 @@ class TimeseriesResult(pydantic.BaseModel):
     Status timeseries object
     """
 
-    created_at: dt.datetime = pydantic.Field(description="Interval time")
-    succeeded: int = pydantic.Field(description="Succeeded count")
-    failed: int = pydantic.Field(description="Failed count")
-    cpu_time: int = pydantic.Field(description="Cpu time in microseconds")
-    in_bytes: int = pydantic.Field(description="API input byte count")
+    created_at: dt.datetime = pydantic.Field()
+    """
+    Interval time
+    """
+
+    succeeded: int = pydantic.Field()
+    """
+    Succeeded count
+    """
+
+    failed: int = pydantic.Field()
+    """
+    Failed count
+    """
+
+    cpu_time: int = pydantic.Field()
+    """
+    Cpu time in microseconds
+    """
+
+    in_bytes: int = pydantic.Field()
+    """
+    API input byte count
+    """
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}
@@ -33,4 +52,5 @@ class TimeseriesResult(pydantic.BaseModel):
     class Config:
         frozen = True
         smart_union = True
+        extra = pydantic.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}

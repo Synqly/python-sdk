@@ -16,9 +16,10 @@ class SinkMock(pydantic.BaseModel):
     Configuration for the Synqly mock in-memory sink handler. This provider is for testing purposes only and does not retain events pushed to it.
     """
 
-    destination: typing.Optional[str] = pydantic.Field(
-        description="Name of the destination where events are stored. This property is unused."
-    )
+    destination: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    Name of the destination where events are stored. This property is unused.
+    """
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}
@@ -31,4 +32,5 @@ class SinkMock(pydantic.BaseModel):
     class Config:
         frozen = True
         smart_union = True
+        extra = pydantic.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}

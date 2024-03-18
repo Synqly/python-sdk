@@ -20,16 +20,35 @@ class HooksHttp(pydantic.BaseModel):
     """
 
     credential: HooksHttpCredential
-    url: str = pydantic.Field(description="URL of the endpoint used for connecting to the external service.")
-    filter: typing.Optional[str] = pydantic.Field(description="Optional webhook filter specification")
-    source_events: typing.List[str] = pydantic.Field(description="Events to hook or empty list for all events")
-    source_secret: typing.Optional[CredentialId] = pydantic.Field(description="Webhook verification secret")
-    target_secret: typing.Optional[CredentialId] = pydantic.Field(
-        description="Add optional webhook secure hash for verification"
-    )
-    transforms: typing.Optional[typing.List[TransformId]] = pydantic.Field(
-        description="Optional list of transformations used to modify the webhook responses."
-    )
+    url: str = pydantic.Field()
+    """
+    URL of the endpoint used for connecting to the external service.
+    """
+
+    filter: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    Optional webhook filter specification
+    """
+
+    source_events: typing.List[str] = pydantic.Field()
+    """
+    Events to hook or empty list for all events
+    """
+
+    source_secret: typing.Optional[CredentialId] = pydantic.Field(default=None)
+    """
+    Webhook verification secret
+    """
+
+    target_secret: typing.Optional[CredentialId] = pydantic.Field(default=None)
+    """
+    Add optional webhook secure hash for verification
+    """
+
+    transforms: typing.Optional[typing.List[TransformId]] = pydantic.Field(default=None)
+    """
+    Optional list of transformations used to modify the webhook responses.
+    """
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}
@@ -42,4 +61,5 @@ class HooksHttp(pydantic.BaseModel):
     class Config:
         frozen = True
         smart_union = True
+        extra = pydantic.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}

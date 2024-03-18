@@ -20,34 +20,55 @@ class Url(pydantic.BaseModel):
     The Uniform Resource Locator(URL) object describes the characteristics of a URL. Defined in <a target='_blank' href='https://datatracker.ietf.org/doc/html/rfc1738'>RFC 1738</a> and by D3FEND <a target='_blank' href='https://d3fend.mitre.org/dao/artifact/d3f:URL/'>d3f:URL</a>.
     """
 
-    categories: typing.Optional[typing.List[str]] = pydantic.Field(
-        description="The Website categorization names, as defined by <code>category_ids</code> enum values."
-    )
-    category_ids: typing.Optional[typing.List[UrlCategoryIds]] = pydantic.Field(
-        description="The Website categorization identifies."
-    )
-    hostname: typing.Optional[Hostname] = pydantic.Field(
-        description="The URL host as extracted from the URL. For example: <code>www.example.com</code> from <code>www.example.com/download/trouble</code>."
-    )
-    path: typing.Optional[str] = pydantic.Field(
-        description="The URL path as extracted from the URL. For example: <code>/download/trouble</code> from <code>www.example.com/download/trouble</code>."
-    )
-    port: typing.Optional[Port] = pydantic.Field(description="The URL port. For example: <code>80</code>.")
-    query_string: typing.Optional[str] = pydantic.Field(
-        description="The query portion of the URL. For example: the query portion of the URL <code>http://www.example.com/search?q=bad&sort=date</code> is <code>q=bad&sort=date</code>."
-    )
-    resource_type: typing.Optional[str] = pydantic.Field(
-        description="The context in which a resource was retrieved in a web request."
-    )
-    scheme: typing.Optional[str] = pydantic.Field(
-        description="The scheme portion of the URL. For example: <code>http</code>, <code>https</code>, <code>ftp</code>, or <code>sftp</code>."
-    )
-    subdomain: typing.Optional[str] = pydantic.Field(
-        description="The subdomain portion of the URL. For example: <code>sub</code> in <code>https://sub.example.com</code> or <code>sub2.sub1</code> in <code>https://sub2.sub1.example.com</code>."
-    )
-    url_string: typing.Optional[UrlString] = pydantic.Field(
-        description="The URL string. See RFC 1738. For example: <code>http://www.example.com/download/trouble.exe</code>. Note: The URL path should not populate the URL string."
-    )
+    categories: typing.Optional[typing.List[str]] = pydantic.Field(default=None)
+    """
+    The Website categorization names, as defined by <code>category_ids</code> enum values.
+    """
+
+    category_ids: typing.Optional[typing.List[UrlCategoryIds]] = pydantic.Field(default=None)
+    """
+    The Website categorization identifies.
+    """
+
+    hostname: typing.Optional[Hostname] = pydantic.Field(default=None)
+    """
+    The URL host as extracted from the URL. For example: <code>www.example.com</code> from <code>www.example.com/download/trouble</code>.
+    """
+
+    path: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    The URL path as extracted from the URL. For example: <code>/download/trouble</code> from <code>www.example.com/download/trouble</code>.
+    """
+
+    port: typing.Optional[Port] = pydantic.Field(default=None)
+    """
+    The URL port. For example: <code>80</code>.
+    """
+
+    query_string: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    The query portion of the URL. For example: the query portion of the URL <code>http://www.example.com/search?q=bad&sort=date</code> is <code>q=bad&sort=date</code>.
+    """
+
+    resource_type: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    The context in which a resource was retrieved in a web request.
+    """
+
+    scheme: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    The scheme portion of the URL. For example: <code>http</code>, <code>https</code>, <code>ftp</code>, or <code>sftp</code>.
+    """
+
+    subdomain: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    The subdomain portion of the URL. For example: <code>sub</code> in <code>https://sub.example.com</code> or <code>sub2.sub1</code> in <code>https://sub2.sub1.example.com</code>.
+    """
+
+    url_string: typing.Optional[UrlString] = pydantic.Field(default=None)
+    """
+    The URL string. See RFC 1738. For example: <code>http://www.example.com/download/trouble.exe</code>. Note: The URL path should not populate the URL string.
+    """
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}
@@ -60,4 +81,5 @@ class Url(pydantic.BaseModel):
     class Config:
         frozen = True
         smart_union = True
+        extra = pydantic.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}

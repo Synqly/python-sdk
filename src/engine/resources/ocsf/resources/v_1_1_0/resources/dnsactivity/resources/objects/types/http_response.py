@@ -17,23 +17,40 @@ class HttpResponse(pydantic.BaseModel):
     The HTTP Response object contains detailed information about the response sent from a web server to the requester. It encompasses attributes and metadata that describe the response status, headers, body content, and other relevant information.
     """
 
-    code: int = pydantic.Field(
-        description="The Hypertext Transfer Protocol (HTTP) status code returned from the web server to the client. For example, 200."
-    )
-    content_type: typing.Optional[str] = pydantic.Field(
-        description="The request header that identifies the original <a target='_blank' href='https://www.iana.org/assignments/media-types/media-types.xhtml'>media type </a> of the resource (prior to any content encoding applied for sending)."
-    )
-    http_headers: typing.Optional[typing.List[HttpHeader]] = pydantic.Field(
-        description="Additional HTTP headers of an HTTP request or response."
-    )
-    latency: typing.Optional[int] = pydantic.Field(description="The HTTP response latency measured in milliseconds.")
-    length: typing.Optional[int] = pydantic.Field(description="The HTTP response length, in number of bytes.")
-    message: typing.Optional[str] = pydantic.Field(
-        description="The description of the event/finding, as defined by the source."
-    )
-    status: typing.Optional[str] = pydantic.Field(
-        description="The response status. For example: A successful HTTP status of 'OK' which corresponds to a code of 200."
-    )
+    code: int = pydantic.Field()
+    """
+    The Hypertext Transfer Protocol (HTTP) status code returned from the web server to the client. For example, 200.
+    """
+
+    content_type: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    The request header that identifies the original <a target='_blank' href='https://www.iana.org/assignments/media-types/media-types.xhtml'>media type </a> of the resource (prior to any content encoding applied for sending).
+    """
+
+    http_headers: typing.Optional[typing.List[HttpHeader]] = pydantic.Field(default=None)
+    """
+    Additional HTTP headers of an HTTP request or response.
+    """
+
+    latency: typing.Optional[int] = pydantic.Field(default=None)
+    """
+    The HTTP response latency measured in milliseconds.
+    """
+
+    length: typing.Optional[int] = pydantic.Field(default=None)
+    """
+    The HTTP response length, in number of bytes.
+    """
+
+    message: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    The description of the event/finding, as defined by the source.
+    """
+
+    status: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    The response status. For example: A successful HTTP status of 'OK' which corresponds to a code of 200.
+    """
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}
@@ -46,4 +63,5 @@ class HttpResponse(pydantic.BaseModel):
     class Config:
         frozen = True
         smart_union = True
+        extra = pydantic.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}

@@ -20,21 +20,70 @@ class Job(pydantic.BaseModel):
     The Job object provides information about a scheduled job or task, including its name, command line, and state. It encompasses attributes that describe the properties and status of the scheduled job.
     """
 
-    cmd_line: typing.Optional[str] = pydantic.Field(description="The job command line.")
-    created_time: typing.Optional[Timestamp] = pydantic.Field(description="The time when the job was created.")
-    created_time_dt: typing.Optional[dt.datetime] = pydantic.Field(description="The time when the job was created.")
-    desc: typing.Optional[str] = pydantic.Field(description="The description of the job.")
-    file: File = pydantic.Field(description="The file that pertains to the job.")
-    last_run_time: typing.Optional[Timestamp] = pydantic.Field(description="The time when the job was last run.")
-    last_run_time_dt: typing.Optional[dt.datetime] = pydantic.Field(description="The time when the job was last run.")
-    name: str = pydantic.Field(description="The name of the job.")
-    next_run_time: typing.Optional[Timestamp] = pydantic.Field(description="The time when the job will next be run.")
-    next_run_time_dt: typing.Optional[dt.datetime] = pydantic.Field(
-        description="The time when the job will next be run."
-    )
-    run_state: typing.Optional[str] = pydantic.Field(description="The run state of the job.")
-    run_state_id: typing.Optional[JobRunStateId] = pydantic.Field(description="The run state ID of the job.")
-    user: typing.Optional[User] = pydantic.Field(description="The user that created the job.")
+    cmd_line: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    The job command line.
+    """
+
+    created_time: typing.Optional[Timestamp] = pydantic.Field(default=None)
+    """
+    The time when the job was created.
+    """
+
+    created_time_dt: typing.Optional[dt.datetime] = pydantic.Field(default=None)
+    """
+    The time when the job was created.
+    """
+
+    desc: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    The description of the job.
+    """
+
+    file: File = pydantic.Field()
+    """
+    The file that pertains to the job.
+    """
+
+    last_run_time: typing.Optional[Timestamp] = pydantic.Field(default=None)
+    """
+    The time when the job was last run.
+    """
+
+    last_run_time_dt: typing.Optional[dt.datetime] = pydantic.Field(default=None)
+    """
+    The time when the job was last run.
+    """
+
+    name: str = pydantic.Field()
+    """
+    The name of the job.
+    """
+
+    next_run_time: typing.Optional[Timestamp] = pydantic.Field(default=None)
+    """
+    The time when the job will next be run.
+    """
+
+    next_run_time_dt: typing.Optional[dt.datetime] = pydantic.Field(default=None)
+    """
+    The time when the job will next be run.
+    """
+
+    run_state: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    The run state of the job.
+    """
+
+    run_state_id: typing.Optional[JobRunStateId] = pydantic.Field(default=None)
+    """
+    The run state ID of the job.
+    """
+
+    user: typing.Optional[User] = pydantic.Field(default=None)
+    """
+    The user that created the job.
+    """
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}
@@ -47,4 +96,5 @@ class Job(pydantic.BaseModel):
     class Config:
         frozen = True
         smart_union = True
+        extra = pydantic.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}

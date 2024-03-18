@@ -4,8 +4,6 @@ from __future__ import annotations
 
 import typing
 
-import typing_extensions
-
 from .assets_armis_centrix import AssetsArmisCentrix
 from .hooks_http import HooksHttp
 from .identity_entra_id import IdentityEntraId
@@ -36,7 +34,7 @@ from .vulnerabilities_tenable_cloud import VulnerabilitiesTenableCloud
 
 
 class ProviderConfig_HooksHttp(HooksHttp):
-    type: typing_extensions.Literal["hooks_http"]
+    type: typing.Literal["hooks_http"]
 
     class Config:
         frozen = True
@@ -45,7 +43,7 @@ class ProviderConfig_HooksHttp(HooksHttp):
 
 
 class ProviderConfig_AssetsArmisCentrix(AssetsArmisCentrix):
-    type: typing_extensions.Literal["assets_armis_centrix"]
+    type: typing.Literal["assets_armis_centrix"]
 
     class Config:
         frozen = True
@@ -54,7 +52,7 @@ class ProviderConfig_AssetsArmisCentrix(AssetsArmisCentrix):
 
 
 class ProviderConfig_IdentityEntraId(IdentityEntraId):
-    type: typing_extensions.Literal["identity_entra_id"]
+    type: typing.Literal["identity_entra_id"]
 
     class Config:
         frozen = True
@@ -63,7 +61,7 @@ class ProviderConfig_IdentityEntraId(IdentityEntraId):
 
 
 class ProviderConfig_IdentityOkta(IdentityOkta):
-    type: typing_extensions.Literal["identity_okta"]
+    type: typing.Literal["identity_okta"]
 
     class Config:
         frozen = True
@@ -72,7 +70,7 @@ class ProviderConfig_IdentityOkta(IdentityOkta):
 
 
 class ProviderConfig_IdentityPingone(IdentityPingOne):
-    type: typing_extensions.Literal["identity_pingone"]
+    type: typing.Literal["identity_pingone"]
 
     class Config:
         frozen = True
@@ -81,7 +79,7 @@ class ProviderConfig_IdentityPingone(IdentityPingOne):
 
 
 class ProviderConfig_NotificationsJira(NotificationsJira):
-    type: typing_extensions.Literal["notifications_jira"]
+    type: typing.Literal["notifications_jira"]
 
     class Config:
         frozen = True
@@ -90,7 +88,7 @@ class ProviderConfig_NotificationsJira(NotificationsJira):
 
 
 class ProviderConfig_NotificationsMockNotifications(NotificationsMock):
-    type: typing_extensions.Literal["notifications_mock_notifications"]
+    type: typing.Literal["notifications_mock_notifications"]
 
     class Config:
         frozen = True
@@ -99,7 +97,7 @@ class ProviderConfig_NotificationsMockNotifications(NotificationsMock):
 
 
 class ProviderConfig_NotificationsSlack(NotificationsSlack):
-    type: typing_extensions.Literal["notifications_slack"]
+    type: typing.Literal["notifications_slack"]
 
     class Config:
         frozen = True
@@ -108,7 +106,7 @@ class ProviderConfig_NotificationsSlack(NotificationsSlack):
 
 
 class ProviderConfig_NotificationsTeams(NotificationsTeams):
-    type: typing_extensions.Literal["notifications_teams"]
+    type: typing.Literal["notifications_teams"]
 
     class Config:
         frozen = True
@@ -117,7 +115,7 @@ class ProviderConfig_NotificationsTeams(NotificationsTeams):
 
 
 class ProviderConfig_SiemElasticsearch(SiemElasticsearch):
-    type: typing_extensions.Literal["siem_elasticsearch"]
+    type: typing.Literal["siem_elasticsearch"]
 
     class Config:
         frozen = True
@@ -126,7 +124,7 @@ class ProviderConfig_SiemElasticsearch(SiemElasticsearch):
 
 
 class ProviderConfig_SiemSplunk(SiemSplunk):
-    type: typing_extensions.Literal["siem_splunk"]
+    type: typing.Literal["siem_splunk"]
 
     class Config:
         frozen = True
@@ -135,7 +133,7 @@ class ProviderConfig_SiemSplunk(SiemSplunk):
 
 
 class ProviderConfig_SiemMockSiem(SiemMock):
-    type: typing_extensions.Literal["siem_mock_siem"]
+    type: typing.Literal["siem_mock_siem"]
 
     class Config:
         frozen = True
@@ -144,7 +142,7 @@ class ProviderConfig_SiemMockSiem(SiemMock):
 
 
 class ProviderConfig_SinkAwsSecurityLake(SinkAwsSecurityLake):
-    type: typing_extensions.Literal["sink_aws_security_lake"]
+    type: typing.Literal["sink_aws_security_lake"]
 
     class Config:
         frozen = True
@@ -153,7 +151,7 @@ class ProviderConfig_SinkAwsSecurityLake(SinkAwsSecurityLake):
 
 
 class ProviderConfig_SinkAwsSqs(SinkAwsSqs):
-    type: typing_extensions.Literal["sink_aws_sqs"]
+    type: typing.Literal["sink_aws_sqs"]
 
     class Config:
         frozen = True
@@ -162,7 +160,7 @@ class ProviderConfig_SinkAwsSqs(SinkAwsSqs):
 
 
 class ProviderConfig_SinkAzureMonitorLogs(SinkAzureMonitorLogs):
-    type: typing_extensions.Literal["sink_azure_monitor_logs"]
+    type: typing.Literal["sink_azure_monitor_logs"]
 
     class Config:
         frozen = True
@@ -171,7 +169,7 @@ class ProviderConfig_SinkAzureMonitorLogs(SinkAzureMonitorLogs):
 
 
 class ProviderConfig_SinkMockSink(SinkMock):
-    type: typing_extensions.Literal["sink_mock_sink"]
+    type: typing.Literal["sink_mock_sink"]
 
     class Config:
         frozen = True
@@ -180,7 +178,7 @@ class ProviderConfig_SinkMockSink(SinkMock):
 
 
 class ProviderConfig_StorageAwsS3(StorageAwsS3):
-    type: typing_extensions.Literal["storage_aws_s3"]
+    type: typing.Literal["storage_aws_s3"]
 
     class Config:
         frozen = True
@@ -189,7 +187,7 @@ class ProviderConfig_StorageAwsS3(StorageAwsS3):
 
 
 class ProviderConfig_StorageAzureBlob(StorageAzureBlob):
-    type: typing_extensions.Literal["storage_azure_blob"]
+    type: typing.Literal["storage_azure_blob"]
 
     class Config:
         frozen = True
@@ -198,7 +196,7 @@ class ProviderConfig_StorageAzureBlob(StorageAzureBlob):
 
 
 class ProviderConfig_StorageGcs(StorageGcs):
-    type: typing_extensions.Literal["storage_gcs"]
+    type: typing.Literal["storage_gcs"]
 
     class Config:
         frozen = True
@@ -207,7 +205,7 @@ class ProviderConfig_StorageGcs(StorageGcs):
 
 
 class ProviderConfig_StorageMockStorage(StorageMock):
-    type: typing_extensions.Literal["storage_mock_storage"]
+    type: typing.Literal["storage_mock_storage"]
 
     class Config:
         frozen = True
@@ -216,7 +214,7 @@ class ProviderConfig_StorageMockStorage(StorageMock):
 
 
 class ProviderConfig_TicketingJira(TicketingJira):
-    type: typing_extensions.Literal["ticketing_jira"]
+    type: typing.Literal["ticketing_jira"]
 
     class Config:
         frozen = True
@@ -225,7 +223,7 @@ class ProviderConfig_TicketingJira(TicketingJira):
 
 
 class ProviderConfig_TicketingPagerduty(TicketingPagerDuty):
-    type: typing_extensions.Literal["ticketing_pagerduty"]
+    type: typing.Literal["ticketing_pagerduty"]
 
     class Config:
         frozen = True
@@ -234,7 +232,7 @@ class ProviderConfig_TicketingPagerduty(TicketingPagerDuty):
 
 
 class ProviderConfig_TicketingServicenow(TicketingServiceNow):
-    type: typing_extensions.Literal["ticketing_servicenow"]
+    type: typing.Literal["ticketing_servicenow"]
 
     class Config:
         frozen = True
@@ -243,7 +241,7 @@ class ProviderConfig_TicketingServicenow(TicketingServiceNow):
 
 
 class ProviderConfig_TicketingMockTicketing(TicketingMock):
-    type: typing_extensions.Literal["ticketing_mock_ticketing"]
+    type: typing.Literal["ticketing_mock_ticketing"]
 
     class Config:
         frozen = True
@@ -252,7 +250,7 @@ class ProviderConfig_TicketingMockTicketing(TicketingMock):
 
 
 class ProviderConfig_VulnerabilitiesRapid7InsightCloud(VulnerabilitiesRapid7InsightCloud):
-    type: typing_extensions.Literal["vulnerabilities_rapid7_insight_cloud"]
+    type: typing.Literal["vulnerabilities_rapid7_insight_cloud"]
 
     class Config:
         frozen = True
@@ -261,7 +259,7 @@ class ProviderConfig_VulnerabilitiesRapid7InsightCloud(VulnerabilitiesRapid7Insi
 
 
 class ProviderConfig_VulnerabilitiesTenableCloud(VulnerabilitiesTenableCloud):
-    type: typing_extensions.Literal["vulnerabilities_tenable_cloud"]
+    type: typing.Literal["vulnerabilities_tenable_cloud"]
 
     class Config:
         frozen = True
@@ -270,7 +268,7 @@ class ProviderConfig_VulnerabilitiesTenableCloud(VulnerabilitiesTenableCloud):
 
 
 class ProviderConfig_VulnerabilitiesQualysCloud(VulnerabilitiesQualysCloud):
-    type: typing_extensions.Literal["vulnerabilities_qualys_cloud"]
+    type: typing.Literal["vulnerabilities_qualys_cloud"]
 
     class Config:
         frozen = True

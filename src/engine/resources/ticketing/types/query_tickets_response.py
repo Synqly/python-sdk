@@ -13,8 +13,15 @@ except ImportError:
 
 
 class QueryTicketsResponse(pydantic.BaseModel):
-    result: typing.List[Ticket] = pydantic.Field(description="list of results")
-    cursor: str = pydantic.Field(description="Cursor position for subsequent searches")
+    result: typing.List[Ticket] = pydantic.Field()
+    """
+    list of results
+    """
+
+    cursor: str = pydantic.Field()
+    """
+    Cursor position for subsequent searches
+    """
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}
@@ -27,4 +34,5 @@ class QueryTicketsResponse(pydantic.BaseModel):
     class Config:
         frozen = True
         smart_union = True
+        extra = pydantic.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}

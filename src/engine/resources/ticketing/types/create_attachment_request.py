@@ -12,8 +12,15 @@ except ImportError:
 
 
 class CreateAttachmentRequest(pydantic.BaseModel):
-    file_name: str = pydantic.Field(description="The name of the file.")
-    content: str = pydantic.Field(description="File contents")
+    file_name: str = pydantic.Field()
+    """
+    The name of the file.
+    """
+
+    content: str = pydantic.Field()
+    """
+    File contents
+    """
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}
@@ -26,4 +33,5 @@ class CreateAttachmentRequest(pydantic.BaseModel):
     class Config:
         frozen = True
         smart_union = True
+        extra = pydantic.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}

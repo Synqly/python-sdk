@@ -17,14 +17,25 @@ class Account(pydantic.BaseModel):
     The Account object contains details about the account that initiated or performed a specific activity within a system or application.
     """
 
-    name: typing.Optional[str] = pydantic.Field(description="The name of the account (e.g. GCP Account Name).")
-    type: typing.Optional[str] = pydantic.Field(
-        description="The account type, normalized to the caption of 'account_type_id'. In the case of 'Other', it is defined by the event source."
-    )
-    type_id: typing.Optional[AccountTypeId] = pydantic.Field(description="The normalized account type identifier.")
-    uid: typing.Optional[str] = pydantic.Field(
-        description="The unique identifier of the account (e.g. AWS Account ID)."
-    )
+    name: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    The name of the account (e.g. GCP Account Name).
+    """
+
+    type: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    The account type, normalized to the caption of 'account_type_id'. In the case of 'Other', it is defined by the event source.
+    """
+
+    type_id: typing.Optional[AccountTypeId] = pydantic.Field(default=None)
+    """
+    The normalized account type identifier.
+    """
+
+    uid: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    The unique identifier of the account (e.g. AWS Account ID).
+    """
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}
@@ -37,4 +48,5 @@ class Account(pydantic.BaseModel):
     class Config:
         frozen = True
         smart_union = True
+        extra = pydantic.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}

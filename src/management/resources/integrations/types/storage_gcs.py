@@ -19,11 +19,20 @@ class StorageGcs(pydantic.BaseModel):
     """
 
     credential: GcsCredential
-    bucket: str = pydantic.Field(description="Name of the bucket where files are stored.")
-    region: str = pydantic.Field(description="Google Cloud region where the bucket is located.")
-    transforms: typing.Optional[typing.List[TransformId]] = pydantic.Field(
-        description="Optional list of transformations used to modify requests before they are sent to the external service."
-    )
+    bucket: str = pydantic.Field()
+    """
+    Name of the bucket where files are stored.
+    """
+
+    region: str = pydantic.Field()
+    """
+    Google Cloud region where the bucket is located.
+    """
+
+    transforms: typing.Optional[typing.List[TransformId]] = pydantic.Field(default=None)
+    """
+    Optional list of transformations used to modify requests before they are sent to the external service.
+    """
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}
@@ -36,4 +45,5 @@ class StorageGcs(pydantic.BaseModel):
     class Config:
         frozen = True
         smart_union = True
+        extra = pydantic.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}

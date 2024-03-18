@@ -17,14 +17,35 @@ except ImportError:
 
 class Organization(Base):
     id: OrganizationId
-    refresh_token_id: TokenId = pydantic.Field(description="Organization refresh token id")
-    fullname: str = pydantic.Field(description="Human friendly display name for this Organization")
-    contact: str = pydantic.Field(description="Organization email address")
-    reply_to: str = pydantic.Field(
-        description="Reply-to email address, used for SMTP emails. Defaults to no-reply@synqly.com"
-    )
-    picture: str = pydantic.Field(description="URL of the organization")
-    options: typing.Optional[OrganizationOptions] = pydantic.Field(description="Organization options")
+    refresh_token_id: TokenId = pydantic.Field()
+    """
+    Organization refresh token id
+    """
+
+    fullname: str = pydantic.Field()
+    """
+    Human friendly display name for this Organization
+    """
+
+    contact: str = pydantic.Field()
+    """
+    Organization email address
+    """
+
+    reply_to: str = pydantic.Field()
+    """
+    Reply-to email address, used for SMTP emails. Defaults to no-reply@synqly.com
+    """
+
+    picture: str = pydantic.Field()
+    """
+    URL of the organization
+    """
+
+    options: typing.Optional[OrganizationOptions] = pydantic.Field(default=None)
+    """
+    Organization options
+    """
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}
@@ -38,4 +59,5 @@ class Organization(Base):
         frozen = True
         smart_union = True
         allow_population_by_field_name = True
+        extra = pydantic.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}

@@ -4,8 +4,6 @@ from __future__ import annotations
 
 import typing
 
-import typing_extensions
-
 from .aws_credential import AwsCredential
 from .basic_credential import BasicCredential
 from .o_auth_client_credential import OAuthClientCredential
@@ -14,7 +12,7 @@ from .token_credential import TokenCredential
 
 
 class CredentialConfig_Aws(AwsCredential):
-    type: typing_extensions.Literal["aws"]
+    type: typing.Literal["aws"]
 
     class Config:
         frozen = True
@@ -23,7 +21,7 @@ class CredentialConfig_Aws(AwsCredential):
 
 
 class CredentialConfig_Token(TokenCredential):
-    type: typing_extensions.Literal["token"]
+    type: typing.Literal["token"]
 
     class Config:
         frozen = True
@@ -32,7 +30,7 @@ class CredentialConfig_Token(TokenCredential):
 
 
 class CredentialConfig_Basic(BasicCredential):
-    type: typing_extensions.Literal["basic"]
+    type: typing.Literal["basic"]
 
     class Config:
         frozen = True
@@ -41,7 +39,7 @@ class CredentialConfig_Basic(BasicCredential):
 
 
 class CredentialConfig_Secret(SecretCredential):
-    type: typing_extensions.Literal["secret"]
+    type: typing.Literal["secret"]
 
     class Config:
         frozen = True
@@ -50,7 +48,7 @@ class CredentialConfig_Secret(SecretCredential):
 
 
 class CredentialConfig_OAuthClient(OAuthClientCredential):
-    type: typing_extensions.Literal["o_auth_client"]
+    type: typing.Literal["o_auth_client"]
 
     class Config:
         frozen = True

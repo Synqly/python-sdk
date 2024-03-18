@@ -18,22 +18,35 @@ class Cloud(pydantic.BaseModel):
     The Cloud object contains information about a cloud account such as AWS Account ID, regions, etc.
     """
 
-    account: typing.Optional[Account] = pydantic.Field(
-        description="The account object describes details about the account that was the source or target of the activity."
-    )
-    org: typing.Optional[Organization] = pydantic.Field(
-        description="Organization and org unit relevant to the event or object."
-    )
-    project_uid: typing.Optional[str] = pydantic.Field(description="The unique identifier of a Cloud project.")
-    provider: str = pydantic.Field(
-        description="The unique name of the Cloud services provider, such as AWS, MS Azure, GCP, etc."
-    )
-    region: typing.Optional[str] = pydantic.Field(
-        description="The name of the cloud region, as defined by the cloud provider."
-    )
-    zone: typing.Optional[str] = pydantic.Field(
-        description="The availability zone in the cloud region, as defined by the cloud provider."
-    )
+    account: typing.Optional[Account] = pydantic.Field(default=None)
+    """
+    The account object describes details about the account that was the source or target of the activity.
+    """
+
+    org: typing.Optional[Organization] = pydantic.Field(default=None)
+    """
+    Organization and org unit relevant to the event or object.
+    """
+
+    project_uid: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    The unique identifier of a Cloud project.
+    """
+
+    provider: str = pydantic.Field()
+    """
+    The unique name of the Cloud services provider, such as AWS, MS Azure, GCP, etc.
+    """
+
+    region: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    The name of the cloud region, as defined by the cloud provider.
+    """
+
+    zone: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    The availability zone in the cloud region, as defined by the cloud provider.
+    """
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}
@@ -46,4 +59,5 @@ class Cloud(pydantic.BaseModel):
     class Config:
         frozen = True
         smart_union = True
+        extra = pydantic.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}

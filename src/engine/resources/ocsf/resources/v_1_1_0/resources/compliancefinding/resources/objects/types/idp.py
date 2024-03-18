@@ -16,8 +16,15 @@ class Idp(pydantic.BaseModel):
     The Identity Provider object contains detailed information about a provider responsible for creating, maintaining, and managing identity information while offering authentication services to applications. An Identity Provider (IdP) serves as a trusted authority that verifies the identity of users and issues authentication tokens or assertions to enable secure access to applications or services.
     """
 
-    name: typing.Optional[str] = pydantic.Field(description="The name of the identity provider.")
-    uid: typing.Optional[str] = pydantic.Field(description="The unique identifier of the identity provider.")
+    name: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    The name of the identity provider.
+    """
+
+    uid: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    The unique identifier of the identity provider.
+    """
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}
@@ -30,4 +37,5 @@ class Idp(pydantic.BaseModel):
     class Config:
         frozen = True
         smart_union = True
+        extra = pydantic.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}

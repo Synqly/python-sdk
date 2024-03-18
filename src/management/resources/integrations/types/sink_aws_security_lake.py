@@ -18,10 +18,15 @@ class SinkAwsSecurityLake(pydantic.BaseModel):
     """
 
     credential: AwsSecurityLakeCredential
-    url: str = pydantic.Field(description="URL of the s3 bucket where the security lake events are stored.")
-    region: typing.Optional[str] = pydantic.Field(
-        description="Override the default AWS region for this integration. If not present, the region will be inferred from the URL."
-    )
+    url: str = pydantic.Field()
+    """
+    URL of the s3 bucket where the security lake events are stored.
+    """
+
+    region: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    Override the default AWS region for this integration. If not present, the region will be inferred from the URL.
+    """
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}
@@ -34,4 +39,5 @@ class SinkAwsSecurityLake(pydantic.BaseModel):
     class Config:
         frozen = True
         smart_union = True
+        extra = pydantic.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}

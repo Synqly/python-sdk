@@ -16,8 +16,15 @@ class Metric(pydantic.BaseModel):
     The Metric object defines a simple name/value pair entity for a metric.
     """
 
-    name: str = pydantic.Field(description="The name of the metric.")
-    value: str = pydantic.Field(description="The value of the metric.")
+    name: str = pydantic.Field()
+    """
+    The name of the metric.
+    """
+
+    value: str = pydantic.Field()
+    """
+    The value of the metric.
+    """
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}
@@ -30,4 +37,5 @@ class Metric(pydantic.BaseModel):
     class Config:
         frozen = True
         smart_union = True
+        extra = pydantic.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}

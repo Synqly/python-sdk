@@ -16,9 +16,20 @@ class Extension(pydantic.BaseModel):
     The OCSF Schema Extension object provides detailed information about the schema extension used to construct the event. The schema extensions are registered in the <a target='_blank' href='https://github.com/ocsf/ocsf-schema/blob/main/extensions.md'>extensions.md</a> file.
     """
 
-    name: str = pydantic.Field(description="The schema extension name. For example: <code>dev</code>.")
-    uid: str = pydantic.Field(description="The schema extension unique identifier. For example: <code>999</code>.")
-    version: str = pydantic.Field(description="The schema extension version. For example: <code>1.0.0-alpha.2</code>.")
+    name: str = pydantic.Field()
+    """
+    The schema extension name. For example: <code>dev</code>.
+    """
+
+    uid: str = pydantic.Field()
+    """
+    The schema extension unique identifier. For example: <code>999</code>.
+    """
+
+    version: str = pydantic.Field()
+    """
+    The schema extension version. For example: <code>1.0.0-alpha.2</code>.
+    """
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}
@@ -31,4 +42,5 @@ class Extension(pydantic.BaseModel):
     class Config:
         frozen = True
         smart_union = True
+        extra = pydantic.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}

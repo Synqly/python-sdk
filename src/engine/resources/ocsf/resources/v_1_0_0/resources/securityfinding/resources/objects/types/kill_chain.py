@@ -17,8 +17,15 @@ class KillChain(pydantic.BaseModel):
     The Kill Chain object represents a single phase of a cyber attack, including the initial reconnaissance and planning stages up to the final objective of the attacker. It provides a detailed description of each phase and its associated activities within the broader context of a cyber attack. See <a target='_blank' href='https://www.lockheedmartin.com/en-us/capabilities/cyber/cyber-kill-chain.html'>Cyber Kill Chain®</a>.
     """
 
-    phase: typing.Optional[str] = pydantic.Field(description="The cyber kill chain phase.")
-    phase_id: KillChainPhaseId = pydantic.Field(description="The cyber kill chain phase identifier.")
+    phase: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    The cyber kill chain phase.
+    """
+
+    phase_id: KillChainPhaseId = pydantic.Field()
+    """
+    The cyber kill chain phase identifier.
+    """
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}
@@ -31,4 +38,5 @@ class KillChain(pydantic.BaseModel):
     class Config:
         frozen = True
         smart_union = True
+        extra = pydantic.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}

@@ -17,18 +17,22 @@ except ImportError:
 
 class Audit(pydantic.BaseModel):
     environment: str
-    created_at: dt.datetime = pydantic.Field(description="Time when the API request occurred.")
+    created_at: dt.datetime = pydantic.Field()
+    """
+    Time when the API request occurred.
+    """
+
     remote_addr: str
     user_agent: str
     method: HttpMethod
     path: str
     code: str
-    body: typing.Optional[typing.Any]
-    response: typing.Optional[str]
-    status: typing.Optional[str]
-    member_id: typing.Optional[MemberId]
-    account_id: typing.Optional[AccountId]
-    integration_id: typing.Optional[IntegrationId]
+    body: typing.Optional[typing.Any] = None
+    response: typing.Optional[str] = None
+    status: typing.Optional[str] = None
+    member_id: typing.Optional[MemberId] = None
+    account_id: typing.Optional[AccountId] = None
+    integration_id: typing.Optional[IntegrationId] = None
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}
@@ -41,4 +45,5 @@ class Audit(pydantic.BaseModel):
     class Config:
         frozen = True
         smart_union = True
+        extra = pydantic.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}

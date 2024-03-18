@@ -12,12 +12,15 @@ except ImportError:
 
 
 class CreateAccountRequest(pydantic.BaseModel):
-    name: typing.Optional[str] = pydantic.Field(
-        description="Unique short name for this Account (lowercase [a-z0-9_-], can be used in URLs). Also used for case insensitive duplicate name detection and default sort order. Defaults to AccountId if both name and fullname are not specified."
-    )
-    fullname: typing.Optional[str] = pydantic.Field(
-        description="Human friendly display name for this Account, will auto-generate 'name' field (if 'name' is not specified)"
-    )
+    name: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    Unique short name for this Account (lowercase [a-z0-9_-], can be used in URLs). Also used for case insensitive duplicate name detection and default sort order. Defaults to AccountId if both name and fullname are not specified.
+    """
+
+    fullname: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    Human friendly display name for this Account, will auto-generate 'name' field (if 'name' is not specified)
+    """
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}
@@ -30,4 +33,5 @@ class CreateAccountRequest(pydantic.BaseModel):
     class Config:
         frozen = True
         smart_union = True
+        extra = pydantic.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}

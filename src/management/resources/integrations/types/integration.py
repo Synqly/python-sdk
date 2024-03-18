@@ -23,12 +23,35 @@ class Integration(Base):
     """
 
     id: IntegrationId
-    fullname: str = pydantic.Field(description="Human friendly display name for this integration.")
-    refresh_token_id: TokenId = pydantic.Field(description="Integration refresh token id")
-    account_id: AccountId = pydantic.Field(description="Account that manages this Integration.")
-    category: CategoryId = pydantic.Field(description="Id of the Connector Category for this Integration.")
-    provider_config: ProviderConfig = pydantic.Field(description="Provider configuration for this Integration.")
-    provider_type: str = pydantic.Field(description="Type of the provider for this Integration.")
+    fullname: str = pydantic.Field()
+    """
+    Human friendly display name for this integration.
+    """
+
+    refresh_token_id: TokenId = pydantic.Field()
+    """
+    Integration refresh token id
+    """
+
+    account_id: AccountId = pydantic.Field()
+    """
+    Account that manages this Integration.
+    """
+
+    category: CategoryId = pydantic.Field()
+    """
+    Id of the Connector Category for this Integration.
+    """
+
+    provider_config: ProviderConfig = pydantic.Field()
+    """
+    Provider configuration for this Integration.
+    """
+
+    provider_type: str = pydantic.Field()
+    """
+    Type of the provider for this Integration.
+    """
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}
@@ -42,4 +65,5 @@ class Integration(Base):
         frozen = True
         smart_union = True
         allow_population_by_field_name = True
+        extra = pydantic.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}

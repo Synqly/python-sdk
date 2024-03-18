@@ -19,11 +19,20 @@ class Category(pydantic.BaseModel):
     """
 
     category: CategoryId
-    description: str = pydantic.Field(description="Description of what this Integration does.")
-    providers: typing.List[ProviderId] = pydantic.Field(
-        description="List of Providers that implement this Integration."
-    )
-    picture: typing.Optional[str] = pydantic.Field(description="URL of the icon representing this type of Integration.")
+    description: str = pydantic.Field()
+    """
+    Description of what this Integration does.
+    """
+
+    providers: typing.List[ProviderId] = pydantic.Field()
+    """
+    List of Providers that implement this Integration.
+    """
+
+    picture: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    URL of the icon representing this type of Integration.
+    """
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}
@@ -36,4 +45,5 @@ class Category(pydantic.BaseModel):
     class Config:
         frozen = True
         smart_union = True
+        extra = pydantic.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}

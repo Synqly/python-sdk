@@ -17,21 +17,30 @@ class Epss(pydantic.BaseModel):
     The Exploit Prediction Scoring System (EPSS) object describes the estimated probability a vulnerability will be exploited. EPSS is a community-driven effort to combine descriptive information about vulnerabilities (CVEs) with evidence of actual exploitation in-the-wild. (<a target='_blank' href='https://www.first.org/epss/'>EPSS</a>).
     """
 
-    created_time: typing.Optional[Timestamp] = pydantic.Field(
-        description="The timestamp indicating when the EPSS score was calculated."
-    )
-    created_time_dt: typing.Optional[dt.datetime] = pydantic.Field(
-        description="The timestamp indicating when the EPSS score was calculated."
-    )
-    percentile: typing.Optional[float] = pydantic.Field(
-        description="The EPSS score's percentile representing relative importance and ranking of the score in the larger EPSS dataset."
-    )
-    score: str = pydantic.Field(
-        description="The EPSS score representing the probability [0-1] of exploitation in the wild in the next 30 days (following score publication)."
-    )
-    version: typing.Optional[str] = pydantic.Field(
-        description="The version of the EPSS model used to calculate the score."
-    )
+    created_time: typing.Optional[Timestamp] = pydantic.Field(default=None)
+    """
+    The timestamp indicating when the EPSS score was calculated.
+    """
+
+    created_time_dt: typing.Optional[dt.datetime] = pydantic.Field(default=None)
+    """
+    The timestamp indicating when the EPSS score was calculated.
+    """
+
+    percentile: typing.Optional[float] = pydantic.Field(default=None)
+    """
+    The EPSS score's percentile representing relative importance and ranking of the score in the larger EPSS dataset.
+    """
+
+    score: str = pydantic.Field()
+    """
+    The EPSS score representing the probability [0-1] of exploitation in the wild in the next 30 days (following score publication).
+    """
+
+    version: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    The version of the EPSS model used to calculate the score.
+    """
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}
@@ -44,4 +53,5 @@ class Epss(pydantic.BaseModel):
     class Config:
         frozen = True
         smart_union = True
+        extra = pydantic.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}

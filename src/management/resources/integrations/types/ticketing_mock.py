@@ -16,7 +16,10 @@ class TicketingMock(pydantic.BaseModel):
     Configuration for the Synqly mock in-memory ticketing handler. This provider is for testing purposes only. It retains tickets for a limited time and does not persist them for long-term usage.
     """
 
-    name: typing.Optional[str] = pydantic.Field(description="Optional name of the mock provider. This value is unused.")
+    name: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    Optional name of the mock provider. This value is unused.
+    """
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}
@@ -29,4 +32,5 @@ class TicketingMock(pydantic.BaseModel):
     class Config:
         frozen = True
         smart_union = True
+        extra = pydantic.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}

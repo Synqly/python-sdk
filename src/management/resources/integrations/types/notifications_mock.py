@@ -16,7 +16,10 @@ class NotificationsMock(pydantic.BaseModel):
     Configuration for the Mock in-memory notification handler. This provider is for testing purposes only.
     """
 
-    channel: typing.Optional[str] = pydantic.Field(description="The channel to send notifications to.")
+    channel: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    The channel to send notifications to.
+    """
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}
@@ -29,4 +32,5 @@ class NotificationsMock(pydantic.BaseModel):
     class Config:
         frozen = True
         smart_union = True
+        extra = pydantic.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}

@@ -16,10 +16,15 @@ class CisCsc(pydantic.BaseModel):
     The CIS Critical Security Control (CSC) contains information as defined by the Center for Internet Security Critical Security Control <a target='_blank' href='https://www.cisecurity.org/controls'>(CIS CSC)</a>. Prioritized set of actions to protect your organization and data from cyber-attack vectors.
     """
 
-    control: str = pydantic.Field(
-        description="A Control is prescriptive, prioritized, and simplified set of best practices that one can use to strengthen their cybersecurity posture. e.g. AWS SecurityHub Controls, CIS Controls."
-    )
-    version: typing.Optional[str] = pydantic.Field(description="The CIS critical security control version.")
+    control: str = pydantic.Field()
+    """
+    A Control is prescriptive, prioritized, and simplified set of best practices that one can use to strengthen their cybersecurity posture. e.g. AWS SecurityHub Controls, CIS Controls.
+    """
+
+    version: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    The CIS critical security control version.
+    """
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}
@@ -32,4 +37,5 @@ class CisCsc(pydantic.BaseModel):
     class Config:
         frozen = True
         smart_union = True
+        extra = pydantic.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}

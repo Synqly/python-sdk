@@ -16,7 +16,10 @@ class TokenCredential(pydantic.BaseModel):
     Token used to authenticate with an external service.
     """
 
-    secret: str = pydantic.Field(description="Secret value of the token.")
+    secret: str = pydantic.Field()
+    """
+    Secret value of the token.
+    """
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}
@@ -29,4 +32,5 @@ class TokenCredential(pydantic.BaseModel):
     class Config:
         frozen = True
         smart_union = True
+        extra = pydantic.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}

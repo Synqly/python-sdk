@@ -22,34 +22,65 @@ class User(pydantic.BaseModel):
     The User object describes the characteristics of a user/person or a security principal. Defined by D3FEND <a target='_blank' href='https://d3fend.mitre.org/dao/artifact/d3f:UserAccount/'>d3f:UserAccount</a>.
     """
 
-    account: typing.Optional[Account] = pydantic.Field(
-        description="The user's account or the account associated with the user."
-    )
-    credential_uid: typing.Optional[str] = pydantic.Field(
-        description="The unique identifier of the user's credential. For example, AWS Access Key ID."
-    )
-    domain: typing.Optional[str] = pydantic.Field(
-        description="The domain where the user is defined. For example: the LDAP or Active Directory domain."
-    )
-    email_addr: typing.Optional[EmailAddress] = pydantic.Field(description="The user's email address.")
-    full_name: typing.Optional[str] = pydantic.Field(
-        description="The full name of the person, as per the LDAP Common Name attribute (cn)."
-    )
-    groups: typing.Optional[typing.List[Group]] = pydantic.Field(
-        description="The administrative groups to which the user belongs."
-    )
-    name: typing.Optional[UserName] = pydantic.Field(description="The username. For example, <code>janedoe1</code>.")
-    org: typing.Optional[Organization] = pydantic.Field(description="Organization and org unit related to the user.")
-    type: typing.Optional[str] = pydantic.Field(
-        description="The type of the user. For example, System, AWS IAM User, etc."
-    )
-    type_id: UserTypeId = pydantic.Field(description="The account type identifier.")
-    uid: typing.Optional[str] = pydantic.Field(
-        description="The unique user identifier. For example, the Windows user SID, ActiveDirectory DN or AWS user ARN."
-    )
-    uid_alt: typing.Optional[str] = pydantic.Field(
-        description="The alternate user identifier. For example, the Active Directory user GUID or AWS user Principal ID."
-    )
+    account: typing.Optional[Account] = pydantic.Field(default=None)
+    """
+    The user's account or the account associated with the user.
+    """
+
+    credential_uid: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    The unique identifier of the user's credential. For example, AWS Access Key ID.
+    """
+
+    domain: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    The domain where the user is defined. For example: the LDAP or Active Directory domain.
+    """
+
+    email_addr: typing.Optional[EmailAddress] = pydantic.Field(default=None)
+    """
+    The user's email address.
+    """
+
+    full_name: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    The full name of the person, as per the LDAP Common Name attribute (cn).
+    """
+
+    groups: typing.Optional[typing.List[Group]] = pydantic.Field(default=None)
+    """
+    The administrative groups to which the user belongs.
+    """
+
+    name: typing.Optional[UserName] = pydantic.Field(default=None)
+    """
+    The username. For example, <code>janedoe1</code>.
+    """
+
+    org: typing.Optional[Organization] = pydantic.Field(default=None)
+    """
+    Organization and org unit related to the user.
+    """
+
+    type: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    The type of the user. For example, System, AWS IAM User, etc.
+    """
+
+    type_id: UserTypeId = pydantic.Field()
+    """
+    The account type identifier.
+    """
+
+    uid: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    The unique user identifier. For example, the Windows user SID, ActiveDirectory DN or AWS user ARN.
+    """
+
+    uid_alt: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    The alternate user identifier. For example, the Active Directory user GUID or AWS user Principal ID.
+    """
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}
@@ -62,4 +93,5 @@ class User(pydantic.BaseModel):
     class Config:
         frozen = True
         smart_union = True
+        extra = pydantic.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}

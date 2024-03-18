@@ -20,9 +20,20 @@ class Transform(Base):
     """
 
     id: TransformId
-    account_id: AccountId = pydantic.Field(description="Account that manages this Transform.")
-    fullname: str = pydantic.Field(description="Human friendly display name for this Organization.")
-    patch: str = pydantic.Field(description="JSON Patch transform to apply (rfc6902).")
+    account_id: AccountId = pydantic.Field()
+    """
+    Account that manages this Transform.
+    """
+
+    fullname: str = pydantic.Field()
+    """
+    Human friendly display name for this Organization.
+    """
+
+    patch: str = pydantic.Field()
+    """
+    JSON Patch transform to apply (rfc6902).
+    """
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}
@@ -36,4 +47,5 @@ class Transform(Base):
         frozen = True
         smart_union = True
         allow_population_by_field_name = True
+        extra = pydantic.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}

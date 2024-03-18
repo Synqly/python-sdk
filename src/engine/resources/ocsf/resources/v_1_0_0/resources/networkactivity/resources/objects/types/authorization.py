@@ -17,10 +17,15 @@ class Authorization(pydantic.BaseModel):
     The Authorization Result object provides details about the authorization outcome and associated policies related to activity.
     """
 
-    decision: typing.Optional[str] = pydantic.Field(description="Authorization Result/outcome, e.g. allowed, denied.")
-    policy: typing.Optional[Policy] = pydantic.Field(
-        description="Details about the Identity/Access management policies that are applicable."
-    )
+    decision: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    Authorization Result/outcome, e.g. allowed, denied.
+    """
+
+    policy: typing.Optional[Policy] = pydantic.Field(default=None)
+    """
+    Details about the Identity/Access management policies that are applicable.
+    """
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}
@@ -33,4 +38,5 @@ class Authorization(pydantic.BaseModel):
     class Config:
         frozen = True
         smart_union = True
+        extra = pydantic.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}

@@ -18,17 +18,60 @@ class Status(pydantic.BaseModel):
     Status object
     """
 
-    created_at: dt.datetime = pydantic.Field(description="Time object was originally created")
-    updated_at: dt.datetime = pydantic.Field(description="Last time object was updated")
-    account_id: AccountId = pydantic.Field(description="Account owner")
-    integration_id: IntegrationId = pydantic.Field(description="Integration object")
-    status: str = pydantic.Field(description="The current status of the notification.")
-    requests: int = pydantic.Field(description="Request count")
-    failed: int = pydantic.Field(description="Failed count")
-    cpu_time: int = pydantic.Field(description="Cpu time in microseconds")
-    db_ops: int = pydantic.Field(description="Database operations count")
-    api_ops: int = pydantic.Field(description="API operations count")
-    in_bytes: int = pydantic.Field(description="API input byte count")
+    created_at: dt.datetime = pydantic.Field()
+    """
+    Time object was originally created
+    """
+
+    updated_at: dt.datetime = pydantic.Field()
+    """
+    Last time object was updated
+    """
+
+    account_id: AccountId = pydantic.Field()
+    """
+    Account owner
+    """
+
+    integration_id: IntegrationId = pydantic.Field()
+    """
+    Integration object
+    """
+
+    status: str = pydantic.Field()
+    """
+    The current status of the notification.
+    """
+
+    requests: int = pydantic.Field()
+    """
+    Request count
+    """
+
+    failed: int = pydantic.Field()
+    """
+    Failed count
+    """
+
+    cpu_time: int = pydantic.Field()
+    """
+    Cpu time in microseconds
+    """
+
+    db_ops: int = pydantic.Field()
+    """
+    Database operations count
+    """
+
+    api_ops: int = pydantic.Field()
+    """
+    API operations count
+    """
+
+    in_bytes: int = pydantic.Field()
+    """
+    API input byte count
+    """
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}
@@ -41,4 +84,5 @@ class Status(pydantic.BaseModel):
     class Config:
         frozen = True
         smart_union = True
+        extra = pydantic.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}

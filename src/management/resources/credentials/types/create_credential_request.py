@@ -13,13 +13,20 @@ except ImportError:
 
 
 class CreateCredentialRequest(pydantic.BaseModel):
-    name: typing.Optional[str] = pydantic.Field(
-        description="Unique short name for this Credential (lowercase [a-z0-9_-], can be used in URLs). Also used for case insensitive duplicate name detection and default sort order. Defaults to CredentialId if both name and fullname are not specified."
-    )
-    fullname: typing.Optional[str] = pydantic.Field(
-        description="Human friendly display name for this Credential, will auto-generate 'name' field (if 'name' is not specified)"
-    )
-    config: typing.Optional[CredentialConfig] = pydantic.Field(description="Credential configuration")
+    name: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    Unique short name for this Credential (lowercase [a-z0-9_-], can be used in URLs). Also used for case insensitive duplicate name detection and default sort order. Defaults to CredentialId if both name and fullname are not specified.
+    """
+
+    fullname: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    Human friendly display name for this Credential, will auto-generate 'name' field (if 'name' is not specified)
+    """
+
+    config: typing.Optional[CredentialConfig] = pydantic.Field(default=None)
+    """
+    Credential configuration
+    """
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}
@@ -32,4 +39,5 @@ class CreateCredentialRequest(pydantic.BaseModel):
     class Config:
         frozen = True
         smart_union = True
+        extra = pydantic.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}

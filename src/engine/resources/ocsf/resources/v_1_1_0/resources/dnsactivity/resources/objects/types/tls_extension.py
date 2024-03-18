@@ -17,15 +17,20 @@ class TlsExtension(pydantic.BaseModel):
     The TLS Extension object describes additional attributes that extend the base Transport Layer Security (TLS) object.
     """
 
-    data: typing.Optional[typing.Any] = pydantic.Field(
-        description="The data contains information specific to the particular extension type."
-    )
-    type: typing.Optional[str] = pydantic.Field(
-        description="The TLS extension type. For example: <code>Server Name</code>."
-    )
-    type_id: TlsExtensionTypeId = pydantic.Field(
-        description="The TLS extension type identifier. See <a target='_blank' href='https://datatracker.ietf.org/doc/html/rfc8446#page-35'>The Transport Layer Security (TLS) extension page</a>."
-    )
+    data: typing.Optional[typing.Any] = pydantic.Field(default=None)
+    """
+    The data contains information specific to the particular extension type.
+    """
+
+    type: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    The TLS extension type. For example: <code>Server Name</code>.
+    """
+
+    type_id: TlsExtensionTypeId = pydantic.Field()
+    """
+    The TLS extension type identifier. See <a target='_blank' href='https://datatracker.ietf.org/doc/html/rfc8446#page-35'>The Transport Layer Security (TLS) extension page</a>.
+    """
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}
@@ -38,4 +43,5 @@ class TlsExtension(pydantic.BaseModel):
     class Config:
         frozen = True
         smart_union = True
+        extra = pydantic.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}

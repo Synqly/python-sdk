@@ -12,8 +12,15 @@ except ImportError:
 
 
 class QuerySiemEventsResponse(pydantic.BaseModel):
-    result: typing.List[typing.Dict[str, typing.Any]] = pydantic.Field(description="List of events")
-    cursor: str = pydantic.Field(description="Cursor to use to retrieve the next page of results")
+    result: typing.List[typing.Dict[str, typing.Any]] = pydantic.Field()
+    """
+    List of events
+    """
+
+    cursor: str = pydantic.Field()
+    """
+    Cursor to use to retrieve the next page of results
+    """
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}
@@ -26,4 +33,5 @@ class QuerySiemEventsResponse(pydantic.BaseModel):
     class Config:
         frozen = True
         smart_union = True
+        extra = pydantic.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}

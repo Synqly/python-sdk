@@ -16,8 +16,15 @@ class San(pydantic.BaseModel):
     The Subject Alternative name (SAN) object describes a SAN secured by a digital certificate
     """
 
-    name: str = pydantic.Field(description="Name of SAN (e.g. The actual IP Address or domain.)")
-    type: str = pydantic.Field(description="Type descriptor of SAN (e.g. IP Address/domain/etc.)")
+    name: str = pydantic.Field()
+    """
+    Name of SAN (e.g. The actual IP Address or domain.)
+    """
+
+    type: str = pydantic.Field()
+    """
+    Type descriptor of SAN (e.g. IP Address/domain/etc.)
+    """
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}
@@ -30,4 +37,5 @@ class San(pydantic.BaseModel):
     class Config:
         frozen = True
         smart_union = True
+        extra = pydantic.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}

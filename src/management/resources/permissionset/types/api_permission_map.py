@@ -26,20 +26,20 @@ except ImportError:
 
 
 class ApiPermissionMap(pydantic.BaseModel):
-    all_: typing.Optional[ReadWritePermissions] = pydantic.Field(alias="all")
-    accounts: typing.Optional[AccountsPermissions]
-    audit: typing.Optional[AuditPermissions]
-    auth: typing.Optional[AuthPermissions]
-    capabilities: typing.Optional[CapabilitiesPermissions]
-    credentials: typing.Optional[CredentialsPermissions]
-    integrations: typing.Optional[IntegrationsPermissions]
-    members: typing.Optional[MembersPermissions]
-    organizations: typing.Optional[OrganizationPermissions]
-    permission_set: typing.Optional[PermissionSetPermissions]
-    roles: typing.Optional[RolesPermissions]
-    status: typing.Optional[StatusPermissions]
-    tokens: typing.Optional[TokensPermissions]
-    transforms: typing.Optional[TransformsPermissions]
+    all_: typing.Optional[ReadWritePermissions] = pydantic.Field(alias="all", default=None)
+    accounts: typing.Optional[AccountsPermissions] = None
+    audit: typing.Optional[AuditPermissions] = None
+    auth: typing.Optional[AuthPermissions] = None
+    capabilities: typing.Optional[CapabilitiesPermissions] = None
+    credentials: typing.Optional[CredentialsPermissions] = None
+    integrations: typing.Optional[IntegrationsPermissions] = None
+    members: typing.Optional[MembersPermissions] = None
+    organizations: typing.Optional[OrganizationPermissions] = None
+    permission_set: typing.Optional[PermissionSetPermissions] = None
+    roles: typing.Optional[RolesPermissions] = None
+    status: typing.Optional[StatusPermissions] = None
+    tokens: typing.Optional[TokensPermissions] = None
+    transforms: typing.Optional[TransformsPermissions] = None
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}
@@ -53,4 +53,5 @@ class ApiPermissionMap(pydantic.BaseModel):
         frozen = True
         smart_union = True
         allow_population_by_field_name = True
+        extra = pydantic.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}

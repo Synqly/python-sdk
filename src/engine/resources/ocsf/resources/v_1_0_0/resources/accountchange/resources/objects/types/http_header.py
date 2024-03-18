@@ -16,8 +16,15 @@ class HttpHeader(pydantic.BaseModel):
     TThe HTTP Header object represents the headers sent in an HTTP request or response. HTTP headers are key-value pairs that convey additional information about the HTTP message, including details about the content, caching, authentication, encoding, and other aspects of the communication.
     """
 
-    name: str = pydantic.Field(description="The name of the header")
-    value: str = pydantic.Field(description="The value of the header")
+    name: str = pydantic.Field()
+    """
+    The name of the header
+    """
+
+    value: str = pydantic.Field()
+    """
+    The value of the header
+    """
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}
@@ -30,4 +37,5 @@ class HttpHeader(pydantic.BaseModel):
     class Config:
         frozen = True
         smart_union = True
+        extra = pydantic.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}

@@ -18,27 +18,60 @@ class ResourceDetails(pydantic.BaseModel):
     The Resource Details object describes details about resources that were affected by the activity/event.
     """
 
-    cloud_partition: typing.Optional[str] = pydantic.Field(
-        description="The canonical cloud partition name to which the region is assigned (e.g. AWS Partitions: aws, aws-cn, aws-us-gov)."
-    )
-    criticality: typing.Optional[str] = pydantic.Field(
-        description="The criticality of the resource as defined by the event source."
-    )
-    data: typing.Optional[typing.Any] = pydantic.Field(description="Additional data describing the resource.")
-    group: typing.Optional[Group] = pydantic.Field(description="The name of the related resource group.")
-    labels: typing.Optional[typing.List[str]] = pydantic.Field(
-        description="The list of labels/tags associated to a resource."
-    )
-    name: typing.Optional[str] = pydantic.Field(description="The name of the resource.")
-    owner: typing.Optional[User] = pydantic.Field(
-        description="The identity of the service or user account that owns the resource."
-    )
-    region: typing.Optional[str] = pydantic.Field(description="The cloud region of the resource.")
-    type: typing.Optional[str] = pydantic.Field(description="The resource type as defined by the event source.")
-    uid: typing.Optional[str] = pydantic.Field(description="The unique identifier of the resource.")
-    version: typing.Optional[str] = pydantic.Field(
-        description="The version of the resource. For example <code>1.2.3</code>."
-    )
+    cloud_partition: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    The canonical cloud partition name to which the region is assigned (e.g. AWS Partitions: aws, aws-cn, aws-us-gov).
+    """
+
+    criticality: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    The criticality of the resource as defined by the event source.
+    """
+
+    data: typing.Optional[typing.Any] = pydantic.Field(default=None)
+    """
+    Additional data describing the resource.
+    """
+
+    group: typing.Optional[Group] = pydantic.Field(default=None)
+    """
+    The name of the related resource group.
+    """
+
+    labels: typing.Optional[typing.List[str]] = pydantic.Field(default=None)
+    """
+    The list of labels/tags associated to a resource.
+    """
+
+    name: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    The name of the resource.
+    """
+
+    owner: typing.Optional[User] = pydantic.Field(default=None)
+    """
+    The identity of the service or user account that owns the resource.
+    """
+
+    region: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    The cloud region of the resource.
+    """
+
+    type: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    The resource type as defined by the event source.
+    """
+
+    uid: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    The unique identifier of the resource.
+    """
+
+    version: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    The version of the resource. For example <code>1.2.3</code>.
+    """
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}
@@ -51,4 +84,5 @@ class ResourceDetails(pydantic.BaseModel):
     class Config:
         frozen = True
         smart_union = True
+        extra = pydantic.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}

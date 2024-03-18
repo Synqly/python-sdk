@@ -23,33 +23,50 @@ class Evidences(pydantic.BaseModel):
     A collection of evidence artifacts associated to the activity/activities that triggered a security detection.
     """
 
-    actor: typing.Optional[Actor] = pydantic.Field(
-        description="Describes details about the user/role/process that was the source of the activity that triggered the detection."
-    )
-    api: typing.Optional[Api] = pydantic.Field(
-        description="Describes details about the API call associated to the activity that triggered the detection."
-    )
-    connection_info: typing.Optional[NetworkConnectionInfo] = pydantic.Field(
-        description="Describes details about the network connection associated to the activity that triggered the detection."
-    )
-    data: typing.Optional[typing.Any] = pydantic.Field(
-        description="Additional evidence data that is not accounted for in the specific evidence attributes.<code> Use only when absolutely necessary.</code>"
-    )
-    dst_endpoint: typing.Optional[NetworkEndpoint] = pydantic.Field(
-        description="Describes details about the destination of the network activity that triggered the detection."
-    )
-    file: typing.Optional[File] = pydantic.Field(
-        description="Describes details about the file associated to the activity that triggered the detection."
-    )
-    process: typing.Optional[Process] = pydantic.Field(
-        description="Describes details about the process associated to the activity that triggered the detection."
-    )
-    query: typing.Optional[DnsQuery] = pydantic.Field(
-        description="Describes details about the DNS query associated to the activity that triggered the detection."
-    )
-    src_endpoint: typing.Optional[NetworkEndpoint] = pydantic.Field(
-        description="Describes details about the source of the network activity that triggered the detection."
-    )
+    actor: typing.Optional[Actor] = pydantic.Field(default=None)
+    """
+    Describes details about the user/role/process that was the source of the activity that triggered the detection.
+    """
+
+    api: typing.Optional[Api] = pydantic.Field(default=None)
+    """
+    Describes details about the API call associated to the activity that triggered the detection.
+    """
+
+    connection_info: typing.Optional[NetworkConnectionInfo] = pydantic.Field(default=None)
+    """
+    Describes details about the network connection associated to the activity that triggered the detection.
+    """
+
+    data: typing.Optional[typing.Any] = pydantic.Field(default=None)
+    """
+    Additional evidence data that is not accounted for in the specific evidence attributes.<code> Use only when absolutely necessary.</code>
+    """
+
+    dst_endpoint: typing.Optional[NetworkEndpoint] = pydantic.Field(default=None)
+    """
+    Describes details about the destination of the network activity that triggered the detection.
+    """
+
+    file: typing.Optional[File] = pydantic.Field(default=None)
+    """
+    Describes details about the file associated to the activity that triggered the detection.
+    """
+
+    process: typing.Optional[Process] = pydantic.Field(default=None)
+    """
+    Describes details about the process associated to the activity that triggered the detection.
+    """
+
+    query: typing.Optional[DnsQuery] = pydantic.Field(default=None)
+    """
+    Describes details about the DNS query associated to the activity that triggered the detection.
+    """
+
+    src_endpoint: typing.Optional[NetworkEndpoint] = pydantic.Field(default=None)
+    """
+    Describes details about the source of the network activity that triggered the detection.
+    """
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}
@@ -62,4 +79,5 @@ class Evidences(pydantic.BaseModel):
     class Config:
         frozen = True
         smart_union = True
+        extra = pydantic.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}

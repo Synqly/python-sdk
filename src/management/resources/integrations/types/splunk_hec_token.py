@@ -4,8 +4,6 @@ from __future__ import annotations
 
 import typing
 
-import typing_extensions
-
 from ...credentials.types.token_credential import TokenCredential
 from ...credentials.types.token_credential_id import TokenCredentialId
 
@@ -16,7 +14,7 @@ except ImportError:
 
 
 class SplunkHecToken_Token(TokenCredential):
-    type: typing_extensions.Literal["token"]
+    type: typing.Literal["token"]
 
     class Config:
         frozen = True
@@ -25,7 +23,7 @@ class SplunkHecToken_Token(TokenCredential):
 
 
 class SplunkHecToken_TokenId(pydantic.BaseModel):
-    type: typing_extensions.Literal["token_id"]
+    type: typing.Literal["token_id"]
     value: TokenCredentialId
 
     class Config:

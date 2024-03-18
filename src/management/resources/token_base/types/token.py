@@ -13,11 +13,20 @@ except ImportError:
 
 
 class Token(pydantic.BaseModel):
-    secret: str = pydantic.Field(
-        description="Secret value for the token; used for authentication when making requests."
-    )
-    expires: dt.datetime = pydantic.Field(description="Time when this token expires and can no longer be used again.")
-    permissions: Permission = pydantic.Field(description="Deprecated: Permissions granted to this token.")
+    secret: str = pydantic.Field()
+    """
+    Secret value for the token; used for authentication when making requests.
+    """
+
+    expires: dt.datetime = pydantic.Field()
+    """
+    Time when this token expires and can no longer be used again.
+    """
+
+    permissions: Permission = pydantic.Field()
+    """
+    Deprecated: Permissions granted to this token.
+    """
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}
@@ -30,4 +39,5 @@ class Token(pydantic.BaseModel):
     class Config:
         frozen = True
         smart_union = True
+        extra = pydantic.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}

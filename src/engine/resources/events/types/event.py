@@ -4,8 +4,6 @@ from __future__ import annotations
 
 import typing
 
-import typing_extensions
-
 from ...ocsf.resources.v_1_1_0.resources.accountchange.resources.classes.types.account_change import AccountChange
 from ...ocsf.resources.v_1_1_0.resources.apiactivity.resources.classes.types.api_activity import ApiActivity
 from ...ocsf.resources.v_1_1_0.resources.authentication.resources.classes.types.authentication import Authentication
@@ -35,7 +33,7 @@ from ...ocsf.resources.v_1_1_0.resources.webresourceaccessactivity.resources.cla
 
 
 class Event_AccountChange(AccountChange):
-    class_name: typing_extensions.Literal["Account Change"]
+    class_name: typing.Literal["Account Change"]
 
     class Config:
         frozen = True
@@ -44,7 +42,7 @@ class Event_AccountChange(AccountChange):
 
 
 class Event_ApiActivity(ApiActivity):
-    class_name: typing_extensions.Literal["API Activity"]
+    class_name: typing.Literal["API Activity"]
 
     class Config:
         frozen = True
@@ -53,7 +51,7 @@ class Event_ApiActivity(ApiActivity):
 
 
 class Event_Authentication(Authentication):
-    class_name: typing_extensions.Literal["Authentication"]
+    class_name: typing.Literal["Authentication"]
 
     class Config:
         frozen = True
@@ -62,7 +60,7 @@ class Event_Authentication(Authentication):
 
 
 class Event_ComplianceFinding(ComplianceFinding):
-    class_name: typing_extensions.Literal["Compliance Finding"]
+    class_name: typing.Literal["Compliance Finding"]
 
     class Config:
         frozen = True
@@ -71,7 +69,7 @@ class Event_ComplianceFinding(ComplianceFinding):
 
 
 class Event_DetectionFinding(DetectionFinding):
-    class_name: typing_extensions.Literal["Detection Finding"]
+    class_name: typing.Literal["Detection Finding"]
 
     class Config:
         frozen = True
@@ -80,7 +78,7 @@ class Event_DetectionFinding(DetectionFinding):
 
 
 class Event_FileActivity(FileActivity):
-    class_name: typing_extensions.Literal["File Activity"]
+    class_name: typing.Literal["File Activity"]
 
     class Config:
         frozen = True
@@ -89,7 +87,7 @@ class Event_FileActivity(FileActivity):
 
 
 class Event_GroupManagement(GroupManagement):
-    class_name: typing_extensions.Literal["Group Management"]
+    class_name: typing.Literal["Group Management"]
 
     class Config:
         frozen = True
@@ -98,7 +96,7 @@ class Event_GroupManagement(GroupManagement):
 
 
 class Event_IncidentFinding(IncidentFinding):
-    class_name: typing_extensions.Literal["Incident Finding"]
+    class_name: typing.Literal["Incident Finding"]
 
     class Config:
         frozen = True
@@ -107,7 +105,7 @@ class Event_IncidentFinding(IncidentFinding):
 
 
 class Event_InventoryInfo(InventoryInfo):
-    class_name: typing_extensions.Literal["Inventory Info"]
+    class_name: typing.Literal["Inventory Info"]
 
     class Config:
         frozen = True
@@ -116,7 +114,7 @@ class Event_InventoryInfo(InventoryInfo):
 
 
 class Event_ModuleActivity(ModuleActivity):
-    class_name: typing_extensions.Literal["Module Activity"]
+    class_name: typing.Literal["Module Activity"]
 
     class Config:
         frozen = True
@@ -125,7 +123,7 @@ class Event_ModuleActivity(ModuleActivity):
 
 
 class Event_NetworkActivity(NetworkActivity):
-    class_name: typing_extensions.Literal["Network Activity"]
+    class_name: typing.Literal["Network Activity"]
 
     class Config:
         frozen = True
@@ -134,7 +132,7 @@ class Event_NetworkActivity(NetworkActivity):
 
 
 class Event_ProcessActivity(ProcessActivity):
-    class_name: typing_extensions.Literal["Process Activity"]
+    class_name: typing.Literal["Process Activity"]
 
     class Config:
         frozen = True
@@ -143,7 +141,7 @@ class Event_ProcessActivity(ProcessActivity):
 
 
 class Event_ScheduledJobActivity(ScheduledJobActivity):
-    class_name: typing_extensions.Literal["Scheduled Job Activity"]
+    class_name: typing.Literal["Scheduled Job Activity"]
 
     class Config:
         frozen = True
@@ -152,7 +150,7 @@ class Event_ScheduledJobActivity(ScheduledJobActivity):
 
 
 class Event_SecurityFinding(SecurityFinding):
-    class_name: typing_extensions.Literal["Security Finding"]
+    class_name: typing.Literal["Security Finding"]
 
     class Config:
         frozen = True
@@ -161,7 +159,7 @@ class Event_SecurityFinding(SecurityFinding):
 
 
 class Event_VulnerabilityFinding(VulnerabilityFinding):
-    class_name: typing_extensions.Literal["Vulnerability Finding"]
+    class_name: typing.Literal["Vulnerability Finding"]
 
     class Config:
         frozen = True
@@ -170,7 +168,7 @@ class Event_VulnerabilityFinding(VulnerabilityFinding):
 
 
 class Event_WebResourceAccessActivity(WebResourceAccessActivity):
-    class_name: typing_extensions.Literal["Web Resource Access Activity"]
+    class_name: typing.Literal["Web Resource Access Activity"]
 
     class Config:
         frozen = True

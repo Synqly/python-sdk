@@ -4,8 +4,6 @@ from __future__ import annotations
 
 import typing
 
-import typing_extensions
-
 from ...credentials.types.secret_credential import SecretCredential
 from ...credentials.types.secret_credential_id import SecretCredentialId
 
@@ -16,7 +14,7 @@ except ImportError:
 
 
 class TeamsCredential_Secret(SecretCredential):
-    type: typing_extensions.Literal["secret"]
+    type: typing.Literal["secret"]
 
     class Config:
         frozen = True
@@ -25,7 +23,7 @@ class TeamsCredential_Secret(SecretCredential):
 
 
 class TeamsCredential_SecretId(pydantic.BaseModel):
-    type: typing_extensions.Literal["secret_id"]
+    type: typing.Literal["secret_id"]
     value: SecretCredentialId
 
     class Config:

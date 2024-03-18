@@ -17,15 +17,20 @@ class SubTechnique(pydantic.BaseModel):
     The Sub Technique object describes the sub technique ID and/or name associated to an attack, as defined by <a target='_blank' href='https://attack.mitre.org/wiki/ATT&CK_Matrix'>ATT&CK Matrix<sup>TM</sup></a>.
     """
 
-    name: typing.Optional[str] = pydantic.Field(
-        description="The name of the attack sub technique, as defined by <a target='_blank' href='https://attack.mitre.org/wiki/ATT&CK_Matrix'>ATT&CK Matrix<sup>TM</sup></a>. For example: <code>Scanning IP Blocks</code>."
-    )
-    src_url: typing.Optional[UrlString] = pydantic.Field(
-        description="The versioned permalink of the attack sub technique, as defined by <a target='_blank' href='https://attack.mitre.org/wiki/ATT&CK_Matrix'>ATT&CK Matrix<sup>TM</sup></a>. For example: <code>https://attack.mitre.org/versions/v14/techniques/T1595/001/</code>."
-    )
-    uid: typing.Optional[str] = pydantic.Field(
-        description="The unique identifier of the attack sub technique, as defined by <a target='_blank' href='https://attack.mitre.org/wiki/ATT&CK_Matrix'>ATT&CK Matrix<sup>TM</sup></a>. For example: <code>T1595.001</code>."
-    )
+    name: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    The name of the attack sub technique, as defined by <a target='_blank' href='https://attack.mitre.org/wiki/ATT&CK_Matrix'>ATT&CK Matrix<sup>TM</sup></a>. For example: <code>Scanning IP Blocks</code>.
+    """
+
+    src_url: typing.Optional[UrlString] = pydantic.Field(default=None)
+    """
+    The versioned permalink of the attack sub technique, as defined by <a target='_blank' href='https://attack.mitre.org/wiki/ATT&CK_Matrix'>ATT&CK Matrix<sup>TM</sup></a>. For example: <code>https://attack.mitre.org/versions/v14/techniques/T1595/001/</code>.
+    """
+
+    uid: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    The unique identifier of the attack sub technique, as defined by <a target='_blank' href='https://attack.mitre.org/wiki/ATT&CK_Matrix'>ATT&CK Matrix<sup>TM</sup></a>. For example: <code>T1595.001</code>.
+    """
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}
@@ -38,4 +43,5 @@ class SubTechnique(pydantic.BaseModel):
     class Config:
         frozen = True
         smart_union = True
+        extra = pydantic.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}

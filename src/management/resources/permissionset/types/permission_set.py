@@ -16,13 +16,20 @@ except ImportError:
 
 class PermissionSet(pydantic.BaseModel):
     name: Permissions
-    description: typing.Optional[str] = pydantic.Field(
-        description="Description of when the permission set should be used and what permissions are granted by the permission set."
-    )
-    resource_restrictions: typing.List[ResourceRestrictions] = pydantic.Field(
-        description="Resources that can be used with this permission set"
-    )
-    permissions: ApiPermissionMap = pydantic.Field(description="API permissions granted by the permission set.")
+    description: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    Description of when the permission set should be used and what permissions are granted by the permission set.
+    """
+
+    resource_restrictions: typing.List[ResourceRestrictions] = pydantic.Field()
+    """
+    Resources that can be used with this permission set
+    """
+
+    permissions: ApiPermissionMap = pydantic.Field()
+    """
+    API permissions granted by the permission set.
+    """
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}
@@ -35,4 +42,5 @@ class PermissionSet(pydantic.BaseModel):
     class Config:
         frozen = True
         smart_union = True
+        extra = pydantic.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}

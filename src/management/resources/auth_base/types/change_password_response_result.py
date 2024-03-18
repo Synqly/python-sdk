@@ -13,8 +13,15 @@ except ImportError:
 
 
 class ChangePasswordResponseResult(pydantic.BaseModel):
-    auth_code: AuthCode = pydantic.Field(description="Authentication result")
-    auth_msg: typing.Optional[str] = pydantic.Field(description="Authentication failure message")
+    auth_code: AuthCode = pydantic.Field()
+    """
+    Authentication result
+    """
+
+    auth_msg: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    Authentication failure message
+    """
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}
@@ -27,4 +34,5 @@ class ChangePasswordResponseResult(pydantic.BaseModel):
     class Config:
         frozen = True
         smart_union = True
+        extra = pydantic.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}

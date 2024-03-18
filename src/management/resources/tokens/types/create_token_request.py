@@ -14,12 +14,25 @@ except ImportError:
 
 
 class CreateTokenRequest(pydantic.BaseModel):
-    name: typing.Optional[str] = pydantic.Field(
-        description="Unique name token. Defaults to generated refresh token id."
-    )
-    resources: Resources = pydantic.Field(description="Limit access to supplied resources")
-    permission_set: Permissions = pydantic.Field(description="Limit access to supplied permissions")
-    token_ttl: typing.Optional[str] = pydantic.Field(description="Token time-to-live. Defaults to member TokenTtl.")
+    name: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    Unique name token. Defaults to generated refresh token id.
+    """
+
+    resources: Resources = pydantic.Field()
+    """
+    Limit access to supplied resources
+    """
+
+    permission_set: Permissions = pydantic.Field()
+    """
+    Limit access to supplied permissions
+    """
+
+    token_ttl: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    Token time-to-live. Defaults to member TokenTtl.
+    """
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}
@@ -32,4 +45,5 @@ class CreateTokenRequest(pydantic.BaseModel):
     class Config:
         frozen = True
         smart_union = True
+        extra = pydantic.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}

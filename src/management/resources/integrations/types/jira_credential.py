@@ -4,8 +4,6 @@ from __future__ import annotations
 
 import typing
 
-import typing_extensions
-
 from ...credentials.types.basic_credential import BasicCredential
 from ...credentials.types.basic_credential_id import BasicCredentialId
 
@@ -16,7 +14,7 @@ except ImportError:
 
 
 class JiraCredential_Basic(BasicCredential):
-    type: typing_extensions.Literal["basic"]
+    type: typing.Literal["basic"]
 
     class Config:
         frozen = True
@@ -25,7 +23,7 @@ class JiraCredential_Basic(BasicCredential):
 
 
 class JiraCredential_BasicId(pydantic.BaseModel):
-    type: typing_extensions.Literal["basic_id"]
+    type: typing.Literal["basic_id"]
     value: BasicCredentialId
 
     class Config:

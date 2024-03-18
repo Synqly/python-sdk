@@ -17,15 +17,20 @@ class SinkAwsSqs(pydantic.BaseModel):
     Configuration for AWS Simple Queue Service (SQS) as a Sink Provider.
     """
 
-    credential: AwsSqsCredential = pydantic.Field(
-        description="Credential ID that stores AWS authentication key and secret. This token pair must have write access to the configured SQS queue"
-    )
-    url: str = pydantic.Field(
-        description="URL of the SQS queue where events are sent. Must be in the format `https://sqs.{region}.amazonaws.com_{account_id}/{queue_name}`."
-    )
-    region: typing.Optional[str] = pydantic.Field(
-        description="Override the default AWS region for this integration. If not present, the region will be inferred from the URL."
-    )
+    credential: AwsSqsCredential = pydantic.Field()
+    """
+    Credential ID that stores AWS authentication key and secret. This token pair must have write access to the configured SQS queue
+    """
+
+    url: str = pydantic.Field()
+    """
+    URL of the SQS queue where events are sent. Must be in the format `https://sqs.{region}.amazonaws.com_{account_id}/{queue_name}`.
+    """
+
+    region: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    Override the default AWS region for this integration. If not present, the region will be inferred from the URL.
+    """
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}
@@ -38,4 +43,5 @@ class SinkAwsSqs(pydantic.BaseModel):
     class Config:
         frozen = True
         smart_union = True
+        extra = pydantic.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}

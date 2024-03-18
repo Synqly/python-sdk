@@ -17,12 +17,15 @@ class EndpointConnection(pydantic.BaseModel):
     The Endpoint Connection object contains information detailing a connection attempt to an endpoint.
     """
 
-    code: typing.Optional[int] = pydantic.Field(
-        description="A numerical response status code providing details about the connection."
-    )
-    network_endpoint: typing.Optional[NetworkEndpoint] = pydantic.Field(
-        description="Provides characteristics of the network endpoint."
-    )
+    code: typing.Optional[int] = pydantic.Field(default=None)
+    """
+    A numerical response status code providing details about the connection.
+    """
+
+    network_endpoint: typing.Optional[NetworkEndpoint] = pydantic.Field(default=None)
+    """
+    Provides characteristics of the network endpoint.
+    """
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}
@@ -35,4 +38,5 @@ class EndpointConnection(pydantic.BaseModel):
     class Config:
         frozen = True
         smart_union = True
+        extra = pydantic.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}

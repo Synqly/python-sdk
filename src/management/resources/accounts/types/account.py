@@ -16,8 +16,15 @@ except ImportError:
 
 class Account(Base):
     id: AccountId
-    fullname: str = pydantic.Field(description="Human friendly display name for this account.")
-    organization_id: OrganizationId = pydantic.Field(description="Organization that manages this Account.")
+    fullname: str = pydantic.Field()
+    """
+    Human friendly display name for this account.
+    """
+
+    organization_id: OrganizationId = pydantic.Field()
+    """
+    Organization that manages this Account.
+    """
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}
@@ -31,4 +38,5 @@ class Account(Base):
         frozen = True
         smart_union = True
         allow_population_by_field_name = True
+        extra = pydantic.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}

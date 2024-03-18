@@ -16,7 +16,10 @@ class StorageMock(pydantic.BaseModel):
     Configuration for the Synqly mock in-memory storage handler. This provider is for testing purposes only and does not retain files pushed to it.
     """
 
-    bucket: str = pydantic.Field(description="Name of the bucket where files are stored.")
+    bucket: str = pydantic.Field()
+    """
+    Name of the bucket where files are stored.
+    """
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}
@@ -29,4 +32,5 @@ class StorageMock(pydantic.BaseModel):
     class Config:
         frozen = True
         smart_union = True
+        extra = pydantic.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}

@@ -20,22 +20,65 @@ class KbArticle(pydantic.BaseModel):
     The KB Article object contains metadata that describes the patch or update.
     """
 
-    bulletin: typing.Optional[str] = pydantic.Field(description="The kb article bulletin identifier.")
-    classification: typing.Optional[str] = pydantic.Field(description="The vendors classification of the kb article.")
-    created_time: typing.Optional[Timestamp] = pydantic.Field(
-        description="The date the kb article was released by the vendor."
-    )
-    created_time_dt: typing.Optional[dt.datetime] = pydantic.Field(
-        description="The date the kb article was released by the vendor."
-    )
-    is_superseded: typing.Optional[bool] = pydantic.Field(description="The kb article has been replaced by another.")
-    os: typing.Optional[Os] = pydantic.Field(description="The operating system the kb article applies.")
-    product: typing.Optional[Product] = pydantic.Field(description="The product details the kb article applies.")
-    severity: typing.Optional[str] = pydantic.Field(description="The severity of the kb article.")
-    size: typing.Optional[int] = pydantic.Field(description="The size in bytes for the kb article.")
-    src_url: typing.Optional[UrlString] = pydantic.Field(description="The kb article link from the source vendor.")
-    title: typing.Optional[str] = pydantic.Field(description="The title of the kb article.")
-    uid: str = pydantic.Field(description="The unique identifier for the kb article.")
+    bulletin: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    The kb article bulletin identifier.
+    """
+
+    classification: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    The vendors classification of the kb article.
+    """
+
+    created_time: typing.Optional[Timestamp] = pydantic.Field(default=None)
+    """
+    The date the kb article was released by the vendor.
+    """
+
+    created_time_dt: typing.Optional[dt.datetime] = pydantic.Field(default=None)
+    """
+    The date the kb article was released by the vendor.
+    """
+
+    is_superseded: typing.Optional[bool] = pydantic.Field(default=None)
+    """
+    The kb article has been replaced by another.
+    """
+
+    os: typing.Optional[Os] = pydantic.Field(default=None)
+    """
+    The operating system the kb article applies.
+    """
+
+    product: typing.Optional[Product] = pydantic.Field(default=None)
+    """
+    The product details the kb article applies.
+    """
+
+    severity: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    The severity of the kb article.
+    """
+
+    size: typing.Optional[int] = pydantic.Field(default=None)
+    """
+    The size in bytes for the kb article.
+    """
+
+    src_url: typing.Optional[UrlString] = pydantic.Field(default=None)
+    """
+    The kb article link from the source vendor.
+    """
+
+    title: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    The title of the kb article.
+    """
+
+    uid: str = pydantic.Field()
+    """
+    The unique identifier for the kb article.
+    """
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}
@@ -48,4 +91,5 @@ class KbArticle(pydantic.BaseModel):
     class Config:
         frozen = True
         smart_union = True
+        extra = pydantic.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}
