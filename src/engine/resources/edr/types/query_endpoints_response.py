@@ -4,6 +4,7 @@ import datetime as dt
 import typing
 
 from ....core.datetime_utils import serialize_datetime
+from ...assets.types.device import Device
 
 try:
     import pydantic.v1 as pydantic  # type: ignore
@@ -11,29 +12,15 @@ except ImportError:
     import pydantic  # type: ignore
 
 
-class OAuthClientCredential(pydantic.BaseModel):
+class QueryEndpointsResponse(pydantic.BaseModel):
+    result: typing.List[Device] = pydantic.Field()
     """
-    A Client ID and secret used for authenticating with OAuth 2.0 compatible service using the client credentials grant.
-    """
-
-    token_url: typing.Optional[str] = pydantic.Field(default=None)
-    """
-    Optional URL for the OAuth 2.0 token exchange if it can not be constructed based on provider configuration
+    List of endpoint assets that match the query.
     """
 
-    client_id: str = pydantic.Field()
+    cursor: str = pydantic.Field()
     """
-    The ID of the client application defined at the service provider
-    """
-
-    client_secret: str = pydantic.Field()
-    """
-    Secret value for authentication
-    """
-
-    extra: typing.Optional[typing.Dict[str, typing.Any]] = pydantic.Field(default=None)
-    """
-    Optional connection specific meta data such as a signing key ID or organization ID
+    Cursor to use to retrieve the next page of results.
     """
 
     def json(self, **kwargs: typing.Any) -> str:

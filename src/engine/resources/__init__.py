@@ -3,6 +3,7 @@
 from . import (
     assets,
     common,
+    edr,
     events,
     hooks,
     identity,
@@ -27,6 +28,13 @@ from .common import (
     NotFoundError,
     OrderOptions,
     UnauthorizedError,
+)
+from .edr import (
+    Application,
+    ConnectionState,
+    NetworkQuarantineRequest,
+    QueryApplicationsResponse,
+    QueryEndpointsResponse,
 )
 from .events import (
     Event,
@@ -87,6 +95,7 @@ from .vulnerabilities import (
 )
 
 __all__ = [
+    "Application",
     "Asset",
     "Attachment",
     "AttachmentId",
@@ -94,6 +103,7 @@ __all__ = [
     "BadRequestError",
     "Base",
     "BaseResourceRequest",
+    "ConnectionState",
     "CreateAttachmentRequest",
     "CreateAttachmentResponse",
     "CreateNotificationRequest",
@@ -129,6 +139,7 @@ __all__ = [
     "ListAttachmentsMetadataResponse",
     "ListProjectsResponse",
     "ListStorageResponse",
+    "NetworkQuarantineRequest",
     "NotAllowedError",
     "NotFoundError",
     "Notification",
@@ -138,8 +149,10 @@ __all__ = [
     "PatchTicketResponse",
     "Priority",
     "Project",
+    "QueryApplicationsResponse",
     "QueryAssetsResponse",
     "QueryDevicesResponse",
+    "QueryEndpointsResponse",
     "QueryFindingsResponse",
     "QueryIdentityAuditLogResponse",
     "QuerySiemEventsResponse",
@@ -154,6 +167,7 @@ __all__ = [
     "VulnerabilitySeverityFilterValue",
     "assets",
     "common",
+    "edr",
     "events",
     "hooks",
     "identity",

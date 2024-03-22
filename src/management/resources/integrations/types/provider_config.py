@@ -5,6 +5,8 @@ from __future__ import annotations
 import typing
 
 from .assets_armis_centrix import AssetsArmisCentrix
+from .edr_crowd_strike import EdrCrowdStrike
+from .edr_sentinel_one import EdrSentinelOne
 from .hooks_http import HooksHttp
 from .identity_entra_id import IdentityEntraId
 from .identity_okta import IdentityOkta
@@ -44,6 +46,24 @@ class ProviderConfig_HooksHttp(HooksHttp):
 
 class ProviderConfig_AssetsArmisCentrix(AssetsArmisCentrix):
     type: typing.Literal["assets_armis_centrix"]
+
+    class Config:
+        frozen = True
+        smart_union = True
+        allow_population_by_field_name = True
+
+
+class ProviderConfig_EdrCrowdstrike(EdrCrowdStrike):
+    type: typing.Literal["edr_crowdstrike"]
+
+    class Config:
+        frozen = True
+        smart_union = True
+        allow_population_by_field_name = True
+
+
+class ProviderConfig_EdrSentinelone(EdrSentinelOne):
+    type: typing.Literal["edr_sentinelone"]
 
     class Config:
         frozen = True
@@ -279,6 +299,8 @@ class ProviderConfig_VulnerabilitiesQualysCloud(VulnerabilitiesQualysCloud):
 ProviderConfig = typing.Union[
     ProviderConfig_HooksHttp,
     ProviderConfig_AssetsArmisCentrix,
+    ProviderConfig_EdrCrowdstrike,
+    ProviderConfig_EdrSentinelone,
     ProviderConfig_IdentityEntraId,
     ProviderConfig_IdentityOkta,
     ProviderConfig_IdentityPingone,

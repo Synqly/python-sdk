@@ -18,6 +18,13 @@ from .azure_monitor_logs_credential import (
 from .create_integration_request import CreateIntegrationRequest
 from .create_integration_response import CreateIntegrationResponse
 from .create_integration_response_result import CreateIntegrationResponseResult
+from .crowd_strike_credential import (
+    CrowdStrikeCredential,
+    CrowdStrikeCredential_OAuthClient,
+    CrowdStrikeCredential_OAuthClientId,
+)
+from .edr_crowd_strike import EdrCrowdStrike
+from .edr_sentinel_one import EdrSentinelOne
 from .elasticsearch_credential import (
     ElasticsearchCredential,
     ElasticsearchCredential_Token,
@@ -52,6 +59,8 @@ from .ping_one_credential import PingOneCredential, PingOneCredential_Token, Pin
 from .provider_config import (
     ProviderConfig,
     ProviderConfig_AssetsArmisCentrix,
+    ProviderConfig_EdrCrowdstrike,
+    ProviderConfig_EdrSentinelone,
     ProviderConfig_HooksHttp,
     ProviderConfig_IdentityEntraId,
     ProviderConfig_IdentityOkta,
@@ -85,6 +94,7 @@ from .rapid_7_insight_cloud_credential import (
     Rapid7InsightCloudCredential_Token,
     Rapid7InsightCloudCredential_TokenId,
 )
+from .sentinel_one_credential import SentinelOneCredential, SentinelOneCredential_Token, SentinelOneCredential_TokenId
 from .service_now_credential import ServiceNowCredential, ServiceNowCredential_Basic, ServiceNowCredential_BasicId
 from .siem_elasticsearch import SiemElasticsearch
 from .siem_mock import SiemMock
@@ -144,6 +154,11 @@ __all__ = [
     "CreateIntegrationRequest",
     "CreateIntegrationResponse",
     "CreateIntegrationResponseResult",
+    "CrowdStrikeCredential",
+    "CrowdStrikeCredential_OAuthClient",
+    "CrowdStrikeCredential_OAuthClientId",
+    "EdrCrowdStrike",
+    "EdrSentinelOne",
     "ElasticsearchCredential",
     "ElasticsearchCredential_Token",
     "ElasticsearchCredential_TokenId",
@@ -185,6 +200,8 @@ __all__ = [
     "PingOneCredential_TokenId",
     "ProviderConfig",
     "ProviderConfig_AssetsArmisCentrix",
+    "ProviderConfig_EdrCrowdstrike",
+    "ProviderConfig_EdrSentinelone",
     "ProviderConfig_HooksHttp",
     "ProviderConfig_IdentityEntraId",
     "ProviderConfig_IdentityOkta",
@@ -217,6 +234,9 @@ __all__ = [
     "Rapid7InsightCloudCredential",
     "Rapid7InsightCloudCredential_Token",
     "Rapid7InsightCloudCredential_TokenId",
+    "SentinelOneCredential",
+    "SentinelOneCredential_Token",
+    "SentinelOneCredential_TokenId",
     "ServiceNowCredential",
     "ServiceNowCredential_Basic",
     "ServiceNowCredential_BasicId",

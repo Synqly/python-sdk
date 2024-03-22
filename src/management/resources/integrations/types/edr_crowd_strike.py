@@ -4,6 +4,7 @@ import datetime as dt
 import typing
 
 from ....core.datetime_utils import serialize_datetime
+from .crowd_strike_credential import CrowdStrikeCredential
 
 try:
     import pydantic.v1 as pydantic  # type: ignore
@@ -11,29 +12,15 @@ except ImportError:
     import pydantic  # type: ignore
 
 
-class OAuthClientCredential(pydantic.BaseModel):
+class EdrCrowdStrike(pydantic.BaseModel):
     """
-    A Client ID and secret used for authenticating with OAuth 2.0 compatible service using the client credentials grant.
-    """
-
-    token_url: typing.Optional[str] = pydantic.Field(default=None)
-    """
-    Optional URL for the OAuth 2.0 token exchange if it can not be constructed based on provider configuration
+    Configuration for the CrowdStrike EDR Provider
     """
 
-    client_id: str = pydantic.Field()
+    credential: CrowdStrikeCredential
+    url: typing.Optional[str] = pydantic.Field(default=None)
     """
-    The ID of the client application defined at the service provider
-    """
-
-    client_secret: str = pydantic.Field()
-    """
-    Secret value for authentication
-    """
-
-    extra: typing.Optional[typing.Dict[str, typing.Any]] = pydantic.Field(default=None)
-    """
-    Optional connection specific meta data such as a signing key ID or organization ID
+    The root domain where your CrowdStrike Falcon tenant is located. Default "https://api.crowdstrike.com".
     """
 
     def json(self, **kwargs: typing.Any) -> str:
