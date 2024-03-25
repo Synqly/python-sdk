@@ -56,13 +56,6 @@ def parse_args():
     return args
 
 
-def mock_credential_config():
-    """
-    Helper method to construct a mock CredentialConfig object.
-    """
-    return mgmt.CredentialConfig_Token(type="token", secret="mock")
-
-
 def splunk_credential_config(splunk_token):
     """
     Helper method to construct a Token CredentialConfig object.
@@ -70,7 +63,7 @@ def splunk_credential_config(splunk_token):
     return mgmt.CredentialConfig_Token(type="token", secret=splunk_token)
 
 
-def mock_provider_config(credential_id):
+def mock_provider_config():
     return mgmt.ProviderConfig_SiemMockSiem(
         type="siem_mock_siem",
         skip_tls_verify=True,
@@ -186,6 +179,7 @@ def main():
     except Exception as e:
         print("Error creating Tenant ABC:" + str(e))
         app._cleanup_handler()
+
     try:
         app.new_tenant(synqly_org_token, "Tenant XYZ")
         print("Tenant XYZ created")
@@ -197,15 +191,7 @@ def main():
     abc_credential_id = ""
     xyz_credential_id = ""
 
-    # Create a Synqly Credential for each tenant.
-    try:
-        abc_credential_id = app.create_credential(
-            "Tenant ABC", "mock_siem", mock_credential_config()
-        )
-    except Exception as e:
-        print("Error creating Credential for Tenant ABC: " + str(e))
-        app._cleanup_handler()
-        raise e
+    # Create a Synqly Credential for splunk connector.
     try:
         xyz_credential_id = app.create_credential(
             "Tenant XYZ",
@@ -221,12 +207,13 @@ def main():
     try:
         app.configure_integration(
             "Tenant ABC",
-            mock_provider_config(abc_credential_id),
+            mock_provider_config(),
         )
     except Exception as e:
         print("Error configuring provider integration for Tenant ABC: " + str(e))
         app._cleanup_handler()
         raise e
+
     try:
         app.configure_integration(
             "Tenant XYZ",
