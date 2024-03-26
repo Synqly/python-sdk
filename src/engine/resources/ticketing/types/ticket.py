@@ -5,6 +5,7 @@ import typing
 
 from ....core.datetime_utils import serialize_datetime
 from ...common.types.base import Base
+from .attachment_metadata import AttachmentMetadata
 from .priority import Priority
 from .ticket_id import TicketId
 
@@ -78,6 +79,11 @@ class Ticket(Base):
     tags: typing.Optional[typing.List[str]] = pydantic.Field(default=None)
     """
     Associate tags with Ticket
+    """
+
+    attachments: typing.Optional[typing.List[AttachmentMetadata]] = pydantic.Field(default=None)
+    """
+    Metadata of attachments associated with the ticket
     """
 
     def json(self, **kwargs: typing.Any) -> str:

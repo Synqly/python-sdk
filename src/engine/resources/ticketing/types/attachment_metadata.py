@@ -38,7 +38,7 @@ class AttachmentMetadata(pydantic.BaseModel):
     The type of the file.
     """
 
-    file_size: int = pydantic.Field()
+    file_size: typing.Optional[int] = pydantic.Field(default=None)
     """
     The size of the file in bytes.
     """
