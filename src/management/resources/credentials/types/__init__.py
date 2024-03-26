@@ -23,6 +23,7 @@ from .get_credential_response import GetCredentialResponse
 from .list_credentials_response import ListCredentialsResponse
 from .o_auth_client_credential import OAuthClientCredential
 from .o_auth_client_credential_id import OAuthClientCredentialId
+from .owner_type import OwnerType
 from .patch_credential_response import PatchCredentialResponse
 from .secret_credential import SecretCredential
 from .secret_credential_id import SecretCredentialId
@@ -53,6 +54,7 @@ __all__ = [
     "ListCredentialsResponse",
     "OAuthClientCredential",
     "OAuthClientCredentialId",
+    "OwnerType",
     "PatchCredentialResponse",
     "SecretCredential",
     "SecretCredentialId",

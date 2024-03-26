@@ -12,6 +12,8 @@ from .capabilities_permissions import CapabilitiesPermissions
 from .credentials_actions import CredentialsActions
 from .credentials_permissions import CredentialsPermissions
 from .get_permission_set_response import GetPermissionSetResponse
+from .integration_points_actions import IntegrationPointsActions
+from .integration_points_permissions import IntegrationPointsPermissions
 from .integrations_actions import IntegrationsActions
 from .integrations_permissions import IntegrationsPermissions
 from .list_permission_sets_response import ListPermissionSetsResponse
@@ -47,6 +49,8 @@ __all__ = [
     "CredentialsActions",
     "CredentialsPermissions",
     "GetPermissionSetResponse",
+    "IntegrationPointsActions",
+    "IntegrationPointsPermissions",
     "IntegrationsActions",
     "IntegrationsPermissions",
     "ListPermissionSetsResponse",

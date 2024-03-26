@@ -7,7 +7,6 @@ from .types import (
     ListProviderCapabilitiesResponse,
     Provider,
     ProviderCredentialConfig,
-    ProviderId,
 )
 
 __all__ = [
@@ -17,5 +16,4 @@ __all__ = [
     "ListProviderCapabilitiesResponse",
     "Provider",
     "ProviderCredentialConfig",
-    "ProviderId",
 ]

@@ -5,7 +5,7 @@ import typing
 
 from ....core.datetime_utils import serialize_datetime
 from ...capabilities_base.types.category_id import CategoryId
-from .provider_id import ProviderId
+from ...capabilities_base.types.provider_id import ProviderId
 
 try:
     import pydantic.v1 as pydantic  # type: ignore

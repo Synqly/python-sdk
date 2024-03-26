@@ -10,6 +10,7 @@ from . import (
     common,
     credentials,
     integration_base,
+    integration_points,
     integrations,
     member_base,
     members,
@@ -56,9 +57,8 @@ from .capabilities import (
     ListProviderCapabilitiesResponse,
     Provider,
     ProviderCredentialConfig,
-    ProviderId,
 )
-from .capabilities_base import CategoryId
+from .capabilities_base import CategoryId, ProviderId
 from .common import (
     BadRequestError,
     Base,
@@ -92,6 +92,7 @@ from .credentials import (
     ListCredentialsResponse,
     OAuthClientCredential,
     OAuthClientCredentialId,
+    OwnerType,
     PatchCredentialResponse,
     SecretCredential,
     SecretCredentialId,
@@ -101,6 +102,18 @@ from .credentials import (
     UpdateCredentialResponse,
 )
 from .integration_base import IntegrationId
+from .integration_points import (
+    CreateIntegrationPointRequest,
+    CreateIntegrationPointResponse,
+    GetIntegrationPointResponse,
+    IntegrationEnvironments,
+    IntegrationPoint,
+    IntegrationPointId,
+    ListIntegrationPointsResponse,
+    PatchIntegrationPointResponse,
+    UpdateIntegrationPointRequest,
+    UpdateIntegrationPointResponse,
+)
 from .integrations import (
     ArmisCredential,
     ArmisCredential_Token,
@@ -266,7 +279,7 @@ from .members import (
 )
 from .meta import GetOpenApiSpecResponse
 from .organization import PatchOrganizationResponse, UpdateOrganizationRequest, UpdateOrganizationResponse
-from .organization_base import GetOrganizationResponse, Organization, OrganizationId, OrganizationOptions
+from .organization_base import Environment, GetOrganizationResponse, Organization, OrganizationId, OrganizationOptions
 from .permissions import Permission
 from .permissionset import (
     AccountsActions,
@@ -281,6 +294,8 @@ from .permissionset import (
     CredentialsActions,
     CredentialsPermissions,
     GetPermissionSetResponse,
+    IntegrationPointsActions,
+    IntegrationPointsPermissions,
     IntegrationsActions,
     IntegrationsPermissions,
     ListPermissionSetsResponse,
@@ -404,6 +419,8 @@ __all__ = [
     "CreateAccountResponseResult",
     "CreateCredentialRequest",
     "CreateCredentialResponse",
+    "CreateIntegrationPointRequest",
+    "CreateIntegrationPointResponse",
     "CreateIntegrationRequest",
     "CreateIntegrationResponse",
     "CreateIntegrationResponseResult",
@@ -440,6 +457,7 @@ __all__ = [
     "EntraIdCredential",
     "EntraIdCredential_Token",
     "EntraIdCredential_TokenId",
+    "Environment",
     "ErrorBody",
     "ErrorParam",
     "ForbiddenError",
@@ -448,6 +466,7 @@ __all__ = [
     "GcsCredential_AwsId",
     "GetAccountResponse",
     "GetCredentialResponse",
+    "GetIntegrationPointResponse",
     "GetIntegrationResponse",
     "GetIntegrationTimeseries",
     "GetIntegrationTimeseriesResult",
@@ -471,7 +490,12 @@ __all__ = [
     "IdentityOkta",
     "IdentityPingOne",
     "Integration",
+    "IntegrationEnvironments",
     "IntegrationId",
+    "IntegrationPoint",
+    "IntegrationPointId",
+    "IntegrationPointsActions",
+    "IntegrationPointsPermissions",
     "IntegrationsActions",
     "IntegrationsPermissions",
     "JiraCredential",
@@ -482,6 +506,7 @@ __all__ = [
     "ListAuditEventsResponse",
     "ListCategoryCapabilitiesResponse",
     "ListCredentialsResponse",
+    "ListIntegrationPointsResponse",
     "ListIntegrationsResponse",
     "ListMembersResponse",
     "ListPermissionSetsResponse",
@@ -517,11 +542,13 @@ __all__ = [
     "OrganizationId",
     "OrganizationOptions",
     "OrganizationPermissions",
+    "OwnerType",
     "PagerDutyCredential",
     "PagerDutyCredential_Token",
     "PagerDutyCredential_TokenId",
     "PatchAccountResponse",
     "PatchCredentialResponse",
+    "PatchIntegrationPointResponse",
     "PatchIntegrationResponse",
     "PatchMemberResponse",
     "PatchOrganizationResponse",
@@ -648,6 +675,8 @@ __all__ = [
     "UpdateAccountResponse",
     "UpdateCredentialRequest",
     "UpdateCredentialResponse",
+    "UpdateIntegrationPointRequest",
+    "UpdateIntegrationPointResponse",
     "UpdateIntegrationRequest",
     "UpdateIntegrationResponse",
     "UpdateMemberRequest",
@@ -672,6 +701,7 @@ __all__ = [
     "common",
     "credentials",
     "integration_base",
+    "integration_points",
     "integrations",
     "member_base",
     "members",

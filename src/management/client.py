@@ -11,6 +11,7 @@ from .resources.audit.client import AsyncAuditClient, AuditClient
 from .resources.auth.client import AsyncAuthClient, AuthClient
 from .resources.capabilities.client import AsyncCapabilitiesClient, CapabilitiesClient
 from .resources.credentials.client import AsyncCredentialsClient, CredentialsClient
+from .resources.integration_points.client import AsyncIntegrationPointsClient, IntegrationPointsClient
 from .resources.integrations.client import AsyncIntegrationsClient, IntegrationsClient
 from .resources.members.client import AsyncMembersClient, MembersClient
 from .resources.meta.client import AsyncMetaClient, MetaClient
@@ -65,6 +66,7 @@ class SynqlyManagement:
         self.auth = AuthClient(client_wrapper=self._client_wrapper)
         self.capabilities = CapabilitiesClient(client_wrapper=self._client_wrapper)
         self.credentials = CredentialsClient(client_wrapper=self._client_wrapper)
+        self.integration_points = IntegrationPointsClient(client_wrapper=self._client_wrapper)
         self.integrations = IntegrationsClient(client_wrapper=self._client_wrapper)
         self.members = MembersClient(client_wrapper=self._client_wrapper)
         self.meta = MetaClient(client_wrapper=self._client_wrapper)
@@ -119,6 +121,7 @@ class AsyncSynqlyManagement:
         self.auth = AsyncAuthClient(client_wrapper=self._client_wrapper)
         self.capabilities = AsyncCapabilitiesClient(client_wrapper=self._client_wrapper)
         self.credentials = AsyncCredentialsClient(client_wrapper=self._client_wrapper)
+        self.integration_points = AsyncIntegrationPointsClient(client_wrapper=self._client_wrapper)
         self.integrations = AsyncIntegrationsClient(client_wrapper=self._client_wrapper)
         self.members = AsyncMembersClient(client_wrapper=self._client_wrapper)
         self.meta = AsyncMetaClient(client_wrapper=self._client_wrapper)

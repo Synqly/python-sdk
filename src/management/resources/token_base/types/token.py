@@ -25,7 +25,7 @@ class Token(pydantic.BaseModel):
 
     permissions: Permission = pydantic.Field()
     """
-    Deprecated: Permissions granted to this token.
+    Permissions granted to this token.
     """
 
     def json(self, **kwargs: typing.Any) -> str:

@@ -8,6 +8,7 @@ from ...accounts.types.account_id import AccountId
 from ...capabilities_base.types.category_id import CategoryId
 from ...common.types.base import Base
 from ...integration_base.types.integration_id import IntegrationId
+from ...integration_points.types.integration_point_id import IntegrationPointId
 from ...token_base.types.token_id import TokenId
 from .provider_config import ProviderConfig
 
@@ -51,6 +52,11 @@ class Integration(Base):
     provider_type: str = pydantic.Field()
     """
     Type of the provider for this Integration.
+    """
+
+    integration_point_id: typing.Optional[IntegrationPointId] = pydantic.Field(default=None)
+    """
+    Integration Point associated with this integration.
     """
 
     def json(self, **kwargs: typing.Any) -> str:

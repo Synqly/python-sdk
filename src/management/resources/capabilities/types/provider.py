@@ -7,7 +7,6 @@ from ....core.datetime_utils import serialize_datetime
 from ...capabilities_base.types.category_id import CategoryId
 from .capabilities_provider_config import CapabilitiesProviderConfig
 from .provider_credential_config import ProviderCredentialConfig
-from .provider_id import ProviderId
 
 try:
     import pydantic.v1 as pydantic  # type: ignore
@@ -16,7 +15,6 @@ except ImportError:
 
 
 class Provider(pydantic.BaseModel):
-    id: ProviderId
     name: str = pydantic.Field()
     """
     Name of the Provider.

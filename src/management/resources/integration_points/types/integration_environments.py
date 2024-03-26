@@ -4,7 +4,7 @@ import datetime as dt
 import typing
 
 from ....core.datetime_utils import serialize_datetime
-from ...organization_base.types.environment import Environment
+from ...capabilities_base.types.provider_id import ProviderId
 
 try:
     import pydantic.v1 as pydantic  # type: ignore
@@ -12,20 +12,15 @@ except ImportError:
     import pydantic  # type: ignore
 
 
-class CreateAccountRequest(pydantic.BaseModel):
-    name: typing.Optional[str] = pydantic.Field(default=None)
+class IntegrationEnvironments(pydantic.BaseModel):
+    test: typing.Optional[typing.List[ProviderId]] = pydantic.Field(default=None)
     """
-    Unique short name for this Account (lowercase [a-z0-9_-], can be used in URLs). Also used for case insensitive duplicate name detection and default sort order. Defaults to AccountId if both name and fullname are not specified.
-    """
-
-    fullname: typing.Optional[str] = pydantic.Field(default=None)
-    """
-    Human friendly display name for this Account, will auto-generate 'name' field (if 'name' is not specified)
+    List of allowed providers for test environment.
     """
 
-    environment: Environment = pydantic.Field()
+    prod: typing.Optional[typing.List[ProviderId]] = pydantic.Field(default=None)
     """
-    Environment this account runs in.
+    List of allowed providers for production environment.
     """
 
     def json(self, **kwargs: typing.Any) -> str:

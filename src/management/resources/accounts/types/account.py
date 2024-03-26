@@ -5,6 +5,7 @@ import typing
 
 from ....core.datetime_utils import serialize_datetime
 from ...common.types.base import Base
+from ...organization_base.types.environment import Environment
 from ...organization_base.types.organization_id import OrganizationId
 from .account_id import AccountId
 
@@ -24,6 +25,11 @@ class Account(Base):
     organization_id: OrganizationId = pydantic.Field()
     """
     Organization that manages this Account.
+    """
+
+    environment: Environment = pydantic.Field()
+    """
+    Environment this account runs in.
     """
 
     def json(self, **kwargs: typing.Any) -> str:

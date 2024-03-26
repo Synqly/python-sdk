@@ -6,7 +6,6 @@ from .list_category_capabilities_response import ListCategoryCapabilitiesRespons
 from .list_provider_capabilities_response import ListProviderCapabilitiesResponse
 from .provider import Provider
 from .provider_credential_config import ProviderCredentialConfig
-from .provider_id import ProviderId
 
 __all__ = [
     "CapabilitiesProviderConfig",
@@ -15,5 +14,4 @@ __all__ = [
     "ListProviderCapabilitiesResponse",
     "Provider",
     "ProviderCredentialConfig",
-    "ProviderId",
 ]

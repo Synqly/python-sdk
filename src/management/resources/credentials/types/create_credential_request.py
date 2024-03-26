@@ -5,6 +5,7 @@ import typing
 
 from ....core.datetime_utils import serialize_datetime
 from .credential_config import CredentialConfig
+from .owner_type import OwnerType
 
 try:
     import pydantic.v1 as pydantic  # type: ignore
@@ -26,6 +27,11 @@ class CreateCredentialRequest(pydantic.BaseModel):
     config: typing.Optional[CredentialConfig] = pydantic.Field(default=None)
     """
     Credential configuration
+    """
+
+    owner_type: OwnerType = pydantic.Field()
+    """
+    one of account or integration_point.
     """
 
     def json(self, **kwargs: typing.Any) -> str:

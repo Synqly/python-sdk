@@ -4,7 +4,7 @@ import datetime as dt
 import typing
 
 from ....core.datetime_utils import serialize_datetime
-from ...organization_base.types.environment import Environment
+from .integration_point import IntegrationPoint
 
 try:
     import pydantic.v1 as pydantic  # type: ignore
@@ -12,21 +12,8 @@ except ImportError:
     import pydantic  # type: ignore
 
 
-class CreateAccountRequest(pydantic.BaseModel):
-    name: typing.Optional[str] = pydantic.Field(default=None)
-    """
-    Unique short name for this Account (lowercase [a-z0-9_-], can be used in URLs). Also used for case insensitive duplicate name detection and default sort order. Defaults to AccountId if both name and fullname are not specified.
-    """
-
-    fullname: typing.Optional[str] = pydantic.Field(default=None)
-    """
-    Human friendly display name for this Account, will auto-generate 'name' field (if 'name' is not specified)
-    """
-
-    environment: Environment = pydantic.Field()
-    """
-    Environment this account runs in.
-    """
+class UpdateIntegrationPointResponse(pydantic.BaseModel):
+    result: IntegrationPoint
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}

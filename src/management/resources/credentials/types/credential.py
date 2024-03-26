@@ -6,8 +6,10 @@ import typing
 from ....core.datetime_utils import serialize_datetime
 from ...accounts.types.account_id import AccountId
 from ...common.types.base import Base
+from ...integration_points.types.integration_point_id import IntegrationPointId
 from .credential_config import CredentialConfig
 from .credential_id import CredentialId
+from .owner_type import OwnerType
 
 try:
     import pydantic.v1 as pydantic  # type: ignore
@@ -17,13 +19,23 @@ except ImportError:
 
 class Credential(Base):
     """
-    Credential to access an integration. Each credential is owned by an Account.
+    Credential to access an integration. Each credential is owned by an Account or an IntegrationPoint.
     """
 
     id: CredentialId
-    account_id: AccountId = pydantic.Field()
+    account_id: typing.Optional[AccountId] = pydantic.Field(default=None)
     """
     Account that manages this credential.
+    """
+
+    integration_point_id: typing.Optional[IntegrationPointId] = pydantic.Field(default=None)
+    """
+    Integration Point associated with this credential.
+    """
+
+    owner_type: OwnerType = pydantic.Field()
+    """
+    one of account or integration_point.
     """
 
     fullname: str = pydantic.Field()

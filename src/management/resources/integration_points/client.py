@@ -9,21 +9,20 @@ from ...core.client_wrapper import AsyncClientWrapper, SyncClientWrapper
 from ...core.jsonable_encoder import jsonable_encoder
 from ...core.remove_none_from_dict import remove_none_from_dict
 from ...core.request_options import RequestOptions
-from ..accounts.types.account_id import AccountId
 from ..common.errors.bad_request_error import BadRequestError
 from ..common.errors.conflict_error import ConflictError
 from ..common.errors.forbidden_error import ForbiddenError
 from ..common.errors.not_found_error import NotFoundError
 from ..common.errors.unauthorized_error import UnauthorizedError
 from ..common.types.error_body import ErrorBody
-from .types.create_transform_request import CreateTransformRequest
-from .types.create_transform_response import CreateTransformResponse
-from .types.get_transform_response import GetTransformResponse
-from .types.list_transforms_response import ListTransformsResponse
-from .types.patch_transform_response import PatchTransformResponse
-from .types.transform_id import TransformId
-from .types.update_transform_request import UpdateTransformRequest
-from .types.update_transform_response import UpdateTransformResponse
+from .types.create_integration_point_request import CreateIntegrationPointRequest
+from .types.create_integration_point_response import CreateIntegrationPointResponse
+from .types.get_integration_point_response import GetIntegrationPointResponse
+from .types.integration_point_id import IntegrationPointId
+from .types.list_integration_points_response import ListIntegrationPointsResponse
+from .types.patch_integration_point_response import PatchIntegrationPointResponse
+from .types.update_integration_point_request import UpdateIntegrationPointRequest
+from .types.update_integration_point_response import UpdateIntegrationPointResponse
 
 try:
     import pydantic.v1 as pydantic  # type: ignore
@@ -34,13 +33,12 @@ except ImportError:
 OMIT = typing.cast(typing.Any, ...)
 
 
-class TransformsClient:
+class IntegrationPointsClient:
     def __init__(self, *, client_wrapper: SyncClientWrapper):
         self._client_wrapper = client_wrapper
 
     def list(
         self,
-        account_id: AccountId,
         *,
         limit: typing.Optional[int] = None,
         start_after: typing.Optional[str] = None,
@@ -48,19 +46,16 @@ class TransformsClient:
         order: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
         filter: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
         request_options: typing.Optional[RequestOptions] = None,
-    ) -> ListTransformsResponse:
+    ) -> ListIntegrationPointsResponse:
         """
-        Returns a list of all `Transform` objects belonging to the Account matching
-        `{accountId}`.
+        Returns a list of all `IntegrationPoint` objects.
 
         Parameters:
-            - account_id: AccountId.
+            - limit: typing.Optional[int]. Number of `IntegrationPoint` objects to return in this page. Defaults to 100.
 
-            - limit: typing.Optional[int]. Number of `Transform` objects to return in this page. Defaults to 100.
+            - start_after: typing.Optional[str]. Return `IntegrationPoint` objects starting after this `name`.
 
-            - start_after: typing.Optional[str]. Return `Transform` objects starting after this `name`.
-
-            - end_before: typing.Optional[str]. Return `Transform` objects ending before this `name`.
+            - end_before: typing.Optional[str]. Return `IntegrationPoint` objects ending before this `name`.
 
             - order: typing.Optional[typing.Union[str, typing.Sequence[str]]]. Select a field to order the results by. Defaults to `name`. To control the direction of the sorting, append
                                                                                `[asc]` or `[desc]` to the field name. For example, `name[desc]` will sort the results by `name` in descending order.
@@ -72,9 +67,7 @@ class TransformsClient:
         """
         _response = self._client_wrapper.httpx_client.request(
             "GET",
-            urllib.parse.urljoin(
-                f"{self._client_wrapper.get_base_url()}/", f"v1/transforms/{jsonable_encoder(account_id)}"
-            ),
+            urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", "v1/integration_points"),
             params=jsonable_encoder(
                 remove_none_from_dict(
                     {
@@ -106,7 +99,7 @@ class TransformsClient:
             max_retries=request_options.get("max_retries") if request_options is not None else 0,  # type: ignore
         )
         if 200 <= _response.status_code < 300:
-            return pydantic.parse_obj_as(ListTransformsResponse, _response.json())  # type: ignore
+            return pydantic.parse_obj_as(ListIntegrationPointsResponse, _response.json())  # type: ignore
         if _response.status_code == 404:
             raise NotFoundError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
         if _response.status_code == 403:
@@ -120,20 +113,13 @@ class TransformsClient:
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
     def get(
-        self,
-        account_id: AccountId,
-        transform_id: TransformId,
-        *,
-        request_options: typing.Optional[RequestOptions] = None,
-    ) -> GetTransformResponse:
+        self, integration_point_id: IntegrationPointId, *, request_options: typing.Optional[RequestOptions] = None
+    ) -> GetIntegrationPointResponse:
         """
-        Returns the `Transform` object matching `{transformId}` where the `Transform`
-        belongs to the `Account` matching `{accountId}`.
+        Returns the `IntegrationPoint` object matching `{integrationPointId}`.
 
         Parameters:
-            - account_id: AccountId.
-
-            - transform_id: TransformId.
+            - integration_point_id: IntegrationPointId.
 
             - request_options: typing.Optional[RequestOptions]. Request-specific configuration.
         """
@@ -141,7 +127,7 @@ class TransformsClient:
             "GET",
             urllib.parse.urljoin(
                 f"{self._client_wrapper.get_base_url()}/",
-                f"v1/transforms/{jsonable_encoder(account_id)}/{jsonable_encoder(transform_id)}",
+                f"v1/integration_points/{jsonable_encoder(integration_point_id)}",
             ),
             params=jsonable_encoder(
                 request_options.get("additional_query_parameters") if request_options is not None else None
@@ -161,7 +147,7 @@ class TransformsClient:
             max_retries=request_options.get("max_retries") if request_options is not None else 0,  # type: ignore
         )
         if 200 <= _response.status_code < 300:
-            return pydantic.parse_obj_as(GetTransformResponse, _response.json())  # type: ignore
+            return pydantic.parse_obj_as(GetIntegrationPointResponse, _response.json())  # type: ignore
         if _response.status_code == 404:
             raise NotFoundError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
         if _response.status_code == 403:
@@ -175,27 +161,19 @@ class TransformsClient:
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
     def create(
-        self,
-        account_id: AccountId,
-        *,
-        request: CreateTransformRequest,
-        request_options: typing.Optional[RequestOptions] = None,
-    ) -> CreateTransformResponse:
+        self, *, request: CreateIntegrationPointRequest, request_options: typing.Optional[RequestOptions] = None
+    ) -> CreateIntegrationPointResponse:
         """
-        Create a `Transform` object belonging to the `Account` matching `{accountId}`.
+        Create a `IntegrationPoint` object.
 
         Parameters:
-            - account_id: AccountId.
-
-            - request: CreateTransformRequest.
+            - request: CreateIntegrationPointRequest.
 
             - request_options: typing.Optional[RequestOptions]. Request-specific configuration.
         """
         _response = self._client_wrapper.httpx_client.request(
             "POST",
-            urllib.parse.urljoin(
-                f"{self._client_wrapper.get_base_url()}/", f"v1/transforms/{jsonable_encoder(account_id)}"
-            ),
+            urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", "v1/integration_points"),
             params=jsonable_encoder(
                 request_options.get("additional_query_parameters") if request_options is not None else None
             ),
@@ -220,7 +198,7 @@ class TransformsClient:
             max_retries=request_options.get("max_retries") if request_options is not None else 0,  # type: ignore
         )
         if 200 <= _response.status_code < 300:
-            return pydantic.parse_obj_as(CreateTransformResponse, _response.json())  # type: ignore
+            return pydantic.parse_obj_as(CreateIntegrationPointResponse, _response.json())  # type: ignore
         if _response.status_code == 400:
             raise BadRequestError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
         if _response.status_code == 404:
@@ -239,22 +217,18 @@ class TransformsClient:
 
     def update(
         self,
-        account_id: AccountId,
-        transform_id: TransformId,
+        integration_point_id: IntegrationPointId,
         *,
-        request: UpdateTransformRequest,
+        request: UpdateIntegrationPointRequest,
         request_options: typing.Optional[RequestOptions] = None,
-    ) -> UpdateTransformResponse:
+    ) -> UpdateIntegrationPointResponse:
         """
-        Updates the `Transform` object matching `{transformId}`, where the
-        `Transform` belongs to the `Account` matching `{accountId}`.
+        Updates the `IntegrationPoint` object matching `{integrationPointId}`.
 
         Parameters:
-            - account_id: AccountId.
+            - integration_point_id: IntegrationPointId.
 
-            - transform_id: TransformId.
-
-            - request: UpdateTransformRequest.
+            - request: UpdateIntegrationPointRequest.
 
             - request_options: typing.Optional[RequestOptions]. Request-specific configuration.
         """
@@ -262,7 +236,7 @@ class TransformsClient:
             "PUT",
             urllib.parse.urljoin(
                 f"{self._client_wrapper.get_base_url()}/",
-                f"v1/transforms/{jsonable_encoder(account_id)}/{jsonable_encoder(transform_id)}",
+                f"v1/integration_points/{jsonable_encoder(integration_point_id)}",
             ),
             params=jsonable_encoder(
                 request_options.get("additional_query_parameters") if request_options is not None else None
@@ -288,7 +262,7 @@ class TransformsClient:
             max_retries=request_options.get("max_retries") if request_options is not None else 0,  # type: ignore
         )
         if 200 <= _response.status_code < 300:
-            return pydantic.parse_obj_as(UpdateTransformResponse, _response.json())  # type: ignore
+            return pydantic.parse_obj_as(UpdateIntegrationPointResponse, _response.json())  # type: ignore
         if _response.status_code == 400:
             raise BadRequestError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
         if _response.status_code == 404:
@@ -307,20 +281,16 @@ class TransformsClient:
 
     def patch(
         self,
-        account_id: AccountId,
-        transform_id: TransformId,
+        integration_point_id: IntegrationPointId,
         *,
         request: typing.Sequence[typing.Dict[str, typing.Any]],
         request_options: typing.Optional[RequestOptions] = None,
-    ) -> PatchTransformResponse:
+    ) -> PatchIntegrationPointResponse:
         """
-        Patches the `Transform` object matching `{transformId}`, where the `Transform`
-        belongs to the `Account` matching `{accountId}`.
+        Patches the `IntegrationPoint` object matching `{integrationPointId}`.
 
         Parameters:
-            - account_id: AccountId.
-
-            - transform_id: TransformId.
+            - integration_point_id: IntegrationPointId.
 
             - request: typing.Sequence[typing.Dict[str, typing.Any]].
 
@@ -330,7 +300,7 @@ class TransformsClient:
             "PATCH",
             urllib.parse.urljoin(
                 f"{self._client_wrapper.get_base_url()}/",
-                f"v1/transforms/{jsonable_encoder(account_id)}/{jsonable_encoder(transform_id)}",
+                f"v1/integration_points/{jsonable_encoder(integration_point_id)}",
             ),
             params=jsonable_encoder(
                 request_options.get("additional_query_parameters") if request_options is not None else None
@@ -356,7 +326,7 @@ class TransformsClient:
             max_retries=request_options.get("max_retries") if request_options is not None else 0,  # type: ignore
         )
         if 200 <= _response.status_code < 300:
-            return pydantic.parse_obj_as(PatchTransformResponse, _response.json())  # type: ignore
+            return pydantic.parse_obj_as(PatchIntegrationPointResponse, _response.json())  # type: ignore
         if _response.status_code == 400:
             raise BadRequestError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
         if _response.status_code == 404:
@@ -372,20 +342,13 @@ class TransformsClient:
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
     def delete(
-        self,
-        account_id: AccountId,
-        transform_id: TransformId,
-        *,
-        request_options: typing.Optional[RequestOptions] = None,
+        self, integration_point_id: IntegrationPointId, *, request_options: typing.Optional[RequestOptions] = None
     ) -> None:
         """
-        Deletes the `Transform` object matching `{transformId}`, where the `Transform`
-        belongs to the `Account` matching `{accountId}`.
+        Deletes the `IntegrationPoint` object matching `{integrationPointId}`.
 
         Parameters:
-            - account_id: AccountId.
-
-            - transform_id: TransformId.
+            - integration_point_id: IntegrationPointId.
 
             - request_options: typing.Optional[RequestOptions]. Request-specific configuration.
         """
@@ -393,7 +356,7 @@ class TransformsClient:
             "DELETE",
             urllib.parse.urljoin(
                 f"{self._client_wrapper.get_base_url()}/",
-                f"v1/transforms/{jsonable_encoder(account_id)}/{jsonable_encoder(transform_id)}",
+                f"v1/integration_points/{jsonable_encoder(integration_point_id)}",
             ),
             params=jsonable_encoder(
                 request_options.get("additional_query_parameters") if request_options is not None else None
@@ -427,13 +390,12 @@ class TransformsClient:
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
 
-class AsyncTransformsClient:
+class AsyncIntegrationPointsClient:
     def __init__(self, *, client_wrapper: AsyncClientWrapper):
         self._client_wrapper = client_wrapper
 
     async def list(
         self,
-        account_id: AccountId,
         *,
         limit: typing.Optional[int] = None,
         start_after: typing.Optional[str] = None,
@@ -441,19 +403,16 @@ class AsyncTransformsClient:
         order: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
         filter: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
         request_options: typing.Optional[RequestOptions] = None,
-    ) -> ListTransformsResponse:
+    ) -> ListIntegrationPointsResponse:
         """
-        Returns a list of all `Transform` objects belonging to the Account matching
-        `{accountId}`.
+        Returns a list of all `IntegrationPoint` objects.
 
         Parameters:
-            - account_id: AccountId.
+            - limit: typing.Optional[int]. Number of `IntegrationPoint` objects to return in this page. Defaults to 100.
 
-            - limit: typing.Optional[int]. Number of `Transform` objects to return in this page. Defaults to 100.
+            - start_after: typing.Optional[str]. Return `IntegrationPoint` objects starting after this `name`.
 
-            - start_after: typing.Optional[str]. Return `Transform` objects starting after this `name`.
-
-            - end_before: typing.Optional[str]. Return `Transform` objects ending before this `name`.
+            - end_before: typing.Optional[str]. Return `IntegrationPoint` objects ending before this `name`.
 
             - order: typing.Optional[typing.Union[str, typing.Sequence[str]]]. Select a field to order the results by. Defaults to `name`. To control the direction of the sorting, append
                                                                                `[asc]` or `[desc]` to the field name. For example, `name[desc]` will sort the results by `name` in descending order.
@@ -465,9 +424,7 @@ class AsyncTransformsClient:
         """
         _response = await self._client_wrapper.httpx_client.request(
             "GET",
-            urllib.parse.urljoin(
-                f"{self._client_wrapper.get_base_url()}/", f"v1/transforms/{jsonable_encoder(account_id)}"
-            ),
+            urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", "v1/integration_points"),
             params=jsonable_encoder(
                 remove_none_from_dict(
                     {
@@ -499,7 +456,7 @@ class AsyncTransformsClient:
             max_retries=request_options.get("max_retries") if request_options is not None else 0,  # type: ignore
         )
         if 200 <= _response.status_code < 300:
-            return pydantic.parse_obj_as(ListTransformsResponse, _response.json())  # type: ignore
+            return pydantic.parse_obj_as(ListIntegrationPointsResponse, _response.json())  # type: ignore
         if _response.status_code == 404:
             raise NotFoundError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
         if _response.status_code == 403:
@@ -513,20 +470,13 @@ class AsyncTransformsClient:
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
     async def get(
-        self,
-        account_id: AccountId,
-        transform_id: TransformId,
-        *,
-        request_options: typing.Optional[RequestOptions] = None,
-    ) -> GetTransformResponse:
+        self, integration_point_id: IntegrationPointId, *, request_options: typing.Optional[RequestOptions] = None
+    ) -> GetIntegrationPointResponse:
         """
-        Returns the `Transform` object matching `{transformId}` where the `Transform`
-        belongs to the `Account` matching `{accountId}`.
+        Returns the `IntegrationPoint` object matching `{integrationPointId}`.
 
         Parameters:
-            - account_id: AccountId.
-
-            - transform_id: TransformId.
+            - integration_point_id: IntegrationPointId.
 
             - request_options: typing.Optional[RequestOptions]. Request-specific configuration.
         """
@@ -534,7 +484,7 @@ class AsyncTransformsClient:
             "GET",
             urllib.parse.urljoin(
                 f"{self._client_wrapper.get_base_url()}/",
-                f"v1/transforms/{jsonable_encoder(account_id)}/{jsonable_encoder(transform_id)}",
+                f"v1/integration_points/{jsonable_encoder(integration_point_id)}",
             ),
             params=jsonable_encoder(
                 request_options.get("additional_query_parameters") if request_options is not None else None
@@ -554,7 +504,7 @@ class AsyncTransformsClient:
             max_retries=request_options.get("max_retries") if request_options is not None else 0,  # type: ignore
         )
         if 200 <= _response.status_code < 300:
-            return pydantic.parse_obj_as(GetTransformResponse, _response.json())  # type: ignore
+            return pydantic.parse_obj_as(GetIntegrationPointResponse, _response.json())  # type: ignore
         if _response.status_code == 404:
             raise NotFoundError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
         if _response.status_code == 403:
@@ -568,27 +518,19 @@ class AsyncTransformsClient:
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
     async def create(
-        self,
-        account_id: AccountId,
-        *,
-        request: CreateTransformRequest,
-        request_options: typing.Optional[RequestOptions] = None,
-    ) -> CreateTransformResponse:
+        self, *, request: CreateIntegrationPointRequest, request_options: typing.Optional[RequestOptions] = None
+    ) -> CreateIntegrationPointResponse:
         """
-        Create a `Transform` object belonging to the `Account` matching `{accountId}`.
+        Create a `IntegrationPoint` object.
 
         Parameters:
-            - account_id: AccountId.
-
-            - request: CreateTransformRequest.
+            - request: CreateIntegrationPointRequest.
 
             - request_options: typing.Optional[RequestOptions]. Request-specific configuration.
         """
         _response = await self._client_wrapper.httpx_client.request(
             "POST",
-            urllib.parse.urljoin(
-                f"{self._client_wrapper.get_base_url()}/", f"v1/transforms/{jsonable_encoder(account_id)}"
-            ),
+            urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", "v1/integration_points"),
             params=jsonable_encoder(
                 request_options.get("additional_query_parameters") if request_options is not None else None
             ),
@@ -613,7 +555,7 @@ class AsyncTransformsClient:
             max_retries=request_options.get("max_retries") if request_options is not None else 0,  # type: ignore
         )
         if 200 <= _response.status_code < 300:
-            return pydantic.parse_obj_as(CreateTransformResponse, _response.json())  # type: ignore
+            return pydantic.parse_obj_as(CreateIntegrationPointResponse, _response.json())  # type: ignore
         if _response.status_code == 400:
             raise BadRequestError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
         if _response.status_code == 404:
@@ -632,22 +574,18 @@ class AsyncTransformsClient:
 
     async def update(
         self,
-        account_id: AccountId,
-        transform_id: TransformId,
+        integration_point_id: IntegrationPointId,
         *,
-        request: UpdateTransformRequest,
+        request: UpdateIntegrationPointRequest,
         request_options: typing.Optional[RequestOptions] = None,
-    ) -> UpdateTransformResponse:
+    ) -> UpdateIntegrationPointResponse:
         """
-        Updates the `Transform` object matching `{transformId}`, where the
-        `Transform` belongs to the `Account` matching `{accountId}`.
+        Updates the `IntegrationPoint` object matching `{integrationPointId}`.
 
         Parameters:
-            - account_id: AccountId.
+            - integration_point_id: IntegrationPointId.
 
-            - transform_id: TransformId.
-
-            - request: UpdateTransformRequest.
+            - request: UpdateIntegrationPointRequest.
 
             - request_options: typing.Optional[RequestOptions]. Request-specific configuration.
         """
@@ -655,7 +593,7 @@ class AsyncTransformsClient:
             "PUT",
             urllib.parse.urljoin(
                 f"{self._client_wrapper.get_base_url()}/",
-                f"v1/transforms/{jsonable_encoder(account_id)}/{jsonable_encoder(transform_id)}",
+                f"v1/integration_points/{jsonable_encoder(integration_point_id)}",
             ),
             params=jsonable_encoder(
                 request_options.get("additional_query_parameters") if request_options is not None else None
@@ -681,7 +619,7 @@ class AsyncTransformsClient:
             max_retries=request_options.get("max_retries") if request_options is not None else 0,  # type: ignore
         )
         if 200 <= _response.status_code < 300:
-            return pydantic.parse_obj_as(UpdateTransformResponse, _response.json())  # type: ignore
+            return pydantic.parse_obj_as(UpdateIntegrationPointResponse, _response.json())  # type: ignore
         if _response.status_code == 400:
             raise BadRequestError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
         if _response.status_code == 404:
@@ -700,20 +638,16 @@ class AsyncTransformsClient:
 
     async def patch(
         self,
-        account_id: AccountId,
-        transform_id: TransformId,
+        integration_point_id: IntegrationPointId,
         *,
         request: typing.Sequence[typing.Dict[str, typing.Any]],
         request_options: typing.Optional[RequestOptions] = None,
-    ) -> PatchTransformResponse:
+    ) -> PatchIntegrationPointResponse:
         """
-        Patches the `Transform` object matching `{transformId}`, where the `Transform`
-        belongs to the `Account` matching `{accountId}`.
+        Patches the `IntegrationPoint` object matching `{integrationPointId}`.
 
         Parameters:
-            - account_id: AccountId.
-
-            - transform_id: TransformId.
+            - integration_point_id: IntegrationPointId.
 
             - request: typing.Sequence[typing.Dict[str, typing.Any]].
 
@@ -723,7 +657,7 @@ class AsyncTransformsClient:
             "PATCH",
             urllib.parse.urljoin(
                 f"{self._client_wrapper.get_base_url()}/",
-                f"v1/transforms/{jsonable_encoder(account_id)}/{jsonable_encoder(transform_id)}",
+                f"v1/integration_points/{jsonable_encoder(integration_point_id)}",
             ),
             params=jsonable_encoder(
                 request_options.get("additional_query_parameters") if request_options is not None else None
@@ -749,7 +683,7 @@ class AsyncTransformsClient:
             max_retries=request_options.get("max_retries") if request_options is not None else 0,  # type: ignore
         )
         if 200 <= _response.status_code < 300:
-            return pydantic.parse_obj_as(PatchTransformResponse, _response.json())  # type: ignore
+            return pydantic.parse_obj_as(PatchIntegrationPointResponse, _response.json())  # type: ignore
         if _response.status_code == 400:
             raise BadRequestError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
         if _response.status_code == 404:
@@ -765,20 +699,13 @@ class AsyncTransformsClient:
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
     async def delete(
-        self,
-        account_id: AccountId,
-        transform_id: TransformId,
-        *,
-        request_options: typing.Optional[RequestOptions] = None,
+        self, integration_point_id: IntegrationPointId, *, request_options: typing.Optional[RequestOptions] = None
     ) -> None:
         """
-        Deletes the `Transform` object matching `{transformId}`, where the `Transform`
-        belongs to the `Account` matching `{accountId}`.
+        Deletes the `IntegrationPoint` object matching `{integrationPointId}`.
 
         Parameters:
-            - account_id: AccountId.
-
-            - transform_id: TransformId.
+            - integration_point_id: IntegrationPointId.
 
             - request_options: typing.Optional[RequestOptions]. Request-specific configuration.
         """
@@ -786,7 +713,7 @@ class AsyncTransformsClient:
             "DELETE",
             urllib.parse.urljoin(
                 f"{self._client_wrapper.get_base_url()}/",
-                f"v1/transforms/{jsonable_encoder(account_id)}/{jsonable_encoder(transform_id)}",
+                f"v1/integration_points/{jsonable_encoder(integration_point_id)}",
             ),
             params=jsonable_encoder(
                 request_options.get("additional_query_parameters") if request_options is not None else None

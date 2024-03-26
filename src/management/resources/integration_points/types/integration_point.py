@@ -4,7 +4,10 @@ import datetime as dt
 import typing
 
 from ....core.datetime_utils import serialize_datetime
-from ...organization_base.types.environment import Environment
+from ...capabilities_base.types.category_id import CategoryId
+from ...common.types.base import Base
+from .integration_environments import IntegrationEnvironments
+from .integration_point_id import IntegrationPointId
 
 try:
     import pydantic.v1 as pydantic  # type: ignore
@@ -12,20 +15,30 @@ except ImportError:
     import pydantic  # type: ignore
 
 
-class CreateAccountRequest(pydantic.BaseModel):
-    name: typing.Optional[str] = pydantic.Field(default=None)
+class IntegrationPoint(Base):
     """
-    Unique short name for this Account (lowercase [a-z0-9_-], can be used in URLs). Also used for case insensitive duplicate name detection and default sort order. Defaults to AccountId if both name and fullname are not specified.
+    Enables creation, editing and deletion of Integrations.
     """
 
+    id: IntegrationPointId
     fullname: typing.Optional[str] = pydantic.Field(default=None)
     """
-    Human friendly display name for this Account, will auto-generate 'name' field (if 'name' is not specified)
+    Name of integration point, will be shown to end-users in the Connect UI.
     """
 
-    environment: Environment = pydantic.Field()
+    description: typing.Optional[str] = pydantic.Field(default=None)
     """
-    Environment this account runs in.
+    Optional description of the Integration Point. Will not be displayed to end-users of Connect UI.
+    """
+
+    connector: CategoryId = pydantic.Field()
+    """
+    Connector to use for the Integration Point.
+    """
+
+    environments: IntegrationEnvironments = pydantic.Field()
+    """
+    Selects providers to use for account environments.
     """
 
     def json(self, **kwargs: typing.Any) -> str:
@@ -39,5 +52,6 @@ class CreateAccountRequest(pydantic.BaseModel):
     class Config:
         frozen = True
         smart_union = True
+        allow_population_by_field_name = True
         extra = pydantic.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}

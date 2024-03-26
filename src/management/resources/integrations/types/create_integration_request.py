@@ -4,6 +4,7 @@ import datetime as dt
 import typing
 
 from ....core.datetime_utils import serialize_datetime
+from ...integration_points.types.integration_point_id import IntegrationPointId
 from .provider_config import ProviderConfig
 
 try:
@@ -26,6 +27,11 @@ class CreateIntegrationRequest(pydantic.BaseModel):
     provider_config: ProviderConfig = pydantic.Field()
     """
     Provider configuration for this Integration.
+    """
+
+    integration_point_id: typing.Optional[IntegrationPointId] = pydantic.Field(default=None)
+    """
+    Integration Point associated with this integration.
     """
 
     def json(self, **kwargs: typing.Any) -> str:
