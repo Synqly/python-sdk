@@ -29,9 +29,9 @@ class CreateCredentialRequest(pydantic.BaseModel):
     Credential configuration
     """
 
-    owner_type: OwnerType = pydantic.Field()
+    owner_type: typing.Optional[OwnerType] = pydantic.Field(default=None)
     """
-    one of account or integration_point.
+    One of `account` or `integration_point`; defaults to `account` if not specified.
     """
 
     def json(self, **kwargs: typing.Any) -> str:

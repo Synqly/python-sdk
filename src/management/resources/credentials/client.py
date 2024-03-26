@@ -9,13 +9,13 @@ from ...core.client_wrapper import AsyncClientWrapper, SyncClientWrapper
 from ...core.jsonable_encoder import jsonable_encoder
 from ...core.remove_none_from_dict import remove_none_from_dict
 from ...core.request_options import RequestOptions
-from ..accounts.types.account_id import AccountId
 from ..common.errors.bad_request_error import BadRequestError
 from ..common.errors.conflict_error import ConflictError
 from ..common.errors.forbidden_error import ForbiddenError
 from ..common.errors.not_found_error import NotFoundError
 from ..common.errors.unauthorized_error import UnauthorizedError
 from ..common.types.error_body import ErrorBody
+from ..common.types.id import Id
 from .types.create_credential_request import CreateCredentialRequest
 from .types.create_credential_response import CreateCredentialResponse
 from .types.credential_id import CredentialId
@@ -40,7 +40,7 @@ class CredentialsClient:
 
     def list(
         self,
-        account_id: AccountId,
+        owner_id: Id,
         *,
         limit: typing.Optional[int] = None,
         start_after: typing.Optional[str] = None,
@@ -50,11 +50,11 @@ class CredentialsClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> ListCredentialsResponse:
         """
-        Returns a list of all `Credential` objects belonging to the `Account` matching
-        `{accountId}`.
+        Returns a list of all `Credential` objects belonging to the `Account` or `IntegrationPoint` matching
+        `{ownerId}`.
 
         Parameters:
-            - account_id: AccountId.
+            - owner_id: Id.
 
             - limit: typing.Optional[int]. Number of `Credential` objects to return in this page. Defaults to 100.
 
@@ -73,7 +73,7 @@ class CredentialsClient:
         _response = self._client_wrapper.httpx_client.request(
             "GET",
             urllib.parse.urljoin(
-                f"{self._client_wrapper.get_base_url()}/", f"v1/credentials/{jsonable_encoder(account_id)}"
+                f"{self._client_wrapper.get_base_url()}/", f"v1/credentials/{jsonable_encoder(owner_id)}"
             ),
             params=jsonable_encoder(
                 remove_none_from_dict(
@@ -120,18 +120,14 @@ class CredentialsClient:
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
     def get(
-        self,
-        account_id: AccountId,
-        credential_id: CredentialId,
-        *,
-        request_options: typing.Optional[RequestOptions] = None,
+        self, owner_id: Id, credential_id: CredentialId, *, request_options: typing.Optional[RequestOptions] = None
     ) -> GetCredentialResponse:
         """
         Returns the `Credential` object matching `{credentialId}` where the
-        `Credential` belongs to the `Account` matching `{accountId}`.
+        `Credential` belongs to the `Account` or `IntegrationPoint` matching `{ownerId}`.
 
         Parameters:
-            - account_id: AccountId.
+            - owner_id: Id.
 
             - credential_id: CredentialId.
 
@@ -141,7 +137,7 @@ class CredentialsClient:
             "GET",
             urllib.parse.urljoin(
                 f"{self._client_wrapper.get_base_url()}/",
-                f"v1/credentials/{jsonable_encoder(account_id)}/{jsonable_encoder(credential_id)}",
+                f"v1/credentials/{jsonable_encoder(owner_id)}/{jsonable_encoder(credential_id)}",
             ),
             params=jsonable_encoder(
                 request_options.get("additional_query_parameters") if request_options is not None else None
@@ -175,20 +171,15 @@ class CredentialsClient:
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
     def create(
-        self,
-        account_id: AccountId,
-        *,
-        request: CreateCredentialRequest,
-        request_options: typing.Optional[RequestOptions] = None,
+        self, owner_id: Id, *, request: CreateCredentialRequest, request_options: typing.Optional[RequestOptions] = None
     ) -> CreateCredentialResponse:
         """
-        Creates a `Credential` object in the `Account` matching matching
-        `{accountId}`. A `Credential` may only by used by a single `Account`;
-        however, `Credential` objects can be shared by multiple `Integrations`
-        within an `Account`.
+        Creates a `Credential` object in the `Account` or `IntegrationPoint` matching matching
+        `{ownerId}`. A `Credential` may only by used by a single `Account` or `IntegrationPoint`;
+        however, `Credential` objects can be shared by multiple `Integrations` within an `Account`.
 
         Parameters:
-            - account_id: AccountId.
+            - owner_id: Id.
 
             - request: CreateCredentialRequest.
 
@@ -197,7 +188,7 @@ class CredentialsClient:
         _response = self._client_wrapper.httpx_client.request(
             "POST",
             urllib.parse.urljoin(
-                f"{self._client_wrapper.get_base_url()}/", f"v1/credentials/{jsonable_encoder(account_id)}"
+                f"{self._client_wrapper.get_base_url()}/", f"v1/credentials/{jsonable_encoder(owner_id)}"
             ),
             params=jsonable_encoder(
                 request_options.get("additional_query_parameters") if request_options is not None else None
@@ -242,7 +233,7 @@ class CredentialsClient:
 
     def update(
         self,
-        account_id: AccountId,
+        owner_id: Id,
         credential_id: CredentialId,
         *,
         request: UpdateCredentialRequest,
@@ -250,10 +241,10 @@ class CredentialsClient:
     ) -> UpdateCredentialResponse:
         """
         Updates the `Credential` object matching `{credentialId}`, where the
-        `Credential` belongs to the `Account` matching `{accountId}`.
+        `Credential` belongs to the `Account` or `IntegrationPoint` matching `{ownerId}`.
 
         Parameters:
-            - account_id: AccountId.
+            - owner_id: Id.
 
             - credential_id: CredentialId.
 
@@ -265,7 +256,7 @@ class CredentialsClient:
             "PUT",
             urllib.parse.urljoin(
                 f"{self._client_wrapper.get_base_url()}/",
-                f"v1/credentials/{jsonable_encoder(account_id)}/{jsonable_encoder(credential_id)}",
+                f"v1/credentials/{jsonable_encoder(owner_id)}/{jsonable_encoder(credential_id)}",
             ),
             params=jsonable_encoder(
                 request_options.get("additional_query_parameters") if request_options is not None else None
@@ -310,7 +301,7 @@ class CredentialsClient:
 
     def patch(
         self,
-        account_id: AccountId,
+        owner_id: Id,
         credential_id: CredentialId,
         *,
         request: typing.Sequence[typing.Dict[str, typing.Any]],
@@ -318,10 +309,10 @@ class CredentialsClient:
     ) -> PatchCredentialResponse:
         """
         Patches the `Credential` object matching `{credentialId}`, where the
-        `Credential` belongs to the `Account` matching `{accountId}`.
+        `Credential` belongs to the `Account` or `IntegrationPoint` matching `{ownerId}`.
 
         Parameters:
-            - account_id: AccountId.
+            - owner_id: Id.
 
             - credential_id: CredentialId.
 
@@ -333,7 +324,7 @@ class CredentialsClient:
             "PATCH",
             urllib.parse.urljoin(
                 f"{self._client_wrapper.get_base_url()}/",
-                f"v1/credentials/{jsonable_encoder(account_id)}/{jsonable_encoder(credential_id)}",
+                f"v1/credentials/{jsonable_encoder(owner_id)}/{jsonable_encoder(credential_id)}",
             ),
             params=jsonable_encoder(
                 request_options.get("additional_query_parameters") if request_options is not None else None
@@ -375,18 +366,14 @@ class CredentialsClient:
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
     def delete(
-        self,
-        account_id: AccountId,
-        credential_id: CredentialId,
-        *,
-        request_options: typing.Optional[RequestOptions] = None,
+        self, owner_id: Id, credential_id: CredentialId, *, request_options: typing.Optional[RequestOptions] = None
     ) -> None:
         """
         Deletes the `Credential` object matching `{credentialId}`, where the
-        `Credential` belongs to the `Account` matching `{accountId}`.
+        `Credential` belongs to the `Account` or `IntegrationPoint` matching `{ownerId}`.
 
         Parameters:
-            - account_id: AccountId.
+            - owner_id: Id.
 
             - credential_id: CredentialId.
 
@@ -396,7 +383,7 @@ class CredentialsClient:
             "DELETE",
             urllib.parse.urljoin(
                 f"{self._client_wrapper.get_base_url()}/",
-                f"v1/credentials/{jsonable_encoder(account_id)}/{jsonable_encoder(credential_id)}",
+                f"v1/credentials/{jsonable_encoder(owner_id)}/{jsonable_encoder(credential_id)}",
             ),
             params=jsonable_encoder(
                 request_options.get("additional_query_parameters") if request_options is not None else None
@@ -436,7 +423,7 @@ class AsyncCredentialsClient:
 
     async def list(
         self,
-        account_id: AccountId,
+        owner_id: Id,
         *,
         limit: typing.Optional[int] = None,
         start_after: typing.Optional[str] = None,
@@ -446,11 +433,11 @@ class AsyncCredentialsClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> ListCredentialsResponse:
         """
-        Returns a list of all `Credential` objects belonging to the `Account` matching
-        `{accountId}`.
+        Returns a list of all `Credential` objects belonging to the `Account` or `IntegrationPoint` matching
+        `{ownerId}`.
 
         Parameters:
-            - account_id: AccountId.
+            - owner_id: Id.
 
             - limit: typing.Optional[int]. Number of `Credential` objects to return in this page. Defaults to 100.
 
@@ -469,7 +456,7 @@ class AsyncCredentialsClient:
         _response = await self._client_wrapper.httpx_client.request(
             "GET",
             urllib.parse.urljoin(
-                f"{self._client_wrapper.get_base_url()}/", f"v1/credentials/{jsonable_encoder(account_id)}"
+                f"{self._client_wrapper.get_base_url()}/", f"v1/credentials/{jsonable_encoder(owner_id)}"
             ),
             params=jsonable_encoder(
                 remove_none_from_dict(
@@ -516,18 +503,14 @@ class AsyncCredentialsClient:
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
     async def get(
-        self,
-        account_id: AccountId,
-        credential_id: CredentialId,
-        *,
-        request_options: typing.Optional[RequestOptions] = None,
+        self, owner_id: Id, credential_id: CredentialId, *, request_options: typing.Optional[RequestOptions] = None
     ) -> GetCredentialResponse:
         """
         Returns the `Credential` object matching `{credentialId}` where the
-        `Credential` belongs to the `Account` matching `{accountId}`.
+        `Credential` belongs to the `Account` or `IntegrationPoint` matching `{ownerId}`.
 
         Parameters:
-            - account_id: AccountId.
+            - owner_id: Id.
 
             - credential_id: CredentialId.
 
@@ -537,7 +520,7 @@ class AsyncCredentialsClient:
             "GET",
             urllib.parse.urljoin(
                 f"{self._client_wrapper.get_base_url()}/",
-                f"v1/credentials/{jsonable_encoder(account_id)}/{jsonable_encoder(credential_id)}",
+                f"v1/credentials/{jsonable_encoder(owner_id)}/{jsonable_encoder(credential_id)}",
             ),
             params=jsonable_encoder(
                 request_options.get("additional_query_parameters") if request_options is not None else None
@@ -571,20 +554,15 @@ class AsyncCredentialsClient:
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
     async def create(
-        self,
-        account_id: AccountId,
-        *,
-        request: CreateCredentialRequest,
-        request_options: typing.Optional[RequestOptions] = None,
+        self, owner_id: Id, *, request: CreateCredentialRequest, request_options: typing.Optional[RequestOptions] = None
     ) -> CreateCredentialResponse:
         """
-        Creates a `Credential` object in the `Account` matching matching
-        `{accountId}`. A `Credential` may only by used by a single `Account`;
-        however, `Credential` objects can be shared by multiple `Integrations`
-        within an `Account`.
+        Creates a `Credential` object in the `Account` or `IntegrationPoint` matching matching
+        `{ownerId}`. A `Credential` may only by used by a single `Account` or `IntegrationPoint`;
+        however, `Credential` objects can be shared by multiple `Integrations` within an `Account`.
 
         Parameters:
-            - account_id: AccountId.
+            - owner_id: Id.
 
             - request: CreateCredentialRequest.
 
@@ -593,7 +571,7 @@ class AsyncCredentialsClient:
         _response = await self._client_wrapper.httpx_client.request(
             "POST",
             urllib.parse.urljoin(
-                f"{self._client_wrapper.get_base_url()}/", f"v1/credentials/{jsonable_encoder(account_id)}"
+                f"{self._client_wrapper.get_base_url()}/", f"v1/credentials/{jsonable_encoder(owner_id)}"
             ),
             params=jsonable_encoder(
                 request_options.get("additional_query_parameters") if request_options is not None else None
@@ -638,7 +616,7 @@ class AsyncCredentialsClient:
 
     async def update(
         self,
-        account_id: AccountId,
+        owner_id: Id,
         credential_id: CredentialId,
         *,
         request: UpdateCredentialRequest,
@@ -646,10 +624,10 @@ class AsyncCredentialsClient:
     ) -> UpdateCredentialResponse:
         """
         Updates the `Credential` object matching `{credentialId}`, where the
-        `Credential` belongs to the `Account` matching `{accountId}`.
+        `Credential` belongs to the `Account` or `IntegrationPoint` matching `{ownerId}`.
 
         Parameters:
-            - account_id: AccountId.
+            - owner_id: Id.
 
             - credential_id: CredentialId.
 
@@ -661,7 +639,7 @@ class AsyncCredentialsClient:
             "PUT",
             urllib.parse.urljoin(
                 f"{self._client_wrapper.get_base_url()}/",
-                f"v1/credentials/{jsonable_encoder(account_id)}/{jsonable_encoder(credential_id)}",
+                f"v1/credentials/{jsonable_encoder(owner_id)}/{jsonable_encoder(credential_id)}",
             ),
             params=jsonable_encoder(
                 request_options.get("additional_query_parameters") if request_options is not None else None
@@ -706,7 +684,7 @@ class AsyncCredentialsClient:
 
     async def patch(
         self,
-        account_id: AccountId,
+        owner_id: Id,
         credential_id: CredentialId,
         *,
         request: typing.Sequence[typing.Dict[str, typing.Any]],
@@ -714,10 +692,10 @@ class AsyncCredentialsClient:
     ) -> PatchCredentialResponse:
         """
         Patches the `Credential` object matching `{credentialId}`, where the
-        `Credential` belongs to the `Account` matching `{accountId}`.
+        `Credential` belongs to the `Account` or `IntegrationPoint` matching `{ownerId}`.
 
         Parameters:
-            - account_id: AccountId.
+            - owner_id: Id.
 
             - credential_id: CredentialId.
 
@@ -729,7 +707,7 @@ class AsyncCredentialsClient:
             "PATCH",
             urllib.parse.urljoin(
                 f"{self._client_wrapper.get_base_url()}/",
-                f"v1/credentials/{jsonable_encoder(account_id)}/{jsonable_encoder(credential_id)}",
+                f"v1/credentials/{jsonable_encoder(owner_id)}/{jsonable_encoder(credential_id)}",
             ),
             params=jsonable_encoder(
                 request_options.get("additional_query_parameters") if request_options is not None else None
@@ -771,18 +749,14 @@ class AsyncCredentialsClient:
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
     async def delete(
-        self,
-        account_id: AccountId,
-        credential_id: CredentialId,
-        *,
-        request_options: typing.Optional[RequestOptions] = None,
+        self, owner_id: Id, credential_id: CredentialId, *, request_options: typing.Optional[RequestOptions] = None
     ) -> None:
         """
         Deletes the `Credential` object matching `{credentialId}`, where the
-        `Credential` belongs to the `Account` matching `{accountId}`.
+        `Credential` belongs to the `Account` or `IntegrationPoint` matching `{ownerId}`.
 
         Parameters:
-            - account_id: AccountId.
+            - owner_id: Id.
 
             - credential_id: CredentialId.
 
@@ -792,7 +766,7 @@ class AsyncCredentialsClient:
             "DELETE",
             urllib.parse.urljoin(
                 f"{self._client_wrapper.get_base_url()}/",
-                f"v1/credentials/{jsonable_encoder(account_id)}/{jsonable_encoder(credential_id)}",
+                f"v1/credentials/{jsonable_encoder(owner_id)}/{jsonable_encoder(credential_id)}",
             ),
             params=jsonable_encoder(
                 request_options.get("additional_query_parameters") if request_options is not None else None

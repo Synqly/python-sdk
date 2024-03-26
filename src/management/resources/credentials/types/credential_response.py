@@ -35,7 +35,7 @@ class CredentialResponse(Base):
 
     owner_type: OwnerType = pydantic.Field()
     """
-    one of account or integration_point.
+    One of `account` or `integration_point`.
     """
 
     fullname: str = pydantic.Field()
