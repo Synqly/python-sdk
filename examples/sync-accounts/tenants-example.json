@@ -1,0 +1,11 @@
+[
+    {
+        "tenant_name": "your-customer",
+        "tenable_access_key": "accessKey=value;secretKey=secret-value"
+    },
+    {
+        "tenant_name": "another-customer",
+        "tenable_access_key": "tenable_access_key"
+    }
+]
+
