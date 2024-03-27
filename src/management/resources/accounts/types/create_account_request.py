@@ -23,9 +23,9 @@ class CreateAccountRequest(pydantic.BaseModel):
     Human friendly display name for this Account, will auto-generate 'name' field (if 'name' is not specified)
     """
 
-    environment: Environment = pydantic.Field()
+    environment: typing.Optional[Environment] = pydantic.Field(default=None)
     """
-    Environment this account runs in.
+    Environment this account runs in. Defaults to `prod` if not specified.
     """
 
     def json(self, **kwargs: typing.Any) -> str:
