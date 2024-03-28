@@ -188,7 +188,6 @@ def main():
         app._cleanup_handler()
 
     # Placeholder variables for the IDs of the Credentials we will create
-    abc_credential_id = ""
     xyz_credential_id = ""
 
     # Create a Synqly Credential for splunk connector.

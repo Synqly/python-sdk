@@ -103,7 +103,7 @@ class App:
         """
         credential = tenant.synqly_management_client.credentials.create(
             # A Credential must belong to a Synqly Account
-            account_id=tenant.synqly_account_id,
+            owner_id=tenant.synqly_account_id,
             request=mgmt.CreateCredentialRequest(
                 fullname="{} authentication token".format(provider_type),
                 config=credential_config,
