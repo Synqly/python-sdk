@@ -18,7 +18,7 @@ class RoleAccounts(pydantic.BaseModel):
     List of account ids that this role definition grants access to. Use "\*" to grant access to all account ids.
     """
 
-    labels: typing.List[str] = pydantic.Field()
+    labels: typing.Optional[typing.List[str]] = pydantic.Field(default=None)
     """
     List of account labels this role definition grants access to.
     """
