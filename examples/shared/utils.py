@@ -69,6 +69,7 @@ class App:
         allowing us to make calls to the Synqly Management API. The Management
         API is used to create Synqly Accounts and Integrations.
         """
+        # (Optional) configure a custom httpx_client so that all errors are retried
         transport = httpx.HTTPTransport(retries=3)
         management_client = SynqlyManagement(
             token=synqly_org_token,
