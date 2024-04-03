@@ -1,5 +1,5 @@
 import signal
-import copy
+import httpx
 
 # Synqly Python SDK imports
 import engine
@@ -69,7 +69,11 @@ class App:
         allowing us to make calls to the Synqly Management API. The Management
         API is used to create Synqly Accounts and Integrations.
         """
-        management_client = SynqlyManagement(token=synqly_org_token)
+        transport = httpx.HTTPTransport(retries=3)
+        management_client = SynqlyManagement(
+            token=synqly_org_token,
+            httpx_client=httpx.Client(transport=transport),
+        )
 
         """
         Each tenant needs an associated Account in Synqly, so we create that now.
