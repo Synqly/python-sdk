@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "SynqlyPythonClient"
-version = "0.1.76"
+version = "0.1.77"
 description = ""
 readme = "README.md"
 authors = []
