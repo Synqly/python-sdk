@@ -2,6 +2,7 @@
 
 from .armis_credential import ArmisCredential, ArmisCredential_Token, ArmisCredential_TokenId
 from .assets_armis_centrix import AssetsArmisCentrix
+from .assets_service_now import AssetsServiceNow
 from .aws_s_3_credential import AwsS3Credential, AwsS3Credential_Aws, AwsS3Credential_AwsId
 from .aws_security_lake_credential import (
     AwsSecurityLakeCredential,
@@ -59,6 +60,7 @@ from .ping_one_credential import PingOneCredential, PingOneCredential_Token, Pin
 from .provider_config import (
     ProviderConfig,
     ProviderConfig_AssetsArmisCentrix,
+    ProviderConfig_AssetsServicenow,
     ProviderConfig_EdrCrowdstrike,
     ProviderConfig_EdrSentinelone,
     ProviderConfig_HooksHttp,
@@ -136,6 +138,7 @@ __all__ = [
     "ArmisCredential_Token",
     "ArmisCredential_TokenId",
     "AssetsArmisCentrix",
+    "AssetsServiceNow",
     "AwsS3Credential",
     "AwsS3Credential_Aws",
     "AwsS3Credential_AwsId",
@@ -200,6 +203,7 @@ __all__ = [
     "PingOneCredential_TokenId",
     "ProviderConfig",
     "ProviderConfig_AssetsArmisCentrix",
+    "ProviderConfig_AssetsServicenow",
     "ProviderConfig_EdrCrowdstrike",
     "ProviderConfig_EdrSentinelone",
     "ProviderConfig_HooksHttp",

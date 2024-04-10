@@ -5,6 +5,7 @@ from __future__ import annotations
 import typing
 
 from .assets_armis_centrix import AssetsArmisCentrix
+from .assets_service_now import AssetsServiceNow
 from .edr_crowd_strike import EdrCrowdStrike
 from .edr_sentinel_one import EdrSentinelOne
 from .hooks_http import HooksHttp
@@ -46,6 +47,15 @@ class ProviderConfig_HooksHttp(HooksHttp):
 
 class ProviderConfig_AssetsArmisCentrix(AssetsArmisCentrix):
     type: typing.Literal["assets_armis_centrix"]
+
+    class Config:
+        frozen = True
+        smart_union = True
+        allow_population_by_field_name = True
+
+
+class ProviderConfig_AssetsServicenow(AssetsServiceNow):
+    type: typing.Literal["assets_servicenow"]
 
     class Config:
         frozen = True
@@ -299,6 +309,7 @@ class ProviderConfig_VulnerabilitiesQualysCloud(VulnerabilitiesQualysCloud):
 ProviderConfig = typing.Union[
     ProviderConfig_HooksHttp,
     ProviderConfig_AssetsArmisCentrix,
+    ProviderConfig_AssetsServicenow,
     ProviderConfig_EdrCrowdstrike,
     ProviderConfig_EdrSentinelone,
     ProviderConfig_IdentityEntraId,
