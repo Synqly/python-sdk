@@ -27,7 +27,7 @@ class Transform(Base):
 
     fullname: str = pydantic.Field()
     """
-    Human friendly display name for this Organization.
+    Human friendly display name for this Transform.
     """
 
     patch: str = pydantic.Field()

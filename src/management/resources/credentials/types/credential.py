@@ -40,7 +40,7 @@ class Credential(Base):
 
     fullname: str = pydantic.Field()
     """
-    Human friendly display name for this Organization
+    Human friendly display name for this Credential
     """
 
     config: typing.Optional[CredentialConfig] = pydantic.Field(default=None)

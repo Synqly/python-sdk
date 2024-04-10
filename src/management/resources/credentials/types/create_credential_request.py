@@ -21,7 +21,7 @@ class CreateCredentialRequest(pydantic.BaseModel):
 
     fullname: typing.Optional[str] = pydantic.Field(default=None)
     """
-    Human friendly display name for this Credential, will auto-generate 'name' field (if 'name' is not specified)
+    Human friendly display name for this Credential, will auto-generate 'name' field (if 'name' is not specified). Defaults to the same value as the 'name' field if not specified.
     """
 
     config: typing.Optional[CredentialConfig] = pydantic.Field(default=None)

@@ -40,7 +40,7 @@ class CredentialResponse(Base):
 
     fullname: str = pydantic.Field()
     """
-    Human friendly display name for this Organization.
+    Human friendly display name for this Credential. Defaults to the same value as the 'name' field if not specified.
     """
 
     config: CredentialConfigNoSecret

@@ -21,7 +21,7 @@ class CreateMemberRequest(pydantic.BaseModel):
 
     fullname: typing.Optional[str] = pydantic.Field(default=None)
     """
-    User's full display name
+    User's full display name. Defaults to the same value as the 'name' field if not specified.
     """
 
     nickname: typing.Optional[str] = pydantic.Field(default=None)

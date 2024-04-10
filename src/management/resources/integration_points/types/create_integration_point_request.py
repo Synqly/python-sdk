@@ -21,7 +21,7 @@ class CreateIntegrationPointRequest(pydantic.BaseModel):
 
     fullname: typing.Optional[str] = pydantic.Field(default=None)
     """
-    Name of integration point, will be shown to end-users in the Connect UI.
+    Name of integration point, will be shown to end-users in the Connect UI. Defaults to the same value as the 'name' field if not specified.
     """
 
     description: typing.Optional[str] = pydantic.Field(default=None)

@@ -21,7 +21,7 @@ class CreateRoleRequest(pydantic.BaseModel):
 
     fullname: typing.Optional[str] = pydantic.Field(default=None)
     """
-    Human friendly display name for this Role, will auto-generate 'name' field (if 'name' is not specified)
+    Human friendly display name for this Role, will auto-generate 'name' field (if 'name' is not specified). Defaults to the same value as the 'name' field if not specified.
     """
 
     description: typing.Optional[str] = pydantic.Field(default=None)

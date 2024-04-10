@@ -25,7 +25,7 @@ class Member(Base):
 
     fullname: str = pydantic.Field()
     """
-    User's full display name
+    User's full display name.
     """
 
     nickname: str = pydantic.Field()

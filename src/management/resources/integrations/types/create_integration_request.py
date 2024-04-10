@@ -21,7 +21,7 @@ class CreateIntegrationRequest(pydantic.BaseModel):
 
     fullname: typing.Optional[str] = pydantic.Field(default=None)
     """
-    Human friendly display name for this Integrations, will auto-generate 'name' field (if 'name' is not specified)
+    Human friendly display name for this Integrations, will auto-generate 'name' field (if 'name' is not specified). Defaults to the same value as the 'name' field if not specified.
     """
 
     provider_config: ProviderConfig = pydantic.Field()
