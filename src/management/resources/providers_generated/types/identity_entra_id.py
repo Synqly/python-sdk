@@ -17,15 +17,15 @@ class IdentityEntraId(pydantic.BaseModel):
     Configuration for the Microsoft Entra ID Identity Provider
     """
 
-    credential: EntraIdCredential
-    url: typing.Optional[str] = pydantic.Field(default=None)
-    """
-    Optional URL override for the Microsoft Graph API. This should be the base URL for the API without any path components.
-    """
-
     client_id: str = pydantic.Field()
     """
     Azure Client (Application) ID.
+    """
+
+    credential: EntraIdCredential
+    scopes: typing.List[str] = pydantic.Field()
+    """
+    Any custom scopes. Defaults to the primary Microsoft graph API default scope.
     """
 
     tenant_id: str = pydantic.Field()
@@ -33,9 +33,9 @@ class IdentityEntraId(pydantic.BaseModel):
     Azure Directory (tenant) ID.
     """
 
-    scopes: typing.List[str] = pydantic.Field()
+    url: typing.Optional[str] = pydantic.Field(default=None)
     """
-    Any custom scopes. Defaults to the primary microsoft graph API default scope.
+    Optional URL override for the Microsoft Graph API. This should be the base URL for the API without any path components.
     """
 
     def json(self, **kwargs: typing.Any) -> str:

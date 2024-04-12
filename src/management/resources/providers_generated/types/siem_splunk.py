@@ -24,14 +24,24 @@ class SiemSplunk(pydantic.BaseModel):
     URL for the Splunk HEC endpoint. This must include the full path to the HEC endpoint. For example, "https://tenant.cloud.splunk.com:8088/services_collector_event".
     """
 
-    skip_tls_verify: bool = pydantic.Field()
-    """
-    If true, skips verification of the Splunk server's TLS certificate. Defaults to false.
-    """
-
     index: typing.Optional[str] = pydantic.Field(default=None)
     """
     Splunk index to send events to. If not provided, will use the default index for the Splunk collector.
+    """
+
+    search_service_credential: typing.Optional[SplunkSearchCredential] = pydantic.Field(default=None)
+    """
+    Optional id of a credential used for connecting to the Splunk search service. If not provided, querying is disabled.
+    """
+
+    search_service_url: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    Optional URL used for connecting to the Splunk search service. If not provided, querying is disabled.
+    """
+
+    skip_tls_verify: bool = pydantic.Field()
+    """
+    If true, skips verification of the Splunk server's TLS certificate. Defaults to false.
     """
 
     source: typing.Optional[str] = pydantic.Field(default=None)
@@ -42,16 +52,6 @@ class SiemSplunk(pydantic.BaseModel):
     source_type: typing.Optional[str] = pydantic.Field(default=None)
     """
     Splunk source type to send events to. If not provided, will use the default source type for the Splunk collector.
-    """
-
-    search_service_url: typing.Optional[str] = pydantic.Field(default=None)
-    """
-    Optional URL used for connecting to the Splunk search service. If not provided, querying is disabled.
-    """
-
-    search_service_credential: typing.Optional[SplunkSearchCredential] = pydantic.Field(default=None)
-    """
-    Optional id of a credential used for connecting to the Splunk search service. If not provided, querying is disabled.
     """
 
     def json(self, **kwargs: typing.Any) -> str:

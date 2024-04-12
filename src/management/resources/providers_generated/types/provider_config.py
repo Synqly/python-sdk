@@ -36,15 +36,6 @@ from .vulnerabilities_rapid_7_insight_cloud import VulnerabilitiesRapid7InsightC
 from .vulnerabilities_tenable_cloud import VulnerabilitiesTenableCloud
 
 
-class ProviderConfig_HooksHttp(HooksHttp):
-    type: typing.Literal["hooks_http"]
-
-    class Config:
-        frozen = True
-        smart_union = True
-        allow_population_by_field_name = True
-
-
 class ProviderConfig_AssetsArmisCentrix(AssetsArmisCentrix):
     type: typing.Literal["assets_armis_centrix"]
 
@@ -74,6 +65,15 @@ class ProviderConfig_EdrCrowdstrike(EdrCrowdStrike):
 
 class ProviderConfig_EdrSentinelone(EdrSentinelOne):
     type: typing.Literal["edr_sentinelone"]
+
+    class Config:
+        frozen = True
+        smart_union = True
+        allow_population_by_field_name = True
+
+
+class ProviderConfig_HooksHttp(HooksHttp):
+    type: typing.Literal["hooks_http"]
 
     class Config:
         frozen = True
@@ -153,8 +153,8 @@ class ProviderConfig_SiemElasticsearch(SiemElasticsearch):
         allow_population_by_field_name = True
 
 
-class ProviderConfig_SiemSplunk(SiemSplunk):
-    type: typing.Literal["siem_splunk"]
+class ProviderConfig_SiemMockSiem(SiemMock):
+    type: typing.Literal["siem_mock_siem"]
 
     class Config:
         frozen = True
@@ -162,8 +162,8 @@ class ProviderConfig_SiemSplunk(SiemSplunk):
         allow_population_by_field_name = True
 
 
-class ProviderConfig_SiemMockSiem(SiemMock):
-    type: typing.Literal["siem_mock_siem"]
+class ProviderConfig_SiemSplunk(SiemSplunk):
+    type: typing.Literal["siem_splunk"]
 
     class Config:
         frozen = True
@@ -252,6 +252,15 @@ class ProviderConfig_TicketingJira(TicketingJira):
         allow_population_by_field_name = True
 
 
+class ProviderConfig_TicketingMockTicketing(TicketingMock):
+    type: typing.Literal["ticketing_mock_ticketing"]
+
+    class Config:
+        frozen = True
+        smart_union = True
+        allow_population_by_field_name = True
+
+
 class ProviderConfig_TicketingPagerduty(TicketingPagerDuty):
     type: typing.Literal["ticketing_pagerduty"]
 
@@ -270,8 +279,8 @@ class ProviderConfig_TicketingServicenow(TicketingServiceNow):
         allow_population_by_field_name = True
 
 
-class ProviderConfig_TicketingMockTicketing(TicketingMock):
-    type: typing.Literal["ticketing_mock_ticketing"]
+class ProviderConfig_VulnerabilitiesQualysCloud(VulnerabilitiesQualysCloud):
+    type: typing.Literal["vulnerabilities_qualys_cloud"]
 
     class Config:
         frozen = True
@@ -297,21 +306,12 @@ class ProviderConfig_VulnerabilitiesTenableCloud(VulnerabilitiesTenableCloud):
         allow_population_by_field_name = True
 
 
-class ProviderConfig_VulnerabilitiesQualysCloud(VulnerabilitiesQualysCloud):
-    type: typing.Literal["vulnerabilities_qualys_cloud"]
-
-    class Config:
-        frozen = True
-        smart_union = True
-        allow_population_by_field_name = True
-
-
 ProviderConfig = typing.Union[
-    ProviderConfig_HooksHttp,
     ProviderConfig_AssetsArmisCentrix,
     ProviderConfig_AssetsServicenow,
     ProviderConfig_EdrCrowdstrike,
     ProviderConfig_EdrSentinelone,
+    ProviderConfig_HooksHttp,
     ProviderConfig_IdentityEntraId,
     ProviderConfig_IdentityOkta,
     ProviderConfig_IdentityPingone,
@@ -320,8 +320,8 @@ ProviderConfig = typing.Union[
     ProviderConfig_NotificationsSlack,
     ProviderConfig_NotificationsTeams,
     ProviderConfig_SiemElasticsearch,
-    ProviderConfig_SiemSplunk,
     ProviderConfig_SiemMockSiem,
+    ProviderConfig_SiemSplunk,
     ProviderConfig_SinkAwsSecurityLake,
     ProviderConfig_SinkAwsSqs,
     ProviderConfig_SinkAzureMonitorLogs,
@@ -331,10 +331,10 @@ ProviderConfig = typing.Union[
     ProviderConfig_StorageGcs,
     ProviderConfig_StorageMockStorage,
     ProviderConfig_TicketingJira,
+    ProviderConfig_TicketingMockTicketing,
     ProviderConfig_TicketingPagerduty,
     ProviderConfig_TicketingServicenow,
-    ProviderConfig_TicketingMockTicketing,
+    ProviderConfig_VulnerabilitiesQualysCloud,
     ProviderConfig_VulnerabilitiesRapid7InsightCloud,
     ProviderConfig_VulnerabilitiesTenableCloud,
-    ProviderConfig_VulnerabilitiesQualysCloud,
 ]

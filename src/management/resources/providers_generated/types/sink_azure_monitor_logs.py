@@ -4,7 +4,7 @@ import datetime as dt
 import typing
 
 from ....core.datetime_utils import serialize_datetime
-from .aws_sqs_credential import AwsSqsCredential
+from .azure_monitor_logs_credential import AzureMonitorLogsCredential
 
 try:
     import pydantic.v1 as pydantic  # type: ignore
@@ -12,24 +12,35 @@ except ImportError:
     import pydantic  # type: ignore
 
 
-class SinkAwsSqs(pydantic.BaseModel):
+class SinkAzureMonitorLogs(pydantic.BaseModel):
     """
-    Configuration for AWS Simple Queue Service (SQS) as a Sink Provider.
+    Configuration for Azure Monitor Logs as a Sink Provider. Azure Monitor Logs is a feature of Azure Monitor that collects and organizes log and performance data from monitored resources.
     """
 
-    credential: AwsSqsCredential = pydantic.Field()
+    client_id: str = pydantic.Field()
     """
-    Credential ID that stores AWS authentication key and secret. This token pair must have write access to the configured SQS queue
+    Azure Client (Application) ID.
+    """
+
+    credential: AzureMonitorLogsCredential
+    rule_id: str = pydantic.Field()
+    """
+    Data collection rule immutable ID.
+    """
+
+    stream_name: str = pydantic.Field()
+    """
+    Name of the Data collection rule stream.
+    """
+
+    tenant_id: str = pydantic.Field()
+    """
+    Azure Directory (tenant) ID.
     """
 
     url: str = pydantic.Field()
     """
-    URL of the SQS queue where events are sent. Must be in the format `https://sqs.{region}.amazonaws.com_{account_id}/{queue_name}`.
-    """
-
-    region: typing.Optional[str] = pydantic.Field(default=None)
-    """
-    Override the default AWS region for this integration. If not present, the region will be inferred from the URL.
+    URL of the Azure data collection endpoint.
     """
 
     def json(self, **kwargs: typing.Any) -> str:

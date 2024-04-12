@@ -4,7 +4,7 @@ import datetime as dt
 import typing
 
 from ....core.datetime_utils import serialize_datetime
-from .slack_credential import SlackCredential
+from .aws_sqs_credential import AwsSqsCredential
 
 try:
     import pydantic.v1 as pydantic  # type: ignore
@@ -12,20 +12,24 @@ except ImportError:
     import pydantic  # type: ignore
 
 
-class NotificationsSlack(pydantic.BaseModel):
+class SinkAwsSqs(pydantic.BaseModel):
     """
-    Configuration for the Slack Notification Provider
-    """
-
-    credential: SlackCredential
-    channel: str = pydantic.Field()
-    """
-    The channel to send notifications to. Should be the ID of the desired channel.
+    Configuration for AWS Simple Queue Service (SQS) as a Sink Provider.
     """
 
-    url: typing.Optional[str] = pydantic.Field(default=None)
+    credential: AwsSqsCredential = pydantic.Field()
     """
-    Optional URL override for the Slack API. This should include the full path to the API endpoint. Defaults to "https://slack.com_api_chat.postMessage".
+    Credential ID that stores AWS authentication key and secret. This token pair must have write access to the configured SQS queue
+    """
+
+    region: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    Override the default AWS region for this integration. If not present, the region will be inferred from the URL.
+    """
+
+    url: str = pydantic.Field()
+    """
+    URL of the SQS queue where events are sent. Must be in the format `https://sqs.{region}.amazonaws.com_{account_id}/{queue_name}`.
     """
 
     def json(self, **kwargs: typing.Any) -> str:

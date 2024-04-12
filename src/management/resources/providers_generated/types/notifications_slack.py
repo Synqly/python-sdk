@@ -4,7 +4,7 @@ import datetime as dt
 import typing
 
 from ....core.datetime_utils import serialize_datetime
-from .elasticsearch_credential import ElasticsearchCredential
+from .slack_credential import SlackCredential
 
 try:
     import pydantic.v1 as pydantic  # type: ignore
@@ -12,20 +12,20 @@ except ImportError:
     import pydantic  # type: ignore
 
 
-class SiemElasticsearch(pydantic.BaseModel):
+class NotificationsSlack(pydantic.BaseModel):
     """
-    Configuration for Elasticsearch search and analytics engine. Supports both managed and self-hosted Elasticsearch deployments
-    """
-
-    credential: ElasticsearchCredential
-    url: str = pydantic.Field()
-    """
-    URL for the Elasticsearch API. This should be the base URL for the API, without any path components and must be HTTPS. For example, "https://tenant.elastic.com".
+    Configuration for the Slack Notification Provider
     """
 
-    index: str = pydantic.Field()
+    channel: str = pydantic.Field()
     """
-    Elasticsearch index to send events to.
+    The channel to send notifications to. Should be the ID of the desired channel.
+    """
+
+    credential: SlackCredential
+    url: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    Optional URL override for the Slack API. This should include the full path to the API endpoint. Defaults to "https://slack.com_api_chat.postMessage".
     """
 
     def json(self, **kwargs: typing.Any) -> str:

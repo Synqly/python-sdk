@@ -9,8 +9,8 @@ from ...capabilities_base.types.category_id import CategoryId
 from ...common.types.base import Base
 from ...integration_base.types.integration_id import IntegrationId
 from ...integration_points.types.integration_point_id import IntegrationPointId
+from ...providers_generated.types.provider_config import ProviderConfig
 from ...token_base.types.token_id import TokenId
-from .provider_config import ProviderConfig
 
 try:
     import pydantic.v1 as pydantic  # type: ignore

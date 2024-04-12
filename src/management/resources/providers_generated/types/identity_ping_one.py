@@ -17,12 +17,6 @@ class IdentityPingOne(pydantic.BaseModel):
     Configuration for the PingOne Identity Platform
     """
 
-    credential: PingOneCredential
-    url: str = pydantic.Field()
-    """
-    URL for the PingOne API. This should be the base URL for the API, without any path components.
-    """
-
     auth_url: str = pydantic.Field()
     """
     The URL base for making authentication requests to PingOne.
@@ -33,9 +27,15 @@ class IdentityPingOne(pydantic.BaseModel):
     The client ID for the application set up as a worker.
     """
 
+    credential: PingOneCredential
     organization_id: str = pydantic.Field()
     """
     The organization ID that the client app is a part of.
+    """
+
+    url: str = pydantic.Field()
+    """
+    URL for the PingOne API. This should be the base URL for the API, without any path components.
     """
 
     def json(self, **kwargs: typing.Any) -> str:

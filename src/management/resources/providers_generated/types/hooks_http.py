@@ -4,8 +4,9 @@ import datetime as dt
 import typing
 
 from ....core.datetime_utils import serialize_datetime
+from ...credentials.types.credential_id import CredentialId
 from ...transforms.types.transform_id import TransformId
-from .azure_blob_credential import AzureBlobCredential
+from .hooks_http_credential import HooksHttpCredential
 
 try:
     import pydantic.v1 as pydantic  # type: ignore
@@ -13,20 +14,40 @@ except ImportError:
     import pydantic  # type: ignore
 
 
-class StorageAzureBlob(pydantic.BaseModel):
+class HooksHttp(pydantic.BaseModel):
     """
-    Configuration for Azure Blob Storage as a Storage Provider
+    Configuration for a Webhook Provider
     """
 
-    credential: AzureBlobCredential
-    bucket: str = pydantic.Field()
+    credential: HooksHttpCredential
+    filter: typing.Optional[str] = pydantic.Field(default=None)
     """
-    Name of the blob container where files are stored.
+    Optional webhook filter specification
+    """
+
+    source_events: typing.List[str] = pydantic.Field()
+    """
+    Events to hook or empty list for all events
+    """
+
+    source_secret: typing.Optional[CredentialId] = pydantic.Field(default=None)
+    """
+    Webhook verification secret
+    """
+
+    target_secret: typing.Optional[CredentialId] = pydantic.Field(default=None)
+    """
+    Add optional webhook secure hash for verification
     """
 
     transforms: typing.Optional[typing.List[TransformId]] = pydantic.Field(default=None)
     """
-    Optional list of transformations used to modify requests before they are sent to the external service.
+    Optional list of transformations used to modify the webhook responses.
+    """
+
+    url: str = pydantic.Field()
+    """
+    URL of the endpoint used for connecting to the external service.
     """
 
     def json(self, **kwargs: typing.Any) -> str:

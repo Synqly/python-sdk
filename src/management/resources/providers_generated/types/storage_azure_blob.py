@@ -4,7 +4,8 @@ import datetime as dt
 import typing
 
 from ....core.datetime_utils import serialize_datetime
-from .azure_monitor_logs_credential import AzureMonitorLogsCredential
+from ...transforms.types.transform_id import TransformId
+from .azure_blob_credential import AzureBlobCredential
 
 try:
     import pydantic.v1 as pydantic  # type: ignore
@@ -12,35 +13,20 @@ except ImportError:
     import pydantic  # type: ignore
 
 
-class SinkAzureMonitorLogs(pydantic.BaseModel):
+class StorageAzureBlob(pydantic.BaseModel):
     """
-    Configuration for Azure Monitor Logs as a Sink Provider. Azure Monitor Logs is a feature of Azure Monitor that collects and organizes log and performance data from monitored resources.
-    """
-
-    credential: AzureMonitorLogsCredential
-    url: str = pydantic.Field()
-    """
-    URL of the Azure data collection endpoint.
+    Configuration for Azure Blob Storage as a Storage Provider
     """
 
-    client_id: str = pydantic.Field()
+    bucket: str = pydantic.Field()
     """
-    Azure Client (Application) ID.
-    """
-
-    tenant_id: str = pydantic.Field()
-    """
-    Azure Directory (tenant) ID.
+    Name of the blob container where files are stored.
     """
 
-    rule_id: str = pydantic.Field()
+    credential: AzureBlobCredential
+    transforms: typing.Optional[typing.List[TransformId]] = pydantic.Field(default=None)
     """
-    Data Collection Rule immutable ID.
-    """
-
-    stream_name: str = pydantic.Field()
-    """
-    Name of the Data Collection Rule stream.
+    Optional list of transformations used to modify requests before they are sent to the external service.
     """
 
     def json(self, **kwargs: typing.Any) -> str:

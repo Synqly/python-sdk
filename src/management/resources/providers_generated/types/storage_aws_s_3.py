@@ -18,16 +18,20 @@ class StorageAwsS3(pydantic.BaseModel):
     Configuration for AWS S3 as a Storage Provider
     """
 
-    credential: AwsS3Credential
     bucket: str = pydantic.Field()
     """
-    Name of the s3 bucket where files are stored.
+    Name of the AWS S3 bucket where files are stored.
     """
 
-    region: str
+    credential: AwsS3Credential
     endpoint: typing.Optional[str] = pydantic.Field(default=None)
     """
     Endpoint used for connecting to the external service. If not provided, will connect to the default endpoint for the Provider.
+    """
+
+    region: str = pydantic.Field()
+    """
+    AWS region where the S3 bucket is located.
     """
 
     transforms: typing.Optional[typing.List[TransformId]] = pydantic.Field(default=None)

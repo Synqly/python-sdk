@@ -5,7 +5,7 @@ import typing
 
 from ....core.datetime_utils import serialize_datetime
 from ...integration_points.types.integration_point_id import IntegrationPointId
-from .provider_config import ProviderConfig
+from ...providers_generated.types.provider_config import ProviderConfig
 
 try:
     import pydantic.v1 as pydantic  # type: ignore

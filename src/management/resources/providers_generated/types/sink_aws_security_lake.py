@@ -4,8 +4,7 @@ import datetime as dt
 import typing
 
 from ....core.datetime_utils import serialize_datetime
-from ...transforms.types.transform_id import TransformId
-from .gcs_credential import GcsCredential
+from .aws_security_lake_credential import AwsSecurityLakeCredential
 
 try:
     import pydantic.v1 as pydantic  # type: ignore
@@ -13,25 +12,20 @@ except ImportError:
     import pydantic  # type: ignore
 
 
-class StorageGcs(pydantic.BaseModel):
+class SinkAwsSecurityLake(pydantic.BaseModel):
     """
-    Configuration for Google Cloud Storage for storing unstructured data
-    """
-
-    credential: GcsCredential
-    bucket: str = pydantic.Field()
-    """
-    Name of the bucket where files are stored.
+    Configuration for AWS Security Lake provider. Events are written directly to an AWS S3 bucket in Apache Parquet format.
     """
 
-    region: str = pydantic.Field()
+    credential: AwsSecurityLakeCredential
+    region: typing.Optional[str] = pydantic.Field(default=None)
     """
-    Google Cloud region where the bucket is located.
+    Override the default AWS region for this integration. If not present, the region will be inferred from the URL.
     """
 
-    transforms: typing.Optional[typing.List[TransformId]] = pydantic.Field(default=None)
+    url: str = pydantic.Field()
     """
-    Optional list of transformations used to modify requests before they are sent to the external service.
+    URL of the S3 bucket where the AWS Security Lake events are stored.
     """
 
     def json(self, **kwargs: typing.Any) -> str:
