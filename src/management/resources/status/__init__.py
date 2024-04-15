@@ -7,9 +7,11 @@ from .types import (
     GetStatusTimeseries,
     GetStatusTimeseriesResult,
     ListStatusEventsResponse,
+    ListStatusOptions,
     ListStatusResponse,
     Status,
     StatusEvent,
+    StatusInfo,
     TimeseriesResult,
 )
 
@@ -20,8 +22,10 @@ __all__ = [
     "GetStatusTimeseries",
     "GetStatusTimeseriesResult",
     "ListStatusEventsResponse",
+    "ListStatusOptions",
     "ListStatusResponse",
     "Status",
     "StatusEvent",
+    "StatusInfo",
     "TimeseriesResult",
 ]

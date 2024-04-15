@@ -4,7 +4,9 @@ import datetime as dt
 import typing
 
 from ....core.datetime_utils import serialize_datetime
-from .status_info import StatusInfo
+from ...accounts.types.account import Account
+from ...integrations.types.integration import Integration
+from .status import Status
 
 try:
     import pydantic.v1 as pydantic  # type: ignore
@@ -12,8 +14,10 @@ except ImportError:
     import pydantic  # type: ignore
 
 
-class ListStatusResponse(pydantic.BaseModel):
-    result: typing.List[StatusInfo]
+class StatusInfo(pydantic.BaseModel):
+    status: Status
+    integration: typing.Optional[Integration] = None
+    account: typing.Optional[Account] = None
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}

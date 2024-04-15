@@ -344,9 +344,11 @@ from .status import (
     GetStatusTimeseries,
     GetStatusTimeseriesResult,
     ListStatusEventsResponse,
+    ListStatusOptions,
     ListStatusResponse,
     Status,
     StatusEvent,
+    StatusInfo,
     TimeseriesResult,
 )
 from .token_base import Token, TokenId, TokenPair
@@ -520,6 +522,7 @@ __all__ = [
     "ListProviderCapabilitiesResponse",
     "ListRolesResponse",
     "ListStatusEventsResponse",
+    "ListStatusOptions",
     "ListStatusResponse",
     "ListTokensResponse",
     "ListTransformsResponse",
@@ -652,6 +655,7 @@ __all__ = [
     "Status",
     "StatusActions",
     "StatusEvent",
+    "StatusInfo",
     "StatusPermissions",
     "StorageAwsS3",
     "StorageAzureBlob",
