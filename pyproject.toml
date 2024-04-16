@@ -1,12 +1,11 @@
 [tool.poetry]
-name = "SynqlyPythonClient"
-version = "0.1.91"
-description = ""
+name = "synqly"
+version = "0.2.0"
+description = "SDK for Synqly APIs"
 readme = "README.md"
 authors = []
 packages = [
-    { include = "engine", from = "src"},
-    { include = "management", from = "src"}
+    { include = "synqly", from = "src"},
 ]
 
 [tool.poetry.dependencies]
