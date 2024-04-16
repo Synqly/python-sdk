@@ -2,10 +2,10 @@ import signal
 import httpx
 
 # Synqly Python SDK imports
-import engine
-import management as mgmt
-from management.client import SynqlyManagement
-from engine.client import SynqlyEngine
+from synqly import engine
+from synqly import management as mgmt
+from synqly.management.client import SynqlyManagement
+from synqly.engine.client import SynqlyEngine
 
 
 # This class is an example of a multi-tenant application, meant
