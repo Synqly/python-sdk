@@ -20,7 +20,6 @@ from .types.get_integration_timeseries import GetIntegrationTimeseries
 from .types.get_status_response import GetStatusResponse
 from .types.get_status_timeseries import GetStatusTimeseries
 from .types.list_status_events_response import ListStatusEventsResponse
-from .types.list_status_options import ListStatusOptions
 from .types.list_status_response import ListStatusResponse
 
 try:
@@ -41,7 +40,6 @@ class StatusClient:
         end_before: typing.Optional[str] = None,
         order: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
         filter: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
-        expand: typing.Optional[typing.Union[ListStatusOptions, typing.Sequence[ListStatusOptions]]] = None,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> ListStatusResponse:
         """
@@ -60,8 +58,6 @@ class StatusClient:
                                                                                ordering is applied in the order the fields are specified.
             - filter: typing.Optional[typing.Union[str, typing.Sequence[str]]]. Filter results by this query. For more information on filtering, refer to our Filtering Guide. Defaults to no filter.
                                                                                 If used more than once, the queries are ANDed together.
-            - expand: typing.Optional[typing.Union[ListStatusOptions, typing.Sequence[ListStatusOptions]]]. Expand the status result with the related integration and account information.
-
             - request_options: typing.Optional[RequestOptions]. Request-specific configuration.
         """
         _response = self._client_wrapper.httpx_client.request(
@@ -75,7 +71,6 @@ class StatusClient:
                         "end_before": end_before,
                         "order": order,
                         "filter": filter,
-                        "expand": expand,
                         **(
                             request_options.get("additional_query_parameters", {})
                             if request_options is not None
@@ -437,7 +432,6 @@ class AsyncStatusClient:
         end_before: typing.Optional[str] = None,
         order: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
         filter: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
-        expand: typing.Optional[typing.Union[ListStatusOptions, typing.Sequence[ListStatusOptions]]] = None,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> ListStatusResponse:
         """
@@ -456,8 +450,6 @@ class AsyncStatusClient:
                                                                                ordering is applied in the order the fields are specified.
             - filter: typing.Optional[typing.Union[str, typing.Sequence[str]]]. Filter results by this query. For more information on filtering, refer to our Filtering Guide. Defaults to no filter.
                                                                                 If used more than once, the queries are ANDed together.
-            - expand: typing.Optional[typing.Union[ListStatusOptions, typing.Sequence[ListStatusOptions]]]. Expand the status result with the related integration and account information.
-
             - request_options: typing.Optional[RequestOptions]. Request-specific configuration.
         """
         _response = await self._client_wrapper.httpx_client.request(
@@ -471,7 +463,6 @@ class AsyncStatusClient:
                         "end_before": end_before,
                         "order": order,
                         "filter": filter,
-                        "expand": expand,
                         **(
                             request_options.get("additional_query_parameters", {})
                             if request_options is not None
