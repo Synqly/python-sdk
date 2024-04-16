@@ -65,6 +65,7 @@ from .provider_config import (
     ProviderConfig_NotificationsTeams,
     ProviderConfig_SiemElasticsearch,
     ProviderConfig_SiemMockSiem,
+    ProviderConfig_SiemRapid7Insightidr,
     ProviderConfig_SiemSplunk,
     ProviderConfig_SinkAwsSecurityLake,
     ProviderConfig_SinkAwsSqs,
@@ -93,6 +94,7 @@ from .sentinel_one_credential import SentinelOneCredential, SentinelOneCredentia
 from .service_now_credential import ServiceNowCredential, ServiceNowCredential_Basic, ServiceNowCredential_BasicId
 from .siem_elasticsearch import SiemElasticsearch
 from .siem_mock import SiemMock
+from .siem_rapid_7_insight_idr import SiemRapid7InsightIdr
 from .siem_splunk import SiemSplunk
 from .sink_aws_security_lake import SinkAwsSecurityLake
 from .sink_aws_sqs import SinkAwsSqs
@@ -199,6 +201,7 @@ __all__ = [
     "ProviderConfig_NotificationsTeams",
     "ProviderConfig_SiemElasticsearch",
     "ProviderConfig_SiemMockSiem",
+    "ProviderConfig_SiemRapid7Insightidr",
     "ProviderConfig_SiemSplunk",
     "ProviderConfig_SinkAwsSecurityLake",
     "ProviderConfig_SinkAwsSqs",
@@ -229,6 +232,7 @@ __all__ = [
     "ServiceNowCredential_BasicId",
     "SiemElasticsearch",
     "SiemMock",
+    "SiemRapid7InsightIdr",
     "SiemSplunk",
     "SinkAwsSecurityLake",
     "SinkAwsSqs",

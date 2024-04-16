@@ -81,6 +81,11 @@ class ProviderConfigId(str, enum.Enum):
     SIEM Mock
     """
 
+    SIEM_RAPID_7_INSIGHT_IDR = "siem_rapid7_insightidr"
+    """
+    Rapid7 InsightIDR
+    """
+
     SIEM_SPLUNK = "siem_splunk"
     """
     Splunk Enterprise Security
@@ -177,6 +182,7 @@ class ProviderConfigId(str, enum.Enum):
         notifications_teams: typing.Callable[[], T_Result],
         siem_elasticsearch: typing.Callable[[], T_Result],
         siem_mock: typing.Callable[[], T_Result],
+        siem_rapid_7_insight_idr: typing.Callable[[], T_Result],
         siem_splunk: typing.Callable[[], T_Result],
         sink_aws_security_lake: typing.Callable[[], T_Result],
         sink_aws_sqs: typing.Callable[[], T_Result],
@@ -222,6 +228,8 @@ class ProviderConfigId(str, enum.Enum):
             return siem_elasticsearch()
         if self is ProviderConfigId.SIEM_MOCK:
             return siem_mock()
+        if self is ProviderConfigId.SIEM_RAPID_7_INSIGHT_IDR:
+            return siem_rapid_7_insight_idr()
         if self is ProviderConfigId.SIEM_SPLUNK:
             return siem_splunk()
         if self is ProviderConfigId.SINK_AWS_SECURITY_LAKE:

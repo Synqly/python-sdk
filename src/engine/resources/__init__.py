@@ -64,7 +64,15 @@ from .notifications import (
     NotificationId,
     NotificationStatus,
 )
-from .siem import QuerySiemEventsResponse
+from .siem import (
+    Evidence,
+    GetEvidenceResponse,
+    GetInvestigationResponse,
+    Investigation,
+    PatchInvestigationRequest,
+    QueryInvestigationResponse,
+    QuerySiemEventsResponse,
+)
 from .storage import ListStorageResponse, StoragePath
 from .ticketing import (
     Attachment,
@@ -132,10 +140,14 @@ __all__ = [
     "Event_SecurityFinding",
     "Event_VulnerabilityFinding",
     "Event_WebResourceAccessActivity",
+    "Evidence",
     "ForbiddenError",
+    "GetEvidenceResponse",
+    "GetInvestigationResponse",
     "GetNotificationResponse",
     "GetTicketResponse",
     "Id",
+    "Investigation",
     "ListAttachmentsMetadataResponse",
     "ListProjectsResponse",
     "ListStorageResponse",
@@ -146,6 +158,7 @@ __all__ = [
     "NotificationId",
     "NotificationStatus",
     "OrderOptions",
+    "PatchInvestigationRequest",
     "PatchTicketResponse",
     "Priority",
     "Project",
@@ -155,6 +168,7 @@ __all__ = [
     "QueryEndpointsResponse",
     "QueryFindingsResponse",
     "QueryIdentityAuditLogResponse",
+    "QueryInvestigationResponse",
     "QuerySiemEventsResponse",
     "QueryTicketsResponse",
     "QueryUsersResponse",
