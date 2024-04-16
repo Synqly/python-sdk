@@ -12,7 +12,7 @@ sys.path.append(str(root))
 from shared import utils
 
 # Synqly Python SDK imports
-import management as mgmt
+from synqly import management as mgmt
 
 
 def parse_args():
