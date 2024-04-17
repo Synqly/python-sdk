@@ -30,12 +30,12 @@ class Url(pydantic.BaseModel):
     The Website categorization identifies.
     """
 
-    hostname: Hostname = pydantic.Field()
+    hostname: typing.Optional[Hostname] = pydantic.Field(default=None)
     """
     The URL host as extracted from the URL. For example: <code>www.example.com</code> from <code>www.example.com/download/trouble</code>.
     """
 
-    path: str = pydantic.Field()
+    path: typing.Optional[str] = pydantic.Field(default=None)
     """
     The URL path as extracted from the URL. For example: <code>/download/trouble</code> from <code>www.example.com/download/trouble</code>.
     """
@@ -65,9 +65,9 @@ class Url(pydantic.BaseModel):
     The subdomain portion of the URL. For example: <code>sub</code> in <code>https://sub.example.com</code> or <code>sub2.sub1</code> in <code>https://sub2.sub1.example.com</code>.
     """
 
-    url_string: UrlString = pydantic.Field()
+    url_string: typing.Optional[UrlString] = pydantic.Field(default=None)
     """
-    The URL string. See RFC 1738. For example: <code>http://www.example.com/download/trouble.exe</code>.
+    The URL string. See RFC 1738. For example: <code>http://www.example.com/download/trouble.exe</code>. Note: The URL path should not populate the URL string.
     """
 
     def json(self, **kwargs: typing.Any) -> str:

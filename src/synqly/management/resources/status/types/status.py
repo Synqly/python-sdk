@@ -4,8 +4,10 @@ import datetime as dt
 import typing
 
 from ....core.datetime_utils import serialize_datetime
+from ...accounts.types.account import Account
 from ...accounts.types.account_id import AccountId
 from ...integration_base.types.integration_id import IntegrationId
+from ...integrations.types.integration import Integration
 
 try:
     import pydantic.v1 as pydantic  # type: ignore
@@ -33,9 +35,19 @@ class Status(pydantic.BaseModel):
     Account owner
     """
 
+    account: typing.Optional[Account] = pydantic.Field(default=None)
+    """
+    Optional `ListStatusResponse` only; expand Account object
+    """
+
     integration_id: IntegrationId = pydantic.Field()
     """
     Integration object
+    """
+
+    integration: typing.Optional[Integration] = pydantic.Field(default=None)
+    """
+    Optional `ListStatusResponse` only; expand Integration object
     """
 
     status: str = pydantic.Field()

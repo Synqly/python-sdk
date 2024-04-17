@@ -172,7 +172,7 @@ class Device(pydantic.BaseModel):
 
     network_interfaces: typing.Optional[typing.List[NetworkInterface]] = pydantic.Field(default=None)
     """
-    The network interfaces that are associated with the device, one for each MAC address/IP address combination.<p><b>Note:</b> The first element of the array is the network information that pertains to the event.</p>
+    The network interfaces that are associated with the device, one for each unique MAC address/IP address/hostname/name combination.<p><b>Note:</b> The first element of the array is the network information that pertains to the event.</p>
     """
 
     org: typing.Optional[Organization] = pydantic.Field(default=None)

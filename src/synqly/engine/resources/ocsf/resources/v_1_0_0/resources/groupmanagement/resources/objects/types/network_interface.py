@@ -17,7 +17,7 @@ except ImportError:
 
 class NetworkInterface(pydantic.BaseModel):
     """
-    The Network Interface object describes the type and associated addresses of a network interface.
+    The Network Interface object describes the type and associated attributes of a network interface.
     """
 
     hostname: typing.Optional[Hostname] = pydantic.Field(default=None)
@@ -43,6 +43,11 @@ class NetworkInterface(pydantic.BaseModel):
     namespace: typing.Optional[str] = pydantic.Field(default=None)
     """
     The namespace is useful in merger or acquisition situations. For example, when similar entities exists that you need to keep separate.
+    """
+
+    subnet_prefix: typing.Optional[int] = pydantic.Field(default=None)
+    """
+    The subnet prefix length determines the number of bits used to represent the network part of the IP address. The remaining bits are reserved for identifying individual hosts within that subnet.
     """
 
     type: typing.Optional[str] = pydantic.Field(default=None)

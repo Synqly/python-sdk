@@ -6,6 +6,7 @@ from .get_status_response import GetStatusResponse
 from .get_status_timeseries import GetStatusTimeseries
 from .get_status_timeseries_result import GetStatusTimeseriesResult
 from .list_status_events_response import ListStatusEventsResponse
+from .list_status_options import ListStatusOptions
 from .list_status_response import ListStatusResponse
 from .status import Status
 from .status_event import StatusEvent
@@ -18,6 +19,7 @@ __all__ = [
     "GetStatusTimeseries",
     "GetStatusTimeseriesResult",
     "ListStatusEventsResponse",
+    "ListStatusOptions",
     "ListStatusResponse",
     "Status",
     "StatusEvent",
