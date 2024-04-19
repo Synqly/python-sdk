@@ -19,6 +19,7 @@ from .location import Location
 from .network_interface import NetworkInterface
 from .organization import Organization
 from .os import Os
+from .product import Product
 
 try:
     import pydantic.v1 as pydantic  # type: ignore
@@ -216,6 +217,11 @@ class Device(pydantic.BaseModel):
     The risk score as reported by the event source.
     """
 
+    sub_type: typing.Optional[typing.Any] = pydantic.Field(default=None)
+    """
+    The specific device type within the larger technology category
+    """
+
     subnet: typing.Optional[Subnet] = pydantic.Field(default=None)
     """
     The subnet mask.
@@ -226,9 +232,14 @@ class Device(pydantic.BaseModel):
     The unique identifier of a virtual subnet.
     """
 
+    sw_info: typing.Optional[typing.List[Product]] = pydantic.Field(default=None)
+    """
+    The list of software contained on a device
+    """
+
     type: typing.Optional[str] = pydantic.Field(default=None)
     """
-    The device type. For example: <code>unknown</code>, <code>server</code>, <code>desktop</code>, <code>laptop</code>, <code>tablet</code>, <code>mobile</code>, <code>virtual</code>, <code>browser</code>, or <code>other</code>.
+    The device type. For example: <code>unknown</code>, <code>server</code>, <code>desktop</code>, <code>laptop</code>, <code>tablet</code>, <code>mobile</code>, <code>virtual</code>, <code>browser</code>, <code>plc</code>, <code>scada</code>, <code>dcs</code>, <code>cnc</code>, <code>scientific</code>, <code>medical</code>, <code>lighting</code>, <code>energy</code>, <code>transportation</code> <code>other</code>.
     """
 
     type_id: DeviceTypeId = pydantic.Field()

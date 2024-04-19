@@ -16,6 +16,7 @@ from .resources import (
     processactivity,
     scheduledjobactivity,
     securityfinding,
+    softwareinfo,
     vulnerabilityfinding,
     webresourceaccessactivity,
 )
@@ -36,6 +37,7 @@ __all__ = [
     "processactivity",
     "scheduledjobactivity",
     "securityfinding",
+    "softwareinfo",
     "vulnerabilityfinding",
     "webresourceaccessactivity",
 ]
