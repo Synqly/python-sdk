@@ -60,7 +60,7 @@ class StatusClient:
                                                                                ordering is applied in the order the fields are specified.
             - filter: typing.Optional[typing.Union[str, typing.Sequence[str]]]. Filter results by this query. For more information on filtering, refer to our Filtering Guide. Defaults to no filter.
                                                                                 If used more than once, the queries are ANDed together.
-            - expand: typing.Optional[typing.Union[ListStatusOptions, typing.Sequence[ListStatusOptions]]]. Expand the status result with the related integration and account information.
+            - expand: typing.Optional[typing.Union[ListStatusOptions, typing.Sequence[ListStatusOptions]]]. Expand the status result with the related integration and/or account information.
 
             - request_options: typing.Optional[RequestOptions]. Request-specific configuration.
         """
@@ -456,7 +456,7 @@ class AsyncStatusClient:
                                                                                ordering is applied in the order the fields are specified.
             - filter: typing.Optional[typing.Union[str, typing.Sequence[str]]]. Filter results by this query. For more information on filtering, refer to our Filtering Guide. Defaults to no filter.
                                                                                 If used more than once, the queries are ANDed together.
-            - expand: typing.Optional[typing.Union[ListStatusOptions, typing.Sequence[ListStatusOptions]]]. Expand the status result with the related integration and account information.
+            - expand: typing.Optional[typing.Union[ListStatusOptions, typing.Sequence[ListStatusOptions]]]. Expand the status result with the related integration and/or account information.
 
             - request_options: typing.Optional[RequestOptions]. Request-specific configuration.
         """

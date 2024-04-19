@@ -4,10 +4,12 @@ import datetime as dt
 import typing
 
 from ....core.datetime_utils import serialize_datetime
+from ...accounts.types.account import Account
 from ...accounts.types.account_id import AccountId
 from ...capabilities_base.types.category_id import CategoryId
 from ...common.types.base import Base
 from ...integration_base.types.integration_id import IntegrationId
+from ...integration_points.types.integration_point import IntegrationPoint
 from ...integration_points.types.integration_point_id import IntegrationPointId
 from ...providers_generated.types.provider_config import ProviderConfig
 from ...token_base.types.token_id import TokenId
@@ -36,7 +38,12 @@ class Integration(Base):
 
     account_id: AccountId = pydantic.Field()
     """
-    Account that manages this Integration.
+    Account associated with this integration. Use the expand=account parameter with the List and ListAccount APIs to expand the Account to the full object
+    """
+
+    account: typing.Optional[Account] = pydantic.Field(default=None)
+    """
+    When using the expand option on the List or ListAccount APIs, the full account object is included in the response
     """
 
     category: CategoryId = pydantic.Field()
@@ -56,7 +63,12 @@ class Integration(Base):
 
     integration_point_id: typing.Optional[IntegrationPointId] = pydantic.Field(default=None)
     """
-    Integration Point associated with this integration.
+    Integration Point associated with this integration. Use the expand=integration_point parameter with the List and ListAccount APIs to expand the Integration Point to the full object
+    """
+
+    integration_point: typing.Optional[IntegrationPoint] = pydantic.Field(default=None)
+    """
+    When using the expand option on the List or ListAccount APIs, the full integration_point object is included in the response
     """
 
     def json(self, **kwargs: typing.Any) -> str:

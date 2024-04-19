@@ -21,6 +21,7 @@ from .types.create_integration_request import CreateIntegrationRequest
 from .types.create_integration_response import CreateIntegrationResponse
 from .types.get_integration_response import GetIntegrationResponse
 from .types.list_account_integrations_response import ListAccountIntegrationsResponse
+from .types.list_integration_options import ListIntegrationOptions
 from .types.list_integrations_response import ListIntegrationsResponse
 from .types.patch_integration_response import PatchIntegrationResponse
 from .types.update_integration_request import UpdateIntegrationRequest
@@ -48,6 +49,7 @@ class IntegrationsClient:
         end_before: typing.Optional[str] = None,
         order: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
         filter: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
+        expand: typing.Optional[typing.Union[ListIntegrationOptions, typing.Sequence[ListIntegrationOptions]]] = None,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> ListIntegrationsResponse:
         """
@@ -66,6 +68,8 @@ class IntegrationsClient:
                                                                                ordering is applied in the order the fields are specified.
             - filter: typing.Optional[typing.Union[str, typing.Sequence[str]]]. Filter results by this query. For more information on filtering, refer to our Filtering Guide. Defaults to no filter.
                                                                                 If used more than once, the queries are ANDed together.
+            - expand: typing.Optional[typing.Union[ListIntegrationOptions, typing.Sequence[ListIntegrationOptions]]]. Expand the integration result with the related integration point and/or account information.
+
             - request_options: typing.Optional[RequestOptions]. Request-specific configuration.
         """
         _response = self._client_wrapper.httpx_client.request(
@@ -79,6 +83,7 @@ class IntegrationsClient:
                         "end_before": end_before,
                         "order": order,
                         "filter": filter,
+                        "expand": expand,
                         **(
                             request_options.get("additional_query_parameters", {})
                             if request_options is not None
@@ -124,6 +129,7 @@ class IntegrationsClient:
         end_before: typing.Optional[str] = None,
         order: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
         filter: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
+        expand: typing.Optional[typing.Union[ListIntegrationOptions, typing.Sequence[ListIntegrationOptions]]] = None,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> ListAccountIntegrationsResponse:
         """
@@ -145,6 +151,8 @@ class IntegrationsClient:
                                                                                ordering is applied in the order the fields are specified.
             - filter: typing.Optional[typing.Union[str, typing.Sequence[str]]]. Filter results by this query. For more information on filtering, refer to our Filtering Guide. Defaults to no filter.
                                                                                 If used more than once, the queries are ANDed together.
+            - expand: typing.Optional[typing.Union[ListIntegrationOptions, typing.Sequence[ListIntegrationOptions]]]. Expand the integration result with the related integration point and/or account information.
+
             - request_options: typing.Optional[RequestOptions]. Request-specific configuration.
         """
         _response = self._client_wrapper.httpx_client.request(
@@ -160,6 +168,7 @@ class IntegrationsClient:
                         "end_before": end_before,
                         "order": order,
                         "filter": filter,
+                        "expand": expand,
                         **(
                             request_options.get("additional_query_parameters", {})
                             if request_options is not None
@@ -582,6 +591,7 @@ class AsyncIntegrationsClient:
         end_before: typing.Optional[str] = None,
         order: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
         filter: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
+        expand: typing.Optional[typing.Union[ListIntegrationOptions, typing.Sequence[ListIntegrationOptions]]] = None,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> ListIntegrationsResponse:
         """
@@ -600,6 +610,8 @@ class AsyncIntegrationsClient:
                                                                                ordering is applied in the order the fields are specified.
             - filter: typing.Optional[typing.Union[str, typing.Sequence[str]]]. Filter results by this query. For more information on filtering, refer to our Filtering Guide. Defaults to no filter.
                                                                                 If used more than once, the queries are ANDed together.
+            - expand: typing.Optional[typing.Union[ListIntegrationOptions, typing.Sequence[ListIntegrationOptions]]]. Expand the integration result with the related integration point and/or account information.
+
             - request_options: typing.Optional[RequestOptions]. Request-specific configuration.
         """
         _response = await self._client_wrapper.httpx_client.request(
@@ -613,6 +625,7 @@ class AsyncIntegrationsClient:
                         "end_before": end_before,
                         "order": order,
                         "filter": filter,
+                        "expand": expand,
                         **(
                             request_options.get("additional_query_parameters", {})
                             if request_options is not None
@@ -658,6 +671,7 @@ class AsyncIntegrationsClient:
         end_before: typing.Optional[str] = None,
         order: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
         filter: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
+        expand: typing.Optional[typing.Union[ListIntegrationOptions, typing.Sequence[ListIntegrationOptions]]] = None,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> ListAccountIntegrationsResponse:
         """
@@ -679,6 +693,8 @@ class AsyncIntegrationsClient:
                                                                                ordering is applied in the order the fields are specified.
             - filter: typing.Optional[typing.Union[str, typing.Sequence[str]]]. Filter results by this query. For more information on filtering, refer to our Filtering Guide. Defaults to no filter.
                                                                                 If used more than once, the queries are ANDed together.
+            - expand: typing.Optional[typing.Union[ListIntegrationOptions, typing.Sequence[ListIntegrationOptions]]]. Expand the integration result with the related integration point and/or account information.
+
             - request_options: typing.Optional[RequestOptions]. Request-specific configuration.
         """
         _response = await self._client_wrapper.httpx_client.request(
@@ -694,6 +710,7 @@ class AsyncIntegrationsClient:
                         "end_before": end_before,
                         "order": order,
                         "filter": filter,
+                        "expand": expand,
                         **(
                             request_options.get("additional_query_parameters", {})
                             if request_options is not None
