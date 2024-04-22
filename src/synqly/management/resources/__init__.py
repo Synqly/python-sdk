@@ -14,6 +14,7 @@ from . import (
     integrations,
     member_base,
     members,
+    meta,
     organization,
     organization_base,
     permissions,
@@ -145,6 +146,7 @@ from .members import (
     UpdateMemberRequest,
     UpdateMemberResponse,
 )
+from .meta import GetOpenApiSpecResponse
 from .organization import PatchOrganizationResponse, UpdateOrganizationRequest, UpdateOrganizationResponse
 from .organization_base import Environment, GetOrganizationResponse, Organization, OrganizationId, OrganizationOptions
 from .permissions import Permission
@@ -480,6 +482,7 @@ __all__ = [
     "GetIntegrationTimeseries",
     "GetIntegrationTimeseriesResult",
     "GetMemberResponse",
+    "GetOpenApiSpecResponse",
     "GetOrganizationResponse",
     "GetPermissionSetResponse",
     "GetRoleResponse",
@@ -719,6 +722,7 @@ __all__ = [
     "integrations",
     "member_base",
     "members",
+    "meta",
     "organization",
     "organization_base",
     "permissions",
