@@ -5,7 +5,13 @@ from .types import (
     EventId,
     QueryAssetsResponse,
     QueryFindingsResponse,
+    QueryScansResponse,
+    ScanConfiguration,
+    ScanDayOption,
+    ScanFrequencyOption,
+    ScanSchedule,
     SecurityFinding,
+    User,
     VulnerabilitySeverityFilterValue,
 )
 
@@ -14,6 +20,12 @@ __all__ = [
     "EventId",
     "QueryAssetsResponse",
     "QueryFindingsResponse",
+    "QueryScansResponse",
+    "ScanConfiguration",
+    "ScanDayOption",
+    "ScanFrequencyOption",
+    "ScanSchedule",
     "SecurityFinding",
+    "User",
     "VulnerabilitySeverityFilterValue",
 ]
