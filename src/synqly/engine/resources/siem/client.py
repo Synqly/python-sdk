@@ -41,6 +41,7 @@ class SiemClient:
         limit: typing.Optional[int] = None,
         order: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
         filter: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
+        include_raw_data: typing.Optional[bool] = None,
         response: QueryInvestigationResponse,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> None:
@@ -56,6 +57,8 @@ class SiemClient:
 
             - filter: typing.Optional[typing.Union[str, typing.Sequence[str]]]. Filter results by this query.
 
+            - include_raw_data: typing.Optional[bool]. Include the raw data from the SIEM in the response. Defaults to `false`.
+
             - response: QueryInvestigationResponse.
 
             - request_options: typing.Optional[RequestOptions]. Request-specific configuration.
@@ -70,6 +73,7 @@ class SiemClient:
                         "limit": limit,
                         "order": order,
                         "filter": filter,
+                        "include_raw_data": include_raw_data,
                         "response": jsonable_encoder(response),
                         **(
                             request_options.get("additional_query_parameters", {})
@@ -108,13 +112,19 @@ class SiemClient:
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
     def get_investigation(
-        self, id: str, *, request_options: typing.Optional[RequestOptions] = None
+        self,
+        id: str,
+        *,
+        include_raw_data: typing.Optional[bool] = None,
+        request_options: typing.Optional[RequestOptions] = None,
     ) -> GetInvestigationResponse:
         """
         Retrieves an investigation by ID.
 
         Parameters:
             - id: str. ID of the investigation to retrieve.
+
+            - include_raw_data: typing.Optional[bool]. Include the raw data from the SIEM in the response. Defaults to `false`.
 
             - request_options: typing.Optional[RequestOptions]. Request-specific configuration.
         """
@@ -124,7 +134,16 @@ class SiemClient:
                 f"{self._client_wrapper.get_base_url()}/", f"v1/siem/investigations/{jsonable_encoder(id)}"
             ),
             params=jsonable_encoder(
-                request_options.get("additional_query_parameters") if request_options is not None else None
+                remove_none_from_dict(
+                    {
+                        "include_raw_data": include_raw_data,
+                        **(
+                            request_options.get("additional_query_parameters", {})
+                            if request_options is not None
+                            else {}
+                        ),
+                    }
+                )
             ),
             headers=jsonable_encoder(
                 remove_none_from_dict(
@@ -213,12 +232,20 @@ class SiemClient:
             raise ApiError(status_code=_response.status_code, body=_response.text)
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
-    def get_evidence(self, id: str, *, request_options: typing.Optional[RequestOptions] = None) -> GetEvidenceResponse:
+    def get_evidence(
+        self,
+        id: str,
+        *,
+        include_raw_data: typing.Optional[bool] = None,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> GetEvidenceResponse:
         """
         Retrieves the evidence for an investigation.
 
         Parameters:
             - id: str. ID of the investigation to retrieve evidence for.
+
+            - include_raw_data: typing.Optional[bool]. Include the raw data from the SIEM in the response. Defaults to `false`.
 
             - request_options: typing.Optional[RequestOptions]. Request-specific configuration.
         """
@@ -228,7 +255,16 @@ class SiemClient:
                 f"{self._client_wrapper.get_base_url()}/", f"v1/siem/investigations/{jsonable_encoder(id)}/evidence"
             ),
             params=jsonable_encoder(
-                request_options.get("additional_query_parameters") if request_options is not None else None
+                remove_none_from_dict(
+                    {
+                        "include_raw_data": include_raw_data,
+                        **(
+                            request_options.get("additional_query_parameters", {})
+                            if request_options is not None
+                            else {}
+                        ),
+                    }
+                )
             ),
             headers=jsonable_encoder(
                 remove_none_from_dict(
@@ -320,6 +356,8 @@ class SiemClient:
         limit: typing.Optional[int] = None,
         order: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
         filter: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
+        passthrough_param: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
+        include_raw_data: typing.Optional[bool] = None,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> QuerySiemEventsResponse:
         """
@@ -336,6 +374,11 @@ class SiemClient:
                                                                                ordering is applied in the order the fields are specified.
             - filter: typing.Optional[typing.Union[str, typing.Sequence[str]]]. Filter results by this query. For more information on filtering, refer to our Filtering Guide. Defaults to no filter.
                                                                                 If used more than once, the queries are ANDed together.
+            - passthrough_param: typing.Optional[typing.Union[str, typing.Sequence[str]]]. Provider-specific query to pass through to the SIEM. This is useful for advanced queries that are not
+                                                                                           supported by the API. The keys and values are provider-specific. For example, to perform a specific query in
+                                                                                           Rapid7 IDR, you can use the `query: "{advanced query}"` key-value pair.
+            - include_raw_data: typing.Optional[bool]. Include the raw data from the SIEM in the response. This is useful for debugging and troubleshooting.
+                                                       Defaults to `false`.
             - request_options: typing.Optional[RequestOptions]. Request-specific configuration.
         """
         _response = self._client_wrapper.httpx_client.request(
@@ -348,6 +391,8 @@ class SiemClient:
                         "limit": limit,
                         "order": order,
                         "filter": filter,
+                        "passthrough-param": passthrough_param,
+                        "include_raw_data": include_raw_data,
                         **(
                             request_options.get("additional_query_parameters", {})
                             if request_options is not None
@@ -398,6 +443,7 @@ class AsyncSiemClient:
         limit: typing.Optional[int] = None,
         order: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
         filter: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
+        include_raw_data: typing.Optional[bool] = None,
         response: QueryInvestigationResponse,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> None:
@@ -413,6 +459,8 @@ class AsyncSiemClient:
 
             - filter: typing.Optional[typing.Union[str, typing.Sequence[str]]]. Filter results by this query.
 
+            - include_raw_data: typing.Optional[bool]. Include the raw data from the SIEM in the response. Defaults to `false`.
+
             - response: QueryInvestigationResponse.
 
             - request_options: typing.Optional[RequestOptions]. Request-specific configuration.
@@ -427,6 +475,7 @@ class AsyncSiemClient:
                         "limit": limit,
                         "order": order,
                         "filter": filter,
+                        "include_raw_data": include_raw_data,
                         "response": jsonable_encoder(response),
                         **(
                             request_options.get("additional_query_parameters", {})
@@ -465,13 +514,19 @@ class AsyncSiemClient:
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
     async def get_investigation(
-        self, id: str, *, request_options: typing.Optional[RequestOptions] = None
+        self,
+        id: str,
+        *,
+        include_raw_data: typing.Optional[bool] = None,
+        request_options: typing.Optional[RequestOptions] = None,
     ) -> GetInvestigationResponse:
         """
         Retrieves an investigation by ID.
 
         Parameters:
             - id: str. ID of the investigation to retrieve.
+
+            - include_raw_data: typing.Optional[bool]. Include the raw data from the SIEM in the response. Defaults to `false`.
 
             - request_options: typing.Optional[RequestOptions]. Request-specific configuration.
         """
@@ -481,7 +536,16 @@ class AsyncSiemClient:
                 f"{self._client_wrapper.get_base_url()}/", f"v1/siem/investigations/{jsonable_encoder(id)}"
             ),
             params=jsonable_encoder(
-                request_options.get("additional_query_parameters") if request_options is not None else None
+                remove_none_from_dict(
+                    {
+                        "include_raw_data": include_raw_data,
+                        **(
+                            request_options.get("additional_query_parameters", {})
+                            if request_options is not None
+                            else {}
+                        ),
+                    }
+                )
             ),
             headers=jsonable_encoder(
                 remove_none_from_dict(
@@ -571,13 +635,19 @@ class AsyncSiemClient:
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
     async def get_evidence(
-        self, id: str, *, request_options: typing.Optional[RequestOptions] = None
+        self,
+        id: str,
+        *,
+        include_raw_data: typing.Optional[bool] = None,
+        request_options: typing.Optional[RequestOptions] = None,
     ) -> GetEvidenceResponse:
         """
         Retrieves the evidence for an investigation.
 
         Parameters:
             - id: str. ID of the investigation to retrieve evidence for.
+
+            - include_raw_data: typing.Optional[bool]. Include the raw data from the SIEM in the response. Defaults to `false`.
 
             - request_options: typing.Optional[RequestOptions]. Request-specific configuration.
         """
@@ -587,7 +657,16 @@ class AsyncSiemClient:
                 f"{self._client_wrapper.get_base_url()}/", f"v1/siem/investigations/{jsonable_encoder(id)}/evidence"
             ),
             params=jsonable_encoder(
-                request_options.get("additional_query_parameters") if request_options is not None else None
+                remove_none_from_dict(
+                    {
+                        "include_raw_data": include_raw_data,
+                        **(
+                            request_options.get("additional_query_parameters", {})
+                            if request_options is not None
+                            else {}
+                        ),
+                    }
+                )
             ),
             headers=jsonable_encoder(
                 remove_none_from_dict(
@@ -679,6 +758,8 @@ class AsyncSiemClient:
         limit: typing.Optional[int] = None,
         order: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
         filter: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
+        passthrough_param: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
+        include_raw_data: typing.Optional[bool] = None,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> QuerySiemEventsResponse:
         """
@@ -695,6 +776,11 @@ class AsyncSiemClient:
                                                                                ordering is applied in the order the fields are specified.
             - filter: typing.Optional[typing.Union[str, typing.Sequence[str]]]. Filter results by this query. For more information on filtering, refer to our Filtering Guide. Defaults to no filter.
                                                                                 If used more than once, the queries are ANDed together.
+            - passthrough_param: typing.Optional[typing.Union[str, typing.Sequence[str]]]. Provider-specific query to pass through to the SIEM. This is useful for advanced queries that are not
+                                                                                           supported by the API. The keys and values are provider-specific. For example, to perform a specific query in
+                                                                                           Rapid7 IDR, you can use the `query: "{advanced query}"` key-value pair.
+            - include_raw_data: typing.Optional[bool]. Include the raw data from the SIEM in the response. This is useful for debugging and troubleshooting.
+                                                       Defaults to `false`.
             - request_options: typing.Optional[RequestOptions]. Request-specific configuration.
         """
         _response = await self._client_wrapper.httpx_client.request(
@@ -707,6 +793,8 @@ class AsyncSiemClient:
                         "limit": limit,
                         "order": order,
                         "filter": filter,
+                        "passthrough-param": passthrough_param,
+                        "include_raw_data": include_raw_data,
                         **(
                             request_options.get("additional_query_parameters", {})
                             if request_options is not None
