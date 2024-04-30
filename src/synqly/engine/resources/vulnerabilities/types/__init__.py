@@ -2,6 +2,7 @@
 
 from .asset import Asset
 from .event_id import EventId
+from .get_scan_activity_response import GetScanActivityResponse
 from .query_assets_response import QueryAssetsResponse
 from .query_findings_response import QueryFindingsResponse
 from .query_scans_response import QueryScansResponse
@@ -16,6 +17,7 @@ from .vulnerability_severity_filter_value import VulnerabilitySeverityFilterValu
 __all__ = [
     "Asset",
     "EventId",
+    "GetScanActivityResponse",
     "QueryAssetsResponse",
     "QueryFindingsResponse",
     "QueryScansResponse",

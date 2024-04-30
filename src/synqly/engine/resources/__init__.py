@@ -96,6 +96,7 @@ from .ticketing import (
 from .vulnerabilities import (
     Asset,
     EventId,
+    GetScanActivityResponse,
     QueryAssetsResponse,
     QueryFindingsResponse,
     QueryScansResponse,
@@ -151,6 +152,7 @@ __all__ = [
     "GetEvidenceResponse",
     "GetInvestigationResponse",
     "GetNotificationResponse",
+    "GetScanActivityResponse",
     "GetTicketResponse",
     "Id",
     "Investigation",
