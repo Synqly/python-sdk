@@ -16,6 +16,11 @@ class ProviderConfigId(str, enum.Enum):
     Armis Centrix™ for Asset Management and Security
     """
 
+    ASSETS_NOZOMI_VANTAGE = "assets_nozomi_vantage"
+    """
+    Nozomi Vantage
+    """
+
     ASSETS_SERVICE_NOW = "assets_servicenow"
     """
     ServiceNow Configuration Management Database (CMDB)
@@ -169,6 +174,7 @@ class ProviderConfigId(str, enum.Enum):
     def visit(
         self,
         assets_armis_centrix: typing.Callable[[], T_Result],
+        assets_nozomi_vantage: typing.Callable[[], T_Result],
         assets_service_now: typing.Callable[[], T_Result],
         edr_crowd_strike: typing.Callable[[], T_Result],
         edr_sentinel_one: typing.Callable[[], T_Result],
@@ -202,6 +208,8 @@ class ProviderConfigId(str, enum.Enum):
     ) -> T_Result:
         if self is ProviderConfigId.ASSETS_ARMIS_CENTRIX:
             return assets_armis_centrix()
+        if self is ProviderConfigId.ASSETS_NOZOMI_VANTAGE:
+            return assets_nozomi_vantage()
         if self is ProviderConfigId.ASSETS_SERVICE_NOW:
             return assets_service_now()
         if self is ProviderConfigId.EDR_CROWD_STRIKE:

@@ -2,6 +2,7 @@
 
 from .armis_credential import ArmisCredential, ArmisCredential_Token, ArmisCredential_TokenId
 from .assets_armis_centrix import AssetsArmisCentrix
+from .assets_nozomi_vantage import AssetsNozomiVantage
 from .assets_service_now import AssetsServiceNow
 from .aws_s_3_credential import AwsS3Credential, AwsS3Credential_Aws, AwsS3Credential_AwsId
 from .aws_security_lake_credential import (
@@ -40,6 +41,11 @@ from .notifications_jira import NotificationsJira
 from .notifications_mock import NotificationsMock
 from .notifications_slack import NotificationsSlack
 from .notifications_teams import NotificationsTeams
+from .nozomi_vantage_credential import (
+    NozomiVantageCredential,
+    NozomiVantageCredential_Basic,
+    NozomiVantageCredential_BasicId,
+)
 from .okta_credential import (
     OktaCredential,
     OktaCredential_OAuthClient,
@@ -52,6 +58,7 @@ from .ping_one_credential import PingOneCredential, PingOneCredential_Token, Pin
 from .provider_config import (
     ProviderConfig,
     ProviderConfig_AssetsArmisCentrix,
+    ProviderConfig_AssetsNozomiVantage,
     ProviderConfig_AssetsServicenow,
     ProviderConfig_EdrCrowdstrike,
     ProviderConfig_EdrSentinelone,
@@ -130,6 +137,7 @@ __all__ = [
     "ArmisCredential_Token",
     "ArmisCredential_TokenId",
     "AssetsArmisCentrix",
+    "AssetsNozomiVantage",
     "AssetsServiceNow",
     "AwsS3Credential",
     "AwsS3Credential_Aws",
@@ -174,6 +182,9 @@ __all__ = [
     "NotificationsMock",
     "NotificationsSlack",
     "NotificationsTeams",
+    "NozomiVantageCredential",
+    "NozomiVantageCredential_Basic",
+    "NozomiVantageCredential_BasicId",
     "OktaCredential",
     "OktaCredential_OAuthClient",
     "OktaCredential_OAuthClientId",
@@ -188,6 +199,7 @@ __all__ = [
     "ProviderConfig",
     "ProviderConfigId",
     "ProviderConfig_AssetsArmisCentrix",
+    "ProviderConfig_AssetsNozomiVantage",
     "ProviderConfig_AssetsServicenow",
     "ProviderConfig_EdrCrowdstrike",
     "ProviderConfig_EdrSentinelone",
