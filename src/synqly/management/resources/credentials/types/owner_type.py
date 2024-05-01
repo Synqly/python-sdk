@@ -8,12 +8,22 @@ T_Result = typing.TypeVar("T_Result")
 
 class OwnerType(str, enum.Enum):
     ACCOUNT = "account"
+    INTEGRATION = "integration"
     INTEGRATION_POINT = "integration_point"
+    ORGANIZATION_WEBHOOK = "organization_webhook"
 
     def visit(
-        self, account: typing.Callable[[], T_Result], integration_point: typing.Callable[[], T_Result]
+        self,
+        account: typing.Callable[[], T_Result],
+        integration: typing.Callable[[], T_Result],
+        integration_point: typing.Callable[[], T_Result],
+        organization_webhook: typing.Callable[[], T_Result],
     ) -> T_Result:
         if self is OwnerType.ACCOUNT:
             return account()
+        if self is OwnerType.INTEGRATION:
+            return integration()
         if self is OwnerType.INTEGRATION_POINT:
             return integration_point()
+        if self is OwnerType.ORGANIZATION_WEBHOOK:
+            return organization_webhook()

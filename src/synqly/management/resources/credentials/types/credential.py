@@ -6,6 +6,7 @@ import typing
 from ....core.datetime_utils import serialize_datetime
 from ...accounts.types.account_id import AccountId
 from ...common.types.base import Base
+from ...integration_base.types.integration_id import IntegrationId
 from ...integration_points.types.integration_point_id import IntegrationPointId
 from .credential_config import CredentialConfig
 from .credential_id import CredentialId
@@ -19,13 +20,18 @@ except ImportError:
 
 class Credential(Base):
     """
-    Credential to access an integration. Each credential is owned by an Account or an IntegrationPoint.
+    Credential to access an integration. Each credential is owned by an Account, Integration, IntegrationPoint or OrganizationWebhook.
     """
 
     id: CredentialId
     account_id: typing.Optional[AccountId] = pydantic.Field(default=None)
     """
     Account that manages this credential.
+    """
+
+    integration_id: typing.Optional[IntegrationId] = pydantic.Field(default=None)
+    """
+    Integration associated with this credential.
     """
 
     integration_point_id: typing.Optional[IntegrationPointId] = pydantic.Field(default=None)

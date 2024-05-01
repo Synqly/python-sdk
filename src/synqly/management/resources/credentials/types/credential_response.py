@@ -6,6 +6,7 @@ import typing
 from ....core.datetime_utils import serialize_datetime
 from ...accounts.types.account_id import AccountId
 from ...common.types.base import Base
+from ...integration_base.types.integration_id import IntegrationId
 from ...integration_points.types.integration_point_id import IntegrationPointId
 from .credential_config_no_secret import CredentialConfigNoSecret
 from .credential_id import CredentialId
@@ -26,6 +27,11 @@ class CredentialResponse(Base):
     account_id: typing.Optional[AccountId] = pydantic.Field(default=None)
     """
     Account that manages this credential.
+    """
+
+    integration_id: typing.Optional[IntegrationId] = pydantic.Field(default=None)
+    """
+    Integration associated with this credential.
     """
 
     integration_point_id: typing.Optional[IntegrationPointId] = pydantic.Field(default=None)

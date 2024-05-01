@@ -50,7 +50,7 @@ class CredentialsClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> ListCredentialsResponse:
         """
-        Returns a list of all `Credential` objects belonging to the `Account` or `IntegrationPoint` matching
+        Returns a list of all `Credential` objects belonging to the `Account`, `Integration`, or `IntegrationPoint`, or `OrganizationWebhook` matching
         `{ownerId}`.
 
         Parameters:
@@ -124,7 +124,7 @@ class CredentialsClient:
     ) -> GetCredentialResponse:
         """
         Returns the `Credential` object matching `{credentialId}` where the
-        `Credential` belongs to the `Account` or `IntegrationPoint` matching `{ownerId}`.
+        `Credential` belongs to the `Account`, `Integration`, `IntegrationPoint` or `OrganizationWebhook` matching `{ownerId}`.
 
         Parameters:
             - owner_id: Id.
@@ -174,8 +174,8 @@ class CredentialsClient:
         self, owner_id: Id, *, request: CreateCredentialRequest, request_options: typing.Optional[RequestOptions] = None
     ) -> CreateCredentialResponse:
         """
-        Creates a `Credential` object in the `Account` or `IntegrationPoint` matching matching
-        `{ownerId}`. A `Credential` may only by used by a single `Account` or `IntegrationPoint`;
+        Creates a `Credential` object in the `Account`, `IntegrationPoint`, or `OrganizationWebhook` matching matching
+        `{ownerId}`. A `Credential` may only by used by a single `Account`, `Integration`, `IntegrationPoint` or `OrganizationWebhook`;
         however, `Credential` objects can be shared by multiple `Integrations` within an `Account`.
 
         Parameters:
@@ -241,7 +241,7 @@ class CredentialsClient:
     ) -> UpdateCredentialResponse:
         """
         Updates the `Credential` object matching `{credentialId}`, where the
-        `Credential` belongs to the `Account` or `IntegrationPoint` matching `{ownerId}`.
+        `Credential` belongs to the `Account`, `Integration`, `IntegrationPoint` or `OrganizationWebhook` matching `{ownerId}`.
 
         Parameters:
             - owner_id: Id.
@@ -309,7 +309,7 @@ class CredentialsClient:
     ) -> PatchCredentialResponse:
         """
         Patches the `Credential` object matching `{credentialId}`, where the
-        `Credential` belongs to the `Account` or `IntegrationPoint` matching `{ownerId}`.
+        `Credential` belongs to the `Account`, `Integration`, `IntegrationPoint` or `OrganizationWebhook` matching `{ownerId}`.
 
         Parameters:
             - owner_id: Id.
@@ -370,7 +370,7 @@ class CredentialsClient:
     ) -> None:
         """
         Deletes the `Credential` object matching `{credentialId}`, where the
-        `Credential` belongs to the `Account` or `IntegrationPoint` matching `{ownerId}`.
+        `Credential` belongs to the `Account`, `Integration`, `IntegrationPoint` or `OrganizationWebhook` matching `{ownerId}`.
 
         Parameters:
             - owner_id: Id.
@@ -433,7 +433,7 @@ class AsyncCredentialsClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> ListCredentialsResponse:
         """
-        Returns a list of all `Credential` objects belonging to the `Account` or `IntegrationPoint` matching
+        Returns a list of all `Credential` objects belonging to the `Account`, `Integration`, or `IntegrationPoint`, or `OrganizationWebhook` matching
         `{ownerId}`.
 
         Parameters:
@@ -507,7 +507,7 @@ class AsyncCredentialsClient:
     ) -> GetCredentialResponse:
         """
         Returns the `Credential` object matching `{credentialId}` where the
-        `Credential` belongs to the `Account` or `IntegrationPoint` matching `{ownerId}`.
+        `Credential` belongs to the `Account`, `Integration`, `IntegrationPoint` or `OrganizationWebhook` matching `{ownerId}`.
 
         Parameters:
             - owner_id: Id.
@@ -557,8 +557,8 @@ class AsyncCredentialsClient:
         self, owner_id: Id, *, request: CreateCredentialRequest, request_options: typing.Optional[RequestOptions] = None
     ) -> CreateCredentialResponse:
         """
-        Creates a `Credential` object in the `Account` or `IntegrationPoint` matching matching
-        `{ownerId}`. A `Credential` may only by used by a single `Account` or `IntegrationPoint`;
+        Creates a `Credential` object in the `Account`, `IntegrationPoint`, or `OrganizationWebhook` matching matching
+        `{ownerId}`. A `Credential` may only by used by a single `Account`, `Integration`, `IntegrationPoint` or `OrganizationWebhook`;
         however, `Credential` objects can be shared by multiple `Integrations` within an `Account`.
 
         Parameters:
@@ -624,7 +624,7 @@ class AsyncCredentialsClient:
     ) -> UpdateCredentialResponse:
         """
         Updates the `Credential` object matching `{credentialId}`, where the
-        `Credential` belongs to the `Account` or `IntegrationPoint` matching `{ownerId}`.
+        `Credential` belongs to the `Account`, `Integration`, `IntegrationPoint` or `OrganizationWebhook` matching `{ownerId}`.
 
         Parameters:
             - owner_id: Id.
@@ -692,7 +692,7 @@ class AsyncCredentialsClient:
     ) -> PatchCredentialResponse:
         """
         Patches the `Credential` object matching `{credentialId}`, where the
-        `Credential` belongs to the `Account` or `IntegrationPoint` matching `{ownerId}`.
+        `Credential` belongs to the `Account`, `Integration`, `IntegrationPoint` or `OrganizationWebhook` matching `{ownerId}`.
 
         Parameters:
             - owner_id: Id.
@@ -753,7 +753,7 @@ class AsyncCredentialsClient:
     ) -> None:
         """
         Deletes the `Credential` object matching `{credentialId}`, where the
-        `Credential` belongs to the `Account` or `IntegrationPoint` matching `{ownerId}`.
+        `Credential` belongs to the `Account`, `Integration`, `IntegrationPoint` or `OrganizationWebhook` matching `{ownerId}`.
 
         Parameters:
             - owner_id: Id.
