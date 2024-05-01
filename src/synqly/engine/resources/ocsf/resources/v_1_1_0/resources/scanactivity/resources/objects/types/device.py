@@ -122,6 +122,11 @@ class Device(pydantic.BaseModel):
     The device IP address, in either IPv4 or IPv6 format.
     """
 
+    ip_addresses: typing.Optional[typing.List[str]] = pydantic.Field(default=None)
+    """
+    A list of IP addresses available on the device
+    """
+
     is_compliant: typing.Optional[bool] = pydantic.Field(default=None)
     """
     The event occurred on a compliant device.
@@ -160,6 +165,11 @@ class Device(pydantic.BaseModel):
     mac: typing.Optional[MacAddress] = pydantic.Field(default=None)
     """
     The Media Access Control (MAC) address of the endpoint.
+    """
+
+    mac_addresses: typing.Optional[typing.List[str]] = pydantic.Field(default=None)
+    """
+    A list of MAC addresses available on the device
     """
 
     modified_time: typing.Optional[Timestamp] = pydantic.Field(default=None)
@@ -217,11 +227,6 @@ class Device(pydantic.BaseModel):
     The risk score as reported by the event source.
     """
 
-    sub_type: typing.Optional[typing.Any] = pydantic.Field(default=None)
-    """
-    The specific device type within the larger technology category
-    """
-
     subnet: typing.Optional[Subnet] = pydantic.Field(default=None)
     """
     The subnet mask.
@@ -255,6 +260,11 @@ class Device(pydantic.BaseModel):
     uid_alt: typing.Optional[str] = pydantic.Field(default=None)
     """
     An alternate unique identifier of the device if any. For example the ActiveDirectory DN.
+    """
+
+    vendor: typing.Optional[Organization] = pydantic.Field(default=None)
+    """
+    The product vendor that created the device.
     """
 
     vlan_uid: typing.Optional[str] = pydantic.Field(default=None)
