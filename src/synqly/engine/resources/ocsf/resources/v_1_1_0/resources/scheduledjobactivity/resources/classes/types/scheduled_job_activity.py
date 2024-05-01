@@ -93,7 +93,7 @@ class ScheduledJobActivity(pydantic.BaseModel):
     The unique identifier of a class. A Class describes the attributes available in an event.
     """
 
-    cloud: Cloud = pydantic.Field()
+    cloud: typing.Optional[Cloud] = pydantic.Field(default=None)
     """
     Describes details about the Cloud environment where the event was originally created or logged.
     """
