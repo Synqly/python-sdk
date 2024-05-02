@@ -95,6 +95,7 @@ from .ticketing import (
 )
 from .vulnerabilities import (
     Asset,
+    CreateAssetRequest,
     EventId,
     GetScanActivityResponse,
     QueryAssetsResponse,
@@ -119,6 +120,7 @@ __all__ = [
     "Base",
     "BaseResourceRequest",
     "ConnectionState",
+    "CreateAssetRequest",
     "CreateAttachmentRequest",
     "CreateAttachmentResponse",
     "CreateNotificationRequest",

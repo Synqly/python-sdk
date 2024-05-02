@@ -2,6 +2,7 @@
 
 from .types import (
     Asset,
+    CreateAssetRequest,
     EventId,
     GetScanActivityResponse,
     QueryAssetsResponse,
@@ -18,6 +19,7 @@ from .types import (
 
 __all__ = [
     "Asset",
+    "CreateAssetRequest",
     "EventId",
     "GetScanActivityResponse",
     "QueryAssetsResponse",
