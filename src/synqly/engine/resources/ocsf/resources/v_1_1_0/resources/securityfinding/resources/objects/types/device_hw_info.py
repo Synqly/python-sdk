@@ -28,6 +28,11 @@ class DeviceHwInfo(pydantic.BaseModel):
     The BIOS manufacturer. For example: <code>LENOVO</code>.
     """
 
+    bios_uid: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    The BIOS UUID.
+    """
+
     bios_ver: typing.Optional[str] = pydantic.Field(default=None)
     """
     The BIOS version. For example: <code>LENOVO G5ETA2WW (2.62)</code>.
