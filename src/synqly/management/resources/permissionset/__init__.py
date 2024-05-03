@@ -36,6 +36,8 @@ from .types import (
     TokensPermissions,
     TransformsActions,
     TransformsPermissions,
+    WebhooksActions,
+    WebhooksPermissions,
 )
 
 __all__ = [
@@ -74,4 +76,6 @@ __all__ = [
     "TokensPermissions",
     "TransformsActions",
     "TransformsPermissions",
+    "WebhooksActions",
+    "WebhooksPermissions",
 ]

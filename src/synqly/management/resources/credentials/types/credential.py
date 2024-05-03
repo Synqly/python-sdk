@@ -8,6 +8,7 @@ from ...accounts.types.account_id import AccountId
 from ...common.types.base import Base
 from ...integration_base.types.integration_id import IntegrationId
 from ...integration_points.types.integration_point_id import IntegrationPointId
+from ...organization_webhooks.types.webhook_id import WebhookId
 from .credential_config import CredentialConfig
 from .credential_id import CredentialId
 from .owner_type import OwnerType
@@ -35,6 +36,11 @@ class Credential(Base):
     """
 
     integration_point_id: typing.Optional[IntegrationPointId] = pydantic.Field(default=None)
+    """
+    Integration Point associated with this credential.
+    """
+
+    organization_webhook_id: typing.Optional[WebhookId] = pydantic.Field(default=None)
     """
     Integration Point associated with this credential.
     """

@@ -19,6 +19,7 @@ from .roles_permissions import RolesPermissions
 from .status_permissions import StatusPermissions
 from .tokens_permissions import TokensPermissions
 from .transforms_permissions import TransformsPermissions
+from .webhooks_permissions import WebhooksPermissions
 
 try:
     import pydantic.v1 as pydantic  # type: ignore
@@ -42,6 +43,7 @@ class ApiPermissionMap(pydantic.BaseModel):
     status: typing.Optional[StatusPermissions] = None
     tokens: typing.Optional[TokensPermissions] = None
     transforms: typing.Optional[TransformsPermissions] = None
+    webhooks: typing.Optional[WebhooksPermissions] = None
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}

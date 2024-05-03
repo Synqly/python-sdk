@@ -35,6 +35,8 @@ from .tokens_actions import TokensActions
 from .tokens_permissions import TokensPermissions
 from .transforms_actions import TransformsActions
 from .transforms_permissions import TransformsPermissions
+from .webhooks_actions import WebhooksActions
+from .webhooks_permissions import WebhooksPermissions
 
 __all__ = [
     "AccountsActions",
@@ -72,4 +74,6 @@ __all__ = [
     "TokensPermissions",
     "TransformsActions",
     "TransformsPermissions",
+    "WebhooksActions",
+    "WebhooksPermissions",
 ]
