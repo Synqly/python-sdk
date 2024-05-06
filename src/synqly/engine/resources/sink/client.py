@@ -11,6 +11,7 @@ from ...core.remove_none_from_dict import remove_none_from_dict
 from ...core.request_options import RequestOptions
 from ..common.errors.bad_request_error import BadRequestError
 from ..common.errors.forbidden_error import ForbiddenError
+from ..common.errors.internal_server_error import InternalServerError
 from ..common.errors.not_found_error import NotFoundError
 from ..common.errors.unauthorized_error import UnauthorizedError
 from ..common.types.error_body import ErrorBody
@@ -76,6 +77,8 @@ class SinkClient:
             raise ForbiddenError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
         if _response.status_code == 401:
             raise UnauthorizedError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+        if _response.status_code == 500:
+            raise InternalServerError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
         try:
             _response_json = _response.json()
         except JSONDecodeError:
@@ -134,6 +137,8 @@ class AsyncSinkClient:
             raise ForbiddenError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
         if _response.status_code == 401:
             raise UnauthorizedError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+        if _response.status_code == 500:
+            raise InternalServerError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
         try:
             _response_json = _response.json()
         except JSONDecodeError:
