@@ -30,19 +30,9 @@ class NetworkInterface(pydantic.BaseModel):
     The IP address associated with the network interface.
     """
 
-    ip_addresses: typing.Optional[typing.List[str]] = pydantic.Field(default=None)
-    """
-    A list of IP addresses available on the network interface.
-    """
-
     mac: typing.Optional[MacAddress] = pydantic.Field(default=None)
     """
     The MAC address of the network interface.
-    """
-
-    mac_addresses: typing.Optional[typing.List[str]] = pydantic.Field(default=None)
-    """
-    A list of MAC addresses available on the network interface.
     """
 
     name: typing.Optional[str] = pydantic.Field(default=None)

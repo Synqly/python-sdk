@@ -21,11 +21,6 @@ class Package(pydantic.BaseModel):
     Architecture is a shorthand name describing the type of computer hardware the packaged software is meant to run on.
     """
 
-    cpe_name: typing.Optional[str] = pydantic.Field(default=None)
-    """
-    The Common Platform Enumeration (CPE) name for the software package.
-    """
-
     epoch: typing.Optional[int] = pydantic.Field(default=None)
     """
     The software package epoch. Epoch is a way to define weighted dependencies based on version numbers.
