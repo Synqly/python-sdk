@@ -83,23 +83,39 @@ def demo_edr(app: utils.App, pagesToRetrieve: int):
         if tenant.synqly_engine_client is None:
             continue
 
-        # Set a limit on the number of pages to retrieve to keep the example manageable
+        # Set a limit on the number of application pages to retrieve to keep the
+        # example manageable
         pagesRetrieved = 0
         currentCursor = ""
-
         while pagesRetrieved < pagesToRetrieve:
             response = tenant.synqly_engine_client.edr.query_applications(
                 cursor=currentCursor
             )
             resultsPage = response.result
-            currentCursor = response.cursor
-            pagesRetrieved += 1
-            for application in resultsPage:
-                pprint.pp(application)
+            if resultsPage is None:
+                print("Unable to retrieve applications")
+                break
+            else:
+                currentCursor = response.cursor
+                pagesRetrieved += 1
+                for application in resultsPage:
+                    print()
+                    pprint.pp(application)
 
             # If the returned cursor is empty, it means we've retrieved all results
             if currentCursor == "":
                 break
+
+        # Retrieve a single endpoint
+        print("\nEndpoint:")
+        endpointResponse = tenant.synqly_engine_client.edr.query_endpoints()
+        if endpointResponse.result is None:
+            print("Unable to retrieve endpoints")
+        else:
+            if len(endpointResponse.result) < 1:
+                print("No endpoints found")
+            else:
+                pprint.pp(endpointResponse.result[0])
 
 
 def main():
