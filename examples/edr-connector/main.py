@@ -95,12 +95,12 @@ def demo_edr(app: utils.App, pagesToRetrieve: int):
             if resultsPage is None:
                 print("Unable to retrieve applications")
                 break
-            else:
-                currentCursor = response.cursor
-                pagesRetrieved += 1
-                for application in resultsPage:
-                    print()
-                    pprint.pp(application)
+
+            currentCursor = response.cursor
+            pagesRetrieved += 1
+            for application in resultsPage:
+                print()
+                pprint.pp(application)
 
             # If the returned cursor is empty, it means we've retrieved all results
             if currentCursor == "":
