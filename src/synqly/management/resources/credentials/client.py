@@ -25,6 +25,7 @@ from .types.create_credential_response import CreateCredentialResponse
 from .types.credential_id import CredentialId
 from .types.get_credential_response import GetCredentialResponse
 from .types.list_credentials_response import ListCredentialsResponse
+from .types.lookup_credential_response import LookupCredentialResponse
 from .types.patch_credential_response import PatchCredentialResponse
 from .types.update_credential_request import UpdateCredentialRequest
 from .types.update_credential_response import UpdateCredentialResponse
@@ -136,16 +137,16 @@ class CredentialsClient:
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
     def get(
-        self, owner_id: Id, credential_id: CredentialId, *, request_options: typing.Optional[RequestOptions] = None
+        self, credential_id: CredentialId, owner_id: Id, *, request_options: typing.Optional[RequestOptions] = None
     ) -> GetCredentialResponse:
         """
         Returns the `Credential` object matching `{credentialId}` where the
         `Credential` belongs to the `Account`, `Integration`, `IntegrationPoint` or `OrganizationWebhook` matching `{ownerId}`.
 
         Parameters:
-            - owner_id: Id.
-
             - credential_id: CredentialId.
+
+            - owner_id: Id.
 
             - request_options: typing.Optional[RequestOptions]. Request-specific configuration.
         """
@@ -174,6 +175,65 @@ class CredentialsClient:
         )
         if 200 <= _response.status_code < 300:
             return pydantic.parse_obj_as(GetCredentialResponse, _response.json())  # type: ignore
+        if _response.status_code == 400:
+            raise BadRequestError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+        if _response.status_code == 401:
+            raise UnauthorizedError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+        if _response.status_code == 403:
+            raise ForbiddenError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+        if _response.status_code == 404:
+            raise NotFoundError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+        if _response.status_code == 405:
+            raise MethodNotAllowedError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+        if _response.status_code == 409:
+            raise ConflictError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+        if _response.status_code == 415:
+            raise UnsupportedMediaTypeError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+        if _response.status_code == 429:
+            raise TooManyRequestsError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+        if _response.status_code == 500:
+            raise InternalServerError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+        try:
+            _response_json = _response.json()
+        except JSONDecodeError:
+            raise ApiError(status_code=_response.status_code, body=_response.text)
+        raise ApiError(status_code=_response.status_code, body=_response_json)
+
+    def lookup(
+        self, credential_id: CredentialId, *, request_options: typing.Optional[RequestOptions] = None
+    ) -> LookupCredentialResponse:
+        """
+        Returns the `Credential` object matching `{credentialId}`.
+
+        Parameters:
+            - credential_id: CredentialId.
+
+            - request_options: typing.Optional[RequestOptions]. Request-specific configuration.
+        """
+        _response = self._client_wrapper.httpx_client.request(
+            "GET",
+            urllib.parse.urljoin(
+                f"{self._client_wrapper.get_base_url()}/", f"v1/credentials/lookup/{jsonable_encoder(credential_id)}"
+            ),
+            params=jsonable_encoder(
+                request_options.get("additional_query_parameters") if request_options is not None else None
+            ),
+            headers=jsonable_encoder(
+                remove_none_from_dict(
+                    {
+                        **self._client_wrapper.get_headers(),
+                        **(request_options.get("additional_headers", {}) if request_options is not None else {}),
+                    }
+                )
+            ),
+            timeout=request_options.get("timeout_in_seconds")
+            if request_options is not None and request_options.get("timeout_in_seconds") is not None
+            else 60,
+            retries=0,
+            max_retries=request_options.get("max_retries") if request_options is not None else 0,  # type: ignore
+        )
+        if 200 <= _response.status_code < 300:
+            return pydantic.parse_obj_as(LookupCredentialResponse, _response.json())  # type: ignore
         if _response.status_code == 400:
             raise BadRequestError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
         if _response.status_code == 401:
@@ -581,16 +641,16 @@ class AsyncCredentialsClient:
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
     async def get(
-        self, owner_id: Id, credential_id: CredentialId, *, request_options: typing.Optional[RequestOptions] = None
+        self, credential_id: CredentialId, owner_id: Id, *, request_options: typing.Optional[RequestOptions] = None
     ) -> GetCredentialResponse:
         """
         Returns the `Credential` object matching `{credentialId}` where the
         `Credential` belongs to the `Account`, `Integration`, `IntegrationPoint` or `OrganizationWebhook` matching `{ownerId}`.
 
         Parameters:
-            - owner_id: Id.
-
             - credential_id: CredentialId.
+
+            - owner_id: Id.
 
             - request_options: typing.Optional[RequestOptions]. Request-specific configuration.
         """
@@ -619,6 +679,65 @@ class AsyncCredentialsClient:
         )
         if 200 <= _response.status_code < 300:
             return pydantic.parse_obj_as(GetCredentialResponse, _response.json())  # type: ignore
+        if _response.status_code == 400:
+            raise BadRequestError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+        if _response.status_code == 401:
+            raise UnauthorizedError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+        if _response.status_code == 403:
+            raise ForbiddenError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+        if _response.status_code == 404:
+            raise NotFoundError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+        if _response.status_code == 405:
+            raise MethodNotAllowedError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+        if _response.status_code == 409:
+            raise ConflictError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+        if _response.status_code == 415:
+            raise UnsupportedMediaTypeError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+        if _response.status_code == 429:
+            raise TooManyRequestsError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+        if _response.status_code == 500:
+            raise InternalServerError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+        try:
+            _response_json = _response.json()
+        except JSONDecodeError:
+            raise ApiError(status_code=_response.status_code, body=_response.text)
+        raise ApiError(status_code=_response.status_code, body=_response_json)
+
+    async def lookup(
+        self, credential_id: CredentialId, *, request_options: typing.Optional[RequestOptions] = None
+    ) -> LookupCredentialResponse:
+        """
+        Returns the `Credential` object matching `{credentialId}`.
+
+        Parameters:
+            - credential_id: CredentialId.
+
+            - request_options: typing.Optional[RequestOptions]. Request-specific configuration.
+        """
+        _response = await self._client_wrapper.httpx_client.request(
+            "GET",
+            urllib.parse.urljoin(
+                f"{self._client_wrapper.get_base_url()}/", f"v1/credentials/lookup/{jsonable_encoder(credential_id)}"
+            ),
+            params=jsonable_encoder(
+                request_options.get("additional_query_parameters") if request_options is not None else None
+            ),
+            headers=jsonable_encoder(
+                remove_none_from_dict(
+                    {
+                        **self._client_wrapper.get_headers(),
+                        **(request_options.get("additional_headers", {}) if request_options is not None else {}),
+                    }
+                )
+            ),
+            timeout=request_options.get("timeout_in_seconds")
+            if request_options is not None and request_options.get("timeout_in_seconds") is not None
+            else 60,
+            retries=0,
+            max_retries=request_options.get("max_retries") if request_options is not None else 0,  # type: ignore
+        )
+        if 200 <= _response.status_code < 300:
+            return pydantic.parse_obj_as(LookupCredentialResponse, _response.json())  # type: ignore
         if _response.status_code == 400:
             raise BadRequestError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
         if _response.status_code == 401:

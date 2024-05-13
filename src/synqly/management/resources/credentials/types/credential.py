@@ -11,6 +11,7 @@ from ...integration_points.types.integration_point_id import IntegrationPointId
 from ...organization_webhooks.types.webhook_id import WebhookId
 from .credential_config import CredentialConfig
 from .credential_id import CredentialId
+from .managed_type import ManagedType
 from .owner_type import OwnerType
 
 try:
@@ -58,6 +59,16 @@ class Credential(Base):
     config: typing.Optional[CredentialConfig] = pydantic.Field(default=None)
     """
     Credential configuration
+    """
+
+    expires: typing.Optional[dt.datetime] = pydantic.Field(default=None)
+    """
+    Time when this credential expires and can no longer be used again.
+    """
+
+    managed: ManagedType = pydantic.Field()
+    """
+    Field is set by the management process. Determines lifecycle and ownership of the credential.
     """
 
     def json(self, **kwargs: typing.Any) -> str:

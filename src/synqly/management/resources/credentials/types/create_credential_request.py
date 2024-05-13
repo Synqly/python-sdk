@@ -34,6 +34,11 @@ class CreateCredentialRequest(pydantic.BaseModel):
     One of `account` or `integration_point`; defaults to `account` if not specified.
     """
 
+    expires: typing.Optional[dt.datetime] = pydantic.Field(default=None)
+    """
+    Time when this credential expires and can no longer be used again.
+    """
+
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}
         return super().json(**kwargs_with_defaults)

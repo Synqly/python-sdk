@@ -21,6 +21,8 @@ from .credential_response import CredentialResponse
 from .credential_type import CredentialType
 from .get_credential_response import GetCredentialResponse
 from .list_credentials_response import ListCredentialsResponse
+from .lookup_credential_response import LookupCredentialResponse
+from .managed_type import ManagedType
 from .o_auth_client_credential import OAuthClientCredential
 from .o_auth_client_credential_id import OAuthClientCredentialId
 from .owner_type import OwnerType
@@ -52,6 +54,8 @@ __all__ = [
     "CredentialType",
     "GetCredentialResponse",
     "ListCredentialsResponse",
+    "LookupCredentialResponse",
+    "ManagedType",
     "OAuthClientCredential",
     "OAuthClientCredentialId",
     "OwnerType",

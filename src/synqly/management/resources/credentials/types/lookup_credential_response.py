@@ -4,7 +4,7 @@ import datetime as dt
 import typing
 
 from ....core.datetime_utils import serialize_datetime
-from .organization_webhook_secret import OrganizationWebhookSecret
+from .credential_response import CredentialResponse
 
 try:
     import pydantic.v1 as pydantic  # type: ignore
@@ -12,11 +12,8 @@ except ImportError:
     import pydantic  # type: ignore
 
 
-class RefreshOrganizationWebhookRequest(pydantic.BaseModel):
-    secret: OrganizationWebhookSecret = pydantic.Field()
-    """
-    Secret used for signing webhooks. This value is used to verify the authenticity of the webhook payload.
-    """
+class LookupCredentialResponse(pydantic.BaseModel):
+    result: CredentialResponse
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}

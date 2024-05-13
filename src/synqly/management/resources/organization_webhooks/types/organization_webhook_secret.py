@@ -17,7 +17,7 @@ class OrganizationWebhookSecret(pydantic.BaseModel):
     Secret used for signing webhooks. This value is used to verify the authenticity of the webhook payload.
     """
 
-    expires: dt.datetime = pydantic.Field()
+    expires: typing.Optional[dt.datetime] = pydantic.Field(default=None)
     """
     Time when this secret expires and can no longer be used again.
     """

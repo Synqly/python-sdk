@@ -7,7 +7,6 @@ from .list_organization_webhooks_response import ListOrganizationWebhooksRespons
 from .organization_webhook import OrganizationWebhook
 from .organization_webhook_secret import OrganizationWebhookSecret
 from .patch_organization_webhook_response import PatchOrganizationWebhookResponse
-from .refresh_organization_webhook_request import RefreshOrganizationWebhookRequest
 from .update_organization_webhook_request import UpdateOrganizationWebhookRequest
 from .update_organization_webhook_response import UpdateOrganizationWebhookResponse
 from .webhook_filter import WebhookFilter
@@ -21,7 +20,6 @@ __all__ = [
     "OrganizationWebhook",
     "OrganizationWebhookSecret",
     "PatchOrganizationWebhookResponse",
-    "RefreshOrganizationWebhookRequest",
     "UpdateOrganizationWebhookRequest",
     "UpdateOrganizationWebhookResponse",
     "WebhookFilter",

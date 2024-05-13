@@ -13,6 +13,7 @@ class CredentialsActions(str, enum.Enum):
     UPDATE = "update"
     PATCH = "patch"
     DELETE = "delete"
+    LOOKUP = "lookup"
     ALL = "*"
 
     def visit(
@@ -23,6 +24,7 @@ class CredentialsActions(str, enum.Enum):
         update: typing.Callable[[], T_Result],
         patch: typing.Callable[[], T_Result],
         delete: typing.Callable[[], T_Result],
+        lookup: typing.Callable[[], T_Result],
         all_: typing.Callable[[], T_Result],
     ) -> T_Result:
         if self is CredentialsActions.LIST:
@@ -37,5 +39,7 @@ class CredentialsActions(str, enum.Enum):
             return patch()
         if self is CredentialsActions.DELETE:
             return delete()
+        if self is CredentialsActions.LOOKUP:
+            return lookup()
         if self is CredentialsActions.ALL:
             return all_()
