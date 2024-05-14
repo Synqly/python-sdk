@@ -22,6 +22,11 @@ class Scan(pydantic.BaseModel):
     The administrator-supplied or application-generated name of the scan. For example: "Home office weekly user database scan", "Scan folders for viruses", "Full system virus scan"
     """
 
+    targets: typing.Optional[typing.List[str]] = pydantic.Field(default=None)
+    """
+    Hosts or IP addresses targeted by the scan.
+    """
+
     type: typing.Optional[str] = pydantic.Field(default=None)
     """
     The type of scan.

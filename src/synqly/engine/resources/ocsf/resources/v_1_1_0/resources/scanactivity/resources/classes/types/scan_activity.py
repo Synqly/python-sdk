@@ -6,6 +6,7 @@ import typing
 from ..........core.datetime_utils import serialize_datetime
 from ...base.types.timestamp import Timestamp
 from ...objects.types.actor import Actor
+from ...objects.types.agent import Agent
 from ...objects.types.api import Api
 from ...objects.types.cloud import Cloud
 from ...objects.types.device import Device
@@ -46,6 +47,11 @@ class ScanActivity(pydantic.BaseModel):
     actor: typing.Optional[Actor] = pydantic.Field(default=None)
     """
     The actor object describes details about the user/role/process that was the source of the activity.
+    """
+
+    agent_list: typing.Optional[typing.List[Agent]] = pydantic.Field(default=None)
+    """
+    The agents that were used to scan the devices.
     """
 
     api: typing.Optional[Api] = pydantic.Field(default=None)
@@ -131,6 +137,11 @@ class ScanActivity(pydantic.BaseModel):
     num_folders: typing.Optional[int] = pydantic.Field(default=None)
     """
     The number of folders scanned.
+    """
+
+    num_hosts: typing.Optional[int] = pydantic.Field(default=None)
+    """
+    The number of hosts that were scanned.
     """
 
     num_network_items: typing.Optional[int] = pydantic.Field(default=None)

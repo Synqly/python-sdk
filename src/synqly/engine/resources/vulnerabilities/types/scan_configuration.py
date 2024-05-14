@@ -33,6 +33,11 @@ class ScanConfiguration(pydantic.BaseModel):
     Time when the scan was created.
     """
 
+    last_modified_time: int = pydantic.Field()
+    """
+    Time when the scan was last modified.
+    """
+
     owner: typing.Optional[User] = pydantic.Field(default=None)
     """
     User that owns the scan.

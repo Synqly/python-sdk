@@ -13,6 +13,11 @@ except ImportError:
 
 
 class ScanSchedule(pydantic.BaseModel):
+    time: str = pydantic.Field()
+    """
+    Time of the day when the scan are repeated. For scans that are executed once, this is the time when the scan was started. This is formatted as `HH:MM:SS`.
+    """
+
     frequency: ScanFrequencyOption = pydantic.Field()
     """
     Periodicity of the scan; for example, weekly, means that the scan will be repeated every `repeat_interval` weeks.

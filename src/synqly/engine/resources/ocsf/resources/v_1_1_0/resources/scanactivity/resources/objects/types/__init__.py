@@ -3,6 +3,8 @@
 from .account import Account
 from .account_type_id import AccountTypeId
 from .actor import Actor
+from .agent import Agent
+from .agent_type_id import AgentTypeId
 from .api import Api
 from .authorization import Authorization
 from .certificate import Certificate
@@ -58,6 +60,8 @@ __all__ = [
     "Account",
     "AccountTypeId",
     "Actor",
+    "Agent",
+    "AgentTypeId",
     "Api",
     "Authorization",
     "Certificate",
