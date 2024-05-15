@@ -9,6 +9,7 @@ T_Result = typing.TypeVar("T_Result")
 class TokensActions(str, enum.Enum):
     LIST = "list"
     CREATE = "create"
+    CREATE_INTEGRATION = "create_integration"
     GET = "get"
     RESET = "reset"
     REFRESH = "refresh"
@@ -19,6 +20,7 @@ class TokensActions(str, enum.Enum):
         self,
         list_: typing.Callable[[], T_Result],
         create: typing.Callable[[], T_Result],
+        create_integration: typing.Callable[[], T_Result],
         get: typing.Callable[[], T_Result],
         reset: typing.Callable[[], T_Result],
         refresh: typing.Callable[[], T_Result],
@@ -29,6 +31,8 @@ class TokensActions(str, enum.Enum):
             return list_()
         if self is TokensActions.CREATE:
             return create()
+        if self is TokensActions.CREATE_INTEGRATION:
+            return create_integration()
         if self is TokensActions.GET:
             return get()
         if self is TokensActions.RESET:

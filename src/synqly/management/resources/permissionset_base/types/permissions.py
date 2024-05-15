@@ -12,6 +12,7 @@ class Permissions(str, enum.Enum):
     MEMBER = "member"
     ACCOUNT_MANAGER = "account-manager"
     CONNECT_UI = "connect-ui"
+    TOKEN_ISSUER = "token-issuer"
 
     def visit(
         self,
@@ -20,6 +21,7 @@ class Permissions(str, enum.Enum):
         member: typing.Callable[[], T_Result],
         account_manager: typing.Callable[[], T_Result],
         connect_ui: typing.Callable[[], T_Result],
+        token_issuer: typing.Callable[[], T_Result],
     ) -> T_Result:
         if self is Permissions.ADMINISTRATOR:
             return administrator()
@@ -31,3 +33,5 @@ class Permissions(str, enum.Enum):
             return account_manager()
         if self is Permissions.CONNECT_UI:
             return connect_ui()
+        if self is Permissions.TOKEN_ISSUER:
+            return token_issuer()

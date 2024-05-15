@@ -4,8 +4,6 @@ import datetime as dt
 import typing
 
 from ....core.datetime_utils import serialize_datetime
-from ...permissionset_base.types.permissions import Permissions
-from ...role_base.types.resources import Resources
 
 try:
     import pydantic.v1 as pydantic  # type: ignore
@@ -13,20 +11,10 @@ except ImportError:
     import pydantic  # type: ignore
 
 
-class CreateTokenRequest(pydantic.BaseModel):
+class CreateIntegrationTokenRequest(pydantic.BaseModel):
     name: typing.Optional[str] = pydantic.Field(default=None)
     """
     Unique name token. If not provided, defaults to generated newly created refresh token id.
-    """
-
-    resources: Resources = pydantic.Field()
-    """
-    Limit access to supplied resources
-    """
-
-    permission_set: Permissions = pydantic.Field()
-    """
-    Limit access to supplied permissions
     """
 
     token_ttl: typing.Optional[str] = pydantic.Field(default=None)

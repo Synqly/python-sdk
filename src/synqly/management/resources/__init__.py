@@ -386,6 +386,8 @@ from .status import (
 )
 from .token_base import Token, TokenId, TokenPair
 from .tokens import (
+    CreateIntegrationTokenRequest,
+    CreateIntegrationTokenResponse,
     CreateTokenRequest,
     CreateTokenResponse,
     GetTokenResponse,
@@ -468,6 +470,8 @@ __all__ = [
     "CreateIntegrationRequest",
     "CreateIntegrationResponse",
     "CreateIntegrationResponseResult",
+    "CreateIntegrationTokenRequest",
+    "CreateIntegrationTokenResponse",
     "CreateMemberRequest",
     "CreateMemberResponse",
     "CreateMemberResponseResult",

@@ -4,8 +4,7 @@ import datetime as dt
 import typing
 
 from ....core.datetime_utils import serialize_datetime
-from ...permissionset_base.types.permissions import Permissions
-from ...role_base.types.resources import Resources
+from .refresh_token import RefreshToken
 
 try:
     import pydantic.v1 as pydantic  # type: ignore
@@ -13,26 +12,8 @@ except ImportError:
     import pydantic  # type: ignore
 
 
-class CreateTokenRequest(pydantic.BaseModel):
-    name: typing.Optional[str] = pydantic.Field(default=None)
-    """
-    Unique name token. If not provided, defaults to generated newly created refresh token id.
-    """
-
-    resources: Resources = pydantic.Field()
-    """
-    Limit access to supplied resources
-    """
-
-    permission_set: Permissions = pydantic.Field()
-    """
-    Limit access to supplied permissions
-    """
-
-    token_ttl: typing.Optional[str] = pydantic.Field(default=None)
-    """
-    Token time-to-live. If not provided, defaults to the TTL of the token used to call this API. Use the format "1h", "1m", "1s" for hours, minutes, and seconds respectively.
-    """
+class CreateIntegrationTokenResponse(pydantic.BaseModel):
+    result: RefreshToken
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}
