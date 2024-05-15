@@ -6,6 +6,8 @@ from .types import (
     NetworkQuarantineRequest,
     QueryApplicationsResponse,
     QueryEndpointsResponse,
+    QueryThreatsResponse,
+    ThreatEvent,
 )
 
 __all__ = [
@@ -14,4 +16,6 @@ __all__ = [
     "NetworkQuarantineRequest",
     "QueryApplicationsResponse",
     "QueryEndpointsResponse",
+    "QueryThreatsResponse",
+    "ThreatEvent",
 ]

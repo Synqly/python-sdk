@@ -43,6 +43,8 @@ from .edr import (
     NetworkQuarantineRequest,
     QueryApplicationsResponse,
     QueryEndpointsResponse,
+    QueryThreatsResponse,
+    ThreatEvent,
 )
 from .events import (
     Event,
@@ -194,6 +196,7 @@ __all__ = [
     "QueryInvestigationResponse",
     "QueryScansResponse",
     "QuerySiemEventsResponse",
+    "QueryThreatsResponse",
     "QueryTicketsResponse",
     "QueryUsersResponse",
     "ScanConfiguration",
@@ -203,6 +206,7 @@ __all__ = [
     "SecurityFinding",
     "ServiceUnavailableError",
     "StoragePath",
+    "ThreatEvent",
     "Ticket",
     "TicketId",
     "TooManyRequestsError",
