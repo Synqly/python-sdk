@@ -137,16 +137,16 @@ class CredentialsClient:
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
     def get(
-        self, credential_id: CredentialId, owner_id: Id, *, request_options: typing.Optional[RequestOptions] = None
+        self, owner_id: Id, credential_id: CredentialId, *, request_options: typing.Optional[RequestOptions] = None
     ) -> GetCredentialResponse:
         """
         Returns the `Credential` object matching `{credentialId}` where the
         `Credential` belongs to the `Account`, `Integration`, `IntegrationPoint` or `OrganizationWebhook` matching `{ownerId}`.
 
         Parameters:
-            - credential_id: CredentialId.
-
             - owner_id: Id.
+
+            - credential_id: CredentialId.
 
             - request_options: typing.Optional[RequestOptions]. Request-specific configuration.
         """
@@ -641,16 +641,16 @@ class AsyncCredentialsClient:
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
     async def get(
-        self, credential_id: CredentialId, owner_id: Id, *, request_options: typing.Optional[RequestOptions] = None
+        self, owner_id: Id, credential_id: CredentialId, *, request_options: typing.Optional[RequestOptions] = None
     ) -> GetCredentialResponse:
         """
         Returns the `Credential` object matching `{credentialId}` where the
         `Credential` belongs to the `Account`, `Integration`, `IntegrationPoint` or `OrganizationWebhook` matching `{ownerId}`.
 
         Parameters:
-            - credential_id: CredentialId.
-
             - owner_id: Id.
+
+            - credential_id: CredentialId.
 
             - request_options: typing.Optional[RequestOptions]. Request-specific configuration.
         """
