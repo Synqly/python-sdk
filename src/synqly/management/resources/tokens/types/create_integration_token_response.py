@@ -4,7 +4,7 @@ import datetime as dt
 import typing
 
 from ....core.datetime_utils import serialize_datetime
-from .refresh_token import RefreshToken
+from ...token_base.types.token import Token
 
 try:
     import pydantic.v1 as pydantic  # type: ignore
@@ -13,7 +13,7 @@ except ImportError:
 
 
 class CreateIntegrationTokenResponse(pydantic.BaseModel):
-    result: RefreshToken
+    result: Token
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}
