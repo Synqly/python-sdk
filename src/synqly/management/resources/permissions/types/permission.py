@@ -15,7 +15,7 @@ except ImportError:
 
 
 class Permission(pydantic.BaseModel):
-    role_binding: typing.List[RoleName] = pydantic.Field()
+    role_binding: typing.Optional[typing.List[RoleName]] = pydantic.Field(default=None)
     """
     Roles granted to this token.
     """
