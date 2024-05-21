@@ -19,6 +19,7 @@ from ..common.errors.too_many_requests_error import TooManyRequestsError
 from ..common.errors.unauthorized_error import UnauthorizedError
 from ..common.errors.unsupported_media_type_error import UnsupportedMediaTypeError
 from ..common.types.error_body import ErrorBody
+from ..organization_webhook_base.types.webhook_id import WebhookId
 from .types.create_organization_webhook_request import CreateOrganizationWebhookRequest
 from .types.create_organization_webhook_response import CreateOrganizationWebhookResponse
 from .types.get_organization_webhook_response import GetOrganizationWebhookResponse
@@ -26,7 +27,6 @@ from .types.list_organization_webhooks_response import ListOrganizationWebhooksR
 from .types.patch_organization_webhook_response import PatchOrganizationWebhookResponse
 from .types.update_organization_webhook_request import UpdateOrganizationWebhookRequest
 from .types.update_organization_webhook_response import UpdateOrganizationWebhookResponse
-from .types.webhook_id import WebhookId
 
 try:
     import pydantic.v1 as pydantic  # type: ignore

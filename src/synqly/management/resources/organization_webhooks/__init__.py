@@ -10,8 +10,6 @@ from .types import (
     PatchOrganizationWebhookResponse,
     UpdateOrganizationWebhookRequest,
     UpdateOrganizationWebhookResponse,
-    WebhookFilter,
-    WebhookId,
 )
 
 __all__ = [
@@ -24,6 +22,4 @@ __all__ = [
     "PatchOrganizationWebhookResponse",
     "UpdateOrganizationWebhookRequest",
     "UpdateOrganizationWebhookResponse",
-    "WebhookFilter",
-    "WebhookId",
 ]

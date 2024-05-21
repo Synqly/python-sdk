@@ -7,8 +7,8 @@ from ....core.datetime_utils import serialize_datetime
 from ...common.types.base import Base
 from ...credentials.types.credential_id import CredentialId
 from ...organization_base.types.environment import Environment
-from .webhook_filter import WebhookFilter
-from .webhook_id import WebhookId
+from ...organization_webhook_base.types.webhook_filter import WebhookFilter
+from ...organization_webhook_base.types.webhook_id import WebhookId
 
 try:
     import pydantic.v1 as pydantic  # type: ignore

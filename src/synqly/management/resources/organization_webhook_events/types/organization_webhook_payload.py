@@ -6,6 +6,7 @@ import typing
 from ....core.datetime_utils import serialize_datetime
 from ...accounts.types.account import Account
 from ...integrations.types.integration import Integration
+from ...organization_webhook_base.types.webhook_filter import WebhookFilter
 
 try:
     import pydantic.v1 as pydantic  # type: ignore
@@ -18,7 +19,7 @@ class OrganizationWebhookPayload(pydantic.BaseModel):
     Response payload for webhook events. This payload is sent to the webhook URL when an event occurs.
     """
 
-    event: str = pydantic.Field()
+    event: WebhookFilter = pydantic.Field()
     """
     The event that triggered the webhook
     """

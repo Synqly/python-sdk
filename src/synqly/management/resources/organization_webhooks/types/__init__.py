@@ -9,8 +9,6 @@ from .organization_webhook_secret import OrganizationWebhookSecret
 from .patch_organization_webhook_response import PatchOrganizationWebhookResponse
 from .update_organization_webhook_request import UpdateOrganizationWebhookRequest
 from .update_organization_webhook_response import UpdateOrganizationWebhookResponse
-from .webhook_filter import WebhookFilter
-from .webhook_id import WebhookId
 
 __all__ = [
     "CreateOrganizationWebhookRequest",
@@ -22,6 +20,4 @@ __all__ = [
     "PatchOrganizationWebhookResponse",
     "UpdateOrganizationWebhookRequest",
     "UpdateOrganizationWebhookResponse",
-    "WebhookFilter",
-    "WebhookId",
 ]

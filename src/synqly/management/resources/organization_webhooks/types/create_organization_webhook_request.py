@@ -5,8 +5,8 @@ import typing
 
 from ....core.datetime_utils import serialize_datetime
 from ...organization_base.types.environment import Environment
+from ...organization_webhook_base.types.webhook_filter import WebhookFilter
 from .organization_webhook_secret import OrganizationWebhookSecret
-from .webhook_filter import WebhookFilter
 
 try:
     import pydantic.v1 as pydantic  # type: ignore

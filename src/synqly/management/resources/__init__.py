@@ -17,6 +17,7 @@ from . import (
     meta,
     organization,
     organization_base,
+    organization_webhook_base,
     organization_webhook_events,
     organization_webhooks,
     permissions,
@@ -161,6 +162,7 @@ from .members import (
 from .meta import GetOpenApiSpecResponse
 from .organization import PatchOrganizationResponse, UpdateOrganizationRequest, UpdateOrganizationResponse
 from .organization_base import Environment, GetOrganizationResponse, Organization, OrganizationId, OrganizationOptions
+from .organization_webhook_base import WebhookFilter, WebhookId
 from .organization_webhook_events import OrganizationWebhookPayload
 from .organization_webhooks import (
     CreateOrganizationWebhookRequest,
@@ -172,8 +174,6 @@ from .organization_webhooks import (
     PatchOrganizationWebhookResponse,
     UpdateOrganizationWebhookRequest,
     UpdateOrganizationWebhookResponse,
-    WebhookFilter,
-    WebhookId,
 )
 from .permissions import Permission
 from .permissionset import (
@@ -791,6 +791,7 @@ __all__ = [
     "meta",
     "organization",
     "organization_base",
+    "organization_webhook_base",
     "organization_webhook_events",
     "organization_webhooks",
     "permissions",
