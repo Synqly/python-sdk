@@ -49,6 +49,7 @@ class IntegrationPointsClient:
         end_before: typing.Optional[str] = None,
         order: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
         filter: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
+        total: typing.Optional[bool] = None,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> ListIntegrationPointsResponse:
         """
@@ -67,6 +68,8 @@ class IntegrationPointsClient:
                                                                                ordering is applied in the order the fields are specified.
             - filter: typing.Optional[typing.Union[str, typing.Sequence[str]]]. Filter results by this query. For more information on filtering, refer to our Filtering Guide. Defaults to no filter.
                                                                                 If used more than once, the queries are ANDed together.
+            - total: typing.Optional[bool]. Return total number of integration points in the system, respecting all applied filters. This is expensive, use sparingly.
+
             - request_options: typing.Optional[RequestOptions]. Request-specific configuration.
         """
         _response = self._client_wrapper.httpx_client.request(
@@ -80,6 +83,7 @@ class IntegrationPointsClient:
                         "end_before": end_before,
                         "order": order,
                         "filter": filter,
+                        "total": total,
                         **(
                             request_options.get("additional_query_parameters", {})
                             if request_options is not None
@@ -468,6 +472,7 @@ class AsyncIntegrationPointsClient:
         end_before: typing.Optional[str] = None,
         order: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
         filter: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
+        total: typing.Optional[bool] = None,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> ListIntegrationPointsResponse:
         """
@@ -486,6 +491,8 @@ class AsyncIntegrationPointsClient:
                                                                                ordering is applied in the order the fields are specified.
             - filter: typing.Optional[typing.Union[str, typing.Sequence[str]]]. Filter results by this query. For more information on filtering, refer to our Filtering Guide. Defaults to no filter.
                                                                                 If used more than once, the queries are ANDed together.
+            - total: typing.Optional[bool]. Return total number of integration points in the system, respecting all applied filters. This is expensive, use sparingly.
+
             - request_options: typing.Optional[RequestOptions]. Request-specific configuration.
         """
         _response = await self._client_wrapper.httpx_client.request(
@@ -499,6 +506,7 @@ class AsyncIntegrationPointsClient:
                         "end_before": end_before,
                         "order": order,
                         "filter": filter,
+                        "total": total,
                         **(
                             request_options.get("additional_query_parameters", {})
                             if request_options is not None

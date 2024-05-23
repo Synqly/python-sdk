@@ -14,6 +14,7 @@ except ImportError:
 
 class ListAccountsResponse(pydantic.BaseModel):
     result: typing.List[Account]
+    total: typing.Optional[int] = None
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}

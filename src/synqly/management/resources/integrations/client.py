@@ -58,6 +58,7 @@ class IntegrationsClient:
         order: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
         filter: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
         expand: typing.Optional[typing.Union[ListIntegrationOptions, typing.Sequence[ListIntegrationOptions]]] = None,
+        total: typing.Optional[bool] = None,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> ListIntegrationsResponse:
         """
@@ -78,6 +79,8 @@ class IntegrationsClient:
                                                                                 If used more than once, the queries are ANDed together.
             - expand: typing.Optional[typing.Union[ListIntegrationOptions, typing.Sequence[ListIntegrationOptions]]]. Expand the integration result with the related integration point and/or account information.
 
+            - total: typing.Optional[bool]. Return total number of all integrations in the system, respecting all applied filters. This is expensive, use sparingly.
+
             - request_options: typing.Optional[RequestOptions]. Request-specific configuration.
         """
         _response = self._client_wrapper.httpx_client.request(
@@ -92,6 +95,7 @@ class IntegrationsClient:
                         "order": order,
                         "filter": filter,
                         "expand": expand,
+                        "total": total,
                         **(
                             request_options.get("additional_query_parameters", {})
                             if request_options is not None
@@ -150,6 +154,7 @@ class IntegrationsClient:
         order: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
         filter: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
         expand: typing.Optional[typing.Union[ListIntegrationOptions, typing.Sequence[ListIntegrationOptions]]] = None,
+        total: typing.Optional[bool] = None,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> ListAccountIntegrationsResponse:
         """
@@ -173,6 +178,8 @@ class IntegrationsClient:
                                                                                 If used more than once, the queries are ANDed together.
             - expand: typing.Optional[typing.Union[ListIntegrationOptions, typing.Sequence[ListIntegrationOptions]]]. Expand the integration result with the related integration point and/or account information.
 
+            - total: typing.Optional[bool]. Return total number of integrations for a particular account. This is expensive, use sparingly.
+
             - request_options: typing.Optional[RequestOptions]. Request-specific configuration.
         """
         _response = self._client_wrapper.httpx_client.request(
@@ -189,6 +196,7 @@ class IntegrationsClient:
                         "order": order,
                         "filter": filter,
                         "expand": expand,
+                        "total": total,
                         **(
                             request_options.get("additional_query_parameters", {})
                             if request_options is not None
@@ -698,6 +706,7 @@ class AsyncIntegrationsClient:
         order: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
         filter: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
         expand: typing.Optional[typing.Union[ListIntegrationOptions, typing.Sequence[ListIntegrationOptions]]] = None,
+        total: typing.Optional[bool] = None,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> ListIntegrationsResponse:
         """
@@ -718,6 +727,8 @@ class AsyncIntegrationsClient:
                                                                                 If used more than once, the queries are ANDed together.
             - expand: typing.Optional[typing.Union[ListIntegrationOptions, typing.Sequence[ListIntegrationOptions]]]. Expand the integration result with the related integration point and/or account information.
 
+            - total: typing.Optional[bool]. Return total number of all integrations in the system, respecting all applied filters. This is expensive, use sparingly.
+
             - request_options: typing.Optional[RequestOptions]. Request-specific configuration.
         """
         _response = await self._client_wrapper.httpx_client.request(
@@ -732,6 +743,7 @@ class AsyncIntegrationsClient:
                         "order": order,
                         "filter": filter,
                         "expand": expand,
+                        "total": total,
                         **(
                             request_options.get("additional_query_parameters", {})
                             if request_options is not None
@@ -790,6 +802,7 @@ class AsyncIntegrationsClient:
         order: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
         filter: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
         expand: typing.Optional[typing.Union[ListIntegrationOptions, typing.Sequence[ListIntegrationOptions]]] = None,
+        total: typing.Optional[bool] = None,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> ListAccountIntegrationsResponse:
         """
@@ -813,6 +826,8 @@ class AsyncIntegrationsClient:
                                                                                 If used more than once, the queries are ANDed together.
             - expand: typing.Optional[typing.Union[ListIntegrationOptions, typing.Sequence[ListIntegrationOptions]]]. Expand the integration result with the related integration point and/or account information.
 
+            - total: typing.Optional[bool]. Return total number of integrations for a particular account. This is expensive, use sparingly.
+
             - request_options: typing.Optional[RequestOptions]. Request-specific configuration.
         """
         _response = await self._client_wrapper.httpx_client.request(
@@ -829,6 +844,7 @@ class AsyncIntegrationsClient:
                         "order": order,
                         "filter": filter,
                         "expand": expand,
+                        "total": total,
                         **(
                             request_options.get("additional_query_parameters", {})
                             if request_options is not None
