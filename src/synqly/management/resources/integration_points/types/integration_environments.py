@@ -4,7 +4,7 @@ import datetime as dt
 import typing
 
 from ....core.datetime_utils import serialize_datetime
-from ...capabilities_base.types.provider_id import ProviderId
+from ...providers_generated.types.provider_config_id import ProviderConfigId
 
 try:
     import pydantic.v1 as pydantic  # type: ignore
@@ -13,12 +13,12 @@ except ImportError:
 
 
 class IntegrationEnvironments(pydantic.BaseModel):
-    test: typing.Optional[typing.List[ProviderId]] = pydantic.Field(default=None)
+    test: typing.Optional[typing.List[ProviderConfigId]] = pydantic.Field(default=None)
     """
     List of allowed providers for test environment.
     """
 
-    prod: typing.Optional[typing.List[ProviderId]] = pydantic.Field(default=None)
+    prod: typing.Optional[typing.List[ProviderConfigId]] = pydantic.Field(default=None)
     """
     List of allowed providers for production environment.
     """

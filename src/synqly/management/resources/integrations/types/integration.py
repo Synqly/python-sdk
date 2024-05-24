@@ -56,6 +56,11 @@ class Integration(Base):
     Provider configuration for this Integration.
     """
 
+    provider_fullname: str = pydantic.Field()
+    """
+    Human friendly display name for the provider.
+    """
+
     provider_type: str = pydantic.Field()
     """
     Type of the provider for this Integration.

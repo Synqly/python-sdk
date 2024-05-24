@@ -171,6 +171,11 @@ class ProviderConfigId(str, enum.Enum):
     Tenable Vulnerability Management
     """
 
+    ALL = "*"
+    """
+    Any provider config type.
+    """
+
     def visit(
         self,
         assets_armis_centrix: typing.Callable[[], T_Result],
@@ -205,6 +210,7 @@ class ProviderConfigId(str, enum.Enum):
         vulnerabilities_qualys_cloud: typing.Callable[[], T_Result],
         vulnerabilities_rapid_7_insight_cloud: typing.Callable[[], T_Result],
         vulnerabilities_tenable_cloud: typing.Callable[[], T_Result],
+        all_: typing.Callable[[], T_Result],
     ) -> T_Result:
         if self is ProviderConfigId.ASSETS_ARMIS_CENTRIX:
             return assets_armis_centrix()
@@ -270,3 +276,5 @@ class ProviderConfigId(str, enum.Enum):
             return vulnerabilities_rapid_7_insight_cloud()
         if self is ProviderConfigId.VULNERABILITIES_TENABLE_CLOUD:
             return vulnerabilities_tenable_cloud()
+        if self is ProviderConfigId.ALL:
+            return all_()
