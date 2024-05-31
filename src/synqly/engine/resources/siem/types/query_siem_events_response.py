@@ -18,7 +18,7 @@ class QuerySiemEventsResponse(pydantic.BaseModel):
     List of events
     """
 
-    meta: MetaResponse = pydantic.Field()
+    meta: typing.Optional[MetaResponse] = pydantic.Field(default=None)
     """
     Metadata about the query results organized by group, then type, then field.
     """
