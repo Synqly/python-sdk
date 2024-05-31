@@ -4,7 +4,6 @@ import datetime as dt
 import typing
 
 from ....core.datetime_utils import serialize_datetime
-from ...common.types.meta_response import MetaResponse
 
 try:
     import pydantic.v1 as pydantic  # type: ignore
@@ -12,20 +11,10 @@ except ImportError:
     import pydantic  # type: ignore
 
 
-class QuerySiemEventsResponse(pydantic.BaseModel):
-    result: typing.List[typing.Dict[str, typing.Any]] = pydantic.Field()
+class MetaStats(pydantic.BaseModel):
+    count: typing.Dict[str, int] = pydantic.Field()
     """
-    List of events
-    """
-
-    meta: MetaResponse = pydantic.Field()
-    """
-    Metadata about the query results organized by group, then type, then field.
-    """
-
-    cursor: str = pydantic.Field()
-    """
-    Cursor to use to retrieve the next page of results
+    A count of total response times. If present "\*" will be all items, or they can be faceted into specific categories.
     """
 
     def json(self, **kwargs: typing.Any) -> str:

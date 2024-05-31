@@ -15,7 +15,7 @@ class BaseClientWrapper:
     def get_headers(self) -> typing.Dict[str, str]:
         headers: typing.Dict[str, str] = {"X-Fern-Language": "Python"}
         headers["Authorization"] = f"Bearer {self._get_token()}"
-        headers["User-Agent"] = "Synqly-Python-SDK/0.2.51"
+        headers["User-Agent"] = "Synqly-Python-SDK/0.2.52"
         return headers
 
     def _get_token(self) -> str:

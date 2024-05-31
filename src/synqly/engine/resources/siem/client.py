@@ -457,6 +457,7 @@ class SiemClient:
         limit: typing.Optional[int] = None,
         order: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
         filter: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
+        meta: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
         passthrough_param: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
         include_raw_data: typing.Optional[bool] = None,
         request_options: typing.Optional[RequestOptions] = None,
@@ -475,6 +476,8 @@ class SiemClient:
                                                                                ordering is applied in the order the fields are specified.
             - filter: typing.Optional[typing.Union[str, typing.Sequence[str]]]. Filter results by this query. For more information on filtering, refer to our Filtering Guide. Defaults to no filter.
                                                                                 If used more than once, the queries are ANDed together.
+            - meta: typing.Optional[typing.Union[str, typing.Sequence[str]]]. Add metadata to the response by invoking meta functions.
+
             - passthrough_param: typing.Optional[typing.Union[str, typing.Sequence[str]]]. Provider-specific query to pass through to the SIEM. This is useful for advanced queries that are not
                                                                                            supported by the API. The keys and values are provider-specific. For example, to perform a specific query in
                                                                                            Rapid7 IDR, you can use the `query: "{advanced query}"` key-value pair.
@@ -492,6 +495,7 @@ class SiemClient:
                         "limit": limit,
                         "order": order,
                         "filter": filter,
+                        "meta": meta,
                         "passthrough-param": passthrough_param,
                         "include_raw_data": include_raw_data,
                         **(
@@ -969,6 +973,7 @@ class AsyncSiemClient:
         limit: typing.Optional[int] = None,
         order: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
         filter: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
+        meta: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
         passthrough_param: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
         include_raw_data: typing.Optional[bool] = None,
         request_options: typing.Optional[RequestOptions] = None,
@@ -987,6 +992,8 @@ class AsyncSiemClient:
                                                                                ordering is applied in the order the fields are specified.
             - filter: typing.Optional[typing.Union[str, typing.Sequence[str]]]. Filter results by this query. For more information on filtering, refer to our Filtering Guide. Defaults to no filter.
                                                                                 If used more than once, the queries are ANDed together.
+            - meta: typing.Optional[typing.Union[str, typing.Sequence[str]]]. Add metadata to the response by invoking meta functions.
+
             - passthrough_param: typing.Optional[typing.Union[str, typing.Sequence[str]]]. Provider-specific query to pass through to the SIEM. This is useful for advanced queries that are not
                                                                                            supported by the API. The keys and values are provider-specific. For example, to perform a specific query in
                                                                                            Rapid7 IDR, you can use the `query: "{advanced query}"` key-value pair.
@@ -1004,6 +1011,7 @@ class AsyncSiemClient:
                         "limit": limit,
                         "order": order,
                         "filter": filter,
+                        "meta": meta,
                         "passthrough-param": passthrough_param,
                         "include_raw_data": include_raw_data,
                         **(

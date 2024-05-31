@@ -4,7 +4,6 @@ import datetime as dt
 import typing
 
 from ....core.datetime_utils import serialize_datetime
-from ...common.types.meta_response import MetaResponse
 
 try:
     import pydantic.v1 as pydantic  # type: ignore
@@ -12,20 +11,10 @@ except ImportError:
     import pydantic  # type: ignore
 
 
-class QuerySiemEventsResponse(pydantic.BaseModel):
-    result: typing.List[typing.Dict[str, typing.Any]] = pydantic.Field()
+class MetaApi(pydantic.BaseModel):
+    response: typing.Dict[str, str] = pydantic.Field()
     """
-    List of events
-    """
-
-    meta: MetaResponse = pydantic.Field()
-    """
-    Metadata about the query results organized by group, then type, then field.
-    """
-
-    cursor: str = pydantic.Field()
-    """
-    Cursor to use to retrieve the next page of results
+    Raw responses from backing APIs, indexed by request name (e.g. "query")
     """
 
     def json(self, **kwargs: typing.Any) -> str:
