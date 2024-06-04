@@ -23,7 +23,7 @@ class IdentityEntraId(pydantic.BaseModel):
     """
 
     credential: EntraIdCredential
-    scopes: typing.List[str] = pydantic.Field()
+    scopes: typing.Optional[typing.List[str]] = pydantic.Field(default=None)
     """
     Any custom scopes. Defaults to the primary Microsoft graph API default scope.
     """
