@@ -4,8 +4,6 @@ import datetime as dt
 import typing
 
 from ....core.datetime_utils import serialize_datetime
-from .meta_api import MetaApi
-from .meta_stats import MetaStats
 
 try:
     import pydantic.v1 as pydantic  # type: ignore
@@ -13,15 +11,15 @@ except ImportError:
     import pydantic  # type: ignore
 
 
-class MetaResponse(pydantic.BaseModel):
-    stats: typing.Optional[MetaStats] = pydantic.Field(default=None)
+class MetaApiPrimaryResponse(pydantic.BaseModel):
+    endpoint: str = pydantic.Field()
     """
-    Statistics about items contained in the response.
+    The endpoint URL of the primary API request made to fulfill the response.
     """
 
-    api: typing.Optional[MetaApi] = pydantic.Field(default=None)
+    response: str = pydantic.Field()
     """
-    Information about backing API requests made to fulfill the response.
+    The response from the primary API request.
     """
 
     def json(self, **kwargs: typing.Any) -> str:

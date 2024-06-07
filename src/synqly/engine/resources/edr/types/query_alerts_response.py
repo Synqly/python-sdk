@@ -4,8 +4,7 @@ import datetime as dt
 import typing
 
 from ....core.datetime_utils import serialize_datetime
-from .meta_api import MetaApi
-from .meta_stats import MetaStats
+from ...events.types.event import Event
 
 try:
     import pydantic.v1 as pydantic  # type: ignore
@@ -13,15 +12,15 @@ except ImportError:
     import pydantic  # type: ignore
 
 
-class MetaResponse(pydantic.BaseModel):
-    stats: typing.Optional[MetaStats] = pydantic.Field(default=None)
+class QueryAlertsResponse(pydantic.BaseModel):
+    result: typing.List[Event] = pydantic.Field()
     """
-    Statistics about items contained in the response.
+    List of alerts that match the query.
     """
 
-    api: typing.Optional[MetaApi] = pydantic.Field(default=None)
+    cursor: str = pydantic.Field()
     """
-    Information about backing API requests made to fulfill the response.
+    Cursor to use to retrieve the next page of results.
     """
 
     def json(self, **kwargs: typing.Any) -> str:

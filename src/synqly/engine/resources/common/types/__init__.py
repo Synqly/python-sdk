@@ -6,6 +6,8 @@ from .error_body import ErrorBody
 from .error_param import ErrorParam
 from .id import Id
 from .meta_api import MetaApi
+from .meta_api_primary_response import MetaApiPrimaryResponse
+from .meta_api_response import MetaApiResponse
 from .meta_response import MetaResponse
 from .meta_stats import MetaStats
 from .order_options import OrderOptions
@@ -17,6 +19,8 @@ __all__ = [
     "ErrorParam",
     "Id",
     "MetaApi",
+    "MetaApiPrimaryResponse",
+    "MetaApiResponse",
     "MetaResponse",
     "MetaStats",
     "OrderOptions",

@@ -3,6 +3,7 @@
 from .application import Application
 from .connection_state import ConnectionState
 from .network_quarantine_request import NetworkQuarantineRequest
+from .query_alerts_response import QueryAlertsResponse
 from .query_applications_response import QueryApplicationsResponse
 from .query_endpoints_response import QueryEndpointsResponse
 from .query_threats_response import QueryThreatsResponse
@@ -12,6 +13,7 @@ __all__ = [
     "Application",
     "ConnectionState",
     "NetworkQuarantineRequest",
+    "QueryAlertsResponse",
     "QueryApplicationsResponse",
     "QueryEndpointsResponse",
     "QueryThreatsResponse",
