@@ -43,7 +43,6 @@ class StatusClient:
         *,
         limit: typing.Optional[int] = None,
         start_after: typing.Optional[str] = None,
-        end_before: typing.Optional[str] = None,
         order: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
         filter: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
         expand: typing.Optional[typing.Union[ListStatusOptions, typing.Sequence[ListStatusOptions]]] = None,
@@ -56,8 +55,6 @@ class StatusClient:
             - limit: typing.Optional[int]. Number of `Status` objects to return in this page. Defaults to 100.
 
             - start_after: typing.Optional[str]. Return `Status` objects starting after this `account_id,integration_id`.
-
-            - end_before: typing.Optional[str]. Return `Status` objects ending before this `account_id,integration_id`.
 
             - order: typing.Optional[typing.Union[str, typing.Sequence[str]]]. Select a field to order the results by. Defaults to `account_id,integration_id`. To control the direction of the sorting, append
                                                                                `[asc]` or `[desc]` to the field name. For example, `name[desc]` will sort the results by `name` in descending order.
@@ -77,7 +74,6 @@ class StatusClient:
                     {
                         "limit": limit,
                         "start_after": start_after,
-                        "end_before": end_before,
                         "order": order,
                         "filter": filter,
                         "expand": expand,
@@ -271,7 +267,6 @@ class StatusClient:
         *,
         limit: typing.Optional[int] = None,
         start_after: typing.Optional[str] = None,
-        end_before: typing.Optional[str] = None,
         order: typing.Optional[str] = None,
         filter: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
         request_options: typing.Optional[RequestOptions] = None,
@@ -287,8 +282,6 @@ class StatusClient:
             - limit: typing.Optional[int]. Number of `StatusEvent` objects to return in this page. Defaults to 100.
 
             - start_after: typing.Optional[str]. Return `StatusEvent` objects starting after this `created_at`.
-
-            - end_before: typing.Optional[str]. Return `StatusEvent` objects ending before this `created_at`.
 
             - order: typing.Optional[str]. The order defaults to created_at[asc] and can changed to descending order by specifying created_at[desc].
 
@@ -307,7 +300,6 @@ class StatusClient:
                     {
                         "limit": limit,
                         "start_after": start_after,
-                        "end_before": end_before,
                         "order": order,
                         "filter": filter,
                         **(
@@ -499,7 +491,6 @@ class AsyncStatusClient:
         *,
         limit: typing.Optional[int] = None,
         start_after: typing.Optional[str] = None,
-        end_before: typing.Optional[str] = None,
         order: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
         filter: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
         expand: typing.Optional[typing.Union[ListStatusOptions, typing.Sequence[ListStatusOptions]]] = None,
@@ -512,8 +503,6 @@ class AsyncStatusClient:
             - limit: typing.Optional[int]. Number of `Status` objects to return in this page. Defaults to 100.
 
             - start_after: typing.Optional[str]. Return `Status` objects starting after this `account_id,integration_id`.
-
-            - end_before: typing.Optional[str]. Return `Status` objects ending before this `account_id,integration_id`.
 
             - order: typing.Optional[typing.Union[str, typing.Sequence[str]]]. Select a field to order the results by. Defaults to `account_id,integration_id`. To control the direction of the sorting, append
                                                                                `[asc]` or `[desc]` to the field name. For example, `name[desc]` will sort the results by `name` in descending order.
@@ -533,7 +522,6 @@ class AsyncStatusClient:
                     {
                         "limit": limit,
                         "start_after": start_after,
-                        "end_before": end_before,
                         "order": order,
                         "filter": filter,
                         "expand": expand,
@@ -727,7 +715,6 @@ class AsyncStatusClient:
         *,
         limit: typing.Optional[int] = None,
         start_after: typing.Optional[str] = None,
-        end_before: typing.Optional[str] = None,
         order: typing.Optional[str] = None,
         filter: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
         request_options: typing.Optional[RequestOptions] = None,
@@ -743,8 +730,6 @@ class AsyncStatusClient:
             - limit: typing.Optional[int]. Number of `StatusEvent` objects to return in this page. Defaults to 100.
 
             - start_after: typing.Optional[str]. Return `StatusEvent` objects starting after this `created_at`.
-
-            - end_before: typing.Optional[str]. Return `StatusEvent` objects ending before this `created_at`.
 
             - order: typing.Optional[str]. The order defaults to created_at[asc] and can changed to descending order by specifying created_at[desc].
 
@@ -763,7 +748,6 @@ class AsyncStatusClient:
                     {
                         "limit": limit,
                         "start_after": start_after,
-                        "end_before": end_before,
                         "order": order,
                         "filter": filter,
                         **(

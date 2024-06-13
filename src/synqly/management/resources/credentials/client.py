@@ -49,7 +49,6 @@ class CredentialsClient:
         *,
         limit: typing.Optional[int] = None,
         start_after: typing.Optional[str] = None,
-        end_before: typing.Optional[str] = None,
         order: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
         filter: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
         request_options: typing.Optional[RequestOptions] = None,
@@ -64,8 +63,6 @@ class CredentialsClient:
             - limit: typing.Optional[int]. Number of `Credential` objects to return in this page. Defaults to 100.
 
             - start_after: typing.Optional[str]. Return `Credential` objects starting after this `name`.
-
-            - end_before: typing.Optional[str]. Return `Credential` objects ending before this `name`.
 
             - order: typing.Optional[typing.Union[str, typing.Sequence[str]]]. Select a field to order the results by. Defaults to `name`. To control the direction of the sorting, append
                                                                                `[asc]` or `[desc]` to the field name. For example, `name[desc]` will sort the results by `name` in descending order.
@@ -85,7 +82,6 @@ class CredentialsClient:
                     {
                         "limit": limit,
                         "start_after": start_after,
-                        "end_before": end_before,
                         "order": order,
                         "filter": filter,
                         **(
@@ -553,7 +549,6 @@ class AsyncCredentialsClient:
         *,
         limit: typing.Optional[int] = None,
         start_after: typing.Optional[str] = None,
-        end_before: typing.Optional[str] = None,
         order: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
         filter: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
         request_options: typing.Optional[RequestOptions] = None,
@@ -568,8 +563,6 @@ class AsyncCredentialsClient:
             - limit: typing.Optional[int]. Number of `Credential` objects to return in this page. Defaults to 100.
 
             - start_after: typing.Optional[str]. Return `Credential` objects starting after this `name`.
-
-            - end_before: typing.Optional[str]. Return `Credential` objects ending before this `name`.
 
             - order: typing.Optional[typing.Union[str, typing.Sequence[str]]]. Select a field to order the results by. Defaults to `name`. To control the direction of the sorting, append
                                                                                `[asc]` or `[desc]` to the field name. For example, `name[desc]` will sort the results by `name` in descending order.
@@ -589,7 +582,6 @@ class AsyncCredentialsClient:
                     {
                         "limit": limit,
                         "start_after": start_after,
-                        "end_before": end_before,
                         "order": order,
                         "filter": filter,
                         **(

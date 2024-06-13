@@ -46,7 +46,6 @@ class OrganizationWebhooksClient:
         *,
         limit: typing.Optional[int] = None,
         start_after: typing.Optional[str] = None,
-        end_before: typing.Optional[str] = None,
         order: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
         filter: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
         request_options: typing.Optional[RequestOptions] = None,
@@ -58,8 +57,6 @@ class OrganizationWebhooksClient:
             - limit: typing.Optional[int]. Number of `Webhook` objects to return in this page. Defaults to 100.
 
             - start_after: typing.Optional[str]. Return `Webhook` objects starting after this `name`.
-
-            - end_before: typing.Optional[str]. Return `Webhook` objects ending before this `name`.
 
             - order: typing.Optional[typing.Union[str, typing.Sequence[str]]]. Select a field to order the results by. Defaults to `name`. To control the direction of the sorting, append
                                                                                `[asc]` or `[desc]` to the field name. For example, `name[desc]` will sort the results by `name` in descending order.
@@ -77,7 +74,6 @@ class OrganizationWebhooksClient:
                     {
                         "limit": limit,
                         "start_after": start_after,
-                        "end_before": end_before,
                         "order": order,
                         "filter": filter,
                         **(
@@ -463,7 +459,6 @@ class AsyncOrganizationWebhooksClient:
         *,
         limit: typing.Optional[int] = None,
         start_after: typing.Optional[str] = None,
-        end_before: typing.Optional[str] = None,
         order: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
         filter: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
         request_options: typing.Optional[RequestOptions] = None,
@@ -475,8 +470,6 @@ class AsyncOrganizationWebhooksClient:
             - limit: typing.Optional[int]. Number of `Webhook` objects to return in this page. Defaults to 100.
 
             - start_after: typing.Optional[str]. Return `Webhook` objects starting after this `name`.
-
-            - end_before: typing.Optional[str]. Return `Webhook` objects ending before this `name`.
 
             - order: typing.Optional[typing.Union[str, typing.Sequence[str]]]. Select a field to order the results by. Defaults to `name`. To control the direction of the sorting, append
                                                                                `[asc]` or `[desc]` to the field name. For example, `name[desc]` will sort the results by `name` in descending order.
@@ -494,7 +487,6 @@ class AsyncOrganizationWebhooksClient:
                     {
                         "limit": limit,
                         "start_after": start_after,
-                        "end_before": end_before,
                         "order": order,
                         "filter": filter,
                         **(

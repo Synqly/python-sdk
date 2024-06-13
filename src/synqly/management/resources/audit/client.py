@@ -36,7 +36,6 @@ class AuditClient:
         *,
         limit: typing.Optional[int] = None,
         start_after: typing.Optional[str] = None,
-        end_before: typing.Optional[str] = None,
         order: typing.Optional[str] = None,
         filter: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
         request_options: typing.Optional[RequestOptions] = None,
@@ -48,8 +47,6 @@ class AuditClient:
             - limit: typing.Optional[int]. Number of `Audit` objects to return in this page. Defaults to 100.
 
             - start_after: typing.Optional[str]. Return `Audit` objects starting after this `created_at`.
-
-            - end_before: typing.Optional[str]. Return `Audit` objects ending before this `created_at`.
 
             - order: typing.Optional[str]. The order defaults to created_at[asc] and can changed to descending order by specifying created_at[desc].
 
@@ -65,7 +62,6 @@ class AuditClient:
                     {
                         "limit": limit,
                         "start_after": start_after,
-                        "end_before": end_before,
                         "order": order,
                         "filter": filter,
                         **(
@@ -126,7 +122,6 @@ class AsyncAuditClient:
         *,
         limit: typing.Optional[int] = None,
         start_after: typing.Optional[str] = None,
-        end_before: typing.Optional[str] = None,
         order: typing.Optional[str] = None,
         filter: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
         request_options: typing.Optional[RequestOptions] = None,
@@ -138,8 +133,6 @@ class AsyncAuditClient:
             - limit: typing.Optional[int]. Number of `Audit` objects to return in this page. Defaults to 100.
 
             - start_after: typing.Optional[str]. Return `Audit` objects starting after this `created_at`.
-
-            - end_before: typing.Optional[str]. Return `Audit` objects ending before this `created_at`.
 
             - order: typing.Optional[str]. The order defaults to created_at[asc] and can changed to descending order by specifying created_at[desc].
 
@@ -155,7 +148,6 @@ class AsyncAuditClient:
                     {
                         "limit": limit,
                         "start_after": start_after,
-                        "end_before": end_before,
                         "order": order,
                         "filter": filter,
                         **(
