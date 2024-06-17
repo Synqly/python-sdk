@@ -31,6 +31,8 @@ from .roles_actions import RolesActions
 from .roles_permissions import RolesPermissions
 from .status_actions import StatusActions
 from .status_permissions import StatusPermissions
+from .sub_orgs_actions import SubOrgsActions
+from .sub_orgs_permissions import SubOrgsPermissions
 from .tokens_actions import TokensActions
 from .tokens_permissions import TokensPermissions
 from .transforms_actions import TransformsActions
@@ -70,6 +72,8 @@ __all__ = [
     "RolesPermissions",
     "StatusActions",
     "StatusPermissions",
+    "SubOrgsActions",
+    "SubOrgsPermissions",
     "TokensActions",
     "TokensPermissions",
     "TransformsActions",

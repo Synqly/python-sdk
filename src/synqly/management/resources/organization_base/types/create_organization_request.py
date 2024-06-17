@@ -4,11 +4,7 @@ import datetime as dt
 import typing
 
 from ....core.datetime_utils import serialize_datetime
-from ...common.types.base import Base
-from ...token_base.types.token_id import TokenId
-from .organization_id import OrganizationId
-from .organization_options import OrganizationOptions
-from .organization_type import OrganizationType
+from ...member_base.types.create_member_request import CreateMemberRequest
 
 try:
     import pydantic.v1 as pydantic  # type: ignore
@@ -16,21 +12,15 @@ except ImportError:
     import pydantic  # type: ignore
 
 
-class Organization(Base):
-    id: OrganizationId
-    refresh_token_id: TokenId = pydantic.Field()
+class CreateOrganizationRequest(pydantic.BaseModel):
+    name: typing.Optional[str] = pydantic.Field(default=None)
     """
-    Organization refresh token id
-    """
-
-    organization_type: OrganizationType = pydantic.Field()
-    """
-    Organization type: root or standard
+    Unique short name for this Organization (lowercase [a-z0-9_-], can be used in URLs). Used for case insensitive duplicate name detection and default sort order. Defaults to OrganizationId if both name and fullname are not specified.
     """
 
-    fullname: str = pydantic.Field()
+    fullname: typing.Optional[str] = pydantic.Field(default=None)
     """
-    Human friendly display name for this Organization
+    Human friendly display name for this Organization, will auto-generate 'name' field (if 'name' is not specified). Defaults to the same value as the 'name' field if not specified.
     """
 
     contact: str = pydantic.Field()
@@ -45,12 +35,12 @@ class Organization(Base):
 
     picture: str = pydantic.Field()
     """
-    Picture URL of the organization
+    URL of the organization
     """
 
-    options: typing.Optional[OrganizationOptions] = pydantic.Field(default=None)
+    member: typing.Optional[CreateMemberRequest] = pydantic.Field(default=None)
     """
-    Organization options
+    Create organization member
     """
 
     def json(self, **kwargs: typing.Any) -> str:
@@ -64,6 +54,5 @@ class Organization(Base):
     class Config:
         frozen = True
         smart_union = True
-        allow_population_by_field_name = True
         extra = pydantic.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}

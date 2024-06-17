@@ -4,9 +4,7 @@ import datetime as dt
 import typing
 
 from ....core.datetime_utils import serialize_datetime
-from .role_accounts import RoleAccounts
-from .role_integrations import RoleIntegrations
-from .role_organizations import RoleOrganizations
+from .create_organization_response_result import CreateOrganizationResponseResult
 
 try:
     import pydantic.v1 as pydantic  # type: ignore
@@ -14,10 +12,8 @@ except ImportError:
     import pydantic  # type: ignore
 
 
-class Resources(pydantic.BaseModel):
-    organizations: typing.Optional[RoleOrganizations] = None
-    accounts: typing.Optional[RoleAccounts] = None
-    integrations: typing.Optional[RoleIntegrations] = None
+class CreateOrganizationResponse(pydantic.BaseModel):
+    result: CreateOrganizationResponseResult
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}

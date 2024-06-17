@@ -27,6 +27,7 @@ from . import (
     role_base,
     roles,
     status,
+    sub_orgs,
     token_base,
     tokens,
     transforms,
@@ -161,7 +162,18 @@ from .members import (
 )
 from .meta import GetOpenApiSpecResponse
 from .organization import PatchOrganizationResponse, UpdateOrganizationRequest, UpdateOrganizationResponse
-from .organization_base import Environment, GetOrganizationResponse, Organization, OrganizationId, OrganizationOptions
+from .organization_base import (
+    CreateOrganizationRequest,
+    CreateOrganizationResponse,
+    CreateOrganizationResponseResult,
+    Environment,
+    GetOrganizationResponse,
+    ListOrganizationResponse,
+    Organization,
+    OrganizationId,
+    OrganizationOptions,
+    OrganizationType,
+)
 from .organization_webhook_base import WebhookFilter, WebhookId
 from .organization_webhook_events import OrganizationWebhookPayload
 from .organization_webhooks import (
@@ -208,6 +220,8 @@ from .permissionset import (
     RolesPermissions,
     StatusActions,
     StatusPermissions,
+    SubOrgsActions,
+    SubOrgsPermissions,
     TokensActions,
     TokensPermissions,
     TransformsActions,
@@ -361,7 +375,7 @@ from .providers_generated import (
     VulnerabilitiesRapid7InsightCloud,
     VulnerabilitiesTenableCloud,
 )
-from .role_base import AdhocRole, Resources, RoleAccounts, RoleId, RoleIntegrations, RoleName
+from .role_base import AdhocRole, Resources, RoleAccounts, RoleId, RoleIntegrations, RoleName, RoleOrganizations
 from .roles import (
     BuiltinRoles,
     CreateRoleRequest,
@@ -477,6 +491,9 @@ __all__ = [
     "CreateMemberRequest",
     "CreateMemberResponse",
     "CreateMemberResponseResult",
+    "CreateOrganizationRequest",
+    "CreateOrganizationResponse",
+    "CreateOrganizationResponseResult",
     "CreateOrganizationWebhookRequest",
     "CreateOrganizationWebhookResponse",
     "CreateRoleRequest",
@@ -565,6 +582,7 @@ __all__ = [
     "ListIntegrationPointsResponse",
     "ListIntegrationsResponse",
     "ListMembersResponse",
+    "ListOrganizationResponse",
     "ListOrganizationWebhooksResponse",
     "ListPermissionSetsResponse",
     "ListProviderCapabilitiesResponse",
@@ -607,6 +625,7 @@ __all__ = [
     "OrganizationId",
     "OrganizationOptions",
     "OrganizationPermissions",
+    "OrganizationType",
     "OrganizationWebhook",
     "OrganizationWebhookPayload",
     "OrganizationWebhookSecret",
@@ -686,6 +705,7 @@ __all__ = [
     "RoleId",
     "RoleIntegrations",
     "RoleName",
+    "RoleOrganizations",
     "RolesActions",
     "RolesPermissions",
     "SecretCredential",
@@ -723,6 +743,8 @@ __all__ = [
     "StorageAzureBlob",
     "StorageGcs",
     "StorageMock",
+    "SubOrgsActions",
+    "SubOrgsPermissions",
     "TeamsCredential",
     "TeamsCredential_Secret",
     "TeamsCredential_SecretId",
@@ -801,6 +823,7 @@ __all__ = [
     "role_base",
     "roles",
     "status",
+    "sub_orgs",
     "token_base",
     "tokens",
     "transforms",

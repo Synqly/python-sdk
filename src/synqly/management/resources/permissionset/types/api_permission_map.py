@@ -17,6 +17,7 @@ from .permission_set_permissions import PermissionSetPermissions
 from .read_write_permissions import ReadWritePermissions
 from .roles_permissions import RolesPermissions
 from .status_permissions import StatusPermissions
+from .sub_orgs_permissions import SubOrgsPermissions
 from .tokens_permissions import TokensPermissions
 from .transforms_permissions import TransformsPermissions
 from .webhooks_permissions import WebhooksPermissions
@@ -41,6 +42,7 @@ class ApiPermissionMap(pydantic.BaseModel):
     permission_set: typing.Optional[PermissionSetPermissions] = None
     roles: typing.Optional[RolesPermissions] = None
     status: typing.Optional[StatusPermissions] = None
+    suborgs: typing.Optional[SubOrgsPermissions] = None
     tokens: typing.Optional[TokensPermissions] = None
     transforms: typing.Optional[TransformsPermissions] = None
     webhooks: typing.Optional[WebhooksPermissions] = None

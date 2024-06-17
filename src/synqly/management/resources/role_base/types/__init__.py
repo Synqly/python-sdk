@@ -6,5 +6,6 @@ from .role_accounts import RoleAccounts
 from .role_id import RoleId
 from .role_integrations import RoleIntegrations
 from .role_name import RoleName
+from .role_organizations import RoleOrganizations
 
-__all__ = ["AdhocRole", "Resources", "RoleAccounts", "RoleId", "RoleIntegrations", "RoleName"]
+__all__ = ["AdhocRole", "Resources", "RoleAccounts", "RoleId", "RoleIntegrations", "RoleName", "RoleOrganizations"]

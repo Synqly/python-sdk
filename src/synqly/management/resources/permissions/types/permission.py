@@ -50,6 +50,11 @@ class Permission(pydantic.BaseModel):
     Token organizationId
     """
 
+    root_organization_id: typing.Optional[Id] = pydantic.Field(default=None)
+    """
+    Token root organizationId
+    """
+
     member_id: Id = pydantic.Field()
     """
     Token memberId

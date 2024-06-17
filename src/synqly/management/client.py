@@ -20,6 +20,7 @@ from .resources.organization_webhooks.client import AsyncOrganizationWebhooksCli
 from .resources.permissionset.client import AsyncPermissionsetClient, PermissionsetClient
 from .resources.roles.client import AsyncRolesClient, RolesClient
 from .resources.status.client import AsyncStatusClient, StatusClient
+from .resources.sub_orgs.client import AsyncSubOrgsClient, SubOrgsClient
 from .resources.tokens.client import AsyncTokensClient, TokensClient
 from .resources.transforms.client import AsyncTransformsClient, TransformsClient
 
@@ -76,6 +77,7 @@ class SynqlyManagement:
         self.permissionset = PermissionsetClient(client_wrapper=self._client_wrapper)
         self.roles = RolesClient(client_wrapper=self._client_wrapper)
         self.status = StatusClient(client_wrapper=self._client_wrapper)
+        self.sub_orgs = SubOrgsClient(client_wrapper=self._client_wrapper)
         self.tokens = TokensClient(client_wrapper=self._client_wrapper)
         self.transforms = TransformsClient(client_wrapper=self._client_wrapper)
 
@@ -132,6 +134,7 @@ class AsyncSynqlyManagement:
         self.permissionset = AsyncPermissionsetClient(client_wrapper=self._client_wrapper)
         self.roles = AsyncRolesClient(client_wrapper=self._client_wrapper)
         self.status = AsyncStatusClient(client_wrapper=self._client_wrapper)
+        self.sub_orgs = AsyncSubOrgsClient(client_wrapper=self._client_wrapper)
         self.tokens = AsyncTokensClient(client_wrapper=self._client_wrapper)
         self.transforms = AsyncTransformsClient(client_wrapper=self._client_wrapper)
 
