@@ -28,12 +28,12 @@ class ScanConfiguration(pydantic.BaseModel):
     Name of the scan.
     """
 
-    creation_time: int = pydantic.Field()
+    creation_time: typing.Optional[int] = pydantic.Field(default=None)
     """
     Time when the scan was created.
     """
 
-    last_modified_time: int = pydantic.Field()
+    last_modified_time: typing.Optional[int] = pydantic.Field(default=None)
     """
     Time when the scan was last modified.
     """
