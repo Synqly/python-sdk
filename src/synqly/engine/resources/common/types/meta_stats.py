@@ -12,7 +12,7 @@ except ImportError:
 
 
 class MetaStats(pydantic.BaseModel):
-    count: typing.Dict[str, int] = pydantic.Field()
+    count: typing.Optional[typing.Dict[str, int]] = pydantic.Field(default=None)
     """
     A count of total response times. If present "\*" will be all items, or they can be faceted into specific categories.
     """
