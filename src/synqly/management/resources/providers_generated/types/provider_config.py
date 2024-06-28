@@ -19,6 +19,7 @@ from .notifications_slack import NotificationsSlack
 from .notifications_teams import NotificationsTeams
 from .siem_elasticsearch import SiemElasticsearch
 from .siem_mock import SiemMock
+from .siem_q_radar import SiemQRadar
 from .siem_rapid_7_insight_idr import SiemRapid7InsightIdr
 from .siem_splunk import SiemSplunk
 from .sink_aws_security_lake import SinkAwsSecurityLake
@@ -166,6 +167,15 @@ class ProviderConfig_SiemElasticsearch(SiemElasticsearch):
 
 class ProviderConfig_SiemMockSiem(SiemMock):
     type: typing.Literal["siem_mock_siem"]
+
+    class Config:
+        frozen = True
+        smart_union = True
+        allow_population_by_field_name = True
+
+
+class ProviderConfig_SiemQRadar(SiemQRadar):
+    type: typing.Literal["siem_q_radar"]
 
     class Config:
         frozen = True
@@ -342,6 +352,7 @@ ProviderConfig = typing.Union[
     ProviderConfig_NotificationsTeams,
     ProviderConfig_SiemElasticsearch,
     ProviderConfig_SiemMockSiem,
+    ProviderConfig_SiemQRadar,
     ProviderConfig_SiemRapid7Insightidr,
     ProviderConfig_SiemSplunk,
     ProviderConfig_SinkAwsSecurityLake,

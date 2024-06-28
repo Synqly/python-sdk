@@ -72,6 +72,7 @@ from .provider_config import (
     ProviderConfig_NotificationsTeams,
     ProviderConfig_SiemElasticsearch,
     ProviderConfig_SiemMockSiem,
+    ProviderConfig_SiemQRadar,
     ProviderConfig_SiemRapid7Insightidr,
     ProviderConfig_SiemSplunk,
     ProviderConfig_SinkAwsSecurityLake,
@@ -91,6 +92,7 @@ from .provider_config import (
     ProviderConfig_VulnerabilitiesTenableCloud,
 )
 from .provider_config_id import ProviderConfigId
+from .q_radar_credential import QRadarCredential, QRadarCredential_Token, QRadarCredential_TokenId
 from .qualys_cloud_credential import QualysCloudCredential, QualysCloudCredential_Basic, QualysCloudCredential_BasicId
 from .rapid_7_insight_cloud_credential import (
     Rapid7InsightCloudCredential,
@@ -101,6 +103,7 @@ from .sentinel_one_credential import SentinelOneCredential, SentinelOneCredentia
 from .service_now_credential import ServiceNowCredential, ServiceNowCredential_Basic, ServiceNowCredential_BasicId
 from .siem_elasticsearch import SiemElasticsearch
 from .siem_mock import SiemMock
+from .siem_q_radar import SiemQRadar
 from .siem_rapid_7_insight_idr import SiemRapid7InsightIdr
 from .siem_splunk import SiemSplunk
 from .sink_aws_security_lake import SinkAwsSecurityLake
@@ -213,6 +216,7 @@ __all__ = [
     "ProviderConfig_NotificationsTeams",
     "ProviderConfig_SiemElasticsearch",
     "ProviderConfig_SiemMockSiem",
+    "ProviderConfig_SiemQRadar",
     "ProviderConfig_SiemRapid7Insightidr",
     "ProviderConfig_SiemSplunk",
     "ProviderConfig_SinkAwsSecurityLake",
@@ -230,6 +234,9 @@ __all__ = [
     "ProviderConfig_VulnerabilitiesQualysCloud",
     "ProviderConfig_VulnerabilitiesRapid7InsightCloud",
     "ProviderConfig_VulnerabilitiesTenableCloud",
+    "QRadarCredential",
+    "QRadarCredential_Token",
+    "QRadarCredential_TokenId",
     "QualysCloudCredential",
     "QualysCloudCredential_Basic",
     "QualysCloudCredential_BasicId",
@@ -244,6 +251,7 @@ __all__ = [
     "ServiceNowCredential_BasicId",
     "SiemElasticsearch",
     "SiemMock",
+    "SiemQRadar",
     "SiemRapid7InsightIdr",
     "SiemSplunk",
     "SinkAwsSecurityLake",

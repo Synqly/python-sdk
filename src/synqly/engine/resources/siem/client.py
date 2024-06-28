@@ -51,9 +51,8 @@ class SiemClient:
         order: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
         filter: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
         include_raw_data: typing.Optional[bool] = None,
-        response: QueryInvestigationResponse,
         request_options: typing.Optional[RequestOptions] = None,
-    ) -> None:
+    ) -> QueryInvestigationResponse:
         """
         Queries investigations
 
@@ -68,8 +67,6 @@ class SiemClient:
 
             - include_raw_data: typing.Optional[bool]. Include the raw data from the SIEM in the response. Defaults to `false`.
 
-            - response: QueryInvestigationResponse.
-
             - request_options: typing.Optional[RequestOptions]. Request-specific configuration.
         """
         _response = self._client_wrapper.httpx_client.request(
@@ -83,7 +80,6 @@ class SiemClient:
                         "order": order,
                         "filter": filter,
                         "include_raw_data": include_raw_data,
-                        "response": jsonable_encoder(response),
                         **(
                             request_options.get("additional_query_parameters", {})
                             if request_options is not None
@@ -107,7 +103,7 @@ class SiemClient:
             max_retries=request_options.get("max_retries") if request_options is not None else 0,  # type: ignore
         )
         if 200 <= _response.status_code < 300:
-            return
+            return pydantic.parse_obj_as(QueryInvestigationResponse, _response.json())  # type: ignore
         if _response.status_code == 400:
             raise BadRequestError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
         if _response.status_code == 401:
@@ -567,9 +563,8 @@ class AsyncSiemClient:
         order: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
         filter: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
         include_raw_data: typing.Optional[bool] = None,
-        response: QueryInvestigationResponse,
         request_options: typing.Optional[RequestOptions] = None,
-    ) -> None:
+    ) -> QueryInvestigationResponse:
         """
         Queries investigations
 
@@ -584,8 +579,6 @@ class AsyncSiemClient:
 
             - include_raw_data: typing.Optional[bool]. Include the raw data from the SIEM in the response. Defaults to `false`.
 
-            - response: QueryInvestigationResponse.
-
             - request_options: typing.Optional[RequestOptions]. Request-specific configuration.
         """
         _response = await self._client_wrapper.httpx_client.request(
@@ -599,7 +592,6 @@ class AsyncSiemClient:
                         "order": order,
                         "filter": filter,
                         "include_raw_data": include_raw_data,
-                        "response": jsonable_encoder(response),
                         **(
                             request_options.get("additional_query_parameters", {})
                             if request_options is not None
@@ -623,7 +615,7 @@ class AsyncSiemClient:
             max_retries=request_options.get("max_retries") if request_options is not None else 0,  # type: ignore
         )
         if 200 <= _response.status_code < 300:
-            return
+            return pydantic.parse_obj_as(QueryInvestigationResponse, _response.json())  # type: ignore
         if _response.status_code == 400:
             raise BadRequestError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
         if _response.status_code == 401:
