@@ -6,7 +6,10 @@ import typing
 from ....core.datetime_utils import serialize_datetime
 from ...common.types.base import Base
 from .attachment_metadata import AttachmentMetadata
+from .issue_type_id import IssueTypeId
 from .priority import Priority
+from .project_id import ProjectId
+from .status import Status
 from .ticket_id import TicketId
 
 try:
@@ -61,17 +64,17 @@ class Ticket(Base):
     The ticket's complete date.
     """
 
-    status: typing.Optional[str] = pydantic.Field(default=None)
+    status: typing.Optional[Status] = pydantic.Field(default=None)
     """
     The current status of the ticket.
     """
 
-    project: typing.Optional[str] = pydantic.Field(default=None)
+    project: typing.Optional[ProjectId] = pydantic.Field(default=None)
     """
     The ticket project.
     """
 
-    issue_type: typing.Optional[str] = pydantic.Field(default=None)
+    issue_type: typing.Optional[IssueTypeId] = pydantic.Field(default=None)
     """
     The ticket's type.
     """
@@ -84,6 +87,11 @@ class Ticket(Base):
     attachments: typing.Optional[typing.List[AttachmentMetadata]] = pydantic.Field(default=None)
     """
     Metadata of attachments associated with the ticket
+    """
+
+    custom_fields: typing.Optional[typing.Dict[str, typing.Any]] = pydantic.Field(default=None)
+    """
+    Custom fields for this ticket, keys are the custom field names.
     """
 
     def json(self, **kwargs: typing.Any) -> str:

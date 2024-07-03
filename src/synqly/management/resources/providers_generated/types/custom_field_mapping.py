@@ -4,7 +4,6 @@ import datetime as dt
 import typing
 
 from ....core.datetime_utils import serialize_datetime
-from .custom_field_mapping import CustomFieldMapping
 
 try:
     import pydantic.v1 as pydantic  # type: ignore
@@ -12,19 +11,20 @@ except ImportError:
     import pydantic  # type: ignore
 
 
-class TicketingMock(pydantic.BaseModel):
+class CustomFieldMapping(pydantic.BaseModel):
+    name: str = pydantic.Field()
     """
-    Configuration for the Synqly mock in-memory ticketing handler. This provider is for testing purposes only. It retains tickets for a limited time and does not persist them for long-term usage.
-    """
-
-    custom_field_mappings: typing.List[CustomFieldMapping] = pydantic.Field()
-    """
-    Custom field mappings for this provider.
+    Name for the custom field that you will use in the `custom_fields` field in ticket objects within Synqly.
     """
 
-    name: typing.Optional[str] = pydantic.Field(default=None)
+    project_id: str = pydantic.Field()
     """
-    Optional name of the mock provider. This value is unused.
+    ID of the project this field mapping is associated with. ID of "\*" is used to apply to all projects.
+    """
+
+    provider_field_path: str = pydantic.Field()
+    """
+    Path to or name of the custom field in the provider.
     """
 
     def json(self, **kwargs: typing.Any) -> str:

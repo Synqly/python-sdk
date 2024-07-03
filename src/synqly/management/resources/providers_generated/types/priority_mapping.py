@@ -4,7 +4,6 @@ import datetime as dt
 import typing
 
 from ....core.datetime_utils import serialize_datetime
-from .custom_field_mapping import CustomFieldMapping
 
 try:
     import pydantic.v1 as pydantic  # type: ignore
@@ -12,19 +11,25 @@ except ImportError:
     import pydantic  # type: ignore
 
 
-class TicketingMock(pydantic.BaseModel):
+class PriorityMapping(pydantic.BaseModel):
+    high: typing.Optional[str] = pydantic.Field(default=None)
     """
-    Configuration for the Synqly mock in-memory ticketing handler. This provider is for testing purposes only. It retains tickets for a limited time and does not persist them for long-term usage.
-    """
-
-    custom_field_mappings: typing.List[CustomFieldMapping] = pydantic.Field()
-    """
-    Custom field mappings for this provider.
+    Custom value for the "High" priority.
     """
 
-    name: typing.Optional[str] = pydantic.Field(default=None)
+    low: typing.Optional[str] = pydantic.Field(default=None)
     """
-    Optional name of the mock provider. This value is unused.
+    Custom value for the "Low" priority.
+    """
+
+    medium: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    Custom value for the "Medium" priority.
+    """
+
+    urgent: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    Custom value for the "Urgent" priority.
     """
 
     def json(self, **kwargs: typing.Any) -> str:

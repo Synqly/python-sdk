@@ -6,6 +6,7 @@ import typing
 from ....core.datetime_utils import serialize_datetime
 from ...common.types.base_resource_request import BaseResourceRequest
 from .priority import Priority
+from .status import Status
 
 try:
     import pydantic.v1 as pydantic  # type: ignore
@@ -54,7 +55,7 @@ class CreateTicketRequest(BaseResourceRequest):
     The ticket's complete date.
     """
 
-    status: typing.Optional[str] = pydantic.Field(default=None)
+    status: typing.Optional[Status] = pydantic.Field(default=None)
     """
     The current status of the ticket.
     """
@@ -72,6 +73,11 @@ class CreateTicketRequest(BaseResourceRequest):
     tags: typing.Optional[typing.List[str]] = pydantic.Field(default=None)
     """
     Associate tags with Ticket
+    """
+
+    custom_fields: typing.Optional[typing.Dict[str, typing.Any]] = pydantic.Field(default=None)
+    """
+    Set custom fields for this ticket, keys are the custom field names.
     """
 
     def json(self, **kwargs: typing.Any) -> str:

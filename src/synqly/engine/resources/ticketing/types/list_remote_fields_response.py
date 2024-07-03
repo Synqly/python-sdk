@@ -4,7 +4,7 @@ import datetime as dt
 import typing
 
 from ....core.datetime_utils import serialize_datetime
-from .custom_field_mapping import CustomFieldMapping
+from .remote_field import RemoteField
 
 try:
     import pydantic.v1 as pydantic  # type: ignore
@@ -12,20 +12,8 @@ except ImportError:
     import pydantic  # type: ignore
 
 
-class TicketingMock(pydantic.BaseModel):
-    """
-    Configuration for the Synqly mock in-memory ticketing handler. This provider is for testing purposes only. It retains tickets for a limited time and does not persist them for long-term usage.
-    """
-
-    custom_field_mappings: typing.List[CustomFieldMapping] = pydantic.Field()
-    """
-    Custom field mappings for this provider.
-    """
-
-    name: typing.Optional[str] = pydantic.Field(default=None)
-    """
-    Optional name of the mock provider. This value is unused.
-    """
+class ListRemoteFieldsResponse(pydantic.BaseModel):
+    result: typing.List[RemoteField]
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}

@@ -8,15 +8,23 @@ from .create_attachment_response import CreateAttachmentResponse
 from .create_ticket_request import CreateTicketRequest
 from .create_ticket_response import CreateTicketResponse
 from .download_attachment_response import DownloadAttachmentResponse
+from .field_mapping_id import FieldMappingId
+from .field_type import FieldType
 from .get_ticket_response import GetTicketResponse
+from .issue_type_id import IssueTypeId
 from .list_attachments_metadata_response import ListAttachmentsMetadataResponse
 from .list_projects_response import ListProjectsResponse
+from .list_remote_fields_response import ListRemoteFieldsResponse
 from .patch_ticket_response import PatchTicketResponse
 from .priority import Priority
 from .project import Project
+from .project_id import ProjectId
 from .query_tickets_response import QueryTicketsResponse
+from .remote_field import RemoteField
+from .status import Status
 from .ticket import Ticket
 from .ticket_id import TicketId
+from .value_mapping_id import ValueMappingId
 
 __all__ = [
     "Attachment",
@@ -27,13 +35,21 @@ __all__ = [
     "CreateTicketRequest",
     "CreateTicketResponse",
     "DownloadAttachmentResponse",
+    "FieldMappingId",
+    "FieldType",
     "GetTicketResponse",
+    "IssueTypeId",
     "ListAttachmentsMetadataResponse",
     "ListProjectsResponse",
+    "ListRemoteFieldsResponse",
     "PatchTicketResponse",
     "Priority",
     "Project",
+    "ProjectId",
     "QueryTicketsResponse",
+    "RemoteField",
+    "Status",
     "Ticket",
     "TicketId",
+    "ValueMappingId",
 ]

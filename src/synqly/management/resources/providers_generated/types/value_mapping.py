@@ -4,7 +4,8 @@ import datetime as dt
 import typing
 
 from ....core.datetime_utils import serialize_datetime
-from .custom_field_mapping import CustomFieldMapping
+from .priority_mapping import PriorityMapping
+from .status_mapping import StatusMapping
 
 try:
     import pydantic.v1 as pydantic  # type: ignore
@@ -12,19 +13,25 @@ except ImportError:
     import pydantic  # type: ignore
 
 
-class TicketingMock(pydantic.BaseModel):
+class ValueMapping(pydantic.BaseModel):
+    issue_type: typing.Optional[str] = pydantic.Field(default=None)
     """
-    Configuration for the Synqly mock in-memory ticketing handler. This provider is for testing purposes only. It retains tickets for a limited time and does not persist them for long-term usage.
-    """
-
-    custom_field_mappings: typing.List[CustomFieldMapping] = pydantic.Field()
-    """
-    Custom field mappings for this provider.
+    Optionally restrict this value mapping to a specific issue type. If not provided, the mapping will apply to all issue types.
     """
 
-    name: typing.Optional[str] = pydantic.Field(default=None)
+    priority: typing.Optional[PriorityMapping] = pydantic.Field(default=None)
     """
-    Optional name of the mock provider. This value is unused.
+    Remap the standard Synqly priorities to custom values.
+    """
+
+    project_id: str = pydantic.Field()
+    """
+    ID of the project this value mapping is associated with. ID of "\*" is used to apply to all projects.
+    """
+
+    status: typing.Optional[StatusMapping] = pydantic.Field(default=None)
+    """
+    Remap the standard Synqly statuses to custom values.
     """
 
     def json(self, **kwargs: typing.Any) -> str:

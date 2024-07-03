@@ -22,6 +22,7 @@ from .crowd_strike_credential import (
     CrowdStrikeCredential_OAuthClient,
     CrowdStrikeCredential_OAuthClientId,
 )
+from .custom_field_mapping import CustomFieldMapping
 from .edr_crowd_strike import EdrCrowdStrike
 from .edr_sentinel_one import EdrSentinelOne
 from .elasticsearch_credential import (
@@ -55,6 +56,7 @@ from .okta_credential import (
 )
 from .pager_duty_credential import PagerDutyCredential, PagerDutyCredential_Token, PagerDutyCredential_TokenId
 from .ping_one_credential import PingOneCredential, PingOneCredential_Token, PingOneCredential_TokenId
+from .priority_mapping import PriorityMapping
 from .provider_config import (
     ProviderConfig,
     ProviderConfig_AssetsArmisCentrix,
@@ -117,6 +119,7 @@ from .splunk_search_credential import (
     SplunkSearchCredential_Token,
     SplunkSearchCredential_TokenId,
 )
+from .status_mapping import StatusMapping
 from .storage_aws_s_3 import StorageAwsS3
 from .storage_azure_blob import StorageAzureBlob
 from .storage_gcs import StorageGcs
@@ -131,6 +134,7 @@ from .ticketing_jira import TicketingJira
 from .ticketing_mock import TicketingMock
 from .ticketing_pager_duty import TicketingPagerDuty
 from .ticketing_service_now import TicketingServiceNow
+from .value_mapping import ValueMapping
 from .vulnerabilities_qualys_cloud import VulnerabilitiesQualysCloud
 from .vulnerabilities_rapid_7_insight_cloud import VulnerabilitiesRapid7InsightCloud
 from .vulnerabilities_tenable_cloud import VulnerabilitiesTenableCloud
@@ -160,6 +164,7 @@ __all__ = [
     "CrowdStrikeCredential",
     "CrowdStrikeCredential_OAuthClient",
     "CrowdStrikeCredential_OAuthClientId",
+    "CustomFieldMapping",
     "EdrCrowdStrike",
     "EdrSentinelOne",
     "ElasticsearchCredential",
@@ -199,6 +204,7 @@ __all__ = [
     "PingOneCredential",
     "PingOneCredential_Token",
     "PingOneCredential_TokenId",
+    "PriorityMapping",
     "ProviderConfig",
     "ProviderConfigId",
     "ProviderConfig_AssetsArmisCentrix",
@@ -267,6 +273,7 @@ __all__ = [
     "SplunkSearchCredential",
     "SplunkSearchCredential_Token",
     "SplunkSearchCredential_TokenId",
+    "StatusMapping",
     "StorageAwsS3",
     "StorageAzureBlob",
     "StorageGcs",
@@ -281,6 +288,7 @@ __all__ = [
     "TicketingMock",
     "TicketingPagerDuty",
     "TicketingServiceNow",
+    "ValueMapping",
     "VulnerabilitiesQualysCloud",
     "VulnerabilitiesRapid7InsightCloud",
     "VulnerabilitiesTenableCloud",

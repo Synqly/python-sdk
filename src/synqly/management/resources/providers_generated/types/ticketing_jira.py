@@ -4,7 +4,9 @@ import datetime as dt
 import typing
 
 from ....core.datetime_utils import serialize_datetime
+from .custom_field_mapping import CustomFieldMapping
 from .jira_credential import JiraCredential
+from .value_mapping import ValueMapping
 
 try:
     import pydantic.v1 as pydantic  # type: ignore
@@ -18,9 +20,19 @@ class TicketingJira(pydantic.BaseModel):
     """
 
     credential: JiraCredential
+    custom_field_mappings: typing.List[CustomFieldMapping] = pydantic.Field()
+    """
+    Custom field mappings for this provider.
+    """
+
     url: str = pydantic.Field()
     """
     URL for the Jira API. This should be the base URL for the API, without any path components and must be HTTPS. For example, "https://tenant.atlassian.net".
+    """
+
+    value_mappings: typing.List[ValueMapping] = pydantic.Field()
+    """
+    Value mappings for this provider.
     """
 
     def json(self, **kwargs: typing.Any) -> str:
