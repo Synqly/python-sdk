@@ -17,7 +17,7 @@ class TicketingMock(pydantic.BaseModel):
     Configuration for the Synqly mock in-memory ticketing handler. This provider is for testing purposes only. It retains tickets for a limited time and does not persist them for long-term usage.
     """
 
-    custom_field_mappings: typing.List[CustomFieldMapping] = pydantic.Field()
+    custom_field_mappings: typing.Optional[typing.List[CustomFieldMapping]] = pydantic.Field(default=None)
     """
     Custom field mappings for this provider.
     """
