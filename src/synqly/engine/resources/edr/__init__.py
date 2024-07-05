@@ -3,10 +3,14 @@
 from .types import (
     Application,
     ConnectionState,
+    CreateIocsRequest,
+    CreateIocsResponse,
+    DeleteIocsResponse,
     NetworkQuarantineRequest,
     QueryAlertsResponse,
     QueryApplicationsResponse,
     QueryEndpointsResponse,
+    QueryIocsResponse,
     QueryThreatsResponse,
     ThreatEvent,
 )
@@ -14,10 +18,14 @@ from .types import (
 __all__ = [
     "Application",
     "ConnectionState",
+    "CreateIocsRequest",
+    "CreateIocsResponse",
+    "DeleteIocsResponse",
     "NetworkQuarantineRequest",
     "QueryAlertsResponse",
     "QueryApplicationsResponse",
     "QueryEndpointsResponse",
+    "QueryIocsResponse",
     "QueryThreatsResponse",
     "ThreatEvent",
 ]

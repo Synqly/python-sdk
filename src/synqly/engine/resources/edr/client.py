@@ -23,10 +23,14 @@ from ..common.errors.too_many_requests_error import TooManyRequestsError
 from ..common.errors.unauthorized_error import UnauthorizedError
 from ..common.errors.unsupported_media_type_error import UnsupportedMediaTypeError
 from ..common.types.error_body import ErrorBody
+from .types.create_iocs_request import CreateIocsRequest
+from .types.create_iocs_response import CreateIocsResponse
+from .types.delete_iocs_response import DeleteIocsResponse
 from .types.network_quarantine_request import NetworkQuarantineRequest
 from .types.query_alerts_response import QueryAlertsResponse
 from .types.query_applications_response import QueryApplicationsResponse
 from .types.query_endpoints_response import QueryEndpointsResponse
+from .types.query_iocs_response import QueryIocsResponse
 from .types.query_threats_response import QueryThreatsResponse
 
 try:
@@ -481,6 +485,245 @@ class EdrClient:
             raise ApiError(status_code=_response.status_code, body=_response.text)
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
+    def query_iocs(
+        self,
+        *,
+        limit: typing.Optional[int] = None,
+        cursor: typing.Optional[str] = None,
+        order: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
+        filter: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
+        include_raw_data: typing.Optional[bool] = None,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> QueryIocsResponse:
+        """
+        Returns a list of iocs that match the query from the token-linked EDR source.
+
+        Parameters:
+            - limit: typing.Optional[int]. Number of threats to return. Defaults to 50.
+
+            - cursor: typing.Optional[str]. Start search from cursor position.
+
+            - order: typing.Optional[typing.Union[str, typing.Sequence[str]]]. Select a field to order the results by. Defaults to `name`. To control the direction of the sorting, append
+                                                                               `[asc]` or `[desc]` to the field name. For example, `name[asc]` will sort the results by `name` in ascending order.
+                                                                               The ordering defaults to `asc` if not specified.
+            - filter: typing.Optional[typing.Union[str, typing.Sequence[str]]]. Filter results by this query. For more information on filtering, refer to our Filtering Guide. Defaults to no filter.
+                                                                                If used more than once, the queries are ANDed together.
+            - include_raw_data: typing.Optional[bool]. Include the raw data from the EDR in the response. Defaults to `false`.
+
+            - request_options: typing.Optional[RequestOptions]. Request-specific configuration.
+        """
+        _response = self._client_wrapper.httpx_client.request(
+            "GET",
+            urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", "v1/edr/iocs"),
+            params=jsonable_encoder(
+                remove_none_from_dict(
+                    {
+                        "limit": limit,
+                        "cursor": cursor,
+                        "order": order,
+                        "filter": filter,
+                        "include_raw_data": include_raw_data,
+                        **(
+                            request_options.get("additional_query_parameters", {})
+                            if request_options is not None
+                            else {}
+                        ),
+                    }
+                )
+            ),
+            headers=jsonable_encoder(
+                remove_none_from_dict(
+                    {
+                        **self._client_wrapper.get_headers(),
+                        **(request_options.get("additional_headers", {}) if request_options is not None else {}),
+                    }
+                )
+            ),
+            timeout=request_options.get("timeout_in_seconds")
+            if request_options is not None and request_options.get("timeout_in_seconds") is not None
+            else 60,
+            retries=0,
+            max_retries=request_options.get("max_retries") if request_options is not None else 0,  # type: ignore
+        )
+        if 200 <= _response.status_code < 300:
+            return pydantic.parse_obj_as(QueryIocsResponse, _response.json())  # type: ignore
+        if _response.status_code == 400:
+            raise BadRequestError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+        if _response.status_code == 401:
+            raise UnauthorizedError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+        if _response.status_code == 403:
+            raise ForbiddenError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+        if _response.status_code == 404:
+            raise NotFoundError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+        if _response.status_code == 405:
+            raise MethodNotAllowedError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+        if _response.status_code == 409:
+            raise ConflictError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+        if _response.status_code == 415:
+            raise UnsupportedMediaTypeError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+        if _response.status_code == 429:
+            raise TooManyRequestsError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+        if _response.status_code == 500:
+            raise InternalServerError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+        if _response.status_code == 501:
+            raise NotImplementedError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+        if _response.status_code == 502:
+            raise BadGatewayError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+        if _response.status_code == 503:
+            raise ServiceUnavailableError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+        if _response.status_code == 504:
+            raise GatewayTimeoutError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+        try:
+            _response_json = _response.json()
+        except JSONDecodeError:
+            raise ApiError(status_code=_response.status_code, body=_response.text)
+        raise ApiError(status_code=_response.status_code, body=_response_json)
+
+    def create_iocs(
+        self, *, request: CreateIocsRequest, request_options: typing.Optional[RequestOptions] = None
+    ) -> CreateIocsResponse:
+        """
+        Creates a list of iocs that match the stix input for the EDR source.
+
+        Parameters:
+            - request: CreateIocsRequest.
+
+            - request_options: typing.Optional[RequestOptions]. Request-specific configuration.
+        """
+        _response = self._client_wrapper.httpx_client.request(
+            "POST",
+            urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", "v1/edr/iocs"),
+            params=jsonable_encoder(
+                request_options.get("additional_query_parameters") if request_options is not None else None
+            ),
+            json=jsonable_encoder(request)
+            if request_options is None or request_options.get("additional_body_parameters") is None
+            else {
+                **jsonable_encoder(request),
+                **(jsonable_encoder(remove_none_from_dict(request_options.get("additional_body_parameters", {})))),
+            },
+            headers=jsonable_encoder(
+                remove_none_from_dict(
+                    {
+                        **self._client_wrapper.get_headers(),
+                        **(request_options.get("additional_headers", {}) if request_options is not None else {}),
+                    }
+                )
+            ),
+            timeout=request_options.get("timeout_in_seconds")
+            if request_options is not None and request_options.get("timeout_in_seconds") is not None
+            else 60,
+            retries=0,
+            max_retries=request_options.get("max_retries") if request_options is not None else 0,  # type: ignore
+        )
+        if 200 <= _response.status_code < 300:
+            return pydantic.parse_obj_as(CreateIocsResponse, _response.json())  # type: ignore
+        if _response.status_code == 400:
+            raise BadRequestError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+        if _response.status_code == 401:
+            raise UnauthorizedError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+        if _response.status_code == 403:
+            raise ForbiddenError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+        if _response.status_code == 404:
+            raise NotFoundError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+        if _response.status_code == 405:
+            raise MethodNotAllowedError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+        if _response.status_code == 409:
+            raise ConflictError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+        if _response.status_code == 415:
+            raise UnsupportedMediaTypeError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+        if _response.status_code == 429:
+            raise TooManyRequestsError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+        if _response.status_code == 500:
+            raise InternalServerError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+        if _response.status_code == 501:
+            raise NotImplementedError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+        if _response.status_code == 502:
+            raise BadGatewayError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+        if _response.status_code == 503:
+            raise ServiceUnavailableError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+        if _response.status_code == 504:
+            raise GatewayTimeoutError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+        try:
+            _response_json = _response.json()
+        except JSONDecodeError:
+            raise ApiError(status_code=_response.status_code, body=_response.text)
+        raise ApiError(status_code=_response.status_code, body=_response_json)
+
+    def delete_iocs(
+        self, *, ids: typing.Optional[str] = None, request_options: typing.Optional[RequestOptions] = None
+    ) -> DeleteIocsResponse:
+        """
+        Deletes a list of iocs that match the input of ids in the query param
+
+        Parameters:
+            - ids: typing.Optional[str]. list of ids to delete
+
+            - request_options: typing.Optional[RequestOptions]. Request-specific configuration.
+        """
+        _response = self._client_wrapper.httpx_client.request(
+            "DELETE",
+            urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", "v1/edr/iocs"),
+            params=jsonable_encoder(
+                remove_none_from_dict(
+                    {
+                        "ids": ids,
+                        **(
+                            request_options.get("additional_query_parameters", {})
+                            if request_options is not None
+                            else {}
+                        ),
+                    }
+                )
+            ),
+            headers=jsonable_encoder(
+                remove_none_from_dict(
+                    {
+                        **self._client_wrapper.get_headers(),
+                        **(request_options.get("additional_headers", {}) if request_options is not None else {}),
+                    }
+                )
+            ),
+            timeout=request_options.get("timeout_in_seconds")
+            if request_options is not None and request_options.get("timeout_in_seconds") is not None
+            else 60,
+            retries=0,
+            max_retries=request_options.get("max_retries") if request_options is not None else 0,  # type: ignore
+        )
+        if 200 <= _response.status_code < 300:
+            return pydantic.parse_obj_as(DeleteIocsResponse, _response.json())  # type: ignore
+        if _response.status_code == 400:
+            raise BadRequestError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+        if _response.status_code == 401:
+            raise UnauthorizedError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+        if _response.status_code == 403:
+            raise ForbiddenError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+        if _response.status_code == 404:
+            raise NotFoundError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+        if _response.status_code == 405:
+            raise MethodNotAllowedError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+        if _response.status_code == 409:
+            raise ConflictError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+        if _response.status_code == 415:
+            raise UnsupportedMediaTypeError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+        if _response.status_code == 429:
+            raise TooManyRequestsError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+        if _response.status_code == 500:
+            raise InternalServerError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+        if _response.status_code == 501:
+            raise NotImplementedError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+        if _response.status_code == 502:
+            raise BadGatewayError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+        if _response.status_code == 503:
+            raise ServiceUnavailableError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+        if _response.status_code == 504:
+            raise GatewayTimeoutError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+        try:
+            _response_json = _response.json()
+        except JSONDecodeError:
+            raise ApiError(status_code=_response.status_code, body=_response.text)
+        raise ApiError(status_code=_response.status_code, body=_response_json)
+
 
 class AsyncEdrClient:
     def __init__(self, *, client_wrapper: AsyncClientWrapper):
@@ -893,6 +1136,245 @@ class AsyncEdrClient:
         )
         if 200 <= _response.status_code < 300:
             return pydantic.parse_obj_as(QueryAlertsResponse, _response.json())  # type: ignore
+        if _response.status_code == 400:
+            raise BadRequestError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+        if _response.status_code == 401:
+            raise UnauthorizedError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+        if _response.status_code == 403:
+            raise ForbiddenError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+        if _response.status_code == 404:
+            raise NotFoundError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+        if _response.status_code == 405:
+            raise MethodNotAllowedError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+        if _response.status_code == 409:
+            raise ConflictError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+        if _response.status_code == 415:
+            raise UnsupportedMediaTypeError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+        if _response.status_code == 429:
+            raise TooManyRequestsError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+        if _response.status_code == 500:
+            raise InternalServerError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+        if _response.status_code == 501:
+            raise NotImplementedError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+        if _response.status_code == 502:
+            raise BadGatewayError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+        if _response.status_code == 503:
+            raise ServiceUnavailableError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+        if _response.status_code == 504:
+            raise GatewayTimeoutError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+        try:
+            _response_json = _response.json()
+        except JSONDecodeError:
+            raise ApiError(status_code=_response.status_code, body=_response.text)
+        raise ApiError(status_code=_response.status_code, body=_response_json)
+
+    async def query_iocs(
+        self,
+        *,
+        limit: typing.Optional[int] = None,
+        cursor: typing.Optional[str] = None,
+        order: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
+        filter: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
+        include_raw_data: typing.Optional[bool] = None,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> QueryIocsResponse:
+        """
+        Returns a list of iocs that match the query from the token-linked EDR source.
+
+        Parameters:
+            - limit: typing.Optional[int]. Number of threats to return. Defaults to 50.
+
+            - cursor: typing.Optional[str]. Start search from cursor position.
+
+            - order: typing.Optional[typing.Union[str, typing.Sequence[str]]]. Select a field to order the results by. Defaults to `name`. To control the direction of the sorting, append
+                                                                               `[asc]` or `[desc]` to the field name. For example, `name[asc]` will sort the results by `name` in ascending order.
+                                                                               The ordering defaults to `asc` if not specified.
+            - filter: typing.Optional[typing.Union[str, typing.Sequence[str]]]. Filter results by this query. For more information on filtering, refer to our Filtering Guide. Defaults to no filter.
+                                                                                If used more than once, the queries are ANDed together.
+            - include_raw_data: typing.Optional[bool]. Include the raw data from the EDR in the response. Defaults to `false`.
+
+            - request_options: typing.Optional[RequestOptions]. Request-specific configuration.
+        """
+        _response = await self._client_wrapper.httpx_client.request(
+            "GET",
+            urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", "v1/edr/iocs"),
+            params=jsonable_encoder(
+                remove_none_from_dict(
+                    {
+                        "limit": limit,
+                        "cursor": cursor,
+                        "order": order,
+                        "filter": filter,
+                        "include_raw_data": include_raw_data,
+                        **(
+                            request_options.get("additional_query_parameters", {})
+                            if request_options is not None
+                            else {}
+                        ),
+                    }
+                )
+            ),
+            headers=jsonable_encoder(
+                remove_none_from_dict(
+                    {
+                        **self._client_wrapper.get_headers(),
+                        **(request_options.get("additional_headers", {}) if request_options is not None else {}),
+                    }
+                )
+            ),
+            timeout=request_options.get("timeout_in_seconds")
+            if request_options is not None and request_options.get("timeout_in_seconds") is not None
+            else 60,
+            retries=0,
+            max_retries=request_options.get("max_retries") if request_options is not None else 0,  # type: ignore
+        )
+        if 200 <= _response.status_code < 300:
+            return pydantic.parse_obj_as(QueryIocsResponse, _response.json())  # type: ignore
+        if _response.status_code == 400:
+            raise BadRequestError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+        if _response.status_code == 401:
+            raise UnauthorizedError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+        if _response.status_code == 403:
+            raise ForbiddenError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+        if _response.status_code == 404:
+            raise NotFoundError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+        if _response.status_code == 405:
+            raise MethodNotAllowedError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+        if _response.status_code == 409:
+            raise ConflictError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+        if _response.status_code == 415:
+            raise UnsupportedMediaTypeError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+        if _response.status_code == 429:
+            raise TooManyRequestsError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+        if _response.status_code == 500:
+            raise InternalServerError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+        if _response.status_code == 501:
+            raise NotImplementedError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+        if _response.status_code == 502:
+            raise BadGatewayError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+        if _response.status_code == 503:
+            raise ServiceUnavailableError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+        if _response.status_code == 504:
+            raise GatewayTimeoutError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+        try:
+            _response_json = _response.json()
+        except JSONDecodeError:
+            raise ApiError(status_code=_response.status_code, body=_response.text)
+        raise ApiError(status_code=_response.status_code, body=_response_json)
+
+    async def create_iocs(
+        self, *, request: CreateIocsRequest, request_options: typing.Optional[RequestOptions] = None
+    ) -> CreateIocsResponse:
+        """
+        Creates a list of iocs that match the stix input for the EDR source.
+
+        Parameters:
+            - request: CreateIocsRequest.
+
+            - request_options: typing.Optional[RequestOptions]. Request-specific configuration.
+        """
+        _response = await self._client_wrapper.httpx_client.request(
+            "POST",
+            urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", "v1/edr/iocs"),
+            params=jsonable_encoder(
+                request_options.get("additional_query_parameters") if request_options is not None else None
+            ),
+            json=jsonable_encoder(request)
+            if request_options is None or request_options.get("additional_body_parameters") is None
+            else {
+                **jsonable_encoder(request),
+                **(jsonable_encoder(remove_none_from_dict(request_options.get("additional_body_parameters", {})))),
+            },
+            headers=jsonable_encoder(
+                remove_none_from_dict(
+                    {
+                        **self._client_wrapper.get_headers(),
+                        **(request_options.get("additional_headers", {}) if request_options is not None else {}),
+                    }
+                )
+            ),
+            timeout=request_options.get("timeout_in_seconds")
+            if request_options is not None and request_options.get("timeout_in_seconds") is not None
+            else 60,
+            retries=0,
+            max_retries=request_options.get("max_retries") if request_options is not None else 0,  # type: ignore
+        )
+        if 200 <= _response.status_code < 300:
+            return pydantic.parse_obj_as(CreateIocsResponse, _response.json())  # type: ignore
+        if _response.status_code == 400:
+            raise BadRequestError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+        if _response.status_code == 401:
+            raise UnauthorizedError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+        if _response.status_code == 403:
+            raise ForbiddenError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+        if _response.status_code == 404:
+            raise NotFoundError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+        if _response.status_code == 405:
+            raise MethodNotAllowedError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+        if _response.status_code == 409:
+            raise ConflictError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+        if _response.status_code == 415:
+            raise UnsupportedMediaTypeError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+        if _response.status_code == 429:
+            raise TooManyRequestsError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+        if _response.status_code == 500:
+            raise InternalServerError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+        if _response.status_code == 501:
+            raise NotImplementedError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+        if _response.status_code == 502:
+            raise BadGatewayError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+        if _response.status_code == 503:
+            raise ServiceUnavailableError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+        if _response.status_code == 504:
+            raise GatewayTimeoutError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+        try:
+            _response_json = _response.json()
+        except JSONDecodeError:
+            raise ApiError(status_code=_response.status_code, body=_response.text)
+        raise ApiError(status_code=_response.status_code, body=_response_json)
+
+    async def delete_iocs(
+        self, *, ids: typing.Optional[str] = None, request_options: typing.Optional[RequestOptions] = None
+    ) -> DeleteIocsResponse:
+        """
+        Deletes a list of iocs that match the input of ids in the query param
+
+        Parameters:
+            - ids: typing.Optional[str]. list of ids to delete
+
+            - request_options: typing.Optional[RequestOptions]. Request-specific configuration.
+        """
+        _response = await self._client_wrapper.httpx_client.request(
+            "DELETE",
+            urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", "v1/edr/iocs"),
+            params=jsonable_encoder(
+                remove_none_from_dict(
+                    {
+                        "ids": ids,
+                        **(
+                            request_options.get("additional_query_parameters", {})
+                            if request_options is not None
+                            else {}
+                        ),
+                    }
+                )
+            ),
+            headers=jsonable_encoder(
+                remove_none_from_dict(
+                    {
+                        **self._client_wrapper.get_headers(),
+                        **(request_options.get("additional_headers", {}) if request_options is not None else {}),
+                    }
+                )
+            ),
+            timeout=request_options.get("timeout_in_seconds")
+            if request_options is not None and request_options.get("timeout_in_seconds") is not None
+            else 60,
+            retries=0,
+            max_retries=request_options.get("max_retries") if request_options is not None else 0,  # type: ignore
+        )
+        if 200 <= _response.status_code < 300:
+            return pydantic.parse_obj_as(DeleteIocsResponse, _response.json())  # type: ignore
         if _response.status_code == 400:
             raise BadRequestError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
         if _response.status_code == 401:
