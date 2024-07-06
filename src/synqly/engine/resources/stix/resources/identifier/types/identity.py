@@ -4,7 +4,6 @@ import datetime as dt
 import typing
 
 from ......core.datetime_utils import serialize_datetime
-from ...common.types.common_properties import CommonProperties
 from ...open_vocab.types.identity_class_ov import IdentityClassOv
 
 try:
@@ -13,7 +12,7 @@ except ImportError:
     import pydantic  # type: ignore
 
 
-class Identity(CommonProperties):
+class Identity(pydantic.BaseModel):
     type: str = pydantic.Field()
     """
     The value of this property MUST be identity.
@@ -43,6 +42,5 @@ class Identity(CommonProperties):
     class Config:
         frozen = True
         smart_union = True
-        allow_population_by_field_name = True
         extra = pydantic.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}
