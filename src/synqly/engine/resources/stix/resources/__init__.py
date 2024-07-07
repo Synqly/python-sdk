@@ -2,8 +2,16 @@
 
 from . import bundle, common, identifier, indicator, malware, open_vocab, relationships
 from .bundle import Bundle, BundleId
-from .common import CommonProperties, ExternalReference, GranularMarking, Id, KillChainPhase
-from .identifier import Identity, MarkingDefinition, Software
+from .common import (
+    CommonProperties,
+    ExternalReference,
+    GranularMarking,
+    Id,
+    Identity,
+    KillChainPhase,
+    MarkingDefinition,
+)
+from .identifier import Software
 from .indicator import Indicator
 from .malware import Malware
 from .open_vocab import (

@@ -4,6 +4,16 @@ from .common_properties import CommonProperties
 from .external_reference import ExternalReference
 from .granular_marking import GranularMarking
 from .id import Id
+from .identity import Identity
 from .kill_chain_phase import KillChainPhase
+from .marking_definition import MarkingDefinition
 
-__all__ = ["CommonProperties", "ExternalReference", "GranularMarking", "Id", "KillChainPhase"]
+__all__ = [
+    "CommonProperties",
+    "ExternalReference",
+    "GranularMarking",
+    "Id",
+    "Identity",
+    "KillChainPhase",
+    "MarkingDefinition",
+]

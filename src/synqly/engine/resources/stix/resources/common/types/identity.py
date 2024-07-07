@@ -5,6 +5,7 @@ import typing
 
 from ......core.datetime_utils import serialize_datetime
 from ...open_vocab.types.identity_class_ov import IdentityClassOv
+from .common_properties import CommonProperties
 
 try:
     import pydantic.v1 as pydantic  # type: ignore
@@ -12,7 +13,7 @@ except ImportError:
     import pydantic  # type: ignore
 
 
-class Identity(pydantic.BaseModel):
+class Identity(CommonProperties):
     type: str = pydantic.Field()
     """
     The value of this property MUST be identity.
@@ -42,5 +43,6 @@ class Identity(pydantic.BaseModel):
     class Config:
         frozen = True
         smart_union = True
+        allow_population_by_field_name = True
         extra = pydantic.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}
