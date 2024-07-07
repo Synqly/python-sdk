@@ -25,11 +25,9 @@ from .resources import (
     Tlp,
     bundle,
     common,
-    identifier,
     indicator,
     malware,
     open_vocab,
-    relationships,
 )
 
 __all__ = [
@@ -57,9 +55,7 @@ __all__ = [
     "Tlp",
     "bundle",
     "common",
-    "identifier",
     "indicator",
     "malware",
     "open_vocab",
-    "relationships",
 ]

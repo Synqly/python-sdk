@@ -4,7 +4,8 @@ import datetime as dt
 import typing
 
 from ......core.datetime_utils import serialize_datetime
-from ...common.types.common_properties import CommonProperties
+from .common_properties import CommonProperties
+from .id import Id
 
 try:
     import pydantic.v1 as pydantic  # type: ignore
@@ -12,17 +13,13 @@ except ImportError:
     import pydantic  # type: ignore
 
 
-class Software(CommonProperties):
-    name: str
-    cpe: typing.Optional[str] = pydantic.Field(default=None)
-    """
-    Specifies the Common Platform Enumeration
-    """
-
-    swid: typing.Optional[str] = None
-    languages: typing.Optional[str] = None
-    vendor: typing.Optional[str] = None
-    version: typing.Optional[str] = None
+class Relationships(CommonProperties):
+    relationship_type: str
+    description: typing.Optional[str] = None
+    source_ref: Id
+    target_ref: Id
+    start_time: typing.Optional[dt.datetime] = None
+    stop_time: typing.Optional[dt.datetime] = None
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}
