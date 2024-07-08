@@ -63,7 +63,7 @@ class ProviderConfigId(str, enum.Enum):
 
     NOTIFICATIONS_MOCK = "notifications_mock_notifications"
     """
-    Notifications Mock
+    Notifications Test
     """
 
     NOTIFICATIONS_SLACK = "notifications_slack"
@@ -83,7 +83,7 @@ class ProviderConfigId(str, enum.Enum):
 
     SIEM_MOCK = "siem_mock_siem"
     """
-    SIEM Mock
+    SIEM Test
     """
 
     SIEM_Q_RADAR = "siem_q_radar"
@@ -118,7 +118,7 @@ class ProviderConfigId(str, enum.Enum):
 
     SINK_MOCK = "sink_mock_sink"
     """
-    Sink Mock
+    Sink Test
     """
 
     STORAGE_AWS_S_3 = "storage_aws_s3"
@@ -138,7 +138,7 @@ class ProviderConfigId(str, enum.Enum):
 
     STORAGE_MOCK = "storage_mock_storage"
     """
-    Storage Mock
+    Storage Test
     """
 
     TICKETING_JIRA = "ticketing_jira"
@@ -148,7 +148,7 @@ class ProviderConfigId(str, enum.Enum):
 
     TICKETING_MOCK = "ticketing_mock_ticketing"
     """
-    Ticketing Mock
+    Ticketing Test
     """
 
     TICKETING_PAGER_DUTY = "ticketing_pagerduty"
