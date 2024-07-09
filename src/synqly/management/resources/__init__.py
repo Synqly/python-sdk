@@ -409,7 +409,7 @@ from .status import (
     StatusEvent,
     TimeseriesResult,
 )
-from .token_base import Token, TokenId, TokenPair
+from .token_base import Token, TokenId, TokenOwnerType, TokenPair
 from .tokens import (
     CreateIntegrationTokenRequest,
     CreateIntegrationTokenResponse,
@@ -777,6 +777,7 @@ __all__ = [
     "TokenCredential",
     "TokenCredentialId",
     "TokenId",
+    "TokenOwnerType",
     "TokenPair",
     "TokensActions",
     "TokensPermissions",

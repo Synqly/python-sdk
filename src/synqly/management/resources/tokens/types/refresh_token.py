@@ -7,6 +7,7 @@ from ....core.datetime_utils import serialize_datetime
 from ...common.types.base import Base
 from ...common.types.id import Id
 from ...token_base.types.token_id import TokenId
+from ...token_base.types.token_owner_type import TokenOwnerType
 from ...token_base.types.token_pair import TokenPair
 
 try:
@@ -20,6 +21,16 @@ class RefreshToken(Base):
     member_id: typing.Optional[Id] = pydantic.Field(default=None)
     """
     Member Id
+    """
+
+    owner_id: Id = pydantic.Field()
+    """
+    ID of the entity that owns this token
+    """
+
+    owner_type: TokenOwnerType = pydantic.Field()
+    """
+    Type of the entity that owns this token
     """
 
     expires: dt.datetime = pydantic.Field()
