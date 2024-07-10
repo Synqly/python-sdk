@@ -77,6 +77,7 @@ from .provider_config import (
     ProviderConfig_SiemQRadar,
     ProviderConfig_SiemRapid7Insightidr,
     ProviderConfig_SiemSplunk,
+    ProviderConfig_SiemSumoLogic,
     ProviderConfig_SinkAwsSecurityLake,
     ProviderConfig_SinkAwsSqs,
     ProviderConfig_SinkAzureMonitorLogs,
@@ -108,6 +109,7 @@ from .siem_mock import SiemMock
 from .siem_q_radar import SiemQRadar
 from .siem_rapid_7_insight_idr import SiemRapid7InsightIdr
 from .siem_splunk import SiemSplunk
+from .siem_sumo_logic import SiemSumoLogic
 from .sink_aws_security_lake import SinkAwsSecurityLake
 from .sink_aws_sqs import SinkAwsSqs
 from .sink_azure_monitor_logs import SinkAzureMonitorLogs
@@ -124,6 +126,12 @@ from .storage_aws_s_3 import StorageAwsS3
 from .storage_azure_blob import StorageAzureBlob
 from .storage_gcs import StorageGcs
 from .storage_mock import StorageMock
+from .sumo_logic_collection_url import (
+    SumoLogicCollectionUrl,
+    SumoLogicCollectionUrl_Secret,
+    SumoLogicCollectionUrl_SecretId,
+)
+from .sumo_logic_credential import SumoLogicCredential, SumoLogicCredential_Basic, SumoLogicCredential_BasicId
 from .teams_credential import TeamsCredential, TeamsCredential_Secret, TeamsCredential_SecretId
 from .tenable_cloud_credential import (
     TenableCloudCredential,
@@ -225,6 +233,7 @@ __all__ = [
     "ProviderConfig_SiemQRadar",
     "ProviderConfig_SiemRapid7Insightidr",
     "ProviderConfig_SiemSplunk",
+    "ProviderConfig_SiemSumoLogic",
     "ProviderConfig_SinkAwsSecurityLake",
     "ProviderConfig_SinkAwsSqs",
     "ProviderConfig_SinkAzureMonitorLogs",
@@ -260,6 +269,7 @@ __all__ = [
     "SiemQRadar",
     "SiemRapid7InsightIdr",
     "SiemSplunk",
+    "SiemSumoLogic",
     "SinkAwsSecurityLake",
     "SinkAwsSqs",
     "SinkAzureMonitorLogs",
@@ -278,6 +288,12 @@ __all__ = [
     "StorageAzureBlob",
     "StorageGcs",
     "StorageMock",
+    "SumoLogicCollectionUrl",
+    "SumoLogicCollectionUrl_Secret",
+    "SumoLogicCollectionUrl_SecretId",
+    "SumoLogicCredential",
+    "SumoLogicCredential_Basic",
+    "SumoLogicCredential_BasicId",
     "TeamsCredential",
     "TeamsCredential_Secret",
     "TeamsCredential_SecretId",

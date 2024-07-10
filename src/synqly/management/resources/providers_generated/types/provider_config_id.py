@@ -101,6 +101,11 @@ class ProviderConfigId(str, enum.Enum):
     Splunk Enterprise Security
     """
 
+    SIEM_SUMO_LOGIC = "siem_sumo_logic"
+    """
+    Sumo Logic Cloud SIEM
+    """
+
     SINK_AWS_SECURITY_LAKE = "sink_aws_security_lake"
     """
     AWS Security Lake
@@ -201,6 +206,7 @@ class ProviderConfigId(str, enum.Enum):
         siem_q_radar: typing.Callable[[], T_Result],
         siem_rapid_7_insight_idr: typing.Callable[[], T_Result],
         siem_splunk: typing.Callable[[], T_Result],
+        siem_sumo_logic: typing.Callable[[], T_Result],
         sink_aws_security_lake: typing.Callable[[], T_Result],
         sink_aws_sqs: typing.Callable[[], T_Result],
         sink_azure_monitor_logs: typing.Callable[[], T_Result],
@@ -254,6 +260,8 @@ class ProviderConfigId(str, enum.Enum):
             return siem_rapid_7_insight_idr()
         if self is ProviderConfigId.SIEM_SPLUNK:
             return siem_splunk()
+        if self is ProviderConfigId.SIEM_SUMO_LOGIC:
+            return siem_sumo_logic()
         if self is ProviderConfigId.SINK_AWS_SECURITY_LAKE:
             return sink_aws_security_lake()
         if self is ProviderConfigId.SINK_AWS_SQS:
