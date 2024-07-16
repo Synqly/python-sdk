@@ -176,6 +176,11 @@ class ProviderConfigId(str, enum.Enum):
     Rapid7 Insight Vulnerability Management Cloud
     """
 
+    VULNERABILITIES_TANIUM_CLOUD = "vulnerabilities_tanium_cloud"
+    """
+    Tanium Vulnerability Management
+    """
+
     VULNERABILITIES_TENABLE_CLOUD = "vulnerabilities_tenable_cloud"
     """
     Tenable Vulnerability Management
@@ -221,6 +226,7 @@ class ProviderConfigId(str, enum.Enum):
         ticketing_service_now: typing.Callable[[], T_Result],
         vulnerabilities_qualys_cloud: typing.Callable[[], T_Result],
         vulnerabilities_rapid_7_insight_cloud: typing.Callable[[], T_Result],
+        vulnerabilities_tanium_cloud: typing.Callable[[], T_Result],
         vulnerabilities_tenable_cloud: typing.Callable[[], T_Result],
         all_: typing.Callable[[], T_Result],
     ) -> T_Result:
@@ -290,6 +296,8 @@ class ProviderConfigId(str, enum.Enum):
             return vulnerabilities_qualys_cloud()
         if self is ProviderConfigId.VULNERABILITIES_RAPID_7_INSIGHT_CLOUD:
             return vulnerabilities_rapid_7_insight_cloud()
+        if self is ProviderConfigId.VULNERABILITIES_TANIUM_CLOUD:
+            return vulnerabilities_tanium_cloud()
         if self is ProviderConfigId.VULNERABILITIES_TENABLE_CLOUD:
             return vulnerabilities_tenable_cloud()
         if self is ProviderConfigId.ALL:

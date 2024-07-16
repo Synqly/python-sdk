@@ -92,6 +92,7 @@ from .provider_config import (
     ProviderConfig_TicketingServicenow,
     ProviderConfig_VulnerabilitiesQualysCloud,
     ProviderConfig_VulnerabilitiesRapid7InsightCloud,
+    ProviderConfig_VulnerabilitiesTaniumCloud,
     ProviderConfig_VulnerabilitiesTenableCloud,
 )
 from .provider_config_id import ProviderConfigId
@@ -132,6 +133,7 @@ from .sumo_logic_collection_url import (
     SumoLogicCollectionUrl_SecretId,
 )
 from .sumo_logic_credential import SumoLogicCredential, SumoLogicCredential_Basic, SumoLogicCredential_BasicId
+from .tanium_cloud_credential import TaniumCloudCredential, TaniumCloudCredential_Token, TaniumCloudCredential_TokenId
 from .teams_credential import TeamsCredential, TeamsCredential_Secret, TeamsCredential_SecretId
 from .tenable_cloud_credential import (
     TenableCloudCredential,
@@ -145,6 +147,7 @@ from .ticketing_service_now import TicketingServiceNow
 from .value_mapping import ValueMapping
 from .vulnerabilities_qualys_cloud import VulnerabilitiesQualysCloud
 from .vulnerabilities_rapid_7_insight_cloud import VulnerabilitiesRapid7InsightCloud
+from .vulnerabilities_tanium_cloud import VulnerabilitiesTaniumCloud
 from .vulnerabilities_tenable_cloud import VulnerabilitiesTenableCloud
 
 __all__ = [
@@ -248,6 +251,7 @@ __all__ = [
     "ProviderConfig_TicketingServicenow",
     "ProviderConfig_VulnerabilitiesQualysCloud",
     "ProviderConfig_VulnerabilitiesRapid7InsightCloud",
+    "ProviderConfig_VulnerabilitiesTaniumCloud",
     "ProviderConfig_VulnerabilitiesTenableCloud",
     "QRadarCredential",
     "QRadarCredential_Token",
@@ -294,6 +298,9 @@ __all__ = [
     "SumoLogicCredential",
     "SumoLogicCredential_Basic",
     "SumoLogicCredential_BasicId",
+    "TaniumCloudCredential",
+    "TaniumCloudCredential_Token",
+    "TaniumCloudCredential_TokenId",
     "TeamsCredential",
     "TeamsCredential_Secret",
     "TeamsCredential_SecretId",
@@ -307,5 +314,6 @@ __all__ = [
     "ValueMapping",
     "VulnerabilitiesQualysCloud",
     "VulnerabilitiesRapid7InsightCloud",
+    "VulnerabilitiesTaniumCloud",
     "VulnerabilitiesTenableCloud",
 ]

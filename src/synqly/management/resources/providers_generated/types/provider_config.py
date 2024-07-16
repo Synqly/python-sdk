@@ -37,6 +37,7 @@ from .ticketing_pager_duty import TicketingPagerDuty
 from .ticketing_service_now import TicketingServiceNow
 from .vulnerabilities_qualys_cloud import VulnerabilitiesQualysCloud
 from .vulnerabilities_rapid_7_insight_cloud import VulnerabilitiesRapid7InsightCloud
+from .vulnerabilities_tanium_cloud import VulnerabilitiesTaniumCloud
 from .vulnerabilities_tenable_cloud import VulnerabilitiesTenableCloud
 
 
@@ -337,6 +338,15 @@ class ProviderConfig_VulnerabilitiesRapid7InsightCloud(VulnerabilitiesRapid7Insi
         allow_population_by_field_name = True
 
 
+class ProviderConfig_VulnerabilitiesTaniumCloud(VulnerabilitiesTaniumCloud):
+    type: typing.Literal["vulnerabilities_tanium_cloud"]
+
+    class Config:
+        frozen = True
+        smart_union = True
+        allow_population_by_field_name = True
+
+
 class ProviderConfig_VulnerabilitiesTenableCloud(VulnerabilitiesTenableCloud):
     type: typing.Literal["vulnerabilities_tenable_cloud"]
 
@@ -380,5 +390,6 @@ ProviderConfig = typing.Union[
     ProviderConfig_TicketingServicenow,
     ProviderConfig_VulnerabilitiesQualysCloud,
     ProviderConfig_VulnerabilitiesRapid7InsightCloud,
+    ProviderConfig_VulnerabilitiesTaniumCloud,
     ProviderConfig_VulnerabilitiesTenableCloud,
 ]
