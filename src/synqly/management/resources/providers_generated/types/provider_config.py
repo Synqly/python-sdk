@@ -35,6 +35,7 @@ from .ticketing_jira import TicketingJira
 from .ticketing_mock import TicketingMock
 from .ticketing_pager_duty import TicketingPagerDuty
 from .ticketing_service_now import TicketingServiceNow
+from .ticketing_torq import TicketingTorq
 from .vulnerabilities_qualys_cloud import VulnerabilitiesQualysCloud
 from .vulnerabilities_rapid_7_insight_cloud import VulnerabilitiesRapid7InsightCloud
 from .vulnerabilities_tanium_cloud import VulnerabilitiesTaniumCloud
@@ -320,6 +321,15 @@ class ProviderConfig_TicketingServicenow(TicketingServiceNow):
         allow_population_by_field_name = True
 
 
+class ProviderConfig_TicketingTorq(TicketingTorq):
+    type: typing.Literal["ticketing_torq"]
+
+    class Config:
+        frozen = True
+        smart_union = True
+        allow_population_by_field_name = True
+
+
 class ProviderConfig_VulnerabilitiesQualysCloud(VulnerabilitiesQualysCloud):
     type: typing.Literal["vulnerabilities_qualys_cloud"]
 
@@ -388,6 +398,7 @@ ProviderConfig = typing.Union[
     ProviderConfig_TicketingMockTicketing,
     ProviderConfig_TicketingPagerduty,
     ProviderConfig_TicketingServicenow,
+    ProviderConfig_TicketingTorq,
     ProviderConfig_VulnerabilitiesQualysCloud,
     ProviderConfig_VulnerabilitiesRapid7InsightCloud,
     ProviderConfig_VulnerabilitiesTaniumCloud,

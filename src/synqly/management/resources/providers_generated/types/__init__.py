@@ -90,6 +90,7 @@ from .provider_config import (
     ProviderConfig_TicketingMockTicketing,
     ProviderConfig_TicketingPagerduty,
     ProviderConfig_TicketingServicenow,
+    ProviderConfig_TicketingTorq,
     ProviderConfig_VulnerabilitiesQualysCloud,
     ProviderConfig_VulnerabilitiesRapid7InsightCloud,
     ProviderConfig_VulnerabilitiesTaniumCloud,
@@ -144,6 +145,8 @@ from .ticketing_jira import TicketingJira
 from .ticketing_mock import TicketingMock
 from .ticketing_pager_duty import TicketingPagerDuty
 from .ticketing_service_now import TicketingServiceNow
+from .ticketing_torq import TicketingTorq
+from .torq_credential import TorqCredential, TorqCredential_OAuthClient, TorqCredential_OAuthClientId
 from .value_mapping import ValueMapping
 from .vulnerabilities_qualys_cloud import VulnerabilitiesQualysCloud
 from .vulnerabilities_rapid_7_insight_cloud import VulnerabilitiesRapid7InsightCloud
@@ -249,6 +252,7 @@ __all__ = [
     "ProviderConfig_TicketingMockTicketing",
     "ProviderConfig_TicketingPagerduty",
     "ProviderConfig_TicketingServicenow",
+    "ProviderConfig_TicketingTorq",
     "ProviderConfig_VulnerabilitiesQualysCloud",
     "ProviderConfig_VulnerabilitiesRapid7InsightCloud",
     "ProviderConfig_VulnerabilitiesTaniumCloud",
@@ -311,6 +315,10 @@ __all__ = [
     "TicketingMock",
     "TicketingPagerDuty",
     "TicketingServiceNow",
+    "TicketingTorq",
+    "TorqCredential",
+    "TorqCredential_OAuthClient",
+    "TorqCredential_OAuthClientId",
     "ValueMapping",
     "VulnerabilitiesQualysCloud",
     "VulnerabilitiesRapid7InsightCloud",
