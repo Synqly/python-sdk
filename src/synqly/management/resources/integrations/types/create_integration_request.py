@@ -6,6 +6,7 @@ import typing
 from ....core.datetime_utils import serialize_datetime
 from ...integration_points.types.integration_point_id import IntegrationPointId
 from ...providers_generated.types.provider_config import ProviderConfig
+from .bridge_selector import BridgeSelector
 
 try:
     import pydantic.v1 as pydantic  # type: ignore
@@ -32,6 +33,11 @@ class CreateIntegrationRequest(pydantic.BaseModel):
     integration_point_id: typing.Optional[IntegrationPointId] = pydantic.Field(default=None)
     """
     Integration Point associated with this integration.
+    """
+
+    bridge_selector: typing.Optional[BridgeSelector] = pydantic.Field(default=None)
+    """
+    Use a Bridge to connect to the provider.
     """
 
     def json(self, **kwargs: typing.Any) -> str:

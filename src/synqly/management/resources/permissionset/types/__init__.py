@@ -7,6 +7,8 @@ from .audit_actions import AuditActions
 from .audit_permissions import AuditPermissions
 from .auth_actions import AuthActions
 from .auth_permissions import AuthPermissions
+from .bridges_actions import BridgesActions
+from .bridges_permissions import BridgesPermissions
 from .capabilities_actions import CapabilitiesActions
 from .capabilities_permissions import CapabilitiesPermissions
 from .credentials_actions import CredentialsActions
@@ -48,6 +50,8 @@ __all__ = [
     "AuditPermissions",
     "AuthActions",
     "AuthPermissions",
+    "BridgesActions",
+    "BridgesPermissions",
     "CapabilitiesActions",
     "CapabilitiesPermissions",
     "CredentialsActions",

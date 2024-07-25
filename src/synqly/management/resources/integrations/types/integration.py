@@ -13,6 +13,7 @@ from ...integration_points.types.integration_point import IntegrationPoint
 from ...integration_points.types.integration_point_id import IntegrationPointId
 from ...providers_generated.types.provider_config import ProviderConfig
 from ...token_base.types.token_id import TokenId
+from .bridge_selector import BridgeSelector
 
 try:
     import pydantic.v1 as pydantic  # type: ignore
@@ -74,6 +75,11 @@ class Integration(Base):
     integration_point: typing.Optional[IntegrationPoint] = pydantic.Field(default=None)
     """
     When using the expand option on the List or ListAccount APIs, the full integration_point object is included in the response
+    """
+
+    bridge_selector: typing.Optional[BridgeSelector] = pydantic.Field(default=None)
+    """
+    Use a Bridge to connect to the provider.
     """
 
     def json(self, **kwargs: typing.Any) -> str:

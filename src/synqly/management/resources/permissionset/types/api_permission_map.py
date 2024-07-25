@@ -7,6 +7,7 @@ from ....core.datetime_utils import serialize_datetime
 from .accounts_permissions import AccountsPermissions
 from .audit_permissions import AuditPermissions
 from .auth_permissions import AuthPermissions
+from .bridges_permissions import BridgesPermissions
 from .capabilities_permissions import CapabilitiesPermissions
 from .credentials_permissions import CredentialsPermissions
 from .integration_points_permissions import IntegrationPointsPermissions
@@ -33,6 +34,7 @@ class ApiPermissionMap(pydantic.BaseModel):
     accounts: typing.Optional[AccountsPermissions] = None
     audit: typing.Optional[AuditPermissions] = None
     auth: typing.Optional[AuthPermissions] = None
+    bridges: typing.Optional[BridgesPermissions] = None
     capabilities: typing.Optional[CapabilitiesPermissions] = None
     credentials: typing.Optional[CredentialsPermissions] = None
     integrations: typing.Optional[IntegrationsPermissions] = None
