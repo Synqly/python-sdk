@@ -4,6 +4,7 @@ import datetime as dt
 import typing
 
 from ....core.datetime_utils import serialize_datetime
+from .custom_field_mapping import CustomFieldMapping
 from .torq_credential import TorqCredential
 
 try:
@@ -18,6 +19,10 @@ class TicketingTorq(pydantic.BaseModel):
     """
 
     credential: TorqCredential
+    custom_field_mappings: typing.Optional[typing.List[CustomFieldMapping]] = pydantic.Field(default=None)
+    """
+    Custom field mappings for this provider.
+    """
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}
