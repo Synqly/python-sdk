@@ -4,7 +4,8 @@ import datetime as dt
 import typing
 
 from ....core.datetime_utils import serialize_datetime
-from .field_type import FieldType
+from .remote_field_schema import RemoteFieldSchema
+from .remote_field_scope import RemoteFieldScope
 
 try:
     import pydantic.v1 as pydantic  # type: ignore
@@ -13,19 +14,34 @@ except ImportError:
 
 
 class RemoteField(pydantic.BaseModel):
-    type: FieldType = pydantic.Field()
+    field_id: str = pydantic.Field()
     """
-    Type of the field.
+    Remote ID of the field.
+    """
+
+    schema_: RemoteFieldSchema = pydantic.Field(alias="schema")
+    """
+    Schema of the field.
+    """
+
+    field_scope: RemoteFieldScope = pydantic.Field()
+    """
+    Scope of remote field - standard or some kind of customization?
     """
 
     provider_field_name: str = pydantic.Field()
     """
-    Type of field in the remote ticketing provider.
+    Name of field in the remote ticketing provider.
     """
 
-    provider_field_path: str = pydantic.Field()
+    provider_field_path: typing.Optional[str] = pydantic.Field(default=None)
     """
     Path to the field in the remote ticketing provider. Uses dot notation for nested fields.
+    """
+
+    project_id: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    Project id to which this field is scoped to
     """
 
     def json(self, **kwargs: typing.Any) -> str:
@@ -39,5 +55,6 @@ class RemoteField(pydantic.BaseModel):
     class Config:
         frozen = True
         smart_union = True
+        allow_population_by_field_name = True
         extra = pydantic.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}

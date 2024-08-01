@@ -9,7 +9,6 @@ from .create_ticket_request import CreateTicketRequest
 from .create_ticket_response import CreateTicketResponse
 from .download_attachment_response import DownloadAttachmentResponse
 from .field_mapping_id import FieldMappingId
-from .field_type import FieldType
 from .get_ticket_response import GetTicketResponse
 from .issue_type_id import IssueTypeId
 from .list_attachments_metadata_response import ListAttachmentsMetadataResponse
@@ -21,6 +20,8 @@ from .project import Project
 from .project_id import ProjectId
 from .query_tickets_response import QueryTicketsResponse
 from .remote_field import RemoteField
+from .remote_field_schema import RemoteFieldSchema
+from .remote_field_scope import RemoteFieldScope
 from .status import Status
 from .ticket import Ticket
 from .ticket_id import TicketId
@@ -36,7 +37,6 @@ __all__ = [
     "CreateTicketResponse",
     "DownloadAttachmentResponse",
     "FieldMappingId",
-    "FieldType",
     "GetTicketResponse",
     "IssueTypeId",
     "ListAttachmentsMetadataResponse",
@@ -48,6 +48,8 @@ __all__ = [
     "ProjectId",
     "QueryTicketsResponse",
     "RemoteField",
+    "RemoteFieldSchema",
+    "RemoteFieldScope",
     "Status",
     "Ticket",
     "TicketId",
