@@ -3,8 +3,12 @@
 from .attachment import Attachment
 from .attachment_id import AttachmentId
 from .attachment_metadata import AttachmentMetadata
+from .comment import Comment
+from .comment_id import CommentId
 from .create_attachment_request import CreateAttachmentRequest
 from .create_attachment_response import CreateAttachmentResponse
+from .create_comment_request import CreateCommentRequest
+from .create_comment_response import CreateCommentResponse
 from .create_ticket_request import CreateTicketRequest
 from .create_ticket_response import CreateTicketResponse
 from .download_attachment_response import DownloadAttachmentResponse
@@ -12,6 +16,7 @@ from .field_mapping_id import FieldMappingId
 from .get_ticket_response import GetTicketResponse
 from .issue_type_id import IssueTypeId
 from .list_attachments_metadata_response import ListAttachmentsMetadataResponse
+from .list_comments_response import ListCommentsResponse
 from .list_projects_response import ListProjectsResponse
 from .list_remote_fields_response import ListRemoteFieldsResponse
 from .patch_ticket_response import PatchTicketResponse
@@ -31,8 +36,12 @@ __all__ = [
     "Attachment",
     "AttachmentId",
     "AttachmentMetadata",
+    "Comment",
+    "CommentId",
     "CreateAttachmentRequest",
     "CreateAttachmentResponse",
+    "CreateCommentRequest",
+    "CreateCommentResponse",
     "CreateTicketRequest",
     "CreateTicketResponse",
     "DownloadAttachmentResponse",
@@ -40,6 +49,7 @@ __all__ = [
     "GetTicketResponse",
     "IssueTypeId",
     "ListAttachmentsMetadataResponse",
+    "ListCommentsResponse",
     "ListProjectsResponse",
     "ListRemoteFieldsResponse",
     "PatchTicketResponse",

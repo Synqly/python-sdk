@@ -10,6 +10,7 @@ from .meta_api_primary_response import MetaApiPrimaryResponse
 from .meta_api_response import MetaApiResponse
 from .meta_response import MetaResponse
 from .meta_stats import MetaStats
+from .object import Object
 from .order_options import OrderOptions
 
 __all__ = [
@@ -23,5 +24,6 @@ __all__ = [
     "MetaApiResponse",
     "MetaResponse",
     "MetaStats",
+    "Object",
     "OrderOptions",
 ]

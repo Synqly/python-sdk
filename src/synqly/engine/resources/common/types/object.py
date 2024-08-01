@@ -4,7 +4,6 @@ import datetime as dt
 import typing
 
 from ....core.datetime_utils import serialize_datetime
-from ...common.types.object import Object
 
 try:
     import pydantic.v1 as pydantic  # type: ignore
@@ -12,24 +11,9 @@ except ImportError:
     import pydantic  # type: ignore
 
 
-class Project(pydantic.BaseModel):
+class Object(pydantic.BaseModel):
     """
-    Project in a ticketing system
-    """
-
-    id: str = pydantic.Field()
-    """
-    Unique identifier for this project. Use this id in the `project` field of a `Ticket`.
-    """
-
-    name: str = pydantic.Field()
-    """
-    Name of the project
-    """
-
-    unmapped: typing.Optional[Object] = pydantic.Field(default=None)
-    """
-    The attributes that are not mapped to the project schema. The names and values of those attributes are specific to the provider.
+    The Object type is used to represent an object with arbitrary fields. The keys are strings and the values are any type.
     """
 
     def json(self, **kwargs: typing.Any) -> str:

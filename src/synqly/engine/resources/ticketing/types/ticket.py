@@ -5,6 +5,7 @@ import typing
 
 from ....core.datetime_utils import serialize_datetime
 from ...common.types.base import Base
+from ...common.types.object import Object
 from .attachment_metadata import AttachmentMetadata
 from .issue_type_id import IssueTypeId
 from .priority import Priority
@@ -92,6 +93,11 @@ class Ticket(Base):
     custom_fields: typing.Optional[typing.Dict[str, typing.Any]] = pydantic.Field(default=None)
     """
     Custom fields for this ticket, keys are the custom field names.
+    """
+
+    unmapped: typing.Optional[Object] = pydantic.Field(default=None)
+    """
+    The attributes that are not mapped to the ticket schema. The names and values of those attributes are specific to the provider.
     """
 
     def json(self, **kwargs: typing.Any) -> str:

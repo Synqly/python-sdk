@@ -11,6 +11,7 @@ from .types import (
     MetaApiResponse,
     MetaResponse,
     MetaStats,
+    Object,
     OrderOptions,
 )
 from .errors import (
@@ -49,6 +50,7 @@ __all__ = [
     "MethodNotAllowedError",
     "NotFoundError",
     "NotImplementedError",
+    "Object",
     "OrderOptions",
     "ServiceUnavailableError",
     "TooManyRequestsError",

@@ -4,6 +4,7 @@ import datetime as dt
 import typing
 
 from ....core.datetime_utils import serialize_datetime
+from ...common.types.object import Object
 from .attachment_id import AttachmentId
 from .ticket_id import TicketId
 
@@ -51,6 +52,11 @@ class AttachmentMetadata(pydantic.BaseModel):
     creator: str = pydantic.Field()
     """
     The user who created the attachment.
+    """
+
+    unmapped: typing.Optional[Object] = pydantic.Field(default=None)
+    """
+    The attributes that are not mapped to the attachment metadata schema. The names and values of those attributes are specific to the provider.
     """
 
     def json(self, **kwargs: typing.Any) -> str:
