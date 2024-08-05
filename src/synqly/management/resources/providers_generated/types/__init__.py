@@ -91,6 +91,7 @@ from .provider_config import (
     ProviderConfig_TicketingPagerduty,
     ProviderConfig_TicketingServicenow,
     ProviderConfig_TicketingTorq,
+    ProviderConfig_VulnerabilitiesCrowdstrike,
     ProviderConfig_VulnerabilitiesQualysCloud,
     ProviderConfig_VulnerabilitiesRapid7InsightCloud,
     ProviderConfig_VulnerabilitiesTaniumCloud,
@@ -148,6 +149,7 @@ from .ticketing_service_now import TicketingServiceNow
 from .ticketing_torq import TicketingTorq
 from .torq_credential import TorqCredential, TorqCredential_OAuthClient, TorqCredential_OAuthClientId
 from .value_mapping import ValueMapping
+from .vulnerabilities_crowd_strike import VulnerabilitiesCrowdStrike
 from .vulnerabilities_qualys_cloud import VulnerabilitiesQualysCloud
 from .vulnerabilities_rapid_7_insight_cloud import VulnerabilitiesRapid7InsightCloud
 from .vulnerabilities_tanium_cloud import VulnerabilitiesTaniumCloud
@@ -253,6 +255,7 @@ __all__ = [
     "ProviderConfig_TicketingPagerduty",
     "ProviderConfig_TicketingServicenow",
     "ProviderConfig_TicketingTorq",
+    "ProviderConfig_VulnerabilitiesCrowdstrike",
     "ProviderConfig_VulnerabilitiesQualysCloud",
     "ProviderConfig_VulnerabilitiesRapid7InsightCloud",
     "ProviderConfig_VulnerabilitiesTaniumCloud",
@@ -320,6 +323,7 @@ __all__ = [
     "TorqCredential_OAuthClient",
     "TorqCredential_OAuthClientId",
     "ValueMapping",
+    "VulnerabilitiesCrowdStrike",
     "VulnerabilitiesQualysCloud",
     "VulnerabilitiesRapid7InsightCloud",
     "VulnerabilitiesTaniumCloud",
