@@ -28,7 +28,7 @@ class Comment(pydantic.BaseModel):
 
     content: str = pydantic.Field()
     """
-    The content of the comment.
+    The content of the comment formatted as markdown.
     """
 
     created_at: dt.datetime = pydantic.Field()
