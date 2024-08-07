@@ -4,6 +4,7 @@ import datetime as dt
 import typing
 
 from ....core.datetime_utils import serialize_datetime
+from .custom_field_mapping import CustomFieldMapping
 from .service_now_credential import ServiceNowCredential
 
 try:
@@ -18,6 +19,11 @@ class TicketingServiceNow(pydantic.BaseModel):
     """
 
     credential: ServiceNowCredential
+    custom_field_mappings: typing.Optional[typing.List[CustomFieldMapping]] = pydantic.Field(default=None)
+    """
+    Custom field mappings for this provider.
+    """
+
     url: str = pydantic.Field()
     """
     URL for the ServiceNow API. This should be the base URL for the API, without any path components and must be HTTPS. For example, "https://tenant.service-now.com".
