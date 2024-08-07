@@ -92,6 +92,7 @@ from .siem import (
     GetInvestigationResponse,
     Investigation,
     PatchInvestigationRequest,
+    QueryEventStatus,
     QueryInvestigationResponse,
     QuerySiemEventsResponse,
 )
@@ -236,6 +237,7 @@ __all__ = [
     "QueryAssetsResponse",
     "QueryDevicesResponse",
     "QueryEndpointsResponse",
+    "QueryEventStatus",
     "QueryFindingsResponse",
     "QueryIdentityAuditLogResponse",
     "QueryInvestigationResponse",

@@ -5,6 +5,7 @@ import typing
 
 from ....core.datetime_utils import serialize_datetime
 from ...common.types.meta_response import MetaResponse
+from .query_event_status import QueryEventStatus
 
 try:
     import pydantic.v1 as pydantic  # type: ignore
@@ -26,6 +27,11 @@ class QuerySiemEventsResponse(pydantic.BaseModel):
     cursor: str = pydantic.Field()
     """
     Cursor to use to retrieve the next page of results
+    """
+
+    status: QueryEventStatus = pydantic.Field()
+    """
+    If the provider supports asynchronous queries and the query is still running, this will be PENDING. There will be a value in the `cursor` field allowing you to continue polling for results.
     """
 
     def json(self, **kwargs: typing.Any) -> str:

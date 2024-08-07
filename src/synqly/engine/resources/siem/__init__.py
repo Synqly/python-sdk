@@ -6,6 +6,7 @@ from .types import (
     GetInvestigationResponse,
     Investigation,
     PatchInvestigationRequest,
+    QueryEventStatus,
     QueryInvestigationResponse,
     QuerySiemEventsResponse,
 )
@@ -16,6 +17,7 @@ __all__ = [
     "GetInvestigationResponse",
     "Investigation",
     "PatchInvestigationRequest",
+    "QueryEventStatus",
     "QueryInvestigationResponse",
     "QuerySiemEventsResponse",
 ]
