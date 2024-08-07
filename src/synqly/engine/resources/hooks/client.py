@@ -44,7 +44,7 @@ class HooksClient:
         Proxy webhook messages from webhook providers to webhook recievers
 
         Parameters:
-            - token: str. Optional: if you can't use the HTTP Authorization bearer, specify integration access token here.
+            - token: str. Optional: if you can't use the HTTP Authorization Bearer, specify integration access token here.
 
             - request: typing.Any.
 
@@ -131,7 +131,7 @@ class AsyncHooksClient:
         Proxy webhook messages from webhook providers to webhook recievers
 
         Parameters:
-            - token: str. Optional: if you can't use the HTTP Authorization bearer, specify integration access token here.
+            - token: str. Optional: if you can't use the HTTP Authorization Bearer, specify integration access token here.
 
             - request: typing.Any.
 
