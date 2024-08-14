@@ -112,7 +112,9 @@ from .objects import (
     Url,
     UrlCategoryIds,
     User,
+    UserMfaStatusId,
     UserTypeId,
+    UserUserStatusId,
 )
 
 __all__ = [
@@ -221,8 +223,10 @@ __all__ = [
     "UrlCategoryIds",
     "UrlString",
     "User",
+    "UserMfaStatusId",
     "UserName",
     "UserTypeId",
+    "UserUserStatusId",
     "base",
     "classes",
     "objects",

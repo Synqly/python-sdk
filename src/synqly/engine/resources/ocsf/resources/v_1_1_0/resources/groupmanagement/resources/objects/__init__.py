@@ -52,7 +52,9 @@ from .types import (
     Service,
     Session,
     User,
+    UserMfaStatusId,
     UserTypeId,
+    UserUserStatusId,
 )
 
 __all__ = [
@@ -107,5 +109,7 @@ __all__ = [
     "Service",
     "Session",
     "User",
+    "UserMfaStatusId",
     "UserTypeId",
+    "UserUserStatusId",
 ]

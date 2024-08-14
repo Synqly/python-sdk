@@ -60,7 +60,9 @@ from .session import Session
 from .url import Url
 from .url_category_ids import UrlCategoryIds
 from .user import User
+from .user_mfa_status_id import UserMfaStatusId
 from .user_type_id import UserTypeId
+from .user_user_status_id import UserUserStatusId
 
 __all__ = [
     "Account",
@@ -123,5 +125,7 @@ __all__ = [
     "Url",
     "UrlCategoryIds",
     "User",
+    "UserMfaStatusId",
     "UserTypeId",
+    "UserUserStatusId",
 ]

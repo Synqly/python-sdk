@@ -93,7 +93,9 @@ from .objects import (
     Tactic,
     Technique,
     User,
+    UserMfaStatusId,
     UserTypeId,
+    UserUserStatusId,
 )
 
 __all__ = [
@@ -183,8 +185,10 @@ __all__ = [
     "TypeUid",
     "UrlString",
     "User",
+    "UserMfaStatusId",
     "UserName",
     "UserTypeId",
+    "UserUserStatusId",
     "base",
     "classes",
     "objects",

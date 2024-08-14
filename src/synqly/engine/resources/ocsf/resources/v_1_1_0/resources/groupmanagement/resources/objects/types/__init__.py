@@ -51,7 +51,9 @@ from .response import Response
 from .service import Service
 from .session import Session
 from .user import User
+from .user_mfa_status_id import UserMfaStatusId
 from .user_type_id import UserTypeId
+from .user_user_status_id import UserUserStatusId
 
 __all__ = [
     "Account",
@@ -105,5 +107,7 @@ __all__ = [
     "Service",
     "Session",
     "User",
+    "UserMfaStatusId",
     "UserTypeId",
+    "UserUserStatusId",
 ]

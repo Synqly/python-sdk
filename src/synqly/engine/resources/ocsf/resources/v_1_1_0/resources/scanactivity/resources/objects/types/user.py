@@ -10,7 +10,9 @@ from .account import Account
 from .group import Group
 from .ldap_person import LdapPerson
 from .organization import Organization
+from .user_mfa_status_id import UserMfaStatusId
 from .user_type_id import UserTypeId
+from .user_user_status_id import UserUserStatusId
 
 try:
     import pydantic.v1 as pydantic  # type: ignore
@@ -58,6 +60,16 @@ class User(pydantic.BaseModel):
     The additional LDAP attributes that describe a person.
     """
 
+    mfa_status: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    The multi-factor authentication status, normalized to the caption of the mfa_status_id value. In the case of 'Other', it is defined by the data source.
+    """
+
+    mfa_status_id: typing.Optional[UserMfaStatusId] = pydantic.Field(default=None)
+    """
+    The normalized identifier of the user's multi-factor authentication status.
+    """
+
     name: typing.Optional[UserName] = pydantic.Field(default=None)
     """
     The username. For example, <code>janedoe1</code>.
@@ -66,6 +78,11 @@ class User(pydantic.BaseModel):
     org: typing.Optional[Organization] = pydantic.Field(default=None)
     """
     Organization and org unit related to the user.
+    """
+
+    privileges: typing.Optional[typing.List[str]] = pydantic.Field(default=None)
+    """
+    The user's privileges.
     """
 
     type: typing.Optional[str] = pydantic.Field(default=None)
@@ -86,6 +103,16 @@ class User(pydantic.BaseModel):
     uid_alt: typing.Optional[str] = pydantic.Field(default=None)
     """
     The alternate user identifier. For example, the Active Directory user GUID or AWS user Principal ID.
+    """
+
+    user_status: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    The user status, normalized to the caption of the user_status_id value. In the case of 'Other', it is defined by the data source.
+    """
+
+    user_status_id: typing.Optional[UserUserStatusId] = pydantic.Field(default=None)
+    """
+    The normalized identifier of the user's status.
     """
 
     def json(self, **kwargs: typing.Any) -> str:

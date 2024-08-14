@@ -89,7 +89,9 @@ from .types import (
     Url,
     UrlCategoryIds,
     User,
+    UserMfaStatusId,
     UserTypeId,
+    UserUserStatusId,
 )
 
 __all__ = [
@@ -181,5 +183,7 @@ __all__ = [
     "Url",
     "UrlCategoryIds",
     "User",
+    "UserMfaStatusId",
     "UserTypeId",
+    "UserUserStatusId",
 ]

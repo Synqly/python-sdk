@@ -87,7 +87,9 @@ from .objects import (
     Url,
     UrlCategoryIds,
     User,
+    UserMfaStatusId,
     UserTypeId,
+    UserUserStatusId,
     WebResource,
 )
 
@@ -179,8 +181,10 @@ __all__ = [
     "UrlCategoryIds",
     "UrlString",
     "User",
+    "UserMfaStatusId",
     "UserName",
     "UserTypeId",
+    "UserUserStatusId",
     "WebResource",
     "WebResourceAccessActivity",
     "base",

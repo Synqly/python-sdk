@@ -69,7 +69,9 @@ from .tls_extension_type_id import TlsExtensionTypeId
 from .url import Url
 from .url_category_ids import UrlCategoryIds
 from .user import User
+from .user_mfa_status_id import UserMfaStatusId
 from .user_type_id import UserTypeId
+from .user_user_status_id import UserUserStatusId
 from .web_resource import WebResource
 
 __all__ = [
@@ -142,6 +144,8 @@ __all__ = [
     "Url",
     "UrlCategoryIds",
     "User",
+    "UserMfaStatusId",
     "UserTypeId",
+    "UserUserStatusId",
     "WebResource",
 ]

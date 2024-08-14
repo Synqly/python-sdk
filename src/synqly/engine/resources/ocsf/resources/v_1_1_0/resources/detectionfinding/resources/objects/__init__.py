@@ -87,7 +87,9 @@ from .types import (
     Tactic,
     Technique,
     User,
+    UserMfaStatusId,
     UserTypeId,
+    UserUserStatusId,
     Vulnerability,
 )
 
@@ -178,6 +180,8 @@ __all__ = [
     "Tactic",
     "Technique",
     "User",
+    "UserMfaStatusId",
     "UserTypeId",
+    "UserUserStatusId",
     "Vulnerability",
 ]
