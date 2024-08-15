@@ -12,16 +12,8 @@ except ImportError:
     import pydantic  # type: ignore
 
 
-class QueryUsersResponse(pydantic.BaseModel):
-    result: typing.List[EntityManagement] = pydantic.Field()
-    """
-    List users wrapped in the OCSF Entity Management event of type Read.
-    """
-
-    cursor: str = pydantic.Field()
-    """
-    Cursor to use to retrieve the next page of results
-    """
+class GetUserResponse(pydantic.BaseModel):
+    result: EntityManagement
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}

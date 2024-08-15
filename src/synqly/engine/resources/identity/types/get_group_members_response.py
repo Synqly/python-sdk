@@ -12,15 +12,10 @@ except ImportError:
     import pydantic  # type: ignore
 
 
-class QueryUsersResponse(pydantic.BaseModel):
+class GetGroupMembersResponse(pydantic.BaseModel):
     result: typing.List[EntityManagement] = pydantic.Field()
     """
-    List users wrapped in the OCSF Entity Management event of type Read.
-    """
-
-    cursor: str = pydantic.Field()
-    """
-    Cursor to use to retrieve the next page of results
+    List of users wrapped in the OCSF Entity Management event of type Read that are members in the group referenced by ID.
     """
 
     def json(self, **kwargs: typing.Any) -> str:

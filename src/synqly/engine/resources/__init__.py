@@ -77,7 +77,16 @@ from .events import (
     Event_VulnerabilityFinding,
     Event_WebResourceAccessActivity,
 )
-from .identity import QueryIdentityAuditLogResponse, QueryUsersResponse, UserId
+from .identity import (
+    GetGroupMembersResponse,
+    GetGroupResponse,
+    GetUserResponse,
+    GroupId,
+    QueryGroupsResponse,
+    QueryIdentityAuditLogResponse,
+    QueryUsersResponse,
+    UserId,
+)
 from .notifications import (
     CreateNotificationRequest,
     CreateNotificationResponse,
@@ -200,10 +209,14 @@ __all__ = [
     "ForbiddenError",
     "GatewayTimeoutError",
     "GetEvidenceResponse",
+    "GetGroupMembersResponse",
+    "GetGroupResponse",
     "GetInvestigationResponse",
     "GetNotificationResponse",
     "GetScanActivityResponse",
     "GetTicketResponse",
+    "GetUserResponse",
+    "GroupId",
     "Id",
     "InternalServerError",
     "Investigation",
@@ -239,6 +252,7 @@ __all__ = [
     "QueryEndpointsResponse",
     "QueryEventStatus",
     "QueryFindingsResponse",
+    "QueryGroupsResponse",
     "QueryIdentityAuditLogResponse",
     "QueryInvestigationResponse",
     "QueryIocsResponse",
