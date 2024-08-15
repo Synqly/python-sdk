@@ -12,6 +12,11 @@ except ImportError:
 
 
 class CreateCommentRequest(pydantic.BaseModel):
+    creator: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    Email address of user who created this ticket. Required by PagerDuty. Not supported by Jira, ServiceNow, or Torq.
+    """
+
     content: str = pydantic.Field()
     """
     The content of the comment.
