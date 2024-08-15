@@ -36,7 +36,7 @@ class CreateMemberRequest(pydantic.BaseModel):
 
     secret: str = pydantic.Field()
     """
-    Member secret
+    Member secret used to logon. Must be at least 8 characters long and fewer than 72 characters. There are no restrictions on the characters used; however, the secret must be sufficiently complex. It cannot be a common word, previously leaked password, or easily guessed sequences like `qwerty` or `12345`.
     """
 
     role_binding: typing.Optional[typing.List[RoleName]] = pydantic.Field(default=None)
