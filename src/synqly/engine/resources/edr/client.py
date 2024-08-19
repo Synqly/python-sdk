@@ -27,6 +27,7 @@ from .types.create_iocs_request import CreateIocsRequest
 from .types.create_iocs_response import CreateIocsResponse
 from .types.delete_iocs_response import DeleteIocsResponse
 from .types.network_quarantine_request import NetworkQuarantineRequest
+from .types.network_quarantine_response import NetworkQuarantineResponse
 from .types.query_alerts_response import QueryAlertsResponse
 from .types.query_applications_response import QueryApplicationsResponse
 from .types.query_endpoints_response import QueryEndpointsResponse
@@ -228,7 +229,7 @@ class EdrClient:
 
     def network_quarantine(
         self, *, request: NetworkQuarantineRequest, request_options: typing.Optional[RequestOptions] = None
-    ) -> None:
+    ) -> NetworkQuarantineResponse:
         """
         Connect or disconnect one or more endpoints assets to the network, allowing or disallowing connections.
 
@@ -264,7 +265,7 @@ class EdrClient:
             max_retries=request_options.get("max_retries") if request_options is not None else 0,  # type: ignore
         )
         if 200 <= _response.status_code < 300:
-            return
+            return pydantic.parse_obj_as(NetworkQuarantineResponse, _response.json())  # type: ignore
         if _response.status_code == 400:
             raise BadRequestError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
         if _response.status_code == 401:
@@ -911,7 +912,7 @@ class AsyncEdrClient:
 
     async def network_quarantine(
         self, *, request: NetworkQuarantineRequest, request_options: typing.Optional[RequestOptions] = None
-    ) -> None:
+    ) -> NetworkQuarantineResponse:
         """
         Connect or disconnect one or more endpoints assets to the network, allowing or disallowing connections.
 
@@ -947,7 +948,7 @@ class AsyncEdrClient:
             max_retries=request_options.get("max_retries") if request_options is not None else 0,  # type: ignore
         )
         if 200 <= _response.status_code < 300:
-            return
+            return pydantic.parse_obj_as(NetworkQuarantineResponse, _response.json())  # type: ignore
         if _response.status_code == 400:
             raise BadRequestError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
         if _response.status_code == 401:

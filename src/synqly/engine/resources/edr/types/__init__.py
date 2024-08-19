@@ -6,6 +6,7 @@ from .create_iocs_request import CreateIocsRequest
 from .create_iocs_response import CreateIocsResponse
 from .delete_iocs_response import DeleteIocsResponse
 from .network_quarantine_request import NetworkQuarantineRequest
+from .network_quarantine_response import NetworkQuarantineResponse
 from .query_alerts_response import QueryAlertsResponse
 from .query_applications_response import QueryApplicationsResponse
 from .query_endpoints_response import QueryEndpointsResponse
@@ -20,6 +21,7 @@ __all__ = [
     "CreateIocsResponse",
     "DeleteIocsResponse",
     "NetworkQuarantineRequest",
+    "NetworkQuarantineResponse",
     "QueryAlertsResponse",
     "QueryApplicationsResponse",
     "QueryEndpointsResponse",

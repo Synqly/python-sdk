@@ -8,6 +8,7 @@ from .assets_armis_centrix import AssetsArmisCentrix
 from .assets_nozomi_vantage import AssetsNozomiVantage
 from .assets_service_now import AssetsServiceNow
 from .edr_crowd_strike import EdrCrowdStrike
+from .edr_defender import EdrDefender
 from .edr_sentinel_one import EdrSentinelOne
 from .hooks_http import HooksHttp
 from .identity_entra_id import IdentityEntraId
@@ -72,6 +73,15 @@ class ProviderConfig_AssetsServicenow(AssetsServiceNow):
 
 class ProviderConfig_EdrCrowdstrike(EdrCrowdStrike):
     type: typing.Literal["edr_crowdstrike"]
+
+    class Config:
+        frozen = True
+        smart_union = True
+        allow_population_by_field_name = True
+
+
+class ProviderConfig_EdrDefender(EdrDefender):
+    type: typing.Literal["edr_defender"]
 
     class Config:
         frozen = True
@@ -381,6 +391,7 @@ ProviderConfig = typing.Union[
     ProviderConfig_AssetsNozomiVantage,
     ProviderConfig_AssetsServicenow,
     ProviderConfig_EdrCrowdstrike,
+    ProviderConfig_EdrDefender,
     ProviderConfig_EdrSentinelone,
     ProviderConfig_HooksHttp,
     ProviderConfig_IdentityEntraId,

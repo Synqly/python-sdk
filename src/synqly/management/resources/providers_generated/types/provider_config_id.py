@@ -31,6 +31,11 @@ class ProviderConfigId(str, enum.Enum):
     CrowdStrike Falcon® Insight EDR
     """
 
+    EDR_DEFENDER = "edr_defender"
+    """
+    Microsoft Defender for Endpoint
+    """
+
     EDR_SENTINEL_ONE = "edr_sentinelone"
     """
     SentinelOne Singularity™ Endpoint
@@ -207,6 +212,7 @@ class ProviderConfigId(str, enum.Enum):
         assets_nozomi_vantage: typing.Callable[[], T_Result],
         assets_service_now: typing.Callable[[], T_Result],
         edr_crowd_strike: typing.Callable[[], T_Result],
+        edr_defender: typing.Callable[[], T_Result],
         edr_sentinel_one: typing.Callable[[], T_Result],
         hooks_http: typing.Callable[[], T_Result],
         identity_entra_id: typing.Callable[[], T_Result],
@@ -250,6 +256,8 @@ class ProviderConfigId(str, enum.Enum):
             return assets_service_now()
         if self is ProviderConfigId.EDR_CROWD_STRIKE:
             return edr_crowd_strike()
+        if self is ProviderConfigId.EDR_DEFENDER:
+            return edr_defender()
         if self is ProviderConfigId.EDR_SENTINEL_ONE:
             return edr_sentinel_one()
         if self is ProviderConfigId.HOOKS_HTTP:
