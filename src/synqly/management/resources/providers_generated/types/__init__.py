@@ -38,7 +38,7 @@ from .elasticsearch_credential import (
     ElasticsearchCredential_Token,
     ElasticsearchCredential_TokenId,
 )
-from .entra_id_credential import EntraIdCredential, EntraIdCredential_Token, EntraIdCredential_TokenId
+from .entra_id_credential import EntraIdCredential, EntraIdCredential_OAuthClient, EntraIdCredential_OAuthClientId
 from .gcs_credential import GcsCredential, GcsCredential_Aws, GcsCredential_AwsId
 from .hooks_http import HooksHttp
 from .hooks_http_credential import HooksHttpCredential, HooksHttpCredential_Token, HooksHttpCredential_TokenId
@@ -202,8 +202,8 @@ __all__ = [
     "ElasticsearchCredential_Token",
     "ElasticsearchCredential_TokenId",
     "EntraIdCredential",
-    "EntraIdCredential_Token",
-    "EntraIdCredential_TokenId",
+    "EntraIdCredential_OAuthClient",
+    "EntraIdCredential_OAuthClientId",
     "GcsCredential",
     "GcsCredential_Aws",
     "GcsCredential_AwsId",

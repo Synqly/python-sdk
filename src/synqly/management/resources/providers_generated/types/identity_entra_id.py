@@ -17,17 +17,7 @@ class IdentityEntraId(pydantic.BaseModel):
     Configuration for the Microsoft Entra ID Identity Provider
     """
 
-    client_id: str = pydantic.Field()
-    """
-    Azure Client (Application) ID.
-    """
-
     credential: EntraIdCredential
-    scopes: typing.Optional[typing.List[str]] = pydantic.Field(default=None)
-    """
-    Any custom scopes. Defaults to the primary Microsoft graph API default scope.
-    """
-
     tenant_id: str = pydantic.Field()
     """
     Azure Directory (tenant) ID.

@@ -4,8 +4,8 @@ from __future__ import annotations
 
 import typing
 
-from ...credentials.types.token_credential import TokenCredential
-from ...credentials.types.token_credential_id import TokenCredentialId
+from ...credentials.types.o_auth_client_credential import OAuthClientCredential
+from ...credentials.types.o_auth_client_credential_id import OAuthClientCredentialId
 
 try:
     import pydantic.v1 as pydantic  # type: ignore
@@ -13,8 +13,8 @@ except ImportError:
     import pydantic  # type: ignore
 
 
-class EntraIdCredential_Token(TokenCredential):
-    type: typing.Literal["token"]
+class EntraIdCredential_OAuthClient(OAuthClientCredential):
+    type: typing.Literal["o_auth_client"]
 
     class Config:
         frozen = True
@@ -22,13 +22,13 @@ class EntraIdCredential_Token(TokenCredential):
         allow_population_by_field_name = True
 
 
-class EntraIdCredential_TokenId(pydantic.BaseModel):
-    type: typing.Literal["token_id"]
-    value: TokenCredentialId
+class EntraIdCredential_OAuthClientId(pydantic.BaseModel):
+    type: typing.Literal["o_auth_client_id"]
+    value: OAuthClientCredentialId
 
     class Config:
         frozen = True
         smart_union = True
 
 
-EntraIdCredential = typing.Union[EntraIdCredential_Token, EntraIdCredential_TokenId]
+EntraIdCredential = typing.Union[EntraIdCredential_OAuthClient, EntraIdCredential_OAuthClientId]
