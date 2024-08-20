@@ -11,6 +11,7 @@ class RemoteFieldScope(str, enum.Enum):
     INTEGRATION_CUSTOM = "integration_custom"
     PROJECT_CUSTOM = "project_custom"
     TICKET_CUSTOM = "ticket_custom"
+    UNKNOWN = "unknown"
 
     def visit(
         self,
@@ -18,6 +19,7 @@ class RemoteFieldScope(str, enum.Enum):
         integration_custom: typing.Callable[[], T_Result],
         project_custom: typing.Callable[[], T_Result],
         ticket_custom: typing.Callable[[], T_Result],
+        unknown: typing.Callable[[], T_Result],
     ) -> T_Result:
         if self is RemoteFieldScope.STANDARD:
             return standard()
@@ -27,3 +29,5 @@ class RemoteFieldScope(str, enum.Enum):
             return project_custom()
         if self is RemoteFieldScope.TICKET_CUSTOM:
             return ticket_custom()
+        if self is RemoteFieldScope.UNKNOWN:
+            return unknown()

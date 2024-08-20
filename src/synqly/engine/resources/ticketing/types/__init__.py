@@ -27,6 +27,7 @@ from .query_tickets_response import QueryTicketsResponse
 from .remote_field import RemoteField
 from .remote_field_schema import RemoteFieldSchema
 from .remote_field_scope import RemoteFieldScope
+from .remote_field_type_id import RemoteFieldTypeId
 from .status import Status
 from .ticket import Ticket
 from .ticket_id import TicketId
@@ -60,6 +61,7 @@ __all__ = [
     "RemoteField",
     "RemoteFieldSchema",
     "RemoteFieldScope",
+    "RemoteFieldTypeId",
     "Status",
     "Ticket",
     "TicketId",

@@ -4,6 +4,7 @@ import datetime as dt
 import typing
 
 from ....core.datetime_utils import serialize_datetime
+from .remote_field_type_id import RemoteFieldTypeId
 
 try:
     import pydantic.v1 as pydantic  # type: ignore
@@ -12,8 +13,9 @@ except ImportError:
 
 
 class RemoteFieldSchema(pydantic.BaseModel):
-    field_type: str = pydantic.Field(alias="fieldType")
-    values: typing.Optional[typing.List[str]] = None
+    field_type_id: RemoteFieldTypeId
+    field_type: typing.Optional[str] = pydantic.Field(alias="field_Type", default=None)
+    enum_values: typing.Optional[typing.List[str]] = None
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}
