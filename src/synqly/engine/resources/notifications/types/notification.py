@@ -21,64 +21,59 @@ class Notification(Base):
     """
 
     id: NotificationId
-    priority: Priority = pydantic.Field()
-    """
-    Notification priority
-    """
-
-    notification_status: NotificationStatus = pydantic.Field()
-    """
-    Notification status
-    """
-
-    project: str = pydantic.Field()
-    """
-    Notification project
-    """
-
-    status: str = pydantic.Field()
-    """
-    The current status of the notification.
-    """
-
-    description: str = pydantic.Field()
-    """
-    Notification description.
-    """
-
     summary: str = pydantic.Field()
     """
     Notification summary.
     """
 
-    issue_type: str = pydantic.Field()
+    priority: typing.Optional[Priority] = pydantic.Field(default=None)
+    """
+    Notification priority
+    """
+
+    notification_status: typing.Optional[NotificationStatus] = pydantic.Field(default=None)
+    """
+    Notification status
+    """
+
+    project: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    Notification project
+    """
+
+    status: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    The current status of the notification.
+    """
+
+    description: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    Notification description.
+    """
+
+    issue_type: typing.Optional[str] = pydantic.Field(default=None)
     """
     The notification's type.
     """
 
-    creator: str = pydantic.Field()
+    creator: typing.Optional[str] = pydantic.Field(default=None)
     """
     The user who created this notification.
     """
 
-    assignee: str = pydantic.Field()
+    assignee: typing.Optional[str] = pydantic.Field(default=None)
     """
     Who notification is assigned to.
     """
 
-    contact: str = pydantic.Field()
+    contact: typing.Optional[str] = pydantic.Field(default=None)
     """
     The notification contact information.
     """
 
-    tags: typing.List[str] = pydantic.Field()
+    tags: typing.Optional[typing.List[str]] = pydantic.Field(default=None)
     """
     Associate tags with Notification
-    """
-
-    reference: str = pydantic.Field()
-    """
-    External URL reference
     """
 
     def json(self, **kwargs: typing.Any) -> str:
