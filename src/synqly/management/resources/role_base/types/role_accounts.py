@@ -5,6 +5,7 @@ import typing
 
 from ....core.datetime_utils import serialize_datetime
 from ...integration_base.types.integration_id import IntegrationId
+from ...organization_base.types.environment import Environment
 
 try:
     import pydantic.v1 as pydantic  # type: ignore
@@ -20,7 +21,12 @@ class RoleAccounts(pydantic.BaseModel):
 
     labels: typing.Optional[typing.List[str]] = pydantic.Field(default=None)
     """
-    List of account labels this role definition grants access to.
+    List of account labels this role definition grants access to. If both labels and environments are specified both must pass
+    """
+
+    environments: typing.Optional[typing.List[Environment]] = pydantic.Field(default=None)
+    """
+    Account environments this role definition grants access to. If both labels and environments are specified both must pass
     """
 
     def json(self, **kwargs: typing.Any) -> str:
