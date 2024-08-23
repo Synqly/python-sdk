@@ -39,7 +39,7 @@ class Integration(Base):
 
     account_id: AccountId = pydantic.Field()
     """
-    Account associated with this integration. Use the expand=account parameter with the List and ListAccount APIs to expand the Account to the full object
+    Account associated with this integration. Use the expand=accounts parameter with the List and ListAccount APIs to expand the Account to the full object
     """
 
     account: typing.Optional[Account] = pydantic.Field(default=None)
@@ -69,7 +69,7 @@ class Integration(Base):
 
     integration_point_id: typing.Optional[IntegrationPointId] = pydantic.Field(default=None)
     """
-    Integration Point associated with this integration. Use the expand=integration_point parameter with the List and ListAccount APIs to expand the Integration Point to the full object
+    Integration Point associated with this integration. Use the expand=integration_points parameter with the List and ListAccount APIs to expand the Integration Point to the full object
     """
 
     integration_point: typing.Optional[IntegrationPoint] = pydantic.Field(default=None)

@@ -8,18 +8,26 @@ T_Result = typing.TypeVar("T_Result")
 
 class ListIntegrationOptions(str, enum.Enum):
     ACCOUNT = "account"
+    ACCOUNTS = "accounts"
     INTEGRATION_POINT = "integration_point"
+    INTEGRATION_POINTS = "integration_points"
     ALL = "all"
 
     def visit(
         self,
         account: typing.Callable[[], T_Result],
+        accounts: typing.Callable[[], T_Result],
         integration_point: typing.Callable[[], T_Result],
+        integration_points: typing.Callable[[], T_Result],
         all_: typing.Callable[[], T_Result],
     ) -> T_Result:
         if self is ListIntegrationOptions.ACCOUNT:
             return account()
+        if self is ListIntegrationOptions.ACCOUNTS:
+            return accounts()
         if self is ListIntegrationOptions.INTEGRATION_POINT:
             return integration_point()
+        if self is ListIntegrationOptions.INTEGRATION_POINTS:
+            return integration_points()
         if self is ListIntegrationOptions.ALL:
             return all_()

@@ -32,7 +32,7 @@ class Status(pydantic.BaseModel):
 
     account_id: AccountId = pydantic.Field()
     """
-    Account associated with this status. Use the expand=account parameter with the List API to expand the Account to the full object
+    Account associated with this status. Use the expand=accounts parameter with the List API to expand the Account to the full object
     """
 
     account: typing.Optional[Account] = pydantic.Field(default=None)
@@ -42,7 +42,7 @@ class Status(pydantic.BaseModel):
 
     integration_id: IntegrationId = pydantic.Field()
     """
-    Integration associated with this status. Use the expand=integration parameter with the List API to expand the Account to the full object
+    Integration associated with this status. Use the expand=integrations parameter with the List API to expand the Account to the full object
     """
 
     integration: typing.Optional[Integration] = pydantic.Field(default=None)

@@ -38,7 +38,7 @@ except ImportError:
 OMIT = typing.cast(typing.Any, ...)
 
 
-class BridgeClient:
+class BridgesClient:
     def __init__(self, *, client_wrapper: SyncClientWrapper):
         self._client_wrapper = client_wrapper
 
@@ -489,7 +489,7 @@ class BridgeClient:
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
 
-class AsyncBridgeClient:
+class AsyncBridgesClient:
     def __init__(self, *, client_wrapper: AsyncClientWrapper):
         self._client_wrapper = client_wrapper
 

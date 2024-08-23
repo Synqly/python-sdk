@@ -5,7 +5,7 @@ from . import (
     audit,
     auth,
     auth_base,
-    bridge,
+    bridges,
     capabilities,
     capabilities_base,
     common,
@@ -56,7 +56,7 @@ from .auth_base import (
     LogonResponse,
     LogonResponseResult,
 )
-from .bridge import (
+from .bridges import (
     BridgeGroup,
     BridgeGroupId,
     CreateBridgeRequest,
@@ -907,7 +907,7 @@ __all__ = [
     "audit",
     "auth",
     "auth_base",
-    "bridge",
+    "bridges",
     "capabilities",
     "capabilities_base",
     "common",
