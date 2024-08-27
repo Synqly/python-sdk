@@ -4,6 +4,7 @@ import datetime as dt
 import typing
 
 from ....core.datetime_utils import serialize_datetime
+from .elasticsearch_auth_options import ElasticsearchAuthOptions
 from .elasticsearch_credential import ElasticsearchCredential
 
 try:
@@ -17,6 +18,7 @@ class SiemElasticsearch(pydantic.BaseModel):
     Configuration for Elasticsearch search and analytics engine. Supports both managed and self-hosted Elasticsearch deployments
     """
 
+    auth_options: typing.Optional[ElasticsearchAuthOptions] = None
     credential: ElasticsearchCredential
     index: str = pydantic.Field()
     """

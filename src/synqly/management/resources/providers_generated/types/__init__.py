@@ -33,10 +33,18 @@ from .defender_credential import (
 from .edr_crowd_strike import EdrCrowdStrike
 from .edr_defender import EdrDefender
 from .edr_sentinel_one import EdrSentinelOne
+from .elasticsearch_auth_options import ElasticsearchAuthOptions
 from .elasticsearch_credential import (
     ElasticsearchCredential,
+    ElasticsearchCredential_OAuthClient,
+    ElasticsearchCredential_OAuthClientId,
     ElasticsearchCredential_Token,
     ElasticsearchCredential_TokenId,
+)
+from .elasticsearch_shared_secret import (
+    ElasticsearchSharedSecret,
+    ElasticsearchSharedSecret_Secret,
+    ElasticsearchSharedSecret_SecretId,
 )
 from .entra_id_credential import EntraIdCredential, EntraIdCredential_OAuthClient, EntraIdCredential_OAuthClientId
 from .gcs_credential import GcsCredential, GcsCredential_Aws, GcsCredential_AwsId
@@ -198,9 +206,15 @@ __all__ = [
     "EdrCrowdStrike",
     "EdrDefender",
     "EdrSentinelOne",
+    "ElasticsearchAuthOptions",
     "ElasticsearchCredential",
+    "ElasticsearchCredential_OAuthClient",
+    "ElasticsearchCredential_OAuthClientId",
     "ElasticsearchCredential_Token",
     "ElasticsearchCredential_TokenId",
+    "ElasticsearchSharedSecret",
+    "ElasticsearchSharedSecret_Secret",
+    "ElasticsearchSharedSecret_SecretId",
     "EntraIdCredential",
     "EntraIdCredential_OAuthClient",
     "EntraIdCredential_OAuthClientId",
