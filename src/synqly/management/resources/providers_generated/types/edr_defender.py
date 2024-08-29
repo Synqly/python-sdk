@@ -18,12 +18,12 @@ class EdrDefender(pydantic.BaseModel):
     """
 
     credential: DefenderCredential
-    tenant_id: str = pydantic.Field(alias="tenantId")
+    tenant_id: str = pydantic.Field()
     """
     TenantId for the Microsoft Defender Management Console.
     """
 
-    url_string: str = pydantic.Field(alias="urlString")
+    url: str = pydantic.Field()
     """
     URL for the Microsoft Defender Management Console.
     """
@@ -39,6 +39,5 @@ class EdrDefender(pydantic.BaseModel):
     class Config:
         frozen = True
         smart_union = True
-        allow_population_by_field_name = True
         extra = pydantic.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}

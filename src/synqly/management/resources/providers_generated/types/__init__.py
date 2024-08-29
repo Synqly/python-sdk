@@ -23,13 +23,7 @@ from .crowd_strike_credential import (
     CrowdStrikeCredential_OAuthClientId,
 )
 from .custom_field_mapping import CustomFieldMapping
-from .defender_credential import (
-    DefenderCredential,
-    DefenderCredential_OAuthClient,
-    DefenderCredential_OAuthClientId,
-    DefenderCredential_TenantId,
-    DefenderCredential_UrlString,
-)
+from .defender_credential import DefenderCredential, DefenderCredential_OAuthClient, DefenderCredential_OAuthClientId
 from .edr_crowd_strike import EdrCrowdStrike
 from .edr_defender import EdrDefender
 from .edr_sentinel_one import EdrSentinelOne
@@ -201,8 +195,6 @@ __all__ = [
     "DefenderCredential",
     "DefenderCredential_OAuthClient",
     "DefenderCredential_OAuthClientId",
-    "DefenderCredential_TenantId",
-    "DefenderCredential_UrlString",
     "EdrCrowdStrike",
     "EdrDefender",
     "EdrSentinelOne",

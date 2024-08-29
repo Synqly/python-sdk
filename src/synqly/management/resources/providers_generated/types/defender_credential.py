@@ -31,27 +31,4 @@ class DefenderCredential_OAuthClientId(pydantic.BaseModel):
         smart_union = True
 
 
-class DefenderCredential_TenantId(pydantic.BaseModel):
-    type: typing.Literal["tenantId"]
-    value: str
-
-    class Config:
-        frozen = True
-        smart_union = True
-
-
-class DefenderCredential_UrlString(pydantic.BaseModel):
-    type: typing.Literal["urlString"]
-    value: str
-
-    class Config:
-        frozen = True
-        smart_union = True
-
-
-DefenderCredential = typing.Union[
-    DefenderCredential_OAuthClient,
-    DefenderCredential_OAuthClientId,
-    DefenderCredential_TenantId,
-    DefenderCredential_UrlString,
-]
+DefenderCredential = typing.Union[DefenderCredential_OAuthClient, DefenderCredential_OAuthClientId]
