@@ -24,6 +24,11 @@ class TicketingJira(pydantic.BaseModel):
     Custom field mappings for this provider.
     """
 
+    default_project: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    Default Project for the integration.
+    """
+
     url: str = pydantic.Field()
     """
     URL for the Jira API. This should be the base URL for the API, without any path components and must be HTTPS. For example, "https://tenant.atlassian.net".
