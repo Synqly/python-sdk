@@ -21,7 +21,7 @@ class PermissionSet(pydantic.BaseModel):
     Description of when the permission set should be used and what permissions are granted by the permission set.
     """
 
-    resource_restrictions: typing.List[ResourceRestrictions] = pydantic.Field()
+    resource_restrictions: typing.Optional[typing.List[ResourceRestrictions]] = pydantic.Field(default=None)
     """
     Resources that can be used with this permission set
     """
