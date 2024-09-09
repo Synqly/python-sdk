@@ -33,13 +33,13 @@ class CapabilitiesClient:
         self._client_wrapper = client_wrapper
 
     def list_category(
-        self, *, category: str, request_options: typing.Optional[RequestOptions] = None
+        self, *, category: typing.Optional[str] = None, request_options: typing.Optional[RequestOptions] = None
     ) -> ListCategoryCapabilitiesResponse:
         """
         Returns a list of all `Capabilities`, optionally filtered by connector.
 
         Parameters:
-            - category: str. Optional comma separated list of categories to return; "storage,tickets"
+            - category: typing.Optional[str]. Optional comma separated list of categories to return; "storage,tickets"
 
             - request_options: typing.Optional[RequestOptions]. Request-specific configuration.
         """
@@ -99,13 +99,13 @@ class CapabilitiesClient:
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
     def list_providers(
-        self, *, provider: str, request_options: typing.Optional[RequestOptions] = None
+        self, *, provider: typing.Optional[str] = None, request_options: typing.Optional[RequestOptions] = None
     ) -> ListProviderCapabilitiesResponse:
         """
         Returns a list of all `Capabilities`, optionally filtered by provider.
 
         Parameters:
-            - provider: str. Optional comma separated list of providers to return; "aws_s3,aws_sqs"
+            - provider: typing.Optional[str]. Optional comma separated list of providers to return; "aws_s3,aws_sqs"
 
             - request_options: typing.Optional[RequestOptions]. Request-specific configuration.
         """
@@ -170,13 +170,13 @@ class AsyncCapabilitiesClient:
         self._client_wrapper = client_wrapper
 
     async def list_category(
-        self, *, category: str, request_options: typing.Optional[RequestOptions] = None
+        self, *, category: typing.Optional[str] = None, request_options: typing.Optional[RequestOptions] = None
     ) -> ListCategoryCapabilitiesResponse:
         """
         Returns a list of all `Capabilities`, optionally filtered by connector.
 
         Parameters:
-            - category: str. Optional comma separated list of categories to return; "storage,tickets"
+            - category: typing.Optional[str]. Optional comma separated list of categories to return; "storage,tickets"
 
             - request_options: typing.Optional[RequestOptions]. Request-specific configuration.
         """
@@ -236,13 +236,13 @@ class AsyncCapabilitiesClient:
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
     async def list_providers(
-        self, *, provider: str, request_options: typing.Optional[RequestOptions] = None
+        self, *, provider: typing.Optional[str] = None, request_options: typing.Optional[RequestOptions] = None
     ) -> ListProviderCapabilitiesResponse:
         """
         Returns a list of all `Capabilities`, optionally filtered by provider.
 
         Parameters:
-            - provider: str. Optional comma separated list of providers to return; "aws_s3,aws_sqs"
+            - provider: typing.Optional[str]. Optional comma separated list of providers to return; "aws_s3,aws_sqs"
 
             - request_options: typing.Optional[RequestOptions]. Request-specific configuration.
         """
