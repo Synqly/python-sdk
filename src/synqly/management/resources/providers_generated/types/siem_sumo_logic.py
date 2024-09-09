@@ -18,16 +18,20 @@ class SiemSumoLogic(pydantic.BaseModel):
     Configuration for Sumo Logic Cloud SIEM.
     """
 
-    auto_parse_logs: bool = pydantic.Field()
+    auto_parse_logs: typing.Optional[bool] = pydantic.Field(default=None)
     """
-    Automatically parse logs as JSON when running log queries against Sumo Logic.
+    Automatically parse logs as JSON when running log queries against Sumo Logic. Default is true.
     """
 
-    collection_url: SumoLogicCollectionUrl
-    credential: SumoLogicCredential
-    siem_logs_only: bool = pydantic.Field()
+    collection_url: typing.Optional[SumoLogicCollectionUrl] = pydantic.Field(default=None)
     """
-    Only query for logs that have been processed into the Sumo Logic Cloud SIEM app.
+    Required if you need to send Sumo Logic events from the Synqly API.
+    """
+
+    credential: SumoLogicCredential
+    siem_logs_only: typing.Optional[bool] = pydantic.Field(default=None)
+    """
+    Only query for logs that have been processed into the Sumo Logic Cloud SIEM app. Default is false.
     """
 
     url: str = pydantic.Field()
