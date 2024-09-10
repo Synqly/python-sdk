@@ -3,6 +3,9 @@
 from .account import Account
 from .account_type_id import AccountTypeId
 from .actor import Actor
+from .affected_code import AffectedCode
+from .affected_package import AffectedPackage
+from .affected_package_type_id import AffectedPackageTypeId
 from .agent import Agent
 from .agent_type_id import AgentTypeId
 from .api import Api
@@ -28,6 +31,10 @@ from .dns_answer import DnsAnswer
 from .dns_answer_flag_ids import DnsAnswerFlagIds
 from .dns_query import DnsQuery
 from .dns_query_opcode_id import DnsQueryOpcodeId
+from .domain_contact import DomainContact
+from .domain_contact_type_id import DomainContactTypeId
+from .email import Email
+from .email_auth import EmailAuth
 from .endpoint_connection import EndpointConnection
 from .enrichment import Enrichment
 from .epss import Epss
@@ -48,7 +55,11 @@ from .idp import Idp
 from .image import Image
 from .ja_4_fingerprint import Ja4Fingerprint
 from .ja_4_fingerprint_type_id import Ja4FingerprintTypeId
+from .kb_article import KbArticle
+from .kb_article_install_state_id import KbArticleInstallStateId
 from .keyboard_info import KeyboardInfo
+from .kill_chain_phase import KillChainPhase
+from .kill_chain_phase_phase_id import KillChainPhasePhaseId
 from .ldap_person import LdapPerson
 from .load_balancer import LoadBalancer
 from .location import Location
@@ -74,10 +85,17 @@ from .observable_type_id import ObservableTypeId
 from .organization import Organization
 from .os import Os
 from .os_type_id import OsTypeId
+from .osint import Osint
+from .osint_confidence_id import OsintConfidenceId
+from .osint_tlp import OsintTlp
+from .osint_type_id import OsintTypeId
+from .package import Package
+from .package_type_id import PackageTypeId
 from .policy import Policy
 from .process import Process
 from .process_integrity_id import ProcessIntegrityId
 from .product import Product
+from .remediation import Remediation
 from .reputation import Reputation
 from .reputation_score_id import ReputationScoreId
 from .request import Request
@@ -88,6 +106,8 @@ from .session import Session
 from .sub_technique import SubTechnique
 from .tactic import Tactic
 from .technique import Technique
+from .timespan import Timespan
+from .timespan_type_id import TimespanTypeId
 from .tls import Tls
 from .tls_extension import TlsExtension
 from .tls_extension_type_id import TlsExtensionTypeId
@@ -98,11 +118,17 @@ from .user_mfa_status_id import UserMfaStatusId
 from .user_risk_level_id import UserRiskLevelId
 from .user_type_id import UserTypeId
 from .user_user_status_id import UserUserStatusId
+from .vulnerability import Vulnerability
+from .whois import Whois
+from .whois_dnssec_status_id import WhoisDnssecStatusId
 
 __all__ = [
     "Account",
     "AccountTypeId",
     "Actor",
+    "AffectedCode",
+    "AffectedPackage",
+    "AffectedPackageTypeId",
     "Agent",
     "AgentTypeId",
     "Api",
@@ -128,6 +154,10 @@ __all__ = [
     "DnsAnswerFlagIds",
     "DnsQuery",
     "DnsQueryOpcodeId",
+    "DomainContact",
+    "DomainContactTypeId",
+    "Email",
+    "EmailAuth",
     "EndpointConnection",
     "Enrichment",
     "Epss",
@@ -148,7 +178,11 @@ __all__ = [
     "Image",
     "Ja4Fingerprint",
     "Ja4FingerprintTypeId",
+    "KbArticle",
+    "KbArticleInstallStateId",
     "KeyboardInfo",
+    "KillChainPhase",
+    "KillChainPhasePhaseId",
     "LdapPerson",
     "LoadBalancer",
     "Location",
@@ -174,10 +208,17 @@ __all__ = [
     "Organization",
     "Os",
     "OsTypeId",
+    "Osint",
+    "OsintConfidenceId",
+    "OsintTlp",
+    "OsintTypeId",
+    "Package",
+    "PackageTypeId",
     "Policy",
     "Process",
     "ProcessIntegrityId",
     "Product",
+    "Remediation",
     "Reputation",
     "ReputationScoreId",
     "Request",
@@ -188,6 +229,8 @@ __all__ = [
     "SubTechnique",
     "Tactic",
     "Technique",
+    "Timespan",
+    "TimespanTypeId",
     "Tls",
     "TlsExtension",
     "TlsExtensionTypeId",
@@ -198,4 +241,7 @@ __all__ = [
     "UserRiskLevelId",
     "UserTypeId",
     "UserUserStatusId",
+    "Vulnerability",
+    "Whois",
+    "WhoisDnssecStatusId",
 ]

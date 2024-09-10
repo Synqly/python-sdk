@@ -18,6 +18,7 @@ from ...objects.types.malware import Malware
 from ...objects.types.metadata import Metadata
 from ...objects.types.object import Object
 from ...objects.types.observable import Observable
+from ...objects.types.osint import Osint
 from ...objects.types.process import Process
 from ...objects.types.resource_details import ResourceDetails
 from ...objects.types.vulnerability import Vulnerability
@@ -196,6 +197,11 @@ class SecurityFinding(pydantic.BaseModel):
     observables: typing.Optional[typing.List[Observable]] = pydantic.Field(default=None)
     """
     The observables associated with the event or a finding.
+    """
+
+    osint: typing.List[Osint] = pydantic.Field()
+    """
+    The OSINT (Open Source Intelligence) object contains details related to an indicator such as the indicator itself, related indicators, geolocation, registrar information, subdomains, analyst commentary, and other contextual information. This information can be used to further enrich a detection or finding by providing decisioning support to other analysts and engineers.
     """
 
     process: typing.Optional[Process] = pydantic.Field(default=None)

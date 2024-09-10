@@ -11,6 +11,7 @@ from .analytic import Analytic
 from .analytic_type_id import AnalyticTypeId
 from .api import Api
 from .attack import Attack
+from .autonomous_system import AutonomousSystem
 from .certificate import Certificate
 from .cis_csc import CisCsc
 from .cloud import Cloud
@@ -29,6 +30,12 @@ from .digital_signature import DigitalSignature
 from .digital_signature_algorithm_id import DigitalSignatureAlgorithmId
 from .digital_signature_state_id import DigitalSignatureStateId
 from .display import Display
+from .dns_answer import DnsAnswer
+from .dns_answer_flag_ids import DnsAnswerFlagIds
+from .domain_contact import DomainContact
+from .domain_contact_type_id import DomainContactTypeId
+from .email import Email
+from .email_auth import EmailAuth
 from .enrichment import Enrichment
 from .epss import Epss
 from .extension import Extension
@@ -61,6 +68,10 @@ from .observable_type_id import ObservableTypeId
 from .organization import Organization
 from .os import Os
 from .os_type_id import OsTypeId
+from .osint import Osint
+from .osint_confidence_id import OsintConfidenceId
+from .osint_tlp import OsintTlp
+from .osint_type_id import OsintTypeId
 from .package import Package
 from .package_type_id import PackageTypeId
 from .process import Process
@@ -86,6 +97,8 @@ from .user_risk_level_id import UserRiskLevelId
 from .user_type_id import UserTypeId
 from .user_user_status_id import UserUserStatusId
 from .vulnerability import Vulnerability
+from .whois import Whois
+from .whois_dnssec_status_id import WhoisDnssecStatusId
 
 __all__ = [
     "Account",
@@ -99,6 +112,7 @@ __all__ = [
     "AnalyticTypeId",
     "Api",
     "Attack",
+    "AutonomousSystem",
     "Certificate",
     "CisCsc",
     "Cloud",
@@ -117,6 +131,12 @@ __all__ = [
     "DigitalSignatureAlgorithmId",
     "DigitalSignatureStateId",
     "Display",
+    "DnsAnswer",
+    "DnsAnswerFlagIds",
+    "DomainContact",
+    "DomainContactTypeId",
+    "Email",
+    "EmailAuth",
     "Enrichment",
     "Epss",
     "Extension",
@@ -149,6 +169,10 @@ __all__ = [
     "Organization",
     "Os",
     "OsTypeId",
+    "Osint",
+    "OsintConfidenceId",
+    "OsintTlp",
+    "OsintTypeId",
     "Package",
     "PackageTypeId",
     "Process",
@@ -174,4 +198,6 @@ __all__ = [
     "UserTypeId",
     "UserUserStatusId",
     "Vulnerability",
+    "Whois",
+    "WhoisDnssecStatusId",
 ]

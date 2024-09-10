@@ -25,6 +25,7 @@ from ...objects.types.network_proxy import NetworkProxy
 from ...objects.types.network_traffic import NetworkTraffic
 from ...objects.types.object import Object
 from ...objects.types.observable import Observable
+from ...objects.types.osint import Osint
 from ...objects.types.tls import Tls
 from ...objects.types.url import Url
 from .action_id import ActionId
@@ -197,6 +198,11 @@ class NetworkActivity(pydantic.BaseModel):
     observables: typing.Optional[typing.List[Observable]] = pydantic.Field(default=None)
     """
     The observables associated with the event or a finding.
+    """
+
+    osint: typing.List[Osint] = pydantic.Field()
+    """
+    The OSINT (Open Source Intelligence) object contains details related to an indicator such as the indicator itself, related indicators, geolocation, registrar information, subdomains, analyst commentary, and other contextual information. This information can be used to further enrich a detection or finding by providing decisioning support to other analysts and engineers.
     """
 
     proxy: typing.Optional[NetworkProxy] = pydantic.Field(default=None)

@@ -32,6 +32,7 @@ from .types.query_alerts_response import QueryAlertsResponse
 from .types.query_applications_response import QueryApplicationsResponse
 from .types.query_endpoints_response import QueryEndpointsResponse
 from .types.query_iocs_response import QueryIocsResponse
+from .types.query_posture_score_response import QueryPostureScoreResponse
 from .types.query_threats_response import QueryThreatsResponse
 
 try:
@@ -725,6 +726,78 @@ class EdrClient:
             raise ApiError(status_code=_response.status_code, body=_response.text)
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
+    def query_posture_score(
+        self,
+        *,
+        limit: typing.Optional[int] = None,
+        cursor: typing.Optional[str] = None,
+        order: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
+        filter: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
+        include_raw_data: typing.Optional[bool] = None,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> QueryPostureScoreResponse:
+        """
+        Returns the posture score of the endpoint assets that match the query from the token-linked EDR source.
+
+        Parameters:
+            - limit: typing.Optional[int]. Number of scores for endpoints to return. Defaults to 50.
+
+            - cursor: typing.Optional[str]. Start search from cursor position.
+
+            - order: typing.Optional[typing.Union[str, typing.Sequence[str]]]. Select a field to order the results by. Defaults to `name`. To control the direction of the sorting, append
+                                                                               `[asc]` or `[desc]` to the field name. For example, `name[asc]` will sort the results by `name` in ascending order.
+                                                                               The ordering defaults to `asc` if not specified.
+            - filter: typing.Optional[typing.Union[str, typing.Sequence[str]]]. Filter results by this query. For more information on filtering, refer to our Filtering Guide. Defaults to no filter.
+                                                                                If used more than once, the queries are ANDed together.
+            - include_raw_data: typing.Optional[bool]. Include the raw data from the EDR in the response. Defaults to `false`.
+
+            - request_options: typing.Optional[RequestOptions]. Request-specific configuration.
+        """
+        _response = self._client_wrapper.httpx_client.request(
+            "GET",
+            urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", "v1/edr/posture_score"),
+            params=jsonable_encoder(
+                remove_none_from_dict(
+                    {
+                        "limit": limit,
+                        "cursor": cursor,
+                        "order": order,
+                        "filter": filter,
+                        "include_raw_data": include_raw_data,
+                        **(
+                            request_options.get("additional_query_parameters", {})
+                            if request_options is not None
+                            else {}
+                        ),
+                    }
+                )
+            ),
+            headers=jsonable_encoder(
+                remove_none_from_dict(
+                    {
+                        **self._client_wrapper.get_headers(),
+                        **(request_options.get("additional_headers", {}) if request_options is not None else {}),
+                    }
+                )
+            ),
+            timeout=request_options.get("timeout_in_seconds")
+            if request_options is not None and request_options.get("timeout_in_seconds") is not None
+            else 60,
+            retries=0,
+            max_retries=request_options.get("max_retries") if request_options is not None else 0,  # type: ignore
+        )
+        if 200 <= _response.status_code < 300:
+            return pydantic.parse_obj_as(QueryPostureScoreResponse, _response.json())  # type: ignore
+        if _response.status_code == 400:
+            raise BadRequestError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+        if _response.status_code == 500:
+            raise InternalServerError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+        try:
+            _response_json = _response.json()
+        except JSONDecodeError:
+            raise ApiError(status_code=_response.status_code, body=_response.text)
+        raise ApiError(status_code=_response.status_code, body=_response_json)
+
 
 class AsyncEdrClient:
     def __init__(self, *, client_wrapper: AsyncClientWrapper):
@@ -1402,6 +1475,78 @@ class AsyncEdrClient:
             raise ServiceUnavailableError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
         if _response.status_code == 504:
             raise GatewayTimeoutError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+        try:
+            _response_json = _response.json()
+        except JSONDecodeError:
+            raise ApiError(status_code=_response.status_code, body=_response.text)
+        raise ApiError(status_code=_response.status_code, body=_response_json)
+
+    async def query_posture_score(
+        self,
+        *,
+        limit: typing.Optional[int] = None,
+        cursor: typing.Optional[str] = None,
+        order: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
+        filter: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
+        include_raw_data: typing.Optional[bool] = None,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> QueryPostureScoreResponse:
+        """
+        Returns the posture score of the endpoint assets that match the query from the token-linked EDR source.
+
+        Parameters:
+            - limit: typing.Optional[int]. Number of scores for endpoints to return. Defaults to 50.
+
+            - cursor: typing.Optional[str]. Start search from cursor position.
+
+            - order: typing.Optional[typing.Union[str, typing.Sequence[str]]]. Select a field to order the results by. Defaults to `name`. To control the direction of the sorting, append
+                                                                               `[asc]` or `[desc]` to the field name. For example, `name[asc]` will sort the results by `name` in ascending order.
+                                                                               The ordering defaults to `asc` if not specified.
+            - filter: typing.Optional[typing.Union[str, typing.Sequence[str]]]. Filter results by this query. For more information on filtering, refer to our Filtering Guide. Defaults to no filter.
+                                                                                If used more than once, the queries are ANDed together.
+            - include_raw_data: typing.Optional[bool]. Include the raw data from the EDR in the response. Defaults to `false`.
+
+            - request_options: typing.Optional[RequestOptions]. Request-specific configuration.
+        """
+        _response = await self._client_wrapper.httpx_client.request(
+            "GET",
+            urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", "v1/edr/posture_score"),
+            params=jsonable_encoder(
+                remove_none_from_dict(
+                    {
+                        "limit": limit,
+                        "cursor": cursor,
+                        "order": order,
+                        "filter": filter,
+                        "include_raw_data": include_raw_data,
+                        **(
+                            request_options.get("additional_query_parameters", {})
+                            if request_options is not None
+                            else {}
+                        ),
+                    }
+                )
+            ),
+            headers=jsonable_encoder(
+                remove_none_from_dict(
+                    {
+                        **self._client_wrapper.get_headers(),
+                        **(request_options.get("additional_headers", {}) if request_options is not None else {}),
+                    }
+                )
+            ),
+            timeout=request_options.get("timeout_in_seconds")
+            if request_options is not None and request_options.get("timeout_in_seconds") is not None
+            else 60,
+            retries=0,
+            max_retries=request_options.get("max_retries") if request_options is not None else 0,  # type: ignore
+        )
+        if 200 <= _response.status_code < 300:
+            return pydantic.parse_obj_as(QueryPostureScoreResponse, _response.json())  # type: ignore
+        if _response.status_code == 400:
+            raise BadRequestError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+        if _response.status_code == 500:
+            raise InternalServerError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
         try:
             _response_json = _response.json()
         except JSONDecodeError:

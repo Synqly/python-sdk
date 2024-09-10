@@ -14,6 +14,7 @@ from ...objects.types.enrichment import Enrichment
 from ...objects.types.metadata import Metadata
 from ...objects.types.object import Object
 from ...objects.types.observable import Observable
+from ...objects.types.osint import Osint
 from ...objects.types.policy import Policy
 from ...objects.types.scan import Scan
 from .activity_id import ActivityId
@@ -177,6 +178,11 @@ class ScanActivity(pydantic.BaseModel):
     observables: typing.Optional[typing.List[Observable]] = pydantic.Field(default=None)
     """
     The observables associated with the event or a finding.
+    """
+
+    osint: typing.List[Osint] = pydantic.Field()
+    """
+    The OSINT (Open Source Intelligence) object contains details related to an indicator such as the indicator itself, related indicators, geolocation, registrar information, subdomains, analyst commentary, and other contextual information. This information can be used to further enrich a detection or finding by providing decisioning support to other analysts and engineers.
     """
 
     policy: typing.Optional[Policy] = pydantic.Field(default=None)
