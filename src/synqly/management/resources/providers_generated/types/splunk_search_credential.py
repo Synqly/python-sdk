@@ -6,11 +6,21 @@ import typing
 
 from ...credentials.types.token_credential import TokenCredential
 from ...credentials.types.token_credential_id import TokenCredentialId
+from .splunk_bridge_search_credential import SplunkBridgeSearchCredential
 
 try:
     import pydantic.v1 as pydantic  # type: ignore
 except ImportError:
     import pydantic  # type: ignore
+
+
+class SplunkSearchCredential_Bridge(pydantic.BaseModel):
+    type: typing.Literal["bridge"]
+    value: SplunkBridgeSearchCredential
+
+    class Config:
+        frozen = True
+        smart_union = True
 
 
 class SplunkSearchCredential_Token(TokenCredential):
@@ -31,4 +41,6 @@ class SplunkSearchCredential_TokenId(pydantic.BaseModel):
         smart_union = True
 
 
-SplunkSearchCredential = typing.Union[SplunkSearchCredential_Token, SplunkSearchCredential_TokenId]
+SplunkSearchCredential = typing.Union[
+    SplunkSearchCredential_Bridge, SplunkSearchCredential_Token, SplunkSearchCredential_TokenId
+]

@@ -4,6 +4,7 @@ import datetime as dt
 import typing
 
 from ....core.datetime_utils import serialize_datetime
+from .bridge_local_credential import BridgeLocalCredential
 
 try:
     import pydantic.v1 as pydantic  # type: ignore
@@ -11,29 +12,29 @@ except ImportError:
     import pydantic  # type: ignore
 
 
-class OAuthClientCredential(pydantic.BaseModel):
+class BridgeOAuthClientCredential(pydantic.BaseModel):
     """
-    A Client ID and secret used for authenticating with OAuth 2.0 compatible service using the client credentials grant.
+    A Client ID and secret used for authenticating with OAuth 2.0 compatible service using the client credentials grant. ClientId and ClientSecret contain the keys to the local credential store.
     """
 
-    token_url: typing.Optional[str] = pydantic.Field(default=None)
+    token_url: typing.Optional[BridgeLocalCredential] = pydantic.Field(default=None)
     """
     Optional URL for the OAuth 2.0 token exchange if it can not be constructed based on provider configuration
     """
 
-    client_id: str = pydantic.Field()
+    client_id: BridgeLocalCredential = pydantic.Field()
     """
     The ID of the client application defined at the service provider
     """
 
-    client_secret: str = pydantic.Field()
+    client_secret: BridgeLocalCredential = pydantic.Field()
     """
     Secret value for authentication
     """
 
-    extra: typing.Optional[typing.Dict[str, typing.Any]] = pydantic.Field(default=None)
+    extra: typing.Optional[BridgeLocalCredential] = pydantic.Field(default=None)
     """
-    Optional connection specific JSON map data such as a signing key ID or organization ID
+    Optional connection specific meta data such as a signing key ID or organization ID
     """
 
     def json(self, **kwargs: typing.Any) -> str:

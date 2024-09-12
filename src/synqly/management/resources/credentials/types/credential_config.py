@@ -6,9 +6,15 @@ import typing
 
 from .aws_credential import AwsCredential
 from .basic_credential import BasicCredential
+from .bridge_credential import BridgeCredential
 from .o_auth_client_credential import OAuthClientCredential
 from .secret_credential import SecretCredential
 from .token_credential import TokenCredential
+
+try:
+    import pydantic.v1 as pydantic  # type: ignore
+except ImportError:
+    import pydantic  # type: ignore
 
 
 class CredentialConfig_Aws(AwsCredential):
@@ -56,10 +62,20 @@ class CredentialConfig_OAuthClient(OAuthClientCredential):
         allow_population_by_field_name = True
 
 
+class CredentialConfig_Bridge(pydantic.BaseModel):
+    type: typing.Literal["bridge"]
+    value: BridgeCredential
+
+    class Config:
+        frozen = True
+        smart_union = True
+
+
 CredentialConfig = typing.Union[
     CredentialConfig_Aws,
     CredentialConfig_Token,
     CredentialConfig_Basic,
     CredentialConfig_Secret,
     CredentialConfig_OAuthClient,
+    CredentialConfig_Bridge,
 ]

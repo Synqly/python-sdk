@@ -43,7 +43,7 @@ class Credential(Base):
 
     organization_webhook_id: typing.Optional[WebhookId] = pydantic.Field(default=None)
     """
-    Integration Point associated with this credential.
+    Organization Webhook associated with this credential.
     """
 
     owner_type: OwnerType = pydantic.Field()

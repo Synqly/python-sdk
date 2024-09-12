@@ -6,11 +6,21 @@ import typing
 
 from ...credentials.types.token_credential import TokenCredential
 from ...credentials.types.token_credential_id import TokenCredentialId
+from .splunk_bridge_hec_token import SplunkBridgeHecToken
 
 try:
     import pydantic.v1 as pydantic  # type: ignore
 except ImportError:
     import pydantic  # type: ignore
+
+
+class SplunkHecToken_Bridge(pydantic.BaseModel):
+    type: typing.Literal["bridge"]
+    value: SplunkBridgeHecToken
+
+    class Config:
+        frozen = True
+        smart_union = True
 
 
 class SplunkHecToken_Token(TokenCredential):
@@ -31,4 +41,4 @@ class SplunkHecToken_TokenId(pydantic.BaseModel):
         smart_union = True
 
 
-SplunkHecToken = typing.Union[SplunkHecToken_Token, SplunkHecToken_TokenId]
+SplunkHecToken = typing.Union[SplunkHecToken_Bridge, SplunkHecToken_Token, SplunkHecToken_TokenId]

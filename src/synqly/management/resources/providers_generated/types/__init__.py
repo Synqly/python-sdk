@@ -28,8 +28,21 @@ from .edr_crowd_strike import EdrCrowdStrike
 from .edr_defender import EdrDefender
 from .edr_sentinel_one import EdrSentinelOne
 from .elasticsearch_auth_options import ElasticsearchAuthOptions
+from .elasticsearch_bridge_credentials import (
+    ElasticsearchBridgeCredentials,
+    ElasticsearchBridgeCredentials_BridgeOAuthClient,
+    ElasticsearchBridgeCredentials_BridgeOAuthClientId,
+    ElasticsearchBridgeCredentials_BridgeToken,
+    ElasticsearchBridgeCredentials_BridgeTokenId,
+)
+from .elasticsearch_bridge_shared_secret import (
+    ElasticsearchBridgeSharedSecret,
+    ElasticsearchBridgeSharedSecret_BridgeSecret,
+    ElasticsearchBridgeSharedSecret_BridgeSecretId,
+)
 from .elasticsearch_credential import (
     ElasticsearchCredential,
+    ElasticsearchCredential_Bridge,
     ElasticsearchCredential_OAuthClient,
     ElasticsearchCredential_OAuthClientId,
     ElasticsearchCredential_Token,
@@ -37,6 +50,7 @@ from .elasticsearch_credential import (
 )
 from .elasticsearch_shared_secret import (
     ElasticsearchSharedSecret,
+    ElasticsearchSharedSecret_Bridge,
     ElasticsearchSharedSecret_Secret,
     ElasticsearchSharedSecret_SecretId,
 )
@@ -129,9 +143,20 @@ from .sink_aws_sqs import SinkAwsSqs
 from .sink_azure_monitor_logs import SinkAzureMonitorLogs
 from .sink_mock import SinkMock
 from .slack_credential import SlackCredential, SlackCredential_Token, SlackCredential_TokenId
-from .splunk_hec_token import SplunkHecToken, SplunkHecToken_Token, SplunkHecToken_TokenId
+from .splunk_bridge_hec_token import (
+    SplunkBridgeHecToken,
+    SplunkBridgeHecToken_BridgeToken,
+    SplunkBridgeHecToken_BridgeTokenId,
+)
+from .splunk_bridge_search_credential import (
+    SplunkBridgeSearchCredential,
+    SplunkBridgeSearchCredential_BridgeToken,
+    SplunkBridgeSearchCredential_BridgeTokenId,
+)
+from .splunk_hec_token import SplunkHecToken, SplunkHecToken_Bridge, SplunkHecToken_Token, SplunkHecToken_TokenId
 from .splunk_search_credential import (
     SplunkSearchCredential,
+    SplunkSearchCredential_Bridge,
     SplunkSearchCredential_Token,
     SplunkSearchCredential_TokenId,
 )
@@ -199,12 +224,22 @@ __all__ = [
     "EdrDefender",
     "EdrSentinelOne",
     "ElasticsearchAuthOptions",
+    "ElasticsearchBridgeCredentials",
+    "ElasticsearchBridgeCredentials_BridgeOAuthClient",
+    "ElasticsearchBridgeCredentials_BridgeOAuthClientId",
+    "ElasticsearchBridgeCredentials_BridgeToken",
+    "ElasticsearchBridgeCredentials_BridgeTokenId",
+    "ElasticsearchBridgeSharedSecret",
+    "ElasticsearchBridgeSharedSecret_BridgeSecret",
+    "ElasticsearchBridgeSharedSecret_BridgeSecretId",
     "ElasticsearchCredential",
+    "ElasticsearchCredential_Bridge",
     "ElasticsearchCredential_OAuthClient",
     "ElasticsearchCredential_OAuthClientId",
     "ElasticsearchCredential_Token",
     "ElasticsearchCredential_TokenId",
     "ElasticsearchSharedSecret",
+    "ElasticsearchSharedSecret_Bridge",
     "ElasticsearchSharedSecret_Secret",
     "ElasticsearchSharedSecret_SecretId",
     "EntraIdCredential",
@@ -310,10 +345,18 @@ __all__ = [
     "SlackCredential",
     "SlackCredential_Token",
     "SlackCredential_TokenId",
+    "SplunkBridgeHecToken",
+    "SplunkBridgeHecToken_BridgeToken",
+    "SplunkBridgeHecToken_BridgeTokenId",
+    "SplunkBridgeSearchCredential",
+    "SplunkBridgeSearchCredential_BridgeToken",
+    "SplunkBridgeSearchCredential_BridgeTokenId",
     "SplunkHecToken",
+    "SplunkHecToken_Bridge",
     "SplunkHecToken_Token",
     "SplunkHecToken_TokenId",
     "SplunkSearchCredential",
+    "SplunkSearchCredential_Bridge",
     "SplunkSearchCredential_Token",
     "SplunkSearchCredential_TokenId",
     "StatusMapping",

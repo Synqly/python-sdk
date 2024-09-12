@@ -4,6 +4,7 @@ import datetime as dt
 import typing
 
 from ....core.datetime_utils import serialize_datetime
+from .bridge_local_credential import BridgeLocalCredential
 
 try:
     import pydantic.v1 as pydantic  # type: ignore
@@ -11,29 +12,24 @@ except ImportError:
     import pydantic  # type: ignore
 
 
-class OAuthClientCredential(pydantic.BaseModel):
+class BridgeAwsCredential(pydantic.BaseModel):
     """
-    A Client ID and secret used for authenticating with OAuth 2.0 compatible service using the client credentials grant.
-    """
-
-    token_url: typing.Optional[str] = pydantic.Field(default=None)
-    """
-    Optional URL for the OAuth 2.0 token exchange if it can not be constructed based on provider configuration
+    AWS access key to authenticate with AWS. Access keys are long-term credentials for an IAM user and consist of an ID and secret. Follow [this guide to generate access and secret keys](https://docs.aws.amazon.com/general/latest/gr/aws-sec-cred-types.html#access-keys-and-secret-access-keys). You may optionally provide a session token if you are using temporary credentials.
     """
 
-    client_id: str = pydantic.Field()
+    access_key_id: BridgeLocalCredential = pydantic.Field()
     """
-    The ID of the client application defined at the service provider
-    """
-
-    client_secret: str = pydantic.Field()
-    """
-    Secret value for authentication
+    ID portion of the AWS access key pair.
     """
 
-    extra: typing.Optional[typing.Dict[str, typing.Any]] = pydantic.Field(default=None)
+    secret_access_key: BridgeLocalCredential = pydantic.Field()
     """
-    Optional connection specific JSON map data such as a signing key ID or organization ID
+    Secret portion of the AWS access key pair.
+    """
+
+    session: typing.Optional[BridgeLocalCredential] = pydantic.Field(default=None)
+    """
+    A temporary session token. Session tokens are optional and are only necessary if you are using temporary credentials.
     """
 
     def json(self, **kwargs: typing.Any) -> str:
