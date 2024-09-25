@@ -56,8 +56,6 @@ from .elasticsearch_shared_secret import (
 )
 from .entra_id_credential import EntraIdCredential, EntraIdCredential_OAuthClient, EntraIdCredential_OAuthClientId
 from .gcs_credential import GcsCredential, GcsCredential_Aws, GcsCredential_AwsId
-from .hooks_http import HooksHttp
-from .hooks_http_credential import HooksHttpCredential, HooksHttpCredential_Token, HooksHttpCredential_TokenId
 from .identity_entra_id import IdentityEntraId
 from .identity_okta import IdentityOkta
 from .identity_ping_one import IdentityPingOne
@@ -89,7 +87,6 @@ from .provider_config import (
     ProviderConfig_EdrCrowdstrike,
     ProviderConfig_EdrDefender,
     ProviderConfig_EdrSentinelone,
-    ProviderConfig_HooksHttp,
     ProviderConfig_IdentityEntraId,
     ProviderConfig_IdentityOkta,
     ProviderConfig_IdentityPingone,
@@ -248,10 +245,6 @@ __all__ = [
     "GcsCredential",
     "GcsCredential_Aws",
     "GcsCredential_AwsId",
-    "HooksHttp",
-    "HooksHttpCredential",
-    "HooksHttpCredential_Token",
-    "HooksHttpCredential_TokenId",
     "IdentityEntraId",
     "IdentityOkta",
     "IdentityPingOne",
@@ -285,7 +278,6 @@ __all__ = [
     "ProviderConfig_EdrCrowdstrike",
     "ProviderConfig_EdrDefender",
     "ProviderConfig_EdrSentinelone",
-    "ProviderConfig_HooksHttp",
     "ProviderConfig_IdentityEntraId",
     "ProviderConfig_IdentityOkta",
     "ProviderConfig_IdentityPingone",

@@ -16,6 +16,9 @@ from .types import (
     UpdateIntegrationRequest,
     UpdateIntegrationResponse,
     VerifyIntegrationRequest,
+    WebhookConfig,
+    WebhookEvent,
+    WebhookItem,
 )
 
 __all__ = [
@@ -34,4 +37,7 @@ __all__ = [
     "UpdateIntegrationRequest",
     "UpdateIntegrationResponse",
     "VerifyIntegrationRequest",
+    "WebhookConfig",
+    "WebhookEvent",
+    "WebhookItem",
 ]

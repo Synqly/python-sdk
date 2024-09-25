@@ -7,6 +7,7 @@ from ....core.datetime_utils import serialize_datetime
 from ...integration_points.types.integration_point_id import IntegrationPointId
 from ...providers_generated.types.provider_config import ProviderConfig
 from .bridge_selector import BridgeSelector
+from .webhook_config import WebhookConfig
 
 try:
     import pydantic.v1 as pydantic  # type: ignore
@@ -38,6 +39,11 @@ class CreateIntegrationRequest(pydantic.BaseModel):
     bridge_selector: typing.Optional[BridgeSelector] = pydantic.Field(default=None)
     """
     Use a Bridge to connect to the provider.
+    """
+
+    webhook_config: typing.Optional[WebhookConfig] = pydantic.Field(default=None)
+    """
+    Web hook config for this integration
     """
 
     def json(self, **kwargs: typing.Any) -> str:

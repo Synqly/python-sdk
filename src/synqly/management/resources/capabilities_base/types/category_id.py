@@ -13,7 +13,6 @@ class CategoryId(str, enum.Enum):
 
     ASSETS = "assets"
     EDR = "edr"
-    HOOKS = "hooks"
     IDENTITY = "identity"
     NOTIFICATIONS = "notifications"
     SIEM = "siem"
@@ -26,7 +25,6 @@ class CategoryId(str, enum.Enum):
         self,
         assets: typing.Callable[[], T_Result],
         edr: typing.Callable[[], T_Result],
-        hooks: typing.Callable[[], T_Result],
         identity: typing.Callable[[], T_Result],
         notifications: typing.Callable[[], T_Result],
         siem: typing.Callable[[], T_Result],
@@ -39,8 +37,6 @@ class CategoryId(str, enum.Enum):
             return assets()
         if self is CategoryId.EDR:
             return edr()
-        if self is CategoryId.HOOKS:
-            return hooks()
         if self is CategoryId.IDENTITY:
             return identity()
         if self is CategoryId.NOTIFICATIONS:

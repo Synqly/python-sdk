@@ -13,6 +13,9 @@ from .patch_integration_response import PatchIntegrationResponse
 from .update_integration_request import UpdateIntegrationRequest
 from .update_integration_response import UpdateIntegrationResponse
 from .verify_integration_request import VerifyIntegrationRequest
+from .webhook_config import WebhookConfig
+from .webhook_event import WebhookEvent
+from .webhook_item import WebhookItem
 
 __all__ = [
     "BridgeSelector",
@@ -30,4 +33,7 @@ __all__ = [
     "UpdateIntegrationRequest",
     "UpdateIntegrationResponse",
     "VerifyIntegrationRequest",
+    "WebhookConfig",
+    "WebhookEvent",
+    "WebhookItem",
 ]

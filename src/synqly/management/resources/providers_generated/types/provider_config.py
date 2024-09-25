@@ -10,7 +10,6 @@ from .assets_service_now import AssetsServiceNow
 from .edr_crowd_strike import EdrCrowdStrike
 from .edr_defender import EdrDefender
 from .edr_sentinel_one import EdrSentinelOne
-from .hooks_http import HooksHttp
 from .identity_entra_id import IdentityEntraId
 from .identity_okta import IdentityOkta
 from .identity_ping_one import IdentityPingOne
@@ -91,15 +90,6 @@ class ProviderConfig_EdrDefender(EdrDefender):
 
 class ProviderConfig_EdrSentinelone(EdrSentinelOne):
     type: typing.Literal["edr_sentinelone"]
-
-    class Config:
-        frozen = True
-        smart_union = True
-        allow_population_by_field_name = True
-
-
-class ProviderConfig_HooksHttp(HooksHttp):
-    type: typing.Literal["hooks_http"]
 
     class Config:
         frozen = True
@@ -393,7 +383,6 @@ ProviderConfig = typing.Union[
     ProviderConfig_EdrCrowdstrike,
     ProviderConfig_EdrDefender,
     ProviderConfig_EdrSentinelone,
-    ProviderConfig_HooksHttp,
     ProviderConfig_IdentityEntraId,
     ProviderConfig_IdentityOkta,
     ProviderConfig_IdentityPingone,

@@ -41,11 +41,6 @@ class ProviderConfigId(str, enum.Enum):
     SentinelOne Singularity™ Endpoint
     """
 
-    HOOKS_HTTP = "hooks_http"
-    """
-    HTTP Webhook
-    """
-
     IDENTITY_ENTRA_ID = "identity_entra_id"
     """
     Microsoft Entra ID
@@ -214,7 +209,6 @@ class ProviderConfigId(str, enum.Enum):
         edr_crowd_strike: typing.Callable[[], T_Result],
         edr_defender: typing.Callable[[], T_Result],
         edr_sentinel_one: typing.Callable[[], T_Result],
-        hooks_http: typing.Callable[[], T_Result],
         identity_entra_id: typing.Callable[[], T_Result],
         identity_okta: typing.Callable[[], T_Result],
         identity_ping_one: typing.Callable[[], T_Result],
@@ -260,8 +254,6 @@ class ProviderConfigId(str, enum.Enum):
             return edr_defender()
         if self is ProviderConfigId.EDR_SENTINEL_ONE:
             return edr_sentinel_one()
-        if self is ProviderConfigId.HOOKS_HTTP:
-            return hooks_http()
         if self is ProviderConfigId.IDENTITY_ENTRA_ID:
             return identity_entra_id()
         if self is ProviderConfigId.IDENTITY_OKTA:
