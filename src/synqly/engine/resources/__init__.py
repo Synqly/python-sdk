@@ -80,6 +80,7 @@ from .events import (
     Event_VulnerabilityFinding,
     Event_WebResourceAccessActivity,
 )
+from .hooks import TicketingWebhookResponse
 from .identity import (
     GetGroupMembersResponse,
     GetGroupResponse,
@@ -283,6 +284,7 @@ __all__ = [
     "ThreatEvent",
     "Ticket",
     "TicketId",
+    "TicketingWebhookResponse",
     "TooManyRequestsError",
     "UnauthorizedError",
     "UnsupportedMediaTypeError",
