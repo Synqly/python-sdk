@@ -41,7 +41,7 @@ class HooksClient:
         self, *, token: str, request: typing.Any, request_options: typing.Optional[RequestOptions] = None
     ) -> None:
         """
-        Proxy webhook messages from webhook providers to webhook recievers
+        Proxy webhook messages from webhook providers to webhook recievers. For exact webhook implementations please refer to providers e.g. Ticketing. This is just an API call used in that context, not a standalone implementation.
 
         Parameters:
             - token: str. Optional: if you can't use the HTTP Authorization Bearer, specify integration access token here.
@@ -128,7 +128,7 @@ class AsyncHooksClient:
         self, *, token: str, request: typing.Any, request_options: typing.Optional[RequestOptions] = None
     ) -> None:
         """
-        Proxy webhook messages from webhook providers to webhook recievers
+        Proxy webhook messages from webhook providers to webhook recievers. For exact webhook implementations please refer to providers e.g. Ticketing. This is just an API call used in that context, not a standalone implementation.
 
         Parameters:
             - token: str. Optional: if you can't use the HTTP Authorization Bearer, specify integration access token here.
