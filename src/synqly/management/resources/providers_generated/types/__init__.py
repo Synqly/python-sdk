@@ -128,7 +128,13 @@ from .rapid_7_insight_cloud_credential import (
     Rapid7InsightCloudCredential_TokenId,
 )
 from .sentinel_one_credential import SentinelOneCredential, SentinelOneCredential_Token, SentinelOneCredential_TokenId
-from .service_now_credential import ServiceNowCredential, ServiceNowCredential_Basic, ServiceNowCredential_BasicId
+from .service_now_credential import (
+    ServiceNowCredential,
+    ServiceNowCredential_Basic,
+    ServiceNowCredential_BasicId,
+    ServiceNowCredential_Token,
+    ServiceNowCredential_TokenId,
+)
 from .siem_elasticsearch import SiemElasticsearch
 from .siem_mock import SiemMock
 from .siem_q_radar import SiemQRadar
@@ -324,6 +330,8 @@ __all__ = [
     "ServiceNowCredential",
     "ServiceNowCredential_Basic",
     "ServiceNowCredential_BasicId",
+    "ServiceNowCredential_Token",
+    "ServiceNowCredential_TokenId",
     "SiemElasticsearch",
     "SiemMock",
     "SiemQRadar",
