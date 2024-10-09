@@ -4,6 +4,7 @@ from . import (
     accountchange,
     apiactivity,
     authentication,
+    authorizesession,
     compliancefinding,
     configstate,
     detectionfinding,
@@ -20,6 +21,7 @@ from . import (
     scheduledjobactivity,
     securityfinding,
     softwareinfo,
+    useraccessmanagement,
     vulnerabilityfinding,
     webresourceaccessactivity,
 )
@@ -28,6 +30,7 @@ __all__ = [
     "accountchange",
     "apiactivity",
     "authentication",
+    "authorizesession",
     "compliancefinding",
     "configstate",
     "detectionfinding",
@@ -44,6 +47,7 @@ __all__ = [
     "scheduledjobactivity",
     "securityfinding",
     "softwareinfo",
+    "useraccessmanagement",
     "vulnerabilityfinding",
     "webresourceaccessactivity",
 ]
