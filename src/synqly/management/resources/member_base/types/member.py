@@ -28,12 +28,12 @@ class Member(Base):
     User's full display name.
     """
 
-    nickname: str = pydantic.Field()
+    nickname: typing.Optional[str] = pydantic.Field(default=None)
     """
     User's nickname
     """
 
-    picture: str = pydantic.Field()
+    picture: typing.Optional[str] = pydantic.Field(default=None)
     """
     Url of user's picture
     """

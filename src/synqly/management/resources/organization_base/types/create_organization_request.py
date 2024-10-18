@@ -23,17 +23,17 @@ class CreateOrganizationRequest(pydantic.BaseModel):
     Human friendly display name for this Organization, will auto-generate 'name' field (if 'name' is not specified). Defaults to the same value as the 'name' field if not specified.
     """
 
-    contact: str = pydantic.Field()
+    contact: typing.Optional[str] = pydantic.Field(default=None)
     """
     Organization email address
     """
 
-    reply_to: str = pydantic.Field()
+    reply_to: typing.Optional[str] = pydantic.Field(default=None)
     """
     Reply-to email address, used for SMTP emails. Defaults to no-reply@synqly.com
     """
 
-    picture: str = pydantic.Field()
+    picture: typing.Optional[str] = pydantic.Field(default=None)
     """
     URL of the organization
     """

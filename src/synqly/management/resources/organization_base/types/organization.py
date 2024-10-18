@@ -33,17 +33,17 @@ class Organization(Base):
     Human friendly display name for this Organization
     """
 
-    contact: str = pydantic.Field()
+    contact: typing.Optional[str] = pydantic.Field(default=None)
     """
     Organization email address
     """
 
-    reply_to: str = pydantic.Field()
+    reply_to: typing.Optional[str] = pydantic.Field(default=None)
     """
     Reply-to email address, used for SMTP emails. Defaults to no-reply@synqly.com
     """
 
-    picture: str = pydantic.Field()
+    picture: typing.Optional[str] = pydantic.Field(default=None)
     """
     Picture URL of the organization
     """
