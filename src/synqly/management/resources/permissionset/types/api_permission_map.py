@@ -8,7 +8,6 @@ from .accounts_permissions import AccountsPermissions
 from .audit_permissions import AuditPermissions
 from .auth_permissions import AuthPermissions
 from .bridges_permissions import BridgesPermissions
-from .capabilities_permissions import CapabilitiesPermissions
 from .credentials_permissions import CredentialsPermissions
 from .integration_points_permissions import IntegrationPointsPermissions
 from .integrations_permissions import IntegrationsPermissions
@@ -35,7 +34,6 @@ class ApiPermissionMap(pydantic.BaseModel):
     audit: typing.Optional[AuditPermissions] = None
     auth: typing.Optional[AuthPermissions] = None
     bridges: typing.Optional[BridgesPermissions] = None
-    capabilities: typing.Optional[CapabilitiesPermissions] = None
     credentials: typing.Optional[CredentialsPermissions] = None
     integrations: typing.Optional[IntegrationsPermissions] = None
     integration_points: typing.Optional[IntegrationPointsPermissions] = None

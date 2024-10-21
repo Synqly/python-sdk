@@ -19,8 +19,8 @@ from ..common.errors.too_many_requests_error import TooManyRequestsError
 from ..common.errors.unauthorized_error import UnauthorizedError
 from ..common.errors.unsupported_media_type_error import UnsupportedMediaTypeError
 from ..common.types.error_body import ErrorBody
-from .types.list_category_capabilities_response import ListCategoryCapabilitiesResponse
-from .types.list_provider_capabilities_response import ListProviderCapabilitiesResponse
+from .types.list_connectors_capabilities_response import ListConnectorsCapabilitiesResponse
+from .types.list_providers_capabilities_response import ListProvidersCapabilitiesResponse
 
 try:
     import pydantic.v1 as pydantic  # type: ignore
@@ -32,31 +32,20 @@ class CapabilitiesClient:
     def __init__(self, *, client_wrapper: SyncClientWrapper):
         self._client_wrapper = client_wrapper
 
-    def list_category(
-        self, *, category: typing.Optional[str] = None, request_options: typing.Optional[RequestOptions] = None
-    ) -> ListCategoryCapabilitiesResponse:
+    def list_connectors(
+        self, *, request_options: typing.Optional[RequestOptions] = None
+    ) -> ListConnectorsCapabilitiesResponse:
         """
-        Returns a list of all `Capabilities`, optionally filtered by connector.
+        Returns a list of all `Connectors`.
 
         Parameters:
-            - category: typing.Optional[str]. Optional comma separated list of categories to return; "storage,tickets"
-
             - request_options: typing.Optional[RequestOptions]. Request-specific configuration.
         """
         _response = self._client_wrapper.httpx_client.request(
             "GET",
-            urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", "v1/capabilities/category"),
+            urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", "v1/capabilities/connectors"),
             params=jsonable_encoder(
-                remove_none_from_dict(
-                    {
-                        "category": category,
-                        **(
-                            request_options.get("additional_query_parameters", {})
-                            if request_options is not None
-                            else {}
-                        ),
-                    }
-                )
+                request_options.get("additional_query_parameters") if request_options is not None else None
             ),
             headers=jsonable_encoder(
                 remove_none_from_dict(
@@ -73,7 +62,7 @@ class CapabilitiesClient:
             max_retries=request_options.get("max_retries") if request_options is not None else 0,  # type: ignore
         )
         if 200 <= _response.status_code < 300:
-            return pydantic.parse_obj_as(ListCategoryCapabilitiesResponse, _response.json())  # type: ignore
+            return pydantic.parse_obj_as(ListConnectorsCapabilitiesResponse, _response.json())  # type: ignore
         if _response.status_code == 400:
             raise BadRequestError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
         if _response.status_code == 401:
@@ -99,30 +88,19 @@ class CapabilitiesClient:
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
     def list_providers(
-        self, *, provider: typing.Optional[str] = None, request_options: typing.Optional[RequestOptions] = None
-    ) -> ListProviderCapabilitiesResponse:
+        self, *, request_options: typing.Optional[RequestOptions] = None
+    ) -> ListProvidersCapabilitiesResponse:
         """
-        Returns a list of all `Capabilities`, optionally filtered by provider.
+        Returns a list of all Provider capabilities and their configurations.
 
         Parameters:
-            - provider: typing.Optional[str]. Optional comma separated list of providers to return; "aws_s3,aws_sqs"
-
             - request_options: typing.Optional[RequestOptions]. Request-specific configuration.
         """
         _response = self._client_wrapper.httpx_client.request(
             "GET",
-            urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", "v1/capabilities/provider"),
+            urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", "v1/capabilities/providers"),
             params=jsonable_encoder(
-                remove_none_from_dict(
-                    {
-                        "provider": provider,
-                        **(
-                            request_options.get("additional_query_parameters", {})
-                            if request_options is not None
-                            else {}
-                        ),
-                    }
-                )
+                request_options.get("additional_query_parameters") if request_options is not None else None
             ),
             headers=jsonable_encoder(
                 remove_none_from_dict(
@@ -139,7 +117,7 @@ class CapabilitiesClient:
             max_retries=request_options.get("max_retries") if request_options is not None else 0,  # type: ignore
         )
         if 200 <= _response.status_code < 300:
-            return pydantic.parse_obj_as(ListProviderCapabilitiesResponse, _response.json())  # type: ignore
+            return pydantic.parse_obj_as(ListProvidersCapabilitiesResponse, _response.json())  # type: ignore
         if _response.status_code == 400:
             raise BadRequestError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
         if _response.status_code == 401:
@@ -169,31 +147,20 @@ class AsyncCapabilitiesClient:
     def __init__(self, *, client_wrapper: AsyncClientWrapper):
         self._client_wrapper = client_wrapper
 
-    async def list_category(
-        self, *, category: typing.Optional[str] = None, request_options: typing.Optional[RequestOptions] = None
-    ) -> ListCategoryCapabilitiesResponse:
+    async def list_connectors(
+        self, *, request_options: typing.Optional[RequestOptions] = None
+    ) -> ListConnectorsCapabilitiesResponse:
         """
-        Returns a list of all `Capabilities`, optionally filtered by connector.
+        Returns a list of all `Connectors`.
 
         Parameters:
-            - category: typing.Optional[str]. Optional comma separated list of categories to return; "storage,tickets"
-
             - request_options: typing.Optional[RequestOptions]. Request-specific configuration.
         """
         _response = await self._client_wrapper.httpx_client.request(
             "GET",
-            urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", "v1/capabilities/category"),
+            urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", "v1/capabilities/connectors"),
             params=jsonable_encoder(
-                remove_none_from_dict(
-                    {
-                        "category": category,
-                        **(
-                            request_options.get("additional_query_parameters", {})
-                            if request_options is not None
-                            else {}
-                        ),
-                    }
-                )
+                request_options.get("additional_query_parameters") if request_options is not None else None
             ),
             headers=jsonable_encoder(
                 remove_none_from_dict(
@@ -210,7 +177,7 @@ class AsyncCapabilitiesClient:
             max_retries=request_options.get("max_retries") if request_options is not None else 0,  # type: ignore
         )
         if 200 <= _response.status_code < 300:
-            return pydantic.parse_obj_as(ListCategoryCapabilitiesResponse, _response.json())  # type: ignore
+            return pydantic.parse_obj_as(ListConnectorsCapabilitiesResponse, _response.json())  # type: ignore
         if _response.status_code == 400:
             raise BadRequestError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
         if _response.status_code == 401:
@@ -236,30 +203,19 @@ class AsyncCapabilitiesClient:
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
     async def list_providers(
-        self, *, provider: typing.Optional[str] = None, request_options: typing.Optional[RequestOptions] = None
-    ) -> ListProviderCapabilitiesResponse:
+        self, *, request_options: typing.Optional[RequestOptions] = None
+    ) -> ListProvidersCapabilitiesResponse:
         """
-        Returns a list of all `Capabilities`, optionally filtered by provider.
+        Returns a list of all Provider capabilities and their configurations.
 
         Parameters:
-            - provider: typing.Optional[str]. Optional comma separated list of providers to return; "aws_s3,aws_sqs"
-
             - request_options: typing.Optional[RequestOptions]. Request-specific configuration.
         """
         _response = await self._client_wrapper.httpx_client.request(
             "GET",
-            urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", "v1/capabilities/provider"),
+            urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", "v1/capabilities/providers"),
             params=jsonable_encoder(
-                remove_none_from_dict(
-                    {
-                        "provider": provider,
-                        **(
-                            request_options.get("additional_query_parameters", {})
-                            if request_options is not None
-                            else {}
-                        ),
-                    }
-                )
+                request_options.get("additional_query_parameters") if request_options is not None else None
             ),
             headers=jsonable_encoder(
                 remove_none_from_dict(
@@ -276,7 +232,7 @@ class AsyncCapabilitiesClient:
             max_retries=request_options.get("max_retries") if request_options is not None else 0,  # type: ignore
         )
         if 200 <= _response.status_code < 300:
-            return pydantic.parse_obj_as(ListProviderCapabilitiesResponse, _response.json())  # type: ignore
+            return pydantic.parse_obj_as(ListProvidersCapabilitiesResponse, _response.json())  # type: ignore
         if _response.status_code == 400:
             raise BadRequestError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
         if _response.status_code == 401:

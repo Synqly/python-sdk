@@ -12,7 +12,7 @@ except ImportError:
     import pydantic  # type: ignore
 
 
-class BetaListConnectorCapabilitiesResponse(pydantic.BaseModel):
+class ListConnectorsCapabilitiesResponse(pydantic.BaseModel):
     result: typing.List[Connector]
 
     def json(self, **kwargs: typing.Any) -> str:
