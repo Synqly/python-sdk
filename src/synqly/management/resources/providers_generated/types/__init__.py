@@ -22,6 +22,11 @@ from .crowd_strike_credential import (
     CrowdStrikeCredential_OAuthClient,
     CrowdStrikeCredential_OAuthClientId,
 )
+from .crowdstrike_hec_credential import (
+    CrowdstrikeHecCredential,
+    CrowdstrikeHecCredential_Token,
+    CrowdstrikeHecCredential_TokenId,
+)
 from .custom_field_mapping import CustomFieldMapping
 from .defender_credential import DefenderCredential, DefenderCredential_OAuthClient, DefenderCredential_OAuthClientId
 from .edr_crowd_strike import EdrCrowdStrike
@@ -103,6 +108,7 @@ from .provider_config import (
     ProviderConfig_SinkAwsSecurityLake,
     ProviderConfig_SinkAwsSqs,
     ProviderConfig_SinkAzureMonitorLogs,
+    ProviderConfig_SinkCrowdstrikeHec,
     ProviderConfig_SinkMockSink,
     ProviderConfig_StorageAwsS3,
     ProviderConfig_StorageAzureBlob,
@@ -144,6 +150,7 @@ from .siem_sumo_logic import SiemSumoLogic
 from .sink_aws_security_lake import SinkAwsSecurityLake
 from .sink_aws_sqs import SinkAwsSqs
 from .sink_azure_monitor_logs import SinkAzureMonitorLogs
+from .sink_crowdstrike_hec import SinkCrowdstrikeHec
 from .sink_mock import SinkMock
 from .slack_credential import SlackCredential, SlackCredential_Token, SlackCredential_TokenId
 from .splunk_bridge_hec_token import (
@@ -219,6 +226,9 @@ __all__ = [
     "CrowdStrikeCredential",
     "CrowdStrikeCredential_OAuthClient",
     "CrowdStrikeCredential_OAuthClientId",
+    "CrowdstrikeHecCredential",
+    "CrowdstrikeHecCredential_Token",
+    "CrowdstrikeHecCredential_TokenId",
     "CustomFieldMapping",
     "DefenderCredential",
     "DefenderCredential_OAuthClient",
@@ -300,6 +310,7 @@ __all__ = [
     "ProviderConfig_SinkAwsSecurityLake",
     "ProviderConfig_SinkAwsSqs",
     "ProviderConfig_SinkAzureMonitorLogs",
+    "ProviderConfig_SinkCrowdstrikeHec",
     "ProviderConfig_SinkMockSink",
     "ProviderConfig_StorageAwsS3",
     "ProviderConfig_StorageAzureBlob",
@@ -341,6 +352,7 @@ __all__ = [
     "SinkAwsSecurityLake",
     "SinkAwsSqs",
     "SinkAzureMonitorLogs",
+    "SinkCrowdstrikeHec",
     "SinkMock",
     "SlackCredential",
     "SlackCredential_Token",

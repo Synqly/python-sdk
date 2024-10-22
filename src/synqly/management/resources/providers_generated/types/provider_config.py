@@ -26,6 +26,7 @@ from .siem_sumo_logic import SiemSumoLogic
 from .sink_aws_security_lake import SinkAwsSecurityLake
 from .sink_aws_sqs import SinkAwsSqs
 from .sink_azure_monitor_logs import SinkAzureMonitorLogs
+from .sink_crowdstrike_hec import SinkCrowdstrikeHec
 from .sink_mock import SinkMock
 from .storage_aws_s_3 import StorageAwsS3
 from .storage_azure_blob import StorageAzureBlob
@@ -241,6 +242,15 @@ class ProviderConfig_SinkAzureMonitorLogs(SinkAzureMonitorLogs):
         allow_population_by_field_name = True
 
 
+class ProviderConfig_SinkCrowdstrikeHec(SinkCrowdstrikeHec):
+    type: typing.Literal["sink_crowdstrike_hec"]
+
+    class Config:
+        frozen = True
+        smart_union = True
+        allow_population_by_field_name = True
+
+
 class ProviderConfig_SinkMockSink(SinkMock):
     type: typing.Literal["sink_mock_sink"]
 
@@ -399,6 +409,7 @@ ProviderConfig = typing.Union[
     ProviderConfig_SinkAwsSecurityLake,
     ProviderConfig_SinkAwsSqs,
     ProviderConfig_SinkAzureMonitorLogs,
+    ProviderConfig_SinkCrowdstrikeHec,
     ProviderConfig_SinkMockSink,
     ProviderConfig_StorageAwsS3,
     ProviderConfig_StorageAzureBlob,

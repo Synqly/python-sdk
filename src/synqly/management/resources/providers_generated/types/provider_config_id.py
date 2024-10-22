@@ -121,6 +121,11 @@ class ProviderConfigId(str, enum.Enum):
     Microsoft Azure Monitor Logs
     """
 
+    SINK_CROWDSTRIKE_HEC = "sink_crowdstrike_hec"
+    """
+    Crowdstrike HEC
+    """
+
     SINK_MOCK = "sink_mock_sink"
     """
     Sink Test
@@ -225,6 +230,7 @@ class ProviderConfigId(str, enum.Enum):
         sink_aws_security_lake: typing.Callable[[], T_Result],
         sink_aws_sqs: typing.Callable[[], T_Result],
         sink_azure_monitor_logs: typing.Callable[[], T_Result],
+        sink_crowdstrike_hec: typing.Callable[[], T_Result],
         sink_mock: typing.Callable[[], T_Result],
         storage_aws_s_3: typing.Callable[[], T_Result],
         storage_azure_blob: typing.Callable[[], T_Result],
@@ -286,6 +292,8 @@ class ProviderConfigId(str, enum.Enum):
             return sink_aws_sqs()
         if self is ProviderConfigId.SINK_AZURE_MONITOR_LOGS:
             return sink_azure_monitor_logs()
+        if self is ProviderConfigId.SINK_CROWDSTRIKE_HEC:
+            return sink_crowdstrike_hec()
         if self is ProviderConfigId.SINK_MOCK:
             return sink_mock()
         if self is ProviderConfigId.STORAGE_AWS_S_3:
