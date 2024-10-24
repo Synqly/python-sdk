@@ -35,6 +35,8 @@ from .edr_sentinel_one import EdrSentinelOne
 from .elasticsearch_auth_options import ElasticsearchAuthOptions
 from .elasticsearch_bridge_credentials import (
     ElasticsearchBridgeCredentials,
+    ElasticsearchBridgeCredentials_BridgeBasic,
+    ElasticsearchBridgeCredentials_BridgeBasicId,
     ElasticsearchBridgeCredentials_BridgeOAuthClient,
     ElasticsearchBridgeCredentials_BridgeOAuthClientId,
     ElasticsearchBridgeCredentials_BridgeToken,
@@ -47,6 +49,8 @@ from .elasticsearch_bridge_shared_secret import (
 )
 from .elasticsearch_credential import (
     ElasticsearchCredential,
+    ElasticsearchCredential_Basic,
+    ElasticsearchCredential_BasicId,
     ElasticsearchCredential_Bridge,
     ElasticsearchCredential_OAuthClient,
     ElasticsearchCredential_OAuthClientId,
@@ -238,6 +242,8 @@ __all__ = [
     "EdrSentinelOne",
     "ElasticsearchAuthOptions",
     "ElasticsearchBridgeCredentials",
+    "ElasticsearchBridgeCredentials_BridgeBasic",
+    "ElasticsearchBridgeCredentials_BridgeBasicId",
     "ElasticsearchBridgeCredentials_BridgeOAuthClient",
     "ElasticsearchBridgeCredentials_BridgeOAuthClientId",
     "ElasticsearchBridgeCredentials_BridgeToken",
@@ -246,6 +252,8 @@ __all__ = [
     "ElasticsearchBridgeSharedSecret_BridgeSecret",
     "ElasticsearchBridgeSharedSecret_BridgeSecretId",
     "ElasticsearchCredential",
+    "ElasticsearchCredential_Basic",
+    "ElasticsearchCredential_BasicId",
     "ElasticsearchCredential_Bridge",
     "ElasticsearchCredential_OAuthClient",
     "ElasticsearchCredential_OAuthClientId",
