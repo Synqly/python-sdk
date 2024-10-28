@@ -16,7 +16,7 @@ from . import (
     ticketing,
     vulnerabilities,
 )
-from .assets import Device, QueryDevicesResponse
+from .assets import CreateDeviceRequest, CreateDeviceResponse, Device, QueryDevicesResponse
 from .common import (
     BadGatewayError,
     BadRequestError,
@@ -180,6 +180,8 @@ __all__ = [
     "CreateAttachmentResponse",
     "CreateCommentRequest",
     "CreateCommentResponse",
+    "CreateDeviceRequest",
+    "CreateDeviceResponse",
     "CreateIocsRequest",
     "CreateIocsResponse",
     "CreateNotificationRequest",
