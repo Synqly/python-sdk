@@ -19,10 +19,15 @@ class SiemElasticsearch(pydantic.BaseModel):
     """
 
     auth_options: typing.Optional[ElasticsearchAuthOptions] = None
-    credential: ElasticsearchCredential
-    index: str = pydantic.Field()
+    create_index: typing.Optional[str] = pydantic.Field(default=None)
     """
-    Elasticsearch index to send events to.
+    Optional. The index or data stream to use when writing events. Defaults to the 'index' setting if not set.
+    """
+
+    credential: ElasticsearchCredential
+    index: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    Optional. The index, data stream, or index alias to read events from. Default "\_all".
     """
 
     url: str = pydantic.Field()
