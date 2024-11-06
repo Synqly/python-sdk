@@ -30,6 +30,11 @@ class SiemElasticsearch(pydantic.BaseModel):
     Optional. The index, data stream, or index alias to read events from. Default "\_all".
     """
 
+    skip_tls_verify: typing.Optional[bool] = pydantic.Field(default=None)
+    """
+    If true, skips verification of the Elasticsearch server's TLS certificate. Defaults to false.
+    """
+
     url: str = pydantic.Field()
     """
     URL for the Elasticsearch API. This should be the base URL for the API, without any path components and must be HTTPS. For example, "https://tenant.elastic.com".
