@@ -104,9 +104,11 @@ from .siem import (
     GetEvidenceResponse,
     GetInvestigationResponse,
     Investigation,
+    LogProvider,
     PatchInvestigationRequest,
     QueryEventStatus,
     QueryInvestigationResponse,
+    QueryLogProvidersResponse,
     QuerySiemEventsResponse,
 )
 from .storage import ListStorageResponse, StoragePath
@@ -233,6 +235,7 @@ __all__ = [
     "ListProjectsResponse",
     "ListRemoteFieldsResponse",
     "ListStorageResponse",
+    "LogProvider",
     "MetaApi",
     "MetaApiPrimaryResponse",
     "MetaApiResponse",
@@ -265,6 +268,7 @@ __all__ = [
     "QueryIdentityAuditLogResponse",
     "QueryInvestigationResponse",
     "QueryIocsResponse",
+    "QueryLogProvidersResponse",
     "QueryPostureScoreResponse",
     "QueryScansResponse",
     "QuerySiemEventsResponse",
