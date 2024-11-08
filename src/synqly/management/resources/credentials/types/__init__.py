@@ -33,6 +33,7 @@ from .bridge_type import BridgeType
 from .create_credential_request import CreateCredentialRequest
 from .create_credential_response import CreateCredentialResponse
 from .credential import Credential
+from .credential_base import CredentialBase
 from .credential_config import (
     CredentialConfig,
     CredentialConfig_Aws,
@@ -93,6 +94,7 @@ __all__ = [
     "CreateCredentialRequest",
     "CreateCredentialResponse",
     "Credential",
+    "CredentialBase",
     "CredentialConfig",
     "CredentialConfigNoSecret",
     "CredentialConfig_Aws",

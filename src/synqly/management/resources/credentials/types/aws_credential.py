@@ -4,6 +4,7 @@ import datetime as dt
 import typing
 
 from ....core.datetime_utils import serialize_datetime
+from .credential_base import CredentialBase
 
 try:
     import pydantic.v1 as pydantic  # type: ignore
@@ -11,7 +12,7 @@ except ImportError:
     import pydantic  # type: ignore
 
 
-class AwsCredential(pydantic.BaseModel):
+class AwsCredential(CredentialBase):
     """
     AWS access key to authenticate with AWS. Access keys are long-term credentials for an IAM user and consist of an ID and secret. Follow [this guide to generate access and secret keys](https://docs.aws.amazon.com/general/latest/gr/aws-sec-cred-types.html#access-keys-and-secret-access-keys). You may optionally provide a session token if you are using temporary credentials.
     """
@@ -42,5 +43,6 @@ class AwsCredential(pydantic.BaseModel):
     class Config:
         frozen = True
         smart_union = True
+        allow_population_by_field_name = True
         extra = pydantic.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}

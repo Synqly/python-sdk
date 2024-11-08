@@ -6,6 +6,7 @@ from .filter_type import FilterType
 from .list_connectors_capabilities_response import ListConnectorsCapabilitiesResponse
 from .list_providers_capabilities_response import ListProvidersCapabilitiesResponse
 from .provider_capabilities import ProviderCapabilities
+from .provider_capabilities_response import ProviderCapabilitiesResponse
 from .provider_filter import ProviderFilter
 from .provider_operations import ProviderOperations
 
@@ -16,6 +17,7 @@ __all__ = [
     "ListConnectorsCapabilitiesResponse",
     "ListProvidersCapabilitiesResponse",
     "ProviderCapabilities",
+    "ProviderCapabilitiesResponse",
     "ProviderFilter",
     "ProviderOperations",
 ]

@@ -7,6 +7,7 @@ from .types import (
     ListConnectorsCapabilitiesResponse,
     ListProvidersCapabilitiesResponse,
     ProviderCapabilities,
+    ProviderCapabilitiesResponse,
     ProviderFilter,
     ProviderOperations,
 )
@@ -18,6 +19,7 @@ __all__ = [
     "ListConnectorsCapabilitiesResponse",
     "ListProvidersCapabilitiesResponse",
     "ProviderCapabilities",
+    "ProviderCapabilitiesResponse",
     "ProviderFilter",
     "ProviderOperations",
 ]

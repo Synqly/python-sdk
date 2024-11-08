@@ -4,7 +4,6 @@ import datetime as dt
 import typing
 
 from ....core.datetime_utils import serialize_datetime
-from .credential_base import CredentialBase
 
 try:
     import pydantic.v1 as pydantic  # type: ignore
@@ -12,14 +11,9 @@ except ImportError:
     import pydantic  # type: ignore
 
 
-class SecretCredential(CredentialBase):
+class CredentialBase(pydantic.BaseModel):
     """
-    Secret value such as password or webhook url
-    """
-
-    secret: str = pydantic.Field()
-    """
-    Secret value
+    Base type for all credential types
     """
 
     def json(self, **kwargs: typing.Any) -> str:
@@ -33,6 +27,5 @@ class SecretCredential(CredentialBase):
     class Config:
         frozen = True
         smart_union = True
-        allow_population_by_field_name = True
         extra = pydantic.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}
