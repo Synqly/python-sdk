@@ -91,7 +91,7 @@ class Device(pydantic.BaseModel):
 
     groups: typing.Optional[typing.List[Group]] = pydantic.Field(default=None)
     """
-    The group names to which the device belongs. For example: <code>["Windows Laptops", "Engineering"]<code/>.
+    The group names to which the device belongs. For example: <code>["Windows Laptops", "Engineering"]</code>.
     """
 
     hostname: typing.Optional[Hostname] = pydantic.Field(default=None)
