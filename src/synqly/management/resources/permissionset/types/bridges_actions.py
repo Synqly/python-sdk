@@ -13,6 +13,7 @@ class BridgesActions(str, enum.Enum):
     UPDATE = "update"
     PATCH = "patch"
     DELETE = "delete"
+    STATUS = "status"
     ALL = "*"
 
     def visit(
@@ -23,6 +24,7 @@ class BridgesActions(str, enum.Enum):
         update: typing.Callable[[], T_Result],
         patch: typing.Callable[[], T_Result],
         delete: typing.Callable[[], T_Result],
+        status: typing.Callable[[], T_Result],
         all_: typing.Callable[[], T_Result],
     ) -> T_Result:
         if self is BridgesActions.LIST:
@@ -37,5 +39,7 @@ class BridgesActions(str, enum.Enum):
             return patch()
         if self is BridgesActions.DELETE:
             return delete()
+        if self is BridgesActions.STATUS:
+            return status()
         if self is BridgesActions.ALL:
             return all_()

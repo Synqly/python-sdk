@@ -24,6 +24,7 @@ from .types.bridge_group_id import BridgeGroupId
 from .types.create_bridge_request import CreateBridgeRequest
 from .types.create_bridge_response import CreateBridgeResponse
 from .types.get_bridge_response import GetBridgeResponse
+from .types.get_bridge_status_response import GetBridgeStatusResponse
 from .types.list_bridges_response import ListBridgesResponse
 from .types.patch_bridge_response import PatchBridgeResponse
 from .types.update_bridge_request import UpdateBridgeRequest
@@ -191,6 +192,54 @@ class BridgesClient:
             raise TooManyRequestsError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
         if _response.status_code == 500:
             raise InternalServerError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+        try:
+            _response_json = _response.json()
+        except JSONDecodeError:
+            raise ApiError(status_code=_response.status_code, body=_response.text)
+        raise ApiError(status_code=_response.status_code, body=_response_json)
+
+    def get_status(
+        self,
+        account_id: AccountId,
+        bridge_id: BridgeGroupId,
+        *,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> GetBridgeStatusResponse:
+        """
+        Returns the status and local configuration of running Bridges matching `{bridgeId}`.
+
+        Parameters:
+            - account_id: AccountId.
+
+            - bridge_id: BridgeGroupId.
+
+            - request_options: typing.Optional[RequestOptions]. Request-specific configuration.
+        """
+        _response = self._client_wrapper.httpx_client.request(
+            "GET",
+            urllib.parse.urljoin(
+                f"{self._client_wrapper.get_base_url()}/",
+                f"v1/bridges/{jsonable_encoder(account_id)}/{jsonable_encoder(bridge_id)}/status",
+            ),
+            params=jsonable_encoder(
+                request_options.get("additional_query_parameters") if request_options is not None else None
+            ),
+            headers=jsonable_encoder(
+                remove_none_from_dict(
+                    {
+                        **self._client_wrapper.get_headers(),
+                        **(request_options.get("additional_headers", {}) if request_options is not None else {}),
+                    }
+                )
+            ),
+            timeout=request_options.get("timeout_in_seconds")
+            if request_options is not None and request_options.get("timeout_in_seconds") is not None
+            else 60,
+            retries=0,
+            max_retries=request_options.get("max_retries") if request_options is not None else 0,  # type: ignore
+        )
+        if 200 <= _response.status_code < 300:
+            return pydantic.parse_obj_as(GetBridgeStatusResponse, _response.json())  # type: ignore
         try:
             _response_json = _response.json()
         except JSONDecodeError:
@@ -642,6 +691,54 @@ class AsyncBridgesClient:
             raise TooManyRequestsError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
         if _response.status_code == 500:
             raise InternalServerError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+        try:
+            _response_json = _response.json()
+        except JSONDecodeError:
+            raise ApiError(status_code=_response.status_code, body=_response.text)
+        raise ApiError(status_code=_response.status_code, body=_response_json)
+
+    async def get_status(
+        self,
+        account_id: AccountId,
+        bridge_id: BridgeGroupId,
+        *,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> GetBridgeStatusResponse:
+        """
+        Returns the status and local configuration of running Bridges matching `{bridgeId}`.
+
+        Parameters:
+            - account_id: AccountId.
+
+            - bridge_id: BridgeGroupId.
+
+            - request_options: typing.Optional[RequestOptions]. Request-specific configuration.
+        """
+        _response = await self._client_wrapper.httpx_client.request(
+            "GET",
+            urllib.parse.urljoin(
+                f"{self._client_wrapper.get_base_url()}/",
+                f"v1/bridges/{jsonable_encoder(account_id)}/{jsonable_encoder(bridge_id)}/status",
+            ),
+            params=jsonable_encoder(
+                request_options.get("additional_query_parameters") if request_options is not None else None
+            ),
+            headers=jsonable_encoder(
+                remove_none_from_dict(
+                    {
+                        **self._client_wrapper.get_headers(),
+                        **(request_options.get("additional_headers", {}) if request_options is not None else {}),
+                    }
+                )
+            ),
+            timeout=request_options.get("timeout_in_seconds")
+            if request_options is not None and request_options.get("timeout_in_seconds") is not None
+            else 60,
+            retries=0,
+            max_retries=request_options.get("max_retries") if request_options is not None else 0,  # type: ignore
+        )
+        if 200 <= _response.status_code < 300:
+            return pydantic.parse_obj_as(GetBridgeStatusResponse, _response.json())  # type: ignore
         try:
             _response_json = _response.json()
         except JSONDecodeError:
