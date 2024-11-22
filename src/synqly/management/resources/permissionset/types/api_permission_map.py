@@ -5,6 +5,8 @@ import typing
 
 from ....core.datetime_utils import serialize_datetime
 from .accounts_permissions import AccountsPermissions
+from .alarm_policies_permissions import AlarmPoliciesPermissions
+from .alarms_permissions import AlarmsPermissions
 from .audit_permissions import AuditPermissions
 from .auth_permissions import AuthPermissions
 from .bridges_permissions import BridgesPermissions
@@ -31,6 +33,8 @@ except ImportError:
 class ApiPermissionMap(pydantic.BaseModel):
     all_: typing.Optional[ReadWritePermissions] = pydantic.Field(alias="all", default=None)
     accounts: typing.Optional[AccountsPermissions] = None
+    alarms: typing.Optional[AlarmsPermissions] = None
+    alarm_policies: typing.Optional[AlarmPoliciesPermissions] = None
     audit: typing.Optional[AuditPermissions] = None
     auth: typing.Optional[AuthPermissions] = None
     bridges: typing.Optional[BridgesPermissions] = None
