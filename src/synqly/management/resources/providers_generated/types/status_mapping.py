@@ -4,7 +4,6 @@ import datetime as dt
 import typing
 
 from ....core.datetime_utils import serialize_datetime
-from .alarms_actions import AlarmsActions
 
 try:
     import pydantic.v1 as pydantic  # type: ignore
@@ -12,12 +11,36 @@ except ImportError:
     import pydantic  # type: ignore
 
 
-class AlarmsPermissions(pydantic.BaseModel):
+class StatusMapping(pydantic.BaseModel):
+    closed: typing.Optional[str] = pydantic.Field(default=None)
     """
-    Permissions for the alarms API
+    Custom value for the "Closed" status.
     """
 
-    actions: typing.List[AlarmsActions]
+    done: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    Custom value for the "Done" status.
+    """
+
+    in_progress: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    Custom value for the "In Progress" status.
+    """
+
+    on_hold: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    Custom value for the "On Hold" status.
+    """
+
+    open: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    Custom value for the "Open" status.
+    """
+
+    todo: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    Custom value for the "To Do" status.
+    """
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}

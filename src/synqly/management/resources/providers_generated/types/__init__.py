@@ -87,6 +87,7 @@ from .okta_credential import (
 )
 from .pager_duty_credential import PagerDutyCredential, PagerDutyCredential_Token, PagerDutyCredential_TokenId
 from .ping_one_credential import PingOneCredential, PingOneCredential_Token, PingOneCredential_TokenId
+from .priority_mapping import PriorityMapping
 from .provider_config import (
     ProviderConfig,
     ProviderConfig_AssetsArmisCentrix,
@@ -173,6 +174,7 @@ from .splunk_search_credential import (
     SplunkSearchCredential_Token,
     SplunkSearchCredential_TokenId,
 )
+from .status_mapping import StatusMapping
 from .storage_aws_s_3 import StorageAwsS3
 from .storage_azure_blob import StorageAzureBlob
 from .storage_gcs import StorageGcs
@@ -196,6 +198,7 @@ from .ticketing_pager_duty import TicketingPagerDuty
 from .ticketing_service_now import TicketingServiceNow
 from .ticketing_torq import TicketingTorq
 from .torq_credential import TorqCredential, TorqCredential_OAuthClient, TorqCredential_OAuthClientId
+from .value_mapping import ValueMapping
 from .vulnerabilities_crowd_strike import VulnerabilitiesCrowdStrike
 from .vulnerabilities_qualys_cloud import VulnerabilitiesQualysCloud
 from .vulnerabilities_rapid_7_insight_cloud import VulnerabilitiesRapid7InsightCloud
@@ -290,6 +293,7 @@ __all__ = [
     "PingOneCredential",
     "PingOneCredential_Token",
     "PingOneCredential_TokenId",
+    "PriorityMapping",
     "ProviderConfig",
     "ProviderConfigId",
     "ProviderConfig_AssetsArmisCentrix",
@@ -375,6 +379,7 @@ __all__ = [
     "SplunkSearchCredential_Bridge",
     "SplunkSearchCredential_Token",
     "SplunkSearchCredential_TokenId",
+    "StatusMapping",
     "StorageAwsS3",
     "StorageAzureBlob",
     "StorageGcs",
@@ -402,6 +407,7 @@ __all__ = [
     "TorqCredential",
     "TorqCredential_OAuthClient",
     "TorqCredential_OAuthClientId",
+    "ValueMapping",
     "VulnerabilitiesCrowdStrike",
     "VulnerabilitiesQualysCloud",
     "VulnerabilitiesRapid7InsightCloud",

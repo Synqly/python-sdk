@@ -2,10 +2,6 @@
 
 from .accounts_actions import AccountsActions
 from .accounts_permissions import AccountsPermissions
-from .alarm_policies_actions import AlarmPoliciesActions
-from .alarm_policies_permissions import AlarmPoliciesPermissions
-from .alarms_actions import AlarmsActions
-from .alarms_permissions import AlarmsPermissions
 from .api_permission_map import ApiPermissionMap
 from .audit_actions import AuditActions
 from .audit_permissions import AuditPermissions
@@ -47,10 +43,6 @@ from .webhooks_permissions import WebhooksPermissions
 __all__ = [
     "AccountsActions",
     "AccountsPermissions",
-    "AlarmPoliciesActions",
-    "AlarmPoliciesPermissions",
-    "AlarmsActions",
-    "AlarmsPermissions",
     "ApiPermissionMap",
     "AuditActions",
     "AuditPermissions",
