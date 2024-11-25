@@ -40,6 +40,13 @@ class ProviderOperations(pydantic.BaseModel):
     Filters that can be applied to this operation.
     """
 
+    request_body: typing.Optional[typing.Dict[str, typing.Any]] = pydantic.Field(default=None)
+    """
+    If this operation requires a request body, this field will contain the schema for
+    the request. The is a json schema object. This field is only present when getting
+    the capabilities for a specific provider.
+    """
+
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}
         return super().json(**kwargs_with_defaults)
