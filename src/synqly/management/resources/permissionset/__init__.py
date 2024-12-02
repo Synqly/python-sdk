@@ -3,6 +3,10 @@
 from .types import (
     AccountsActions,
     AccountsPermissions,
+    AlarmPoliciesActions,
+    AlarmPoliciesPermissions,
+    AlarmsActions,
+    AlarmsPermissions,
     ApiPermissionMap,
     AuditActions,
     AuditPermissions,
@@ -45,6 +49,10 @@ from .types import (
 __all__ = [
     "AccountsActions",
     "AccountsPermissions",
+    "AlarmPoliciesActions",
+    "AlarmPoliciesPermissions",
+    "AlarmsActions",
+    "AlarmsPermissions",
     "ApiPermissionMap",
     "AuditActions",
     "AuditPermissions",
