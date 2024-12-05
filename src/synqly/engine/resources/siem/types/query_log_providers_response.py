@@ -4,8 +4,8 @@ import datetime as dt
 import typing
 
 from ....core.datetime_utils import serialize_datetime
+from ...common.types.query_status import QueryStatus
 from .log_provider import LogProvider
-from .query_event_status import QueryEventStatus
 
 try:
     import pydantic.v1 as pydantic  # type: ignore
@@ -24,7 +24,7 @@ class QueryLogProvidersResponse(pydantic.BaseModel):
     Cursor to use to retrieve the next page of results
     """
 
-    status: QueryEventStatus = pydantic.Field()
+    status: QueryStatus = pydantic.Field()
     """
     If the provider supports asynchronous queries and the query is still running, this will be PENDING. There will be a value in the `cursor` field allowing you to continue polling for results.
     """

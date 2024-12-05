@@ -6,19 +6,12 @@ import typing
 T_Result = typing.TypeVar("T_Result")
 
 
-class QueryEventStatus(str, enum.Enum):
+class QueryStatus(str, enum.Enum):
     PENDING = "PENDING"
-    """
-    [deprecated] use `QueryStatusPending` instead
-    """
-
     COMPLETE = "COMPLETE"
-    """
-    [deprecated] use `QueryStatusComplete` instead
-    """
 
     def visit(self, pending: typing.Callable[[], T_Result], complete: typing.Callable[[], T_Result]) -> T_Result:
-        if self is QueryEventStatus.PENDING:
+        if self is QueryStatus.PENDING:
             return pending()
-        if self is QueryEventStatus.COMPLETE:
+        if self is QueryStatus.COMPLETE:
             return complete()

@@ -12,6 +12,7 @@ from .meta_response import MetaResponse
 from .meta_stats import MetaStats
 from .object import Object
 from .order_options import OrderOptions
+from .query_status import QueryStatus
 
 __all__ = [
     "Base",
@@ -26,4 +27,5 @@ __all__ = [
     "MetaStats",
     "Object",
     "OrderOptions",
+    "QueryStatus",
 ]

@@ -4,6 +4,7 @@ import datetime as dt
 import typing
 
 from ....core.datetime_utils import serialize_datetime
+from ...common.types.query_status import QueryStatus
 from .security_finding import SecurityFinding
 
 try:
@@ -14,7 +15,15 @@ except ImportError:
 
 class QueryFindingsResponse(pydantic.BaseModel):
     result: typing.List[SecurityFinding]
-    cursor: str
+    cursor: str = pydantic.Field()
+    """
+    Cursor to use to retrieve the next page of results.
+    """
+
+    status: QueryStatus = pydantic.Field()
+    """
+    If the provider supports asynchronous queries and the query is still running, this field will be `PENDING` until the query is complete. In this case, the client should retry using the provided cursor.
+    """
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}

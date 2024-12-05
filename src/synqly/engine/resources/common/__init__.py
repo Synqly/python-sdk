@@ -13,6 +13,7 @@ from .types import (
     MetaStats,
     Object,
     OrderOptions,
+    QueryStatus,
 )
 from .errors import (
     BadGatewayError,
@@ -52,6 +53,7 @@ __all__ = [
     "NotImplementedError",
     "Object",
     "OrderOptions",
+    "QueryStatus",
     "ServiceUnavailableError",
     "TooManyRequestsError",
     "UnauthorizedError",
