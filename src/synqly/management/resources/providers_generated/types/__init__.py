@@ -32,6 +32,7 @@ from .defender_credential import DefenderCredential, DefenderCredential_OAuthCli
 from .edr_crowd_strike import EdrCrowdStrike
 from .edr_defender import EdrDefender
 from .edr_sentinel_one import EdrSentinelOne
+from .edr_sophos import EdrSophos
 from .elasticsearch_auth_options import ElasticsearchAuthOptions
 from .elasticsearch_bridge_credentials import (
     ElasticsearchBridgeCredentials,
@@ -95,6 +96,7 @@ from .provider_config import (
     ProviderConfig_EdrCrowdstrike,
     ProviderConfig_EdrDefender,
     ProviderConfig_EdrSentinelone,
+    ProviderConfig_EdrSophos,
     ProviderConfig_IdentityEntraId,
     ProviderConfig_IdentityOkta,
     ProviderConfig_IdentityPingone,
@@ -156,6 +158,7 @@ from .sink_azure_monitor_logs import SinkAzureMonitorLogs
 from .sink_crowdstrike_hec import SinkCrowdstrikeHec
 from .sink_mock import SinkMock
 from .slack_credential import SlackCredential, SlackCredential_Token, SlackCredential_TokenId
+from .sophos_credential import SophosCredential, SophosCredential_OAuthClient, SophosCredential_OAuthClientId
 from .splunk_bridge_hec_token import (
     SplunkBridgeHecToken,
     SplunkBridgeHecToken_BridgeToken,
@@ -237,6 +240,7 @@ __all__ = [
     "EdrCrowdStrike",
     "EdrDefender",
     "EdrSentinelOne",
+    "EdrSophos",
     "ElasticsearchAuthOptions",
     "ElasticsearchBridgeCredentials",
     "ElasticsearchBridgeCredentials_BridgeBasic",
@@ -298,6 +302,7 @@ __all__ = [
     "ProviderConfig_EdrCrowdstrike",
     "ProviderConfig_EdrDefender",
     "ProviderConfig_EdrSentinelone",
+    "ProviderConfig_EdrSophos",
     "ProviderConfig_IdentityEntraId",
     "ProviderConfig_IdentityOkta",
     "ProviderConfig_IdentityPingone",
@@ -361,6 +366,9 @@ __all__ = [
     "SlackCredential",
     "SlackCredential_Token",
     "SlackCredential_TokenId",
+    "SophosCredential",
+    "SophosCredential_OAuthClient",
+    "SophosCredential_OAuthClientId",
     "SplunkBridgeHecToken",
     "SplunkBridgeHecToken_BridgeToken",
     "SplunkBridgeHecToken_BridgeTokenId",
