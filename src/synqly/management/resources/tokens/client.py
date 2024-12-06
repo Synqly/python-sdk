@@ -49,7 +49,7 @@ class TokensClient:
         self, *, request: CreateTokenRequest, request_options: typing.Optional[RequestOptions] = None
     ) -> CreateTokenResponse:
         """
-        Create a token restricted to specified resources and permission set.
+        Create an adhoc organization token restricted to specified resources and permission set.
         Tokens can only be reduced in scope, never expanded.
         Permissions are inherited from the token used to call this API.
         Permissions assigned to the new token will not be persisted, this is not a way to create roles.
@@ -120,7 +120,7 @@ class TokensClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> CreateIntegrationTokenResponse:
         """
-        Create an integration token restricted to a single integration. The token used to call
+        Create an adhoc integration token restricted to a single integration. The token used to call
         this API must have the necessary permissions to create tokens and have access to the account
         and integration IDs. Permissions may not be escalated, so any operation that the invocation
         token does not have access to cannot be granted.
@@ -165,6 +165,64 @@ class TokensClient:
         )
         if 200 <= _response.status_code < 300:
             return pydantic.parse_obj_as(CreateIntegrationTokenResponse, _response.json())  # type: ignore
+        if _response.status_code == 400:
+            raise BadRequestError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+        if _response.status_code == 401:
+            raise UnauthorizedError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+        if _response.status_code == 403:
+            raise ForbiddenError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+        if _response.status_code == 404:
+            raise NotFoundError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+        if _response.status_code == 405:
+            raise MethodNotAllowedError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+        if _response.status_code == 409:
+            raise ConflictError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+        if _response.status_code == 415:
+            raise UnsupportedMediaTypeError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+        if _response.status_code == 429:
+            raise TooManyRequestsError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+        if _response.status_code == 500:
+            raise InternalServerError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+        try:
+            _response_json = _response.json()
+        except JSONDecodeError:
+            raise ApiError(status_code=_response.status_code, body=_response.text)
+        raise ApiError(status_code=_response.status_code, body=_response_json)
+
+    def delete(self, refresh_token_id: TokenId, *, request_options: typing.Optional[RequestOptions] = None) -> None:
+        """
+        Deletes the Refresh Token with id `{id}`. This immediately
+        invalidates both the primary and secondary token pairs.
+
+        Parameters:
+            - refresh_token_id: TokenId.
+
+            - request_options: typing.Optional[RequestOptions]. Request-specific configuration.
+        """
+        _response = self._client_wrapper.httpx_client.request(
+            "DELETE",
+            urllib.parse.urljoin(
+                f"{self._client_wrapper.get_base_url()}/", f"v1/tokens/{jsonable_encoder(refresh_token_id)}"
+            ),
+            params=jsonable_encoder(
+                request_options.get("additional_query_parameters") if request_options is not None else None
+            ),
+            headers=jsonable_encoder(
+                remove_none_from_dict(
+                    {
+                        **self._client_wrapper.get_headers(),
+                        **(request_options.get("additional_headers", {}) if request_options is not None else {}),
+                    }
+                )
+            ),
+            timeout=request_options.get("timeout_in_seconds")
+            if request_options is not None and request_options.get("timeout_in_seconds") is not None
+            else 60,
+            retries=0,
+            max_retries=request_options.get("max_retries") if request_options is not None else 0,  # type: ignore
+        )
+        if 200 <= _response.status_code < 300:
+            return
         if _response.status_code == 400:
             raise BadRequestError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
         if _response.status_code == 401:
@@ -536,7 +594,7 @@ class AsyncTokensClient:
         self, *, request: CreateTokenRequest, request_options: typing.Optional[RequestOptions] = None
     ) -> CreateTokenResponse:
         """
-        Create a token restricted to specified resources and permission set.
+        Create an adhoc organization token restricted to specified resources and permission set.
         Tokens can only be reduced in scope, never expanded.
         Permissions are inherited from the token used to call this API.
         Permissions assigned to the new token will not be persisted, this is not a way to create roles.
@@ -607,7 +665,7 @@ class AsyncTokensClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> CreateIntegrationTokenResponse:
         """
-        Create an integration token restricted to a single integration. The token used to call
+        Create an adhoc integration token restricted to a single integration. The token used to call
         this API must have the necessary permissions to create tokens and have access to the account
         and integration IDs. Permissions may not be escalated, so any operation that the invocation
         token does not have access to cannot be granted.
@@ -652,6 +710,66 @@ class AsyncTokensClient:
         )
         if 200 <= _response.status_code < 300:
             return pydantic.parse_obj_as(CreateIntegrationTokenResponse, _response.json())  # type: ignore
+        if _response.status_code == 400:
+            raise BadRequestError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+        if _response.status_code == 401:
+            raise UnauthorizedError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+        if _response.status_code == 403:
+            raise ForbiddenError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+        if _response.status_code == 404:
+            raise NotFoundError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+        if _response.status_code == 405:
+            raise MethodNotAllowedError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+        if _response.status_code == 409:
+            raise ConflictError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+        if _response.status_code == 415:
+            raise UnsupportedMediaTypeError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+        if _response.status_code == 429:
+            raise TooManyRequestsError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+        if _response.status_code == 500:
+            raise InternalServerError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+        try:
+            _response_json = _response.json()
+        except JSONDecodeError:
+            raise ApiError(status_code=_response.status_code, body=_response.text)
+        raise ApiError(status_code=_response.status_code, body=_response_json)
+
+    async def delete(
+        self, refresh_token_id: TokenId, *, request_options: typing.Optional[RequestOptions] = None
+    ) -> None:
+        """
+        Deletes the Refresh Token with id `{id}`. This immediately
+        invalidates both the primary and secondary token pairs.
+
+        Parameters:
+            - refresh_token_id: TokenId.
+
+            - request_options: typing.Optional[RequestOptions]. Request-specific configuration.
+        """
+        _response = await self._client_wrapper.httpx_client.request(
+            "DELETE",
+            urllib.parse.urljoin(
+                f"{self._client_wrapper.get_base_url()}/", f"v1/tokens/{jsonable_encoder(refresh_token_id)}"
+            ),
+            params=jsonable_encoder(
+                request_options.get("additional_query_parameters") if request_options is not None else None
+            ),
+            headers=jsonable_encoder(
+                remove_none_from_dict(
+                    {
+                        **self._client_wrapper.get_headers(),
+                        **(request_options.get("additional_headers", {}) if request_options is not None else {}),
+                    }
+                )
+            ),
+            timeout=request_options.get("timeout_in_seconds")
+            if request_options is not None and request_options.get("timeout_in_seconds") is not None
+            else 60,
+            retries=0,
+            max_retries=request_options.get("max_retries") if request_options is not None else 0,  # type: ignore
+        )
+        if 200 <= _response.status_code < 300:
+            return
         if _response.status_code == 400:
             raise BadRequestError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
         if _response.status_code == 401:
