@@ -187,7 +187,13 @@ from .sumo_logic_collection_url import (
 )
 from .sumo_logic_credential import SumoLogicCredential, SumoLogicCredential_Basic, SumoLogicCredential_BasicId
 from .tanium_cloud_credential import TaniumCloudCredential, TaniumCloudCredential_Token, TaniumCloudCredential_TokenId
-from .teams_credential import TeamsCredential, TeamsCredential_Secret, TeamsCredential_SecretId
+from .teams_credential import (
+    TeamsCredential,
+    TeamsCredential_OAuthClient,
+    TeamsCredential_OAuthClientId,
+    TeamsCredential_WebhookUrl,
+    TeamsCredential_WebhookUrlId,
+)
 from .tenable_cloud_credential import (
     TenableCloudCredential,
     TenableCloudCredential_Token,
@@ -397,8 +403,10 @@ __all__ = [
     "TaniumCloudCredential_Token",
     "TaniumCloudCredential_TokenId",
     "TeamsCredential",
-    "TeamsCredential_Secret",
-    "TeamsCredential_SecretId",
+    "TeamsCredential_OAuthClient",
+    "TeamsCredential_OAuthClientId",
+    "TeamsCredential_WebhookUrl",
+    "TeamsCredential_WebhookUrlId",
     "TenableCloudCredential",
     "TenableCloudCredential_Token",
     "TenableCloudCredential_TokenId",

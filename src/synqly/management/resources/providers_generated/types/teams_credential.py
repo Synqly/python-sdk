@@ -4,6 +4,8 @@ from __future__ import annotations
 
 import typing
 
+from ...credentials.types.o_auth_client_credential import OAuthClientCredential
+from ...credentials.types.o_auth_client_credential_id import OAuthClientCredentialId
 from ...credentials.types.secret_credential import SecretCredential
 from ...credentials.types.secret_credential_id import SecretCredentialId
 
@@ -13,8 +15,8 @@ except ImportError:
     import pydantic  # type: ignore
 
 
-class TeamsCredential_Secret(SecretCredential):
-    type: typing.Literal["secret"]
+class TeamsCredential_OAuthClient(OAuthClientCredential):
+    type: typing.Literal["o_auth_client"]
 
     class Config:
         frozen = True
@@ -22,8 +24,26 @@ class TeamsCredential_Secret(SecretCredential):
         allow_population_by_field_name = True
 
 
-class TeamsCredential_SecretId(pydantic.BaseModel):
-    type: typing.Literal["secret_id"]
+class TeamsCredential_OAuthClientId(pydantic.BaseModel):
+    type: typing.Literal["o_auth_client_id"]
+    value: OAuthClientCredentialId
+
+    class Config:
+        frozen = True
+        smart_union = True
+
+
+class TeamsCredential_WebhookUrl(SecretCredential):
+    type: typing.Literal["webhook_url"]
+
+    class Config:
+        frozen = True
+        smart_union = True
+        allow_population_by_field_name = True
+
+
+class TeamsCredential_WebhookUrlId(pydantic.BaseModel):
+    type: typing.Literal["webhook_url_id"]
     value: SecretCredentialId
 
     class Config:
@@ -31,4 +51,6 @@ class TeamsCredential_SecretId(pydantic.BaseModel):
         smart_union = True
 
 
-TeamsCredential = typing.Union[TeamsCredential_Secret, TeamsCredential_SecretId]
+TeamsCredential = typing.Union[
+    TeamsCredential_OAuthClient, TeamsCredential_OAuthClientId, TeamsCredential_WebhookUrl, TeamsCredential_WebhookUrlId
+]

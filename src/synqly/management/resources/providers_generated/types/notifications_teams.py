@@ -14,10 +14,29 @@ except ImportError:
 
 class NotificationsTeams(pydantic.BaseModel):
     """
-    Configuration for Microsoft Teams Notification Provider
+    Configuration for sending messages to Microsoft Teams. This provider can be configured as a public webhook or with OAuth.
+    """
+
+    channel_id: str = pydantic.Field()
+    """
+    The ID of the channel to send messages to.
     """
 
     credential: TeamsCredential
+    endpoint: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    The URL of the endpoint to send messages to. Only specified here if OAuth. For public, please refer to TeamsCredential.
+    """
+
+    team_id: str = pydantic.Field()
+    """
+    The ID of the team to send messages to.
+    """
+
+    tenant_id: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    Azure Directory (tenant) ID. Only if OAuth is used.
+    """
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}
