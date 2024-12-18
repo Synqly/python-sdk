@@ -49,7 +49,7 @@ class ApiActivity(pydantic.BaseModel):
     The actor object describes details about the user/role/process that was the source of the activity.
     """
 
-    api: Api = pydantic.Field()
+    api: typing.Optional[Api] = pydantic.Field(default=None)
     """
     Describes details about a typical API (Application Programming Interface) call.
     """
@@ -124,7 +124,7 @@ class ApiActivity(pydantic.BaseModel):
     The observables associated with the event or a finding.
     """
 
-    osint: typing.List[Osint] = pydantic.Field()
+    osint: typing.Optional[typing.List[Osint]] = pydantic.Field(default=None)
     """
     The OSINT (Open Source Intelligence) object contains details related to an indicator such as the indicator itself, related indicators, geolocation, registrar information, subdomains, analyst commentary, and other contextual information. This information can be used to further enrich a detection or finding by providing decisioning support to other analysts and engineers.
     """

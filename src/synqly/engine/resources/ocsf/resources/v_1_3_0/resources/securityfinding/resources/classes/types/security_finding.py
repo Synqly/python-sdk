@@ -199,7 +199,7 @@ class SecurityFinding(pydantic.BaseModel):
     The observables associated with the event or a finding.
     """
 
-    osint: typing.List[Osint] = pydantic.Field()
+    osint: typing.Optional[typing.List[Osint]] = pydantic.Field(default=None)
     """
     The OSINT (Open Source Intelligence) object contains details related to an indicator such as the indicator itself, related indicators, geolocation, registrar information, subdomains, analyst commentary, and other contextual information. This information can be used to further enrich a detection or finding by providing decisioning support to other analysts and engineers.
     """
