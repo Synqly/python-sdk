@@ -23,6 +23,7 @@ from ..common.errors.too_many_requests_error import TooManyRequestsError
 from ..common.errors.unauthorized_error import UnauthorizedError
 from ..common.errors.unsupported_media_type_error import UnsupportedMediaTypeError
 from ..common.types.error_body import ErrorBody
+from ..common.types.patch_operation import PatchOperation
 from .types.attachment_id import AttachmentId
 from .types.comment_id import CommentId
 from .types.create_attachment_request import CreateAttachmentRequest
@@ -413,7 +414,7 @@ class TicketingClient:
         self,
         ticket_id: TicketId,
         *,
-        request: typing.Sequence[typing.Dict[str, typing.Any]],
+        request: typing.Sequence[PatchOperation],
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PatchTicketResponse:
         """
@@ -422,7 +423,7 @@ class TicketingClient:
         Parameters:
             - ticket_id: TicketId.
 
-            - request: typing.Sequence[typing.Dict[str, typing.Any]].
+            - request: typing.Sequence[PatchOperation].
 
             - request_options: typing.Optional[RequestOptions]. Request-specific configuration.
         """
@@ -1364,7 +1365,7 @@ class AsyncTicketingClient:
         self,
         ticket_id: TicketId,
         *,
-        request: typing.Sequence[typing.Dict[str, typing.Any]],
+        request: typing.Sequence[PatchOperation],
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PatchTicketResponse:
         """
@@ -1373,7 +1374,7 @@ class AsyncTicketingClient:
         Parameters:
             - ticket_id: TicketId.
 
-            - request: typing.Sequence[typing.Dict[str, typing.Any]].
+            - request: typing.Sequence[PatchOperation].
 
             - request_options: typing.Optional[RequestOptions]. Request-specific configuration.
         """

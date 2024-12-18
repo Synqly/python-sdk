@@ -19,6 +19,7 @@ from ..common.errors.too_many_requests_error import TooManyRequestsError
 from ..common.errors.unauthorized_error import UnauthorizedError
 from ..common.errors.unsupported_media_type_error import UnsupportedMediaTypeError
 from ..common.types.error_body import ErrorBody
+from ..common.types.patch_operation import PatchOperation
 from ..role_base.types.role_id import RoleId
 from .types.create_role_request import CreateRoleRequest
 from .types.create_role_response import CreateRoleResponse
@@ -314,7 +315,7 @@ class RolesClient:
         self,
         role_id: RoleId,
         *,
-        request: typing.Sequence[typing.Dict[str, typing.Any]],
+        request: typing.Sequence[PatchOperation],
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PatchRoleResponse:
         """
@@ -324,7 +325,7 @@ class RolesClient:
         Parameters:
             - role_id: RoleId.
 
-            - request: typing.Sequence[typing.Dict[str, typing.Any]].
+            - request: typing.Sequence[PatchOperation].
 
             - request_options: typing.Optional[RequestOptions]. Request-specific configuration.
         """
@@ -714,7 +715,7 @@ class AsyncRolesClient:
         self,
         role_id: RoleId,
         *,
-        request: typing.Sequence[typing.Dict[str, typing.Any]],
+        request: typing.Sequence[PatchOperation],
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PatchRoleResponse:
         """
@@ -724,7 +725,7 @@ class AsyncRolesClient:
         Parameters:
             - role_id: RoleId.
 
-            - request: typing.Sequence[typing.Dict[str, typing.Any]].
+            - request: typing.Sequence[PatchOperation].
 
             - request_options: typing.Optional[RequestOptions]. Request-specific configuration.
         """

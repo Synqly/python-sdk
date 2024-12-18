@@ -2,4 +2,6 @@
 
 import typing
 
-PatchInvestigationRequest = typing.List[typing.Dict[str, typing.Any]]
+from ...common.types.patch_operation import PatchOperation
+
+PatchInvestigationRequest = typing.List[PatchOperation]

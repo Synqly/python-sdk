@@ -19,6 +19,7 @@ from ..common.errors.too_many_requests_error import TooManyRequestsError
 from ..common.errors.unauthorized_error import UnauthorizedError
 from ..common.errors.unsupported_media_type_error import UnsupportedMediaTypeError
 from ..common.types.error_body import ErrorBody
+from ..common.types.patch_operation import PatchOperation
 from ..organization_webhook_base.types.webhook_id import WebhookId
 from .types.create_organization_webhook_request import CreateOrganizationWebhookRequest
 from .types.create_organization_webhook_response import CreateOrganizationWebhookResponse
@@ -323,7 +324,7 @@ class OrganizationWebhooksClient:
         self,
         webhook_id: WebhookId,
         *,
-        request: typing.Sequence[typing.Dict[str, typing.Any]],
+        request: typing.Sequence[PatchOperation],
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PatchOrganizationWebhookResponse:
         """
@@ -334,7 +335,7 @@ class OrganizationWebhooksClient:
         Parameters:
             - webhook_id: WebhookId.
 
-            - request: typing.Sequence[typing.Dict[str, typing.Any]].
+            - request: typing.Sequence[PatchOperation].
 
             - request_options: typing.Optional[RequestOptions]. Request-specific configuration.
         """
@@ -736,7 +737,7 @@ class AsyncOrganizationWebhooksClient:
         self,
         webhook_id: WebhookId,
         *,
-        request: typing.Sequence[typing.Dict[str, typing.Any]],
+        request: typing.Sequence[PatchOperation],
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PatchOrganizationWebhookResponse:
         """
@@ -747,7 +748,7 @@ class AsyncOrganizationWebhooksClient:
         Parameters:
             - webhook_id: WebhookId.
 
-            - request: typing.Sequence[typing.Dict[str, typing.Any]].
+            - request: typing.Sequence[PatchOperation].
 
             - request_options: typing.Optional[RequestOptions]. Request-specific configuration.
         """

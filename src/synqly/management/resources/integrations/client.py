@@ -24,6 +24,7 @@ from ..common.errors.too_many_requests_error import TooManyRequestsError
 from ..common.errors.unauthorized_error import UnauthorizedError
 from ..common.errors.unsupported_media_type_error import UnsupportedMediaTypeError
 from ..common.types.error_body import ErrorBody
+from ..common.types.patch_operation import PatchOperation
 from ..integration_base.types.integration_id import IntegrationId
 from .types.create_integration_request import CreateIntegrationRequest
 from .types.create_integration_response import CreateIntegrationResponse
@@ -547,7 +548,7 @@ class IntegrationsClient:
         account_id: AccountId,
         integration_id: IntegrationId,
         *,
-        request: typing.Sequence[typing.Dict[str, typing.Any]],
+        request: typing.Sequence[PatchOperation],
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PatchIntegrationResponse:
         """
@@ -559,7 +560,7 @@ class IntegrationsClient:
 
             - integration_id: IntegrationId.
 
-            - request: typing.Sequence[typing.Dict[str, typing.Any]].
+            - request: typing.Sequence[PatchOperation].
 
             - request_options: typing.Optional[RequestOptions]. Request-specific configuration.
         """
@@ -1187,7 +1188,7 @@ class AsyncIntegrationsClient:
         account_id: AccountId,
         integration_id: IntegrationId,
         *,
-        request: typing.Sequence[typing.Dict[str, typing.Any]],
+        request: typing.Sequence[PatchOperation],
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PatchIntegrationResponse:
         """
@@ -1199,7 +1200,7 @@ class AsyncIntegrationsClient:
 
             - integration_id: IntegrationId.
 
-            - request: typing.Sequence[typing.Dict[str, typing.Any]].
+            - request: typing.Sequence[PatchOperation].
 
             - request_options: typing.Optional[RequestOptions]. Request-specific configuration.
         """

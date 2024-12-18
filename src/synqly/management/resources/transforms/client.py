@@ -20,6 +20,7 @@ from ..common.errors.too_many_requests_error import TooManyRequestsError
 from ..common.errors.unauthorized_error import UnauthorizedError
 from ..common.errors.unsupported_media_type_error import UnsupportedMediaTypeError
 from ..common.types.error_body import ErrorBody
+from ..common.types.patch_operation import PatchOperation
 from .types.create_transform_request import CreateTransformRequest
 from .types.create_transform_response import CreateTransformResponse
 from .types.get_transform_response import GetTransformResponse
@@ -350,7 +351,7 @@ class TransformsClient:
         account_id: AccountId,
         transform_id: TransformId,
         *,
-        request: typing.Sequence[typing.Dict[str, typing.Any]],
+        request: typing.Sequence[PatchOperation],
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PatchTransformResponse:
         """
@@ -362,7 +363,7 @@ class TransformsClient:
 
             - transform_id: TransformId.
 
-            - request: typing.Sequence[typing.Dict[str, typing.Any]].
+            - request: typing.Sequence[PatchOperation].
 
             - request_options: typing.Optional[RequestOptions]. Request-specific configuration.
         """
@@ -801,7 +802,7 @@ class AsyncTransformsClient:
         account_id: AccountId,
         transform_id: TransformId,
         *,
-        request: typing.Sequence[typing.Dict[str, typing.Any]],
+        request: typing.Sequence[PatchOperation],
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PatchTransformResponse:
         """
@@ -813,7 +814,7 @@ class AsyncTransformsClient:
 
             - transform_id: TransformId.
 
-            - request: typing.Sequence[typing.Dict[str, typing.Any]].
+            - request: typing.Sequence[PatchOperation].
 
             - request_options: typing.Optional[RequestOptions]. Request-specific configuration.
         """

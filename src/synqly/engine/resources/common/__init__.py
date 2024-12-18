@@ -13,6 +13,8 @@ from .types import (
     MetaStats,
     Object,
     OrderOptions,
+    PatchOp,
+    PatchOperation,
     QueryStatus,
 )
 from .errors import (
@@ -53,6 +55,8 @@ __all__ = [
     "NotImplementedError",
     "Object",
     "OrderOptions",
+    "PatchOp",
+    "PatchOperation",
     "QueryStatus",
     "ServiceUnavailableError",
     "TooManyRequestsError",

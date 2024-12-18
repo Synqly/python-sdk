@@ -12,6 +12,8 @@ from .meta_response import MetaResponse
 from .meta_stats import MetaStats
 from .object import Object
 from .order_options import OrderOptions
+from .patch_op import PatchOp
+from .patch_operation import PatchOperation
 from .query_status import QueryStatus
 
 __all__ = [
@@ -27,5 +29,7 @@ __all__ = [
     "MetaStats",
     "Object",
     "OrderOptions",
+    "PatchOp",
+    "PatchOperation",
     "QueryStatus",
 ]

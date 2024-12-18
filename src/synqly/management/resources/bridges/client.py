@@ -20,6 +20,7 @@ from ..common.errors.too_many_requests_error import TooManyRequestsError
 from ..common.errors.unauthorized_error import UnauthorizedError
 from ..common.errors.unsupported_media_type_error import UnsupportedMediaTypeError
 from ..common.types.error_body import ErrorBody
+from ..common.types.patch_operation import PatchOperation
 from .types.bridge_group_id import BridgeGroupId
 from .types.create_bridge_request import CreateBridgeRequest
 from .types.create_bridge_response import CreateBridgeResponse
@@ -417,7 +418,7 @@ class BridgesClient:
         account_id: AccountId,
         bridge_id: BridgeGroupId,
         *,
-        request: typing.Sequence[typing.Dict[str, typing.Any]],
+        request: typing.Sequence[PatchOperation],
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PatchBridgeResponse:
         """
@@ -429,7 +430,7 @@ class BridgesClient:
 
             - bridge_id: BridgeGroupId.
 
-            - request: typing.Sequence[typing.Dict[str, typing.Any]].
+            - request: typing.Sequence[PatchOperation].
 
             - request_options: typing.Optional[RequestOptions]. Request-specific configuration.
         """
@@ -934,7 +935,7 @@ class AsyncBridgesClient:
         account_id: AccountId,
         bridge_id: BridgeGroupId,
         *,
-        request: typing.Sequence[typing.Dict[str, typing.Any]],
+        request: typing.Sequence[PatchOperation],
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PatchBridgeResponse:
         """
@@ -946,7 +947,7 @@ class AsyncBridgesClient:
 
             - bridge_id: BridgeGroupId.
 
-            - request: typing.Sequence[typing.Dict[str, typing.Any]].
+            - request: typing.Sequence[PatchOperation].
 
             - request_options: typing.Optional[RequestOptions]. Request-specific configuration.
         """

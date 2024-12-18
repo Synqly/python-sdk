@@ -19,6 +19,7 @@ from ..common.errors.too_many_requests_error import TooManyRequestsError
 from ..common.errors.unauthorized_error import UnauthorizedError
 from ..common.errors.unsupported_media_type_error import UnsupportedMediaTypeError
 from ..common.types.error_body import ErrorBody
+from ..common.types.patch_operation import PatchOperation
 from ..organization_base.types.get_organization_response import GetOrganizationResponse
 from .types.patch_organization_response import PatchOrganizationResponse
 from .types.update_organization_request import UpdateOrganizationRequest
@@ -154,16 +155,13 @@ class OrganizationClient:
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
     def patch(
-        self,
-        *,
-        request: typing.Sequence[typing.Dict[str, typing.Any]],
-        request_options: typing.Optional[RequestOptions] = None,
+        self, *, request: typing.Sequence[PatchOperation], request_options: typing.Optional[RequestOptions] = None
     ) -> PatchOrganizationResponse:
         """
         Patch Organization
 
         Parameters:
-            - request: typing.Sequence[typing.Dict[str, typing.Any]].
+            - request: typing.Sequence[PatchOperation].
 
             - request_options: typing.Optional[RequestOptions]. Request-specific configuration.
         """
@@ -341,16 +339,13 @@ class AsyncOrganizationClient:
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
     async def patch(
-        self,
-        *,
-        request: typing.Sequence[typing.Dict[str, typing.Any]],
-        request_options: typing.Optional[RequestOptions] = None,
+        self, *, request: typing.Sequence[PatchOperation], request_options: typing.Optional[RequestOptions] = None
     ) -> PatchOrganizationResponse:
         """
         Patch Organization
 
         Parameters:
-            - request: typing.Sequence[typing.Dict[str, typing.Any]].
+            - request: typing.Sequence[PatchOperation].
 
             - request_options: typing.Optional[RequestOptions]. Request-specific configuration.
         """

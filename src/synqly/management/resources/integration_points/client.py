@@ -19,6 +19,7 @@ from ..common.errors.too_many_requests_error import TooManyRequestsError
 from ..common.errors.unauthorized_error import UnauthorizedError
 from ..common.errors.unsupported_media_type_error import UnsupportedMediaTypeError
 from ..common.types.error_body import ErrorBody
+from ..common.types.patch_operation import PatchOperation
 from .types.create_integration_point_request import CreateIntegrationPointRequest
 from .types.create_integration_point_response import CreateIntegrationPointResponse
 from .types.get_integration_point_response import GetIntegrationPointResponse
@@ -327,7 +328,7 @@ class IntegrationPointsClient:
         self,
         integration_point_id: IntegrationPointId,
         *,
-        request: typing.Sequence[typing.Dict[str, typing.Any]],
+        request: typing.Sequence[PatchOperation],
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PatchIntegrationPointResponse:
         """
@@ -336,7 +337,7 @@ class IntegrationPointsClient:
         Parameters:
             - integration_point_id: IntegrationPointId.
 
-            - request: typing.Sequence[typing.Dict[str, typing.Any]].
+            - request: typing.Sequence[PatchOperation].
 
             - request_options: typing.Optional[RequestOptions]. Request-specific configuration.
         """
@@ -746,7 +747,7 @@ class AsyncIntegrationPointsClient:
         self,
         integration_point_id: IntegrationPointId,
         *,
-        request: typing.Sequence[typing.Dict[str, typing.Any]],
+        request: typing.Sequence[PatchOperation],
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PatchIntegrationPointResponse:
         """
@@ -755,7 +756,7 @@ class AsyncIntegrationPointsClient:
         Parameters:
             - integration_point_id: IntegrationPointId.
 
-            - request: typing.Sequence[typing.Dict[str, typing.Any]].
+            - request: typing.Sequence[PatchOperation].
 
             - request_options: typing.Optional[RequestOptions]. Request-specific configuration.
         """

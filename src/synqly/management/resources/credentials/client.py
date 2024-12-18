@@ -20,6 +20,7 @@ from ..common.errors.unauthorized_error import UnauthorizedError
 from ..common.errors.unsupported_media_type_error import UnsupportedMediaTypeError
 from ..common.types.error_body import ErrorBody
 from ..common.types.id import Id
+from ..common.types.patch_operation import PatchOperation
 from .types.create_credential_request import CreateCredentialRequest
 from .types.create_credential_response import CreateCredentialResponse
 from .types.credential_id import CredentialId
@@ -404,7 +405,7 @@ class CredentialsClient:
         owner_id: Id,
         credential_id: CredentialId,
         *,
-        request: typing.Sequence[typing.Dict[str, typing.Any]],
+        request: typing.Sequence[PatchOperation],
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PatchCredentialResponse:
         """
@@ -416,7 +417,7 @@ class CredentialsClient:
 
             - credential_id: CredentialId.
 
-            - request: typing.Sequence[typing.Dict[str, typing.Any]].
+            - request: typing.Sequence[PatchOperation].
 
             - request_options: typing.Optional[RequestOptions]. Request-specific configuration.
         """
@@ -904,7 +905,7 @@ class AsyncCredentialsClient:
         owner_id: Id,
         credential_id: CredentialId,
         *,
-        request: typing.Sequence[typing.Dict[str, typing.Any]],
+        request: typing.Sequence[PatchOperation],
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PatchCredentialResponse:
         """
@@ -916,7 +917,7 @@ class AsyncCredentialsClient:
 
             - credential_id: CredentialId.
 
-            - request: typing.Sequence[typing.Dict[str, typing.Any]].
+            - request: typing.Sequence[PatchOperation].
 
             - request_options: typing.Optional[RequestOptions]. Request-specific configuration.
         """

@@ -19,6 +19,7 @@ from ..common.errors.too_many_requests_error import TooManyRequestsError
 from ..common.errors.unauthorized_error import UnauthorizedError
 from ..common.errors.unsupported_media_type_error import UnsupportedMediaTypeError
 from ..common.types.error_body import ErrorBody
+from ..common.types.patch_operation import PatchOperation
 from ..member_base.types.create_member_request import CreateMemberRequest
 from ..member_base.types.create_member_response import CreateMemberResponse
 from ..member_base.types.member_id import MemberId
@@ -319,7 +320,7 @@ class MembersClient:
         self,
         member_id: MemberId,
         *,
-        request: typing.Sequence[typing.Dict[str, typing.Any]],
+        request: typing.Sequence[PatchOperation],
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PatchMemberResponse:
         """
@@ -328,7 +329,7 @@ class MembersClient:
         Parameters:
             - member_id: MemberId.
 
-            - request: typing.Sequence[typing.Dict[str, typing.Any]].
+            - request: typing.Sequence[PatchOperation].
 
             - request_options: typing.Optional[RequestOptions]. Request-specific configuration.
         """
@@ -728,7 +729,7 @@ class AsyncMembersClient:
         self,
         member_id: MemberId,
         *,
-        request: typing.Sequence[typing.Dict[str, typing.Any]],
+        request: typing.Sequence[PatchOperation],
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PatchMemberResponse:
         """
@@ -737,7 +738,7 @@ class AsyncMembersClient:
         Parameters:
             - member_id: MemberId.
 
-            - request: typing.Sequence[typing.Dict[str, typing.Any]].
+            - request: typing.Sequence[PatchOperation].
 
             - request_options: typing.Optional[RequestOptions]. Request-specific configuration.
         """

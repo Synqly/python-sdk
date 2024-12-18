@@ -19,6 +19,7 @@ from ..common.errors.too_many_requests_error import TooManyRequestsError
 from ..common.errors.unauthorized_error import UnauthorizedError
 from ..common.errors.unsupported_media_type_error import UnsupportedMediaTypeError
 from ..common.types.error_body import ErrorBody
+from ..common.types.patch_operation import PatchOperation
 from .types.account_id import AccountId
 from .types.create_account_request import CreateAccountRequest
 from .types.create_account_response import CreateAccountResponse
@@ -333,7 +334,7 @@ class AccountsClient:
         self,
         account_id: AccountId,
         *,
-        request: typing.Sequence[typing.Dict[str, typing.Any]],
+        request: typing.Sequence[PatchOperation],
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PatchAccountResponse:
         """
@@ -344,7 +345,7 @@ class AccountsClient:
         Parameters:
             - account_id: AccountId.
 
-            - request: typing.Sequence[typing.Dict[str, typing.Any]].
+            - request: typing.Sequence[PatchOperation].
 
             - request_options: typing.Optional[RequestOptions]. Request-specific configuration.
         """
@@ -757,7 +758,7 @@ class AsyncAccountsClient:
         self,
         account_id: AccountId,
         *,
-        request: typing.Sequence[typing.Dict[str, typing.Any]],
+        request: typing.Sequence[PatchOperation],
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PatchAccountResponse:
         """
@@ -768,7 +769,7 @@ class AsyncAccountsClient:
         Parameters:
             - account_id: AccountId.
 
-            - request: typing.Sequence[typing.Dict[str, typing.Any]].
+            - request: typing.Sequence[PatchOperation].
 
             - request_options: typing.Optional[RequestOptions]. Request-specific configuration.
         """
