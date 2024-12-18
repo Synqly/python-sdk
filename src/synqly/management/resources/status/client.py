@@ -419,7 +419,7 @@ class StatusClient:
 
             - integration_id: IntegrationId.
 
-            - interval: typing.Optional[str]. [minute|hour] provide most recent 60 minute or 24 hour timeseries. default: minute
+            - interval: typing.Optional[str]. [hour] provide most recent 24 hour timeseries. default: hour
 
             - request_options: typing.Optional[RequestOptions]. Request-specific configuration.
         """
@@ -867,7 +867,7 @@ class AsyncStatusClient:
 
             - integration_id: IntegrationId.
 
-            - interval: typing.Optional[str]. [minute|hour] provide most recent 60 minute or 24 hour timeseries. default: minute
+            - interval: typing.Optional[str]. [hour] provide most recent 24 hour timeseries. default: hour
 
             - request_options: typing.Optional[RequestOptions]. Request-specific configuration.
         """

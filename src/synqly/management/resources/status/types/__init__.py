@@ -10,6 +10,7 @@ from .list_status_options import ListStatusOptions
 from .list_status_response import ListStatusResponse
 from .status import Status
 from .status_event import StatusEvent
+from .timeseries_options import TimeseriesOptions
 from .timeseries_result import TimeseriesResult
 
 __all__ = [
@@ -23,5 +24,6 @@ __all__ = [
     "ListStatusResponse",
     "Status",
     "StatusEvent",
+    "TimeseriesOptions",
     "TimeseriesResult",
 ]

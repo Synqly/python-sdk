@@ -532,6 +532,7 @@ from .status import (
     ListStatusResponse,
     Status,
     StatusEvent,
+    TimeseriesOptions,
     TimeseriesResult,
 )
 from .token_base import Token, TokenId, TokenOwnerType, TokenPair
@@ -1006,6 +1007,7 @@ __all__ = [
     "TicketingPagerDuty",
     "TicketingServiceNow",
     "TicketingTorq",
+    "TimeseriesOptions",
     "TimeseriesResult",
     "Token",
     "TokenCredential",

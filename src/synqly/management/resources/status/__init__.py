@@ -11,6 +11,7 @@ from .types import (
     ListStatusResponse,
     Status,
     StatusEvent,
+    TimeseriesOptions,
     TimeseriesResult,
 )
 
@@ -25,5 +26,6 @@ __all__ = [
     "ListStatusResponse",
     "Status",
     "StatusEvent",
+    "TimeseriesOptions",
     "TimeseriesResult",
 ]
