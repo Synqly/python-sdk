@@ -79,6 +79,7 @@ from .nozomi_vantage_credential import (
     NozomiVantageCredential_Basic,
     NozomiVantageCredential_BasicId,
 )
+from .nucleus_credential import NucleusCredential, NucleusCredential_Token, NucleusCredential_TokenId
 from .okta_credential import (
     OktaCredential,
     OktaCredential_OAuthClient,
@@ -125,6 +126,7 @@ from .provider_config import (
     ProviderConfig_TicketingServicenow,
     ProviderConfig_TicketingTorq,
     ProviderConfig_VulnerabilitiesCrowdstrike,
+    ProviderConfig_VulnerabilitiesNucleus,
     ProviderConfig_VulnerabilitiesQualysCloud,
     ProviderConfig_VulnerabilitiesRapid7InsightCloud,
     ProviderConfig_VulnerabilitiesTaniumCloud,
@@ -206,6 +208,7 @@ from .ticketing_service_now import TicketingServiceNow
 from .ticketing_torq import TicketingTorq
 from .torq_credential import TorqCredential, TorqCredential_OAuthClient, TorqCredential_OAuthClientId
 from .vulnerabilities_crowd_strike import VulnerabilitiesCrowdStrike
+from .vulnerabilities_nucleus import VulnerabilitiesNucleus
 from .vulnerabilities_qualys_cloud import VulnerabilitiesQualysCloud
 from .vulnerabilities_rapid_7_insight_cloud import VulnerabilitiesRapid7InsightCloud
 from .vulnerabilities_tanium_cloud import VulnerabilitiesTaniumCloud
@@ -289,6 +292,9 @@ __all__ = [
     "NozomiVantageCredential",
     "NozomiVantageCredential_Basic",
     "NozomiVantageCredential_BasicId",
+    "NucleusCredential",
+    "NucleusCredential_Token",
+    "NucleusCredential_TokenId",
     "OktaCredential",
     "OktaCredential_OAuthClient",
     "OktaCredential_OAuthClientId",
@@ -337,6 +343,7 @@ __all__ = [
     "ProviderConfig_TicketingServicenow",
     "ProviderConfig_TicketingTorq",
     "ProviderConfig_VulnerabilitiesCrowdstrike",
+    "ProviderConfig_VulnerabilitiesNucleus",
     "ProviderConfig_VulnerabilitiesQualysCloud",
     "ProviderConfig_VulnerabilitiesRapid7InsightCloud",
     "ProviderConfig_VulnerabilitiesTaniumCloud",
@@ -419,6 +426,7 @@ __all__ = [
     "TorqCredential_OAuthClient",
     "TorqCredential_OAuthClientId",
     "VulnerabilitiesCrowdStrike",
+    "VulnerabilitiesNucleus",
     "VulnerabilitiesQualysCloud",
     "VulnerabilitiesRapid7InsightCloud",
     "VulnerabilitiesTaniumCloud",

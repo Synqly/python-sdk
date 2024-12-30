@@ -186,6 +186,11 @@ class ProviderConfigId(str, enum.Enum):
     CrowdStrike Falcon Spotlight
     """
 
+    VULNERABILITIES_NUCLEUS = "vulnerabilities_nucleus"
+    """
+    Nucleus Vulnerability Management
+    """
+
     VULNERABILITIES_QUALYS_CLOUD = "vulnerabilities_qualys_cloud"
     """
     Qualys Vulnerability Management, Detection & Response (VMDR)
@@ -248,6 +253,7 @@ class ProviderConfigId(str, enum.Enum):
         ticketing_service_now: typing.Callable[[], T_Result],
         ticketing_torq: typing.Callable[[], T_Result],
         vulnerabilities_crowd_strike: typing.Callable[[], T_Result],
+        vulnerabilities_nucleus: typing.Callable[[], T_Result],
         vulnerabilities_qualys_cloud: typing.Callable[[], T_Result],
         vulnerabilities_rapid_7_insight_cloud: typing.Callable[[], T_Result],
         vulnerabilities_tanium_cloud: typing.Callable[[], T_Result],
@@ -324,6 +330,8 @@ class ProviderConfigId(str, enum.Enum):
             return ticketing_torq()
         if self is ProviderConfigId.VULNERABILITIES_CROWD_STRIKE:
             return vulnerabilities_crowd_strike()
+        if self is ProviderConfigId.VULNERABILITIES_NUCLEUS:
+            return vulnerabilities_nucleus()
         if self is ProviderConfigId.VULNERABILITIES_QUALYS_CLOUD:
             return vulnerabilities_qualys_cloud()
         if self is ProviderConfigId.VULNERABILITIES_RAPID_7_INSIGHT_CLOUD:

@@ -39,6 +39,7 @@ from .ticketing_pager_duty import TicketingPagerDuty
 from .ticketing_service_now import TicketingServiceNow
 from .ticketing_torq import TicketingTorq
 from .vulnerabilities_crowd_strike import VulnerabilitiesCrowdStrike
+from .vulnerabilities_nucleus import VulnerabilitiesNucleus
 from .vulnerabilities_qualys_cloud import VulnerabilitiesQualysCloud
 from .vulnerabilities_rapid_7_insight_cloud import VulnerabilitiesRapid7InsightCloud
 from .vulnerabilities_tanium_cloud import VulnerabilitiesTaniumCloud
@@ -360,6 +361,15 @@ class ProviderConfig_VulnerabilitiesCrowdstrike(VulnerabilitiesCrowdStrike):
         allow_population_by_field_name = True
 
 
+class ProviderConfig_VulnerabilitiesNucleus(VulnerabilitiesNucleus):
+    type: typing.Literal["vulnerabilities_nucleus"]
+
+    class Config:
+        frozen = True
+        smart_union = True
+        allow_population_by_field_name = True
+
+
 class ProviderConfig_VulnerabilitiesQualysCloud(VulnerabilitiesQualysCloud):
     type: typing.Literal["vulnerabilities_qualys_cloud"]
 
@@ -432,6 +442,7 @@ ProviderConfig = typing.Union[
     ProviderConfig_TicketingServicenow,
     ProviderConfig_TicketingTorq,
     ProviderConfig_VulnerabilitiesCrowdstrike,
+    ProviderConfig_VulnerabilitiesNucleus,
     ProviderConfig_VulnerabilitiesQualysCloud,
     ProviderConfig_VulnerabilitiesRapid7InsightCloud,
     ProviderConfig_VulnerabilitiesTaniumCloud,
