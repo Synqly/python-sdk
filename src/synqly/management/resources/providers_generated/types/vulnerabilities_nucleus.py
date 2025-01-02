@@ -23,7 +23,7 @@ class VulnerabilitiesNucleus(pydantic.BaseModel):
     The **project_id** is a string representing a numeric ID (e.g., "12345") and can be found in the Nucleus UI by selecting **Global Dashboard** from the left-hand menu, then choosing **All Projects** at the top, where the **Projects** widget lists all projects with their IDs.
     """
 
-    url: typing.Optional[str] = pydantic.Field(default=None)
+    url: str = pydantic.Field()
     """
     URL for the Nucleus API. This should be the base URL for the API, without any path components and must be HTTPS, e.g. "https://{sandbox}.nucleussec.com" .
     """

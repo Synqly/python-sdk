@@ -18,7 +18,7 @@ class VulnerabilitiesTaniumCloud(pydantic.BaseModel):
     """
 
     credential: TaniumCloudCredential
-    url: typing.Optional[str] = pydantic.Field(default=None)
+    url: str = pydantic.Field()
     """
     URL for the Tanium Cloud API. This should be the base URL for the API, without any path components and must be HTTPS, e.g. "https://<customername>-api.cloud.tanium.com" or "https://<customername>-api.titankube.com".
     """
