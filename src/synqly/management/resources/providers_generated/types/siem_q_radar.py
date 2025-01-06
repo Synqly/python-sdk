@@ -25,7 +25,7 @@ class SiemQRadar(pydantic.BaseModel):
     credential: QRadarCredential
     skip_tls_verify: bool = pydantic.Field()
     """
-    If true, skips verification of the QRadar server's TLS certificate. Defaults to false.
+    If true, skips verification of the QRadar server's TLS certificate.
     """
 
     url: str = pydantic.Field()

@@ -20,7 +20,7 @@ class SiemSumoLogic(pydantic.BaseModel):
 
     auto_parse_logs: typing.Optional[bool] = pydantic.Field(default=None)
     """
-    Automatically parse logs as JSON when running log queries against Sumo Logic. Default is true.
+    Automatically parse logs as JSON when running log queries against Sumo Logic.
     """
 
     collection_url: typing.Optional[SumoLogicCollectionUrl] = pydantic.Field(default=None)
@@ -31,7 +31,7 @@ class SiemSumoLogic(pydantic.BaseModel):
     credential: SumoLogicCredential
     siem_logs_only: typing.Optional[bool] = pydantic.Field(default=None)
     """
-    Only query for logs that have been processed into the Sumo Logic Cloud SIEM app. Default is false.
+    Only query for logs that have been processed into the Sumo Logic Cloud SIEM app.
     """
 
     url: str = pydantic.Field()

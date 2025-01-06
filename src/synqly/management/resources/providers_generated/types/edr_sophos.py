@@ -20,7 +20,7 @@ class EdrSophos(pydantic.BaseModel):
     credential: SophosCredential
     url: typing.Optional[str] = pydantic.Field(default=None)
     """
-    Optional root domain where your Sophos tenant is located. Default "https://api.central.sophos.com".
+    Optional root domain where your Sophos tenant is located.
     """
 
     def json(self, **kwargs: typing.Any) -> str:

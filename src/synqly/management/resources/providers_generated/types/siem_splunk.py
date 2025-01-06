@@ -41,7 +41,7 @@ class SiemSplunk(pydantic.BaseModel):
 
     skip_tls_verify: bool = pydantic.Field()
     """
-    If true, skips verification of the Splunk server's TLS certificate. Defaults to false.
+    If true, skips verification of the Splunk server's TLS certificate.
     """
 
     source: typing.Optional[str] = pydantic.Field(default=None)

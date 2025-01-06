@@ -20,7 +20,7 @@ class VulnerabilitiesCrowdStrike(pydantic.BaseModel):
     credential: CrowdStrikeCredential
     url: typing.Optional[str] = pydantic.Field(default=None)
     """
-    The root domain where your CrowdStrike Falcon tenant is located. Default "https://api.crowdstrike.com".
+    The root domain where your CrowdStrike Falcon tenant is located.
     """
 
     def json(self, **kwargs: typing.Any) -> str:

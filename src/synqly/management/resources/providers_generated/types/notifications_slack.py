@@ -25,7 +25,7 @@ class NotificationsSlack(pydantic.BaseModel):
     credential: SlackCredential
     url: typing.Optional[str] = pydantic.Field(default=None)
     """
-    Optional URL override for the Slack API. This should include the full path to the API endpoint. Defaults to "https://slack.com_api_chat.postMessage".
+    Optional URL override for the Slack API. This should include the full path to the API endpoint.
     """
 
     def json(self, **kwargs: typing.Any) -> str:

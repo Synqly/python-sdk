@@ -27,12 +27,12 @@ class SiemElasticsearch(pydantic.BaseModel):
     credential: ElasticsearchCredential
     index: typing.Optional[str] = pydantic.Field(default=None)
     """
-    Optional. The index, data stream, or index alias to read events from. Default "\_all".
+    Optional. The index, data stream, or index alias to read events from.
     """
 
     skip_tls_verify: typing.Optional[bool] = pydantic.Field(default=None)
     """
-    If true, skips verification of the Elasticsearch server's TLS certificate. Defaults to false.
+    If true, skips verification of the Elasticsearch server's TLS certificate.
     """
 
     url: str = pydantic.Field()
