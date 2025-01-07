@@ -7,20 +7,22 @@ T_Result = typing.TypeVar("T_Result")
 
 
 class HttpMethod(str, enum.Enum):
+    DELETE = "DELETE"
     GET = "GET"
     PATCH = "PATCH"
     POST = "POST"
     PUT = "PUT"
-    DELETE = "DELETE"
 
     def visit(
         self,
+        delete: typing.Callable[[], T_Result],
         get: typing.Callable[[], T_Result],
         patch: typing.Callable[[], T_Result],
         post: typing.Callable[[], T_Result],
         put: typing.Callable[[], T_Result],
-        delete: typing.Callable[[], T_Result],
     ) -> T_Result:
+        if self is HttpMethod.DELETE:
+            return delete()
         if self is HttpMethod.GET:
             return get()
         if self is HttpMethod.PATCH:
@@ -29,5 +31,3 @@ class HttpMethod(str, enum.Enum):
             return post()
         if self is HttpMethod.PUT:
             return put()
-        if self is HttpMethod.DELETE:
-            return delete()

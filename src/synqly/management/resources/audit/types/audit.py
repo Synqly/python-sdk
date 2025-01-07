@@ -7,6 +7,7 @@ from ....core.datetime_utils import serialize_datetime
 from ...accounts.types.account_id import AccountId
 from ...integration_base.types.integration_id import IntegrationId
 from ...member_base.types.member_id import MemberId
+from .audit_type import AuditType
 from .http_method import HttpMethod
 
 try:
@@ -24,6 +25,7 @@ class Audit(pydantic.BaseModel):
 
     remote_addr: str
     user_agent: str
+    audit_type: AuditType
     method: HttpMethod
     path: str
     code: str

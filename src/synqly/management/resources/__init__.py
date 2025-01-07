@@ -47,7 +47,7 @@ from .accounts import (
     UpdateAccountRequest,
     UpdateAccountResponse,
 )
-from .audit import Audit, HttpMethod, ListAuditEventsResponse
+from .audit import Audit, AuditType, HttpMethod, ListAuditEventsResponse
 from .auth import ChangePasswordRequest
 from .auth_base import (
     AuthCode,
@@ -585,6 +585,7 @@ __all__ = [
     "Audit",
     "AuditActions",
     "AuditPermissions",
+    "AuditType",
     "AuthActions",
     "AuthCode",
     "AuthPermissions",
