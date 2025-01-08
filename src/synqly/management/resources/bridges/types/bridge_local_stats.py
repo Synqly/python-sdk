@@ -4,8 +4,6 @@ import datetime as dt
 import typing
 
 from ....core.datetime_utils import serialize_datetime
-from .bridge_local_config import BridgeLocalConfig
-from .bridge_local_stats import BridgeLocalStats
 
 try:
     import pydantic.v1 as pydantic  # type: ignore
@@ -13,26 +11,11 @@ except ImportError:
     import pydantic  # type: ignore
 
 
-class BridgeStatus(pydantic.BaseModel):
-    current_time: dt.datetime = pydantic.Field()
-    """
-    Local time on the Bridge when the status check was performed.
-    """
-
-    response_duration: str = pydantic.Field()
-    """
-    Round trip time for the status check.
-    """
-
-    local_config: BridgeLocalConfig = pydantic.Field()
-    """
-    Local configuration parameters for the Bridge.
-    """
-
-    local_stats: BridgeLocalStats = pydantic.Field()
-    """
-    Local bridge statistics
-    """
+class BridgeLocalStats(pydantic.BaseModel):
+    requests: int
+    failures: int
+    in_bytes: int
+    out_bytes: int
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}

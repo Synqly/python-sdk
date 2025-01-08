@@ -3,6 +3,7 @@
 from .bridge_group import BridgeGroup
 from .bridge_group_id import BridgeGroupId
 from .bridge_local_config import BridgeLocalConfig
+from .bridge_local_stats import BridgeLocalStats
 from .bridge_status import BridgeStatus
 from .create_bridge_request import CreateBridgeRequest
 from .create_bridge_response import CreateBridgeResponse
@@ -18,6 +19,7 @@ __all__ = [
     "BridgeGroup",
     "BridgeGroupId",
     "BridgeLocalConfig",
+    "BridgeLocalStats",
     "BridgeStatus",
     "CreateBridgeRequest",
     "CreateBridgeResponse",
