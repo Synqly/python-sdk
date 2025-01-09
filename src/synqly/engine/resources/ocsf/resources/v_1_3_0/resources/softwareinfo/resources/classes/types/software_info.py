@@ -72,6 +72,11 @@ class SoftwareInfo(pydantic.BaseModel):
     The number of times that events in the same logical group occurred during the event <strong>Start Time</strong> to <strong>End Time</strong> period.
     """
 
+    custom_fields: typing.Optional[Object] = pydantic.Field(default=None)
+    """
+    A list of custom fields
+    """
+
     device: typing.Optional[Device] = pydantic.Field(default=None)
     """
     The device that the software is loaded on.

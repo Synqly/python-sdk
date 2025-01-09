@@ -124,6 +124,11 @@ class FileActivity(pydantic.BaseModel):
     The original Windows mask that is required to create the object.
     """
 
+    custom_fields: typing.Optional[Object] = pydantic.Field(default=None)
+    """
+    A list of custom fields
+    """
+
     device: Device = pydantic.Field()
     """
     An addressable device, computer system or host.

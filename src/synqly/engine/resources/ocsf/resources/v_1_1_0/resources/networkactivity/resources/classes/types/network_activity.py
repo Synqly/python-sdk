@@ -51,7 +51,7 @@ class NetworkActivity(pydantic.BaseModel):
     The normalized caption of <code>action_id</code>.
     """
 
-    action_id: ActionId = pydantic.Field()
+    action_id: typing.Optional[ActionId] = pydantic.Field(default=None)
     """
     The action taken by a control or other policy-based system leading to an outcome or disposition. Dispositions conform to an action of <code>1</code> 'Allowed' or <code>2</code> 'Denied' in most cases. Note that <code>99</code> 'Other' is not an option. No action would equate to <code>1</code> 'Allowed'. An unknown action may still correspond to a known disposition. Refer to <code>disposition_id</code> for the outcome of the action.
     """
@@ -119,6 +119,11 @@ class NetworkActivity(pydantic.BaseModel):
     count: typing.Optional[int] = pydantic.Field(default=None)
     """
     The number of times that events in the same logical group occurred during the event <strong>Start Time</strong> to <strong>End Time</strong> period.
+    """
+
+    custom_fields: typing.Optional[Object] = pydantic.Field(default=None)
+    """
+    A list of custom fields
     """
 
     device: typing.Optional[Device] = pydantic.Field(default=None)

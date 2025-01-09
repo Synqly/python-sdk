@@ -48,7 +48,7 @@ class ApiActivity(pydantic.BaseModel):
     The actor object describes details about the user/role/process that was the source of the activity.
     """
 
-    api: Api = pydantic.Field()
+    api: typing.Optional[Api] = pydantic.Field(default=None)
     """
     Describes details about a typical API (Application Programming Interface) call.
     """
@@ -76,6 +76,11 @@ class ApiActivity(pydantic.BaseModel):
     count: typing.Optional[int] = pydantic.Field(default=None)
     """
     The number of times that events in the same logical group occurred during the event <strong>Start Time</strong> to <strong>End Time</strong> period.
+    """
+
+    custom_fields: typing.Optional[Object] = pydantic.Field(default=None)
+    """
+    A list of custom fields
     """
 
     dst_endpoint: typing.Optional[NetworkEndpoint] = pydantic.Field(default=None)

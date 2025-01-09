@@ -107,6 +107,11 @@ class ComplianceFinding(pydantic.BaseModel):
     The number of times that events in the same logical group occurred during the event <strong>Start Time</strong> to <strong>End Time</strong> period.
     """
 
+    custom_fields: typing.Optional[Object] = pydantic.Field(default=None)
+    """
+    A list of custom fields
+    """
+
     device: typing.Optional[Device] = pydantic.Field(default=None)
     """
     Describes the affected device/host. It can be used in conjunction with <code>Affected Resource(s)</code>. <p> e.g. Specific details about an AWS EC2 instance, that is affected by the Finding.</p>

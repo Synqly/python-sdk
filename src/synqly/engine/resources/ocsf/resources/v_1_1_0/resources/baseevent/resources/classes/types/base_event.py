@@ -68,6 +68,11 @@ class BaseEvent(pydantic.BaseModel):
     The number of times that events in the same logical group occurred during the event <strong>Start Time</strong> to <strong>End Time</strong> period.
     """
 
+    custom_fields: typing.Optional[Object] = pydantic.Field(default=None)
+    """
+    A list of custom fields
+    """
+
     duration: typing.Optional[int] = pydantic.Field(default=None)
     """
     The event duration or aggregate time, the amount of time the event covers from <code>start_time</code> to <code>end_time</code> in milliseconds.

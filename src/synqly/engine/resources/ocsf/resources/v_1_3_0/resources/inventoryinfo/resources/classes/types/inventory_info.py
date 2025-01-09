@@ -77,6 +77,11 @@ class InventoryInfo(pydantic.BaseModel):
     The number of times that events in the same logical group occurred during the event <strong>Start Time</strong> to <strong>End Time</strong> period.
     """
 
+    custom_fields: typing.Optional[Object] = pydantic.Field(default=None)
+    """
+    A list of custom fields
+    """
+
     device: Device = pydantic.Field()
     """
     The device that is being discovered by an inventory process.

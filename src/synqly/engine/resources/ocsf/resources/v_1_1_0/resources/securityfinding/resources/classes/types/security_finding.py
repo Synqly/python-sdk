@@ -118,6 +118,11 @@ class SecurityFinding(pydantic.BaseModel):
     The number of times that events in the same logical group occurred during the event <strong>Start Time</strong> to <strong>End Time</strong> period.
     """
 
+    custom_fields: typing.Optional[Object] = pydantic.Field(default=None)
+    """
+    A list of custom fields
+    """
+
     data_sources: typing.Optional[typing.List[str]] = pydantic.Field(default=None)
     """
     A list of data sources utilized in generation of the finding.
