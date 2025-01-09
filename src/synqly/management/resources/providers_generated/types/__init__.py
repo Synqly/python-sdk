@@ -66,6 +66,11 @@ from .elasticsearch_shared_secret import (
 )
 from .entra_id_credential import EntraIdCredential, EntraIdCredential_OAuthClient, EntraIdCredential_OAuthClientId
 from .gcs_credential import GcsCredential, GcsCredential_Aws, GcsCredential_AwsId
+from .google_chronicle_credential import (
+    GoogleChronicleCredential,
+    GoogleChronicleCredential_OAuthClient,
+    GoogleChronicleCredential_OAuthClientId,
+)
 from .identity_entra_id import IdentityEntraId
 from .identity_okta import IdentityOkta
 from .identity_ping_one import IdentityPingOne
@@ -106,6 +111,7 @@ from .provider_config import (
     ProviderConfig_NotificationsSlack,
     ProviderConfig_NotificationsTeams,
     ProviderConfig_SiemElasticsearch,
+    ProviderConfig_SiemGoogleChronicle,
     ProviderConfig_SiemMockSiem,
     ProviderConfig_SiemQRadar,
     ProviderConfig_SiemRapid7Insightidr,
@@ -149,6 +155,7 @@ from .service_now_credential import (
     ServiceNowCredential_TokenId,
 )
 from .siem_elasticsearch import SiemElasticsearch
+from .siem_google_chronicle import SiemGoogleChronicle
 from .siem_mock import SiemMock
 from .siem_q_radar import SiemQRadar
 from .siem_rapid_7_insight_idr import SiemRapid7InsightIdr
@@ -279,6 +286,9 @@ __all__ = [
     "GcsCredential",
     "GcsCredential_Aws",
     "GcsCredential_AwsId",
+    "GoogleChronicleCredential",
+    "GoogleChronicleCredential_OAuthClient",
+    "GoogleChronicleCredential_OAuthClientId",
     "IdentityEntraId",
     "IdentityOkta",
     "IdentityPingOne",
@@ -323,6 +333,7 @@ __all__ = [
     "ProviderConfig_NotificationsSlack",
     "ProviderConfig_NotificationsTeams",
     "ProviderConfig_SiemElasticsearch",
+    "ProviderConfig_SiemGoogleChronicle",
     "ProviderConfig_SiemMockSiem",
     "ProviderConfig_SiemQRadar",
     "ProviderConfig_SiemRapid7Insightidr",
@@ -366,6 +377,7 @@ __all__ = [
     "ServiceNowCredential_Token",
     "ServiceNowCredential_TokenId",
     "SiemElasticsearch",
+    "SiemGoogleChronicle",
     "SiemMock",
     "SiemQRadar",
     "SiemRapid7InsightIdr",

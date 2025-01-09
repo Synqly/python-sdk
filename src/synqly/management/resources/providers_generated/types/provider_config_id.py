@@ -86,6 +86,11 @@ class ProviderConfigId(str, enum.Enum):
     Elastic SIEM
     """
 
+    SIEM_GOOGLE_CHRONICLE = "siem_google_chronicle"
+    """
+    Google Chronicle
+    """
+
     SIEM_MOCK = "siem_mock_siem"
     """
     SIEM Test
@@ -233,6 +238,7 @@ class ProviderConfigId(str, enum.Enum):
         notifications_slack: typing.Callable[[], T_Result],
         notifications_teams: typing.Callable[[], T_Result],
         siem_elasticsearch: typing.Callable[[], T_Result],
+        siem_google_chronicle: typing.Callable[[], T_Result],
         siem_mock: typing.Callable[[], T_Result],
         siem_q_radar: typing.Callable[[], T_Result],
         siem_rapid_7_insight_idr: typing.Callable[[], T_Result],
@@ -290,6 +296,8 @@ class ProviderConfigId(str, enum.Enum):
             return notifications_teams()
         if self is ProviderConfigId.SIEM_ELASTICSEARCH:
             return siem_elasticsearch()
+        if self is ProviderConfigId.SIEM_GOOGLE_CHRONICLE:
+            return siem_google_chronicle()
         if self is ProviderConfigId.SIEM_MOCK:
             return siem_mock()
         if self is ProviderConfigId.SIEM_Q_RADAR:

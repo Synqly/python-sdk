@@ -19,6 +19,7 @@ from .notifications_mock import NotificationsMock
 from .notifications_slack import NotificationsSlack
 from .notifications_teams import NotificationsTeams
 from .siem_elasticsearch import SiemElasticsearch
+from .siem_google_chronicle import SiemGoogleChronicle
 from .siem_mock import SiemMock
 from .siem_q_radar import SiemQRadar
 from .siem_rapid_7_insight_idr import SiemRapid7InsightIdr
@@ -174,6 +175,15 @@ class ProviderConfig_NotificationsTeams(NotificationsTeams):
 
 class ProviderConfig_SiemElasticsearch(SiemElasticsearch):
     type: typing.Literal["siem_elasticsearch"]
+
+    class Config:
+        frozen = True
+        smart_union = True
+        allow_population_by_field_name = True
+
+
+class ProviderConfig_SiemGoogleChronicle(SiemGoogleChronicle):
+    type: typing.Literal["siem_google_chronicle"]
 
     class Config:
         frozen = True
@@ -422,6 +432,7 @@ ProviderConfig = typing.Union[
     ProviderConfig_NotificationsSlack,
     ProviderConfig_NotificationsTeams,
     ProviderConfig_SiemElasticsearch,
+    ProviderConfig_SiemGoogleChronicle,
     ProviderConfig_SiemMockSiem,
     ProviderConfig_SiemQRadar,
     ProviderConfig_SiemRapid7Insightidr,
