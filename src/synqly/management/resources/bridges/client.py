@@ -140,8 +140,8 @@ class BridgesClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> GetBridgeResponse:
         """
-        Returns the `Bridge` object matching `{bridgeId}`. For more information on Bridges, refer to our
-        [Synqly Overview](https://docs.synqly.com/docs/synqly-overview).
+        Returns the Bridge Group object matching `{bridgeId}`. For more information on Bridges, refer to the
+        [Bridge Overview](https://docs.synqly.com/docs/synqly-overview).
 
         Parameters:
             - account_id: AccountId.
@@ -207,7 +207,7 @@ class BridgesClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> GetBridgeStatusResponse:
         """
-        Returns the status and local configuration of running Bridges matching `{bridgeId}`.
+        Returns the status and local configuration of running Bridges Agents in the Bridge Group `{bridgeId}`.
 
         Parameters:
             - account_id: AccountId.
@@ -273,7 +273,9 @@ class BridgesClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> CreateBridgeResponse:
         """
-        Creates an `Bridge` object. For more information on Bridges, refer to our
+        Creates a `Bridge Group` with a unique identifier and authentication
+        credentials. This allows for Bridge Agents to connect to Synqly. For
+        more information on Bridges, refer to our
         [Synqly Overview](https://docs.synqly.com/docs/synqly-overview).
 
         Parameters:
@@ -346,7 +348,7 @@ class BridgesClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> UpdateBridgeResponse:
         """
-        Updates the `Bridge` object matching `{bridgeId}`. For more information on Bridges, refer to our
+        Updates the `Bridge Group` object matching `{bridgeId}`. For more information on Bridges, refer to our
         [Synqly Overview](https://docs.synqly.com/docs/synqly-overview).
 
         Parameters:
@@ -422,7 +424,7 @@ class BridgesClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PatchBridgeResponse:
         """
-        Patches the `Bridge` object matching `{bridgeId}`. For more information on Bridges, refer to our
+        Patches the `Bridge Group` object matching `{bridgeId}`. For more information on Bridges, refer to our
         [Synqly Overview](https://docs.synqly.com/docs/synqly-overview).
 
         Parameters:
@@ -497,8 +499,8 @@ class BridgesClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> None:
         """
-        Deletes the `Bridge` matching `{bridgeId}`. Deleting an `Bridge` also deletea
-        all `Tokens` and `Credentials` belonging to the `Bridge`.
+        Deletes the `Bridge Group` matching `{bridgeId}`. Deleting an `Bridge Group` also deletea
+        all `Tokens` and `Credentials` belonging to the `Bridge Group`.
 
         Parameters:
             - account_id: AccountId.
@@ -657,8 +659,8 @@ class AsyncBridgesClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> GetBridgeResponse:
         """
-        Returns the `Bridge` object matching `{bridgeId}`. For more information on Bridges, refer to our
-        [Synqly Overview](https://docs.synqly.com/docs/synqly-overview).
+        Returns the Bridge Group object matching `{bridgeId}`. For more information on Bridges, refer to the
+        [Bridge Overview](https://docs.synqly.com/docs/synqly-overview).
 
         Parameters:
             - account_id: AccountId.
@@ -724,7 +726,7 @@ class AsyncBridgesClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> GetBridgeStatusResponse:
         """
-        Returns the status and local configuration of running Bridges matching `{bridgeId}`.
+        Returns the status and local configuration of running Bridges Agents in the Bridge Group `{bridgeId}`.
 
         Parameters:
             - account_id: AccountId.
@@ -790,7 +792,9 @@ class AsyncBridgesClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> CreateBridgeResponse:
         """
-        Creates an `Bridge` object. For more information on Bridges, refer to our
+        Creates a `Bridge Group` with a unique identifier and authentication
+        credentials. This allows for Bridge Agents to connect to Synqly. For
+        more information on Bridges, refer to our
         [Synqly Overview](https://docs.synqly.com/docs/synqly-overview).
 
         Parameters:
@@ -863,7 +867,7 @@ class AsyncBridgesClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> UpdateBridgeResponse:
         """
-        Updates the `Bridge` object matching `{bridgeId}`. For more information on Bridges, refer to our
+        Updates the `Bridge Group` object matching `{bridgeId}`. For more information on Bridges, refer to our
         [Synqly Overview](https://docs.synqly.com/docs/synqly-overview).
 
         Parameters:
@@ -939,7 +943,7 @@ class AsyncBridgesClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> PatchBridgeResponse:
         """
-        Patches the `Bridge` object matching `{bridgeId}`. For more information on Bridges, refer to our
+        Patches the `Bridge Group` object matching `{bridgeId}`. For more information on Bridges, refer to our
         [Synqly Overview](https://docs.synqly.com/docs/synqly-overview).
 
         Parameters:
@@ -1014,8 +1018,8 @@ class AsyncBridgesClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> None:
         """
-        Deletes the `Bridge` matching `{bridgeId}`. Deleting an `Bridge` also deletea
-        all `Tokens` and `Credentials` belonging to the `Bridge`.
+        Deletes the `Bridge Group` matching `{bridgeId}`. Deleting an `Bridge Group` also deletea
+        all `Tokens` and `Credentials` belonging to the `Bridge Group`.
 
         Parameters:
             - account_id: AccountId.
