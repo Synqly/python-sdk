@@ -20,7 +20,10 @@ from ..common.errors.unauthorized_error import UnauthorizedError
 from ..common.errors.unsupported_media_type_error import UnsupportedMediaTypeError
 from ..common.types.error_body import ErrorBody
 from ..providers_generated.types.provider_config_id import ProviderConfigId
+from .types.get_provider_capabilities_expand_options import GetProviderCapabilitiesExpandOptions
+from .types.list_connector_capabilities_expand_options import ListConnectorCapabilitiesExpandOptions
 from .types.list_connectors_capabilities_response import ListConnectorsCapabilitiesResponse
+from .types.list_provider_capabilities_expand_options import ListProviderCapabilitiesExpandOptions
 from .types.list_providers_capabilities_response import ListProvidersCapabilitiesResponse
 from .types.provider_capabilities_response import ProviderCapabilitiesResponse
 
@@ -35,19 +38,38 @@ class CapabilitiesClient:
         self._client_wrapper = client_wrapper
 
     def list_connectors(
-        self, *, request_options: typing.Optional[RequestOptions] = None
+        self,
+        *,
+        expand: typing.Optional[
+            typing.Union[
+                ListConnectorCapabilitiesExpandOptions, typing.Sequence[ListConnectorCapabilitiesExpandOptions]
+            ]
+        ] = None,
+        request_options: typing.Optional[RequestOptions] = None,
     ) -> ListConnectorsCapabilitiesResponse:
         """
         Returns a list of all `Connectors`.
 
         Parameters:
+            - expand: typing.Optional[typing.Union[ListConnectorCapabilitiesExpandOptions, typing.Sequence[ListConnectorCapabilitiesExpandOptions]]]. Expand the capabilities result fields that are otherwise
+                                                                                                                                                      omitted or returned as references to OpenAPI spec components.
+                                                                                                                                                      NOTE: This can yield very big response objects.
             - request_options: typing.Optional[RequestOptions]. Request-specific configuration.
         """
         _response = self._client_wrapper.httpx_client.request(
             "GET",
             urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", "v1/capabilities/connectors"),
             params=jsonable_encoder(
-                request_options.get("additional_query_parameters") if request_options is not None else None
+                remove_none_from_dict(
+                    {
+                        "expand": expand,
+                        **(
+                            request_options.get("additional_query_parameters", {})
+                            if request_options is not None
+                            else {}
+                        ),
+                    }
+                )
             ),
             headers=jsonable_encoder(
                 remove_none_from_dict(
@@ -90,19 +112,36 @@ class CapabilitiesClient:
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
     def list_providers(
-        self, *, request_options: typing.Optional[RequestOptions] = None
+        self,
+        *,
+        expand: typing.Optional[
+            typing.Union[ListProviderCapabilitiesExpandOptions, typing.Sequence[ListProviderCapabilitiesExpandOptions]]
+        ] = None,
+        request_options: typing.Optional[RequestOptions] = None,
     ) -> ListProvidersCapabilitiesResponse:
         """
         Returns a list of all Provider capabilities and their configurations.
 
         Parameters:
+            - expand: typing.Optional[typing.Union[ListProviderCapabilitiesExpandOptions, typing.Sequence[ListProviderCapabilitiesExpandOptions]]]. Expand the capabilities result fields that are otherwise
+                                                                                                                                                    omitted or returned as references to OpenAPI spec components.
+                                                                                                                                                    NOTE: This can yield very big response objects.
             - request_options: typing.Optional[RequestOptions]. Request-specific configuration.
         """
         _response = self._client_wrapper.httpx_client.request(
             "GET",
             urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", "v1/capabilities/providers"),
             params=jsonable_encoder(
-                request_options.get("additional_query_parameters") if request_options is not None else None
+                remove_none_from_dict(
+                    {
+                        "expand": expand,
+                        **(
+                            request_options.get("additional_query_parameters", {})
+                            if request_options is not None
+                            else {}
+                        ),
+                    }
+                )
             ),
             headers=jsonable_encoder(
                 remove_none_from_dict(
@@ -145,7 +184,13 @@ class CapabilitiesClient:
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
     def get_provider(
-        self, provider_id: ProviderConfigId, *, request_options: typing.Optional[RequestOptions] = None
+        self,
+        provider_id: ProviderConfigId,
+        *,
+        expand: typing.Optional[
+            typing.Union[GetProviderCapabilitiesExpandOptions, typing.Sequence[GetProviderCapabilitiesExpandOptions]]
+        ] = None,
+        request_options: typing.Optional[RequestOptions] = None,
     ) -> ProviderCapabilitiesResponse:
         """
         Returns the capabilities and configurations for a specific Provider type
@@ -153,6 +198,9 @@ class CapabilitiesClient:
         Parameters:
             - provider_id: ProviderConfigId.
 
+            - expand: typing.Optional[typing.Union[GetProviderCapabilitiesExpandOptions, typing.Sequence[GetProviderCapabilitiesExpandOptions]]]. Expand the capabilities result fields that are otherwise
+                                                                                                                                                  omitted or returned as references to OpenAPI spec components.
+                                                                                                                                                  NOTE: This can yield very big response objects.
             - request_options: typing.Optional[RequestOptions]. Request-specific configuration.
         """
         _response = self._client_wrapper.httpx_client.request(
@@ -161,7 +209,16 @@ class CapabilitiesClient:
                 f"{self._client_wrapper.get_base_url()}/", f"v1/capabilities/providers/{jsonable_encoder(provider_id)}"
             ),
             params=jsonable_encoder(
-                request_options.get("additional_query_parameters") if request_options is not None else None
+                remove_none_from_dict(
+                    {
+                        "expand": expand,
+                        **(
+                            request_options.get("additional_query_parameters", {})
+                            if request_options is not None
+                            else {}
+                        ),
+                    }
+                )
             ),
             headers=jsonable_encoder(
                 remove_none_from_dict(
@@ -207,19 +264,38 @@ class AsyncCapabilitiesClient:
         self._client_wrapper = client_wrapper
 
     async def list_connectors(
-        self, *, request_options: typing.Optional[RequestOptions] = None
+        self,
+        *,
+        expand: typing.Optional[
+            typing.Union[
+                ListConnectorCapabilitiesExpandOptions, typing.Sequence[ListConnectorCapabilitiesExpandOptions]
+            ]
+        ] = None,
+        request_options: typing.Optional[RequestOptions] = None,
     ) -> ListConnectorsCapabilitiesResponse:
         """
         Returns a list of all `Connectors`.
 
         Parameters:
+            - expand: typing.Optional[typing.Union[ListConnectorCapabilitiesExpandOptions, typing.Sequence[ListConnectorCapabilitiesExpandOptions]]]. Expand the capabilities result fields that are otherwise
+                                                                                                                                                      omitted or returned as references to OpenAPI spec components.
+                                                                                                                                                      NOTE: This can yield very big response objects.
             - request_options: typing.Optional[RequestOptions]. Request-specific configuration.
         """
         _response = await self._client_wrapper.httpx_client.request(
             "GET",
             urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", "v1/capabilities/connectors"),
             params=jsonable_encoder(
-                request_options.get("additional_query_parameters") if request_options is not None else None
+                remove_none_from_dict(
+                    {
+                        "expand": expand,
+                        **(
+                            request_options.get("additional_query_parameters", {})
+                            if request_options is not None
+                            else {}
+                        ),
+                    }
+                )
             ),
             headers=jsonable_encoder(
                 remove_none_from_dict(
@@ -262,19 +338,36 @@ class AsyncCapabilitiesClient:
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
     async def list_providers(
-        self, *, request_options: typing.Optional[RequestOptions] = None
+        self,
+        *,
+        expand: typing.Optional[
+            typing.Union[ListProviderCapabilitiesExpandOptions, typing.Sequence[ListProviderCapabilitiesExpandOptions]]
+        ] = None,
+        request_options: typing.Optional[RequestOptions] = None,
     ) -> ListProvidersCapabilitiesResponse:
         """
         Returns a list of all Provider capabilities and their configurations.
 
         Parameters:
+            - expand: typing.Optional[typing.Union[ListProviderCapabilitiesExpandOptions, typing.Sequence[ListProviderCapabilitiesExpandOptions]]]. Expand the capabilities result fields that are otherwise
+                                                                                                                                                    omitted or returned as references to OpenAPI spec components.
+                                                                                                                                                    NOTE: This can yield very big response objects.
             - request_options: typing.Optional[RequestOptions]. Request-specific configuration.
         """
         _response = await self._client_wrapper.httpx_client.request(
             "GET",
             urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", "v1/capabilities/providers"),
             params=jsonable_encoder(
-                request_options.get("additional_query_parameters") if request_options is not None else None
+                remove_none_from_dict(
+                    {
+                        "expand": expand,
+                        **(
+                            request_options.get("additional_query_parameters", {})
+                            if request_options is not None
+                            else {}
+                        ),
+                    }
+                )
             ),
             headers=jsonable_encoder(
                 remove_none_from_dict(
@@ -317,7 +410,13 @@ class AsyncCapabilitiesClient:
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
     async def get_provider(
-        self, provider_id: ProviderConfigId, *, request_options: typing.Optional[RequestOptions] = None
+        self,
+        provider_id: ProviderConfigId,
+        *,
+        expand: typing.Optional[
+            typing.Union[GetProviderCapabilitiesExpandOptions, typing.Sequence[GetProviderCapabilitiesExpandOptions]]
+        ] = None,
+        request_options: typing.Optional[RequestOptions] = None,
     ) -> ProviderCapabilitiesResponse:
         """
         Returns the capabilities and configurations for a specific Provider type
@@ -325,6 +424,9 @@ class AsyncCapabilitiesClient:
         Parameters:
             - provider_id: ProviderConfigId.
 
+            - expand: typing.Optional[typing.Union[GetProviderCapabilitiesExpandOptions, typing.Sequence[GetProviderCapabilitiesExpandOptions]]]. Expand the capabilities result fields that are otherwise
+                                                                                                                                                  omitted or returned as references to OpenAPI spec components.
+                                                                                                                                                  NOTE: This can yield very big response objects.
             - request_options: typing.Optional[RequestOptions]. Request-specific configuration.
         """
         _response = await self._client_wrapper.httpx_client.request(
@@ -333,7 +435,16 @@ class AsyncCapabilitiesClient:
                 f"{self._client_wrapper.get_base_url()}/", f"v1/capabilities/providers/{jsonable_encoder(provider_id)}"
             ),
             params=jsonable_encoder(
-                request_options.get("additional_query_parameters") if request_options is not None else None
+                remove_none_from_dict(
+                    {
+                        "expand": expand,
+                        **(
+                            request_options.get("additional_query_parameters", {})
+                            if request_options is not None
+                            else {}
+                        ),
+                    }
+                )
             ),
             headers=jsonable_encoder(
                 remove_none_from_dict(

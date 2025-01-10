@@ -2,24 +2,34 @@
 
 from .types import (
     Connector,
+    ConnectorOrId,
     FilterOperation,
     FilterType,
+    GetProviderCapabilitiesExpandOptions,
+    ListConnectorCapabilitiesExpandOptions,
     ListConnectorsCapabilitiesResponse,
+    ListProviderCapabilitiesExpandOptions,
     ListProvidersCapabilitiesResponse,
     ProviderCapabilities,
     ProviderCapabilitiesResponse,
     ProviderFilter,
     ProviderOperations,
+    RequestBody,
 )
 
 __all__ = [
     "Connector",
+    "ConnectorOrId",
     "FilterOperation",
     "FilterType",
+    "GetProviderCapabilitiesExpandOptions",
+    "ListConnectorCapabilitiesExpandOptions",
     "ListConnectorsCapabilitiesResponse",
+    "ListProviderCapabilitiesExpandOptions",
     "ListProvidersCapabilitiesResponse",
     "ProviderCapabilities",
     "ProviderCapabilitiesResponse",
     "ProviderFilter",
     "ProviderOperations",
+    "RequestBody",
 ]

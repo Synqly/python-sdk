@@ -5,6 +5,7 @@ import typing
 
 from ....core.datetime_utils import serialize_datetime
 from .provider_filter import ProviderFilter
+from .request_body import RequestBody
 
 try:
     import pydantic.v1 as pydantic  # type: ignore
@@ -13,9 +14,34 @@ except ImportError:
 
 
 class ProviderOperations(pydantic.BaseModel):
+    id: str = pydantic.Field()
+    """
+    Unique identifier for the operation.
+    """
+
     name: str = pydantic.Field()
     """
     Name of the operation.
+    """
+
+    fullname: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    Display name of the operation.
+    """
+
+    description: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    Description of the operation.
+    """
+
+    request_method: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    HTTP method used for the operation.
+    """
+
+    request_path: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    URI template path for the operation, including path parameters.
     """
 
     supported: bool = pydantic.Field()
@@ -25,14 +51,17 @@ class ProviderOperations(pydantic.BaseModel):
 
     required_fields: typing.Optional[typing.List[str]] = pydantic.Field(default=None)
     """
-    List of fields in the request body that are required by the provider for this
-    operation. Due to limitations of the OpenAPI format these fields may be marked as
-    optional, even though they are in fact required by this provider.
+    List of fields in the request body that are required by the
+    provider for this operation. Due to limitations of the OpenAPI
+    format these fields may be marked as optional, even though they
+    are in fact required by this provider.
     """
 
     supported_response_fields: typing.Optional[typing.List[str]] = pydantic.Field(default=None)
     """
-    List of fields that may be returned in the response body. Any fields not listed in this array are not supported by this provider and will not be returned in the response body.
+    List of fields that may be returned in the response body. Any
+    fields not listed in this array are not supported by this
+    provider and will not be returned in the response body.
     """
 
     filters: typing.Optional[typing.List[ProviderFilter]] = pydantic.Field(default=None)
@@ -40,11 +69,10 @@ class ProviderOperations(pydantic.BaseModel):
     Filters that can be applied to this operation.
     """
 
-    request_body: typing.Optional[typing.Dict[str, typing.Any]] = pydantic.Field(default=None)
+    request_body: typing.Optional[RequestBody] = pydantic.Field(default=None)
     """
-    If this operation requires a request body, this field will contain the schema for
-    the request. The is a json schema object. This field is only present when getting
-    the capabilities for a specific provider.
+    This field is only available if the operation supports a request
+    body. Describes the request body and its schema.
     """
 
     def json(self, **kwargs: typing.Any) -> str:
