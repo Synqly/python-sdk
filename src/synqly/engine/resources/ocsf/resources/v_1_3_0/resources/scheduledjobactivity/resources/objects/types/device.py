@@ -12,6 +12,7 @@ from ...base.types.timestamp import Timestamp
 from .agent import Agent
 from .container import Container
 from .device_hw_info import DeviceHwInfo
+from .device_network_status_id import DeviceNetworkStatusId
 from .device_risk_level_id import DeviceRiskLevelId
 from .device_type_id import DeviceTypeId
 from .group import Group
@@ -217,6 +218,16 @@ class Device(pydantic.BaseModel):
     network_interfaces: typing.Optional[typing.List[NetworkInterface]] = pydantic.Field(default=None)
     """
     The network interfaces that are associated with the device, one for each unique MAC address/IP address/hostname/name combination.<p><b>Note:</b> The first element of the array is the network information that pertains to the event.</p>
+    """
+
+    network_status: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    The network isolation status of the endpoiint
+    """
+
+    network_status_id: typing.Optional[DeviceNetworkStatusId] = pydantic.Field(default=None)
+    """
+    The network isolation status ID.
     """
 
     org: typing.Optional[Organization] = pydantic.Field(default=None)

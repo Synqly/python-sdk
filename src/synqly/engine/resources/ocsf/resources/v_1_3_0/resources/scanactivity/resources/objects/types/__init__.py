@@ -21,6 +21,7 @@ from .cvss_depth import CvssDepth
 from .cwe import Cwe
 from .device import Device
 from .device_hw_info import DeviceHwInfo
+from .device_network_status_id import DeviceNetworkStatusId
 from .device_risk_level_id import DeviceRiskLevelId
 from .device_type_id import DeviceTypeId
 from .digital_signature import DigitalSignature
@@ -118,6 +119,7 @@ __all__ = [
     "Cwe",
     "Device",
     "DeviceHwInfo",
+    "DeviceNetworkStatusId",
     "DeviceRiskLevelId",
     "DeviceTypeId",
     "DigitalSignature",

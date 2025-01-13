@@ -5,6 +5,7 @@ from .connection_state import ConnectionState
 from .create_iocs_request import CreateIocsRequest
 from .create_iocs_response import CreateIocsResponse
 from .delete_iocs_response import DeleteIocsResponse
+from .get_endpoint_response import GetEndpointResponse
 from .network_quarantine_request import NetworkQuarantineRequest
 from .network_quarantine_response import NetworkQuarantineResponse
 from .posture_score import PostureScore
@@ -22,6 +23,7 @@ __all__ = [
     "CreateIocsRequest",
     "CreateIocsResponse",
     "DeleteIocsResponse",
+    "GetEndpointResponse",
     "NetworkQuarantineRequest",
     "NetworkQuarantineResponse",
     "PostureScore",
