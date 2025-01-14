@@ -4,7 +4,7 @@ import datetime as dt
 import typing
 
 from ....core.datetime_utils import serialize_datetime
-from ...integration_base.types.integration_id import IntegrationId
+from ...account_base.types.account_id import AccountId
 from ...organization_base.types.environment import Environment
 
 try:
@@ -14,7 +14,7 @@ except ImportError:
 
 
 class RoleAccounts(pydantic.BaseModel):
-    ids: typing.List[IntegrationId] = pydantic.Field()
+    ids: typing.List[AccountId] = pydantic.Field()
     """
     List of account ids that this role definition grants access to. Use "\*" to grant access to all account ids.
     """

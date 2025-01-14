@@ -2,7 +2,6 @@
 
 from .types import (
     Account,
-    AccountId,
     CreateAccountRequest,
     CreateAccountResponse,
     CreateAccountResponseResult,
@@ -15,7 +14,6 @@ from .types import (
 
 __all__ = [
     "Account",
-    "AccountId",
     "CreateAccountRequest",
     "CreateAccountResponse",
     "CreateAccountResponseResult",

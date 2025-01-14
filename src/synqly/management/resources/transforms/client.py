@@ -9,7 +9,7 @@ from ...core.client_wrapper import AsyncClientWrapper, SyncClientWrapper
 from ...core.jsonable_encoder import jsonable_encoder
 from ...core.remove_none_from_dict import remove_none_from_dict
 from ...core.request_options import RequestOptions
-from ..accounts.types.account_id import AccountId
+from ..account_base.types.account_id import AccountId
 from ..common.errors.bad_request_error import BadRequestError
 from ..common.errors.conflict_error import ConflictError
 from ..common.errors.forbidden_error import ForbiddenError

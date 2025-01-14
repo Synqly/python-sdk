@@ -4,7 +4,7 @@ import datetime as dt
 import typing
 
 from ....core.datetime_utils import serialize_datetime
-from ...accounts.types.account_id import AccountId
+from ...account_base.types.account_id import AccountId
 from ...common.types.base import Base
 from ...integration_base.types.integration_id import IntegrationId
 from ...integration_points.types.integration_point_id import IntegrationPointId

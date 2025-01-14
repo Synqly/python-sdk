@@ -10,6 +10,7 @@ class TokensActions(str, enum.Enum):
     LIST = "list"
     CREATE = "create"
     CREATE_INTEGRATION = "create_integration"
+    CREATE_SYNQLY_INTEGRATIONS = "create_synqly_integrations"
     DELETE = "delete"
     GET = "get"
     RESET = "reset"
@@ -22,6 +23,7 @@ class TokensActions(str, enum.Enum):
         list_: typing.Callable[[], T_Result],
         create: typing.Callable[[], T_Result],
         create_integration: typing.Callable[[], T_Result],
+        create_synqly_integrations: typing.Callable[[], T_Result],
         delete: typing.Callable[[], T_Result],
         get: typing.Callable[[], T_Result],
         reset: typing.Callable[[], T_Result],
@@ -35,6 +37,8 @@ class TokensActions(str, enum.Enum):
             return create()
         if self is TokensActions.CREATE_INTEGRATION:
             return create_integration()
+        if self is TokensActions.CREATE_SYNQLY_INTEGRATIONS:
+            return create_synqly_integrations()
         if self is TokensActions.DELETE:
             return delete()
         if self is TokensActions.GET:
