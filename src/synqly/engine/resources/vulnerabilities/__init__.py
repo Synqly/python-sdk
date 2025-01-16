@@ -3,6 +3,9 @@
 from .types import (
     Asset,
     CreateAssetRequest,
+    CreateFindingsError,
+    CreateFindingsRequest,
+    CreateFindingsResponse,
     EventId,
     GetScanActivityResponse,
     QueryAssetsResponse,
@@ -20,6 +23,9 @@ from .types import (
 __all__ = [
     "Asset",
     "CreateAssetRequest",
+    "CreateFindingsError",
+    "CreateFindingsRequest",
+    "CreateFindingsResponse",
     "EventId",
     "GetScanActivityResponse",
     "QueryAssetsResponse",

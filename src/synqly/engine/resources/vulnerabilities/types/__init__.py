@@ -2,6 +2,9 @@
 
 from .asset import Asset
 from .create_asset_request import CreateAssetRequest
+from .create_findings_error import CreateFindingsError
+from .create_findings_request import CreateFindingsRequest
+from .create_findings_response import CreateFindingsResponse
 from .event_id import EventId
 from .get_scan_activity_response import GetScanActivityResponse
 from .query_assets_response import QueryAssetsResponse
@@ -18,6 +21,9 @@ from .vulnerability_severity_filter_value import VulnerabilitySeverityFilterValu
 __all__ = [
     "Asset",
     "CreateAssetRequest",
+    "CreateFindingsError",
+    "CreateFindingsRequest",
+    "CreateFindingsResponse",
     "EventId",
     "GetScanActivityResponse",
     "QueryAssetsResponse",
