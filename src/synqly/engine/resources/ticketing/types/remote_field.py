@@ -19,7 +19,7 @@ class RemoteField(pydantic.BaseModel):
     Remote ID of the field.
     """
 
-    schema_: RemoteFieldSchema = pydantic.Field(alias="schema")
+    schema_: typing.Optional[RemoteFieldSchema] = pydantic.Field(alias="schema", default=None)
     """
     Schema of the field.
     """
