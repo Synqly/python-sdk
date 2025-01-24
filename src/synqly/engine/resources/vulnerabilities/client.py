@@ -24,6 +24,7 @@ from ..common.errors.unauthorized_error import UnauthorizedError
 from ..common.errors.unsupported_media_type_error import UnsupportedMediaTypeError
 from ..common.types.error_body import ErrorBody
 from .types.create_asset_request import CreateAssetRequest
+from .types.create_asset_response import CreateAssetResponse
 from .types.create_findings_request import CreateFindingsRequest
 from .types.create_findings_response import CreateFindingsResponse
 from .types.get_scan_activity_response import GetScanActivityResponse
@@ -287,7 +288,7 @@ class VulnerabilitiesClient:
 
     def create_asset(
         self, *, request: CreateAssetRequest, request_options: typing.Optional[RequestOptions] = None
-    ) -> None:
+    ) -> typing.Optional[CreateAssetResponse]:
         """
         Create assets in a vulnerability scanning system
 
@@ -323,7 +324,7 @@ class VulnerabilitiesClient:
             max_retries=request_options.get("max_retries") if request_options is not None else 0,  # type: ignore
         )
         if 200 <= _response.status_code < 300:
-            return
+            return pydantic.parse_obj_as(typing.Optional[CreateAssetResponse], _response.json())  # type: ignore
         if _response.status_code == 400:
             raise BadRequestError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
         if _response.status_code == 401:
@@ -753,7 +754,7 @@ class AsyncVulnerabilitiesClient:
 
     async def create_asset(
         self, *, request: CreateAssetRequest, request_options: typing.Optional[RequestOptions] = None
-    ) -> None:
+    ) -> typing.Optional[CreateAssetResponse]:
         """
         Create assets in a vulnerability scanning system
 
@@ -789,7 +790,7 @@ class AsyncVulnerabilitiesClient:
             max_retries=request_options.get("max_retries") if request_options is not None else 0,  # type: ignore
         )
         if 200 <= _response.status_code < 300:
-            return
+            return pydantic.parse_obj_as(typing.Optional[CreateAssetResponse], _response.json())  # type: ignore
         if _response.status_code == 400:
             raise BadRequestError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
         if _response.status_code == 401:

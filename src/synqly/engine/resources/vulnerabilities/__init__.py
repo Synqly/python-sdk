@@ -2,7 +2,9 @@
 
 from .types import (
     Asset,
+    CreateAssetDevice,
     CreateAssetRequest,
+    CreateAssetResponse,
     CreateFindingsError,
     CreateFindingsRequest,
     CreateFindingsResponse,
@@ -22,7 +24,9 @@ from .types import (
 
 __all__ = [
     "Asset",
+    "CreateAssetDevice",
     "CreateAssetRequest",
+    "CreateAssetResponse",
     "CreateFindingsError",
     "CreateFindingsRequest",
     "CreateFindingsResponse",

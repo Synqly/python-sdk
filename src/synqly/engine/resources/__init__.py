@@ -152,7 +152,9 @@ from .ticketing import (
 )
 from .vulnerabilities import (
     Asset,
+    CreateAssetDevice,
     CreateAssetRequest,
+    CreateAssetResponse,
     CreateFindingsError,
     CreateFindingsRequest,
     CreateFindingsResponse,
@@ -184,7 +186,9 @@ __all__ = [
     "CommentId",
     "ConflictError",
     "ConnectionState",
+    "CreateAssetDevice",
     "CreateAssetRequest",
+    "CreateAssetResponse",
     "CreateAttachmentRequest",
     "CreateAttachmentResponse",
     "CreateCommentRequest",
