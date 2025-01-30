@@ -4,6 +4,7 @@ import typing
 import urllib.parse
 from json.decoder import JSONDecodeError
 
+from ... import core
 from ...core.api_error import ApiError
 from ...core.client_wrapper import AsyncClientWrapper, SyncClientWrapper
 from ...core.jsonable_encoder import jsonable_encoder
@@ -104,7 +105,7 @@ class StorageClient:
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
     def upload_file(
-        self, path: str, *, request: typing.Any, request_options: typing.Optional[RequestOptions] = None
+        self, path: str, *, file: core.File, request_options: typing.Optional[RequestOptions] = None
     ) -> None:
         """
         Uploads a file from the provided `{path}` to the token-linked `Integration`.
@@ -112,7 +113,7 @@ class StorageClient:
         Parameters:
             - path: str.
 
-            - request: typing.Any.
+            - file: core.File. See core.File for more documentation
 
             - request_options: typing.Optional[RequestOptions]. Request-specific configuration.
         """
@@ -124,12 +125,13 @@ class StorageClient:
             params=jsonable_encoder(
                 request_options.get("additional_query_parameters") if request_options is not None else None
             ),
-            json=jsonable_encoder(request)
+            data=jsonable_encoder(remove_none_from_dict({}))
             if request_options is None or request_options.get("additional_body_parameters") is None
             else {
-                **jsonable_encoder(request),
+                **jsonable_encoder(remove_none_from_dict({})),
                 **(jsonable_encoder(remove_none_from_dict(request_options.get("additional_body_parameters", {})))),
             },
+            files=core.convert_file_dict_to_httpx_tuples(remove_none_from_dict({"file": file})),
             headers=jsonable_encoder(
                 remove_none_from_dict(
                     {
@@ -178,7 +180,9 @@ class StorageClient:
             raise ApiError(status_code=_response.status_code, body=_response.text)
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
-    def download_file(self, path: str, *, request_options: typing.Optional[RequestOptions] = None) -> str:
+    def download_file(
+        self, path: str, *, request_options: typing.Optional[RequestOptions] = None
+    ) -> typing.Iterator[bytes]:
         """
         Downloads a file from the provided `{path}` in the token-linked
         `Integration`.
@@ -188,7 +192,7 @@ class StorageClient:
 
             - request_options: typing.Optional[RequestOptions]. Request-specific configuration.
         """
-        _response = self._client_wrapper.httpx_client.request(
+        with self._client_wrapper.httpx_client.stream(
             "GET",
             urllib.parse.urljoin(
                 f"{self._client_wrapper.get_base_url()}/", f"v1/storage/files/{jsonable_encoder(path)}"
@@ -209,40 +213,43 @@ class StorageClient:
             else 60,
             retries=0,
             max_retries=request_options.get("max_retries") if request_options is not None else 0,  # type: ignore
-        )
-        if 200 <= _response.status_code < 300:
-            return pydantic.parse_obj_as(str, _response.json())  # type: ignore
-        if _response.status_code == 400:
-            raise BadRequestError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
-        if _response.status_code == 401:
-            raise UnauthorizedError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
-        if _response.status_code == 403:
-            raise ForbiddenError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
-        if _response.status_code == 404:
-            raise NotFoundError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
-        if _response.status_code == 405:
-            raise MethodNotAllowedError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
-        if _response.status_code == 409:
-            raise ConflictError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
-        if _response.status_code == 415:
-            raise UnsupportedMediaTypeError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
-        if _response.status_code == 429:
-            raise TooManyRequestsError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
-        if _response.status_code == 500:
-            raise InternalServerError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
-        if _response.status_code == 501:
-            raise NotImplementedError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
-        if _response.status_code == 502:
-            raise BadGatewayError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
-        if _response.status_code == 503:
-            raise ServiceUnavailableError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
-        if _response.status_code == 504:
-            raise GatewayTimeoutError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
-        try:
-            _response_json = _response.json()
-        except JSONDecodeError:
-            raise ApiError(status_code=_response.status_code, body=_response.text)
-        raise ApiError(status_code=_response.status_code, body=_response_json)
+        ) as _response:
+            if 200 <= _response.status_code < 300:
+                for _chunk in _response.iter_bytes():
+                    yield _chunk
+                return
+            _response.read()
+            if _response.status_code == 400:
+                raise BadRequestError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            if _response.status_code == 401:
+                raise UnauthorizedError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            if _response.status_code == 403:
+                raise ForbiddenError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            if _response.status_code == 404:
+                raise NotFoundError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            if _response.status_code == 405:
+                raise MethodNotAllowedError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            if _response.status_code == 409:
+                raise ConflictError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            if _response.status_code == 415:
+                raise UnsupportedMediaTypeError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            if _response.status_code == 429:
+                raise TooManyRequestsError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            if _response.status_code == 500:
+                raise InternalServerError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            if _response.status_code == 501:
+                raise NotImplementedError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            if _response.status_code == 502:
+                raise BadGatewayError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            if _response.status_code == 503:
+                raise ServiceUnavailableError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            if _response.status_code == 504:
+                raise GatewayTimeoutError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            try:
+                _response_json = _response.json()
+            except JSONDecodeError:
+                raise ApiError(status_code=_response.status_code, body=_response.text)
+            raise ApiError(status_code=_response.status_code, body=_response_json)
 
     def delete_file(self, path: str, *, request_options: typing.Optional[RequestOptions] = None) -> None:
         """
@@ -382,7 +389,7 @@ class AsyncStorageClient:
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
     async def upload_file(
-        self, path: str, *, request: typing.Any, request_options: typing.Optional[RequestOptions] = None
+        self, path: str, *, file: core.File, request_options: typing.Optional[RequestOptions] = None
     ) -> None:
         """
         Uploads a file from the provided `{path}` to the token-linked `Integration`.
@@ -390,7 +397,7 @@ class AsyncStorageClient:
         Parameters:
             - path: str.
 
-            - request: typing.Any.
+            - file: core.File. See core.File for more documentation
 
             - request_options: typing.Optional[RequestOptions]. Request-specific configuration.
         """
@@ -402,12 +409,13 @@ class AsyncStorageClient:
             params=jsonable_encoder(
                 request_options.get("additional_query_parameters") if request_options is not None else None
             ),
-            json=jsonable_encoder(request)
+            data=jsonable_encoder(remove_none_from_dict({}))
             if request_options is None or request_options.get("additional_body_parameters") is None
             else {
-                **jsonable_encoder(request),
+                **jsonable_encoder(remove_none_from_dict({})),
                 **(jsonable_encoder(remove_none_from_dict(request_options.get("additional_body_parameters", {})))),
             },
+            files=core.convert_file_dict_to_httpx_tuples(remove_none_from_dict({"file": file})),
             headers=jsonable_encoder(
                 remove_none_from_dict(
                     {
@@ -456,7 +464,9 @@ class AsyncStorageClient:
             raise ApiError(status_code=_response.status_code, body=_response.text)
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
-    async def download_file(self, path: str, *, request_options: typing.Optional[RequestOptions] = None) -> str:
+    async def download_file(
+        self, path: str, *, request_options: typing.Optional[RequestOptions] = None
+    ) -> typing.AsyncIterator[bytes]:
         """
         Downloads a file from the provided `{path}` in the token-linked
         `Integration`.
@@ -466,7 +476,7 @@ class AsyncStorageClient:
 
             - request_options: typing.Optional[RequestOptions]. Request-specific configuration.
         """
-        _response = await self._client_wrapper.httpx_client.request(
+        async with self._client_wrapper.httpx_client.stream(
             "GET",
             urllib.parse.urljoin(
                 f"{self._client_wrapper.get_base_url()}/", f"v1/storage/files/{jsonable_encoder(path)}"
@@ -487,40 +497,43 @@ class AsyncStorageClient:
             else 60,
             retries=0,
             max_retries=request_options.get("max_retries") if request_options is not None else 0,  # type: ignore
-        )
-        if 200 <= _response.status_code < 300:
-            return pydantic.parse_obj_as(str, _response.json())  # type: ignore
-        if _response.status_code == 400:
-            raise BadRequestError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
-        if _response.status_code == 401:
-            raise UnauthorizedError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
-        if _response.status_code == 403:
-            raise ForbiddenError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
-        if _response.status_code == 404:
-            raise NotFoundError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
-        if _response.status_code == 405:
-            raise MethodNotAllowedError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
-        if _response.status_code == 409:
-            raise ConflictError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
-        if _response.status_code == 415:
-            raise UnsupportedMediaTypeError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
-        if _response.status_code == 429:
-            raise TooManyRequestsError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
-        if _response.status_code == 500:
-            raise InternalServerError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
-        if _response.status_code == 501:
-            raise NotImplementedError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
-        if _response.status_code == 502:
-            raise BadGatewayError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
-        if _response.status_code == 503:
-            raise ServiceUnavailableError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
-        if _response.status_code == 504:
-            raise GatewayTimeoutError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
-        try:
-            _response_json = _response.json()
-        except JSONDecodeError:
-            raise ApiError(status_code=_response.status_code, body=_response.text)
-        raise ApiError(status_code=_response.status_code, body=_response_json)
+        ) as _response:
+            if 200 <= _response.status_code < 300:
+                async for _chunk in _response.aiter_bytes():
+                    yield _chunk
+                return
+            await _response.aread()
+            if _response.status_code == 400:
+                raise BadRequestError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            if _response.status_code == 401:
+                raise UnauthorizedError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            if _response.status_code == 403:
+                raise ForbiddenError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            if _response.status_code == 404:
+                raise NotFoundError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            if _response.status_code == 405:
+                raise MethodNotAllowedError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            if _response.status_code == 409:
+                raise ConflictError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            if _response.status_code == 415:
+                raise UnsupportedMediaTypeError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            if _response.status_code == 429:
+                raise TooManyRequestsError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            if _response.status_code == 500:
+                raise InternalServerError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            if _response.status_code == 501:
+                raise NotImplementedError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            if _response.status_code == 502:
+                raise BadGatewayError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            if _response.status_code == 503:
+                raise ServiceUnavailableError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            if _response.status_code == 504:
+                raise GatewayTimeoutError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            try:
+                _response_json = _response.json()
+            except JSONDecodeError:
+                raise ApiError(status_code=_response.status_code, body=_response.text)
+            raise ApiError(status_code=_response.status_code, body=_response_json)
 
     async def delete_file(self, path: str, *, request_options: typing.Optional[RequestOptions] = None) -> None:
         """
