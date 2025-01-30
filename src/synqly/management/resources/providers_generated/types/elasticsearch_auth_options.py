@@ -19,15 +19,12 @@ class ElasticsearchAuthOptions(pydantic.BaseModel):
 
     run_as: typing.Optional[str] = pydantic.Field(default=None)
     """
-    When you have the correct permissions, this allows API requests to get made as a specific user, with all of their roles
-    and permissions. When populated, this option will send the 'es-security-runas-user' header with every request made to
-    the Elasticsearch API.
+    When you have the correct permissions, this allows API requests to get made as a specific user, with all of their roles and permissions. When populated, this option will send the 'es-security-runas-user' header with every request made to the Elasticsearch API.
     """
 
     shared_secret: typing.Optional[ElasticsearchSharedSecret] = pydantic.Field(default=None)
     """
-    Some auth cases, notably JWT auth can be configured to require sending a shared secret in the `ES-Client-Authentication`
-    header. When this secret is populated, it will get added as the shared secret for every request made to Elasticsearch.
+    Some auth cases, notably JWT auth can be configured to require sending a shared secret in the `ES-Client-Authentication` header. When this secret is populated, it will get added as the shared secret for every request made to Elasticsearch.
     """
 
     def json(self, **kwargs: typing.Any) -> str:
