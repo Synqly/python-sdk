@@ -4,7 +4,7 @@ import datetime as dt
 import typing
 
 from ....core.datetime_utils import serialize_datetime
-from ...ocsf.resources.latest.resources.events.types.entity_management import EntityManagement
+from .google_credential import GoogleCredential
 
 try:
     import pydantic.v1 as pydantic  # type: ignore
@@ -12,15 +12,20 @@ except ImportError:
     import pydantic  # type: ignore
 
 
-class GetGroupMembersResponse(pydantic.BaseModel):
-    result: typing.List[EntityManagement] = pydantic.Field()
+class IdentityGoogle(pydantic.BaseModel):
     """
-    List of users wrapped in the OCSF Entity Management event of type Read that are members in the group referenced by ID.
+    Configuration for the Google Identity Provider
     """
 
-    cursor: str = pydantic.Field()
+    client_email: str = pydantic.Field()
     """
-    Cursor to use to retrieve the next page of results
+    The client email associated with the service account key. Typically this will be of the form `<service-account-name>@<project-id>.iam.gserviceaccount.com`.
+    """
+
+    credential: GoogleCredential
+    delegate: str = pydantic.Field()
+    """
+    The email address of the user that the service account is impersonating for domain-wide delegation. For more information, see [this Google support article](https://support.google.com/a/answer/162106).
     """
 
     def json(self, **kwargs: typing.Any) -> str:

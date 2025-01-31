@@ -51,6 +51,11 @@ class ProviderConfigId(str, enum.Enum):
     Microsoft Entra ID
     """
 
+    IDENTITY_GOOGLE = "identity_google"
+    """
+    Google Workspace
+    """
+
     IDENTITY_OKTA = "identity_okta"
     """
     Okta Identity
@@ -231,6 +236,7 @@ class ProviderConfigId(str, enum.Enum):
         edr_sentinel_one: typing.Callable[[], T_Result],
         edr_sophos: typing.Callable[[], T_Result],
         identity_entra_id: typing.Callable[[], T_Result],
+        identity_google: typing.Callable[[], T_Result],
         identity_okta: typing.Callable[[], T_Result],
         identity_ping_one: typing.Callable[[], T_Result],
         notifications_jira: typing.Callable[[], T_Result],
@@ -282,6 +288,8 @@ class ProviderConfigId(str, enum.Enum):
             return edr_sophos()
         if self is ProviderConfigId.IDENTITY_ENTRA_ID:
             return identity_entra_id()
+        if self is ProviderConfigId.IDENTITY_GOOGLE:
+            return identity_google()
         if self is ProviderConfigId.IDENTITY_OKTA:
             return identity_okta()
         if self is ProviderConfigId.IDENTITY_PING_ONE:

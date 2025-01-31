@@ -12,6 +12,7 @@ from .edr_defender import EdrDefender
 from .edr_sentinel_one import EdrSentinelOne
 from .edr_sophos import EdrSophos
 from .identity_entra_id import IdentityEntraId
+from .identity_google import IdentityGoogle
 from .identity_okta import IdentityOkta
 from .identity_ping_one import IdentityPingOne
 from .notifications_jira import NotificationsJira
@@ -112,6 +113,15 @@ class ProviderConfig_EdrSophos(EdrSophos):
 
 class ProviderConfig_IdentityEntraId(IdentityEntraId):
     type: typing.Literal["identity_entra_id"]
+
+    class Config:
+        frozen = True
+        smart_union = True
+        allow_population_by_field_name = True
+
+
+class ProviderConfig_IdentityGoogle(IdentityGoogle):
+    type: typing.Literal["identity_google"]
 
     class Config:
         frozen = True
@@ -425,6 +435,7 @@ ProviderConfig = typing.Union[
     ProviderConfig_EdrSentinelone,
     ProviderConfig_EdrSophos,
     ProviderConfig_IdentityEntraId,
+    ProviderConfig_IdentityGoogle,
     ProviderConfig_IdentityOkta,
     ProviderConfig_IdentityPingone,
     ProviderConfig_NotificationsJira,

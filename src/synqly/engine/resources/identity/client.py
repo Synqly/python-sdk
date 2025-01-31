@@ -447,13 +447,22 @@ class IdentityClient:
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
     def get_group_members(
-        self, group_id: GroupId, *, request_options: typing.Optional[RequestOptions] = None
+        self,
+        group_id: GroupId,
+        *,
+        limit: typing.Optional[int] = None,
+        cursor: typing.Optional[str] = None,
+        request_options: typing.Optional[RequestOptions] = None,
     ) -> GetGroupMembersResponse:
         """
         Returns list of `User` objects wrapped in an OCSF Entity Management event of type Read from the token-linked identity provider that are members in the group referenced by ID.
 
         Parameters:
             - group_id: GroupId.
+
+            - limit: typing.Optional[int]. Number of users to return. Defaults to 100.
+
+            - cursor: typing.Optional[str]. Start search from cursor position.
 
             - request_options: typing.Optional[RequestOptions]. Request-specific configuration.
         """
@@ -463,7 +472,17 @@ class IdentityClient:
                 f"{self._client_wrapper.get_base_url()}/", f"v1/identity/groups/{jsonable_encoder(group_id)}/members"
             ),
             params=jsonable_encoder(
-                request_options.get("additional_query_parameters") if request_options is not None else None
+                remove_none_from_dict(
+                    {
+                        "limit": limit,
+                        "cursor": cursor,
+                        **(
+                            request_options.get("additional_query_parameters", {})
+                            if request_options is not None
+                            else {}
+                        ),
+                    }
+                )
             ),
             headers=jsonable_encoder(
                 remove_none_from_dict(
@@ -1205,13 +1224,22 @@ class AsyncIdentityClient:
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
     async def get_group_members(
-        self, group_id: GroupId, *, request_options: typing.Optional[RequestOptions] = None
+        self,
+        group_id: GroupId,
+        *,
+        limit: typing.Optional[int] = None,
+        cursor: typing.Optional[str] = None,
+        request_options: typing.Optional[RequestOptions] = None,
     ) -> GetGroupMembersResponse:
         """
         Returns list of `User` objects wrapped in an OCSF Entity Management event of type Read from the token-linked identity provider that are members in the group referenced by ID.
 
         Parameters:
             - group_id: GroupId.
+
+            - limit: typing.Optional[int]. Number of users to return. Defaults to 100.
+
+            - cursor: typing.Optional[str]. Start search from cursor position.
 
             - request_options: typing.Optional[RequestOptions]. Request-specific configuration.
         """
@@ -1221,7 +1249,17 @@ class AsyncIdentityClient:
                 f"{self._client_wrapper.get_base_url()}/", f"v1/identity/groups/{jsonable_encoder(group_id)}/members"
             ),
             params=jsonable_encoder(
-                request_options.get("additional_query_parameters") if request_options is not None else None
+                remove_none_from_dict(
+                    {
+                        "limit": limit,
+                        "cursor": cursor,
+                        **(
+                            request_options.get("additional_query_parameters", {})
+                            if request_options is not None
+                            else {}
+                        ),
+                    }
+                )
             ),
             headers=jsonable_encoder(
                 remove_none_from_dict(

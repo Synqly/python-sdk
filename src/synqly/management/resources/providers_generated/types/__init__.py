@@ -71,7 +71,9 @@ from .google_chronicle_credential import (
     GoogleChronicleCredential_OAuthClient,
     GoogleChronicleCredential_OAuthClientId,
 )
+from .google_credential import GoogleCredential, GoogleCredential_OAuthClient, GoogleCredential_OAuthClientId
 from .identity_entra_id import IdentityEntraId
+from .identity_google import IdentityGoogle
 from .identity_okta import IdentityOkta
 from .identity_ping_one import IdentityPingOne
 from .jira_credential import JiraCredential, JiraCredential_Basic, JiraCredential_BasicId
@@ -104,6 +106,7 @@ from .provider_config import (
     ProviderConfig_EdrSentinelone,
     ProviderConfig_EdrSophos,
     ProviderConfig_IdentityEntraId,
+    ProviderConfig_IdentityGoogle,
     ProviderConfig_IdentityOkta,
     ProviderConfig_IdentityPingone,
     ProviderConfig_NotificationsJira,
@@ -289,7 +292,11 @@ __all__ = [
     "GoogleChronicleCredential",
     "GoogleChronicleCredential_OAuthClient",
     "GoogleChronicleCredential_OAuthClientId",
+    "GoogleCredential",
+    "GoogleCredential_OAuthClient",
+    "GoogleCredential_OAuthClientId",
     "IdentityEntraId",
+    "IdentityGoogle",
     "IdentityOkta",
     "IdentityPingOne",
     "JiraCredential",
@@ -326,6 +333,7 @@ __all__ = [
     "ProviderConfig_EdrSentinelone",
     "ProviderConfig_EdrSophos",
     "ProviderConfig_IdentityEntraId",
+    "ProviderConfig_IdentityGoogle",
     "ProviderConfig_IdentityOkta",
     "ProviderConfig_IdentityPingone",
     "ProviderConfig_NotificationsJira",
