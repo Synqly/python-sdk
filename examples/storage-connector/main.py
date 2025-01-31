@@ -121,7 +121,7 @@ def background_job(app):
         # Upload a file to the storage Provider
         upload_resp = tenant.synqly_engine_client.storage.upload_file(
             path=upload_path,
-            file=example_file.read(),
+            request=example_file.read(),
         )
         print("File uploaded to path: " + upload_path)
 
