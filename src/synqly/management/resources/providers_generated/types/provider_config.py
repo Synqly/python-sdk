@@ -24,6 +24,7 @@ from .siem_google_chronicle import SiemGoogleChronicle
 from .siem_mock import SiemMock
 from .siem_q_radar import SiemQRadar
 from .siem_rapid_7_insight_idr import SiemRapid7InsightIdr
+from .siem_sentinel import SiemSentinel
 from .siem_splunk import SiemSplunk
 from .siem_sumo_logic import SiemSumoLogic
 from .sink_aws_security_lake import SinkAwsSecurityLake
@@ -221,6 +222,15 @@ class ProviderConfig_SiemQRadar(SiemQRadar):
 
 class ProviderConfig_SiemRapid7Insightidr(SiemRapid7InsightIdr):
     type: typing.Literal["siem_rapid7_insightidr"]
+
+    class Config:
+        frozen = True
+        smart_union = True
+        allow_population_by_field_name = True
+
+
+class ProviderConfig_SiemSentinel(SiemSentinel):
+    type: typing.Literal["siem_sentinel"]
 
     class Config:
         frozen = True
@@ -447,6 +457,7 @@ ProviderConfig = typing.Union[
     ProviderConfig_SiemMockSiem,
     ProviderConfig_SiemQRadar,
     ProviderConfig_SiemRapid7Insightidr,
+    ProviderConfig_SiemSentinel,
     ProviderConfig_SiemSplunk,
     ProviderConfig_SiemSumoLogic,
     ProviderConfig_SinkAwsSecurityLake,

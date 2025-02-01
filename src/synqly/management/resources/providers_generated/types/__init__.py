@@ -118,6 +118,7 @@ from .provider_config import (
     ProviderConfig_SiemMockSiem,
     ProviderConfig_SiemQRadar,
     ProviderConfig_SiemRapid7Insightidr,
+    ProviderConfig_SiemSentinel,
     ProviderConfig_SiemSplunk,
     ProviderConfig_SiemSumoLogic,
     ProviderConfig_SinkAwsSecurityLake,
@@ -149,6 +150,7 @@ from .rapid_7_insight_cloud_credential import (
     Rapid7InsightCloudCredential_Token,
     Rapid7InsightCloudCredential_TokenId,
 )
+from .sentinel_credential import SentinelCredential, SentinelCredential_OAuthClient, SentinelCredential_OAuthClientId
 from .sentinel_one_credential import SentinelOneCredential, SentinelOneCredential_Token, SentinelOneCredential_TokenId
 from .service_now_credential import (
     ServiceNowCredential,
@@ -162,6 +164,7 @@ from .siem_google_chronicle import SiemGoogleChronicle
 from .siem_mock import SiemMock
 from .siem_q_radar import SiemQRadar
 from .siem_rapid_7_insight_idr import SiemRapid7InsightIdr
+from .siem_sentinel import SiemSentinel
 from .siem_splunk import SiemSplunk
 from .siem_sumo_logic import SiemSumoLogic
 from .sink_aws_security_lake import SinkAwsSecurityLake
@@ -345,6 +348,7 @@ __all__ = [
     "ProviderConfig_SiemMockSiem",
     "ProviderConfig_SiemQRadar",
     "ProviderConfig_SiemRapid7Insightidr",
+    "ProviderConfig_SiemSentinel",
     "ProviderConfig_SiemSplunk",
     "ProviderConfig_SiemSumoLogic",
     "ProviderConfig_SinkAwsSecurityLake",
@@ -376,6 +380,9 @@ __all__ = [
     "Rapid7InsightCloudCredential",
     "Rapid7InsightCloudCredential_Token",
     "Rapid7InsightCloudCredential_TokenId",
+    "SentinelCredential",
+    "SentinelCredential_OAuthClient",
+    "SentinelCredential_OAuthClientId",
     "SentinelOneCredential",
     "SentinelOneCredential_Token",
     "SentinelOneCredential_TokenId",
@@ -389,6 +396,7 @@ __all__ = [
     "SiemMock",
     "SiemQRadar",
     "SiemRapid7InsightIdr",
+    "SiemSentinel",
     "SiemSplunk",
     "SiemSumoLogic",
     "SinkAwsSecurityLake",

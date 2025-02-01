@@ -111,6 +111,11 @@ class ProviderConfigId(str, enum.Enum):
     Rapid7 InsightIDR
     """
 
+    SIEM_SENTINEL = "siem_sentinel"
+    """
+    Microsoft Sentinel
+    """
+
     SIEM_SPLUNK = "siem_splunk"
     """
     Splunk Enterprise Security
@@ -248,6 +253,7 @@ class ProviderConfigId(str, enum.Enum):
         siem_mock: typing.Callable[[], T_Result],
         siem_q_radar: typing.Callable[[], T_Result],
         siem_rapid_7_insight_idr: typing.Callable[[], T_Result],
+        siem_sentinel: typing.Callable[[], T_Result],
         siem_splunk: typing.Callable[[], T_Result],
         siem_sumo_logic: typing.Callable[[], T_Result],
         sink_aws_security_lake: typing.Callable[[], T_Result],
@@ -312,6 +318,8 @@ class ProviderConfigId(str, enum.Enum):
             return siem_q_radar()
         if self is ProviderConfigId.SIEM_RAPID_7_INSIGHT_IDR:
             return siem_rapid_7_insight_idr()
+        if self is ProviderConfigId.SIEM_SENTINEL:
+            return siem_sentinel()
         if self is ProviderConfigId.SIEM_SPLUNK:
             return siem_splunk()
         if self is ProviderConfigId.SIEM_SUMO_LOGIC:
