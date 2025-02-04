@@ -10,6 +10,9 @@ from .types import (
     CreateFindingsResponse,
     EventId,
     GetScanActivityResponse,
+    NucleusFindingState,
+    ProviderSpecificFindingState,
+    ProviderSpecificFindingState_Nucleus,
     QueryAssetsResponse,
     QueryFindingsResponse,
     QueryScansResponse,
@@ -18,8 +21,10 @@ from .types import (
     ScanFrequencyOption,
     ScanSchedule,
     SecurityFinding,
+    UpdateFindingRequest,
     User,
     VulnerabilitySeverityFilterValue,
+    VulnerabilityStateFilterValue,
 )
 
 __all__ = [
@@ -32,6 +37,9 @@ __all__ = [
     "CreateFindingsResponse",
     "EventId",
     "GetScanActivityResponse",
+    "NucleusFindingState",
+    "ProviderSpecificFindingState",
+    "ProviderSpecificFindingState_Nucleus",
     "QueryAssetsResponse",
     "QueryFindingsResponse",
     "QueryScansResponse",
@@ -40,6 +48,8 @@ __all__ = [
     "ScanFrequencyOption",
     "ScanSchedule",
     "SecurityFinding",
+    "UpdateFindingRequest",
     "User",
     "VulnerabilitySeverityFilterValue",
+    "VulnerabilityStateFilterValue",
 ]
