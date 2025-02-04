@@ -17,6 +17,7 @@ class ErrorBody(pydantic.BaseModel):
     message: typing.Optional[str] = None
     errors: typing.Optional[typing.List[str]] = None
     parameters: typing.Optional[typing.List[ErrorParam]] = None
+    context: typing.Optional[typing.Dict[str, typing.Any]] = None
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}
