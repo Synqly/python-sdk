@@ -22,11 +22,19 @@ from ...ocsf.resources.v_1_1_0.resources.securityfinding.resources.classes.types
 from ...ocsf.resources.v_1_1_0.resources.webresourceaccessactivity.resources.classes.types.web_resource_access_activity import (
     WebResourceAccessActivity,
 )
+from ...ocsf.resources.v_1_3_0.resources.authorizesession.resources.classes.types.authorize_session import (
+    AuthorizeSession,
+)
+from ...ocsf.resources.v_1_3_0.resources.baseevent.resources.classes.types.base_event import BaseEvent
+from ...ocsf.resources.v_1_3_0.resources.configstate.resources.classes.types.config_state import ConfigState
 from ...ocsf.resources.v_1_3_0.resources.detectionfinding.resources.classes.types.detection_finding import (
     DetectionFinding,
 )
 from ...ocsf.resources.v_1_3_0.resources.incidentfinding.resources.classes.types.incident_finding import IncidentFinding
 from ...ocsf.resources.v_1_3_0.resources.inventoryinfo.resources.classes.types.inventory_info import InventoryInfo
+from ...ocsf.resources.v_1_3_0.resources.scanactivity.resources.classes.types.scan_activity import ScanActivity
+from ...ocsf.resources.v_1_3_0.resources.softwareinfo.resources.classes.types.software_info import SoftwareInfo
+from ...ocsf.resources.v_1_3_0.resources.useraccessmanagement.resources.classes.types.user_access import UserAccess
 from ...ocsf.resources.v_1_3_0.resources.vulnerabilityfinding.resources.classes.types.vulnerability_finding import (
     VulnerabilityFinding,
 )
@@ -59,8 +67,35 @@ class Event_Authentication(Authentication):
         allow_population_by_field_name = True
 
 
+class Event_AuthorizeSession(AuthorizeSession):
+    class_name: typing.Literal["Authorize Session"]
+
+    class Config:
+        frozen = True
+        smart_union = True
+        allow_population_by_field_name = True
+
+
+class Event_BaseEvent(BaseEvent):
+    class_name: typing.Literal["Base Event"]
+
+    class Config:
+        frozen = True
+        smart_union = True
+        allow_population_by_field_name = True
+
+
 class Event_ComplianceFinding(ComplianceFinding):
     class_name: typing.Literal["Compliance Finding"]
+
+    class Config:
+        frozen = True
+        smart_union = True
+        allow_population_by_field_name = True
+
+
+class Event_DeviceConfigState(ConfigState):
+    class_name: typing.Literal["Device Config State"]
 
     class Config:
         frozen = True
@@ -77,8 +112,8 @@ class Event_DetectionFinding(DetectionFinding):
         allow_population_by_field_name = True
 
 
-class Event_FileActivity(FileActivity):
-    class_name: typing.Literal["File Activity"]
+class Event_FileSystemActivity(FileActivity):
+    class_name: typing.Literal["File System Activity"]
 
     class Config:
         frozen = True
@@ -104,8 +139,8 @@ class Event_IncidentFinding(IncidentFinding):
         allow_population_by_field_name = True
 
 
-class Event_InventoryInfo(InventoryInfo):
-    class_name: typing.Literal["Inventory Info"]
+class Event_DeviceInventoryInfo(InventoryInfo):
+    class_name: typing.Literal["Device Inventory Info"]
 
     class Config:
         frozen = True
@@ -140,6 +175,15 @@ class Event_ProcessActivity(ProcessActivity):
         allow_population_by_field_name = True
 
 
+class Event_ScanActivity(ScanActivity):
+    class_name: typing.Literal["Scan Activity"]
+
+    class Config:
+        frozen = True
+        smart_union = True
+        allow_population_by_field_name = True
+
+
 class Event_ScheduledJobActivity(ScheduledJobActivity):
     class_name: typing.Literal["Scheduled Job Activity"]
 
@@ -151,6 +195,24 @@ class Event_ScheduledJobActivity(ScheduledJobActivity):
 
 class Event_SecurityFinding(SecurityFinding):
     class_name: typing.Literal["Security Finding"]
+
+    class Config:
+        frozen = True
+        smart_union = True
+        allow_population_by_field_name = True
+
+
+class Event_SoftwareInfo(SoftwareInfo):
+    class_name: typing.Literal["Software Info"]
+
+    class Config:
+        frozen = True
+        smart_union = True
+        allow_population_by_field_name = True
+
+
+class Event_UserAccessManagement(UserAccess):
+    class_name: typing.Literal["User Access Management"]
 
     class Config:
         frozen = True
@@ -180,17 +242,23 @@ Event = typing.Union[
     Event_AccountChange,
     Event_ApiActivity,
     Event_Authentication,
+    Event_AuthorizeSession,
+    Event_BaseEvent,
     Event_ComplianceFinding,
+    Event_DeviceConfigState,
     Event_DetectionFinding,
-    Event_FileActivity,
+    Event_FileSystemActivity,
     Event_GroupManagement,
     Event_IncidentFinding,
-    Event_InventoryInfo,
+    Event_DeviceInventoryInfo,
     Event_ModuleActivity,
     Event_NetworkActivity,
     Event_ProcessActivity,
+    Event_ScanActivity,
     Event_ScheduledJobActivity,
     Event_SecurityFinding,
+    Event_SoftwareInfo,
+    Event_UserAccessManagement,
     Event_VulnerabilityFinding,
     Event_WebResourceAccessActivity,
 ]
