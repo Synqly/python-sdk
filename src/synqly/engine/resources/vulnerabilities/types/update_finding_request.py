@@ -4,6 +4,7 @@ import datetime as dt
 import typing
 
 from ....core.datetime_utils import serialize_datetime
+from ...ocsf.resources.v_1_1_0.resources.securityfinding.resources.classes.types.severity_id import SeverityId
 from .provider_specific_finding_state import ProviderSpecificFindingState
 from .vulnerability_severity_filter_value import VulnerabilitySeverityFilterValue
 from .vulnerability_state_filter_value import VulnerabilityStateFilterValue
@@ -15,6 +16,7 @@ except ImportError:
 
 
 class UpdateFindingRequest(pydantic.BaseModel):
+    severity_id: SeverityId
     severity: typing.Optional[VulnerabilitySeverityFilterValue] = pydantic.Field(default=None)
     """
     serverity of the finding
