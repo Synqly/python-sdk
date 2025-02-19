@@ -18,6 +18,11 @@ class SiemSentinel(pydantic.BaseModel):
     """
 
     credential: SentinelCredential
+    default_tables: typing.Optional[typing.List[str]] = pydantic.Field(default=None)
+    """
+    The default tables to use for queries. Supply this value if you would like to a subset of the default tables or non-ASIM data tables with Sentinel/Log Analytics queries. If more than one table is specified, a union operator will join them to query all of the tables at once. Supply a single value with "_" if you would like to query all tables without the normalizing ASIM transformations. **Note** that a single "_" entry will map to a 'union \*' query. Relying heavily on these queries is generally discouraged by Sentinel because they are slower and more resource intensive.
+    """
+
     logs_url: typing.Optional[str] = pydantic.Field(default=None)
     """
     The root URL for the Microsoft Azure Monitor Logs API. This is optional and should only be supplied if using an alternate Microsoft cloud, such as GovCloud.
