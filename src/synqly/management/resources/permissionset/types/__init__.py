@@ -23,6 +23,8 @@ from .integrations_permissions import IntegrationsPermissions
 from .list_permission_sets_response import ListPermissionSetsResponse
 from .members_actions import MembersActions
 from .members_permissions import MembersPermissions
+from .operations_actions import OperationsActions
+from .operations_permissions import OperationsPermissions
 from .organization_actions import OrganizationActions
 from .organization_permissions import OrganizationPermissions
 from .permission_set import PermissionSet
@@ -68,6 +70,8 @@ __all__ = [
     "ListPermissionSetsResponse",
     "MembersActions",
     "MembersPermissions",
+    "OperationsActions",
+    "OperationsPermissions",
     "OrganizationActions",
     "OrganizationPermissions",
     "PermissionSet",
