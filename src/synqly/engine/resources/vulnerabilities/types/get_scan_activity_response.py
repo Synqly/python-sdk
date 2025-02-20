@@ -4,7 +4,7 @@ import datetime as dt
 import typing
 
 from ....core.datetime_utils import serialize_datetime
-from ...ocsf.resources.v_1_1_0.resources.scanactivity.resources.classes.types.scan_activity import ScanActivity
+from ...ocsf.resources.v_1_3_0.resources.scanactivity.resources.classes.types.scan_activity import ScanActivity
 
 try:
     import pydantic.v1 as pydantic  # type: ignore
