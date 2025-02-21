@@ -26,6 +26,11 @@ class ProviderConfigId(str, enum.Enum):
     ServiceNow Configuration Management Database (CMDB)
     """
 
+    MOCK_ASSETS_SERVICE_NOW = "mock_assets_servicenow"
+    """
+    [MOCK] ServiceNow Configuration Management Database (CMDB)
+    """
+
     EDR_CROWD_STRIKE = "edr_crowdstrike"
     """
     CrowdStrike Falcon® Insight EDR
@@ -236,6 +241,7 @@ class ProviderConfigId(str, enum.Enum):
         assets_armis_centrix: typing.Callable[[], T_Result],
         assets_nozomi_vantage: typing.Callable[[], T_Result],
         assets_service_now: typing.Callable[[], T_Result],
+        mock_assets_service_now: typing.Callable[[], T_Result],
         edr_crowd_strike: typing.Callable[[], T_Result],
         edr_defender: typing.Callable[[], T_Result],
         edr_sentinel_one: typing.Callable[[], T_Result],
@@ -284,6 +290,8 @@ class ProviderConfigId(str, enum.Enum):
             return assets_nozomi_vantage()
         if self is ProviderConfigId.ASSETS_SERVICE_NOW:
             return assets_service_now()
+        if self is ProviderConfigId.MOCK_ASSETS_SERVICE_NOW:
+            return mock_assets_service_now()
         if self is ProviderConfigId.EDR_CROWD_STRIKE:
             return edr_crowd_strike()
         if self is ProviderConfigId.EDR_DEFENDER:

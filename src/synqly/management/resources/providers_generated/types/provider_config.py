@@ -15,6 +15,7 @@ from .identity_entra_id import IdentityEntraId
 from .identity_google import IdentityGoogle
 from .identity_okta import IdentityOkta
 from .identity_ping_one import IdentityPingOne
+from .mock_assets_service_now import MockAssetsServiceNow
 from .notifications_jira import NotificationsJira
 from .notifications_mock import NotificationsMock
 from .notifications_slack import NotificationsSlack
@@ -141,6 +142,15 @@ class ProviderConfig_IdentityOkta(IdentityOkta):
 
 class ProviderConfig_IdentityPingone(IdentityPingOne):
     type: typing.Literal["identity_pingone"]
+
+    class Config:
+        frozen = True
+        smart_union = True
+        allow_population_by_field_name = True
+
+
+class ProviderConfig_MockAssetsServicenow(MockAssetsServiceNow):
+    type: typing.Literal["mock_assets_servicenow"]
 
     class Config:
         frozen = True
@@ -448,6 +458,7 @@ ProviderConfig = typing.Union[
     ProviderConfig_IdentityGoogle,
     ProviderConfig_IdentityOkta,
     ProviderConfig_IdentityPingone,
+    ProviderConfig_MockAssetsServicenow,
     ProviderConfig_NotificationsJira,
     ProviderConfig_NotificationsMockNotifications,
     ProviderConfig_NotificationsSlack,

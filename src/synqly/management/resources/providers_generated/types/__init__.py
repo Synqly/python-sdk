@@ -77,6 +77,7 @@ from .identity_google import IdentityGoogle
 from .identity_okta import IdentityOkta
 from .identity_ping_one import IdentityPingOne
 from .jira_credential import JiraCredential, JiraCredential_Basic, JiraCredential_BasicId
+from .mock_assets_service_now import MockAssetsServiceNow
 from .notifications_jira import NotificationsJira
 from .notifications_mock import NotificationsMock
 from .notifications_slack import NotificationsSlack
@@ -109,6 +110,7 @@ from .provider_config import (
     ProviderConfig_IdentityGoogle,
     ProviderConfig_IdentityOkta,
     ProviderConfig_IdentityPingone,
+    ProviderConfig_MockAssetsServicenow,
     ProviderConfig_NotificationsJira,
     ProviderConfig_NotificationsMockNotifications,
     ProviderConfig_NotificationsSlack,
@@ -305,6 +307,7 @@ __all__ = [
     "JiraCredential",
     "JiraCredential_Basic",
     "JiraCredential_BasicId",
+    "MockAssetsServiceNow",
     "NotificationsJira",
     "NotificationsMock",
     "NotificationsSlack",
@@ -339,6 +342,7 @@ __all__ = [
     "ProviderConfig_IdentityGoogle",
     "ProviderConfig_IdentityOkta",
     "ProviderConfig_IdentityPingone",
+    "ProviderConfig_MockAssetsServicenow",
     "ProviderConfig_NotificationsJira",
     "ProviderConfig_NotificationsMockNotifications",
     "ProviderConfig_NotificationsSlack",
