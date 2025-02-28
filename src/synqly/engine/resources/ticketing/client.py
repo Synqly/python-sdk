@@ -119,19 +119,39 @@ class TicketingClient:
             raise ApiError(status_code=_response.status_code, body=_response.text)
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
-    def list_projects(self, *, request_options: typing.Optional[RequestOptions] = None) -> ListProjectsResponse:
+    def list_projects(
+        self,
+        *,
+        cursor: typing.Optional[str] = None,
+        limit: typing.Optional[int] = None,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> ListProjectsResponse:
         """
         Returns a list of `Projects` from the token-linked `Integration`.
         Tickets must be created and retrieved within the context of a specific Project.
 
         Parameters:
+            - cursor: typing.Optional[str]. Cursor to use to retrieve the next page of results.
+
+            - limit: typing.Optional[int]. Number of `Projects` objects to return in this page. Defaults to 50.
+
             - request_options: typing.Optional[RequestOptions]. Request-specific configuration.
         """
         _response = self._client_wrapper.httpx_client.request(
             "GET",
             urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", "v1/ticketing/projects"),
             params=jsonable_encoder(
-                request_options.get("additional_query_parameters") if request_options is not None else None
+                remove_none_from_dict(
+                    {
+                        "cursor": cursor,
+                        "limit": limit,
+                        **(
+                            request_options.get("additional_query_parameters", {})
+                            if request_options is not None
+                            else {}
+                        ),
+                    }
+                )
             ),
             headers=jsonable_encoder(
                 remove_none_from_dict(
@@ -1070,19 +1090,39 @@ class AsyncTicketingClient:
             raise ApiError(status_code=_response.status_code, body=_response.text)
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
-    async def list_projects(self, *, request_options: typing.Optional[RequestOptions] = None) -> ListProjectsResponse:
+    async def list_projects(
+        self,
+        *,
+        cursor: typing.Optional[str] = None,
+        limit: typing.Optional[int] = None,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> ListProjectsResponse:
         """
         Returns a list of `Projects` from the token-linked `Integration`.
         Tickets must be created and retrieved within the context of a specific Project.
 
         Parameters:
+            - cursor: typing.Optional[str]. Cursor to use to retrieve the next page of results.
+
+            - limit: typing.Optional[int]. Number of `Projects` objects to return in this page. Defaults to 50.
+
             - request_options: typing.Optional[RequestOptions]. Request-specific configuration.
         """
         _response = await self._client_wrapper.httpx_client.request(
             "GET",
             urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", "v1/ticketing/projects"),
             params=jsonable_encoder(
-                request_options.get("additional_query_parameters") if request_options is not None else None
+                remove_none_from_dict(
+                    {
+                        "cursor": cursor,
+                        "limit": limit,
+                        **(
+                            request_options.get("additional_query_parameters", {})
+                            if request_options is not None
+                            else {}
+                        ),
+                    }
+                )
             ),
             headers=jsonable_encoder(
                 remove_none_from_dict(

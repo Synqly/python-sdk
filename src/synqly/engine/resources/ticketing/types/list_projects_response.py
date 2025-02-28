@@ -14,6 +14,10 @@ except ImportError:
 
 class ListProjectsResponse(pydantic.BaseModel):
     result: typing.List[Project]
+    cursor: str = pydantic.Field()
+    """
+    Cursor to use to retrieve the next page of results
+    """
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}
