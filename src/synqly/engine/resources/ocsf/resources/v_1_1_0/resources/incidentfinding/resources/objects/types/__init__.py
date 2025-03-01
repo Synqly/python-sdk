@@ -10,6 +10,7 @@ from .cloud import Cloud
 from .container import Container
 from .device import Device
 from .device_hw_info import DeviceHwInfo
+from .device_network_status_id import DeviceNetworkStatusId
 from .device_risk_level_id import DeviceRiskLevelId
 from .device_type_id import DeviceTypeId
 from .display import Display
@@ -62,6 +63,7 @@ __all__ = [
     "Container",
     "Device",
     "DeviceHwInfo",
+    "DeviceNetworkStatusId",
     "DeviceRiskLevelId",
     "DeviceTypeId",
     "Display",

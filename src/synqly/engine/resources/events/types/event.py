@@ -4,39 +4,39 @@ from __future__ import annotations
 
 import typing
 
-from ...ocsf.resources.v_1_1_0.resources.accountchange.resources.classes.types.account_change import AccountChange
-from ...ocsf.resources.v_1_1_0.resources.apiactivity.resources.classes.types.api_activity import ApiActivity
-from ...ocsf.resources.v_1_1_0.resources.authentication.resources.classes.types.authentication import Authentication
-from ...ocsf.resources.v_1_1_0.resources.compliancefinding.resources.classes.types.compliance_finding import (
-    ComplianceFinding,
-)
-from ...ocsf.resources.v_1_1_0.resources.fileactivity.resources.classes.types.file_activity import FileActivity
-from ...ocsf.resources.v_1_1_0.resources.groupmanagement.resources.classes.types.group_management import GroupManagement
-from ...ocsf.resources.v_1_1_0.resources.moduleactivity.resources.classes.types.module_activity import ModuleActivity
-from ...ocsf.resources.v_1_1_0.resources.networkactivity.resources.classes.types.network_activity import NetworkActivity
-from ...ocsf.resources.v_1_1_0.resources.processactivity.resources.classes.types.process_activity import ProcessActivity
-from ...ocsf.resources.v_1_1_0.resources.scheduledjobactivity.resources.classes.types.scheduled_job_activity import (
-    ScheduledJobActivity,
-)
-from ...ocsf.resources.v_1_1_0.resources.securityfinding.resources.classes.types.security_finding import SecurityFinding
-from ...ocsf.resources.v_1_1_0.resources.webresourceaccessactivity.resources.classes.types.web_resource_access_activity import (
-    WebResourceAccessActivity,
-)
+from ...ocsf.resources.v_1_3_0.resources.accountchange.resources.classes.types.account_change import AccountChange
+from ...ocsf.resources.v_1_3_0.resources.apiactivity.resources.classes.types.api_activity import ApiActivity
+from ...ocsf.resources.v_1_3_0.resources.authentication.resources.classes.types.authentication import Authentication
 from ...ocsf.resources.v_1_3_0.resources.authorizesession.resources.classes.types.authorize_session import (
     AuthorizeSession,
 )
 from ...ocsf.resources.v_1_3_0.resources.baseevent.resources.classes.types.base_event import BaseEvent
+from ...ocsf.resources.v_1_3_0.resources.compliancefinding.resources.classes.types.compliance_finding import (
+    ComplianceFinding,
+)
 from ...ocsf.resources.v_1_3_0.resources.configstate.resources.classes.types.config_state import ConfigState
 from ...ocsf.resources.v_1_3_0.resources.detectionfinding.resources.classes.types.detection_finding import (
     DetectionFinding,
 )
+from ...ocsf.resources.v_1_3_0.resources.fileactivity.resources.classes.types.file_activity import FileActivity
+from ...ocsf.resources.v_1_3_0.resources.groupmanagement.resources.classes.types.group_management import GroupManagement
 from ...ocsf.resources.v_1_3_0.resources.incidentfinding.resources.classes.types.incident_finding import IncidentFinding
 from ...ocsf.resources.v_1_3_0.resources.inventoryinfo.resources.classes.types.inventory_info import InventoryInfo
+from ...ocsf.resources.v_1_3_0.resources.moduleactivity.resources.classes.types.module_activity import ModuleActivity
+from ...ocsf.resources.v_1_3_0.resources.networkactivity.resources.classes.types.network_activity import NetworkActivity
+from ...ocsf.resources.v_1_3_0.resources.processactivity.resources.classes.types.process_activity import ProcessActivity
 from ...ocsf.resources.v_1_3_0.resources.scanactivity.resources.classes.types.scan_activity import ScanActivity
+from ...ocsf.resources.v_1_3_0.resources.scheduledjobactivity.resources.classes.types.scheduled_job_activity import (
+    ScheduledJobActivity,
+)
+from ...ocsf.resources.v_1_3_0.resources.securityfinding.resources.classes.types.security_finding import SecurityFinding
 from ...ocsf.resources.v_1_3_0.resources.softwareinfo.resources.classes.types.software_info import SoftwareInfo
 from ...ocsf.resources.v_1_3_0.resources.useraccessmanagement.resources.classes.types.user_access import UserAccess
 from ...ocsf.resources.v_1_3_0.resources.vulnerabilityfinding.resources.classes.types.vulnerability_finding import (
     VulnerabilityFinding,
+)
+from ...ocsf.resources.v_1_3_0.resources.webresourceaccessactivity.resources.classes.types.web_resource_access_activity import (
+    WebResourceAccessActivity,
 )
 
 
