@@ -16,6 +16,7 @@ from .resources.integration_points.client import AsyncIntegrationPointsClient, I
 from .resources.integrations.client import AsyncIntegrationsClient, IntegrationsClient
 from .resources.members.client import AsyncMembersClient, MembersClient
 from .resources.meta.client import AsyncMetaClient, MetaClient
+from .resources.operations.client import AsyncOperationsClient, OperationsClient
 from .resources.organization.client import AsyncOrganizationClient, OrganizationClient
 from .resources.organization_webhooks.client import AsyncOrganizationWebhooksClient, OrganizationWebhooksClient
 from .resources.permissionset.client import AsyncPermissionsetClient, PermissionsetClient
@@ -74,6 +75,7 @@ class SynqlyManagement:
         self.integrations = IntegrationsClient(client_wrapper=self._client_wrapper)
         self.members = MembersClient(client_wrapper=self._client_wrapper)
         self.meta = MetaClient(client_wrapper=self._client_wrapper)
+        self.operations = OperationsClient(client_wrapper=self._client_wrapper)
         self.organization_webhooks = OrganizationWebhooksClient(client_wrapper=self._client_wrapper)
         self.organization = OrganizationClient(client_wrapper=self._client_wrapper)
         self.permissionset = PermissionsetClient(client_wrapper=self._client_wrapper)
@@ -132,6 +134,7 @@ class AsyncSynqlyManagement:
         self.integrations = AsyncIntegrationsClient(client_wrapper=self._client_wrapper)
         self.members = AsyncMembersClient(client_wrapper=self._client_wrapper)
         self.meta = AsyncMetaClient(client_wrapper=self._client_wrapper)
+        self.operations = AsyncOperationsClient(client_wrapper=self._client_wrapper)
         self.organization_webhooks = AsyncOrganizationWebhooksClient(client_wrapper=self._client_wrapper)
         self.organization = AsyncOrganizationClient(client_wrapper=self._client_wrapper)
         self.permissionset = AsyncPermissionsetClient(client_wrapper=self._client_wrapper)

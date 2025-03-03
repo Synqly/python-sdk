@@ -17,6 +17,8 @@ from . import (
     member_base,
     members,
     meta,
+    operation_base,
+    operations,
     organization,
     organization_base,
     organization_webhook_base,
@@ -221,6 +223,8 @@ from .members import (
     UpdateMemberResponse,
 )
 from .meta import GetOpenApiSpecResponse
+from .operation_base import Operation, OperationError, OperationId, OperationInput, OperationSchedule, OperationStatus
+from .operations import ListOperationsResponse
 from .organization import PatchOrganizationResponse, UpdateOrganizationRequest, UpdateOrganizationResponse
 from .organization_base import (
     CreateOrganizationRequest,
@@ -818,6 +822,7 @@ __all__ = [
     "ListIntegrationPointsResponse",
     "ListIntegrationsResponse",
     "ListMembersResponse",
+    "ListOperationsResponse",
     "ListOrganizationResponse",
     "ListOrganizationWebhooksResponse",
     "ListPermissionSetsResponse",
@@ -861,6 +866,12 @@ __all__ = [
     "OktaCredential_OAuthClientId",
     "OktaCredential_Token",
     "OktaCredential_TokenId",
+    "Operation",
+    "OperationError",
+    "OperationId",
+    "OperationInput",
+    "OperationSchedule",
+    "OperationStatus",
     "OperationsActions",
     "OperationsPermissions",
     "Options",
@@ -1125,6 +1136,8 @@ __all__ = [
     "member_base",
     "members",
     "meta",
+    "operation_base",
+    "operations",
     "organization",
     "organization_base",
     "organization_webhook_base",
