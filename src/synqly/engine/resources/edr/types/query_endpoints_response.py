@@ -5,6 +5,7 @@ import typing
 
 from ....core.datetime_utils import serialize_datetime
 from ...assets.types.device import Device
+from ...common.types.api_query_response import ApiQueryResponse
 
 try:
     import pydantic.v1 as pydantic  # type: ignore
@@ -12,15 +13,10 @@ except ImportError:
     import pydantic  # type: ignore
 
 
-class QueryEndpointsResponse(pydantic.BaseModel):
+class QueryEndpointsResponse(ApiQueryResponse):
     result: typing.List[Device] = pydantic.Field()
     """
     List of endpoint assets that match the query.
-    """
-
-    cursor: str = pydantic.Field()
-    """
-    Cursor to use to retrieve the next page of results.
     """
 
     def json(self, **kwargs: typing.Any) -> str:
@@ -34,5 +30,6 @@ class QueryEndpointsResponse(pydantic.BaseModel):
     class Config:
         frozen = True
         smart_union = True
+        allow_population_by_field_name = True
         extra = pydantic.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}

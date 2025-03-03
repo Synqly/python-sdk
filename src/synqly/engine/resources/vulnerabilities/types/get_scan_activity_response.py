@@ -4,6 +4,7 @@ import datetime as dt
 import typing
 
 from ....core.datetime_utils import serialize_datetime
+from ...common.types.api_response import ApiResponse
 from ...ocsf.resources.v_1_3_0.resources.scanactivity.resources.classes.types.scan_activity import ScanActivity
 
 try:
@@ -12,7 +13,7 @@ except ImportError:
     import pydantic  # type: ignore
 
 
-class GetScanActivityResponse(pydantic.BaseModel):
+class GetScanActivityResponse(ApiResponse):
     result: ScanActivity
 
     def json(self, **kwargs: typing.Any) -> str:
@@ -26,5 +27,6 @@ class GetScanActivityResponse(pydantic.BaseModel):
     class Config:
         frozen = True
         smart_union = True
+        allow_population_by_field_name = True
         extra = pydantic.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}

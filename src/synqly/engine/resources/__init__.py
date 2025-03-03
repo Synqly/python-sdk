@@ -21,6 +21,9 @@ from . import (
 )
 from .assets import CreateDeviceRequest, CreateDeviceResponse, Device, QueryDevicesResponse
 from .common import (
+    ApiHasStatus,
+    ApiQueryResponse,
+    ApiResponse,
     BadGatewayError,
     BadRequestError,
     Base,
@@ -196,6 +199,9 @@ from .vulnerabilities import (
 )
 
 __all__ = [
+    "ApiHasStatus",
+    "ApiQueryResponse",
+    "ApiResponse",
     "Application",
     "Asset",
     "Attachment",

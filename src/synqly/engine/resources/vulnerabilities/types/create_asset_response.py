@@ -4,6 +4,7 @@ import datetime as dt
 import typing
 
 from ....core.datetime_utils import serialize_datetime
+from ...common.types.api_response import ApiResponse
 from .create_asset_device import CreateAssetDevice
 
 try:
@@ -12,7 +13,7 @@ except ImportError:
     import pydantic  # type: ignore
 
 
-class CreateAssetResponse(pydantic.BaseModel):
+class CreateAssetResponse(ApiResponse):
     device: CreateAssetDevice = pydantic.Field()
     """
     Created device.
@@ -29,5 +30,6 @@ class CreateAssetResponse(pydantic.BaseModel):
     class Config:
         frozen = True
         smart_union = True
+        allow_population_by_field_name = True
         extra = pydantic.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}

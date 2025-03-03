@@ -204,6 +204,7 @@ class TicketingClient:
     def query_tickets(
         self,
         *,
+        meta: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
         cursor: typing.Optional[str] = None,
         limit: typing.Optional[int] = None,
         order: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
@@ -214,6 +215,8 @@ class TicketingClient:
         Returns a list of `Ticket` objects from the token-linked `Integration`.
 
         Parameters:
+            - meta: typing.Optional[typing.Union[str, typing.Sequence[str]]]. Add metadata to the response by invoking meta functions. Documentation for meta functions is available at https://docs.synqly.com/api-reference/meta-functions. Not all meta function are available at every endpoint.
+
             - cursor: typing.Optional[str]. Cursor to use to retrieve the next page of results.
 
             - limit: typing.Optional[int]. Number of `Account` objects to return in this page. Defaults to 100.
@@ -232,6 +235,7 @@ class TicketingClient:
             params=jsonable_encoder(
                 remove_none_from_dict(
                     {
+                        "meta": meta,
                         "cursor": cursor,
                         "limit": limit,
                         "order": order,
@@ -1175,6 +1179,7 @@ class AsyncTicketingClient:
     async def query_tickets(
         self,
         *,
+        meta: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
         cursor: typing.Optional[str] = None,
         limit: typing.Optional[int] = None,
         order: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
@@ -1185,6 +1190,8 @@ class AsyncTicketingClient:
         Returns a list of `Ticket` objects from the token-linked `Integration`.
 
         Parameters:
+            - meta: typing.Optional[typing.Union[str, typing.Sequence[str]]]. Add metadata to the response by invoking meta functions. Documentation for meta functions is available at https://docs.synqly.com/api-reference/meta-functions. Not all meta function are available at every endpoint.
+
             - cursor: typing.Optional[str]. Cursor to use to retrieve the next page of results.
 
             - limit: typing.Optional[int]. Number of `Account` objects to return in this page. Defaults to 100.
@@ -1203,6 +1210,7 @@ class AsyncTicketingClient:
             params=jsonable_encoder(
                 remove_none_from_dict(
                     {
+                        "meta": meta,
                         "cursor": cursor,
                         "limit": limit,
                         "order": order,

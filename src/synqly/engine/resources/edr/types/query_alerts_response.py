@@ -4,6 +4,7 @@ import datetime as dt
 import typing
 
 from ....core.datetime_utils import serialize_datetime
+from ...common.types.api_query_response import ApiQueryResponse
 from ...events.types.event import Event
 
 try:
@@ -12,15 +13,10 @@ except ImportError:
     import pydantic  # type: ignore
 
 
-class QueryAlertsResponse(pydantic.BaseModel):
+class QueryAlertsResponse(ApiQueryResponse):
     result: typing.List[Event] = pydantic.Field()
     """
     List of alerts that match the query.
-    """
-
-    cursor: str = pydantic.Field()
-    """
-    Cursor to use to retrieve the next page of results.
     """
 
     def json(self, **kwargs: typing.Any) -> str:
@@ -34,5 +30,6 @@ class QueryAlertsResponse(pydantic.BaseModel):
     class Config:
         frozen = True
         smart_union = True
+        allow_population_by_field_name = True
         extra = pydantic.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}

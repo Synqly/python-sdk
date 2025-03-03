@@ -43,6 +43,7 @@ class AssetsClient:
     def query_devices(
         self,
         *,
+        meta: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
         limit: typing.Optional[int] = None,
         cursor: typing.Optional[str] = None,
         filter: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
@@ -53,6 +54,8 @@ class AssetsClient:
         Query devices from an asset inventory system
 
         Parameters:
+            - meta: typing.Optional[typing.Union[str, typing.Sequence[str]]]. Add metadata to the response by invoking meta functions. Documentation for meta functions is available at https://docs.synqly.com/api-reference/meta-functions. Not all meta function are available at every endpoint.
+
             - limit: typing.Optional[int]. Number of finding reports to return. Defaults to 50.
 
             - cursor: typing.Optional[str]. Start search from cursor position.
@@ -70,6 +73,7 @@ class AssetsClient:
             params=jsonable_encoder(
                 remove_none_from_dict(
                     {
+                        "meta": meta,
                         "limit": limit,
                         "cursor": cursor,
                         "filter": filter,
@@ -207,6 +211,7 @@ class AsyncAssetsClient:
     async def query_devices(
         self,
         *,
+        meta: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
         limit: typing.Optional[int] = None,
         cursor: typing.Optional[str] = None,
         filter: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
@@ -217,6 +222,8 @@ class AsyncAssetsClient:
         Query devices from an asset inventory system
 
         Parameters:
+            - meta: typing.Optional[typing.Union[str, typing.Sequence[str]]]. Add metadata to the response by invoking meta functions. Documentation for meta functions is available at https://docs.synqly.com/api-reference/meta-functions. Not all meta function are available at every endpoint.
+
             - limit: typing.Optional[int]. Number of finding reports to return. Defaults to 50.
 
             - cursor: typing.Optional[str]. Start search from cursor position.
@@ -234,6 +241,7 @@ class AsyncAssetsClient:
             params=jsonable_encoder(
                 remove_none_from_dict(
                     {
+                        "meta": meta,
                         "limit": limit,
                         "cursor": cursor,
                         "filter": filter,

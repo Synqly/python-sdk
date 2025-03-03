@@ -4,7 +4,8 @@ import datetime as dt
 import typing
 
 from ....core.datetime_utils import serialize_datetime
-from ...common.types.query_status import QueryStatus
+from ...common.types.api_has_status import ApiHasStatus
+from ...common.types.api_query_response import ApiQueryResponse
 from .asset import Asset
 
 try:
@@ -13,17 +14,8 @@ except ImportError:
     import pydantic  # type: ignore
 
 
-class QueryAssetsResponse(pydantic.BaseModel):
+class QueryAssetsResponse(ApiQueryResponse, ApiHasStatus):
     result: typing.List[Asset]
-    cursor: str = pydantic.Field()
-    """
-    Cursor to use to retrieve the next page of results.
-    """
-
-    status: QueryStatus = pydantic.Field()
-    """
-    If the provider supports asynchronous queries and the query is still running, this field will be `PENDING` until the query is complete. In this case, the client should retry using the provided cursor.
-    """
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}
@@ -36,5 +28,6 @@ class QueryAssetsResponse(pydantic.BaseModel):
     class Config:
         frozen = True
         smart_union = True
+        allow_population_by_field_name = True
         extra = pydantic.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}

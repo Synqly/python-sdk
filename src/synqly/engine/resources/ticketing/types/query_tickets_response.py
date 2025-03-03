@@ -4,6 +4,7 @@ import datetime as dt
 import typing
 
 from ....core.datetime_utils import serialize_datetime
+from ...common.types.api_query_response import ApiQueryResponse
 from .ticket import Ticket
 
 try:
@@ -12,15 +13,10 @@ except ImportError:
     import pydantic  # type: ignore
 
 
-class QueryTicketsResponse(pydantic.BaseModel):
+class QueryTicketsResponse(ApiQueryResponse):
     result: typing.List[Ticket] = pydantic.Field()
     """
     list of results
-    """
-
-    cursor: str = pydantic.Field()
-    """
-    Cursor position for subsequent searches
     """
 
     def json(self, **kwargs: typing.Any) -> str:
@@ -34,5 +30,6 @@ class QueryTicketsResponse(pydantic.BaseModel):
     class Config:
         frozen = True
         smart_union = True
+        allow_population_by_field_name = True
         extra = pydantic.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}

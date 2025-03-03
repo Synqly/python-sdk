@@ -45,6 +45,7 @@ class IdentityClient:
     def query_audit_log(
         self,
         *,
+        meta: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
         limit: typing.Optional[int] = None,
         cursor: typing.Optional[str] = None,
         order: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
@@ -55,6 +56,8 @@ class IdentityClient:
         Returns a list of `Event` objects from the token-linked audit log.
 
         Parameters:
+            - meta: typing.Optional[typing.Union[str, typing.Sequence[str]]]. Add metadata to the response by invoking meta functions. Documentation for meta functions is available at https://docs.synqly.com/api-reference/meta-functions. Not all meta function are available at every endpoint.
+
             - limit: typing.Optional[int]. Number of events to return. Defaults to 100.
 
             - cursor: typing.Optional[str]. Start search from cursor position.
@@ -72,6 +75,7 @@ class IdentityClient:
             params=jsonable_encoder(
                 remove_none_from_dict(
                     {
+                        "meta": meta,
                         "limit": limit,
                         "cursor": cursor,
                         "order": order,
@@ -135,6 +139,7 @@ class IdentityClient:
     def query_users(
         self,
         *,
+        meta: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
         limit: typing.Optional[int] = None,
         cursor: typing.Optional[str] = None,
         order: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
@@ -145,6 +150,8 @@ class IdentityClient:
         Returns a list of `User` objects wrapped in the OCSF Entity Management event of type Read from the token-linked identity provider.
 
         Parameters:
+            - meta: typing.Optional[typing.Union[str, typing.Sequence[str]]]. Add metadata to the response by invoking meta functions. Documentation for meta functions is available at https://docs.synqly.com/api-reference/meta-functions. Not all meta function are available at every endpoint.
+
             - limit: typing.Optional[int]. Number of users to return. Defaults to 100.
 
             - cursor: typing.Optional[str]. Start search from cursor position.
@@ -162,6 +169,7 @@ class IdentityClient:
             params=jsonable_encoder(
                 remove_none_from_dict(
                     {
+                        "meta": meta,
                         "limit": limit,
                         "cursor": cursor,
                         "order": order,
@@ -291,6 +299,7 @@ class IdentityClient:
     def query_groups(
         self,
         *,
+        meta: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
         limit: typing.Optional[int] = None,
         cursor: typing.Optional[str] = None,
         order: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
@@ -301,6 +310,8 @@ class IdentityClient:
         Returns a list of `Group` objects wrapped in the OCSF Entity Management event of type Read from the token-linked identity provider.
 
         Parameters:
+            - meta: typing.Optional[typing.Union[str, typing.Sequence[str]]]. Add metadata to the response by invoking meta functions. Documentation for meta functions is available at https://docs.synqly.com/api-reference/meta-functions. Not all meta function are available at every endpoint.
+
             - limit: typing.Optional[int]. Number of users to return. Defaults to 100.
 
             - cursor: typing.Optional[str]. Start search from cursor position.
@@ -318,6 +329,7 @@ class IdentityClient:
             params=jsonable_encoder(
                 remove_none_from_dict(
                     {
+                        "meta": meta,
                         "limit": limit,
                         "cursor": cursor,
                         "order": order,
@@ -450,6 +462,7 @@ class IdentityClient:
         self,
         group_id: GroupId,
         *,
+        meta: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
         limit: typing.Optional[int] = None,
         cursor: typing.Optional[str] = None,
         request_options: typing.Optional[RequestOptions] = None,
@@ -459,6 +472,8 @@ class IdentityClient:
 
         Parameters:
             - group_id: GroupId.
+
+            - meta: typing.Optional[typing.Union[str, typing.Sequence[str]]]. Add metadata to the response by invoking meta functions. Documentation for meta functions is available at https://docs.synqly.com/api-reference/meta-functions. Not all meta function are available at every endpoint.
 
             - limit: typing.Optional[int]. Number of users to return. Defaults to 100.
 
@@ -474,6 +489,7 @@ class IdentityClient:
             params=jsonable_encoder(
                 remove_none_from_dict(
                     {
+                        "meta": meta,
                         "limit": limit,
                         "cursor": cursor,
                         **(
@@ -820,6 +836,7 @@ class AsyncIdentityClient:
     async def query_audit_log(
         self,
         *,
+        meta: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
         limit: typing.Optional[int] = None,
         cursor: typing.Optional[str] = None,
         order: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
@@ -830,6 +847,8 @@ class AsyncIdentityClient:
         Returns a list of `Event` objects from the token-linked audit log.
 
         Parameters:
+            - meta: typing.Optional[typing.Union[str, typing.Sequence[str]]]. Add metadata to the response by invoking meta functions. Documentation for meta functions is available at https://docs.synqly.com/api-reference/meta-functions. Not all meta function are available at every endpoint.
+
             - limit: typing.Optional[int]. Number of events to return. Defaults to 100.
 
             - cursor: typing.Optional[str]. Start search from cursor position.
@@ -847,6 +866,7 @@ class AsyncIdentityClient:
             params=jsonable_encoder(
                 remove_none_from_dict(
                     {
+                        "meta": meta,
                         "limit": limit,
                         "cursor": cursor,
                         "order": order,
@@ -910,6 +930,7 @@ class AsyncIdentityClient:
     async def query_users(
         self,
         *,
+        meta: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
         limit: typing.Optional[int] = None,
         cursor: typing.Optional[str] = None,
         order: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
@@ -920,6 +941,8 @@ class AsyncIdentityClient:
         Returns a list of `User` objects wrapped in the OCSF Entity Management event of type Read from the token-linked identity provider.
 
         Parameters:
+            - meta: typing.Optional[typing.Union[str, typing.Sequence[str]]]. Add metadata to the response by invoking meta functions. Documentation for meta functions is available at https://docs.synqly.com/api-reference/meta-functions. Not all meta function are available at every endpoint.
+
             - limit: typing.Optional[int]. Number of users to return. Defaults to 100.
 
             - cursor: typing.Optional[str]. Start search from cursor position.
@@ -937,6 +960,7 @@ class AsyncIdentityClient:
             params=jsonable_encoder(
                 remove_none_from_dict(
                     {
+                        "meta": meta,
                         "limit": limit,
                         "cursor": cursor,
                         "order": order,
@@ -1068,6 +1092,7 @@ class AsyncIdentityClient:
     async def query_groups(
         self,
         *,
+        meta: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
         limit: typing.Optional[int] = None,
         cursor: typing.Optional[str] = None,
         order: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
@@ -1078,6 +1103,8 @@ class AsyncIdentityClient:
         Returns a list of `Group` objects wrapped in the OCSF Entity Management event of type Read from the token-linked identity provider.
 
         Parameters:
+            - meta: typing.Optional[typing.Union[str, typing.Sequence[str]]]. Add metadata to the response by invoking meta functions. Documentation for meta functions is available at https://docs.synqly.com/api-reference/meta-functions. Not all meta function are available at every endpoint.
+
             - limit: typing.Optional[int]. Number of users to return. Defaults to 100.
 
             - cursor: typing.Optional[str]. Start search from cursor position.
@@ -1095,6 +1122,7 @@ class AsyncIdentityClient:
             params=jsonable_encoder(
                 remove_none_from_dict(
                     {
+                        "meta": meta,
                         "limit": limit,
                         "cursor": cursor,
                         "order": order,
@@ -1227,6 +1255,7 @@ class AsyncIdentityClient:
         self,
         group_id: GroupId,
         *,
+        meta: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
         limit: typing.Optional[int] = None,
         cursor: typing.Optional[str] = None,
         request_options: typing.Optional[RequestOptions] = None,
@@ -1236,6 +1265,8 @@ class AsyncIdentityClient:
 
         Parameters:
             - group_id: GroupId.
+
+            - meta: typing.Optional[typing.Union[str, typing.Sequence[str]]]. Add metadata to the response by invoking meta functions. Documentation for meta functions is available at https://docs.synqly.com/api-reference/meta-functions. Not all meta function are available at every endpoint.
 
             - limit: typing.Optional[int]. Number of users to return. Defaults to 100.
 
@@ -1251,6 +1282,7 @@ class AsyncIdentityClient:
             params=jsonable_encoder(
                 remove_none_from_dict(
                     {
+                        "meta": meta,
                         "limit": limit,
                         "cursor": cursor,
                         **(

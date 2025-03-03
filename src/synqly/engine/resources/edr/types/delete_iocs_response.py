@@ -4,6 +4,7 @@ import datetime as dt
 import typing
 
 from ....core.datetime_utils import serialize_datetime
+from ...common.types.api_response import ApiResponse
 
 try:
     import pydantic.v1 as pydantic  # type: ignore
@@ -11,7 +12,7 @@ except ImportError:
     import pydantic  # type: ignore
 
 
-class DeleteIocsResponse(pydantic.BaseModel):
+class DeleteIocsResponse(ApiResponse):
     result: typing.List[str] = pydantic.Field()
     """
     A list of ids of the iocs that were deleted.
@@ -28,5 +29,6 @@ class DeleteIocsResponse(pydantic.BaseModel):
     class Config:
         frozen = True
         smart_union = True
+        allow_population_by_field_name = True
         extra = pydantic.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}

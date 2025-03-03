@@ -47,6 +47,7 @@ class SiemClient:
     def query_investigations(
         self,
         *,
+        meta: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
         cursor: typing.Optional[str] = None,
         limit: typing.Optional[int] = None,
         order: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
@@ -58,6 +59,8 @@ class SiemClient:
         Queries investigations
 
         Parameters:
+            - meta: typing.Optional[typing.Union[str, typing.Sequence[str]]]. Add metadata to the response by invoking meta functions. Documentation for meta functions is available at https://docs.synqly.com/api-reference/meta-functions. Not all meta function are available at every endpoint.
+
             - cursor: typing.Optional[str]. Cursor to use to retrieve the next page of results.
 
             - limit: typing.Optional[int]. Number of `Investigation` objects to return in this page. Defaults to 100.
@@ -76,6 +79,7 @@ class SiemClient:
             params=jsonable_encoder(
                 remove_none_from_dict(
                     {
+                        "meta": meta,
                         "cursor": cursor,
                         "limit": limit,
                         "order": order,
@@ -141,6 +145,7 @@ class SiemClient:
         self,
         id: str,
         *,
+        meta: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
         include_raw_data: typing.Optional[bool] = None,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> GetInvestigationResponse:
@@ -149,6 +154,8 @@ class SiemClient:
 
         Parameters:
             - id: str. ID of the investigation to retrieve.
+
+            - meta: typing.Optional[typing.Union[str, typing.Sequence[str]]]. Add metadata to the response by invoking meta functions. Documentation for meta functions is available at https://docs.synqly.com/api-reference/meta-functions. Not all meta function are available at every endpoint.
 
             - include_raw_data: typing.Optional[bool]. Include the raw data from the SIEM in the response. Defaults to `false`.
 
@@ -162,6 +169,7 @@ class SiemClient:
             params=jsonable_encoder(
                 remove_none_from_dict(
                     {
+                        "meta": meta,
                         "include_raw_data": include_raw_data,
                         **(
                             request_options.get("additional_query_parameters", {})
@@ -298,6 +306,7 @@ class SiemClient:
         self,
         id: str,
         *,
+        meta: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
         include_raw_data: typing.Optional[bool] = None,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> GetEvidenceResponse:
@@ -306,6 +315,8 @@ class SiemClient:
 
         Parameters:
             - id: str. ID of the investigation to retrieve evidence for.
+
+            - meta: typing.Optional[typing.Union[str, typing.Sequence[str]]]. Add metadata to the response by invoking meta functions. Documentation for meta functions is available at https://docs.synqly.com/api-reference/meta-functions. Not all meta function are available at every endpoint.
 
             - include_raw_data: typing.Optional[bool]. Include the raw data from the SIEM in the response. Defaults to `false`.
 
@@ -319,6 +330,7 @@ class SiemClient:
             params=jsonable_encoder(
                 remove_none_from_dict(
                     {
+                        "meta": meta,
                         "include_raw_data": include_raw_data,
                         **(
                             request_options.get("additional_query_parameters", {})
@@ -379,6 +391,7 @@ class SiemClient:
     def query_log_providers(
         self,
         *,
+        meta: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
         cursor: typing.Optional[str] = None,
         limit: typing.Optional[int] = None,
         request_options: typing.Optional[RequestOptions] = None,
@@ -387,6 +400,8 @@ class SiemClient:
         Queries available log providers in the source SIEM
 
         Parameters:
+            - meta: typing.Optional[typing.Union[str, typing.Sequence[str]]]. Add metadata to the response by invoking meta functions. Documentation for meta functions is available at https://docs.synqly.com/api-reference/meta-functions. Not all meta function are available at every endpoint.
+
             - cursor: typing.Optional[str]. Cursor to use to retrieve the next page of results.
 
             - limit: typing.Optional[int]. Number of log provider objects to return in this page. Defaults to 100.
@@ -399,6 +414,7 @@ class SiemClient:
             params=jsonable_encoder(
                 remove_none_from_dict(
                     {
+                        "meta": meta,
                         "cursor": cursor,
                         "limit": limit,
                         **(
@@ -554,7 +570,7 @@ class SiemClient:
                                                                                ordering is applied in the order the fields are specified.
             - filter: typing.Optional[typing.Union[str, typing.Sequence[str]]]. Filter results by this query. For more information on filtering, refer to our Filtering Guide. Defaults to no filter.
                                                                                 If used more than once, the queries are ANDed together.
-            - meta: typing.Optional[typing.Union[str, typing.Sequence[str]]]. Add metadata to the response by invoking meta functions.
+            - meta: typing.Optional[typing.Union[str, typing.Sequence[str]]]. Add metadata to the response by invoking meta functions. Documentation for meta functions is available at https://docs.synqly.com/api-reference/meta-functions. Not all meta function are available at every endpoint.
 
             - passthrough_param: typing.Optional[typing.Union[str, typing.Sequence[str]]]. Provider-specific query to pass through to the SIEM. This is useful for advanced queries that are not
                                                                                            supported by the API. The keys and values are provider-specific. For example, to perform a specific query in
@@ -640,6 +656,7 @@ class AsyncSiemClient:
     async def query_investigations(
         self,
         *,
+        meta: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
         cursor: typing.Optional[str] = None,
         limit: typing.Optional[int] = None,
         order: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
@@ -651,6 +668,8 @@ class AsyncSiemClient:
         Queries investigations
 
         Parameters:
+            - meta: typing.Optional[typing.Union[str, typing.Sequence[str]]]. Add metadata to the response by invoking meta functions. Documentation for meta functions is available at https://docs.synqly.com/api-reference/meta-functions. Not all meta function are available at every endpoint.
+
             - cursor: typing.Optional[str]. Cursor to use to retrieve the next page of results.
 
             - limit: typing.Optional[int]. Number of `Investigation` objects to return in this page. Defaults to 100.
@@ -669,6 +688,7 @@ class AsyncSiemClient:
             params=jsonable_encoder(
                 remove_none_from_dict(
                     {
+                        "meta": meta,
                         "cursor": cursor,
                         "limit": limit,
                         "order": order,
@@ -734,6 +754,7 @@ class AsyncSiemClient:
         self,
         id: str,
         *,
+        meta: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
         include_raw_data: typing.Optional[bool] = None,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> GetInvestigationResponse:
@@ -742,6 +763,8 @@ class AsyncSiemClient:
 
         Parameters:
             - id: str. ID of the investigation to retrieve.
+
+            - meta: typing.Optional[typing.Union[str, typing.Sequence[str]]]. Add metadata to the response by invoking meta functions. Documentation for meta functions is available at https://docs.synqly.com/api-reference/meta-functions. Not all meta function are available at every endpoint.
 
             - include_raw_data: typing.Optional[bool]. Include the raw data from the SIEM in the response. Defaults to `false`.
 
@@ -755,6 +778,7 @@ class AsyncSiemClient:
             params=jsonable_encoder(
                 remove_none_from_dict(
                     {
+                        "meta": meta,
                         "include_raw_data": include_raw_data,
                         **(
                             request_options.get("additional_query_parameters", {})
@@ -891,6 +915,7 @@ class AsyncSiemClient:
         self,
         id: str,
         *,
+        meta: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
         include_raw_data: typing.Optional[bool] = None,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> GetEvidenceResponse:
@@ -899,6 +924,8 @@ class AsyncSiemClient:
 
         Parameters:
             - id: str. ID of the investigation to retrieve evidence for.
+
+            - meta: typing.Optional[typing.Union[str, typing.Sequence[str]]]. Add metadata to the response by invoking meta functions. Documentation for meta functions is available at https://docs.synqly.com/api-reference/meta-functions. Not all meta function are available at every endpoint.
 
             - include_raw_data: typing.Optional[bool]. Include the raw data from the SIEM in the response. Defaults to `false`.
 
@@ -912,6 +939,7 @@ class AsyncSiemClient:
             params=jsonable_encoder(
                 remove_none_from_dict(
                     {
+                        "meta": meta,
                         "include_raw_data": include_raw_data,
                         **(
                             request_options.get("additional_query_parameters", {})
@@ -972,6 +1000,7 @@ class AsyncSiemClient:
     async def query_log_providers(
         self,
         *,
+        meta: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
         cursor: typing.Optional[str] = None,
         limit: typing.Optional[int] = None,
         request_options: typing.Optional[RequestOptions] = None,
@@ -980,6 +1009,8 @@ class AsyncSiemClient:
         Queries available log providers in the source SIEM
 
         Parameters:
+            - meta: typing.Optional[typing.Union[str, typing.Sequence[str]]]. Add metadata to the response by invoking meta functions. Documentation for meta functions is available at https://docs.synqly.com/api-reference/meta-functions. Not all meta function are available at every endpoint.
+
             - cursor: typing.Optional[str]. Cursor to use to retrieve the next page of results.
 
             - limit: typing.Optional[int]. Number of log provider objects to return in this page. Defaults to 100.
@@ -992,6 +1023,7 @@ class AsyncSiemClient:
             params=jsonable_encoder(
                 remove_none_from_dict(
                     {
+                        "meta": meta,
                         "cursor": cursor,
                         "limit": limit,
                         **(
@@ -1147,7 +1179,7 @@ class AsyncSiemClient:
                                                                                ordering is applied in the order the fields are specified.
             - filter: typing.Optional[typing.Union[str, typing.Sequence[str]]]. Filter results by this query. For more information on filtering, refer to our Filtering Guide. Defaults to no filter.
                                                                                 If used more than once, the queries are ANDed together.
-            - meta: typing.Optional[typing.Union[str, typing.Sequence[str]]]. Add metadata to the response by invoking meta functions.
+            - meta: typing.Optional[typing.Union[str, typing.Sequence[str]]]. Add metadata to the response by invoking meta functions. Documentation for meta functions is available at https://docs.synqly.com/api-reference/meta-functions. Not all meta function are available at every endpoint.
 
             - passthrough_param: typing.Optional[typing.Union[str, typing.Sequence[str]]]. Provider-specific query to pass through to the SIEM. This is useful for advanced queries that are not
                                                                                            supported by the API. The keys and values are provider-specific. For example, to perform a specific query in

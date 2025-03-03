@@ -38,12 +38,19 @@ class HooksClient:
         self._client_wrapper = client_wrapper
 
     def proxy(
-        self, *, token: str, request: typing.Any, request_options: typing.Optional[RequestOptions] = None
+        self,
+        *,
+        meta: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
+        token: str,
+        request: typing.Any,
+        request_options: typing.Optional[RequestOptions] = None,
     ) -> None:
         """
         Proxy webhook messages from webhook providers to webhook recievers. For exact webhook implementations please refer to providers e.g. Ticketing. This is just an API call used in that context, not a standalone implementation.
 
         Parameters:
+            - meta: typing.Optional[typing.Union[str, typing.Sequence[str]]]. Add metadata to the response by invoking meta functions. Documentation for meta functions is available at https://docs.synqly.com/api-reference/meta-functions. Not all meta function are available at every endpoint.
+
             - token: str. Optional: if you can't use the HTTP Authorization Bearer, specify integration access token here.
 
             - request: typing.Any.
@@ -56,6 +63,7 @@ class HooksClient:
             params=jsonable_encoder(
                 remove_none_from_dict(
                     {
+                        "meta": meta,
                         "token": token,
                         **(
                             request_options.get("additional_query_parameters", {})
@@ -125,12 +133,19 @@ class AsyncHooksClient:
         self._client_wrapper = client_wrapper
 
     async def proxy(
-        self, *, token: str, request: typing.Any, request_options: typing.Optional[RequestOptions] = None
+        self,
+        *,
+        meta: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
+        token: str,
+        request: typing.Any,
+        request_options: typing.Optional[RequestOptions] = None,
     ) -> None:
         """
         Proxy webhook messages from webhook providers to webhook recievers. For exact webhook implementations please refer to providers e.g. Ticketing. This is just an API call used in that context, not a standalone implementation.
 
         Parameters:
+            - meta: typing.Optional[typing.Union[str, typing.Sequence[str]]]. Add metadata to the response by invoking meta functions. Documentation for meta functions is available at https://docs.synqly.com/api-reference/meta-functions. Not all meta function are available at every endpoint.
+
             - token: str. Optional: if you can't use the HTTP Authorization Bearer, specify integration access token here.
 
             - request: typing.Any.
@@ -143,6 +158,7 @@ class AsyncHooksClient:
             params=jsonable_encoder(
                 remove_none_from_dict(
                     {
+                        "meta": meta,
                         "token": token,
                         **(
                             request_options.get("additional_query_parameters", {})

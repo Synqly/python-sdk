@@ -50,6 +50,7 @@ class VulnerabilitiesClient:
     def query_findings(
         self,
         *,
+        meta: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
         limit: typing.Optional[int] = None,
         cursor: typing.Optional[str] = None,
         filter: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
@@ -59,6 +60,8 @@ class VulnerabilitiesClient:
         Query vulnerability findings
 
         Parameters:
+            - meta: typing.Optional[typing.Union[str, typing.Sequence[str]]]. Add metadata to the response by invoking meta functions. Documentation for meta functions is available at https://docs.synqly.com/api-reference/meta-functions. Not all meta function are available at every endpoint.
+
             - limit: typing.Optional[int]. Number of finding reports to return. Defaults to 50.
 
             - cursor: typing.Optional[str]. Start search from cursor position.
@@ -73,6 +76,7 @@ class VulnerabilitiesClient:
             params=jsonable_encoder(
                 remove_none_from_dict(
                     {
+                        "meta": meta,
                         "limit": limit,
                         "cursor": cursor,
                         "filter": filter,
@@ -281,6 +285,7 @@ class VulnerabilitiesClient:
     def query_assets(
         self,
         *,
+        meta: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
         limit: typing.Optional[int] = None,
         cursor: typing.Optional[str] = None,
         filter: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
@@ -290,6 +295,8 @@ class VulnerabilitiesClient:
         Query assets in a vulnerability scanning system
 
         Parameters:
+            - meta: typing.Optional[typing.Union[str, typing.Sequence[str]]]. Add metadata to the response by invoking meta functions. Documentation for meta functions is available at https://docs.synqly.com/api-reference/meta-functions. Not all meta function are available at every endpoint.
+
             - limit: typing.Optional[int]. Number of assets to return. Defaults to 50.
 
             - cursor: typing.Optional[str]. Start search from cursor position.
@@ -304,6 +311,7 @@ class VulnerabilitiesClient:
             params=jsonable_encoder(
                 remove_none_from_dict(
                     {
+                        "meta": meta,
                         "limit": limit,
                         "cursor": cursor,
                         "filter": filter,
@@ -512,6 +520,7 @@ class VulnerabilitiesClient:
     def query_scans(
         self,
         *,
+        meta: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
         limit: typing.Optional[int] = None,
         cursor: typing.Optional[str] = None,
         request_options: typing.Optional[RequestOptions] = None,
@@ -520,6 +529,8 @@ class VulnerabilitiesClient:
         Query scans in a vulnerability scanning system
 
         Parameters:
+            - meta: typing.Optional[typing.Union[str, typing.Sequence[str]]]. Add metadata to the response by invoking meta functions. Documentation for meta functions is available at https://docs.synqly.com/api-reference/meta-functions. Not all meta function are available at every endpoint.
+
             - limit: typing.Optional[int]. Number of scans to return. Defaults to 50.
 
             - cursor: typing.Optional[str]. Start search from cursor position.
@@ -532,6 +543,7 @@ class VulnerabilitiesClient:
             params=jsonable_encoder(
                 remove_none_from_dict(
                     {
+                        "meta": meta,
                         "limit": limit,
                         "cursor": cursor,
                         **(
@@ -666,6 +678,7 @@ class AsyncVulnerabilitiesClient:
     async def query_findings(
         self,
         *,
+        meta: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
         limit: typing.Optional[int] = None,
         cursor: typing.Optional[str] = None,
         filter: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
@@ -675,6 +688,8 @@ class AsyncVulnerabilitiesClient:
         Query vulnerability findings
 
         Parameters:
+            - meta: typing.Optional[typing.Union[str, typing.Sequence[str]]]. Add metadata to the response by invoking meta functions. Documentation for meta functions is available at https://docs.synqly.com/api-reference/meta-functions. Not all meta function are available at every endpoint.
+
             - limit: typing.Optional[int]. Number of finding reports to return. Defaults to 50.
 
             - cursor: typing.Optional[str]. Start search from cursor position.
@@ -689,6 +704,7 @@ class AsyncVulnerabilitiesClient:
             params=jsonable_encoder(
                 remove_none_from_dict(
                     {
+                        "meta": meta,
                         "limit": limit,
                         "cursor": cursor,
                         "filter": filter,
@@ -897,6 +913,7 @@ class AsyncVulnerabilitiesClient:
     async def query_assets(
         self,
         *,
+        meta: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
         limit: typing.Optional[int] = None,
         cursor: typing.Optional[str] = None,
         filter: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
@@ -906,6 +923,8 @@ class AsyncVulnerabilitiesClient:
         Query assets in a vulnerability scanning system
 
         Parameters:
+            - meta: typing.Optional[typing.Union[str, typing.Sequence[str]]]. Add metadata to the response by invoking meta functions. Documentation for meta functions is available at https://docs.synqly.com/api-reference/meta-functions. Not all meta function are available at every endpoint.
+
             - limit: typing.Optional[int]. Number of assets to return. Defaults to 50.
 
             - cursor: typing.Optional[str]. Start search from cursor position.
@@ -920,6 +939,7 @@ class AsyncVulnerabilitiesClient:
             params=jsonable_encoder(
                 remove_none_from_dict(
                     {
+                        "meta": meta,
                         "limit": limit,
                         "cursor": cursor,
                         "filter": filter,
@@ -1128,6 +1148,7 @@ class AsyncVulnerabilitiesClient:
     async def query_scans(
         self,
         *,
+        meta: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
         limit: typing.Optional[int] = None,
         cursor: typing.Optional[str] = None,
         request_options: typing.Optional[RequestOptions] = None,
@@ -1136,6 +1157,8 @@ class AsyncVulnerabilitiesClient:
         Query scans in a vulnerability scanning system
 
         Parameters:
+            - meta: typing.Optional[typing.Union[str, typing.Sequence[str]]]. Add metadata to the response by invoking meta functions. Documentation for meta functions is available at https://docs.synqly.com/api-reference/meta-functions. Not all meta function are available at every endpoint.
+
             - limit: typing.Optional[int]. Number of scans to return. Defaults to 50.
 
             - cursor: typing.Optional[str]. Start search from cursor position.
@@ -1148,6 +1171,7 @@ class AsyncVulnerabilitiesClient:
             params=jsonable_encoder(
                 remove_none_from_dict(
                     {
+                        "meta": meta,
                         "limit": limit,
                         "cursor": cursor,
                         **(

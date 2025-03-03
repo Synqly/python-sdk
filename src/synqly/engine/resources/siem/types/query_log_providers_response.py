@@ -4,7 +4,8 @@ import datetime as dt
 import typing
 
 from ....core.datetime_utils import serialize_datetime
-from ...common.types.query_status import QueryStatus
+from ...common.types.api_has_status import ApiHasStatus
+from ...common.types.api_query_response import ApiQueryResponse
 from .log_provider import LogProvider
 
 try:
@@ -13,20 +14,10 @@ except ImportError:
     import pydantic  # type: ignore
 
 
-class QueryLogProvidersResponse(pydantic.BaseModel):
+class QueryLogProvidersResponse(ApiQueryResponse, ApiHasStatus):
     result: typing.List[LogProvider] = pydantic.Field()
     """
     List of available metadata.log_provider values available for querying events
-    """
-
-    cursor: str = pydantic.Field()
-    """
-    Cursor to use to retrieve the next page of results
-    """
-
-    status: QueryStatus = pydantic.Field()
-    """
-    If the provider supports asynchronous queries and the query is still running, this will be PENDING. There will be a value in the `cursor` field allowing you to continue polling for results.
     """
 
     def json(self, **kwargs: typing.Any) -> str:
@@ -40,5 +31,6 @@ class QueryLogProvidersResponse(pydantic.BaseModel):
     class Config:
         frozen = True
         smart_union = True
+        allow_population_by_field_name = True
         extra = pydantic.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}

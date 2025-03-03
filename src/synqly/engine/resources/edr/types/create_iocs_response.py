@@ -4,6 +4,7 @@ import datetime as dt
 import typing
 
 from ....core.datetime_utils import serialize_datetime
+from ...common.types.api_response import ApiResponse
 from ...stix.resources.indicator.types.indicator import Indicator
 
 try:
@@ -12,7 +13,7 @@ except ImportError:
     import pydantic  # type: ignore
 
 
-class CreateIocsResponse(pydantic.BaseModel):
+class CreateIocsResponse(ApiResponse):
     result: typing.List[Indicator] = pydantic.Field()
     """
     A list of the indicators that were created
@@ -29,5 +30,6 @@ class CreateIocsResponse(pydantic.BaseModel):
     class Config:
         frozen = True
         smart_union = True
+        allow_population_by_field_name = True
         extra = pydantic.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}

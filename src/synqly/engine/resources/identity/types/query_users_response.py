@@ -4,6 +4,7 @@ import datetime as dt
 import typing
 
 from ....core.datetime_utils import serialize_datetime
+from ...common.types.api_query_response import ApiQueryResponse
 from ...ocsf.resources.latest.resources.events.types.entity_management import EntityManagement
 
 try:
@@ -12,15 +13,10 @@ except ImportError:
     import pydantic  # type: ignore
 
 
-class QueryUsersResponse(pydantic.BaseModel):
+class QueryUsersResponse(ApiQueryResponse):
     result: typing.List[EntityManagement] = pydantic.Field()
     """
     List users wrapped in the OCSF Entity Management event of type Read.
-    """
-
-    cursor: str = pydantic.Field()
-    """
-    Cursor to use to retrieve the next page of results
     """
 
     def json(self, **kwargs: typing.Any) -> str:
@@ -34,5 +30,6 @@ class QueryUsersResponse(pydantic.BaseModel):
     class Config:
         frozen = True
         smart_union = True
+        allow_population_by_field_name = True
         extra = pydantic.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}

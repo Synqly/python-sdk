@@ -53,6 +53,7 @@ class EdrClient:
     def query_endpoints(
         self,
         *,
+        meta: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
         limit: typing.Optional[int] = None,
         cursor: typing.Optional[str] = None,
         order: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
@@ -63,6 +64,8 @@ class EdrClient:
         Returns a list of endpoint assets matching the query from the token-linked EDR source.
 
         Parameters:
+            - meta: typing.Optional[typing.Union[str, typing.Sequence[str]]]. Add metadata to the response by invoking meta functions. Documentation for meta functions is available at https://docs.synqly.com/api-reference/meta-functions. Not all meta function are available at every endpoint.
+
             - limit: typing.Optional[int]. Number of endpoint assets to return. Defaults to 50.
 
             - cursor: typing.Optional[str]. Start search from cursor position.
@@ -80,6 +83,7 @@ class EdrClient:
             params=jsonable_encoder(
                 remove_none_from_dict(
                     {
+                        "meta": meta,
                         "limit": limit,
                         "cursor": cursor,
                         "order": order,
@@ -206,6 +210,7 @@ class EdrClient:
     def query_applications(
         self,
         *,
+        meta: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
         limit: typing.Optional[int] = None,
         cursor: typing.Optional[str] = None,
         order: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
@@ -216,6 +221,8 @@ class EdrClient:
         Returns a list of applications matching the query from the token-linked EDR source.
 
         Parameters:
+            - meta: typing.Optional[typing.Union[str, typing.Sequence[str]]]. Add metadata to the response by invoking meta functions. Documentation for meta functions is available at https://docs.synqly.com/api-reference/meta-functions. Not all meta function are available at every endpoint.
+
             - limit: typing.Optional[int]. Number of applications to return. Defaults to 50.
 
             - cursor: typing.Optional[str]. Start search from cursor position.
@@ -233,6 +240,7 @@ class EdrClient:
             params=jsonable_encoder(
                 remove_none_from_dict(
                     {
+                        "meta": meta,
                         "limit": limit,
                         "cursor": cursor,
                         "order": order,
@@ -367,6 +375,7 @@ class EdrClient:
     def query_threatevents(
         self,
         *,
+        meta: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
         limit: typing.Optional[int] = None,
         cursor: typing.Optional[str] = None,
         order: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
@@ -378,6 +387,8 @@ class EdrClient:
         Returns a list of threats that match the query from the token-linked EDR source.
 
         Parameters:
+            - meta: typing.Optional[typing.Union[str, typing.Sequence[str]]]. Add metadata to the response by invoking meta functions. Documentation for meta functions is available at https://docs.synqly.com/api-reference/meta-functions. Not all meta function are available at every endpoint.
+
             - limit: typing.Optional[int]. Number of threats to return. Defaults to 50.
 
             - cursor: typing.Optional[str]. Start search from cursor position.
@@ -397,6 +408,7 @@ class EdrClient:
             params=jsonable_encoder(
                 remove_none_from_dict(
                     {
+                        "meta": meta,
                         "limit": limit,
                         "cursor": cursor,
                         "order": order,
@@ -461,6 +473,7 @@ class EdrClient:
     def query_alerts(
         self,
         *,
+        meta: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
         limit: typing.Optional[int] = None,
         cursor: typing.Optional[str] = None,
         order: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
@@ -472,6 +485,8 @@ class EdrClient:
         Returns a list of alerts that match the query from the token-linked EDR source.
 
         Parameters:
+            - meta: typing.Optional[typing.Union[str, typing.Sequence[str]]]. Add metadata to the response by invoking meta functions. Documentation for meta functions is available at https://docs.synqly.com/api-reference/meta-functions. Not all meta function are available at every endpoint.
+
             - limit: typing.Optional[int]. Number of threats to return. Defaults to 50.
 
             - cursor: typing.Optional[str]. Start search from cursor position.
@@ -491,6 +506,7 @@ class EdrClient:
             params=jsonable_encoder(
                 remove_none_from_dict(
                     {
+                        "meta": meta,
                         "limit": limit,
                         "cursor": cursor,
                         "order": order,
@@ -555,6 +571,7 @@ class EdrClient:
     def query_iocs(
         self,
         *,
+        meta: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
         limit: typing.Optional[int] = None,
         cursor: typing.Optional[str] = None,
         order: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
@@ -566,6 +583,8 @@ class EdrClient:
         Returns a list of iocs that match the query from the token-linked EDR source.
 
         Parameters:
+            - meta: typing.Optional[typing.Union[str, typing.Sequence[str]]]. Add metadata to the response by invoking meta functions. Documentation for meta functions is available at https://docs.synqly.com/api-reference/meta-functions. Not all meta function are available at every endpoint.
+
             - limit: typing.Optional[int]. Number of threats to return. Defaults to 50.
 
             - cursor: typing.Optional[str]. Start search from cursor position.
@@ -585,6 +604,7 @@ class EdrClient:
             params=jsonable_encoder(
                 remove_none_from_dict(
                     {
+                        "meta": meta,
                         "limit": limit,
                         "cursor": cursor,
                         "order": order,
@@ -718,12 +738,18 @@ class EdrClient:
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
     def delete_iocs(
-        self, *, ids: typing.Optional[str] = None, request_options: typing.Optional[RequestOptions] = None
+        self,
+        *,
+        meta: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
+        ids: typing.Optional[str] = None,
+        request_options: typing.Optional[RequestOptions] = None,
     ) -> DeleteIocsResponse:
         """
         Deletes a list of iocs that match the input of ids in the query param
 
         Parameters:
+            - meta: typing.Optional[typing.Union[str, typing.Sequence[str]]]. Add metadata to the response by invoking meta functions. Documentation for meta functions is available at https://docs.synqly.com/api-reference/meta-functions. Not all meta function are available at every endpoint.
+
             - ids: typing.Optional[str]. list of ids to delete
 
             - request_options: typing.Optional[RequestOptions]. Request-specific configuration.
@@ -734,6 +760,7 @@ class EdrClient:
             params=jsonable_encoder(
                 remove_none_from_dict(
                     {
+                        "meta": meta,
                         "ids": ids,
                         **(
                             request_options.get("additional_query_parameters", {})
@@ -794,6 +821,7 @@ class EdrClient:
     def query_posture_score(
         self,
         *,
+        meta: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
         limit: typing.Optional[int] = None,
         cursor: typing.Optional[str] = None,
         order: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
@@ -805,6 +833,8 @@ class EdrClient:
         Returns the posture score of the endpoint assets that match the query from the token-linked EDR source.
 
         Parameters:
+            - meta: typing.Optional[typing.Union[str, typing.Sequence[str]]]. Add metadata to the response by invoking meta functions. Documentation for meta functions is available at https://docs.synqly.com/api-reference/meta-functions. Not all meta function are available at every endpoint.
+
             - limit: typing.Optional[int]. Number of scores for endpoints to return. Defaults to 50.
 
             - cursor: typing.Optional[str]. Start search from cursor position.
@@ -824,6 +854,7 @@ class EdrClient:
             params=jsonable_encoder(
                 remove_none_from_dict(
                     {
+                        "meta": meta,
                         "limit": limit,
                         "cursor": cursor,
                         "order": order,
@@ -871,6 +902,7 @@ class AsyncEdrClient:
     async def query_endpoints(
         self,
         *,
+        meta: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
         limit: typing.Optional[int] = None,
         cursor: typing.Optional[str] = None,
         order: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
@@ -881,6 +913,8 @@ class AsyncEdrClient:
         Returns a list of endpoint assets matching the query from the token-linked EDR source.
 
         Parameters:
+            - meta: typing.Optional[typing.Union[str, typing.Sequence[str]]]. Add metadata to the response by invoking meta functions. Documentation for meta functions is available at https://docs.synqly.com/api-reference/meta-functions. Not all meta function are available at every endpoint.
+
             - limit: typing.Optional[int]. Number of endpoint assets to return. Defaults to 50.
 
             - cursor: typing.Optional[str]. Start search from cursor position.
@@ -898,6 +932,7 @@ class AsyncEdrClient:
             params=jsonable_encoder(
                 remove_none_from_dict(
                     {
+                        "meta": meta,
                         "limit": limit,
                         "cursor": cursor,
                         "order": order,
@@ -1026,6 +1061,7 @@ class AsyncEdrClient:
     async def query_applications(
         self,
         *,
+        meta: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
         limit: typing.Optional[int] = None,
         cursor: typing.Optional[str] = None,
         order: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
@@ -1036,6 +1072,8 @@ class AsyncEdrClient:
         Returns a list of applications matching the query from the token-linked EDR source.
 
         Parameters:
+            - meta: typing.Optional[typing.Union[str, typing.Sequence[str]]]. Add metadata to the response by invoking meta functions. Documentation for meta functions is available at https://docs.synqly.com/api-reference/meta-functions. Not all meta function are available at every endpoint.
+
             - limit: typing.Optional[int]. Number of applications to return. Defaults to 50.
 
             - cursor: typing.Optional[str]. Start search from cursor position.
@@ -1053,6 +1091,7 @@ class AsyncEdrClient:
             params=jsonable_encoder(
                 remove_none_from_dict(
                     {
+                        "meta": meta,
                         "limit": limit,
                         "cursor": cursor,
                         "order": order,
@@ -1187,6 +1226,7 @@ class AsyncEdrClient:
     async def query_threatevents(
         self,
         *,
+        meta: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
         limit: typing.Optional[int] = None,
         cursor: typing.Optional[str] = None,
         order: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
@@ -1198,6 +1238,8 @@ class AsyncEdrClient:
         Returns a list of threats that match the query from the token-linked EDR source.
 
         Parameters:
+            - meta: typing.Optional[typing.Union[str, typing.Sequence[str]]]. Add metadata to the response by invoking meta functions. Documentation for meta functions is available at https://docs.synqly.com/api-reference/meta-functions. Not all meta function are available at every endpoint.
+
             - limit: typing.Optional[int]. Number of threats to return. Defaults to 50.
 
             - cursor: typing.Optional[str]. Start search from cursor position.
@@ -1217,6 +1259,7 @@ class AsyncEdrClient:
             params=jsonable_encoder(
                 remove_none_from_dict(
                     {
+                        "meta": meta,
                         "limit": limit,
                         "cursor": cursor,
                         "order": order,
@@ -1281,6 +1324,7 @@ class AsyncEdrClient:
     async def query_alerts(
         self,
         *,
+        meta: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
         limit: typing.Optional[int] = None,
         cursor: typing.Optional[str] = None,
         order: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
@@ -1292,6 +1336,8 @@ class AsyncEdrClient:
         Returns a list of alerts that match the query from the token-linked EDR source.
 
         Parameters:
+            - meta: typing.Optional[typing.Union[str, typing.Sequence[str]]]. Add metadata to the response by invoking meta functions. Documentation for meta functions is available at https://docs.synqly.com/api-reference/meta-functions. Not all meta function are available at every endpoint.
+
             - limit: typing.Optional[int]. Number of threats to return. Defaults to 50.
 
             - cursor: typing.Optional[str]. Start search from cursor position.
@@ -1311,6 +1357,7 @@ class AsyncEdrClient:
             params=jsonable_encoder(
                 remove_none_from_dict(
                     {
+                        "meta": meta,
                         "limit": limit,
                         "cursor": cursor,
                         "order": order,
@@ -1375,6 +1422,7 @@ class AsyncEdrClient:
     async def query_iocs(
         self,
         *,
+        meta: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
         limit: typing.Optional[int] = None,
         cursor: typing.Optional[str] = None,
         order: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
@@ -1386,6 +1434,8 @@ class AsyncEdrClient:
         Returns a list of iocs that match the query from the token-linked EDR source.
 
         Parameters:
+            - meta: typing.Optional[typing.Union[str, typing.Sequence[str]]]. Add metadata to the response by invoking meta functions. Documentation for meta functions is available at https://docs.synqly.com/api-reference/meta-functions. Not all meta function are available at every endpoint.
+
             - limit: typing.Optional[int]. Number of threats to return. Defaults to 50.
 
             - cursor: typing.Optional[str]. Start search from cursor position.
@@ -1405,6 +1455,7 @@ class AsyncEdrClient:
             params=jsonable_encoder(
                 remove_none_from_dict(
                     {
+                        "meta": meta,
                         "limit": limit,
                         "cursor": cursor,
                         "order": order,
@@ -1538,12 +1589,18 @@ class AsyncEdrClient:
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
     async def delete_iocs(
-        self, *, ids: typing.Optional[str] = None, request_options: typing.Optional[RequestOptions] = None
+        self,
+        *,
+        meta: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
+        ids: typing.Optional[str] = None,
+        request_options: typing.Optional[RequestOptions] = None,
     ) -> DeleteIocsResponse:
         """
         Deletes a list of iocs that match the input of ids in the query param
 
         Parameters:
+            - meta: typing.Optional[typing.Union[str, typing.Sequence[str]]]. Add metadata to the response by invoking meta functions. Documentation for meta functions is available at https://docs.synqly.com/api-reference/meta-functions. Not all meta function are available at every endpoint.
+
             - ids: typing.Optional[str]. list of ids to delete
 
             - request_options: typing.Optional[RequestOptions]. Request-specific configuration.
@@ -1554,6 +1611,7 @@ class AsyncEdrClient:
             params=jsonable_encoder(
                 remove_none_from_dict(
                     {
+                        "meta": meta,
                         "ids": ids,
                         **(
                             request_options.get("additional_query_parameters", {})
@@ -1614,6 +1672,7 @@ class AsyncEdrClient:
     async def query_posture_score(
         self,
         *,
+        meta: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
         limit: typing.Optional[int] = None,
         cursor: typing.Optional[str] = None,
         order: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
@@ -1625,6 +1684,8 @@ class AsyncEdrClient:
         Returns the posture score of the endpoint assets that match the query from the token-linked EDR source.
 
         Parameters:
+            - meta: typing.Optional[typing.Union[str, typing.Sequence[str]]]. Add metadata to the response by invoking meta functions. Documentation for meta functions is available at https://docs.synqly.com/api-reference/meta-functions. Not all meta function are available at every endpoint.
+
             - limit: typing.Optional[int]. Number of scores for endpoints to return. Defaults to 50.
 
             - cursor: typing.Optional[str]. Start search from cursor position.
@@ -1644,6 +1705,7 @@ class AsyncEdrClient:
             params=jsonable_encoder(
                 remove_none_from_dict(
                     {
+                        "meta": meta,
                         "limit": limit,
                         "cursor": cursor,
                         "order": order,

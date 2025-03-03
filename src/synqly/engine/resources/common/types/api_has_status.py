@@ -4,8 +4,7 @@ import datetime as dt
 import typing
 
 from ....core.datetime_utils import serialize_datetime
-from ...common.types.api_response import ApiResponse
-from .attachment import Attachment
+from .query_status import QueryStatus
 
 try:
     import pydantic.v1 as pydantic  # type: ignore
@@ -13,8 +12,11 @@ except ImportError:
     import pydantic  # type: ignore
 
 
-class DownloadAttachmentResponse(ApiResponse):
-    result: Attachment
+class ApiHasStatus(pydantic.BaseModel):
+    status: QueryStatus = pydantic.Field()
+    """
+    If the provider supports asynchronous queries and the query is still running, this field will be `PENDING` until the query is complete. In this case, the client should retry using the provided cursor.
+    """
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}
@@ -27,6 +29,5 @@ class DownloadAttachmentResponse(ApiResponse):
     class Config:
         frozen = True
         smart_union = True
-        allow_population_by_field_name = True
         extra = pydantic.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}
