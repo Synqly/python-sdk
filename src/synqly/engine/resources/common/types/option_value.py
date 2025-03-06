@@ -4,8 +4,7 @@ import datetime as dt
 import typing
 
 from ....core.datetime_utils import serialize_datetime
-from ...common.types.option_value import OptionValue
-from .remote_field_type_id import RemoteFieldTypeId
+from .id import Id
 
 try:
     import pydantic.v1 as pydantic  # type: ignore
@@ -13,18 +12,13 @@ except ImportError:
     import pydantic  # type: ignore
 
 
-class RemoteFieldSchema(pydantic.BaseModel):
-    field_type_id: RemoteFieldTypeId
-    field_type: typing.Optional[str] = pydantic.Field(alias="field_Type", default=None)
-    enum_values: typing.Optional[typing.List[str]] = pydantic.Field(default=None)
+class OptionValue(pydantic.BaseModel):
     """
-    Display names for possible values the enum can take on.
+    Represents a possible option from a set of choices, such as an enum value. The choices may have separate display names and IDs.
     """
 
-    enum_option_values: typing.Optional[typing.List[OptionValue]] = pydantic.Field(default=None)
-    """
-    Possible values the enum can take on. For providers which don't distinguish between ID and display name, the ID and display name should be set to the same value.
-    """
+    id: Id
+    name: str
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}
@@ -37,6 +31,5 @@ class RemoteFieldSchema(pydantic.BaseModel):
     class Config:
         frozen = True
         smart_union = True
-        allow_population_by_field_name = True
         extra = pydantic.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}

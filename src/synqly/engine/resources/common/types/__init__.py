@@ -14,6 +14,7 @@ from .meta_api_response import MetaApiResponse
 from .meta_response import MetaResponse
 from .meta_stats import MetaStats
 from .object import Object
+from .option_value import OptionValue
 from .order_options import OrderOptions
 from .patch_op import PatchOp
 from .patch_operation import PatchOperation
@@ -34,6 +35,7 @@ __all__ = [
     "MetaResponse",
     "MetaStats",
     "Object",
+    "OptionValue",
     "OrderOptions",
     "PatchOp",
     "PatchOperation",
