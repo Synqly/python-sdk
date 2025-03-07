@@ -39,12 +39,23 @@ class StorageClient:
     def __init__(self, *, client_wrapper: SyncClientWrapper):
         self._client_wrapper = client_wrapper
 
-    def list_files(self, path: str, *, request_options: typing.Optional[RequestOptions] = None) -> ListStorageResponse:
+    def list_files(
+        self,
+        path: str,
+        *,
+        cursor: typing.Optional[str] = None,
+        limit: typing.Optional[int] = None,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> ListStorageResponse:
         """
         Returns a list of contents from the token-linked `Integration`.
 
         Parameters:
             - path: str.
+
+            - cursor: typing.Optional[str]. Cursor to fetch the next set of results.
+
+            - limit: typing.Optional[int]. Number of results to return. Default is 50.
 
             - request_options: typing.Optional[RequestOptions]. Request-specific configuration.
         """
@@ -54,7 +65,17 @@ class StorageClient:
                 f"{self._client_wrapper.get_base_url()}/", f"v1/storage/folders/{jsonable_encoder(path)}"
             ),
             params=jsonable_encoder(
-                request_options.get("additional_query_parameters") if request_options is not None else None
+                remove_none_from_dict(
+                    {
+                        "cursor": cursor,
+                        "limit": limit,
+                        **(
+                            request_options.get("additional_query_parameters", {})
+                            if request_options is not None
+                            else {}
+                        ),
+                    }
+                )
             ),
             headers=jsonable_encoder(
                 remove_none_from_dict(
@@ -322,13 +343,22 @@ class AsyncStorageClient:
         self._client_wrapper = client_wrapper
 
     async def list_files(
-        self, path: str, *, request_options: typing.Optional[RequestOptions] = None
+        self,
+        path: str,
+        *,
+        cursor: typing.Optional[str] = None,
+        limit: typing.Optional[int] = None,
+        request_options: typing.Optional[RequestOptions] = None,
     ) -> ListStorageResponse:
         """
         Returns a list of contents from the token-linked `Integration`.
 
         Parameters:
             - path: str.
+
+            - cursor: typing.Optional[str]. Cursor to fetch the next set of results.
+
+            - limit: typing.Optional[int]. Number of results to return. Default is 50.
 
             - request_options: typing.Optional[RequestOptions]. Request-specific configuration.
         """
@@ -338,7 +368,17 @@ class AsyncStorageClient:
                 f"{self._client_wrapper.get_base_url()}/", f"v1/storage/folders/{jsonable_encoder(path)}"
             ),
             params=jsonable_encoder(
-                request_options.get("additional_query_parameters") if request_options is not None else None
+                remove_none_from_dict(
+                    {
+                        "cursor": cursor,
+                        "limit": limit,
+                        **(
+                            request_options.get("additional_query_parameters", {})
+                            if request_options is not None
+                            else {}
+                        ),
+                    }
+                )
             ),
             headers=jsonable_encoder(
                 remove_none_from_dict(
