@@ -4,6 +4,7 @@ from .armis_credential import ArmisCredential, ArmisCredential_Token, ArmisCrede
 from .assets_armis_centrix import AssetsArmisCentrix
 from .assets_nozomi_vantage import AssetsNozomiVantage
 from .assets_service_now import AssetsServiceNow
+from .assets_service_now_mock import AssetsServiceNowMock
 from .aws_s_3_credential import AwsS3Credential, AwsS3Credential_Aws, AwsS3Credential_AwsId
 from .aws_security_lake_credential import (
     AwsSecurityLakeCredential,
@@ -77,7 +78,6 @@ from .identity_google import IdentityGoogle
 from .identity_okta import IdentityOkta
 from .identity_ping_one import IdentityPingOne
 from .jira_credential import JiraCredential, JiraCredential_Basic, JiraCredential_BasicId
-from .mock_assets_service_now import MockAssetsServiceNow
 from .notifications_jira import NotificationsJira
 from .notifications_mock import NotificationsMock
 from .notifications_slack import NotificationsSlack
@@ -102,6 +102,7 @@ from .provider_config import (
     ProviderConfig_AssetsArmisCentrix,
     ProviderConfig_AssetsNozomiVantage,
     ProviderConfig_AssetsServicenow,
+    ProviderConfig_AssetsServicenowMock,
     ProviderConfig_EdrCrowdstrike,
     ProviderConfig_EdrDefender,
     ProviderConfig_EdrSentinelone,
@@ -110,7 +111,6 @@ from .provider_config import (
     ProviderConfig_IdentityGoogle,
     ProviderConfig_IdentityOkta,
     ProviderConfig_IdentityPingone,
-    ProviderConfig_MockAssetsServicenow,
     ProviderConfig_NotificationsJira,
     ProviderConfig_NotificationsMockNotifications,
     ProviderConfig_NotificationsSlack,
@@ -236,6 +236,7 @@ __all__ = [
     "AssetsArmisCentrix",
     "AssetsNozomiVantage",
     "AssetsServiceNow",
+    "AssetsServiceNowMock",
     "AwsS3Credential",
     "AwsS3Credential_Aws",
     "AwsS3Credential_AwsId",
@@ -307,7 +308,6 @@ __all__ = [
     "JiraCredential",
     "JiraCredential_Basic",
     "JiraCredential_BasicId",
-    "MockAssetsServiceNow",
     "NotificationsJira",
     "NotificationsMock",
     "NotificationsSlack",
@@ -334,6 +334,7 @@ __all__ = [
     "ProviderConfig_AssetsArmisCentrix",
     "ProviderConfig_AssetsNozomiVantage",
     "ProviderConfig_AssetsServicenow",
+    "ProviderConfig_AssetsServicenowMock",
     "ProviderConfig_EdrCrowdstrike",
     "ProviderConfig_EdrDefender",
     "ProviderConfig_EdrSentinelone",
@@ -342,7 +343,6 @@ __all__ = [
     "ProviderConfig_IdentityGoogle",
     "ProviderConfig_IdentityOkta",
     "ProviderConfig_IdentityPingone",
-    "ProviderConfig_MockAssetsServicenow",
     "ProviderConfig_NotificationsJira",
     "ProviderConfig_NotificationsMockNotifications",
     "ProviderConfig_NotificationsSlack",

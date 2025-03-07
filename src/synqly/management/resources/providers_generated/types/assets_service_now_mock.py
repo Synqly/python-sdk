@@ -11,7 +11,7 @@ except ImportError:
     import pydantic  # type: ignore
 
 
-class MockAssetsServiceNow(pydantic.BaseModel):
+class AssetsServiceNowMock(pydantic.BaseModel):
     """
     [Mock] Configuration for ServiceNow as an Assets Provider
     """
