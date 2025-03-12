@@ -9,6 +9,8 @@ from .create_attachment_request import CreateAttachmentRequest
 from .create_attachment_response import CreateAttachmentResponse
 from .create_comment_request import CreateCommentRequest
 from .create_comment_response import CreateCommentResponse
+from .create_note_request import CreateNoteRequest
+from .create_note_response import CreateNoteResponse
 from .create_ticket_request import CreateTicketRequest
 from .create_ticket_response import CreateTicketResponse
 from .download_attachment_response import DownloadAttachmentResponse
@@ -17,8 +19,11 @@ from .get_ticket_response import GetTicketResponse
 from .issue_type_id import IssueTypeId
 from .list_attachments_metadata_response import ListAttachmentsMetadataResponse
 from .list_comments_response import ListCommentsResponse
+from .list_notes_response import ListNotesResponse
 from .list_projects_response import ListProjectsResponse
 from .list_remote_fields_response import ListRemoteFieldsResponse
+from .note import Note
+from .note_id import NoteId
 from .patch_ticket_response import PatchTicketResponse
 from .priority import Priority
 from .project import Project
@@ -43,6 +48,8 @@ __all__ = [
     "CreateAttachmentResponse",
     "CreateCommentRequest",
     "CreateCommentResponse",
+    "CreateNoteRequest",
+    "CreateNoteResponse",
     "CreateTicketRequest",
     "CreateTicketResponse",
     "DownloadAttachmentResponse",
@@ -51,8 +58,11 @@ __all__ = [
     "IssueTypeId",
     "ListAttachmentsMetadataResponse",
     "ListCommentsResponse",
+    "ListNotesResponse",
     "ListProjectsResponse",
     "ListRemoteFieldsResponse",
+    "Note",
+    "NoteId",
     "PatchTicketResponse",
     "Priority",
     "Project",
