@@ -127,7 +127,9 @@ from .provider_config import (
     ProviderConfig_SinkAwsSqs,
     ProviderConfig_SinkAzureMonitorLogs,
     ProviderConfig_SinkCrowdstrikeHec,
+    ProviderConfig_SinkElasticsearch,
     ProviderConfig_SinkMockSink,
+    ProviderConfig_SinkSplunk,
     ProviderConfig_StorageAwsS3,
     ProviderConfig_StorageAzureBlob,
     ProviderConfig_StorageGcs,
@@ -173,7 +175,9 @@ from .sink_aws_security_lake import SinkAwsSecurityLake
 from .sink_aws_sqs import SinkAwsSqs
 from .sink_azure_monitor_logs import SinkAzureMonitorLogs
 from .sink_crowdstrike_hec import SinkCrowdstrikeHec
+from .sink_elasticsearch import SinkElasticsearch
 from .sink_mock import SinkMock
+from .sink_splunk import SinkSplunk
 from .slack_credential import SlackCredential, SlackCredential_Token, SlackCredential_TokenId
 from .sophos_credential import SophosCredential, SophosCredential_OAuthClient, SophosCredential_OAuthClientId
 from .splunk_bridge_hec_token import (
@@ -359,7 +363,9 @@ __all__ = [
     "ProviderConfig_SinkAwsSqs",
     "ProviderConfig_SinkAzureMonitorLogs",
     "ProviderConfig_SinkCrowdstrikeHec",
+    "ProviderConfig_SinkElasticsearch",
     "ProviderConfig_SinkMockSink",
+    "ProviderConfig_SinkSplunk",
     "ProviderConfig_StorageAwsS3",
     "ProviderConfig_StorageAzureBlob",
     "ProviderConfig_StorageGcs",
@@ -407,7 +413,9 @@ __all__ = [
     "SinkAwsSqs",
     "SinkAzureMonitorLogs",
     "SinkCrowdstrikeHec",
+    "SinkElasticsearch",
     "SinkMock",
+    "SinkSplunk",
     "SlackCredential",
     "SlackCredential_Token",
     "SlackCredential_TokenId",

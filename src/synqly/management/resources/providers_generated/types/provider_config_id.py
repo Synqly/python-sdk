@@ -151,9 +151,19 @@ class ProviderConfigId(str, enum.Enum):
     Crowdstrike HEC
     """
 
+    SINK_ELASTICSEARCH = "sink_elasticsearch"
+    """
+    Elastic
+    """
+
     SINK_MOCK = "sink_mock_sink"
     """
     Sink Test
+    """
+
+    SINK_SPLUNK = "sink_splunk"
+    """
+    Splunk Enterprise Security
     """
 
     STORAGE_AWS_S_3 = "storage_aws_s3"
@@ -266,7 +276,9 @@ class ProviderConfigId(str, enum.Enum):
         sink_aws_sqs: typing.Callable[[], T_Result],
         sink_azure_monitor_logs: typing.Callable[[], T_Result],
         sink_crowdstrike_hec: typing.Callable[[], T_Result],
+        sink_elasticsearch: typing.Callable[[], T_Result],
         sink_mock: typing.Callable[[], T_Result],
+        sink_splunk: typing.Callable[[], T_Result],
         storage_aws_s_3: typing.Callable[[], T_Result],
         storage_azure_blob: typing.Callable[[], T_Result],
         storage_gcs: typing.Callable[[], T_Result],
@@ -340,8 +352,12 @@ class ProviderConfigId(str, enum.Enum):
             return sink_azure_monitor_logs()
         if self is ProviderConfigId.SINK_CROWDSTRIKE_HEC:
             return sink_crowdstrike_hec()
+        if self is ProviderConfigId.SINK_ELASTICSEARCH:
+            return sink_elasticsearch()
         if self is ProviderConfigId.SINK_MOCK:
             return sink_mock()
+        if self is ProviderConfigId.SINK_SPLUNK:
+            return sink_splunk()
         if self is ProviderConfigId.STORAGE_AWS_S_3:
             return storage_aws_s_3()
         if self is ProviderConfigId.STORAGE_AZURE_BLOB:
