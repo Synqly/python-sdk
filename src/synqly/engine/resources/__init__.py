@@ -21,6 +21,7 @@ from . import (
 )
 from .assets import CreateDeviceRequest, CreateDeviceResponse, Device, QueryDevicesResponse
 from .common import (
+    ActionId,
     ApiHasStatus,
     ApiQueryResponse,
     ApiResponse,
@@ -49,6 +50,7 @@ from .common import (
     PatchOp,
     PatchOperation,
     QueryStatus,
+    ResourceId,
     ServiceUnavailableError,
     TooManyRequestsError,
     UnauthorizedError,
@@ -205,6 +207,7 @@ from .vulnerabilities import (
 )
 
 __all__ = [
+    "ActionId",
     "ApiHasStatus",
     "ApiQueryResponse",
     "ApiResponse",
@@ -358,6 +361,7 @@ __all__ = [
     "RemoteFieldSchema",
     "RemoteFieldScope",
     "RemoteFieldTypeId",
+    "ResourceId",
     "ScanConfiguration",
     "ScanDayOption",
     "ScanFrequencyOption",
