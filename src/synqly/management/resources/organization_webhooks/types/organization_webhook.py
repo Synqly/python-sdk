@@ -4,8 +4,8 @@ import datetime as dt
 import typing
 
 from ....core.datetime_utils import serialize_datetime
-from ...common.types.base import Base
 from ...credentials.types.credential_id import CredentialId
+from ...global.types.base import Base
 from ...organization_base.types.environment import Environment
 from ...organization_webhook_base.types.webhook_filter import WebhookFilter
 from ...organization_webhook_base.types.webhook_id import WebhookId
@@ -14,43 +14,40 @@ try:
     import pydantic.v1 as pydantic  # type: ignore
 except ImportError:
     import pydantic  # type: ignore
-
-
+            
 class OrganizationWebhook(Base):
     id: WebhookId
     fullname: str = pydantic.Field()
     """
     Human friendly slug for this webhook
     """
-
+    
     environment: Environment = pydantic.Field()
     """
     Environment that the webhook is configured for. Only events associated with this environment will trigger the webhook.
     """
-
+    
     filters: typing.List[WebhookFilter] = pydantic.Field()
     """
     Specifies which Webhooks to send.
     """
-
+    
     url: str = pydantic.Field()
     """
     URL that webhooks will be sent to
     """
-
+    
     credential_id: CredentialId = pydantic.Field()
     """
     Credential contain secret
     """
-
+    
     def json(self, **kwargs: typing.Any) -> str:
-        kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}
+        kwargs_with_defaults: typing.Any = { "by_alias": True, "exclude_unset": True, **kwargs }
         return super().json(**kwargs_with_defaults)
-
     def dict(self, **kwargs: typing.Any) -> typing.Dict[str, typing.Any]:
-        kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}
+        kwargs_with_defaults: typing.Any = { "by_alias": True, "exclude_unset": True, **kwargs }
         return super().dict(**kwargs_with_defaults)
-
     class Config:
         frozen = True
         smart_union = True

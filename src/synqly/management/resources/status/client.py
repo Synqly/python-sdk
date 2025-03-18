@@ -10,16 +10,17 @@ from ...core.jsonable_encoder import jsonable_encoder
 from ...core.remove_none_from_dict import remove_none_from_dict
 from ...core.request_options import RequestOptions
 from ..account_base.types.account_id import AccountId
-from ..common.errors.bad_request_error import BadRequestError
-from ..common.errors.conflict_error import ConflictError
-from ..common.errors.forbidden_error import ForbiddenError
-from ..common.errors.internal_server_error import InternalServerError
-from ..common.errors.method_not_allowed_error import MethodNotAllowedError
-from ..common.errors.not_found_error import NotFoundError
-from ..common.errors.too_many_requests_error import TooManyRequestsError
-from ..common.errors.unauthorized_error import UnauthorizedError
-from ..common.errors.unsupported_media_type_error import UnsupportedMediaTypeError
-from ..common.types.error_body import ErrorBody
+from ..global.errors.bad_request_error import BadRequestError
+from ..global.errors.conflict_error import ConflictError
+from ..global.errors.forbidden_error import ForbiddenError
+from ..global.errors.internal_server_error import InternalServerError
+from ..global.errors.method_not_allowed_error import MethodNotAllowedError
+from ..global.errors.not_found_error import NotFoundError
+from ..global.errors.too_many_requests_error import TooManyRequestsError
+from ..global.errors.unauthorized_error import UnauthorizedError
+from ..global.errors.unsupported_media_type_error import \
+    UnsupportedMediaTypeError
+from ..global.types.error_body import ErrorBody
 from ..integration_base.types.integration_id import IntegrationId
 from .types.get_integration_timeseries import GetIntegrationTimeseries
 from .types.get_status_response import GetStatusResponse
@@ -32,30 +33,19 @@ try:
     import pydantic.v1 as pydantic  # type: ignore
 except ImportError:
     import pydantic  # type: ignore
-
-
+            
 class StatusClient:
     def __init__(self, *, client_wrapper: SyncClientWrapper):
         self._client_wrapper = client_wrapper
-
-    def list(
-        self,
-        *,
-        limit: typing.Optional[int] = None,
-        start_after: typing.Optional[str] = None,
-        order: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
-        filter: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
-        expand: typing.Optional[typing.Union[ListStatusOptions, typing.Sequence[ListStatusOptions]]] = None,
-        request_options: typing.Optional[RequestOptions] = None,
-    ) -> ListStatusResponse:
+    def list(self, *, limit: typing.Optional[int] = None, start_after: typing.Optional[str] = None, order: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None, filter: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None, expand: typing.Optional[typing.Union[ListStatusOptions, typing.Sequence[ListStatusOptions]]] = None, request_options: typing.Optional[RequestOptions] = None) -> ListStatusResponse:
         """
         Returns all matching `Status` objects.
-
+        
         Parameters:
             - limit: typing.Optional[int]. Number of `Status` objects to return in this page. Defaults to 100.
-
+            
             - start_after: typing.Optional[str]. Return `Status` objects starting after this `account_id,integration_id`.
-
+            
             - order: typing.Optional[typing.Union[str, typing.Sequence[str]]]. Select a field to order the results by. Defaults to `account_id,integration_id`. To control the direction of the sorting, append
                                                                                `[asc]` or `[desc]` to the field name. For example, `name[desc]` will sort the results by `name` in descending order.
                                                                                The ordering defaults to `asc` if not specified. May be used multiple times to order by multiple fields, and the
@@ -63,447 +53,338 @@ class StatusClient:
             - filter: typing.Optional[typing.Union[str, typing.Sequence[str]]]. Filter results by this query. For more information on filtering, refer to our Filtering Guide. Defaults to no filter.
                                                                                 If used more than once, the queries are ANDed together.
             - expand: typing.Optional[typing.Union[ListStatusOptions, typing.Sequence[ListStatusOptions]]]. Expand the status result with the related integration and/or account information.
-
+            
             - request_options: typing.Optional[RequestOptions]. Request-specific configuration.
         """
-        _response = self._client_wrapper.httpx_client.request(
-            "GET",
-            urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", "v1/status"),
-            params=jsonable_encoder(
-                remove_none_from_dict(
-                    {
-                        "limit": limit,
-                        "start_after": start_after,
-                        "order": order,
-                        "filter": filter,
-                        "expand": expand,
-                        **(
-                            request_options.get("additional_query_parameters", {})
-                            if request_options is not None
-                            else {}
-                        ),
-                    }
-                )
-            ),
-            headers=jsonable_encoder(
-                remove_none_from_dict(
-                    {
-                        **self._client_wrapper.get_headers(),
-                        **(request_options.get("additional_headers", {}) if request_options is not None else {}),
-                    }
-                )
-            ),
-            timeout=request_options.get("timeout_in_seconds")
-            if request_options is not None and request_options.get("timeout_in_seconds") is not None
-            else 60,
+        _response = self._client_wrapper.httpx_client.request("GET", urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", "v1/status"), 
+            params=jsonable_encoder(remove_none_from_dict({"limit": limit, "start_after": start_after, "order": order, "filter": filter, "expand": expand, **(request_options.get('additional_query_parameters', {}) if request_options is not None else {}),},
+            )),
+            headers=jsonable_encoder(remove_none_from_dict({**self._client_wrapper.get_headers(),**(request_options.get('additional_headers', {}) if request_options is not None else {}),},
+            )),
+            timeout=request_options.get('timeout_in_seconds') if request_options is not None and request_options.get('timeout_in_seconds') is not None else 60,
             retries=0,
-            max_retries=request_options.get("max_retries") if request_options is not None else 0,  # type: ignore
+            max_retries=request_options.get('max_retries') if request_options is not None else 0,  # type: ignore
         )
         if 200 <= _response.status_code < 300:
-            return pydantic.parse_obj_as(ListStatusResponse, _response.json())  # type: ignore
+            return pydantic.parse_obj_as(ListStatusResponse, _response.json())# type: ignore
         if _response.status_code == 400:
-            raise BadRequestError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            raise BadRequestError(pydantic.parse_obj_as(ErrorBody, _response.json())# type: ignore
+            )
         if _response.status_code == 401:
-            raise UnauthorizedError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            raise UnauthorizedError(pydantic.parse_obj_as(ErrorBody, _response.json())# type: ignore
+            )
         if _response.status_code == 403:
-            raise ForbiddenError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            raise ForbiddenError(pydantic.parse_obj_as(ErrorBody, _response.json())# type: ignore
+            )
         if _response.status_code == 404:
-            raise NotFoundError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            raise NotFoundError(pydantic.parse_obj_as(ErrorBody, _response.json())# type: ignore
+            )
         if _response.status_code == 405:
-            raise MethodNotAllowedError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            raise MethodNotAllowedError(pydantic.parse_obj_as(ErrorBody, _response.json())# type: ignore
+            )
         if _response.status_code == 409:
-            raise ConflictError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            raise ConflictError(pydantic.parse_obj_as(ErrorBody, _response.json())# type: ignore
+            )
         if _response.status_code == 415:
-            raise UnsupportedMediaTypeError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            raise UnsupportedMediaTypeError(pydantic.parse_obj_as(ErrorBody, _response.json())# type: ignore
+            )
         if _response.status_code == 429:
-            raise TooManyRequestsError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            raise TooManyRequestsError(pydantic.parse_obj_as(ErrorBody, _response.json())# type: ignore
+            )
         if _response.status_code == 500:
-            raise InternalServerError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            raise InternalServerError(pydantic.parse_obj_as(ErrorBody, _response.json())# type: ignore
+            )
         try:
             _response_json = _response.json()
         except JSONDecodeError:
             raise ApiError(status_code=_response.status_code, body=_response.text)
         raise ApiError(status_code=_response.status_code, body=_response_json)
-
-    def get(
-        self,
-        account_id: AccountId,
-        integration_id: IntegrationId,
-        *,
-        request_options: typing.Optional[RequestOptions] = None,
-    ) -> GetStatusResponse:
+    def get(self, account_id: AccountId, integration_id: IntegrationId, *, request_options: typing.Optional[RequestOptions] = None) -> GetStatusResponse:
         """
         Returns the integration `Status` object.
-
+        
         Parameters:
             - account_id: AccountId.
-
+            
             - integration_id: IntegrationId.
-
+            
             - request_options: typing.Optional[RequestOptions]. Request-specific configuration.
         """
-        _response = self._client_wrapper.httpx_client.request(
-            "GET",
-            urllib.parse.urljoin(
-                f"{self._client_wrapper.get_base_url()}/",
-                f"v1/status/{jsonable_encoder(account_id)}/{jsonable_encoder(integration_id)}",
-            ),
-            params=jsonable_encoder(
-                request_options.get("additional_query_parameters") if request_options is not None else None
-            ),
-            headers=jsonable_encoder(
-                remove_none_from_dict(
-                    {
-                        **self._client_wrapper.get_headers(),
-                        **(request_options.get("additional_headers", {}) if request_options is not None else {}),
-                    }
-                )
-            ),
-            timeout=request_options.get("timeout_in_seconds")
-            if request_options is not None and request_options.get("timeout_in_seconds") is not None
-            else 60,
+        _response = self._client_wrapper.httpx_client.request("GET", urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", f"v1/status/{jsonable_encoder(account_id)}/{jsonable_encoder(integration_id)}"), 
+            params=jsonable_encoder(request_options.get('additional_query_parameters') if request_options is not None else None),
+            headers=jsonable_encoder(remove_none_from_dict({**self._client_wrapper.get_headers(),**(request_options.get('additional_headers', {}) if request_options is not None else {}),},
+            )),
+            timeout=request_options.get('timeout_in_seconds') if request_options is not None and request_options.get('timeout_in_seconds') is not None else 60,
             retries=0,
-            max_retries=request_options.get("max_retries") if request_options is not None else 0,  # type: ignore
+            max_retries=request_options.get('max_retries') if request_options is not None else 0,  # type: ignore
         )
         if 200 <= _response.status_code < 300:
-            return pydantic.parse_obj_as(GetStatusResponse, _response.json())  # type: ignore
+            return pydantic.parse_obj_as(GetStatusResponse, _response.json())# type: ignore
         if _response.status_code == 400:
-            raise BadRequestError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            raise BadRequestError(pydantic.parse_obj_as(ErrorBody, _response.json())# type: ignore
+            )
         if _response.status_code == 401:
-            raise UnauthorizedError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            raise UnauthorizedError(pydantic.parse_obj_as(ErrorBody, _response.json())# type: ignore
+            )
         if _response.status_code == 403:
-            raise ForbiddenError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            raise ForbiddenError(pydantic.parse_obj_as(ErrorBody, _response.json())# type: ignore
+            )
         if _response.status_code == 404:
-            raise NotFoundError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            raise NotFoundError(pydantic.parse_obj_as(ErrorBody, _response.json())# type: ignore
+            )
         if _response.status_code == 405:
-            raise MethodNotAllowedError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            raise MethodNotAllowedError(pydantic.parse_obj_as(ErrorBody, _response.json())# type: ignore
+            )
         if _response.status_code == 409:
-            raise ConflictError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            raise ConflictError(pydantic.parse_obj_as(ErrorBody, _response.json())# type: ignore
+            )
         if _response.status_code == 415:
-            raise UnsupportedMediaTypeError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            raise UnsupportedMediaTypeError(pydantic.parse_obj_as(ErrorBody, _response.json())# type: ignore
+            )
         if _response.status_code == 429:
-            raise TooManyRequestsError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            raise TooManyRequestsError(pydantic.parse_obj_as(ErrorBody, _response.json())# type: ignore
+            )
         if _response.status_code == 500:
-            raise InternalServerError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            raise InternalServerError(pydantic.parse_obj_as(ErrorBody, _response.json())# type: ignore
+            )
         try:
             _response_json = _response.json()
         except JSONDecodeError:
             raise ApiError(status_code=_response.status_code, body=_response.text)
         raise ApiError(status_code=_response.status_code, body=_response_json)
-
-    def reset(
-        self,
-        account_id: AccountId,
-        integration_id: IntegrationId,
-        *,
-        request_options: typing.Optional[RequestOptions] = None,
-    ) -> None:
+    def reset(self, account_id: AccountId, integration_id: IntegrationId, *, request_options: typing.Optional[RequestOptions] = None) -> None:
         """
         Resets the integration `Status` object.
-
+        
         Parameters:
             - account_id: AccountId.
-
+            
             - integration_id: IntegrationId.
-
+            
             - request_options: typing.Optional[RequestOptions]. Request-specific configuration.
         """
-        _response = self._client_wrapper.httpx_client.request(
-            "PUT",
-            urllib.parse.urljoin(
-                f"{self._client_wrapper.get_base_url()}/",
-                f"v1/status/{jsonable_encoder(account_id)}/{jsonable_encoder(integration_id)}",
-            ),
-            params=jsonable_encoder(
-                request_options.get("additional_query_parameters") if request_options is not None else None
-            ),
-            json=jsonable_encoder(remove_none_from_dict(request_options.get("additional_body_parameters", {})))
-            if request_options is not None
-            else None,
-            headers=jsonable_encoder(
-                remove_none_from_dict(
-                    {
-                        **self._client_wrapper.get_headers(),
-                        **(request_options.get("additional_headers", {}) if request_options is not None else {}),
-                    }
-                )
-            ),
-            timeout=request_options.get("timeout_in_seconds")
-            if request_options is not None and request_options.get("timeout_in_seconds") is not None
-            else 60,
+        _response = self._client_wrapper.httpx_client.request("PUT", urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", f"v1/status/{jsonable_encoder(account_id)}/{jsonable_encoder(integration_id)}"), 
+            params=jsonable_encoder(request_options.get('additional_query_parameters') if request_options is not None else None),
+            json=jsonable_encoder(remove_none_from_dict(request_options.get('additional_body_parameters', {}))) if request_options is not None else None,
+            headers=jsonable_encoder(remove_none_from_dict({**self._client_wrapper.get_headers(),**(request_options.get('additional_headers', {}) if request_options is not None else {}),},
+            )),
+            timeout=request_options.get('timeout_in_seconds') if request_options is not None and request_options.get('timeout_in_seconds') is not None else 60,
             retries=0,
-            max_retries=request_options.get("max_retries") if request_options is not None else 0,  # type: ignore
+            max_retries=request_options.get('max_retries') if request_options is not None else 0,  # type: ignore
         )
         if 200 <= _response.status_code < 300:
             return
         if _response.status_code == 400:
-            raise BadRequestError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            raise BadRequestError(pydantic.parse_obj_as(ErrorBody, _response.json())# type: ignore
+            )
         if _response.status_code == 401:
-            raise UnauthorizedError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            raise UnauthorizedError(pydantic.parse_obj_as(ErrorBody, _response.json())# type: ignore
+            )
         if _response.status_code == 403:
-            raise ForbiddenError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            raise ForbiddenError(pydantic.parse_obj_as(ErrorBody, _response.json())# type: ignore
+            )
         if _response.status_code == 404:
-            raise NotFoundError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            raise NotFoundError(pydantic.parse_obj_as(ErrorBody, _response.json())# type: ignore
+            )
         if _response.status_code == 405:
-            raise MethodNotAllowedError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            raise MethodNotAllowedError(pydantic.parse_obj_as(ErrorBody, _response.json())# type: ignore
+            )
         if _response.status_code == 409:
-            raise ConflictError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            raise ConflictError(pydantic.parse_obj_as(ErrorBody, _response.json())# type: ignore
+            )
         if _response.status_code == 415:
-            raise UnsupportedMediaTypeError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            raise UnsupportedMediaTypeError(pydantic.parse_obj_as(ErrorBody, _response.json())# type: ignore
+            )
         if _response.status_code == 429:
-            raise TooManyRequestsError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            raise TooManyRequestsError(pydantic.parse_obj_as(ErrorBody, _response.json())# type: ignore
+            )
         if _response.status_code == 500:
-            raise InternalServerError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            raise InternalServerError(pydantic.parse_obj_as(ErrorBody, _response.json())# type: ignore
+            )
         try:
             _response_json = _response.json()
         except JSONDecodeError:
             raise ApiError(status_code=_response.status_code, body=_response.text)
         raise ApiError(status_code=_response.status_code, body=_response_json)
-
-    def list_events(
-        self,
-        account_id: AccountId,
-        integration_id: IntegrationId,
-        *,
-        limit: typing.Optional[int] = None,
-        start_after: typing.Optional[str] = None,
-        order: typing.Optional[str] = None,
-        filter: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
-        request_options: typing.Optional[RequestOptions] = None,
-    ) -> ListStatusEventsResponse:
+    def list_events(self, account_id: AccountId, integration_id: IntegrationId, *, limit: typing.Optional[int] = None, start_after: typing.Optional[str] = None, order: typing.Optional[str] = None, filter: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None, request_options: typing.Optional[RequestOptions] = None) -> ListStatusEventsResponse:
         """
         Returns integration `Status` object list of `StatusEvent` objects.
-
+        
         Parameters:
             - account_id: AccountId.
-
+            
             - integration_id: IntegrationId.
-
+            
             - limit: typing.Optional[int]. Number of `StatusEvent` objects to return in this page. Defaults to 100.
-
+            
             - start_after: typing.Optional[str]. Return `StatusEvent` objects starting after this `created_at`.
-
+            
             - order: typing.Optional[str]. The order defaults to created_at[asc] and can changed to descending order by specifying created_at[desc].
-
+            
             - filter: typing.Optional[typing.Union[str, typing.Sequence[str]]]. Filter results by this query. For more information on filtering, refer to our Filtering Guide. Defaults to no filter.
                                                                                 If used more than once, the queries are ANDed together.
             - request_options: typing.Optional[RequestOptions]. Request-specific configuration.
         """
-        _response = self._client_wrapper.httpx_client.request(
-            "GET",
-            urllib.parse.urljoin(
-                f"{self._client_wrapper.get_base_url()}/",
-                f"v1/status/{jsonable_encoder(account_id)}/{jsonable_encoder(integration_id)}/events",
-            ),
-            params=jsonable_encoder(
-                remove_none_from_dict(
-                    {
-                        "limit": limit,
-                        "start_after": start_after,
-                        "order": order,
-                        "filter": filter,
-                        **(
-                            request_options.get("additional_query_parameters", {})
-                            if request_options is not None
-                            else {}
-                        ),
-                    }
-                )
-            ),
-            headers=jsonable_encoder(
-                remove_none_from_dict(
-                    {
-                        **self._client_wrapper.get_headers(),
-                        **(request_options.get("additional_headers", {}) if request_options is not None else {}),
-                    }
-                )
-            ),
-            timeout=request_options.get("timeout_in_seconds")
-            if request_options is not None and request_options.get("timeout_in_seconds") is not None
-            else 60,
+        _response = self._client_wrapper.httpx_client.request("GET", urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", f"v1/status/{jsonable_encoder(account_id)}/{jsonable_encoder(integration_id)}/events"), 
+            params=jsonable_encoder(remove_none_from_dict({"limit": limit, "start_after": start_after, "order": order, "filter": filter, **(request_options.get('additional_query_parameters', {}) if request_options is not None else {}),},
+            )),
+            headers=jsonable_encoder(remove_none_from_dict({**self._client_wrapper.get_headers(),**(request_options.get('additional_headers', {}) if request_options is not None else {}),},
+            )),
+            timeout=request_options.get('timeout_in_seconds') if request_options is not None and request_options.get('timeout_in_seconds') is not None else 60,
             retries=0,
-            max_retries=request_options.get("max_retries") if request_options is not None else 0,  # type: ignore
+            max_retries=request_options.get('max_retries') if request_options is not None else 0,  # type: ignore
         )
         if 200 <= _response.status_code < 300:
-            return pydantic.parse_obj_as(ListStatusEventsResponse, _response.json())  # type: ignore
+            return pydantic.parse_obj_as(ListStatusEventsResponse, _response.json())# type: ignore
         if _response.status_code == 400:
-            raise BadRequestError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            raise BadRequestError(pydantic.parse_obj_as(ErrorBody, _response.json())# type: ignore
+            )
         if _response.status_code == 401:
-            raise UnauthorizedError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            raise UnauthorizedError(pydantic.parse_obj_as(ErrorBody, _response.json())# type: ignore
+            )
         if _response.status_code == 403:
-            raise ForbiddenError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            raise ForbiddenError(pydantic.parse_obj_as(ErrorBody, _response.json())# type: ignore
+            )
         if _response.status_code == 404:
-            raise NotFoundError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            raise NotFoundError(pydantic.parse_obj_as(ErrorBody, _response.json())# type: ignore
+            )
         if _response.status_code == 405:
-            raise MethodNotAllowedError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            raise MethodNotAllowedError(pydantic.parse_obj_as(ErrorBody, _response.json())# type: ignore
+            )
         if _response.status_code == 409:
-            raise ConflictError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            raise ConflictError(pydantic.parse_obj_as(ErrorBody, _response.json())# type: ignore
+            )
         if _response.status_code == 415:
-            raise UnsupportedMediaTypeError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            raise UnsupportedMediaTypeError(pydantic.parse_obj_as(ErrorBody, _response.json())# type: ignore
+            )
         if _response.status_code == 429:
-            raise TooManyRequestsError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            raise TooManyRequestsError(pydantic.parse_obj_as(ErrorBody, _response.json())# type: ignore
+            )
         if _response.status_code == 500:
-            raise InternalServerError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            raise InternalServerError(pydantic.parse_obj_as(ErrorBody, _response.json())# type: ignore
+            )
         try:
             _response_json = _response.json()
         except JSONDecodeError:
             raise ApiError(status_code=_response.status_code, body=_response.text)
         raise ApiError(status_code=_response.status_code, body=_response_json)
-
     def get_timeseries(self, *, request_options: typing.Optional[RequestOptions] = None) -> GetStatusTimeseries:
         """
         Returns organization last hour usage timeseries.
-
+        
         Parameters:
             - request_options: typing.Optional[RequestOptions]. Request-specific configuration.
         """
-        _response = self._client_wrapper.httpx_client.request(
-            "GET",
-            urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", "v1/status/timeseries"),
-            params=jsonable_encoder(
-                request_options.get("additional_query_parameters") if request_options is not None else None
-            ),
-            headers=jsonable_encoder(
-                remove_none_from_dict(
-                    {
-                        **self._client_wrapper.get_headers(),
-                        **(request_options.get("additional_headers", {}) if request_options is not None else {}),
-                    }
-                )
-            ),
-            timeout=request_options.get("timeout_in_seconds")
-            if request_options is not None and request_options.get("timeout_in_seconds") is not None
-            else 60,
+        _response = self._client_wrapper.httpx_client.request("GET", urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", "v1/status/timeseries"), 
+            params=jsonable_encoder(request_options.get('additional_query_parameters') if request_options is not None else None),
+            headers=jsonable_encoder(remove_none_from_dict({**self._client_wrapper.get_headers(),**(request_options.get('additional_headers', {}) if request_options is not None else {}),},
+            )),
+            timeout=request_options.get('timeout_in_seconds') if request_options is not None and request_options.get('timeout_in_seconds') is not None else 60,
             retries=0,
-            max_retries=request_options.get("max_retries") if request_options is not None else 0,  # type: ignore
+            max_retries=request_options.get('max_retries') if request_options is not None else 0,  # type: ignore
         )
         if 200 <= _response.status_code < 300:
-            return pydantic.parse_obj_as(GetStatusTimeseries, _response.json())  # type: ignore
+            return pydantic.parse_obj_as(GetStatusTimeseries, _response.json())# type: ignore
         if _response.status_code == 400:
-            raise BadRequestError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            raise BadRequestError(pydantic.parse_obj_as(ErrorBody, _response.json())# type: ignore
+            )
         if _response.status_code == 401:
-            raise UnauthorizedError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            raise UnauthorizedError(pydantic.parse_obj_as(ErrorBody, _response.json())# type: ignore
+            )
         if _response.status_code == 403:
-            raise ForbiddenError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            raise ForbiddenError(pydantic.parse_obj_as(ErrorBody, _response.json())# type: ignore
+            )
         if _response.status_code == 404:
-            raise NotFoundError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            raise NotFoundError(pydantic.parse_obj_as(ErrorBody, _response.json())# type: ignore
+            )
         if _response.status_code == 405:
-            raise MethodNotAllowedError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            raise MethodNotAllowedError(pydantic.parse_obj_as(ErrorBody, _response.json())# type: ignore
+            )
         if _response.status_code == 409:
-            raise ConflictError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            raise ConflictError(pydantic.parse_obj_as(ErrorBody, _response.json())# type: ignore
+            )
         if _response.status_code == 415:
-            raise UnsupportedMediaTypeError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            raise UnsupportedMediaTypeError(pydantic.parse_obj_as(ErrorBody, _response.json())# type: ignore
+            )
         if _response.status_code == 429:
-            raise TooManyRequestsError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            raise TooManyRequestsError(pydantic.parse_obj_as(ErrorBody, _response.json())# type: ignore
+            )
         if _response.status_code == 500:
-            raise InternalServerError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            raise InternalServerError(pydantic.parse_obj_as(ErrorBody, _response.json())# type: ignore
+            )
         try:
             _response_json = _response.json()
         except JSONDecodeError:
             raise ApiError(status_code=_response.status_code, body=_response.text)
         raise ApiError(status_code=_response.status_code, body=_response_json)
-
-    def get_integration_timeseries(
-        self,
-        account_id: AccountId,
-        integration_id: IntegrationId,
-        *,
-        interval: typing.Optional[str] = None,
-        request_options: typing.Optional[RequestOptions] = None,
-    ) -> GetIntegrationTimeseries:
+    def get_integration_timeseries(self, account_id: AccountId, integration_id: IntegrationId, *, interval: typing.Optional[str] = None, request_options: typing.Optional[RequestOptions] = None) -> GetIntegrationTimeseries:
         """
         Returns organization last hour usage timeseries.
-
+        
         Parameters:
             - account_id: AccountId.
-
+            
             - integration_id: IntegrationId.
-
+            
             - interval: typing.Optional[str]. [hour] provide most recent 24 hour timeseries. default: hour
-
+            
             - request_options: typing.Optional[RequestOptions]. Request-specific configuration.
         """
-        _response = self._client_wrapper.httpx_client.request(
-            "GET",
-            urllib.parse.urljoin(
-                f"{self._client_wrapper.get_base_url()}/",
-                f"v1/status/{jsonable_encoder(account_id)}/{jsonable_encoder(integration_id)}/timeseries",
-            ),
-            params=jsonable_encoder(
-                remove_none_from_dict(
-                    {
-                        "interval": interval,
-                        **(
-                            request_options.get("additional_query_parameters", {})
-                            if request_options is not None
-                            else {}
-                        ),
-                    }
-                )
-            ),
-            headers=jsonable_encoder(
-                remove_none_from_dict(
-                    {
-                        **self._client_wrapper.get_headers(),
-                        **(request_options.get("additional_headers", {}) if request_options is not None else {}),
-                    }
-                )
-            ),
-            timeout=request_options.get("timeout_in_seconds")
-            if request_options is not None and request_options.get("timeout_in_seconds") is not None
-            else 60,
+        _response = self._client_wrapper.httpx_client.request("GET", urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", f"v1/status/{jsonable_encoder(account_id)}/{jsonable_encoder(integration_id)}/timeseries"), 
+            params=jsonable_encoder(remove_none_from_dict({"interval": interval, **(request_options.get('additional_query_parameters', {}) if request_options is not None else {}),},
+            )),
+            headers=jsonable_encoder(remove_none_from_dict({**self._client_wrapper.get_headers(),**(request_options.get('additional_headers', {}) if request_options is not None else {}),},
+            )),
+            timeout=request_options.get('timeout_in_seconds') if request_options is not None and request_options.get('timeout_in_seconds') is not None else 60,
             retries=0,
-            max_retries=request_options.get("max_retries") if request_options is not None else 0,  # type: ignore
+            max_retries=request_options.get('max_retries') if request_options is not None else 0,  # type: ignore
         )
         if 200 <= _response.status_code < 300:
-            return pydantic.parse_obj_as(GetIntegrationTimeseries, _response.json())  # type: ignore
+            return pydantic.parse_obj_as(GetIntegrationTimeseries, _response.json())# type: ignore
         if _response.status_code == 400:
-            raise BadRequestError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            raise BadRequestError(pydantic.parse_obj_as(ErrorBody, _response.json())# type: ignore
+            )
         if _response.status_code == 401:
-            raise UnauthorizedError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            raise UnauthorizedError(pydantic.parse_obj_as(ErrorBody, _response.json())# type: ignore
+            )
         if _response.status_code == 403:
-            raise ForbiddenError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            raise ForbiddenError(pydantic.parse_obj_as(ErrorBody, _response.json())# type: ignore
+            )
         if _response.status_code == 404:
-            raise NotFoundError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            raise NotFoundError(pydantic.parse_obj_as(ErrorBody, _response.json())# type: ignore
+            )
         if _response.status_code == 405:
-            raise MethodNotAllowedError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            raise MethodNotAllowedError(pydantic.parse_obj_as(ErrorBody, _response.json())# type: ignore
+            )
         if _response.status_code == 409:
-            raise ConflictError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            raise ConflictError(pydantic.parse_obj_as(ErrorBody, _response.json())# type: ignore
+            )
         if _response.status_code == 415:
-            raise UnsupportedMediaTypeError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            raise UnsupportedMediaTypeError(pydantic.parse_obj_as(ErrorBody, _response.json())# type: ignore
+            )
         if _response.status_code == 429:
-            raise TooManyRequestsError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            raise TooManyRequestsError(pydantic.parse_obj_as(ErrorBody, _response.json())# type: ignore
+            )
         if _response.status_code == 500:
-            raise InternalServerError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            raise InternalServerError(pydantic.parse_obj_as(ErrorBody, _response.json())# type: ignore
+            )
         try:
             _response_json = _response.json()
         except JSONDecodeError:
             raise ApiError(status_code=_response.status_code, body=_response.text)
         raise ApiError(status_code=_response.status_code, body=_response_json)
-
-
 class AsyncStatusClient:
     def __init__(self, *, client_wrapper: AsyncClientWrapper):
         self._client_wrapper = client_wrapper
-
-    async def list(
-        self,
-        *,
-        limit: typing.Optional[int] = None,
-        start_after: typing.Optional[str] = None,
-        order: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
-        filter: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
-        expand: typing.Optional[typing.Union[ListStatusOptions, typing.Sequence[ListStatusOptions]]] = None,
-        request_options: typing.Optional[RequestOptions] = None,
-    ) -> ListStatusResponse:
+    async def list(self, *, limit: typing.Optional[int] = None, start_after: typing.Optional[str] = None, order: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None, filter: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None, expand: typing.Optional[typing.Union[ListStatusOptions, typing.Sequence[ListStatusOptions]]] = None, request_options: typing.Optional[RequestOptions] = None) -> ListStatusResponse:
         """
         Returns all matching `Status` objects.
-
+        
         Parameters:
             - limit: typing.Optional[int]. Number of `Status` objects to return in this page. Defaults to 100.
-
+            
             - start_after: typing.Optional[str]. Return `Status` objects starting after this `account_id,integration_id`.
-
+            
             - order: typing.Optional[typing.Union[str, typing.Sequence[str]]]. Select a field to order the results by. Defaults to `account_id,integration_id`. To control the direction of the sorting, append
                                                                                `[asc]` or `[desc]` to the field name. For example, `name[desc]` will sort the results by `name` in descending order.
                                                                                The ordering defaults to `asc` if not specified. May be used multiple times to order by multiple fields, and the
@@ -511,418 +392,321 @@ class AsyncStatusClient:
             - filter: typing.Optional[typing.Union[str, typing.Sequence[str]]]. Filter results by this query. For more information on filtering, refer to our Filtering Guide. Defaults to no filter.
                                                                                 If used more than once, the queries are ANDed together.
             - expand: typing.Optional[typing.Union[ListStatusOptions, typing.Sequence[ListStatusOptions]]]. Expand the status result with the related integration and/or account information.
-
+            
             - request_options: typing.Optional[RequestOptions]. Request-specific configuration.
         """
-        _response = await self._client_wrapper.httpx_client.request(
-            "GET",
-            urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", "v1/status"),
-            params=jsonable_encoder(
-                remove_none_from_dict(
-                    {
-                        "limit": limit,
-                        "start_after": start_after,
-                        "order": order,
-                        "filter": filter,
-                        "expand": expand,
-                        **(
-                            request_options.get("additional_query_parameters", {})
-                            if request_options is not None
-                            else {}
-                        ),
-                    }
-                )
-            ),
-            headers=jsonable_encoder(
-                remove_none_from_dict(
-                    {
-                        **self._client_wrapper.get_headers(),
-                        **(request_options.get("additional_headers", {}) if request_options is not None else {}),
-                    }
-                )
-            ),
-            timeout=request_options.get("timeout_in_seconds")
-            if request_options is not None and request_options.get("timeout_in_seconds") is not None
-            else 60,
+        _response = await self._client_wrapper.httpx_client.request("GET", urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", "v1/status"), 
+            params=jsonable_encoder(remove_none_from_dict({"limit": limit, "start_after": start_after, "order": order, "filter": filter, "expand": expand, **(request_options.get('additional_query_parameters', {}) if request_options is not None else {}),},
+            )),
+            headers=jsonable_encoder(remove_none_from_dict({**self._client_wrapper.get_headers(),**(request_options.get('additional_headers', {}) if request_options is not None else {}),},
+            )),
+            timeout=request_options.get('timeout_in_seconds') if request_options is not None and request_options.get('timeout_in_seconds') is not None else 60,
             retries=0,
-            max_retries=request_options.get("max_retries") if request_options is not None else 0,  # type: ignore
+            max_retries=request_options.get('max_retries') if request_options is not None else 0,  # type: ignore
         )
         if 200 <= _response.status_code < 300:
-            return pydantic.parse_obj_as(ListStatusResponse, _response.json())  # type: ignore
+            return pydantic.parse_obj_as(ListStatusResponse, _response.json())# type: ignore
         if _response.status_code == 400:
-            raise BadRequestError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            raise BadRequestError(pydantic.parse_obj_as(ErrorBody, _response.json())# type: ignore
+            )
         if _response.status_code == 401:
-            raise UnauthorizedError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            raise UnauthorizedError(pydantic.parse_obj_as(ErrorBody, _response.json())# type: ignore
+            )
         if _response.status_code == 403:
-            raise ForbiddenError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            raise ForbiddenError(pydantic.parse_obj_as(ErrorBody, _response.json())# type: ignore
+            )
         if _response.status_code == 404:
-            raise NotFoundError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            raise NotFoundError(pydantic.parse_obj_as(ErrorBody, _response.json())# type: ignore
+            )
         if _response.status_code == 405:
-            raise MethodNotAllowedError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            raise MethodNotAllowedError(pydantic.parse_obj_as(ErrorBody, _response.json())# type: ignore
+            )
         if _response.status_code == 409:
-            raise ConflictError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            raise ConflictError(pydantic.parse_obj_as(ErrorBody, _response.json())# type: ignore
+            )
         if _response.status_code == 415:
-            raise UnsupportedMediaTypeError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            raise UnsupportedMediaTypeError(pydantic.parse_obj_as(ErrorBody, _response.json())# type: ignore
+            )
         if _response.status_code == 429:
-            raise TooManyRequestsError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            raise TooManyRequestsError(pydantic.parse_obj_as(ErrorBody, _response.json())# type: ignore
+            )
         if _response.status_code == 500:
-            raise InternalServerError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            raise InternalServerError(pydantic.parse_obj_as(ErrorBody, _response.json())# type: ignore
+            )
         try:
             _response_json = _response.json()
         except JSONDecodeError:
             raise ApiError(status_code=_response.status_code, body=_response.text)
         raise ApiError(status_code=_response.status_code, body=_response_json)
-
-    async def get(
-        self,
-        account_id: AccountId,
-        integration_id: IntegrationId,
-        *,
-        request_options: typing.Optional[RequestOptions] = None,
-    ) -> GetStatusResponse:
+    async def get(self, account_id: AccountId, integration_id: IntegrationId, *, request_options: typing.Optional[RequestOptions] = None) -> GetStatusResponse:
         """
         Returns the integration `Status` object.
-
+        
         Parameters:
             - account_id: AccountId.
-
+            
             - integration_id: IntegrationId.
-
+            
             - request_options: typing.Optional[RequestOptions]. Request-specific configuration.
         """
-        _response = await self._client_wrapper.httpx_client.request(
-            "GET",
-            urllib.parse.urljoin(
-                f"{self._client_wrapper.get_base_url()}/",
-                f"v1/status/{jsonable_encoder(account_id)}/{jsonable_encoder(integration_id)}",
-            ),
-            params=jsonable_encoder(
-                request_options.get("additional_query_parameters") if request_options is not None else None
-            ),
-            headers=jsonable_encoder(
-                remove_none_from_dict(
-                    {
-                        **self._client_wrapper.get_headers(),
-                        **(request_options.get("additional_headers", {}) if request_options is not None else {}),
-                    }
-                )
-            ),
-            timeout=request_options.get("timeout_in_seconds")
-            if request_options is not None and request_options.get("timeout_in_seconds") is not None
-            else 60,
+        _response = await self._client_wrapper.httpx_client.request("GET", urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", f"v1/status/{jsonable_encoder(account_id)}/{jsonable_encoder(integration_id)}"), 
+            params=jsonable_encoder(request_options.get('additional_query_parameters') if request_options is not None else None),
+            headers=jsonable_encoder(remove_none_from_dict({**self._client_wrapper.get_headers(),**(request_options.get('additional_headers', {}) if request_options is not None else {}),},
+            )),
+            timeout=request_options.get('timeout_in_seconds') if request_options is not None and request_options.get('timeout_in_seconds') is not None else 60,
             retries=0,
-            max_retries=request_options.get("max_retries") if request_options is not None else 0,  # type: ignore
+            max_retries=request_options.get('max_retries') if request_options is not None else 0,  # type: ignore
         )
         if 200 <= _response.status_code < 300:
-            return pydantic.parse_obj_as(GetStatusResponse, _response.json())  # type: ignore
+            return pydantic.parse_obj_as(GetStatusResponse, _response.json())# type: ignore
         if _response.status_code == 400:
-            raise BadRequestError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            raise BadRequestError(pydantic.parse_obj_as(ErrorBody, _response.json())# type: ignore
+            )
         if _response.status_code == 401:
-            raise UnauthorizedError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            raise UnauthorizedError(pydantic.parse_obj_as(ErrorBody, _response.json())# type: ignore
+            )
         if _response.status_code == 403:
-            raise ForbiddenError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            raise ForbiddenError(pydantic.parse_obj_as(ErrorBody, _response.json())# type: ignore
+            )
         if _response.status_code == 404:
-            raise NotFoundError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            raise NotFoundError(pydantic.parse_obj_as(ErrorBody, _response.json())# type: ignore
+            )
         if _response.status_code == 405:
-            raise MethodNotAllowedError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            raise MethodNotAllowedError(pydantic.parse_obj_as(ErrorBody, _response.json())# type: ignore
+            )
         if _response.status_code == 409:
-            raise ConflictError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            raise ConflictError(pydantic.parse_obj_as(ErrorBody, _response.json())# type: ignore
+            )
         if _response.status_code == 415:
-            raise UnsupportedMediaTypeError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            raise UnsupportedMediaTypeError(pydantic.parse_obj_as(ErrorBody, _response.json())# type: ignore
+            )
         if _response.status_code == 429:
-            raise TooManyRequestsError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            raise TooManyRequestsError(pydantic.parse_obj_as(ErrorBody, _response.json())# type: ignore
+            )
         if _response.status_code == 500:
-            raise InternalServerError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            raise InternalServerError(pydantic.parse_obj_as(ErrorBody, _response.json())# type: ignore
+            )
         try:
             _response_json = _response.json()
         except JSONDecodeError:
             raise ApiError(status_code=_response.status_code, body=_response.text)
         raise ApiError(status_code=_response.status_code, body=_response_json)
-
-    async def reset(
-        self,
-        account_id: AccountId,
-        integration_id: IntegrationId,
-        *,
-        request_options: typing.Optional[RequestOptions] = None,
-    ) -> None:
+    async def reset(self, account_id: AccountId, integration_id: IntegrationId, *, request_options: typing.Optional[RequestOptions] = None) -> None:
         """
         Resets the integration `Status` object.
-
+        
         Parameters:
             - account_id: AccountId.
-
+            
             - integration_id: IntegrationId.
-
+            
             - request_options: typing.Optional[RequestOptions]. Request-specific configuration.
         """
-        _response = await self._client_wrapper.httpx_client.request(
-            "PUT",
-            urllib.parse.urljoin(
-                f"{self._client_wrapper.get_base_url()}/",
-                f"v1/status/{jsonable_encoder(account_id)}/{jsonable_encoder(integration_id)}",
-            ),
-            params=jsonable_encoder(
-                request_options.get("additional_query_parameters") if request_options is not None else None
-            ),
-            json=jsonable_encoder(remove_none_from_dict(request_options.get("additional_body_parameters", {})))
-            if request_options is not None
-            else None,
-            headers=jsonable_encoder(
-                remove_none_from_dict(
-                    {
-                        **self._client_wrapper.get_headers(),
-                        **(request_options.get("additional_headers", {}) if request_options is not None else {}),
-                    }
-                )
-            ),
-            timeout=request_options.get("timeout_in_seconds")
-            if request_options is not None and request_options.get("timeout_in_seconds") is not None
-            else 60,
+        _response = await self._client_wrapper.httpx_client.request("PUT", urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", f"v1/status/{jsonable_encoder(account_id)}/{jsonable_encoder(integration_id)}"), 
+            params=jsonable_encoder(request_options.get('additional_query_parameters') if request_options is not None else None),
+            json=jsonable_encoder(remove_none_from_dict(request_options.get('additional_body_parameters', {}))) if request_options is not None else None,
+            headers=jsonable_encoder(remove_none_from_dict({**self._client_wrapper.get_headers(),**(request_options.get('additional_headers', {}) if request_options is not None else {}),},
+            )),
+            timeout=request_options.get('timeout_in_seconds') if request_options is not None and request_options.get('timeout_in_seconds') is not None else 60,
             retries=0,
-            max_retries=request_options.get("max_retries") if request_options is not None else 0,  # type: ignore
+            max_retries=request_options.get('max_retries') if request_options is not None else 0,  # type: ignore
         )
         if 200 <= _response.status_code < 300:
             return
         if _response.status_code == 400:
-            raise BadRequestError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            raise BadRequestError(pydantic.parse_obj_as(ErrorBody, _response.json())# type: ignore
+            )
         if _response.status_code == 401:
-            raise UnauthorizedError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            raise UnauthorizedError(pydantic.parse_obj_as(ErrorBody, _response.json())# type: ignore
+            )
         if _response.status_code == 403:
-            raise ForbiddenError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            raise ForbiddenError(pydantic.parse_obj_as(ErrorBody, _response.json())# type: ignore
+            )
         if _response.status_code == 404:
-            raise NotFoundError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            raise NotFoundError(pydantic.parse_obj_as(ErrorBody, _response.json())# type: ignore
+            )
         if _response.status_code == 405:
-            raise MethodNotAllowedError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            raise MethodNotAllowedError(pydantic.parse_obj_as(ErrorBody, _response.json())# type: ignore
+            )
         if _response.status_code == 409:
-            raise ConflictError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            raise ConflictError(pydantic.parse_obj_as(ErrorBody, _response.json())# type: ignore
+            )
         if _response.status_code == 415:
-            raise UnsupportedMediaTypeError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            raise UnsupportedMediaTypeError(pydantic.parse_obj_as(ErrorBody, _response.json())# type: ignore
+            )
         if _response.status_code == 429:
-            raise TooManyRequestsError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            raise TooManyRequestsError(pydantic.parse_obj_as(ErrorBody, _response.json())# type: ignore
+            )
         if _response.status_code == 500:
-            raise InternalServerError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            raise InternalServerError(pydantic.parse_obj_as(ErrorBody, _response.json())# type: ignore
+            )
         try:
             _response_json = _response.json()
         except JSONDecodeError:
             raise ApiError(status_code=_response.status_code, body=_response.text)
         raise ApiError(status_code=_response.status_code, body=_response_json)
-
-    async def list_events(
-        self,
-        account_id: AccountId,
-        integration_id: IntegrationId,
-        *,
-        limit: typing.Optional[int] = None,
-        start_after: typing.Optional[str] = None,
-        order: typing.Optional[str] = None,
-        filter: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
-        request_options: typing.Optional[RequestOptions] = None,
-    ) -> ListStatusEventsResponse:
+    async def list_events(self, account_id: AccountId, integration_id: IntegrationId, *, limit: typing.Optional[int] = None, start_after: typing.Optional[str] = None, order: typing.Optional[str] = None, filter: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None, request_options: typing.Optional[RequestOptions] = None) -> ListStatusEventsResponse:
         """
         Returns integration `Status` object list of `StatusEvent` objects.
-
+        
         Parameters:
             - account_id: AccountId.
-
+            
             - integration_id: IntegrationId.
-
+            
             - limit: typing.Optional[int]. Number of `StatusEvent` objects to return in this page. Defaults to 100.
-
+            
             - start_after: typing.Optional[str]. Return `StatusEvent` objects starting after this `created_at`.
-
+            
             - order: typing.Optional[str]. The order defaults to created_at[asc] and can changed to descending order by specifying created_at[desc].
-
+            
             - filter: typing.Optional[typing.Union[str, typing.Sequence[str]]]. Filter results by this query. For more information on filtering, refer to our Filtering Guide. Defaults to no filter.
                                                                                 If used more than once, the queries are ANDed together.
             - request_options: typing.Optional[RequestOptions]. Request-specific configuration.
         """
-        _response = await self._client_wrapper.httpx_client.request(
-            "GET",
-            urllib.parse.urljoin(
-                f"{self._client_wrapper.get_base_url()}/",
-                f"v1/status/{jsonable_encoder(account_id)}/{jsonable_encoder(integration_id)}/events",
-            ),
-            params=jsonable_encoder(
-                remove_none_from_dict(
-                    {
-                        "limit": limit,
-                        "start_after": start_after,
-                        "order": order,
-                        "filter": filter,
-                        **(
-                            request_options.get("additional_query_parameters", {})
-                            if request_options is not None
-                            else {}
-                        ),
-                    }
-                )
-            ),
-            headers=jsonable_encoder(
-                remove_none_from_dict(
-                    {
-                        **self._client_wrapper.get_headers(),
-                        **(request_options.get("additional_headers", {}) if request_options is not None else {}),
-                    }
-                )
-            ),
-            timeout=request_options.get("timeout_in_seconds")
-            if request_options is not None and request_options.get("timeout_in_seconds") is not None
-            else 60,
+        _response = await self._client_wrapper.httpx_client.request("GET", urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", f"v1/status/{jsonable_encoder(account_id)}/{jsonable_encoder(integration_id)}/events"), 
+            params=jsonable_encoder(remove_none_from_dict({"limit": limit, "start_after": start_after, "order": order, "filter": filter, **(request_options.get('additional_query_parameters', {}) if request_options is not None else {}),},
+            )),
+            headers=jsonable_encoder(remove_none_from_dict({**self._client_wrapper.get_headers(),**(request_options.get('additional_headers', {}) if request_options is not None else {}),},
+            )),
+            timeout=request_options.get('timeout_in_seconds') if request_options is not None and request_options.get('timeout_in_seconds') is not None else 60,
             retries=0,
-            max_retries=request_options.get("max_retries") if request_options is not None else 0,  # type: ignore
+            max_retries=request_options.get('max_retries') if request_options is not None else 0,  # type: ignore
         )
         if 200 <= _response.status_code < 300:
-            return pydantic.parse_obj_as(ListStatusEventsResponse, _response.json())  # type: ignore
+            return pydantic.parse_obj_as(ListStatusEventsResponse, _response.json())# type: ignore
         if _response.status_code == 400:
-            raise BadRequestError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            raise BadRequestError(pydantic.parse_obj_as(ErrorBody, _response.json())# type: ignore
+            )
         if _response.status_code == 401:
-            raise UnauthorizedError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            raise UnauthorizedError(pydantic.parse_obj_as(ErrorBody, _response.json())# type: ignore
+            )
         if _response.status_code == 403:
-            raise ForbiddenError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            raise ForbiddenError(pydantic.parse_obj_as(ErrorBody, _response.json())# type: ignore
+            )
         if _response.status_code == 404:
-            raise NotFoundError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            raise NotFoundError(pydantic.parse_obj_as(ErrorBody, _response.json())# type: ignore
+            )
         if _response.status_code == 405:
-            raise MethodNotAllowedError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            raise MethodNotAllowedError(pydantic.parse_obj_as(ErrorBody, _response.json())# type: ignore
+            )
         if _response.status_code == 409:
-            raise ConflictError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            raise ConflictError(pydantic.parse_obj_as(ErrorBody, _response.json())# type: ignore
+            )
         if _response.status_code == 415:
-            raise UnsupportedMediaTypeError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            raise UnsupportedMediaTypeError(pydantic.parse_obj_as(ErrorBody, _response.json())# type: ignore
+            )
         if _response.status_code == 429:
-            raise TooManyRequestsError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            raise TooManyRequestsError(pydantic.parse_obj_as(ErrorBody, _response.json())# type: ignore
+            )
         if _response.status_code == 500:
-            raise InternalServerError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            raise InternalServerError(pydantic.parse_obj_as(ErrorBody, _response.json())# type: ignore
+            )
         try:
             _response_json = _response.json()
         except JSONDecodeError:
             raise ApiError(status_code=_response.status_code, body=_response.text)
         raise ApiError(status_code=_response.status_code, body=_response_json)
-
     async def get_timeseries(self, *, request_options: typing.Optional[RequestOptions] = None) -> GetStatusTimeseries:
         """
         Returns organization last hour usage timeseries.
-
+        
         Parameters:
             - request_options: typing.Optional[RequestOptions]. Request-specific configuration.
         """
-        _response = await self._client_wrapper.httpx_client.request(
-            "GET",
-            urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", "v1/status/timeseries"),
-            params=jsonable_encoder(
-                request_options.get("additional_query_parameters") if request_options is not None else None
-            ),
-            headers=jsonable_encoder(
-                remove_none_from_dict(
-                    {
-                        **self._client_wrapper.get_headers(),
-                        **(request_options.get("additional_headers", {}) if request_options is not None else {}),
-                    }
-                )
-            ),
-            timeout=request_options.get("timeout_in_seconds")
-            if request_options is not None and request_options.get("timeout_in_seconds") is not None
-            else 60,
+        _response = await self._client_wrapper.httpx_client.request("GET", urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", "v1/status/timeseries"), 
+            params=jsonable_encoder(request_options.get('additional_query_parameters') if request_options is not None else None),
+            headers=jsonable_encoder(remove_none_from_dict({**self._client_wrapper.get_headers(),**(request_options.get('additional_headers', {}) if request_options is not None else {}),},
+            )),
+            timeout=request_options.get('timeout_in_seconds') if request_options is not None and request_options.get('timeout_in_seconds') is not None else 60,
             retries=0,
-            max_retries=request_options.get("max_retries") if request_options is not None else 0,  # type: ignore
+            max_retries=request_options.get('max_retries') if request_options is not None else 0,  # type: ignore
         )
         if 200 <= _response.status_code < 300:
-            return pydantic.parse_obj_as(GetStatusTimeseries, _response.json())  # type: ignore
+            return pydantic.parse_obj_as(GetStatusTimeseries, _response.json())# type: ignore
         if _response.status_code == 400:
-            raise BadRequestError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            raise BadRequestError(pydantic.parse_obj_as(ErrorBody, _response.json())# type: ignore
+            )
         if _response.status_code == 401:
-            raise UnauthorizedError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            raise UnauthorizedError(pydantic.parse_obj_as(ErrorBody, _response.json())# type: ignore
+            )
         if _response.status_code == 403:
-            raise ForbiddenError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            raise ForbiddenError(pydantic.parse_obj_as(ErrorBody, _response.json())# type: ignore
+            )
         if _response.status_code == 404:
-            raise NotFoundError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            raise NotFoundError(pydantic.parse_obj_as(ErrorBody, _response.json())# type: ignore
+            )
         if _response.status_code == 405:
-            raise MethodNotAllowedError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            raise MethodNotAllowedError(pydantic.parse_obj_as(ErrorBody, _response.json())# type: ignore
+            )
         if _response.status_code == 409:
-            raise ConflictError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            raise ConflictError(pydantic.parse_obj_as(ErrorBody, _response.json())# type: ignore
+            )
         if _response.status_code == 415:
-            raise UnsupportedMediaTypeError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            raise UnsupportedMediaTypeError(pydantic.parse_obj_as(ErrorBody, _response.json())# type: ignore
+            )
         if _response.status_code == 429:
-            raise TooManyRequestsError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            raise TooManyRequestsError(pydantic.parse_obj_as(ErrorBody, _response.json())# type: ignore
+            )
         if _response.status_code == 500:
-            raise InternalServerError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            raise InternalServerError(pydantic.parse_obj_as(ErrorBody, _response.json())# type: ignore
+            )
         try:
             _response_json = _response.json()
         except JSONDecodeError:
             raise ApiError(status_code=_response.status_code, body=_response.text)
         raise ApiError(status_code=_response.status_code, body=_response_json)
-
-    async def get_integration_timeseries(
-        self,
-        account_id: AccountId,
-        integration_id: IntegrationId,
-        *,
-        interval: typing.Optional[str] = None,
-        request_options: typing.Optional[RequestOptions] = None,
-    ) -> GetIntegrationTimeseries:
+    async def get_integration_timeseries(self, account_id: AccountId, integration_id: IntegrationId, *, interval: typing.Optional[str] = None, request_options: typing.Optional[RequestOptions] = None) -> GetIntegrationTimeseries:
         """
         Returns organization last hour usage timeseries.
-
+        
         Parameters:
             - account_id: AccountId.
-
+            
             - integration_id: IntegrationId.
-
+            
             - interval: typing.Optional[str]. [hour] provide most recent 24 hour timeseries. default: hour
-
+            
             - request_options: typing.Optional[RequestOptions]. Request-specific configuration.
         """
-        _response = await self._client_wrapper.httpx_client.request(
-            "GET",
-            urllib.parse.urljoin(
-                f"{self._client_wrapper.get_base_url()}/",
-                f"v1/status/{jsonable_encoder(account_id)}/{jsonable_encoder(integration_id)}/timeseries",
-            ),
-            params=jsonable_encoder(
-                remove_none_from_dict(
-                    {
-                        "interval": interval,
-                        **(
-                            request_options.get("additional_query_parameters", {})
-                            if request_options is not None
-                            else {}
-                        ),
-                    }
-                )
-            ),
-            headers=jsonable_encoder(
-                remove_none_from_dict(
-                    {
-                        **self._client_wrapper.get_headers(),
-                        **(request_options.get("additional_headers", {}) if request_options is not None else {}),
-                    }
-                )
-            ),
-            timeout=request_options.get("timeout_in_seconds")
-            if request_options is not None and request_options.get("timeout_in_seconds") is not None
-            else 60,
+        _response = await self._client_wrapper.httpx_client.request("GET", urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", f"v1/status/{jsonable_encoder(account_id)}/{jsonable_encoder(integration_id)}/timeseries"), 
+            params=jsonable_encoder(remove_none_from_dict({"interval": interval, **(request_options.get('additional_query_parameters', {}) if request_options is not None else {}),},
+            )),
+            headers=jsonable_encoder(remove_none_from_dict({**self._client_wrapper.get_headers(),**(request_options.get('additional_headers', {}) if request_options is not None else {}),},
+            )),
+            timeout=request_options.get('timeout_in_seconds') if request_options is not None and request_options.get('timeout_in_seconds') is not None else 60,
             retries=0,
-            max_retries=request_options.get("max_retries") if request_options is not None else 0,  # type: ignore
+            max_retries=request_options.get('max_retries') if request_options is not None else 0,  # type: ignore
         )
         if 200 <= _response.status_code < 300:
-            return pydantic.parse_obj_as(GetIntegrationTimeseries, _response.json())  # type: ignore
+            return pydantic.parse_obj_as(GetIntegrationTimeseries, _response.json())# type: ignore
         if _response.status_code == 400:
-            raise BadRequestError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            raise BadRequestError(pydantic.parse_obj_as(ErrorBody, _response.json())# type: ignore
+            )
         if _response.status_code == 401:
-            raise UnauthorizedError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            raise UnauthorizedError(pydantic.parse_obj_as(ErrorBody, _response.json())# type: ignore
+            )
         if _response.status_code == 403:
-            raise ForbiddenError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            raise ForbiddenError(pydantic.parse_obj_as(ErrorBody, _response.json())# type: ignore
+            )
         if _response.status_code == 404:
-            raise NotFoundError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            raise NotFoundError(pydantic.parse_obj_as(ErrorBody, _response.json())# type: ignore
+            )
         if _response.status_code == 405:
-            raise MethodNotAllowedError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            raise MethodNotAllowedError(pydantic.parse_obj_as(ErrorBody, _response.json())# type: ignore
+            )
         if _response.status_code == 409:
-            raise ConflictError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            raise ConflictError(pydantic.parse_obj_as(ErrorBody, _response.json())# type: ignore
+            )
         if _response.status_code == 415:
-            raise UnsupportedMediaTypeError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            raise UnsupportedMediaTypeError(pydantic.parse_obj_as(ErrorBody, _response.json())# type: ignore
+            )
         if _response.status_code == 429:
-            raise TooManyRequestsError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            raise TooManyRequestsError(pydantic.parse_obj_as(ErrorBody, _response.json())# type: ignore
+            )
         if _response.status_code == 500:
-            raise InternalServerError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            raise InternalServerError(pydantic.parse_obj_as(ErrorBody, _response.json())# type: ignore
+            )
         try:
             _response_json = _response.json()
         except JSONDecodeError:

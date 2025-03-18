@@ -4,7 +4,7 @@ import datetime as dt
 import typing
 
 from ....core.datetime_utils import serialize_datetime
-from ...common.types.base import Base
+from ...global.types.base import Base
 from ...role_base.types.role_name import RoleName
 from .member_id import MemberId
 from .state import State
@@ -13,8 +13,7 @@ try:
     import pydantic.v1 as pydantic  # type: ignore
 except ImportError:
     import pydantic  # type: ignore
-
-
+            
 class Member(Base):
     id: MemberId
     state: State
@@ -22,22 +21,22 @@ class Member(Base):
     """
     Last logon time
     """
-
+    
     fullname: str = pydantic.Field()
     """
     User's full display name.
     """
-
+    
     nickname: typing.Optional[str] = pydantic.Field(default=None)
     """
     User's nickname
     """
-
+    
     picture: typing.Optional[str] = pydantic.Field(default=None)
     """
     Url of user's picture
     """
-
+    
     ttl: str
     token_ttl: str
     expires: dt.datetime
@@ -46,15 +45,13 @@ class Member(Base):
     """
     Roles granted to this member. Tokens inherit this access.
     """
-
+    
     def json(self, **kwargs: typing.Any) -> str:
-        kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}
+        kwargs_with_defaults: typing.Any = { "by_alias": True, "exclude_unset": True, **kwargs }
         return super().json(**kwargs_with_defaults)
-
     def dict(self, **kwargs: typing.Any) -> typing.Dict[str, typing.Any]:
-        kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}
+        kwargs_with_defaults: typing.Any = { "by_alias": True, "exclude_unset": True, **kwargs }
         return super().dict(**kwargs_with_defaults)
-
     class Config:
         frozen = True
         smart_union = True

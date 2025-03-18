@@ -5,6 +5,7 @@ import typing
 
 from ....core.datetime_utils import serialize_datetime
 from ...capabilities_base.types.category_id import CategoryId
+from .additional_mapping_template import AdditionalMappingTemplate
 from .integration_environments import IntegrationEnvironments
 
 try:
@@ -37,6 +38,11 @@ class CreateIntegrationPointRequest(pydantic.BaseModel):
     environments: IntegrationEnvironments = pydantic.Field()
     """
     Selects providers to use for account environments.
+    """
+
+    additional_mappings: typing.Optional[typing.List[AdditionalMappingTemplate]] = pydantic.Field(default=None)
+    """
+    Additional data mappings for integrations added to this integration point. This allows for custom data to be mapped to the custom_fields portion of the response.
     """
 
     def json(self, **kwargs: typing.Any) -> str:

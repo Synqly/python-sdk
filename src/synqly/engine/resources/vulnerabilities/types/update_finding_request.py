@@ -19,7 +19,7 @@ class UpdateFindingRequest(pydantic.BaseModel):
     severity_id: SeverityId
     severity: typing.Optional[VulnerabilitySeverityFilterValue] = pydantic.Field(default=None)
     """
-    serverity of the finding
+    severity of the finding
     """
 
     state: typing.Optional[VulnerabilityStateFilterValue] = pydantic.Field(default=None)

@@ -4,6 +4,7 @@ import datetime as dt
 import typing
 
 from ....core.datetime_utils import serialize_datetime
+from ...common.types.additional_mapping import AdditionalMapping
 from ...integration_points.types.integration_point_id import IntegrationPointId
 from ...providers_generated.types.provider_config import ProviderConfig
 from .bridge_selector import BridgeSelector
@@ -44,6 +45,11 @@ class CreateIntegrationRequest(pydantic.BaseModel):
     webhook_config: typing.Optional[WebhookConfig] = pydantic.Field(default=None)
     """
     Web hook config for this integration
+    """
+
+    additional_mappings: typing.Optional[typing.List[AdditionalMapping]] = pydantic.Field(default=None)
+    """
+    Additional data mappings for this integration. This allows for custom data to be mapped to the custom_fields portion of the response.
     """
 
     def json(self, **kwargs: typing.Any) -> str:

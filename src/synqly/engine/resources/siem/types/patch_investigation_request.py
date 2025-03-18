@@ -2,6 +2,6 @@
 
 import typing
 
-from ...common.types.patch_operation import PatchOperation
+from ...global.types.patch_operation import PatchOperation
 
 PatchInvestigationRequest = typing.List[PatchOperation]

@@ -5,7 +5,7 @@ import typing
 
 from ....core.datetime_utils import serialize_datetime
 from ...account_base.types.account_id import AccountId
-from ...common.types.base import Base
+from ...global.types.base import Base
 from ...organization_base.types.environment import Environment
 from ...organization_base.types.organization_id import OrganizationId
 
@@ -13,38 +13,35 @@ try:
     import pydantic.v1 as pydantic  # type: ignore
 except ImportError:
     import pydantic  # type: ignore
-
-
+            
 class Account(Base):
     id: AccountId
     fullname: str = pydantic.Field()
     """
     Human friendly display name for this account.
     """
-
+    
     organization_id: OrganizationId = pydantic.Field()
     """
     Organization that manages this Account.
     """
-
+    
     environment: Environment = pydantic.Field()
     """
     Environment this account runs in.
     """
-
+    
     labels: typing.Optional[typing.List[str]] = pydantic.Field(default=None)
     """
     User defined labels that apply to this account. These values can be used in role bindings to limit the scope of permissions.
     """
-
+    
     def json(self, **kwargs: typing.Any) -> str:
-        kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}
+        kwargs_with_defaults: typing.Any = { "by_alias": True, "exclude_unset": True, **kwargs }
         return super().json(**kwargs_with_defaults)
-
     def dict(self, **kwargs: typing.Any) -> typing.Dict[str, typing.Any]:
-        kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}
+        kwargs_with_defaults: typing.Any = { "by_alias": True, "exclude_unset": True, **kwargs }
         return super().dict(**kwargs_with_defaults)
-
     class Config:
         frozen = True
         smart_union = True
