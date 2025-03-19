@@ -5,6 +5,7 @@ import typing
 
 from ....core.datetime_utils import serialize_datetime
 from ...account_base.types.account_id import AccountId
+from ...bridges.types.bridge_group_id import BridgeGroupId
 from ...integration_base.types.integration_id import IntegrationId
 from ...member_base.types.member_id import MemberId
 from .audit_type import AuditType
@@ -35,6 +36,7 @@ class Audit(pydantic.BaseModel):
     member_id: typing.Optional[MemberId] = None
     account_id: typing.Optional[AccountId] = None
     integration_id: typing.Optional[IntegrationId] = None
+    bridge_group_id: typing.Optional[BridgeGroupId] = None
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}

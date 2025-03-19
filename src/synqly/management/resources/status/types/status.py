@@ -42,7 +42,7 @@ class Status(pydantic.BaseModel):
 
     integration_id: IntegrationId = pydantic.Field()
     """
-    Integration associated with this status. Use the expand=integrations parameter with the List API to expand the Account to the full object
+    Integration associated with this status. Use the expand=integrations parameter with the List API to expand the Integration to the full object
     """
 
     integration: typing.Optional[Integration] = pydantic.Field(default=None)

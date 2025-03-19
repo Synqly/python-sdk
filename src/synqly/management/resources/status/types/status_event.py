@@ -33,6 +33,11 @@ class StatusEvent(pydantic.BaseModel):
     Time created
     """
 
+    status: str = pydantic.Field()
+    """
+    The current status of the notification.
+    """
+
     error: typing.Optional[str] = pydantic.Field(default=None)
     """
     Error message
