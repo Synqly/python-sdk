@@ -5,7 +5,7 @@ import typing
 
 from ....core.datetime_utils import serialize_datetime
 from ...account_base.types.account_id import AccountId
-from ...global.types.base import Base
+from ...common.types.base import Base
 from ...integration_base.types.integration_id import IntegrationId
 from ...integration_points.types.integration_point_id import IntegrationPointId
 from ...organization_webhook_base.types.webhook_id import WebhookId
@@ -18,59 +18,63 @@ try:
     import pydantic.v1 as pydantic  # type: ignore
 except ImportError:
     import pydantic  # type: ignore
-            
+
+
 class CredentialResponse(Base):
     """
     Response object for a Credential
     """
+
     id: CredentialId
     account_id: typing.Optional[AccountId] = pydantic.Field(default=None)
     """
     Account that manages this credential.
     """
-    
+
     integration_id: typing.Optional[IntegrationId] = pydantic.Field(default=None)
     """
     Integration associated with this credential.
     """
-    
+
     integration_point_id: typing.Optional[IntegrationPointId] = pydantic.Field(default=None)
     """
     Integration Point associated with this credential.
     """
-    
+
     organization_webhook_id: typing.Optional[WebhookId] = pydantic.Field(default=None)
     """
     Integration Point associated with this credential.
     """
-    
+
     owner_type: OwnerType = pydantic.Field()
     """
     One of `account` or `integration_point`.
     """
-    
+
     fullname: str = pydantic.Field()
     """
     Human friendly display name for this Credential. Defaults to the same value as the 'name' field if not specified.
     """
-    
+
     config: CredentialConfigNoSecret
     expires: typing.Optional[dt.datetime] = pydantic.Field(default=None)
     """
     Time when this credential expires and can no longer be used again.
     """
-    
+
     managed: ManagedType = pydantic.Field()
     """
     Field is set by the management process. Determines lifecycle and ownership of the credential.
     """
-    
+
     def json(self, **kwargs: typing.Any) -> str:
-        kwargs_with_defaults: typing.Any = { "by_alias": True, "exclude_unset": True, **kwargs }
+        kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}
         return super().json(**kwargs_with_defaults)
+
     def dict(self, **kwargs: typing.Any) -> typing.Dict[str, typing.Any]:
-        kwargs_with_defaults: typing.Any = { "by_alias": True, "exclude_unset": True, **kwargs }
+        kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}
         return super().dict(**kwargs_with_defaults)
+
     class Config:
         frozen = True
         smart_union = True

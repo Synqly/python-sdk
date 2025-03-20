@@ -4,7 +4,7 @@ import datetime as dt
 import typing
 
 from ....core.datetime_utils import serialize_datetime
-from ...global.types.id import Id
+from ...common.types.id import Id
 from ...operation_base.types.operation_error import OperationError
 from ...operation_base.types.operation_id import OperationId
 from ...operation_base.types.operation_input import OperationInput
@@ -16,74 +16,77 @@ try:
     import pydantic.v1 as pydantic  # type: ignore
 except ImportError:
     import pydantic  # type: ignore
-            
+
+
 class OperationWebhookPayload(pydantic.BaseModel):
     event: WebhookFilter = pydantic.Field()
     """
     The event that triggered the webhook
     """
-    
+
     nonce: str = pydantic.Field()
     """
     A unique identifier for this webhook event
     """
-    
+
     id: OperationId = pydantic.Field()
     """
     ID of the operation
     """
-    
+
     created_at: dt.datetime = pydantic.Field()
     """
     Time object was originally created
     """
-    
+
     updated_at: dt.datetime = pydantic.Field()
     """
     Last time object was updated
     """
-    
+
     schedule: typing.Optional[OperationSchedule] = pydantic.Field(default=None)
     """
     Run now or on the specified schedule.
     """
-    
+
     operation: str = pydantic.Field()
     """
     Name of the operation that will be run for this operation.
     """
-    
+
     account_id: Id = pydantic.Field()
     """
     Account ID containing the integration.
     """
-    
+
     integration_id: Id = pydantic.Field()
     """
     Integration ID to use for the operation.
     """
-    
+
     input: OperationInput = pydantic.Field()
     """
     Input parameters for the operation that will be run for this operation.
     """
-    
+
     status: OperationStatus = pydantic.Field()
     """
     Status of the operation
     """
-    
+
     errors: typing.Optional[typing.List[OperationError]] = pydantic.Field(default=None)
     """
     Errors that occurred during the operation
     """
-    
+
     def json(self, **kwargs: typing.Any) -> str:
-        kwargs_with_defaults: typing.Any = { "by_alias": True, "exclude_unset": True, **kwargs }
+        kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}
         return super().json(**kwargs_with_defaults)
+
     def dict(self, **kwargs: typing.Any) -> typing.Dict[str, typing.Any]:
-        kwargs_with_defaults: typing.Any = { "by_alias": True, "exclude_unset": True, **kwargs }
+        kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}
         return super().dict(**kwargs_with_defaults)
+
     class Config:
         frozen = True
         smart_union = True

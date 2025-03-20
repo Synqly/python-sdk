@@ -5,7 +5,7 @@ import typing
 
 from ....core.datetime_utils import serialize_datetime
 from ...capabilities_base.types.category_id import CategoryId
-from ...global.types.base import Base
+from ...common.types.base import Base
 from .additional_mapping_template import AdditionalMappingTemplate
 from .integration_environments import IntegrationEnvironments
 from .integration_point_id import IntegrationPointId
@@ -14,43 +14,47 @@ try:
     import pydantic.v1 as pydantic  # type: ignore
 except ImportError:
     import pydantic  # type: ignore
-            
+
+
 class IntegrationPoint(Base):
     """
     Enables creation, editing and deletion of Integrations.
     """
+
     id: IntegrationPointId
     fullname: typing.Optional[str] = pydantic.Field(default=None)
     """
     Name of integration point, will be shown to end-users in the Connect UI.
     """
-    
+
     description: typing.Optional[str] = pydantic.Field(default=None)
     """
     Optional description of the Integration Point. Will not be displayed to end-users of Connect UI.
     """
-    
+
     connector: CategoryId = pydantic.Field()
     """
     Connector to use for the Integration Point.
     """
-    
+
     environments: IntegrationEnvironments = pydantic.Field()
     """
     Selects providers to use for account environments.
     """
-    
+
     additional_mappings: typing.Optional[typing.List[AdditionalMappingTemplate]] = pydantic.Field(default=None)
     """
     Additional data mappings for integrations added to this integration point. This allows for custom data to be mapped to the custom_fields portion of the response.
     """
-    
+
     def json(self, **kwargs: typing.Any) -> str:
-        kwargs_with_defaults: typing.Any = { "by_alias": True, "exclude_unset": True, **kwargs }
+        kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}
         return super().json(**kwargs_with_defaults)
+
     def dict(self, **kwargs: typing.Any) -> typing.Dict[str, typing.Any]:
-        kwargs_with_defaults: typing.Any = { "by_alias": True, "exclude_unset": True, **kwargs }
+        kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}
         return super().dict(**kwargs_with_defaults)
+
     class Config:
         frozen = True
         smart_union = True

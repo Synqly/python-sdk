@@ -4,7 +4,7 @@ import datetime as dt
 import typing
 
 from ....core.datetime_utils import serialize_datetime
-from ...common.types.api_response import ApiResponse
+from ...engine.types.api_response import ApiResponse
 from ...ocsf.resources.latest.resources.events.types.entity_management import EntityManagement
 
 try:

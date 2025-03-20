@@ -4,7 +4,7 @@ import datetime as dt
 import typing
 
 from ....core.datetime_utils import serialize_datetime
-from ...common.types.api_response import ApiResponse
+from ...engine.types.api_response import ApiResponse
 from ...ocsf.resources.v_1_3_0.resources.scanactivity.resources.classes.types.scan_activity import ScanActivity
 
 try:

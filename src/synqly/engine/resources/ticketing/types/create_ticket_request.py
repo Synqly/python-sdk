@@ -4,7 +4,7 @@ import datetime as dt
 import typing
 
 from ....core.datetime_utils import serialize_datetime
-from ...common.types.base_resource_request import BaseResourceRequest
+from ...engine.types.base_resource_request import BaseResourceRequest
 from .priority import Priority
 from .status import Status
 

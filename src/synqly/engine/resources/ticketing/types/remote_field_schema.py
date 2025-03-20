@@ -4,7 +4,7 @@ import datetime as dt
 import typing
 
 from ....core.datetime_utils import serialize_datetime
-from ...common.types.option_value import OptionValue
+from ...engine.types.option_value import OptionValue
 from .remote_field_type_id import RemoteFieldTypeId
 
 try:

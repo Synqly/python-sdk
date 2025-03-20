@@ -5,7 +5,7 @@ import typing
 
 from ....core.datetime_utils import serialize_datetime
 from ...assets.types.device import Device
-from ...common.types.api_query_response import ApiQueryResponse
+from ...engine.types.api_query_response import ApiQueryResponse
 
 try:
     import pydantic.v1 as pydantic  # type: ignore

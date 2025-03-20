@@ -4,8 +4,8 @@ import datetime as dt
 import typing
 
 from ....core.datetime_utils import serialize_datetime
-from ...common.types.additional_mapping import AdditionalMapping
 from ...integration_points.types.integration_point_id import IntegrationPointId
+from ...management.types.additional_mapping import AdditionalMapping
 from ...providers_generated.types.provider_config import ProviderConfig
 from .bridge_selector import BridgeSelector
 from .webhook_config import WebhookConfig

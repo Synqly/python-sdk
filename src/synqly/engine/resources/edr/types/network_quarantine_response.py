@@ -4,7 +4,7 @@ import datetime as dt
 import typing
 
 from ....core.datetime_utils import serialize_datetime
-from ...common.types.api_response import ApiResponse
+from ...engine.types.api_response import ApiResponse
 
 try:
     import pydantic.v1 as pydantic  # type: ignore

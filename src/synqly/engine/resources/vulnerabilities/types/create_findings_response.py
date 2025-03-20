@@ -4,8 +4,8 @@ import datetime as dt
 import typing
 
 from ....core.datetime_utils import serialize_datetime
-from ...common.types.api_response import ApiResponse
-from ...common.types.query_status import QueryStatus
+from ...engine.types.api_response import ApiResponse
+from ...engine.types.query_status import QueryStatus
 from .create_findings_error import CreateFindingsError
 
 try:

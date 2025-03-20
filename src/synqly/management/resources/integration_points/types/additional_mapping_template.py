@@ -4,7 +4,7 @@ import datetime as dt
 import typing
 
 from ....core.datetime_utils import serialize_datetime
-from ...common.types.additional_mapping import AdditionalMapping
+from ...management.types.additional_mapping import AdditionalMapping
 from ...providers_generated.types.provider_config_id import ProviderConfigId
 from .additional_mapping_type import AdditionalMappingType
 
