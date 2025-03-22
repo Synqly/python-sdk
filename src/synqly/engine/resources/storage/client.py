@@ -23,7 +23,7 @@ from ..common.errors.service_unavailable_error import ServiceUnavailableError
 from ..common.errors.too_many_requests_error import TooManyRequestsError
 from ..common.errors.unauthorized_error import UnauthorizedError
 from ..common.errors.unsupported_media_type_error import UnsupportedMediaTypeError
-from ..common.types.error_body import ErrorBody
+from ..common.types.problem import Problem
 from .types.list_storage_response import ListStorageResponse
 
 try:
@@ -94,31 +94,31 @@ class StorageClient:
         if 200 <= _response.status_code < 300:
             return pydantic.parse_obj_as(ListStorageResponse, _response.json())  # type: ignore
         if _response.status_code == 400:
-            raise BadRequestError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            raise BadRequestError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
         if _response.status_code == 401:
-            raise UnauthorizedError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            raise UnauthorizedError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
         if _response.status_code == 403:
-            raise ForbiddenError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            raise ForbiddenError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
         if _response.status_code == 404:
-            raise NotFoundError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            raise NotFoundError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
         if _response.status_code == 405:
-            raise MethodNotAllowedError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            raise MethodNotAllowedError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
         if _response.status_code == 409:
-            raise ConflictError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            raise ConflictError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
         if _response.status_code == 415:
-            raise UnsupportedMediaTypeError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            raise UnsupportedMediaTypeError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
         if _response.status_code == 429:
-            raise TooManyRequestsError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            raise TooManyRequestsError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
         if _response.status_code == 500:
-            raise InternalServerError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            raise InternalServerError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
         if _response.status_code == 501:
-            raise NotImplementedError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            raise NotImplementedError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
         if _response.status_code == 502:
-            raise BadGatewayError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            raise BadGatewayError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
         if _response.status_code == 503:
-            raise ServiceUnavailableError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            raise ServiceUnavailableError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
         if _response.status_code == 504:
-            raise GatewayTimeoutError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            raise GatewayTimeoutError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
         try:
             _response_json = _response.json()
         except JSONDecodeError:
@@ -170,31 +170,31 @@ class StorageClient:
         if 200 <= _response.status_code < 300:
             return
         if _response.status_code == 400:
-            raise BadRequestError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            raise BadRequestError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
         if _response.status_code == 401:
-            raise UnauthorizedError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            raise UnauthorizedError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
         if _response.status_code == 403:
-            raise ForbiddenError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            raise ForbiddenError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
         if _response.status_code == 404:
-            raise NotFoundError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            raise NotFoundError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
         if _response.status_code == 405:
-            raise MethodNotAllowedError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            raise MethodNotAllowedError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
         if _response.status_code == 409:
-            raise ConflictError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            raise ConflictError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
         if _response.status_code == 415:
-            raise UnsupportedMediaTypeError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            raise UnsupportedMediaTypeError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
         if _response.status_code == 429:
-            raise TooManyRequestsError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            raise TooManyRequestsError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
         if _response.status_code == 500:
-            raise InternalServerError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            raise InternalServerError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
         if _response.status_code == 501:
-            raise NotImplementedError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            raise NotImplementedError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
         if _response.status_code == 502:
-            raise BadGatewayError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            raise BadGatewayError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
         if _response.status_code == 503:
-            raise ServiceUnavailableError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            raise ServiceUnavailableError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
         if _response.status_code == 504:
-            raise GatewayTimeoutError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            raise GatewayTimeoutError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
         try:
             _response_json = _response.json()
         except JSONDecodeError:
@@ -241,31 +241,31 @@ class StorageClient:
                 return
             _response.read()
             if _response.status_code == 400:
-                raise BadRequestError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+                raise BadRequestError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
             if _response.status_code == 401:
-                raise UnauthorizedError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+                raise UnauthorizedError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
             if _response.status_code == 403:
-                raise ForbiddenError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+                raise ForbiddenError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
             if _response.status_code == 404:
-                raise NotFoundError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+                raise NotFoundError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
             if _response.status_code == 405:
-                raise MethodNotAllowedError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+                raise MethodNotAllowedError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
             if _response.status_code == 409:
-                raise ConflictError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+                raise ConflictError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
             if _response.status_code == 415:
-                raise UnsupportedMediaTypeError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+                raise UnsupportedMediaTypeError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
             if _response.status_code == 429:
-                raise TooManyRequestsError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+                raise TooManyRequestsError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
             if _response.status_code == 500:
-                raise InternalServerError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+                raise InternalServerError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
             if _response.status_code == 501:
-                raise NotImplementedError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+                raise NotImplementedError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
             if _response.status_code == 502:
-                raise BadGatewayError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+                raise BadGatewayError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
             if _response.status_code == 503:
-                raise ServiceUnavailableError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+                raise ServiceUnavailableError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
             if _response.status_code == 504:
-                raise GatewayTimeoutError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+                raise GatewayTimeoutError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
             try:
                 _response_json = _response.json()
             except JSONDecodeError:
@@ -306,31 +306,31 @@ class StorageClient:
         if 200 <= _response.status_code < 300:
             return
         if _response.status_code == 400:
-            raise BadRequestError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            raise BadRequestError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
         if _response.status_code == 401:
-            raise UnauthorizedError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            raise UnauthorizedError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
         if _response.status_code == 403:
-            raise ForbiddenError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            raise ForbiddenError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
         if _response.status_code == 404:
-            raise NotFoundError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            raise NotFoundError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
         if _response.status_code == 405:
-            raise MethodNotAllowedError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            raise MethodNotAllowedError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
         if _response.status_code == 409:
-            raise ConflictError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            raise ConflictError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
         if _response.status_code == 415:
-            raise UnsupportedMediaTypeError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            raise UnsupportedMediaTypeError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
         if _response.status_code == 429:
-            raise TooManyRequestsError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            raise TooManyRequestsError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
         if _response.status_code == 500:
-            raise InternalServerError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            raise InternalServerError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
         if _response.status_code == 501:
-            raise NotImplementedError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            raise NotImplementedError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
         if _response.status_code == 502:
-            raise BadGatewayError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            raise BadGatewayError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
         if _response.status_code == 503:
-            raise ServiceUnavailableError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            raise ServiceUnavailableError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
         if _response.status_code == 504:
-            raise GatewayTimeoutError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            raise GatewayTimeoutError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
         try:
             _response_json = _response.json()
         except JSONDecodeError:
@@ -397,31 +397,31 @@ class AsyncStorageClient:
         if 200 <= _response.status_code < 300:
             return pydantic.parse_obj_as(ListStorageResponse, _response.json())  # type: ignore
         if _response.status_code == 400:
-            raise BadRequestError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            raise BadRequestError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
         if _response.status_code == 401:
-            raise UnauthorizedError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            raise UnauthorizedError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
         if _response.status_code == 403:
-            raise ForbiddenError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            raise ForbiddenError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
         if _response.status_code == 404:
-            raise NotFoundError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            raise NotFoundError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
         if _response.status_code == 405:
-            raise MethodNotAllowedError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            raise MethodNotAllowedError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
         if _response.status_code == 409:
-            raise ConflictError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            raise ConflictError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
         if _response.status_code == 415:
-            raise UnsupportedMediaTypeError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            raise UnsupportedMediaTypeError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
         if _response.status_code == 429:
-            raise TooManyRequestsError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            raise TooManyRequestsError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
         if _response.status_code == 500:
-            raise InternalServerError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            raise InternalServerError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
         if _response.status_code == 501:
-            raise NotImplementedError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            raise NotImplementedError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
         if _response.status_code == 502:
-            raise BadGatewayError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            raise BadGatewayError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
         if _response.status_code == 503:
-            raise ServiceUnavailableError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            raise ServiceUnavailableError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
         if _response.status_code == 504:
-            raise GatewayTimeoutError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            raise GatewayTimeoutError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
         try:
             _response_json = _response.json()
         except JSONDecodeError:
@@ -473,31 +473,31 @@ class AsyncStorageClient:
         if 200 <= _response.status_code < 300:
             return
         if _response.status_code == 400:
-            raise BadRequestError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            raise BadRequestError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
         if _response.status_code == 401:
-            raise UnauthorizedError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            raise UnauthorizedError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
         if _response.status_code == 403:
-            raise ForbiddenError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            raise ForbiddenError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
         if _response.status_code == 404:
-            raise NotFoundError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            raise NotFoundError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
         if _response.status_code == 405:
-            raise MethodNotAllowedError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            raise MethodNotAllowedError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
         if _response.status_code == 409:
-            raise ConflictError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            raise ConflictError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
         if _response.status_code == 415:
-            raise UnsupportedMediaTypeError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            raise UnsupportedMediaTypeError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
         if _response.status_code == 429:
-            raise TooManyRequestsError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            raise TooManyRequestsError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
         if _response.status_code == 500:
-            raise InternalServerError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            raise InternalServerError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
         if _response.status_code == 501:
-            raise NotImplementedError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            raise NotImplementedError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
         if _response.status_code == 502:
-            raise BadGatewayError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            raise BadGatewayError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
         if _response.status_code == 503:
-            raise ServiceUnavailableError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            raise ServiceUnavailableError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
         if _response.status_code == 504:
-            raise GatewayTimeoutError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            raise GatewayTimeoutError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
         try:
             _response_json = _response.json()
         except JSONDecodeError:
@@ -544,31 +544,31 @@ class AsyncStorageClient:
                 return
             await _response.aread()
             if _response.status_code == 400:
-                raise BadRequestError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+                raise BadRequestError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
             if _response.status_code == 401:
-                raise UnauthorizedError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+                raise UnauthorizedError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
             if _response.status_code == 403:
-                raise ForbiddenError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+                raise ForbiddenError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
             if _response.status_code == 404:
-                raise NotFoundError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+                raise NotFoundError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
             if _response.status_code == 405:
-                raise MethodNotAllowedError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+                raise MethodNotAllowedError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
             if _response.status_code == 409:
-                raise ConflictError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+                raise ConflictError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
             if _response.status_code == 415:
-                raise UnsupportedMediaTypeError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+                raise UnsupportedMediaTypeError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
             if _response.status_code == 429:
-                raise TooManyRequestsError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+                raise TooManyRequestsError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
             if _response.status_code == 500:
-                raise InternalServerError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+                raise InternalServerError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
             if _response.status_code == 501:
-                raise NotImplementedError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+                raise NotImplementedError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
             if _response.status_code == 502:
-                raise BadGatewayError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+                raise BadGatewayError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
             if _response.status_code == 503:
-                raise ServiceUnavailableError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+                raise ServiceUnavailableError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
             if _response.status_code == 504:
-                raise GatewayTimeoutError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+                raise GatewayTimeoutError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
             try:
                 _response_json = _response.json()
             except JSONDecodeError:
@@ -609,31 +609,31 @@ class AsyncStorageClient:
         if 200 <= _response.status_code < 300:
             return
         if _response.status_code == 400:
-            raise BadRequestError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            raise BadRequestError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
         if _response.status_code == 401:
-            raise UnauthorizedError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            raise UnauthorizedError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
         if _response.status_code == 403:
-            raise ForbiddenError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            raise ForbiddenError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
         if _response.status_code == 404:
-            raise NotFoundError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            raise NotFoundError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
         if _response.status_code == 405:
-            raise MethodNotAllowedError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            raise MethodNotAllowedError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
         if _response.status_code == 409:
-            raise ConflictError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            raise ConflictError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
         if _response.status_code == 415:
-            raise UnsupportedMediaTypeError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            raise UnsupportedMediaTypeError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
         if _response.status_code == 429:
-            raise TooManyRequestsError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            raise TooManyRequestsError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
         if _response.status_code == 500:
-            raise InternalServerError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            raise InternalServerError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
         if _response.status_code == 501:
-            raise NotImplementedError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            raise NotImplementedError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
         if _response.status_code == 502:
-            raise BadGatewayError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            raise BadGatewayError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
         if _response.status_code == 503:
-            raise ServiceUnavailableError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            raise ServiceUnavailableError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
         if _response.status_code == 504:
-            raise GatewayTimeoutError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            raise GatewayTimeoutError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
         try:
             _response_json = _response.json()
         except JSONDecodeError:

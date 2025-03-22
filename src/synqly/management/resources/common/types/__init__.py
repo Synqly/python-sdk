@@ -2,11 +2,36 @@
 
 from .action_id import ActionId
 from .base import Base
-from .error_body import ErrorBody
-from .error_param import ErrorParam
 from .id import Id
+from .parameter_location import ParameterLocation
 from .patch_op import PatchOp
 from .patch_operation import PatchOperation
+from .problem import Problem
+from .problem_cause import ProblemCause
+from .problem_context import ProblemContext
+from .problem_details import ProblemDetails
+from .problem_relation import ProblemRelation
+from .problem_type import ProblemType
+from .problematic_parameter import ProblematicParameter
 from .resource_id import ResourceId
+from .resource_reference import ResourceReference
+from .resource_type import ResourceType
 
-__all__ = ["ActionId", "Base", "ErrorBody", "ErrorParam", "Id", "PatchOp", "PatchOperation", "ResourceId"]
+__all__ = [
+    "ActionId",
+    "Base",
+    "Id",
+    "ParameterLocation",
+    "PatchOp",
+    "PatchOperation",
+    "Problem",
+    "ProblemCause",
+    "ProblemContext",
+    "ProblemDetails",
+    "ProblemRelation",
+    "ProblemType",
+    "ProblematicParameter",
+    "ResourceId",
+    "ResourceReference",
+    "ResourceType",
+]

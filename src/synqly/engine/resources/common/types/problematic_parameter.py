@@ -4,6 +4,7 @@ import datetime as dt
 import typing
 
 from ....core.datetime_utils import serialize_datetime
+from .parameter_location import ParameterLocation
 
 try:
     import pydantic.v1 as pydantic  # type: ignore
@@ -11,9 +12,21 @@ except ImportError:
     import pydantic  # type: ignore
 
 
-class ErrorParam(pydantic.BaseModel):
-    name: str
-    value: str
+class ProblematicParameter(pydantic.BaseModel):
+    id: str = pydantic.Field()
+    """
+    If the `location` of the parameter is `body`, this value is always a JSON Pointer, otherwise it's the name of the parameter.
+    """
+
+    location: ParameterLocation = pydantic.Field()
+    """
+    The location of the parameter. Possible values are `query`, `header`, `path` or `body`.
+    """
+
+    value: typing.Optional[typing.Any] = pydantic.Field(default=None)
+    """
+    The given value of the parameter.
+    """
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}

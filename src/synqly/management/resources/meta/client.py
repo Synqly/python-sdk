@@ -16,7 +16,7 @@ from ..common.errors.method_not_allowed_error import MethodNotAllowedError
 from ..common.errors.too_many_requests_error import TooManyRequestsError
 from ..common.errors.unauthorized_error import UnauthorizedError
 from ..common.errors.unsupported_media_type_error import UnsupportedMediaTypeError
-from ..common.types.error_body import ErrorBody
+from ..common.types.problem import Problem
 from .types.get_open_api_spec_response import GetOpenApiSpecResponse
 
 try:
@@ -61,19 +61,19 @@ class MetaClient:
         if 200 <= _response.status_code < 300:
             return pydantic.parse_obj_as(GetOpenApiSpecResponse, _response.json())  # type: ignore
         if _response.status_code == 401:
-            raise UnauthorizedError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            raise UnauthorizedError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
         if _response.status_code == 403:
-            raise ForbiddenError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            raise ForbiddenError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
         if _response.status_code == 405:
-            raise MethodNotAllowedError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            raise MethodNotAllowedError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
         if _response.status_code == 409:
-            raise ConflictError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            raise ConflictError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
         if _response.status_code == 415:
-            raise UnsupportedMediaTypeError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            raise UnsupportedMediaTypeError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
         if _response.status_code == 429:
-            raise TooManyRequestsError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            raise TooManyRequestsError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
         if _response.status_code == 500:
-            raise InternalServerError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            raise InternalServerError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
         try:
             _response_json = _response.json()
         except JSONDecodeError:
@@ -110,19 +110,19 @@ class MetaClient:
         if 200 <= _response.status_code < 300:
             return pydantic.parse_obj_as(GetOpenApiSpecResponse, _response.json())  # type: ignore
         if _response.status_code == 401:
-            raise UnauthorizedError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            raise UnauthorizedError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
         if _response.status_code == 403:
-            raise ForbiddenError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            raise ForbiddenError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
         if _response.status_code == 405:
-            raise MethodNotAllowedError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            raise MethodNotAllowedError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
         if _response.status_code == 409:
-            raise ConflictError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            raise ConflictError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
         if _response.status_code == 415:
-            raise UnsupportedMediaTypeError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            raise UnsupportedMediaTypeError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
         if _response.status_code == 429:
-            raise TooManyRequestsError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            raise TooManyRequestsError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
         if _response.status_code == 500:
-            raise InternalServerError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            raise InternalServerError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
         try:
             _response_json = _response.json()
         except JSONDecodeError:
@@ -166,19 +166,19 @@ class AsyncMetaClient:
         if 200 <= _response.status_code < 300:
             return pydantic.parse_obj_as(GetOpenApiSpecResponse, _response.json())  # type: ignore
         if _response.status_code == 401:
-            raise UnauthorizedError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            raise UnauthorizedError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
         if _response.status_code == 403:
-            raise ForbiddenError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            raise ForbiddenError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
         if _response.status_code == 405:
-            raise MethodNotAllowedError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            raise MethodNotAllowedError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
         if _response.status_code == 409:
-            raise ConflictError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            raise ConflictError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
         if _response.status_code == 415:
-            raise UnsupportedMediaTypeError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            raise UnsupportedMediaTypeError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
         if _response.status_code == 429:
-            raise TooManyRequestsError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            raise TooManyRequestsError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
         if _response.status_code == 500:
-            raise InternalServerError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            raise InternalServerError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
         try:
             _response_json = _response.json()
         except JSONDecodeError:
@@ -217,19 +217,19 @@ class AsyncMetaClient:
         if 200 <= _response.status_code < 300:
             return pydantic.parse_obj_as(GetOpenApiSpecResponse, _response.json())  # type: ignore
         if _response.status_code == 401:
-            raise UnauthorizedError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            raise UnauthorizedError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
         if _response.status_code == 403:
-            raise ForbiddenError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            raise ForbiddenError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
         if _response.status_code == 405:
-            raise MethodNotAllowedError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            raise MethodNotAllowedError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
         if _response.status_code == 409:
-            raise ConflictError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            raise ConflictError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
         if _response.status_code == 415:
-            raise UnsupportedMediaTypeError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            raise UnsupportedMediaTypeError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
         if _response.status_code == 429:
-            raise TooManyRequestsError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            raise TooManyRequestsError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
         if _response.status_code == 500:
-            raise InternalServerError(pydantic.parse_obj_as(ErrorBody, _response.json()))  # type: ignore
+            raise InternalServerError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
         try:
             _response_json = _response.json()
         except JSONDecodeError:
