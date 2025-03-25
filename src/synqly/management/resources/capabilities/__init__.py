@@ -10,10 +10,13 @@ from .types import (
     ListConnectorsCapabilitiesResponse,
     ListProviderCapabilitiesExpandOptions,
     ListProvidersCapabilitiesResponse,
+    ProviderAvailability,
     ProviderCapabilities,
     ProviderCapabilitiesResponse,
+    ProviderEnvironment,
     ProviderFilter,
     ProviderOperations,
+    ProviderRelease,
     RequestBody,
 )
 
@@ -27,9 +30,12 @@ __all__ = [
     "ListConnectorsCapabilitiesResponse",
     "ListProviderCapabilitiesExpandOptions",
     "ListProvidersCapabilitiesResponse",
+    "ProviderAvailability",
     "ProviderCapabilities",
     "ProviderCapabilitiesResponse",
+    "ProviderEnvironment",
     "ProviderFilter",
     "ProviderOperations",
+    "ProviderRelease",
     "RequestBody",
 ]

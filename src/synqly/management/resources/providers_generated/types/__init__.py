@@ -4,6 +4,7 @@ from .armis_credential import ArmisCredential, ArmisCredential_Token, ArmisCrede
 from .assets_armis_centrix import AssetsArmisCentrix
 from .assets_nozomi_vantage import AssetsNozomiVantage
 from .assets_service_now import AssetsServiceNow
+from .assets_service_now_dataset import AssetsServiceNowDataset
 from .assets_service_now_mock import AssetsServiceNowMock
 from .aws_s_3_credential import AwsS3Credential, AwsS3Credential_Aws, AwsS3Credential_AwsId
 from .aws_security_lake_credential import (
@@ -240,6 +241,7 @@ __all__ = [
     "AssetsArmisCentrix",
     "AssetsNozomiVantage",
     "AssetsServiceNow",
+    "AssetsServiceNowDataset",
     "AssetsServiceNowMock",
     "AwsS3Credential",
     "AwsS3Credential_Aws",

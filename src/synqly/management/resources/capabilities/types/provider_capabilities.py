@@ -9,6 +9,7 @@ from ....core.datetime_utils import serialize_datetime
 from ...capabilities_base.types.category_id import CategoryId
 from ...capabilities_base.types.provider_id import ProviderId
 from .provider_operations import ProviderOperations
+from .provider_release import ProviderRelease
 
 try:
     import pydantic.v1 as pydantic  # type: ignore
@@ -62,6 +63,11 @@ class ProviderCapabilities(pydantic.BaseModel):
     provider_config: typing.Optional[typing.Any] = pydantic.Field(default=None)
     """
     Details on the specific configuration options for the Provider.
+    """
+
+    release: typing.Optional[ProviderRelease] = pydantic.Field(default=None)
+    """
+    Provider availability inforamtion.
     """
 
     def json(self, **kwargs: typing.Any) -> str:

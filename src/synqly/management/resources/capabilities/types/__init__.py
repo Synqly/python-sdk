@@ -9,10 +9,13 @@ from .list_connector_capabilities_expand_options import ListConnectorCapabilitie
 from .list_connectors_capabilities_response import ListConnectorsCapabilitiesResponse
 from .list_provider_capabilities_expand_options import ListProviderCapabilitiesExpandOptions
 from .list_providers_capabilities_response import ListProvidersCapabilitiesResponse
+from .provider_availability import ProviderAvailability
 from .provider_capabilities import ProviderCapabilities
 from .provider_capabilities_response import ProviderCapabilitiesResponse
+from .provider_environment import ProviderEnvironment
 from .provider_filter import ProviderFilter
 from .provider_operations import ProviderOperations
+from .provider_release import ProviderRelease
 from .request_body import RequestBody
 
 __all__ = [
@@ -25,9 +28,12 @@ __all__ = [
     "ListConnectorsCapabilitiesResponse",
     "ListProviderCapabilitiesExpandOptions",
     "ListProvidersCapabilitiesResponse",
+    "ProviderAvailability",
     "ProviderCapabilities",
     "ProviderCapabilitiesResponse",
+    "ProviderEnvironment",
     "ProviderFilter",
     "ProviderOperations",
+    "ProviderRelease",
     "RequestBody",
 ]

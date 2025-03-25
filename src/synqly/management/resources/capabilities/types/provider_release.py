@@ -4,7 +4,8 @@ import datetime as dt
 import typing
 
 from ....core.datetime_utils import serialize_datetime
-from .assets_service_now_dataset import AssetsServiceNowDataset
+from .provider_availability import ProviderAvailability
+from .provider_environment import ProviderEnvironment
 
 try:
     import pydantic.v1 as pydantic  # type: ignore
@@ -12,12 +13,16 @@ except ImportError:
     import pydantic  # type: ignore
 
 
-class AssetsServiceNowMock(pydantic.BaseModel):
+class ProviderRelease(pydantic.BaseModel):
+    availability: ProviderAvailability = pydantic.Field()
     """
-    Configuration for a mocked ServiceNow as an Assets Provider
+    Availability status.
     """
 
-    dataset: AssetsServiceNowDataset
+    environments: typing.List[ProviderEnvironment] = pydantic.Field()
+    """
+    Environments the Provider is available to.
+    """
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}
