@@ -39,6 +39,7 @@ from .storage_aws_s_3 import StorageAwsS3
 from .storage_azure_blob import StorageAzureBlob
 from .storage_gcs import StorageGcs
 from .storage_mock import StorageMock
+from .ticketing_autotask import TicketingAutotask
 from .ticketing_jira import TicketingJira
 from .ticketing_mock import TicketingMock
 from .ticketing_pager_duty import TicketingPagerDuty
@@ -367,6 +368,15 @@ class ProviderConfig_StorageMockStorage(StorageMock):
         allow_population_by_field_name = True
 
 
+class ProviderConfig_TicketingAutotask(TicketingAutotask):
+    type: typing.Literal["ticketing_autotask"]
+
+    class Config:
+        frozen = True
+        smart_union = True
+        allow_population_by_field_name = True
+
+
 class ProviderConfig_TicketingJira(TicketingJira):
     type: typing.Literal["ticketing_jira"]
 
@@ -502,6 +512,7 @@ ProviderConfig = typing.Union[
     ProviderConfig_StorageAzureBlob,
     ProviderConfig_StorageGcs,
     ProviderConfig_StorageMockStorage,
+    ProviderConfig_TicketingAutotask,
     ProviderConfig_TicketingJira,
     ProviderConfig_TicketingMockTicketing,
     ProviderConfig_TicketingPagerduty,

@@ -6,6 +6,16 @@ from .assets_nozomi_vantage import AssetsNozomiVantage
 from .assets_service_now import AssetsServiceNow
 from .assets_service_now_dataset import AssetsServiceNowDataset
 from .assets_service_now_mock import AssetsServiceNowMock
+from .autotask_api_integration_code_credential import (
+    AutotaskApiIntegrationCodeCredential,
+    AutotaskApiIntegrationCodeCredential_Secret,
+    AutotaskApiIntegrationCodeCredential_SecretId,
+)
+from .autotask_secret_credential import (
+    AutotaskSecretCredential,
+    AutotaskSecretCredential_Secret,
+    AutotaskSecretCredential_SecretId,
+)
 from .aws_s_3_credential import AwsS3Credential, AwsS3Credential_Aws, AwsS3Credential_AwsId
 from .aws_security_lake_credential import (
     AwsSecurityLakeCredential,
@@ -135,6 +145,7 @@ from .provider_config import (
     ProviderConfig_StorageAzureBlob,
     ProviderConfig_StorageGcs,
     ProviderConfig_StorageMockStorage,
+    ProviderConfig_TicketingAutotask,
     ProviderConfig_TicketingJira,
     ProviderConfig_TicketingMockTicketing,
     ProviderConfig_TicketingPagerduty,
@@ -221,6 +232,7 @@ from .tenable_cloud_credential import (
     TenableCloudCredential_Token,
     TenableCloudCredential_TokenId,
 )
+from .ticketing_autotask import TicketingAutotask
 from .ticketing_jira import TicketingJira
 from .ticketing_mock import TicketingMock
 from .ticketing_pager_duty import TicketingPagerDuty
@@ -243,6 +255,12 @@ __all__ = [
     "AssetsServiceNow",
     "AssetsServiceNowDataset",
     "AssetsServiceNowMock",
+    "AutotaskApiIntegrationCodeCredential",
+    "AutotaskApiIntegrationCodeCredential_Secret",
+    "AutotaskApiIntegrationCodeCredential_SecretId",
+    "AutotaskSecretCredential",
+    "AutotaskSecretCredential_Secret",
+    "AutotaskSecretCredential_SecretId",
     "AwsS3Credential",
     "AwsS3Credential_Aws",
     "AwsS3Credential_AwsId",
@@ -372,6 +390,7 @@ __all__ = [
     "ProviderConfig_StorageAzureBlob",
     "ProviderConfig_StorageGcs",
     "ProviderConfig_StorageMockStorage",
+    "ProviderConfig_TicketingAutotask",
     "ProviderConfig_TicketingJira",
     "ProviderConfig_TicketingMockTicketing",
     "ProviderConfig_TicketingPagerduty",
@@ -459,6 +478,7 @@ __all__ = [
     "TenableCloudCredential",
     "TenableCloudCredential_Token",
     "TenableCloudCredential_TokenId",
+    "TicketingAutotask",
     "TicketingJira",
     "TicketingMock",
     "TicketingPagerDuty",
