@@ -44,6 +44,7 @@ from .ticketing_jira import TicketingJira
 from .ticketing_mock import TicketingMock
 from .ticketing_pager_duty import TicketingPagerDuty
 from .ticketing_service_now import TicketingServiceNow
+from .ticketing_service_now_sir import TicketingServiceNowSir
 from .ticketing_torq import TicketingTorq
 from .vulnerabilities_crowd_strike import VulnerabilitiesCrowdStrike
 from .vulnerabilities_nucleus import VulnerabilitiesNucleus
@@ -413,6 +414,15 @@ class ProviderConfig_TicketingServicenow(TicketingServiceNow):
         allow_population_by_field_name = True
 
 
+class ProviderConfig_TicketingServicenowSir(TicketingServiceNowSir):
+    type: typing.Literal["ticketing_servicenow_sir"]
+
+    class Config:
+        frozen = True
+        smart_union = True
+        allow_population_by_field_name = True
+
+
 class ProviderConfig_TicketingTorq(TicketingTorq):
     type: typing.Literal["ticketing_torq"]
 
@@ -517,6 +527,7 @@ ProviderConfig = typing.Union[
     ProviderConfig_TicketingMockTicketing,
     ProviderConfig_TicketingPagerduty,
     ProviderConfig_TicketingServicenow,
+    ProviderConfig_TicketingServicenowSir,
     ProviderConfig_TicketingTorq,
     ProviderConfig_VulnerabilitiesCrowdstrike,
     ProviderConfig_VulnerabilitiesNucleus,

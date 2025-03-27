@@ -150,6 +150,7 @@ from .provider_config import (
     ProviderConfig_TicketingMockTicketing,
     ProviderConfig_TicketingPagerduty,
     ProviderConfig_TicketingServicenow,
+    ProviderConfig_TicketingServicenowSir,
     ProviderConfig_TicketingTorq,
     ProviderConfig_VulnerabilitiesCrowdstrike,
     ProviderConfig_VulnerabilitiesNucleus,
@@ -237,6 +238,7 @@ from .ticketing_jira import TicketingJira
 from .ticketing_mock import TicketingMock
 from .ticketing_pager_duty import TicketingPagerDuty
 from .ticketing_service_now import TicketingServiceNow
+from .ticketing_service_now_sir import TicketingServiceNowSir
 from .ticketing_torq import TicketingTorq
 from .torq_credential import TorqCredential, TorqCredential_OAuthClient, TorqCredential_OAuthClientId
 from .vulnerabilities_crowd_strike import VulnerabilitiesCrowdStrike
@@ -395,6 +397,7 @@ __all__ = [
     "ProviderConfig_TicketingMockTicketing",
     "ProviderConfig_TicketingPagerduty",
     "ProviderConfig_TicketingServicenow",
+    "ProviderConfig_TicketingServicenowSir",
     "ProviderConfig_TicketingTorq",
     "ProviderConfig_VulnerabilitiesCrowdstrike",
     "ProviderConfig_VulnerabilitiesNucleus",
@@ -483,6 +486,7 @@ __all__ = [
     "TicketingMock",
     "TicketingPagerDuty",
     "TicketingServiceNow",
+    "TicketingServiceNowSir",
     "TicketingTorq",
     "TorqCredential",
     "TorqCredential_OAuthClient",

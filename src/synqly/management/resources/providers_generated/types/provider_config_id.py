@@ -211,6 +211,11 @@ class ProviderConfigId(str, enum.Enum):
     ServiceNow IT Service Management (ITSM)
     """
 
+    TICKETING_SERVICE_NOW_SIR = "ticketing_servicenow_sir"
+    """
+    ServiceNow Security Incident Response (SIR)
+    """
+
     TICKETING_TORQ = "ticketing_torq"
     """
     Torq
@@ -293,6 +298,7 @@ class ProviderConfigId(str, enum.Enum):
         ticketing_mock: typing.Callable[[], T_Result],
         ticketing_pager_duty: typing.Callable[[], T_Result],
         ticketing_service_now: typing.Callable[[], T_Result],
+        ticketing_service_now_sir: typing.Callable[[], T_Result],
         ticketing_torq: typing.Callable[[], T_Result],
         vulnerabilities_crowd_strike: typing.Callable[[], T_Result],
         vulnerabilities_nucleus: typing.Callable[[], T_Result],
@@ -382,6 +388,8 @@ class ProviderConfigId(str, enum.Enum):
             return ticketing_pager_duty()
         if self is ProviderConfigId.TICKETING_SERVICE_NOW:
             return ticketing_service_now()
+        if self is ProviderConfigId.TICKETING_SERVICE_NOW_SIR:
+            return ticketing_service_now_sir()
         if self is ProviderConfigId.TICKETING_TORQ:
             return ticketing_torq()
         if self is ProviderConfigId.VULNERABILITIES_CROWD_STRIKE:
