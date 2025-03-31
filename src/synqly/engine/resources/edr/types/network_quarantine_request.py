@@ -23,6 +23,11 @@ class NetworkQuarantineRequest(pydantic.BaseModel):
     The list of endpoint IDs to enforce the connection state on.
     """
 
+    comment: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    A comment to include with the quarantine action.
+    """
+
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}
         return super().json(**kwargs_with_defaults)
