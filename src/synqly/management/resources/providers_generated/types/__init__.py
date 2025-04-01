@@ -43,6 +43,7 @@ from .custom_field_mapping import CustomFieldMapping
 from .defender_credential import DefenderCredential, DefenderCredential_OAuthClient, DefenderCredential_OAuthClientId
 from .edr_crowd_strike import EdrCrowdStrike
 from .edr_defender import EdrDefender
+from .edr_malwarebytes import EdrMalwarebytes
 from .edr_sentinel_one import EdrSentinelOne
 from .edr_sophos import EdrSophos
 from .elasticsearch_auth_options import ElasticsearchAuthOptions
@@ -89,6 +90,11 @@ from .identity_google import IdentityGoogle
 from .identity_okta import IdentityOkta
 from .identity_ping_one import IdentityPingOne
 from .jira_credential import JiraCredential, JiraCredential_Basic, JiraCredential_BasicId
+from .malwarebytes_credential import (
+    MalwarebytesCredential,
+    MalwarebytesCredential_OAuthClient,
+    MalwarebytesCredential_OAuthClientId,
+)
 from .notifications_jira import NotificationsJira
 from .notifications_mock import NotificationsMock
 from .notifications_slack import NotificationsSlack
@@ -116,6 +122,7 @@ from .provider_config import (
     ProviderConfig_AssetsServicenowMock,
     ProviderConfig_EdrCrowdstrike,
     ProviderConfig_EdrDefender,
+    ProviderConfig_EdrMalwarebytes,
     ProviderConfig_EdrSentinelone,
     ProviderConfig_EdrSophos,
     ProviderConfig_IdentityEntraId,
@@ -290,6 +297,7 @@ __all__ = [
     "DefenderCredential_OAuthClientId",
     "EdrCrowdStrike",
     "EdrDefender",
+    "EdrMalwarebytes",
     "EdrSentinelOne",
     "EdrSophos",
     "ElasticsearchAuthOptions",
@@ -334,6 +342,9 @@ __all__ = [
     "JiraCredential",
     "JiraCredential_Basic",
     "JiraCredential_BasicId",
+    "MalwarebytesCredential",
+    "MalwarebytesCredential_OAuthClient",
+    "MalwarebytesCredential_OAuthClientId",
     "NotificationsJira",
     "NotificationsMock",
     "NotificationsSlack",
@@ -363,6 +374,7 @@ __all__ = [
     "ProviderConfig_AssetsServicenowMock",
     "ProviderConfig_EdrCrowdstrike",
     "ProviderConfig_EdrDefender",
+    "ProviderConfig_EdrMalwarebytes",
     "ProviderConfig_EdrSentinelone",
     "ProviderConfig_EdrSophos",
     "ProviderConfig_IdentityEntraId",

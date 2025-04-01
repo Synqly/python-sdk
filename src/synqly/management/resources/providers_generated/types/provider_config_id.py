@@ -41,6 +41,11 @@ class ProviderConfigId(str, enum.Enum):
     Microsoft Defender for Endpoint
     """
 
+    EDR_MALWAREBYTES = "edr_malwarebytes"
+    """
+    Malwarebytes EDR
+    """
+
     EDR_SENTINEL_ONE = "edr_sentinelone"
     """
     SentinelOne Singularity™ Endpoint
@@ -264,6 +269,7 @@ class ProviderConfigId(str, enum.Enum):
         assets_service_now_mock: typing.Callable[[], T_Result],
         edr_crowd_strike: typing.Callable[[], T_Result],
         edr_defender: typing.Callable[[], T_Result],
+        edr_malwarebytes: typing.Callable[[], T_Result],
         edr_sentinel_one: typing.Callable[[], T_Result],
         edr_sophos: typing.Callable[[], T_Result],
         identity_entra_id: typing.Callable[[], T_Result],
@@ -320,6 +326,8 @@ class ProviderConfigId(str, enum.Enum):
             return edr_crowd_strike()
         if self is ProviderConfigId.EDR_DEFENDER:
             return edr_defender()
+        if self is ProviderConfigId.EDR_MALWAREBYTES:
+            return edr_malwarebytes()
         if self is ProviderConfigId.EDR_SENTINEL_ONE:
             return edr_sentinel_one()
         if self is ProviderConfigId.EDR_SOPHOS:

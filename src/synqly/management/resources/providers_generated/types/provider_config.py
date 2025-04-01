@@ -10,6 +10,7 @@ from .assets_service_now import AssetsServiceNow
 from .assets_service_now_mock import AssetsServiceNowMock
 from .edr_crowd_strike import EdrCrowdStrike
 from .edr_defender import EdrDefender
+from .edr_malwarebytes import EdrMalwarebytes
 from .edr_sentinel_one import EdrSentinelOne
 from .edr_sophos import EdrSophos
 from .identity_entra_id import IdentityEntraId
@@ -101,6 +102,15 @@ class ProviderConfig_EdrCrowdstrike(EdrCrowdStrike):
 
 class ProviderConfig_EdrDefender(EdrDefender):
     type: typing.Literal["edr_defender"]
+
+    class Config:
+        frozen = True
+        smart_union = True
+        allow_population_by_field_name = True
+
+
+class ProviderConfig_EdrMalwarebytes(EdrMalwarebytes):
+    type: typing.Literal["edr_malwarebytes"]
 
     class Config:
         frozen = True
@@ -493,6 +503,7 @@ ProviderConfig = typing.Union[
     ProviderConfig_AssetsServicenowMock,
     ProviderConfig_EdrCrowdstrike,
     ProviderConfig_EdrDefender,
+    ProviderConfig_EdrMalwarebytes,
     ProviderConfig_EdrSentinelone,
     ProviderConfig_EdrSophos,
     ProviderConfig_IdentityEntraId,
