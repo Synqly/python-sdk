@@ -39,7 +39,7 @@ class SiemSplunk(pydantic.BaseModel):
     Optional URL used for connecting to the Splunk search service. If not provided, querying is disabled.
     """
 
-    skip_tls_verify: bool = pydantic.Field()
+    skip_tls_verify: typing.Optional[bool] = pydantic.Field(default=None)
     """
     If true, skips verification of the Splunk server's TLS certificate.
     """

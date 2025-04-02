@@ -28,7 +28,7 @@ class SinkSplunk(pydantic.BaseModel):
     Splunk index to send events to. If not provided, will use the default index for the Splunk collector.
     """
 
-    skip_tls_verify: bool = pydantic.Field()
+    skip_tls_verify: typing.Optional[bool] = pydantic.Field(default=None)
     """
     If true, skips verification of the Splunk server's TLS certificate.
     """
