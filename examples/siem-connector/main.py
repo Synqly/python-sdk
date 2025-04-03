@@ -66,7 +66,6 @@ def splunk_credential_config(splunk_token):
 def mock_provider_config():
     return mgmt.ProviderConfig_SiemMockSiem(
         type="siem_mock_siem",
-        skip_tls_verify=True,
     )
 
 
