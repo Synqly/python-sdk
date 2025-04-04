@@ -110,7 +110,15 @@ from .events import (
     Event_VulnerabilityFinding,
     Event_WebResourceAccessActivity,
 )
-from .hooks import TicketingWebhookResponse
+from .hooks import (
+    CreateIntegrationWebHookRequest,
+    CreateIntegrationWebHookResponse,
+    IntegrationTicketWhen,
+    IntegrationWebHook,
+    IntegrationWebHookId,
+    ListIntegrationWebHooksResponse,
+    TicketingWebhookResponse,
+)
 from .identity import (
     GetGroupMembersResponse,
     GetGroupResponse,
@@ -247,6 +255,8 @@ __all__ = [
     "CreateFindingsError",
     "CreateFindingsRequest",
     "CreateFindingsResponse",
+    "CreateIntegrationWebHookRequest",
+    "CreateIntegrationWebHookResponse",
     "CreateIocsRequest",
     "CreateIocsResponse",
     "CreateNoteRequest",
@@ -301,11 +311,15 @@ __all__ = [
     "GetUserResponse",
     "GroupId",
     "Id",
+    "IntegrationTicketWhen",
+    "IntegrationWebHook",
+    "IntegrationWebHookId",
     "InternalServerError",
     "Investigation",
     "IssueTypeId",
     "ListAttachmentsMetadataResponse",
     "ListCommentsResponse",
+    "ListIntegrationWebHooksResponse",
     "ListNotesResponse",
     "ListProjectsResponse",
     "ListRemoteFieldsResponse",
