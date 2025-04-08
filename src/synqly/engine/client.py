@@ -10,6 +10,7 @@ from .resources.assets.client import AssetsClient, AsyncAssetsClient
 from .resources.edr.client import AsyncEdrClient, EdrClient
 from .resources.hooks.client import AsyncHooksClient, HooksClient
 from .resources.identity.client import AsyncIdentityClient, IdentityClient
+from .resources.integration_webhooks.client import AsyncIntegrationWebhooksClient, IntegrationWebhooksClient
 from .resources.notifications.client import AsyncNotificationsClient, NotificationsClient
 from .resources.operations.client import AsyncOperationsClient, OperationsClient
 from .resources.siem.client import AsyncSiemClient, SiemClient
@@ -61,6 +62,7 @@ class SynqlyEngine:
         self.edr = EdrClient(client_wrapper=self._client_wrapper)
         self.hooks = HooksClient(client_wrapper=self._client_wrapper)
         self.identity = IdentityClient(client_wrapper=self._client_wrapper)
+        self.integration_webhooks = IntegrationWebhooksClient(client_wrapper=self._client_wrapper)
         self.notifications = NotificationsClient(client_wrapper=self._client_wrapper)
         self.operations = OperationsClient(client_wrapper=self._client_wrapper)
         self.siem = SiemClient(client_wrapper=self._client_wrapper)
@@ -112,6 +114,7 @@ class AsyncSynqlyEngine:
         self.edr = AsyncEdrClient(client_wrapper=self._client_wrapper)
         self.hooks = AsyncHooksClient(client_wrapper=self._client_wrapper)
         self.identity = AsyncIdentityClient(client_wrapper=self._client_wrapper)
+        self.integration_webhooks = AsyncIntegrationWebhooksClient(client_wrapper=self._client_wrapper)
         self.notifications = AsyncNotificationsClient(client_wrapper=self._client_wrapper)
         self.operations = AsyncOperationsClient(client_wrapper=self._client_wrapper)
         self.siem = AsyncSiemClient(client_wrapper=self._client_wrapper)

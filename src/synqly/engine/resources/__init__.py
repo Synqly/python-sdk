@@ -8,6 +8,7 @@ from . import (
     events,
     hooks,
     identity,
+    integration_webhooks,
     notifications,
     ocsf,
     operation_base,
@@ -110,15 +111,7 @@ from .events import (
     Event_VulnerabilityFinding,
     Event_WebResourceAccessActivity,
 )
-from .hooks import (
-    CreateIntegrationWebHookRequest,
-    CreateIntegrationWebHookResponse,
-    IntegrationTicketWhen,
-    IntegrationWebHook,
-    IntegrationWebHookId,
-    ListIntegrationWebHooksResponse,
-    TicketingWebhookResponse,
-)
+from .hooks import IntegrationTicketWhen, TicketingWebhookResponse
 from .identity import (
     GetGroupMembersResponse,
     GetGroupResponse,
@@ -128,6 +121,13 @@ from .identity import (
     QueryIdentityAuditLogResponse,
     QueryUsersResponse,
     UserId,
+)
+from .integration_webhooks import (
+    CreateIntegrationWebHookRequest,
+    CreateIntegrationWebHookResponse,
+    IntegrationWebHook,
+    IntegrationWebHookId,
+    ListIntegrationWebHooksResponse,
 )
 from .notifications import (
     CreateNotificationRequest,
@@ -425,6 +425,7 @@ __all__ = [
     "events",
     "hooks",
     "identity",
+    "integration_webhooks",
     "notifications",
     "ocsf",
     "operation_base",

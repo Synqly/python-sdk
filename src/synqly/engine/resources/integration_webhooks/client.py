@@ -23,6 +23,9 @@ from ..common.errors.too_many_requests_error import TooManyRequestsError
 from ..common.errors.unauthorized_error import UnauthorizedError
 from ..common.errors.unsupported_media_type_error import UnsupportedMediaTypeError
 from ..common.types.problem import Problem
+from .types.create_integration_web_hook_request import CreateIntegrationWebHookRequest
+from .types.create_integration_web_hook_response import CreateIntegrationWebHookResponse
+from .types.list_integration_web_hooks_response import ListIntegrationWebHooksResponse
 
 try:
     import pydantic.v1 as pydantic  # type: ignore
@@ -33,45 +36,26 @@ except ImportError:
 OMIT = typing.cast(typing.Any, ...)
 
 
-class HooksClient:
+class IntegrationWebhooksClient:
     def __init__(self, *, client_wrapper: SyncClientWrapper):
         self._client_wrapper = client_wrapper
 
-    def proxy(
-        self,
-        *,
-        meta: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
-        token: str,
-        request: typing.Any,
-        request_options: typing.Optional[RequestOptions] = None,
-    ) -> None:
+    def create_webhook(
+        self, *, request: CreateIntegrationWebHookRequest, request_options: typing.Optional[RequestOptions] = None
+    ) -> CreateIntegrationWebHookResponse:
         """
-        Proxy webhook messages from webhook providers to webhook recievers. For exact webhook implementations please refer to providers e.g. Ticketing. This is just an API call used in that context, not a standalone implementation.
+        Creates a WebHook for the token-linked Integration.
 
         Parameters:
-            - meta: typing.Optional[typing.Union[str, typing.Sequence[str]]]. Add metadata to the response by invoking meta functions. Documentation for meta functions is available at https://docs.synqly.com/api-reference/meta-functions. Not all meta function are available at every endpoint.
-
-            - token: str. Optional: if you can't use the HTTP Authorization Bearer, specify integration access token here.
-
-            - request: typing.Any.
+            - request: CreateIntegrationWebHookRequest.
 
             - request_options: typing.Optional[RequestOptions]. Request-specific configuration.
         """
         _response = self._client_wrapper.httpx_client.request(
             "POST",
-            urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", "v1/hooks"),
+            urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", "v1/integration-webhooks"),
             params=jsonable_encoder(
-                remove_none_from_dict(
-                    {
-                        "meta": meta,
-                        "token": token,
-                        **(
-                            request_options.get("additional_query_parameters", {})
-                            if request_options is not None
-                            else {}
-                        ),
-                    }
-                )
+                request_options.get("additional_query_parameters") if request_options is not None else None
             ),
             json=jsonable_encoder(request)
             if request_options is None or request_options.get("additional_body_parameters") is None
@@ -79,6 +63,67 @@ class HooksClient:
                 **jsonable_encoder(request),
                 **(jsonable_encoder(remove_none_from_dict(request_options.get("additional_body_parameters", {})))),
             },
+            headers=jsonable_encoder(
+                remove_none_from_dict(
+                    {
+                        **self._client_wrapper.get_headers(),
+                        **(request_options.get("additional_headers", {}) if request_options is not None else {}),
+                    }
+                )
+            ),
+            timeout=request_options.get("timeout_in_seconds")
+            if request_options is not None and request_options.get("timeout_in_seconds") is not None
+            else 60,
+            retries=0,
+            max_retries=request_options.get("max_retries") if request_options is not None else 0,  # type: ignore
+        )
+        if 200 <= _response.status_code < 300:
+            return pydantic.parse_obj_as(CreateIntegrationWebHookResponse, _response.json())  # type: ignore
+        if _response.status_code == 400:
+            raise BadRequestError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
+        if _response.status_code == 401:
+            raise UnauthorizedError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
+        if _response.status_code == 403:
+            raise ForbiddenError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
+        if _response.status_code == 404:
+            raise NotFoundError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
+        if _response.status_code == 405:
+            raise MethodNotAllowedError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
+        if _response.status_code == 409:
+            raise ConflictError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
+        if _response.status_code == 415:
+            raise UnsupportedMediaTypeError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
+        if _response.status_code == 429:
+            raise TooManyRequestsError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
+        if _response.status_code == 500:
+            raise InternalServerError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
+        if _response.status_code == 501:
+            raise NotImplementedError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
+        if _response.status_code == 502:
+            raise BadGatewayError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
+        if _response.status_code == 503:
+            raise ServiceUnavailableError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
+        if _response.status_code == 504:
+            raise GatewayTimeoutError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
+        try:
+            _response_json = _response.json()
+        except JSONDecodeError:
+            raise ApiError(status_code=_response.status_code, body=_response.text)
+        raise ApiError(status_code=_response.status_code, body=_response_json)
+
+    def delete_webhook(self, *, request_options: typing.Optional[RequestOptions] = None) -> None:
+        """
+        Deletes the WebHook matching the token-linked Integration.
+
+        Parameters:
+            - request_options: typing.Optional[RequestOptions]. Request-specific configuration.
+        """
+        _response = self._client_wrapper.httpx_client.request(
+            "DELETE",
+            urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", "v1/integration-webhooks"),
+            params=jsonable_encoder(
+                request_options.get("additional_query_parameters") if request_options is not None else None
+            ),
             headers=jsonable_encoder(
                 remove_none_from_dict(
                     {
@@ -127,49 +172,21 @@ class HooksClient:
             raise ApiError(status_code=_response.status_code, body=_response.text)
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
-    def passthrough(
-        self,
-        web_hook_cursor: str,
-        *,
-        meta: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
-        request: typing.Any,
-        request_options: typing.Optional[RequestOptions] = None,
-    ) -> None:
+    def list_webhooks(
+        self, *, request_options: typing.Optional[RequestOptions] = None
+    ) -> ListIntegrationWebHooksResponse:
         """
-        Proxy webhook messages from webhook providers to webhook recievers. For exact webhook implementations please refer to providers e.g. Ticketing. This is just an API call used in that context, not a standalone implementation.
+        Lists all WebHooks from the token-linked Integration.
 
         Parameters:
-            - web_hook_cursor: str.
-
-            - meta: typing.Optional[typing.Union[str, typing.Sequence[str]]]. Add metadata to the response by invoking meta functions. Documentation for meta functions is available at https://docs.synqly.com/api-reference/meta-functions. Not all meta function are available at every endpoint.
-
-            - request: typing.Any.
-
             - request_options: typing.Optional[RequestOptions]. Request-specific configuration.
         """
         _response = self._client_wrapper.httpx_client.request(
-            "POST",
-            urllib.parse.urljoin(
-                f"{self._client_wrapper.get_base_url()}/", f"v1/hooks/passthrough/{jsonable_encoder(web_hook_cursor)}"
-            ),
+            "GET",
+            urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", "v1/integration-webhooks"),
             params=jsonable_encoder(
-                remove_none_from_dict(
-                    {
-                        "meta": meta,
-                        **(
-                            request_options.get("additional_query_parameters", {})
-                            if request_options is not None
-                            else {}
-                        ),
-                    }
-                )
+                request_options.get("additional_query_parameters") if request_options is not None else None
             ),
-            json=jsonable_encoder(request)
-            if request_options is None or request_options.get("additional_body_parameters") is None
-            else {
-                **jsonable_encoder(request),
-                **(jsonable_encoder(remove_none_from_dict(request_options.get("additional_body_parameters", {})))),
-            },
             headers=jsonable_encoder(
                 remove_none_from_dict(
                     {
@@ -185,7 +202,7 @@ class HooksClient:
             max_retries=request_options.get("max_retries") if request_options is not None else 0,  # type: ignore
         )
         if 200 <= _response.status_code < 300:
-            return
+            return pydantic.parse_obj_as(ListIntegrationWebHooksResponse, _response.json())  # type: ignore
         if _response.status_code == 400:
             raise BadRequestError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
         if _response.status_code == 401:
@@ -219,45 +236,26 @@ class HooksClient:
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
 
-class AsyncHooksClient:
+class AsyncIntegrationWebhooksClient:
     def __init__(self, *, client_wrapper: AsyncClientWrapper):
         self._client_wrapper = client_wrapper
 
-    async def proxy(
-        self,
-        *,
-        meta: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
-        token: str,
-        request: typing.Any,
-        request_options: typing.Optional[RequestOptions] = None,
-    ) -> None:
+    async def create_webhook(
+        self, *, request: CreateIntegrationWebHookRequest, request_options: typing.Optional[RequestOptions] = None
+    ) -> CreateIntegrationWebHookResponse:
         """
-        Proxy webhook messages from webhook providers to webhook recievers. For exact webhook implementations please refer to providers e.g. Ticketing. This is just an API call used in that context, not a standalone implementation.
+        Creates a WebHook for the token-linked Integration.
 
         Parameters:
-            - meta: typing.Optional[typing.Union[str, typing.Sequence[str]]]. Add metadata to the response by invoking meta functions. Documentation for meta functions is available at https://docs.synqly.com/api-reference/meta-functions. Not all meta function are available at every endpoint.
-
-            - token: str. Optional: if you can't use the HTTP Authorization Bearer, specify integration access token here.
-
-            - request: typing.Any.
+            - request: CreateIntegrationWebHookRequest.
 
             - request_options: typing.Optional[RequestOptions]. Request-specific configuration.
         """
         _response = await self._client_wrapper.httpx_client.request(
             "POST",
-            urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", "v1/hooks"),
+            urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", "v1/integration-webhooks"),
             params=jsonable_encoder(
-                remove_none_from_dict(
-                    {
-                        "meta": meta,
-                        "token": token,
-                        **(
-                            request_options.get("additional_query_parameters", {})
-                            if request_options is not None
-                            else {}
-                        ),
-                    }
-                )
+                request_options.get("additional_query_parameters") if request_options is not None else None
             ),
             json=jsonable_encoder(request)
             if request_options is None or request_options.get("additional_body_parameters") is None
@@ -265,6 +263,67 @@ class AsyncHooksClient:
                 **jsonable_encoder(request),
                 **(jsonable_encoder(remove_none_from_dict(request_options.get("additional_body_parameters", {})))),
             },
+            headers=jsonable_encoder(
+                remove_none_from_dict(
+                    {
+                        **self._client_wrapper.get_headers(),
+                        **(request_options.get("additional_headers", {}) if request_options is not None else {}),
+                    }
+                )
+            ),
+            timeout=request_options.get("timeout_in_seconds")
+            if request_options is not None and request_options.get("timeout_in_seconds") is not None
+            else 60,
+            retries=0,
+            max_retries=request_options.get("max_retries") if request_options is not None else 0,  # type: ignore
+        )
+        if 200 <= _response.status_code < 300:
+            return pydantic.parse_obj_as(CreateIntegrationWebHookResponse, _response.json())  # type: ignore
+        if _response.status_code == 400:
+            raise BadRequestError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
+        if _response.status_code == 401:
+            raise UnauthorizedError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
+        if _response.status_code == 403:
+            raise ForbiddenError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
+        if _response.status_code == 404:
+            raise NotFoundError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
+        if _response.status_code == 405:
+            raise MethodNotAllowedError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
+        if _response.status_code == 409:
+            raise ConflictError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
+        if _response.status_code == 415:
+            raise UnsupportedMediaTypeError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
+        if _response.status_code == 429:
+            raise TooManyRequestsError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
+        if _response.status_code == 500:
+            raise InternalServerError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
+        if _response.status_code == 501:
+            raise NotImplementedError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
+        if _response.status_code == 502:
+            raise BadGatewayError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
+        if _response.status_code == 503:
+            raise ServiceUnavailableError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
+        if _response.status_code == 504:
+            raise GatewayTimeoutError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
+        try:
+            _response_json = _response.json()
+        except JSONDecodeError:
+            raise ApiError(status_code=_response.status_code, body=_response.text)
+        raise ApiError(status_code=_response.status_code, body=_response_json)
+
+    async def delete_webhook(self, *, request_options: typing.Optional[RequestOptions] = None) -> None:
+        """
+        Deletes the WebHook matching the token-linked Integration.
+
+        Parameters:
+            - request_options: typing.Optional[RequestOptions]. Request-specific configuration.
+        """
+        _response = await self._client_wrapper.httpx_client.request(
+            "DELETE",
+            urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", "v1/integration-webhooks"),
+            params=jsonable_encoder(
+                request_options.get("additional_query_parameters") if request_options is not None else None
+            ),
             headers=jsonable_encoder(
                 remove_none_from_dict(
                     {
@@ -313,49 +372,21 @@ class AsyncHooksClient:
             raise ApiError(status_code=_response.status_code, body=_response.text)
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
-    async def passthrough(
-        self,
-        web_hook_cursor: str,
-        *,
-        meta: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
-        request: typing.Any,
-        request_options: typing.Optional[RequestOptions] = None,
-    ) -> None:
+    async def list_webhooks(
+        self, *, request_options: typing.Optional[RequestOptions] = None
+    ) -> ListIntegrationWebHooksResponse:
         """
-        Proxy webhook messages from webhook providers to webhook recievers. For exact webhook implementations please refer to providers e.g. Ticketing. This is just an API call used in that context, not a standalone implementation.
+        Lists all WebHooks from the token-linked Integration.
 
         Parameters:
-            - web_hook_cursor: str.
-
-            - meta: typing.Optional[typing.Union[str, typing.Sequence[str]]]. Add metadata to the response by invoking meta functions. Documentation for meta functions is available at https://docs.synqly.com/api-reference/meta-functions. Not all meta function are available at every endpoint.
-
-            - request: typing.Any.
-
             - request_options: typing.Optional[RequestOptions]. Request-specific configuration.
         """
         _response = await self._client_wrapper.httpx_client.request(
-            "POST",
-            urllib.parse.urljoin(
-                f"{self._client_wrapper.get_base_url()}/", f"v1/hooks/passthrough/{jsonable_encoder(web_hook_cursor)}"
-            ),
+            "GET",
+            urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", "v1/integration-webhooks"),
             params=jsonable_encoder(
-                remove_none_from_dict(
-                    {
-                        "meta": meta,
-                        **(
-                            request_options.get("additional_query_parameters", {})
-                            if request_options is not None
-                            else {}
-                        ),
-                    }
-                )
+                request_options.get("additional_query_parameters") if request_options is not None else None
             ),
-            json=jsonable_encoder(request)
-            if request_options is None or request_options.get("additional_body_parameters") is None
-            else {
-                **jsonable_encoder(request),
-                **(jsonable_encoder(remove_none_from_dict(request_options.get("additional_body_parameters", {})))),
-            },
             headers=jsonable_encoder(
                 remove_none_from_dict(
                     {
@@ -371,7 +402,7 @@ class AsyncHooksClient:
             max_retries=request_options.get("max_retries") if request_options is not None else 0,  # type: ignore
         )
         if 200 <= _response.status_code < 300:
-            return
+            return pydantic.parse_obj_as(ListIntegrationWebHooksResponse, _response.json())  # type: ignore
         if _response.status_code == 400:
             raise BadRequestError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
         if _response.status_code == 401:
