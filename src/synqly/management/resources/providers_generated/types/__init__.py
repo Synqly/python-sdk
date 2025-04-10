@@ -133,6 +133,7 @@ from .provider_config import (
     ProviderConfig_NotificationsMockNotifications,
     ProviderConfig_NotificationsSlack,
     ProviderConfig_NotificationsTeams,
+    ProviderConfig_SiemCrowdstrike,
     ProviderConfig_SiemElasticsearch,
     ProviderConfig_SiemGoogleChronicle,
     ProviderConfig_SiemMockSiem,
@@ -183,6 +184,7 @@ from .service_now_credential import (
     ServiceNowCredential_Token,
     ServiceNowCredential_TokenId,
 )
+from .siem_crowdstrike import SiemCrowdstrike
 from .siem_elasticsearch import SiemElasticsearch
 from .siem_google_chronicle import SiemGoogleChronicle
 from .siem_mock import SiemMock
@@ -385,6 +387,7 @@ __all__ = [
     "ProviderConfig_NotificationsMockNotifications",
     "ProviderConfig_NotificationsSlack",
     "ProviderConfig_NotificationsTeams",
+    "ProviderConfig_SiemCrowdstrike",
     "ProviderConfig_SiemElasticsearch",
     "ProviderConfig_SiemGoogleChronicle",
     "ProviderConfig_SiemMockSiem",
@@ -437,6 +440,7 @@ __all__ = [
     "ServiceNowCredential_BasicId",
     "ServiceNowCredential_Token",
     "ServiceNowCredential_TokenId",
+    "SiemCrowdstrike",
     "SiemElasticsearch",
     "SiemGoogleChronicle",
     "SiemMock",

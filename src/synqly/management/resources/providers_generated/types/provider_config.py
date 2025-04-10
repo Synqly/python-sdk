@@ -21,6 +21,7 @@ from .notifications_jira import NotificationsJira
 from .notifications_mock import NotificationsMock
 from .notifications_slack import NotificationsSlack
 from .notifications_teams import NotificationsTeams
+from .siem_crowdstrike import SiemCrowdstrike
 from .siem_elasticsearch import SiemElasticsearch
 from .siem_google_chronicle import SiemGoogleChronicle
 from .siem_mock import SiemMock
@@ -201,6 +202,15 @@ class ProviderConfig_NotificationsSlack(NotificationsSlack):
 
 class ProviderConfig_NotificationsTeams(NotificationsTeams):
     type: typing.Literal["notifications_teams"]
+
+    class Config:
+        frozen = True
+        smart_union = True
+        allow_population_by_field_name = True
+
+
+class ProviderConfig_SiemCrowdstrike(SiemCrowdstrike):
+    type: typing.Literal["siem_crowdstrike"]
 
     class Config:
         frozen = True
@@ -514,6 +524,7 @@ ProviderConfig = typing.Union[
     ProviderConfig_NotificationsMockNotifications,
     ProviderConfig_NotificationsSlack,
     ProviderConfig_NotificationsTeams,
+    ProviderConfig_SiemCrowdstrike,
     ProviderConfig_SiemElasticsearch,
     ProviderConfig_SiemGoogleChronicle,
     ProviderConfig_SiemMockSiem,

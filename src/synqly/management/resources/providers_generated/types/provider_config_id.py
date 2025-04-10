@@ -96,6 +96,11 @@ class ProviderConfigId(str, enum.Enum):
     Microsoft Teams
     """
 
+    SIEM_CROWDSTRIKE = "siem_crowdstrike"
+    """
+    CrowdStrike Falcon Next-Gen SIEM
+    """
+
     SIEM_ELASTICSEARCH = "siem_elasticsearch"
     """
     Elastic SIEM
@@ -280,6 +285,7 @@ class ProviderConfigId(str, enum.Enum):
         notifications_mock: typing.Callable[[], T_Result],
         notifications_slack: typing.Callable[[], T_Result],
         notifications_teams: typing.Callable[[], T_Result],
+        siem_crowdstrike: typing.Callable[[], T_Result],
         siem_elasticsearch: typing.Callable[[], T_Result],
         siem_google_chronicle: typing.Callable[[], T_Result],
         siem_mock: typing.Callable[[], T_Result],
@@ -348,6 +354,8 @@ class ProviderConfigId(str, enum.Enum):
             return notifications_slack()
         if self is ProviderConfigId.NOTIFICATIONS_TEAMS:
             return notifications_teams()
+        if self is ProviderConfigId.SIEM_CROWDSTRIKE:
+            return siem_crowdstrike()
         if self is ProviderConfigId.SIEM_ELASTICSEARCH:
             return siem_elasticsearch()
         if self is ProviderConfigId.SIEM_GOOGLE_CHRONICLE:
