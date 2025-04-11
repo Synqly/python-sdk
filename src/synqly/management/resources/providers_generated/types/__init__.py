@@ -2,7 +2,11 @@
 
 from .armis_credential import ArmisCredential, ArmisCredential_Token, ArmisCredential_TokenId
 from .assets_armis_centrix import AssetsArmisCentrix
+from .assets_armis_centrix_mock import AssetsArmisCentrixMock
+from .assets_armis_dataset import AssetsArmisDataset
 from .assets_nozomi_vantage import AssetsNozomiVantage
+from .assets_nozomi_vantage_dataset import AssetsNozomiVantageDataset
+from .assets_nozomi_vantage_mock import AssetsNozomiVantageMock
 from .assets_service_now import AssetsServiceNow
 from .assets_service_now_dataset import AssetsServiceNowDataset
 from .assets_service_now_mock import AssetsServiceNowMock
@@ -117,7 +121,9 @@ from .ping_one_credential import PingOneCredential, PingOneCredential_Token, Pin
 from .provider_config import (
     ProviderConfig,
     ProviderConfig_AssetsArmisCentrix,
+    ProviderConfig_AssetsArmisCentrixMock,
     ProviderConfig_AssetsNozomiVantage,
+    ProviderConfig_AssetsNozomiVantageMock,
     ProviderConfig_AssetsServicenow,
     ProviderConfig_AssetsServicenowMock,
     ProviderConfig_EdrCrowdstrike,
@@ -262,7 +268,11 @@ __all__ = [
     "ArmisCredential_Token",
     "ArmisCredential_TokenId",
     "AssetsArmisCentrix",
+    "AssetsArmisCentrixMock",
+    "AssetsArmisDataset",
     "AssetsNozomiVantage",
+    "AssetsNozomiVantageDataset",
+    "AssetsNozomiVantageMock",
     "AssetsServiceNow",
     "AssetsServiceNowDataset",
     "AssetsServiceNowMock",
@@ -371,7 +381,9 @@ __all__ = [
     "ProviderConfig",
     "ProviderConfigId",
     "ProviderConfig_AssetsArmisCentrix",
+    "ProviderConfig_AssetsArmisCentrixMock",
     "ProviderConfig_AssetsNozomiVantage",
+    "ProviderConfig_AssetsNozomiVantageMock",
     "ProviderConfig_AssetsServicenow",
     "ProviderConfig_AssetsServicenowMock",
     "ProviderConfig_EdrCrowdstrike",

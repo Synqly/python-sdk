@@ -5,7 +5,9 @@ from __future__ import annotations
 import typing
 
 from .assets_armis_centrix import AssetsArmisCentrix
+from .assets_armis_centrix_mock import AssetsArmisCentrixMock
 from .assets_nozomi_vantage import AssetsNozomiVantage
+from .assets_nozomi_vantage_mock import AssetsNozomiVantageMock
 from .assets_service_now import AssetsServiceNow
 from .assets_service_now_mock import AssetsServiceNowMock
 from .edr_crowd_strike import EdrCrowdStrike
@@ -65,8 +67,26 @@ class ProviderConfig_AssetsArmisCentrix(AssetsArmisCentrix):
         allow_population_by_field_name = True
 
 
+class ProviderConfig_AssetsArmisCentrixMock(AssetsArmisCentrixMock):
+    type: typing.Literal["assets_armis_centrix_mock"]
+
+    class Config:
+        frozen = True
+        smart_union = True
+        allow_population_by_field_name = True
+
+
 class ProviderConfig_AssetsNozomiVantage(AssetsNozomiVantage):
     type: typing.Literal["assets_nozomi_vantage"]
+
+    class Config:
+        frozen = True
+        smart_union = True
+        allow_population_by_field_name = True
+
+
+class ProviderConfig_AssetsNozomiVantageMock(AssetsNozomiVantageMock):
+    type: typing.Literal["assets_nozomi_vantage_mock"]
 
     class Config:
         frozen = True
@@ -508,7 +528,9 @@ class ProviderConfig_VulnerabilitiesTenableCloud(VulnerabilitiesTenableCloud):
 
 ProviderConfig = typing.Union[
     ProviderConfig_AssetsArmisCentrix,
+    ProviderConfig_AssetsArmisCentrixMock,
     ProviderConfig_AssetsNozomiVantage,
+    ProviderConfig_AssetsNozomiVantageMock,
     ProviderConfig_AssetsServicenow,
     ProviderConfig_AssetsServicenowMock,
     ProviderConfig_EdrCrowdstrike,
