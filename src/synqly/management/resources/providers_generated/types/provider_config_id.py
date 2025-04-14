@@ -118,7 +118,7 @@ class ProviderConfigId(str, enum.Enum):
 
     SIEM_GOOGLE_CHRONICLE = "siem_google_chronicle"
     """
-    Google Chronicle
+    Google Security Operations
     """
 
     SIEM_MOCK = "siem_mock_siem"

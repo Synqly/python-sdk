@@ -14,7 +14,7 @@ except ImportError:
 
 class SiemGoogleChronicle(pydantic.BaseModel):
     """
-    Configuration for Google Chronicle as a SIEM Provider.
+    Configuration for Google Security Operations (formerly Google Chronicle) as a SIEM Provider.
     """
 
     ingestion_credential: typing.Optional[GoogleChronicleCredential] = pydantic.Field(default=None)
@@ -24,13 +24,13 @@ class SiemGoogleChronicle(pydantic.BaseModel):
 
     ingestion_url: typing.Optional[str] = pydantic.Field(default=None)
     """
-    (Optional) Ingestion URL for the Google Chronicle instance. This should be the base event ingestion URL, without any path components. Default "https://malachiteingestion-pa.googleapis.com"
+    (Optional) Ingestion URL for the Google SecOps instance. This should be the base event ingestion URL, without any path components. Default "https://malachiteingestion-pa.googleapis.com"
     """
 
     search_credential: GoogleChronicleCredential
     search_url: typing.Optional[str] = pydantic.Field(default=None)
     """
-    Search URL for the Google Chronicle instance. This should be the base event search URL, without any path components. Default "https://backstory.googleapis.com".
+    Search URL for the Google SecOps instance. This should be the base event search URL, without any path components. Default "https://backstory.googleapis.com".
     """
 
     def json(self, **kwargs: typing.Any) -> str:
