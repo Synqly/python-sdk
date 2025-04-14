@@ -222,7 +222,7 @@ class Device(pydantic.BaseModel):
 
     network_status: typing.Optional[str] = pydantic.Field(default=None)
     """
-    The network isolation status of the endpoiint
+    The network isolation status of the endpoint
     """
 
     network_status_id: typing.Optional[DeviceNetworkStatusId] = pydantic.Field(default=None)
