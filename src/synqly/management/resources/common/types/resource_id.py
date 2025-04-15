@@ -7,27 +7,79 @@ T_Result = typing.TypeVar("T_Result")
 
 
 class ResourceId(str, enum.Enum):
+    ALERTS = "alerts"
+    APPLICATIONS = "applications"
+    AUDIT_LOGS = "audit_logs"
+    COMMENTS = "comments"
     DEVICES = "devices"
     EVENTS = "events"
-    INVESTIGATIONS = "investigations"
-    LOG_PROVIDERS = "log_providers"
     EVIDENCE = "evidence"
+    FINDINGS = "findings"
+    GROUPS = "groups"
+    INVESTIGATIONS = "investigations"
+    IOCS = "iocs"
+    LOG_PROVIDERS = "log_providers"
+    POSTURE_SCORES = "posture_scores"
+    PROJECTS = "projects"
+    SCANS = "scans"
+    THREATS = "threats"
+    TICKETS = "tickets"
+    USERS = "users"
 
     def visit(
         self,
+        alerts: typing.Callable[[], T_Result],
+        applications: typing.Callable[[], T_Result],
+        audit_logs: typing.Callable[[], T_Result],
+        comments: typing.Callable[[], T_Result],
         devices: typing.Callable[[], T_Result],
         events: typing.Callable[[], T_Result],
-        investigations: typing.Callable[[], T_Result],
-        log_providers: typing.Callable[[], T_Result],
         evidence: typing.Callable[[], T_Result],
+        findings: typing.Callable[[], T_Result],
+        groups: typing.Callable[[], T_Result],
+        investigations: typing.Callable[[], T_Result],
+        iocs: typing.Callable[[], T_Result],
+        log_providers: typing.Callable[[], T_Result],
+        posture_scores: typing.Callable[[], T_Result],
+        projects: typing.Callable[[], T_Result],
+        scans: typing.Callable[[], T_Result],
+        threats: typing.Callable[[], T_Result],
+        tickets: typing.Callable[[], T_Result],
+        users: typing.Callable[[], T_Result],
     ) -> T_Result:
+        if self is ResourceId.ALERTS:
+            return alerts()
+        if self is ResourceId.APPLICATIONS:
+            return applications()
+        if self is ResourceId.AUDIT_LOGS:
+            return audit_logs()
+        if self is ResourceId.COMMENTS:
+            return comments()
         if self is ResourceId.DEVICES:
             return devices()
         if self is ResourceId.EVENTS:
             return events()
-        if self is ResourceId.INVESTIGATIONS:
-            return investigations()
-        if self is ResourceId.LOG_PROVIDERS:
-            return log_providers()
         if self is ResourceId.EVIDENCE:
             return evidence()
+        if self is ResourceId.FINDINGS:
+            return findings()
+        if self is ResourceId.GROUPS:
+            return groups()
+        if self is ResourceId.INVESTIGATIONS:
+            return investigations()
+        if self is ResourceId.IOCS:
+            return iocs()
+        if self is ResourceId.LOG_PROVIDERS:
+            return log_providers()
+        if self is ResourceId.POSTURE_SCORES:
+            return posture_scores()
+        if self is ResourceId.PROJECTS:
+            return projects()
+        if self is ResourceId.SCANS:
+            return scans()
+        if self is ResourceId.THREATS:
+            return threats()
+        if self is ResourceId.TICKETS:
+            return tickets()
+        if self is ResourceId.USERS:
+            return users()
