@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "synqly"
-version = "0.3.93"
+version = "0.3.94"
 description = "SDK for Synqly APIs"
 readme = "README.md"
 authors = []

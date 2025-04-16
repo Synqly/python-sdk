@@ -17,6 +17,11 @@ class Investigation(pydantic.BaseModel):
     Unique identifier for the investigation
     """
 
+    custom_fields: typing.Optional[typing.Dict[str, typing.Any]] = pydantic.Field(default=None)
+    """
+    Custom mapped fields from the investigation
+    """
+
     raw_data: str = pydantic.Field()
     """
     Original response from the SIEM
