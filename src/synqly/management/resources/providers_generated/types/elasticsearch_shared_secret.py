@@ -6,21 +6,11 @@ import typing
 
 from ...credentials.types.secret_credential import SecretCredential
 from ...credentials.types.secret_credential_id import SecretCredentialId
-from .elasticsearch_bridge_shared_secret import ElasticsearchBridgeSharedSecret
 
 try:
     import pydantic.v1 as pydantic  # type: ignore
 except ImportError:
     import pydantic  # type: ignore
-
-
-class ElasticsearchSharedSecret_Bridge(pydantic.BaseModel):
-    type: typing.Literal["bridge"]
-    value: ElasticsearchBridgeSharedSecret
-
-    class Config:
-        frozen = True
-        smart_union = True
 
 
 class ElasticsearchSharedSecret_Secret(SecretCredential):
@@ -41,6 +31,4 @@ class ElasticsearchSharedSecret_SecretId(pydantic.BaseModel):
         smart_union = True
 
 
-ElasticsearchSharedSecret = typing.Union[
-    ElasticsearchSharedSecret_Bridge, ElasticsearchSharedSecret_Secret, ElasticsearchSharedSecret_SecretId
-]
+ElasticsearchSharedSecret = typing.Union[ElasticsearchSharedSecret_Secret, ElasticsearchSharedSecret_SecretId]

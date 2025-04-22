@@ -4,32 +4,6 @@ from .aws_credential import AwsCredential
 from .aws_credential_id import AwsCredentialId
 from .basic_credential import BasicCredential
 from .basic_credential_id import BasicCredentialId
-from .bridge_aws_credential import BridgeAwsCredential
-from .bridge_basic_credential import BridgeBasicCredential
-from .bridge_basic_credential_id import BridgeBasicCredentialId
-from .bridge_credential import (
-    BridgeCredential,
-    BridgeCredential_BridgeAws,
-    BridgeCredential_BridgeBasic,
-    BridgeCredential_BridgeOAuthClient,
-    BridgeCredential_BridgeSecret,
-    BridgeCredential_BridgeToken,
-)
-from .bridge_environment import BridgeEnvironment
-from .bridge_literal import BridgeLiteral
-from .bridge_local_credential import (
-    BridgeLocalCredential,
-    BridgeLocalCredential_Environment,
-    BridgeLocalCredential_Literal,
-    BridgeLocalCredential_Vault,
-)
-from .bridge_o_auth_client_credential import BridgeOAuthClientCredential
-from .bridge_o_auth_client_credential_id import BridgeOAuthClientCredentialId
-from .bridge_secret_credential import BridgeSecretCredential
-from .bridge_secret_credential_id import BridgeSecretCredentialId
-from .bridge_token_credential import BridgeTokenCredential
-from .bridge_token_credential_id import BridgeTokenCredentialId
-from .bridge_type import BridgeType
 from .create_credential_request import CreateCredentialRequest
 from .create_credential_response import CreateCredentialResponse
 from .credential import Credential
@@ -38,7 +12,6 @@ from .credential_config import (
     CredentialConfig,
     CredentialConfig_Aws,
     CredentialConfig_Basic,
-    CredentialConfig_Bridge,
     CredentialConfig_OAuthClient,
     CredentialConfig_Secret,
     CredentialConfig_Token,
@@ -49,7 +22,6 @@ from .credential_response import CredentialResponse
 from .credential_type import CredentialType
 from .get_credential_response import GetCredentialResponse
 from .list_credentials_response import ListCredentialsResponse
-from .local_type import LocalType
 from .lookup_credential_response import LookupCredentialResponse
 from .managed_type import ManagedType
 from .o_auth_client_credential import OAuthClientCredential
@@ -62,35 +34,12 @@ from .token_credential import TokenCredential
 from .token_credential_id import TokenCredentialId
 from .update_credential_request import UpdateCredentialRequest
 from .update_credential_response import UpdateCredentialResponse
-from .vault_credential import VaultCredential
 
 __all__ = [
     "AwsCredential",
     "AwsCredentialId",
     "BasicCredential",
     "BasicCredentialId",
-    "BridgeAwsCredential",
-    "BridgeBasicCredential",
-    "BridgeBasicCredentialId",
-    "BridgeCredential",
-    "BridgeCredential_BridgeAws",
-    "BridgeCredential_BridgeBasic",
-    "BridgeCredential_BridgeOAuthClient",
-    "BridgeCredential_BridgeSecret",
-    "BridgeCredential_BridgeToken",
-    "BridgeEnvironment",
-    "BridgeLiteral",
-    "BridgeLocalCredential",
-    "BridgeLocalCredential_Environment",
-    "BridgeLocalCredential_Literal",
-    "BridgeLocalCredential_Vault",
-    "BridgeOAuthClientCredential",
-    "BridgeOAuthClientCredentialId",
-    "BridgeSecretCredential",
-    "BridgeSecretCredentialId",
-    "BridgeTokenCredential",
-    "BridgeTokenCredentialId",
-    "BridgeType",
     "CreateCredentialRequest",
     "CreateCredentialResponse",
     "Credential",
@@ -99,7 +48,6 @@ __all__ = [
     "CredentialConfigNoSecret",
     "CredentialConfig_Aws",
     "CredentialConfig_Basic",
-    "CredentialConfig_Bridge",
     "CredentialConfig_OAuthClient",
     "CredentialConfig_Secret",
     "CredentialConfig_Token",
@@ -108,7 +56,6 @@ __all__ = [
     "CredentialType",
     "GetCredentialResponse",
     "ListCredentialsResponse",
-    "LocalType",
     "LookupCredentialResponse",
     "ManagedType",
     "OAuthClientCredential",
@@ -121,5 +68,4 @@ __all__ = [
     "TokenCredentialId",
     "UpdateCredentialRequest",
     "UpdateCredentialResponse",
-    "VaultCredential",
 ]
