@@ -17,7 +17,11 @@ class SinkSplunk(pydantic.BaseModel):
     Configuration for Splunk as a Sink provider. This integration allows sending data to Splunk using an HTTP Event Collector (HEC).
     """
 
-    hec_credential: SplunkHecToken
+    hec_credential: SplunkHecToken = pydantic.Field()
+    """
+    Token credential to use for connecting to the Splunk HEC service.
+    """
+
     hec_url: str = pydantic.Field()
     """
     URL for the Splunk HEC endpoint. This must include the full path to the HEC endpoint. For example, "https://tenant.cloud.splunk.com:8088/services_collector_event".

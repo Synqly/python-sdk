@@ -18,8 +18,12 @@ class SiemSplunk(pydantic.BaseModel):
     Configuration for Splunk as a SIEM Provider. This integration allows sending data to Splunk using an HTTP Event Collector (HEC). Additionally, it can be used to query Splunk using the Splunk Search Service.
     """
 
-    hec_credential: SplunkHecToken
-    hec_url: str = pydantic.Field()
+    hec_credential: typing.Optional[SplunkHecToken] = pydantic.Field(default=None)
+    """
+    Optional token credential to use for connecting to the Splunk HEC service. If not provided, sending events to Splunk is disabled.
+    """
+
+    hec_url: typing.Optional[str] = pydantic.Field(default=None)
     """
     URL for the Splunk HEC endpoint. This must include the full path to the HEC endpoint. For example, "https://tenant.cloud.splunk.com:8088/services_collector_event".
     """
@@ -31,7 +35,7 @@ class SiemSplunk(pydantic.BaseModel):
 
     search_service_credential: typing.Optional[SplunkSearchCredential] = pydantic.Field(default=None)
     """
-    Optional id of a credential used for connecting to the Splunk search service. If not provided, querying is disabled.
+    Optional token credential used for connecting to the Splunk search service. If not provided, querying is disabled.
     """
 
     search_service_url: typing.Optional[str] = pydantic.Field(default=None)
