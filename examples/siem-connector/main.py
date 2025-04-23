@@ -72,6 +72,10 @@ def mock_provider_config():
 def splunk_provider_config(splunk_url, credential_id):
     return mgmt.ProviderConfig_SiemSplunk(
         type="siem_splunk",
+        search_service_credential=mgmt.SplunkSearchCredential_Token(
+            type="token", secret="abc"
+        ),
+        search_service_url=splunk_url,
         hec_credential=mgmt.SplunkHecToken_TokenId(
             type="token_id", value=credential_id
         ),
