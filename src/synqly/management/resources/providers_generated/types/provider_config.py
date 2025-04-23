@@ -37,6 +37,7 @@ from .sink_aws_sqs import SinkAwsSqs
 from .sink_azure_monitor_logs import SinkAzureMonitorLogs
 from .sink_crowdstrike_hec import SinkCrowdstrikeHec
 from .sink_elasticsearch import SinkElasticsearch
+from .sink_google_sec_ops import SinkGoogleSecOps
 from .sink_mock import SinkMock
 from .sink_splunk import SinkSplunk
 from .storage_aws_s_3 import StorageAwsS3
@@ -355,6 +356,15 @@ class ProviderConfig_SinkElasticsearch(SinkElasticsearch):
         allow_population_by_field_name = True
 
 
+class ProviderConfig_SinkGoogleSecOps(SinkGoogleSecOps):
+    type: typing.Literal["sink_google_sec_ops"]
+
+    class Config:
+        frozen = True
+        smart_union = True
+        allow_population_by_field_name = True
+
+
 class ProviderConfig_SinkMockSink(SinkMock):
     type: typing.Literal["sink_mock_sink"]
 
@@ -560,6 +570,7 @@ ProviderConfig = typing.Union[
     ProviderConfig_SinkAzureMonitorLogs,
     ProviderConfig_SinkCrowdstrikeHec,
     ProviderConfig_SinkElasticsearch,
+    ProviderConfig_SinkGoogleSecOps,
     ProviderConfig_SinkMockSink,
     ProviderConfig_SinkSplunk,
     ProviderConfig_StorageAwsS3,

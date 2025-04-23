@@ -17,20 +17,29 @@ class SiemGoogleChronicle(pydantic.BaseModel):
     Configuration for Google Security Operations (formerly Google Chronicle) as a SIEM Provider.
     """
 
+    customer_id: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    Optional. The customer ID reported when writing events. This is required for ingestion.
+    """
+
     ingestion_credential: typing.Optional[GoogleChronicleCredential] = pydantic.Field(default=None)
     """
-    Optional ingestion credential. Without this credential the provider will not be able to ingest events.
+    Optional. Google OAuth 2.0 credentials with an email address. Without this credential the provider will not be able to ingest events.
     """
 
     ingestion_url: typing.Optional[str] = pydantic.Field(default=None)
     """
-    (Optional) Ingestion URL for the Google SecOps instance. This should be the base event ingestion URL, without any path components. Default "https://malachiteingestion-pa.googleapis.com"
+    Optional. Ingestion URL for the Google SecOps instance. This should be the base event ingestion URL, without any path components.
     """
 
-    search_credential: GoogleChronicleCredential
+    search_credential: GoogleChronicleCredential = pydantic.Field()
+    """
+    Google OAuth 2.0 credentials with an email address.
+    """
+
     search_url: typing.Optional[str] = pydantic.Field(default=None)
     """
-    Search URL for the Google SecOps instance. This should be the base event search URL, without any path components. Default "https://backstory.googleapis.com".
+    Search URL for the Google SecOps instance. This should be the base event search URL, without any path components.
     """
 
     def json(self, **kwargs: typing.Any) -> str:

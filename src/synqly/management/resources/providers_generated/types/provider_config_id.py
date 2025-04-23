@@ -176,6 +176,11 @@ class ProviderConfigId(str, enum.Enum):
     Elastic
     """
 
+    SINK_GOOGLE_SEC_OPS = "sink_google_sec_ops"
+    """
+    Google Security Operations
+    """
+
     SINK_MOCK = "sink_mock_sink"
     """
     Sink Test
@@ -311,6 +316,7 @@ class ProviderConfigId(str, enum.Enum):
         sink_azure_monitor_logs: typing.Callable[[], T_Result],
         sink_crowdstrike_hec: typing.Callable[[], T_Result],
         sink_elasticsearch: typing.Callable[[], T_Result],
+        sink_google_sec_ops: typing.Callable[[], T_Result],
         sink_mock: typing.Callable[[], T_Result],
         sink_splunk: typing.Callable[[], T_Result],
         storage_aws_s_3: typing.Callable[[], T_Result],
@@ -398,6 +404,8 @@ class ProviderConfigId(str, enum.Enum):
             return sink_crowdstrike_hec()
         if self is ProviderConfigId.SINK_ELASTICSEARCH:
             return sink_elasticsearch()
+        if self is ProviderConfigId.SINK_GOOGLE_SEC_OPS:
+            return sink_google_sec_ops()
         if self is ProviderConfigId.SINK_MOCK:
             return sink_mock()
         if self is ProviderConfigId.SINK_SPLUNK:
