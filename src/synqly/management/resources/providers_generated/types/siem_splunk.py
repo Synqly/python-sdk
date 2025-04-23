@@ -33,14 +33,14 @@ class SiemSplunk(pydantic.BaseModel):
     Splunk index to send events to. If not provided, will use the default index for the Splunk collector.
     """
 
-    search_service_credential: typing.Optional[SplunkSearchCredential] = pydantic.Field(default=None)
+    search_service_credential: SplunkSearchCredential = pydantic.Field()
     """
-    Optional token credential used for connecting to the Splunk search service. If not provided, querying is disabled.
+    Token credential used for connecting to the Splunk search service.
     """
 
-    search_service_url: typing.Optional[str] = pydantic.Field(default=None)
+    search_service_url: str = pydantic.Field()
     """
-    Optional URL used for connecting to the Splunk search service. If not provided, querying is disabled.
+    URL used for connecting to the Splunk search service.
     """
 
     skip_tls_verify: typing.Optional[bool] = pydantic.Field(default=None)
