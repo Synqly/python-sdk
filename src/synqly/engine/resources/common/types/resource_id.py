@@ -22,6 +22,7 @@ class ResourceId(str, enum.Enum):
     POSTURE_SCORES = "posture_scores"
     PROJECTS = "projects"
     SCANS = "scans"
+    SCAN_ACTIVITIES = "scan_activities"
     THREATS = "threats"
     TICKETS = "tickets"
     USERS = "users"
@@ -43,6 +44,7 @@ class ResourceId(str, enum.Enum):
         posture_scores: typing.Callable[[], T_Result],
         projects: typing.Callable[[], T_Result],
         scans: typing.Callable[[], T_Result],
+        scan_activities: typing.Callable[[], T_Result],
         threats: typing.Callable[[], T_Result],
         tickets: typing.Callable[[], T_Result],
         users: typing.Callable[[], T_Result],
@@ -77,6 +79,8 @@ class ResourceId(str, enum.Enum):
             return projects()
         if self is ResourceId.SCANS:
             return scans()
+        if self is ResourceId.SCAN_ACTIVITIES:
+            return scan_activities()
         if self is ResourceId.THREATS:
             return threats()
         if self is ResourceId.TICKETS:
