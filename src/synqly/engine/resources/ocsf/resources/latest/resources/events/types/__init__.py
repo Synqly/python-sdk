@@ -3,6 +3,7 @@
 from .account_change import AccountChange
 from .api_activity import ApiActivity
 from .authentication import Authentication
+from .cloud_resources_inventory_info import CloudResourcesInventoryInfo
 from .compliance_finding import ComplianceFinding
 from .detection_finding import DetectionFinding
 from .entity_management import EntityManagement
@@ -22,6 +23,7 @@ __all__ = [
     "AccountChange",
     "ApiActivity",
     "Authentication",
+    "CloudResourcesInventoryInfo",
     "ComplianceFinding",
     "DetectionFinding",
     "EntityManagement",

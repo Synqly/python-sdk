@@ -26,6 +26,8 @@ class ResourceId(str, enum.Enum):
     THREATS = "threats"
     TICKETS = "tickets"
     USERS = "users"
+    COMPLIANCE = "compliance"
+    CLOUDRESOURCEINVENTORY = "cloudresourceinventory"
 
     def visit(
         self,
@@ -48,6 +50,8 @@ class ResourceId(str, enum.Enum):
         threats: typing.Callable[[], T_Result],
         tickets: typing.Callable[[], T_Result],
         users: typing.Callable[[], T_Result],
+        compliance: typing.Callable[[], T_Result],
+        cloudresourceinventory: typing.Callable[[], T_Result],
     ) -> T_Result:
         if self is ResourceId.ALERTS:
             return alerts()
@@ -87,3 +91,7 @@ class ResourceId(str, enum.Enum):
             return tickets()
         if self is ResourceId.USERS:
             return users()
+        if self is ResourceId.COMPLIANCE:
+            return compliance()
+        if self is ResourceId.CLOUDRESOURCEINVENTORY:
+            return cloudresourceinventory()

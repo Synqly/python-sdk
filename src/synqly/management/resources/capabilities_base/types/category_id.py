@@ -12,6 +12,7 @@ class CategoryId(str, enum.Enum):
     """
 
     ASSETS = "assets"
+    CLOUDSECURITY = "cloudsecurity"
     EDR = "edr"
     IDENTITY = "identity"
     NOTIFICATIONS = "notifications"
@@ -24,6 +25,7 @@ class CategoryId(str, enum.Enum):
     def visit(
         self,
         assets: typing.Callable[[], T_Result],
+        cloudsecurity: typing.Callable[[], T_Result],
         edr: typing.Callable[[], T_Result],
         identity: typing.Callable[[], T_Result],
         notifications: typing.Callable[[], T_Result],
@@ -35,6 +37,8 @@ class CategoryId(str, enum.Enum):
     ) -> T_Result:
         if self is CategoryId.ASSETS:
             return assets()
+        if self is CategoryId.CLOUDSECURITY:
+            return cloudsecurity()
         if self is CategoryId.EDR:
             return edr()
         if self is CategoryId.IDENTITY:

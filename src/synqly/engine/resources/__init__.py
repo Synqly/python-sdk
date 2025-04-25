@@ -2,6 +2,7 @@
 
 from . import (
     assets,
+    cloudsecurity,
     common,
     edr,
     engine,
@@ -22,6 +23,7 @@ from . import (
     vulnerabilities,
 )
 from .assets import CreateDeviceRequest, CreateDeviceResponse, Device, QueryDevicesResponse
+from .cloudsecurity import QueryCloudResourceInventoryResponse, QueryComplianceFindingsResponse
 from .common import (
     ActionId,
     BadGatewayError,
@@ -372,6 +374,8 @@ __all__ = [
     "QueryAlertsResponse",
     "QueryApplicationsResponse",
     "QueryAssetsResponse",
+    "QueryCloudResourceInventoryResponse",
+    "QueryComplianceFindingsResponse",
     "QueryDevicesResponse",
     "QueryEndpointsResponse",
     "QueryEventStatus",
@@ -419,6 +423,7 @@ __all__ = [
     "WebhookFilter",
     "WebhookId",
     "assets",
+    "cloudsecurity",
     "common",
     "edr",
     "engine",

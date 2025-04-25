@@ -10,6 +10,7 @@ from .assets_nozomi_vantage import AssetsNozomiVantage
 from .assets_nozomi_vantage_mock import AssetsNozomiVantageMock
 from .assets_service_now import AssetsServiceNow
 from .assets_service_now_mock import AssetsServiceNowMock
+from .cloud_security_crowd_strike import CloudSecurityCrowdStrike
 from .edr_crowd_strike import EdrCrowdStrike
 from .edr_defender import EdrDefender
 from .edr_malwarebytes import EdrMalwarebytes
@@ -106,6 +107,15 @@ class ProviderConfig_AssetsServicenow(AssetsServiceNow):
 
 class ProviderConfig_AssetsServicenowMock(AssetsServiceNowMock):
     type: typing.Literal["assets_servicenow_mock"]
+
+    class Config:
+        frozen = True
+        smart_union = True
+        allow_population_by_field_name = True
+
+
+class ProviderConfig_CloudsecurityCrowdstrike(CloudSecurityCrowdStrike):
+    type: typing.Literal["cloudsecurity_crowdstrike"]
 
     class Config:
         frozen = True
@@ -543,6 +553,7 @@ ProviderConfig = typing.Union[
     ProviderConfig_AssetsNozomiVantageMock,
     ProviderConfig_AssetsServicenow,
     ProviderConfig_AssetsServicenowMock,
+    ProviderConfig_CloudsecurityCrowdstrike,
     ProviderConfig_EdrCrowdstrike,
     ProviderConfig_EdrDefender,
     ProviderConfig_EdrMalwarebytes,
