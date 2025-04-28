@@ -55,6 +55,7 @@ from .ticketing_torq import TicketingTorq
 from .vulnerabilities_crowd_strike import VulnerabilitiesCrowdStrike
 from .vulnerabilities_nucleus import VulnerabilitiesNucleus
 from .vulnerabilities_qualys_cloud import VulnerabilitiesQualysCloud
+from .vulnerabilities_qualys_cloud_mock import VulnerabilitiesQualysCloudMock
 from .vulnerabilities_rapid_7_insight_cloud import VulnerabilitiesRapid7InsightCloud
 from .vulnerabilities_tanium_cloud import VulnerabilitiesTaniumCloud
 from .vulnerabilities_tenable_cloud import VulnerabilitiesTenableCloud
@@ -519,6 +520,15 @@ class ProviderConfig_VulnerabilitiesQualysCloud(VulnerabilitiesQualysCloud):
         allow_population_by_field_name = True
 
 
+class ProviderConfig_VulnerabilitiesQualysCloudMock(VulnerabilitiesQualysCloudMock):
+    type: typing.Literal["vulnerabilities_qualys_cloud_mock"]
+
+    class Config:
+        frozen = True
+        smart_union = True
+        allow_population_by_field_name = True
+
+
 class ProviderConfig_VulnerabilitiesRapid7InsightCloud(VulnerabilitiesRapid7InsightCloud):
     type: typing.Literal["vulnerabilities_rapid7_insight_cloud"]
 
@@ -598,6 +608,7 @@ ProviderConfig = typing.Union[
     ProviderConfig_VulnerabilitiesCrowdstrike,
     ProviderConfig_VulnerabilitiesNucleus,
     ProviderConfig_VulnerabilitiesQualysCloud,
+    ProviderConfig_VulnerabilitiesQualysCloudMock,
     ProviderConfig_VulnerabilitiesRapid7InsightCloud,
     ProviderConfig_VulnerabilitiesTaniumCloud,
     ProviderConfig_VulnerabilitiesTenableCloud,

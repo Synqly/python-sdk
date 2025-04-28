@@ -156,6 +156,7 @@ from .provider_config import (
     ProviderConfig_VulnerabilitiesCrowdstrike,
     ProviderConfig_VulnerabilitiesNucleus,
     ProviderConfig_VulnerabilitiesQualysCloud,
+    ProviderConfig_VulnerabilitiesQualysCloudMock,
     ProviderConfig_VulnerabilitiesRapid7InsightCloud,
     ProviderConfig_VulnerabilitiesTaniumCloud,
     ProviderConfig_VulnerabilitiesTenableCloud,
@@ -236,6 +237,8 @@ from .torq_credential import TorqCredential, TorqCredential_OAuthClient, TorqCre
 from .vulnerabilities_crowd_strike import VulnerabilitiesCrowdStrike
 from .vulnerabilities_nucleus import VulnerabilitiesNucleus
 from .vulnerabilities_qualys_cloud import VulnerabilitiesQualysCloud
+from .vulnerabilities_qualys_cloud_dataset import VulnerabilitiesQualysCloudDataset
+from .vulnerabilities_qualys_cloud_mock import VulnerabilitiesQualysCloudMock
 from .vulnerabilities_rapid_7_insight_cloud import VulnerabilitiesRapid7InsightCloud
 from .vulnerabilities_tanium_cloud import VulnerabilitiesTaniumCloud
 from .vulnerabilities_tenable_cloud import VulnerabilitiesTenableCloud
@@ -397,6 +400,7 @@ __all__ = [
     "ProviderConfig_VulnerabilitiesCrowdstrike",
     "ProviderConfig_VulnerabilitiesNucleus",
     "ProviderConfig_VulnerabilitiesQualysCloud",
+    "ProviderConfig_VulnerabilitiesQualysCloudMock",
     "ProviderConfig_VulnerabilitiesRapid7InsightCloud",
     "ProviderConfig_VulnerabilitiesTaniumCloud",
     "ProviderConfig_VulnerabilitiesTenableCloud",
@@ -483,6 +487,8 @@ __all__ = [
     "VulnerabilitiesCrowdStrike",
     "VulnerabilitiesNucleus",
     "VulnerabilitiesQualysCloud",
+    "VulnerabilitiesQualysCloudDataset",
+    "VulnerabilitiesQualysCloudMock",
     "VulnerabilitiesRapid7InsightCloud",
     "VulnerabilitiesTaniumCloud",
     "VulnerabilitiesTenableCloud",

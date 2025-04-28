@@ -266,6 +266,11 @@ class ProviderConfigId(str, enum.Enum):
     Qualys Vulnerability Management, Detection & Response (VMDR)
     """
 
+    VULNERABILITIES_QUALYS_CLOUD_MOCK = "vulnerabilities_qualys_cloud_mock"
+    """
+    [MOCK] Qualys Vulnerability Management, Detection & Response (VMDR)
+    """
+
     VULNERABILITIES_RAPID_7_INSIGHT_CLOUD = "vulnerabilities_rapid7_insight_cloud"
     """
     Rapid7 Insight Vulnerability Management Cloud
@@ -339,6 +344,7 @@ class ProviderConfigId(str, enum.Enum):
         vulnerabilities_crowd_strike: typing.Callable[[], T_Result],
         vulnerabilities_nucleus: typing.Callable[[], T_Result],
         vulnerabilities_qualys_cloud: typing.Callable[[], T_Result],
+        vulnerabilities_qualys_cloud_mock: typing.Callable[[], T_Result],
         vulnerabilities_rapid_7_insight_cloud: typing.Callable[[], T_Result],
         vulnerabilities_tanium_cloud: typing.Callable[[], T_Result],
         vulnerabilities_tenable_cloud: typing.Callable[[], T_Result],
@@ -446,6 +452,8 @@ class ProviderConfigId(str, enum.Enum):
             return vulnerabilities_nucleus()
         if self is ProviderConfigId.VULNERABILITIES_QUALYS_CLOUD:
             return vulnerabilities_qualys_cloud()
+        if self is ProviderConfigId.VULNERABILITIES_QUALYS_CLOUD_MOCK:
+            return vulnerabilities_qualys_cloud_mock()
         if self is ProviderConfigId.VULNERABILITIES_RAPID_7_INSIGHT_CLOUD:
             return vulnerabilities_rapid_7_insight_cloud()
         if self is ProviderConfigId.VULNERABILITIES_TANIUM_CLOUD:
