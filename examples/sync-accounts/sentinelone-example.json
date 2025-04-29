@@ -1,0 +1,6 @@
+{
+    "sentinelone": {
+        "url": "https://<sentinelone-instance>.sentinelone.net",
+        "api_token": "sentinelone_api_token"
+    }
+}
