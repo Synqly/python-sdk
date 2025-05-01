@@ -23,6 +23,7 @@ from .identity_ping_one import IdentityPingOne
 from .notifications_jira import NotificationsJira
 from .notifications_mock import NotificationsMock
 from .notifications_slack import NotificationsSlack
+from .notifications_slack_webhook import NotificationsSlackWebhook
 from .notifications_teams import NotificationsTeams
 from .siem_crowdstrike import SiemCrowdstrike
 from .siem_elasticsearch import SiemElasticsearch
@@ -225,6 +226,15 @@ class ProviderConfig_NotificationsMockNotifications(NotificationsMock):
 
 class ProviderConfig_NotificationsSlack(NotificationsSlack):
     type: typing.Literal["notifications_slack"]
+
+    class Config:
+        frozen = True
+        smart_union = True
+        allow_population_by_field_name = True
+
+
+class ProviderConfig_NotificationsSlackWebhook(NotificationsSlackWebhook):
+    type: typing.Literal["notifications_slack_webhook"]
 
     class Config:
         frozen = True
@@ -576,6 +586,7 @@ ProviderConfig = typing.Union[
     ProviderConfig_NotificationsJira,
     ProviderConfig_NotificationsMockNotifications,
     ProviderConfig_NotificationsSlack,
+    ProviderConfig_NotificationsSlackWebhook,
     ProviderConfig_NotificationsTeams,
     ProviderConfig_SiemCrowdstrike,
     ProviderConfig_SiemElasticsearch,

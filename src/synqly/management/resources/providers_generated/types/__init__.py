@@ -87,6 +87,7 @@ from .malwarebytes_credential import (
 from .notifications_jira import NotificationsJira
 from .notifications_mock import NotificationsMock
 from .notifications_slack import NotificationsSlack
+from .notifications_slack_webhook import NotificationsSlackWebhook
 from .notifications_teams import NotificationsTeams
 from .nozomi_vantage_credential import (
     NozomiVantageCredential,
@@ -124,6 +125,7 @@ from .provider_config import (
     ProviderConfig_NotificationsJira,
     ProviderConfig_NotificationsMockNotifications,
     ProviderConfig_NotificationsSlack,
+    ProviderConfig_NotificationsSlackWebhook,
     ProviderConfig_NotificationsTeams,
     ProviderConfig_SiemCrowdstrike,
     ProviderConfig_SiemElasticsearch,
@@ -196,6 +198,11 @@ from .sink_google_sec_ops import SinkGoogleSecOps
 from .sink_mock import SinkMock
 from .sink_splunk import SinkSplunk
 from .slack_credential import SlackCredential, SlackCredential_Token, SlackCredential_TokenId
+from .slack_webhook_credential import (
+    SlackWebhookCredential,
+    SlackWebhookCredential_Secret,
+    SlackWebhookCredential_SecretId,
+)
 from .sophos_credential import SophosCredential, SophosCredential_OAuthClient, SophosCredential_OAuthClientId
 from .splunk_hec_token import SplunkHecToken, SplunkHecToken_Token, SplunkHecToken_TokenId
 from .splunk_search_credential import (
@@ -329,6 +336,7 @@ __all__ = [
     "NotificationsJira",
     "NotificationsMock",
     "NotificationsSlack",
+    "NotificationsSlackWebhook",
     "NotificationsTeams",
     "NozomiVantageCredential",
     "NozomiVantageCredential_Basic",
@@ -368,6 +376,7 @@ __all__ = [
     "ProviderConfig_NotificationsJira",
     "ProviderConfig_NotificationsMockNotifications",
     "ProviderConfig_NotificationsSlack",
+    "ProviderConfig_NotificationsSlackWebhook",
     "ProviderConfig_NotificationsTeams",
     "ProviderConfig_SiemCrowdstrike",
     "ProviderConfig_SiemElasticsearch",
@@ -444,6 +453,9 @@ __all__ = [
     "SlackCredential",
     "SlackCredential_Token",
     "SlackCredential_TokenId",
+    "SlackWebhookCredential",
+    "SlackWebhookCredential_Secret",
+    "SlackWebhookCredential_SecretId",
     "SophosCredential",
     "SophosCredential_OAuthClient",
     "SophosCredential_OAuthClientId",

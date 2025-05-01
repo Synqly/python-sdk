@@ -4,7 +4,7 @@ import datetime as dt
 import typing
 
 from ....core.datetime_utils import serialize_datetime
-from .slack_credential import SlackCredential
+from .slack_webhook_credential import SlackWebhookCredential
 
 try:
     import pydantic.v1 as pydantic  # type: ignore
@@ -12,21 +12,13 @@ except ImportError:
     import pydantic  # type: ignore
 
 
-class NotificationsSlack(pydantic.BaseModel):
+class NotificationsSlackWebhook(pydantic.BaseModel):
     """
-    Configuration for the Slack Notification Provider
-    """
-
-    channel: str = pydantic.Field()
-    """
-    The channel to send notifications to. Should be the ID of the desired channel.
+    Configuration for the Slack Notification Provider using Incoming Webhooks.
+    Incoming Webhooks are a way to post messages from apps into Slack. The can not be used for any other actions, such as reading or deleting messages.
     """
 
-    credential: SlackCredential
-    url: typing.Optional[str] = pydantic.Field(default=None)
-    """
-    Base URL for the Slack API.
-    """
+    webhook_url: SlackWebhookCredential
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}

@@ -101,6 +101,11 @@ class ProviderConfigId(str, enum.Enum):
     Notifications Test
     """
 
+    NOTIFICATIONS_SLACK_WEBHOOK = "notifications_slack_webhook"
+    """
+    Slack Incoming Webhook
+    """
+
     NOTIFICATIONS_SLACK = "notifications_slack"
     """
     Slack
@@ -311,6 +316,7 @@ class ProviderConfigId(str, enum.Enum):
         identity_ping_one: typing.Callable[[], T_Result],
         notifications_jira: typing.Callable[[], T_Result],
         notifications_mock: typing.Callable[[], T_Result],
+        notifications_slack_webhook: typing.Callable[[], T_Result],
         notifications_slack: typing.Callable[[], T_Result],
         notifications_teams: typing.Callable[[], T_Result],
         siem_crowdstrike: typing.Callable[[], T_Result],
@@ -386,6 +392,8 @@ class ProviderConfigId(str, enum.Enum):
             return notifications_jira()
         if self is ProviderConfigId.NOTIFICATIONS_MOCK:
             return notifications_mock()
+        if self is ProviderConfigId.NOTIFICATIONS_SLACK_WEBHOOK:
+            return notifications_slack_webhook()
         if self is ProviderConfigId.NOTIFICATIONS_SLACK:
             return notifications_slack()
         if self is ProviderConfigId.NOTIFICATIONS_TEAMS:
