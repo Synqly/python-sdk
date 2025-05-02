@@ -3,6 +3,8 @@
 from .types import (
     CreateIntegrationTokenRequest,
     CreateIntegrationTokenResponse,
+    CreateSynqlyIntegrationsTokenRequest,
+    CreateSynqlyIntegrationsTokenResponse,
     CreateTokenRequest,
     CreateTokenResponse,
     GetTokenResponse,
@@ -10,11 +12,14 @@ from .types import (
     RefreshToken,
     RefreshTokenResponse,
     ResetTokenResponse,
+    SynqlyIntegrationsTokenResponse,
 )
 
 __all__ = [
     "CreateIntegrationTokenRequest",
     "CreateIntegrationTokenResponse",
+    "CreateSynqlyIntegrationsTokenRequest",
+    "CreateSynqlyIntegrationsTokenResponse",
     "CreateTokenRequest",
     "CreateTokenResponse",
     "GetTokenResponse",
@@ -22,4 +27,5 @@ __all__ = [
     "RefreshToken",
     "RefreshTokenResponse",
     "ResetTokenResponse",
+    "SynqlyIntegrationsTokenResponse",
 ]

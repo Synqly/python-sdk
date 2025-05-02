@@ -579,6 +579,8 @@ from .token_base import Token, TokenId, TokenOwnerType, TokenPair
 from .tokens import (
     CreateIntegrationTokenRequest,
     CreateIntegrationTokenResponse,
+    CreateSynqlyIntegrationsTokenRequest,
+    CreateSynqlyIntegrationsTokenResponse,
     CreateTokenRequest,
     CreateTokenResponse,
     GetTokenResponse,
@@ -586,6 +588,7 @@ from .tokens import (
     RefreshToken,
     RefreshTokenResponse,
     ResetTokenResponse,
+    SynqlyIntegrationsTokenResponse,
 )
 from .transforms import (
     CreateTransformRequest,
@@ -707,6 +710,8 @@ __all__ = [
     "CreateOrganizationWebhookResponse",
     "CreateRoleRequest",
     "CreateRoleResponse",
+    "CreateSynqlyIntegrationsTokenRequest",
+    "CreateSynqlyIntegrationsTokenResponse",
     "CreateTokenRequest",
     "CreateTokenResponse",
     "CreateTransformRequest",
@@ -1073,6 +1078,7 @@ __all__ = [
     "SumoLogicCredential",
     "SumoLogicCredential_Basic",
     "SumoLogicCredential_BasicId",
+    "SynqlyIntegrationsTokenResponse",
     "TaniumCloudCredential",
     "TaniumCloudCredential_Token",
     "TaniumCloudCredential_TokenId",

@@ -2,6 +2,8 @@
 
 from .create_integration_token_request import CreateIntegrationTokenRequest
 from .create_integration_token_response import CreateIntegrationTokenResponse
+from .create_synqly_integrations_token_request import CreateSynqlyIntegrationsTokenRequest
+from .create_synqly_integrations_token_response import CreateSynqlyIntegrationsTokenResponse
 from .create_token_request import CreateTokenRequest
 from .create_token_response import CreateTokenResponse
 from .get_token_response import GetTokenResponse
@@ -9,10 +11,13 @@ from .list_tokens_response import ListTokensResponse
 from .refresh_token import RefreshToken
 from .refresh_token_response import RefreshTokenResponse
 from .reset_token_response import ResetTokenResponse
+from .synqly_integrations_token_response import SynqlyIntegrationsTokenResponse
 
 __all__ = [
     "CreateIntegrationTokenRequest",
     "CreateIntegrationTokenResponse",
+    "CreateSynqlyIntegrationsTokenRequest",
+    "CreateSynqlyIntegrationsTokenResponse",
     "CreateTokenRequest",
     "CreateTokenResponse",
     "GetTokenResponse",
@@ -20,4 +25,5 @@ __all__ = [
     "RefreshToken",
     "RefreshTokenResponse",
     "ResetTokenResponse",
+    "SynqlyIntegrationsTokenResponse",
 ]
