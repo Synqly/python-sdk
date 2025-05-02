@@ -50,6 +50,7 @@ class IdentityClient:
         cursor: typing.Optional[str] = None,
         order: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
         filter: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
+        include_raw_data: typing.Optional[bool] = None,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> QueryIdentityAuditLogResponse:
         """
@@ -67,6 +68,8 @@ class IdentityClient:
                                                                                The ordering defaults to `asc` if not specified.
             - filter: typing.Optional[typing.Union[str, typing.Sequence[str]]]. Filter results by this query. For more information on filtering, refer to our Filtering Guide. Defaults to no filter.
                                                                                 If used more than once, the queries are ANDed together.
+            - include_raw_data: typing.Optional[bool]. Include the raw data from the SIEM in the response. Defaults to `false`.
+
             - request_options: typing.Optional[RequestOptions]. Request-specific configuration.
         """
         _response = self._client_wrapper.httpx_client.request(
@@ -80,6 +83,7 @@ class IdentityClient:
                         "cursor": cursor,
                         "order": order,
                         "filter": filter,
+                        "include_raw_data": include_raw_data,
                         **(
                             request_options.get("additional_query_parameters", {})
                             if request_options is not None
@@ -841,6 +845,7 @@ class AsyncIdentityClient:
         cursor: typing.Optional[str] = None,
         order: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
         filter: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
+        include_raw_data: typing.Optional[bool] = None,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> QueryIdentityAuditLogResponse:
         """
@@ -858,6 +863,8 @@ class AsyncIdentityClient:
                                                                                The ordering defaults to `asc` if not specified.
             - filter: typing.Optional[typing.Union[str, typing.Sequence[str]]]. Filter results by this query. For more information on filtering, refer to our Filtering Guide. Defaults to no filter.
                                                                                 If used more than once, the queries are ANDed together.
+            - include_raw_data: typing.Optional[bool]. Include the raw data from the SIEM in the response. Defaults to `false`.
+
             - request_options: typing.Optional[RequestOptions]. Request-specific configuration.
         """
         _response = await self._client_wrapper.httpx_client.request(
@@ -871,6 +878,7 @@ class AsyncIdentityClient:
                         "cursor": cursor,
                         "order": order,
                         "filter": filter,
+                        "include_raw_data": include_raw_data,
                         **(
                             request_options.get("additional_query_parameters", {})
                             if request_options is not None
