@@ -7,6 +7,7 @@ from .assets_armis_dataset import AssetsArmisDataset
 from .assets_nozomi_vantage import AssetsNozomiVantage
 from .assets_nozomi_vantage_dataset import AssetsNozomiVantageDataset
 from .assets_nozomi_vantage_mock import AssetsNozomiVantageMock
+from .assets_qualys_cloud import AssetsQualysCloud
 from .assets_service_now import AssetsServiceNow
 from .assets_service_now_dataset import AssetsServiceNowDataset
 from .assets_service_now_mock import AssetsServiceNowMock
@@ -110,6 +111,7 @@ from .provider_config import (
     ProviderConfig_AssetsArmisCentrixMock,
     ProviderConfig_AssetsNozomiVantage,
     ProviderConfig_AssetsNozomiVantageMock,
+    ProviderConfig_AssetsQualysCloud,
     ProviderConfig_AssetsServicenow,
     ProviderConfig_AssetsServicenowMock,
     ProviderConfig_CloudsecurityCrowdstrike,
@@ -260,6 +262,7 @@ __all__ = [
     "AssetsNozomiVantage",
     "AssetsNozomiVantageDataset",
     "AssetsNozomiVantageMock",
+    "AssetsQualysCloud",
     "AssetsServiceNow",
     "AssetsServiceNowDataset",
     "AssetsServiceNowMock",
@@ -361,6 +364,7 @@ __all__ = [
     "ProviderConfig_AssetsArmisCentrixMock",
     "ProviderConfig_AssetsNozomiVantage",
     "ProviderConfig_AssetsNozomiVantageMock",
+    "ProviderConfig_AssetsQualysCloud",
     "ProviderConfig_AssetsServicenow",
     "ProviderConfig_AssetsServicenowMock",
     "ProviderConfig_CloudsecurityCrowdstrike",

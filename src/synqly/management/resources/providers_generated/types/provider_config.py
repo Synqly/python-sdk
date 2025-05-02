@@ -8,6 +8,7 @@ from .assets_armis_centrix import AssetsArmisCentrix
 from .assets_armis_centrix_mock import AssetsArmisCentrixMock
 from .assets_nozomi_vantage import AssetsNozomiVantage
 from .assets_nozomi_vantage_mock import AssetsNozomiVantageMock
+from .assets_qualys_cloud import AssetsQualysCloud
 from .assets_service_now import AssetsServiceNow
 from .assets_service_now_mock import AssetsServiceNowMock
 from .cloud_security_crowd_strike import CloudSecurityCrowdStrike
@@ -91,6 +92,15 @@ class ProviderConfig_AssetsNozomiVantage(AssetsNozomiVantage):
 
 class ProviderConfig_AssetsNozomiVantageMock(AssetsNozomiVantageMock):
     type: typing.Literal["assets_nozomi_vantage_mock"]
+
+    class Config:
+        frozen = True
+        smart_union = True
+        allow_population_by_field_name = True
+
+
+class ProviderConfig_AssetsQualysCloud(AssetsQualysCloud):
+    type: typing.Literal["assets_qualys_cloud"]
 
     class Config:
         frozen = True
@@ -571,6 +581,7 @@ ProviderConfig = typing.Union[
     ProviderConfig_AssetsArmisCentrixMock,
     ProviderConfig_AssetsNozomiVantage,
     ProviderConfig_AssetsNozomiVantageMock,
+    ProviderConfig_AssetsQualysCloud,
     ProviderConfig_AssetsServicenow,
     ProviderConfig_AssetsServicenowMock,
     ProviderConfig_CloudsecurityCrowdstrike,

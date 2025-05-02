@@ -31,6 +31,11 @@ class ProviderConfigId(str, enum.Enum):
     [MOCK] Nozomi Vantage
     """
 
+    ASSETS_QUALYS_CLOUD = "assets_qualys_cloud"
+    """
+    Qualys Vulnerability Management, Detection & Response (VMDR)
+    """
+
     ASSETS_SERVICE_NOW = "assets_servicenow"
     """
     ServiceNow Configuration Management Database (CMDB)
@@ -302,6 +307,7 @@ class ProviderConfigId(str, enum.Enum):
         assets_armis_centrix_mock: typing.Callable[[], T_Result],
         assets_nozomi_vantage: typing.Callable[[], T_Result],
         assets_nozomi_vantage_mock: typing.Callable[[], T_Result],
+        assets_qualys_cloud: typing.Callable[[], T_Result],
         assets_service_now: typing.Callable[[], T_Result],
         assets_service_now_mock: typing.Callable[[], T_Result],
         cloud_security_crowd_strike: typing.Callable[[], T_Result],
@@ -364,6 +370,8 @@ class ProviderConfigId(str, enum.Enum):
             return assets_nozomi_vantage()
         if self is ProviderConfigId.ASSETS_NOZOMI_VANTAGE_MOCK:
             return assets_nozomi_vantage_mock()
+        if self is ProviderConfigId.ASSETS_QUALYS_CLOUD:
+            return assets_qualys_cloud()
         if self is ProviderConfigId.ASSETS_SERVICE_NOW:
             return assets_service_now()
         if self is ProviderConfigId.ASSETS_SERVICE_NOW_MOCK:
