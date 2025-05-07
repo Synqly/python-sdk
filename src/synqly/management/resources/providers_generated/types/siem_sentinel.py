@@ -23,6 +23,11 @@ class SiemSentinel(pydantic.BaseModel):
     The default tables to use for queries. Supply this value if you would like to a subset of the default tables or non-ASIM data tables with Sentinel/Log Analytics queries. If more than one table is specified, a union operator will join them to query all of the tables at once. Supply a single value with "_" if you would like to query all tables without the normalizing ASIM transformations. **Note** that a single "_" entry will map to a 'union \*' query. Relying heavily on these queries is generally discouraged by Sentinel because they are slower and more resource intensive.
     """
 
+    ingest_url: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    Either the logs ingestion API url for you Data Collection Rule or your Data Collection Endpoint URL. This value must be supplied to ingest data into Microsoft Sentinel. This should look something like https://mydcr-xxx-westus2.logs.z1.ingest.monitor.azure.com
+    """
+
     logs_url: typing.Optional[str] = pydantic.Field(default=None)
     """
     The root URL for the Microsoft Azure Monitor Logs API. This is optional and should only be supplied if using an alternate Microsoft cloud, such as GovCloud.
@@ -36,6 +41,16 @@ class SiemSentinel(pydantic.BaseModel):
     resource_group: str = pydantic.Field()
     """
     The Azure resource group name that contains the Microsoft Sentinel workspace.
+    """
+
+    rule_id: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    Your Data Collection Rule immutable ID. This value must be supplied to ingest data into Microsoft Sentinel.
+    """
+
+    stream_name: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    The name of the Data Collection Rule stream. This value must be supplied to ingest data into Microsoft Sentinel.
     """
 
     subscription_id: str = pydantic.Field()
