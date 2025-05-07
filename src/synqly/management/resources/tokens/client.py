@@ -326,7 +326,7 @@ class TokensClient:
         """
         Returns a list of all `RefreshToken` objects belonging to the Authorization Bearer
         token. For more infromation on Tokens, refer to
-        [Authentication](https://docs.synqly.com/reference/authentication).
+        [Authentication](/api-reference/authentication).
 
         Parameters:
             - limit: typing.Optional[int]. Number of `Token` objects to return in this page. Defaults to 100.
@@ -405,7 +405,7 @@ class TokensClient:
         """
         Returns the `RefreshToken` object matching `{tokenId}`. For more information on
         Tokens, refer to
-        [Authentication](https://docs.synqly.com/reference/authentication).
+        [Authentication](/api-reference/authentication).
 
         Parameters:
             - refresh_token_id: TokenId.
@@ -938,7 +938,7 @@ class AsyncTokensClient:
         """
         Returns a list of all `RefreshToken` objects belonging to the Authorization Bearer
         token. For more infromation on Tokens, refer to
-        [Authentication](https://docs.synqly.com/reference/authentication).
+        [Authentication](/api-reference/authentication).
 
         Parameters:
             - limit: typing.Optional[int]. Number of `Token` objects to return in this page. Defaults to 100.
@@ -1017,7 +1017,7 @@ class AsyncTokensClient:
         """
         Returns the `RefreshToken` object matching `{tokenId}`. For more information on
         Tokens, refer to
-        [Authentication](https://docs.synqly.com/reference/authentication).
+        [Authentication](/api-reference/authentication).
 
         Parameters:
             - refresh_token_id: TokenId.
