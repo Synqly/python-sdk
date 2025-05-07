@@ -158,6 +158,7 @@ from .types import (
     ProviderConfig_TicketingServicenow,
     ProviderConfig_TicketingServicenowSir,
     ProviderConfig_TicketingTorq,
+    ProviderConfig_TicketingZendesk,
     ProviderConfig_VulnerabilitiesCrowdstrike,
     ProviderConfig_VulnerabilitiesNucleus,
     ProviderConfig_VulnerabilitiesQualysCloud,
@@ -245,6 +246,7 @@ from .types import (
     TicketingServiceNow,
     TicketingServiceNowSir,
     TicketingTorq,
+    TicketingZendesk,
     TorqCredential,
     TorqCredential_OAuthClient,
     TorqCredential_OAuthClientId,
@@ -256,6 +258,9 @@ from .types import (
     VulnerabilitiesRapid7InsightCloud,
     VulnerabilitiesTaniumCloud,
     VulnerabilitiesTenableCloud,
+    ZendeskCredential,
+    ZendeskCredential_Basic,
+    ZendeskCredential_BasicId,
 )
 
 __all__ = [
@@ -416,6 +421,7 @@ __all__ = [
     "ProviderConfig_TicketingServicenow",
     "ProviderConfig_TicketingServicenowSir",
     "ProviderConfig_TicketingTorq",
+    "ProviderConfig_TicketingZendesk",
     "ProviderConfig_VulnerabilitiesCrowdstrike",
     "ProviderConfig_VulnerabilitiesNucleus",
     "ProviderConfig_VulnerabilitiesQualysCloud",
@@ -503,6 +509,7 @@ __all__ = [
     "TicketingServiceNow",
     "TicketingServiceNowSir",
     "TicketingTorq",
+    "TicketingZendesk",
     "TorqCredential",
     "TorqCredential_OAuthClient",
     "TorqCredential_OAuthClientId",
@@ -514,4 +521,7 @@ __all__ = [
     "VulnerabilitiesRapid7InsightCloud",
     "VulnerabilitiesTaniumCloud",
     "VulnerabilitiesTenableCloud",
+    "ZendeskCredential",
+    "ZendeskCredential_Basic",
+    "ZendeskCredential_BasicId",
 ]

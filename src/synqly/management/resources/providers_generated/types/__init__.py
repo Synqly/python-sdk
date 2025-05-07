@@ -157,6 +157,7 @@ from .provider_config import (
     ProviderConfig_TicketingServicenow,
     ProviderConfig_TicketingServicenowSir,
     ProviderConfig_TicketingTorq,
+    ProviderConfig_TicketingZendesk,
     ProviderConfig_VulnerabilitiesCrowdstrike,
     ProviderConfig_VulnerabilitiesNucleus,
     ProviderConfig_VulnerabilitiesQualysCloud,
@@ -242,6 +243,7 @@ from .ticketing_pager_duty import TicketingPagerDuty
 from .ticketing_service_now import TicketingServiceNow
 from .ticketing_service_now_sir import TicketingServiceNowSir
 from .ticketing_torq import TicketingTorq
+from .ticketing_zendesk import TicketingZendesk
 from .torq_credential import TorqCredential, TorqCredential_OAuthClient, TorqCredential_OAuthClientId
 from .vulnerabilities_crowd_strike import VulnerabilitiesCrowdStrike
 from .vulnerabilities_nucleus import VulnerabilitiesNucleus
@@ -251,6 +253,7 @@ from .vulnerabilities_qualys_cloud_mock import VulnerabilitiesQualysCloudMock
 from .vulnerabilities_rapid_7_insight_cloud import VulnerabilitiesRapid7InsightCloud
 from .vulnerabilities_tanium_cloud import VulnerabilitiesTaniumCloud
 from .vulnerabilities_tenable_cloud import VulnerabilitiesTenableCloud
+from .zendesk_credential import ZendeskCredential, ZendeskCredential_Basic, ZendeskCredential_BasicId
 
 __all__ = [
     "ArmisCredential",
@@ -410,6 +413,7 @@ __all__ = [
     "ProviderConfig_TicketingServicenow",
     "ProviderConfig_TicketingServicenowSir",
     "ProviderConfig_TicketingTorq",
+    "ProviderConfig_TicketingZendesk",
     "ProviderConfig_VulnerabilitiesCrowdstrike",
     "ProviderConfig_VulnerabilitiesNucleus",
     "ProviderConfig_VulnerabilitiesQualysCloud",
@@ -497,6 +501,7 @@ __all__ = [
     "TicketingServiceNow",
     "TicketingServiceNowSir",
     "TicketingTorq",
+    "TicketingZendesk",
     "TorqCredential",
     "TorqCredential_OAuthClient",
     "TorqCredential_OAuthClientId",
@@ -508,4 +513,7 @@ __all__ = [
     "VulnerabilitiesRapid7InsightCloud",
     "VulnerabilitiesTaniumCloud",
     "VulnerabilitiesTenableCloud",
+    "ZendeskCredential",
+    "ZendeskCredential_Basic",
+    "ZendeskCredential_BasicId",
 ]

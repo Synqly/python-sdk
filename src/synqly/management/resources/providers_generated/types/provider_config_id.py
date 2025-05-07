@@ -261,6 +261,11 @@ class ProviderConfigId(str, enum.Enum):
     Torq
     """
 
+    TICKETING_ZENDESK = "ticketing_zendesk"
+    """
+    Zendesk
+    """
+
     VULNERABILITIES_CROWD_STRIKE = "vulnerabilities_crowdstrike"
     """
     CrowdStrike Falcon Spotlight
@@ -353,6 +358,7 @@ class ProviderConfigId(str, enum.Enum):
         ticketing_service_now: typing.Callable[[], T_Result],
         ticketing_service_now_sir: typing.Callable[[], T_Result],
         ticketing_torq: typing.Callable[[], T_Result],
+        ticketing_zendesk: typing.Callable[[], T_Result],
         vulnerabilities_crowd_strike: typing.Callable[[], T_Result],
         vulnerabilities_nucleus: typing.Callable[[], T_Result],
         vulnerabilities_qualys_cloud: typing.Callable[[], T_Result],
@@ -462,6 +468,8 @@ class ProviderConfigId(str, enum.Enum):
             return ticketing_service_now_sir()
         if self is ProviderConfigId.TICKETING_TORQ:
             return ticketing_torq()
+        if self is ProviderConfigId.TICKETING_ZENDESK:
+            return ticketing_zendesk()
         if self is ProviderConfigId.VULNERABILITIES_CROWD_STRIKE:
             return vulnerabilities_crowd_strike()
         if self is ProviderConfigId.VULNERABILITIES_NUCLEUS:

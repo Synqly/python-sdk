@@ -54,6 +54,7 @@ from .ticketing_pager_duty import TicketingPagerDuty
 from .ticketing_service_now import TicketingServiceNow
 from .ticketing_service_now_sir import TicketingServiceNowSir
 from .ticketing_torq import TicketingTorq
+from .ticketing_zendesk import TicketingZendesk
 from .vulnerabilities_crowd_strike import VulnerabilitiesCrowdStrike
 from .vulnerabilities_nucleus import VulnerabilitiesNucleus
 from .vulnerabilities_qualys_cloud import VulnerabilitiesQualysCloud
@@ -513,6 +514,15 @@ class ProviderConfig_TicketingTorq(TicketingTorq):
         allow_population_by_field_name = True
 
 
+class ProviderConfig_TicketingZendesk(TicketingZendesk):
+    type: typing.Literal["ticketing_zendesk"]
+
+    class Config:
+        frozen = True
+        smart_union = True
+        allow_population_by_field_name = True
+
+
 class ProviderConfig_VulnerabilitiesCrowdstrike(VulnerabilitiesCrowdStrike):
     type: typing.Literal["vulnerabilities_crowdstrike"]
 
@@ -627,6 +637,7 @@ ProviderConfig = typing.Union[
     ProviderConfig_TicketingServicenow,
     ProviderConfig_TicketingServicenowSir,
     ProviderConfig_TicketingTorq,
+    ProviderConfig_TicketingZendesk,
     ProviderConfig_VulnerabilitiesCrowdstrike,
     ProviderConfig_VulnerabilitiesNucleus,
     ProviderConfig_VulnerabilitiesQualysCloud,
