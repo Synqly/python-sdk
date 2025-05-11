@@ -6,6 +6,7 @@ import typing
 from ....core.datetime_utils import serialize_datetime
 from ...integration_points.types.integration_point_id import IntegrationPointId
 from ...management.types.additional_mapping import AdditionalMapping
+from ...management.types.mapping_chain import MappingChain
 from ...providers_generated.types.provider_config import ProviderConfig
 from .bridge_selector import BridgeSelector
 from .webhook_config import WebhookConfig
@@ -45,6 +46,11 @@ class CreateIntegrationRequest(pydantic.BaseModel):
     webhook_config: typing.Optional[WebhookConfig] = pydantic.Field(default=None)
     """
     Web hook config for this integration
+    """
+
+    mappings: typing.Optional[typing.List[MappingChain]] = pydantic.Field(default=None)
+    """
+    A list of mapping chains to apply to the integration. Each mapping chain is a list of mappings to apply to the integration in the order they should be applied. Mappings are applied by operation ID. Leave this empty to use the default default mappings.
     """
 
     additional_mappings: typing.Optional[typing.List[AdditionalMapping]] = pydantic.Field(default=None)

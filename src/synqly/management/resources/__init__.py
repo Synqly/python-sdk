@@ -172,6 +172,7 @@ from .integration_points import (
     IntegrationPoint,
     IntegrationPointId,
     ListIntegrationPointsResponse,
+    MappingChainTemplate,
     PatchIntegrationPointResponse,
     UpdateIntegrationPointRequest,
     UpdateIntegrationPointResponse,
@@ -196,7 +197,7 @@ from .integrations import (
     WebhookEvent,
     WebhookItem,
 )
-from .management import AdditionalMapping, MappingDataType
+from .management import AdditionalMapping, MappingChain, MappingDataType
 from .member_base import (
     CreateMemberRequest,
     CreateMemberResponse,
@@ -848,6 +849,8 @@ __all__ = [
     "MalwarebytesCredential_OAuthClient",
     "MalwarebytesCredential_OAuthClientId",
     "ManagedType",
+    "MappingChain",
+    "MappingChainTemplate",
     "MappingDataType",
     "Member",
     "MemberId",

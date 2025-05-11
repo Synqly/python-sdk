@@ -12,6 +12,7 @@ from ...integration_base.types.integration_id import IntegrationId
 from ...integration_points.types.integration_point import IntegrationPoint
 from ...integration_points.types.integration_point_id import IntegrationPointId
 from ...management.types.additional_mapping import AdditionalMapping
+from ...management.types.mapping_chain import MappingChain
 from ...providers_generated.types.provider_config import ProviderConfig
 from ...token_base.types.token_id import TokenId
 from .bridge_selector import BridgeSelector
@@ -87,6 +88,11 @@ class Integration(Base):
     webhook_config: typing.Optional[WebhookConfig] = pydantic.Field(default=None)
     """
     Webhook configuration for this integration. Some providers support webhooks, and will allow end users providers to send events to a server for new or updated data.
+    """
+
+    mappings: typing.Optional[typing.List[MappingChain]] = pydantic.Field(default=None)
+    """
+    A list of mapping chains to apply to the integration. Each mapping chain is a list of mappings to apply to the integration in the order they should be applied. Mappings are applied by operation ID. Leave this empty to use the default default mappings.
     """
 
     additional_mappings: typing.Optional[typing.List[AdditionalMapping]] = pydantic.Field(default=None)

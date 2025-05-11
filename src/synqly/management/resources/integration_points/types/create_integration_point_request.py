@@ -7,6 +7,7 @@ from ....core.datetime_utils import serialize_datetime
 from ...capabilities_base.types.category_id import CategoryId
 from .additional_mapping_template import AdditionalMappingTemplate
 from .integration_environments import IntegrationEnvironments
+from .mapping_chain_template import MappingChainTemplate
 
 try:
     import pydantic.v1 as pydantic  # type: ignore
@@ -38,6 +39,11 @@ class CreateIntegrationPointRequest(pydantic.BaseModel):
     environments: IntegrationEnvironments = pydantic.Field()
     """
     Selects providers to use for account environments.
+    """
+
+    mappings: typing.Optional[typing.List[MappingChainTemplate]] = pydantic.Field(default=None)
+    """
+    A list of mapping chains to apply to integrations using this integration point. Each mapping chain is a list of mappings to apply to the integration in the order they should be applied. Mappings are applied by operation ID. If an integration is created that declares its own mappings for an operation, they will override this list of mappings. Leave this empty to use the default default mappings.
     """
 
     additional_mappings: typing.Optional[typing.List[AdditionalMappingTemplate]] = pydantic.Field(default=None)

@@ -3,12 +3,15 @@
 from .types import (
     Evidence,
     GetEvidenceResponse,
+    GetEvidenceResponseGeneric,
     GetInvestigationResponse,
+    GetInvestigationResponseGeneric,
     Investigation,
     LogProvider,
     PatchInvestigationRequest,
     QueryEventStatus,
     QueryInvestigationResponse,
+    QueryInvestigationResponseGeneric,
     QueryLogProvidersResponse,
     QuerySiemEventsResponse,
 )
@@ -16,12 +19,15 @@ from .types import (
 __all__ = [
     "Evidence",
     "GetEvidenceResponse",
+    "GetEvidenceResponseGeneric",
     "GetInvestigationResponse",
+    "GetInvestigationResponseGeneric",
     "Investigation",
     "LogProvider",
     "PatchInvestigationRequest",
     "QueryEventStatus",
     "QueryInvestigationResponse",
+    "QueryInvestigationResponseGeneric",
     "QueryLogProvidersResponse",
     "QuerySiemEventsResponse",
 ]

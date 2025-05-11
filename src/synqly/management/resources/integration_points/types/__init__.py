@@ -9,6 +9,7 @@ from .integration_environments import IntegrationEnvironments
 from .integration_point import IntegrationPoint
 from .integration_point_id import IntegrationPointId
 from .list_integration_points_response import ListIntegrationPointsResponse
+from .mapping_chain_template import MappingChainTemplate
 from .patch_integration_point_response import PatchIntegrationPointResponse
 from .update_integration_point_request import UpdateIntegrationPointRequest
 from .update_integration_point_response import UpdateIntegrationPointResponse
@@ -23,6 +24,7 @@ __all__ = [
     "IntegrationPoint",
     "IntegrationPointId",
     "ListIntegrationPointsResponse",
+    "MappingChainTemplate",
     "PatchIntegrationPointResponse",
     "UpdateIntegrationPointRequest",
     "UpdateIntegrationPointResponse",
