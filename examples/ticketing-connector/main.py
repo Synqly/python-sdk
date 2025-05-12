@@ -148,7 +148,7 @@ def ticketing_actions(tenant: utils.Tenant, project_key: str, username: str):
     print('Got {} tickets created by {}'.format(len(q.result), username))
 
     # Perform attachment actions
-    attachment_actions(tenant, create_response.result.id)
+    # attachment_actions(tenant, create_response.result.id)
 
     # Use a JSON Patch to update the ticket status
     print('\nUpdating ticket status to "Done"')
