@@ -11,6 +11,7 @@ from .assets_nozomi_vantage_mock import AssetsNozomiVantageMock
 from .assets_qualys_cloud import AssetsQualysCloud
 from .assets_service_now import AssetsServiceNow
 from .assets_service_now_mock import AssetsServiceNowMock
+from .assets_tanium_cloud import AssetsTaniumCloud
 from .cloud_security_crowd_strike import CloudSecurityCrowdStrike
 from .edr_crowd_strike import EdrCrowdStrike
 from .edr_defender import EdrDefender
@@ -120,6 +121,15 @@ class ProviderConfig_AssetsServicenow(AssetsServiceNow):
 
 class ProviderConfig_AssetsServicenowMock(AssetsServiceNowMock):
     type: typing.Literal["assets_servicenow_mock"]
+
+    class Config:
+        frozen = True
+        smart_union = True
+        allow_population_by_field_name = True
+
+
+class ProviderConfig_AssetsTaniumCloud(AssetsTaniumCloud):
+    type: typing.Literal["assets_tanium_cloud"]
 
     class Config:
         frozen = True
@@ -594,6 +604,7 @@ ProviderConfig = typing.Union[
     ProviderConfig_AssetsQualysCloud,
     ProviderConfig_AssetsServicenow,
     ProviderConfig_AssetsServicenowMock,
+    ProviderConfig_AssetsTaniumCloud,
     ProviderConfig_CloudsecurityCrowdstrike,
     ProviderConfig_EdrCrowdstrike,
     ProviderConfig_EdrDefender,
