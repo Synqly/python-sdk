@@ -25,6 +25,11 @@ class ProblemContext(pydantic.BaseModel):
     If available this represents the underlying raw error, for example an error response from a Provider.
     """
 
+    provider_details: typing.Optional[typing.Dict[str, str]] = pydantic.Field(default=None)
+    """
+    If available this represents the underlying details from the provider. May include the error message, status code, and other details.
+    """
+
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}
         return super().json(**kwargs_with_defaults)
