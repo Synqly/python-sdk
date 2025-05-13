@@ -8,6 +8,8 @@ from .assets_nozomi_vantage import AssetsNozomiVantage
 from .assets_nozomi_vantage_dataset import AssetsNozomiVantageDataset
 from .assets_nozomi_vantage_mock import AssetsNozomiVantageMock
 from .assets_qualys_cloud import AssetsQualysCloud
+from .assets_qualys_cloud_dataset import AssetsQualysCloudDataset
+from .assets_qualys_cloud_mock import AssetsQualysCloudMock
 from .assets_service_now import AssetsServiceNow
 from .assets_service_now_dataset import AssetsServiceNowDataset
 from .assets_service_now_mock import AssetsServiceNowMock
@@ -113,6 +115,7 @@ from .provider_config import (
     ProviderConfig_AssetsNozomiVantage,
     ProviderConfig_AssetsNozomiVantageMock,
     ProviderConfig_AssetsQualysCloud,
+    ProviderConfig_AssetsQualysCloudMock,
     ProviderConfig_AssetsServicenow,
     ProviderConfig_AssetsServicenowMock,
     ProviderConfig_AssetsTaniumCloud,
@@ -268,6 +271,8 @@ __all__ = [
     "AssetsNozomiVantageDataset",
     "AssetsNozomiVantageMock",
     "AssetsQualysCloud",
+    "AssetsQualysCloudDataset",
+    "AssetsQualysCloudMock",
     "AssetsServiceNow",
     "AssetsServiceNowDataset",
     "AssetsServiceNowMock",
@@ -371,6 +376,7 @@ __all__ = [
     "ProviderConfig_AssetsNozomiVantage",
     "ProviderConfig_AssetsNozomiVantageMock",
     "ProviderConfig_AssetsQualysCloud",
+    "ProviderConfig_AssetsQualysCloudMock",
     "ProviderConfig_AssetsServicenow",
     "ProviderConfig_AssetsServicenowMock",
     "ProviderConfig_AssetsTaniumCloud",

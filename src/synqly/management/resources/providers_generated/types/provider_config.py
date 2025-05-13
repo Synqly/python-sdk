@@ -9,6 +9,7 @@ from .assets_armis_centrix_mock import AssetsArmisCentrixMock
 from .assets_nozomi_vantage import AssetsNozomiVantage
 from .assets_nozomi_vantage_mock import AssetsNozomiVantageMock
 from .assets_qualys_cloud import AssetsQualysCloud
+from .assets_qualys_cloud_mock import AssetsQualysCloudMock
 from .assets_service_now import AssetsServiceNow
 from .assets_service_now_mock import AssetsServiceNowMock
 from .assets_tanium_cloud import AssetsTaniumCloud
@@ -103,6 +104,15 @@ class ProviderConfig_AssetsNozomiVantageMock(AssetsNozomiVantageMock):
 
 class ProviderConfig_AssetsQualysCloud(AssetsQualysCloud):
     type: typing.Literal["assets_qualys_cloud"]
+
+    class Config:
+        frozen = True
+        smart_union = True
+        allow_population_by_field_name = True
+
+
+class ProviderConfig_AssetsQualysCloudMock(AssetsQualysCloudMock):
+    type: typing.Literal["assets_qualys_cloud_mock"]
 
     class Config:
         frozen = True
@@ -602,6 +612,7 @@ ProviderConfig = typing.Union[
     ProviderConfig_AssetsNozomiVantage,
     ProviderConfig_AssetsNozomiVantageMock,
     ProviderConfig_AssetsQualysCloud,
+    ProviderConfig_AssetsQualysCloudMock,
     ProviderConfig_AssetsServicenow,
     ProviderConfig_AssetsServicenowMock,
     ProviderConfig_AssetsTaniumCloud,
