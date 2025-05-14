@@ -316,6 +316,11 @@ class ProviderConfigId(str, enum.Enum):
     Tanium Vulnerability Management
     """
 
+    VULNERABILITIES_TANIUM_CLOUD_MOCK = "vulnerabilities_tanium_cloud_mock"
+    """
+    [MOCK] Tsanium Vulnerability Management
+    """
+
     VULNERABILITIES_TENABLE_CLOUD = "vulnerabilities_tenable_cloud"
     """
     Tenable Vulnerability Management
@@ -389,6 +394,7 @@ class ProviderConfigId(str, enum.Enum):
         vulnerabilities_qualys_cloud_mock: typing.Callable[[], T_Result],
         vulnerabilities_rapid_7_insight_cloud: typing.Callable[[], T_Result],
         vulnerabilities_tanium_cloud: typing.Callable[[], T_Result],
+        vulnerabilities_tanium_cloud_mock: typing.Callable[[], T_Result],
         vulnerabilities_tenable_cloud: typing.Callable[[], T_Result],
         all_: typing.Callable[[], T_Result],
     ) -> T_Result:
@@ -514,6 +520,8 @@ class ProviderConfigId(str, enum.Enum):
             return vulnerabilities_rapid_7_insight_cloud()
         if self is ProviderConfigId.VULNERABILITIES_TANIUM_CLOUD:
             return vulnerabilities_tanium_cloud()
+        if self is ProviderConfigId.VULNERABILITIES_TANIUM_CLOUD_MOCK:
+            return vulnerabilities_tanium_cloud_mock()
         if self is ProviderConfigId.VULNERABILITIES_TENABLE_CLOUD:
             return vulnerabilities_tenable_cloud()
         if self is ProviderConfigId.ALL:

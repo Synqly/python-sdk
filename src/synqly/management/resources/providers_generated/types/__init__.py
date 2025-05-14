@@ -172,6 +172,7 @@ from .provider_config import (
     ProviderConfig_VulnerabilitiesQualysCloudMock,
     ProviderConfig_VulnerabilitiesRapid7InsightCloud,
     ProviderConfig_VulnerabilitiesTaniumCloud,
+    ProviderConfig_VulnerabilitiesTaniumCloudMock,
     ProviderConfig_VulnerabilitiesTenableCloud,
 )
 from .provider_config_id import ProviderConfigId
@@ -262,6 +263,8 @@ from .vulnerabilities_qualys_cloud_dataset import VulnerabilitiesQualysCloudData
 from .vulnerabilities_qualys_cloud_mock import VulnerabilitiesQualysCloudMock
 from .vulnerabilities_rapid_7_insight_cloud import VulnerabilitiesRapid7InsightCloud
 from .vulnerabilities_tanium_cloud import VulnerabilitiesTaniumCloud
+from .vulnerabilities_tanium_cloud_dataset import VulnerabilitiesTaniumCloudDataset
+from .vulnerabilities_tanium_cloud_mock import VulnerabilitiesTaniumCloudMock
 from .vulnerabilities_tenable_cloud import VulnerabilitiesTenableCloud
 from .zendesk_credential import ZendeskCredential, ZendeskCredential_Basic, ZendeskCredential_BasicId
 
@@ -440,6 +443,7 @@ __all__ = [
     "ProviderConfig_VulnerabilitiesQualysCloudMock",
     "ProviderConfig_VulnerabilitiesRapid7InsightCloud",
     "ProviderConfig_VulnerabilitiesTaniumCloud",
+    "ProviderConfig_VulnerabilitiesTaniumCloudMock",
     "ProviderConfig_VulnerabilitiesTenableCloud",
     "QRadarCredential",
     "QRadarCredential_Token",
@@ -534,6 +538,8 @@ __all__ = [
     "VulnerabilitiesQualysCloudMock",
     "VulnerabilitiesRapid7InsightCloud",
     "VulnerabilitiesTaniumCloud",
+    "VulnerabilitiesTaniumCloudDataset",
+    "VulnerabilitiesTaniumCloudMock",
     "VulnerabilitiesTenableCloud",
     "ZendeskCredential",
     "ZendeskCredential_Basic",
