@@ -151,6 +151,11 @@ class ProviderConfigId(str, enum.Enum):
     SIEM Test
     """
 
+    SIEM_OPEN_SEARCH = "siem_opensearch"
+    """
+    OpenSearch SIEM
+    """
+
     SIEM_Q_RADAR = "siem_q_radar"
     """
     QRadar
@@ -209,6 +214,11 @@ class ProviderConfigId(str, enum.Enum):
     SINK_MOCK = "sink_mock_sink"
     """
     Sink Test
+    """
+
+    SINK_OPEN_SEARCH = "sink_opensearch"
+    """
+    OpenSearch
     """
 
     SINK_SPLUNK = "sink_splunk"
@@ -346,6 +356,7 @@ class ProviderConfigId(str, enum.Enum):
         siem_elasticsearch: typing.Callable[[], T_Result],
         siem_google_chronicle: typing.Callable[[], T_Result],
         siem_mock: typing.Callable[[], T_Result],
+        siem_open_search: typing.Callable[[], T_Result],
         siem_q_radar: typing.Callable[[], T_Result],
         siem_rapid_7_insight_idr: typing.Callable[[], T_Result],
         siem_sentinel: typing.Callable[[], T_Result],
@@ -358,6 +369,7 @@ class ProviderConfigId(str, enum.Enum):
         sink_elasticsearch: typing.Callable[[], T_Result],
         sink_google_sec_ops: typing.Callable[[], T_Result],
         sink_mock: typing.Callable[[], T_Result],
+        sink_open_search: typing.Callable[[], T_Result],
         sink_splunk: typing.Callable[[], T_Result],
         storage_aws_s_3: typing.Callable[[], T_Result],
         storage_azure_blob: typing.Callable[[], T_Result],
@@ -436,6 +448,8 @@ class ProviderConfigId(str, enum.Enum):
             return siem_google_chronicle()
         if self is ProviderConfigId.SIEM_MOCK:
             return siem_mock()
+        if self is ProviderConfigId.SIEM_OPEN_SEARCH:
+            return siem_open_search()
         if self is ProviderConfigId.SIEM_Q_RADAR:
             return siem_q_radar()
         if self is ProviderConfigId.SIEM_RAPID_7_INSIGHT_IDR:
@@ -460,6 +474,8 @@ class ProviderConfigId(str, enum.Enum):
             return sink_google_sec_ops()
         if self is ProviderConfigId.SINK_MOCK:
             return sink_mock()
+        if self is ProviderConfigId.SINK_OPEN_SEARCH:
+            return sink_open_search()
         if self is ProviderConfigId.SINK_SPLUNK:
             return sink_splunk()
         if self is ProviderConfigId.STORAGE_AWS_S_3:

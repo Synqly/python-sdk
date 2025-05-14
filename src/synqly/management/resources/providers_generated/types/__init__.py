@@ -106,6 +106,7 @@ from .okta_credential import (
     OktaCredential_Token,
     OktaCredential_TokenId,
 )
+from .open_search_credential import OpenSearchCredential, OpenSearchCredential_Basic, OpenSearchCredential_BasicId
 from .pager_duty_credential import PagerDutyCredential, PagerDutyCredential_Token, PagerDutyCredential_TokenId
 from .ping_one_credential import PingOneCredential, PingOneCredential_Token, PingOneCredential_TokenId
 from .provider_config import (
@@ -138,6 +139,7 @@ from .provider_config import (
     ProviderConfig_SiemElasticsearch,
     ProviderConfig_SiemGoogleChronicle,
     ProviderConfig_SiemMockSiem,
+    ProviderConfig_SiemOpensearch,
     ProviderConfig_SiemQRadar,
     ProviderConfig_SiemRapid7Insightidr,
     ProviderConfig_SiemSentinel,
@@ -150,6 +152,7 @@ from .provider_config import (
     ProviderConfig_SinkElasticsearch,
     ProviderConfig_SinkGoogleSecOps,
     ProviderConfig_SinkMockSink,
+    ProviderConfig_SinkOpensearch,
     ProviderConfig_SinkSplunk,
     ProviderConfig_StorageAwsS3,
     ProviderConfig_StorageAzureBlob,
@@ -192,6 +195,7 @@ from .siem_crowdstrike import SiemCrowdstrike
 from .siem_elasticsearch import SiemElasticsearch
 from .siem_google_chronicle import SiemGoogleChronicle
 from .siem_mock import SiemMock
+from .siem_open_search import SiemOpenSearch
 from .siem_q_radar import SiemQRadar
 from .siem_rapid_7_insight_idr import SiemRapid7InsightIdr
 from .siem_sentinel import SiemSentinel
@@ -204,6 +208,7 @@ from .sink_crowdstrike_hec import SinkCrowdstrikeHec
 from .sink_elasticsearch import SinkElasticsearch
 from .sink_google_sec_ops import SinkGoogleSecOps
 from .sink_mock import SinkMock
+from .sink_open_search import SinkOpenSearch
 from .sink_splunk import SinkSplunk
 from .slack_credential import SlackCredential, SlackCredential_Token, SlackCredential_TokenId
 from .slack_webhook_credential import (
@@ -363,6 +368,9 @@ __all__ = [
     "OktaCredential_OAuthClientId",
     "OktaCredential_Token",
     "OktaCredential_TokenId",
+    "OpenSearchCredential",
+    "OpenSearchCredential_Basic",
+    "OpenSearchCredential_BasicId",
     "PagerDutyCredential",
     "PagerDutyCredential_Token",
     "PagerDutyCredential_TokenId",
@@ -399,6 +407,7 @@ __all__ = [
     "ProviderConfig_SiemElasticsearch",
     "ProviderConfig_SiemGoogleChronicle",
     "ProviderConfig_SiemMockSiem",
+    "ProviderConfig_SiemOpensearch",
     "ProviderConfig_SiemQRadar",
     "ProviderConfig_SiemRapid7Insightidr",
     "ProviderConfig_SiemSentinel",
@@ -411,6 +420,7 @@ __all__ = [
     "ProviderConfig_SinkElasticsearch",
     "ProviderConfig_SinkGoogleSecOps",
     "ProviderConfig_SinkMockSink",
+    "ProviderConfig_SinkOpensearch",
     "ProviderConfig_SinkSplunk",
     "ProviderConfig_StorageAwsS3",
     "ProviderConfig_StorageAzureBlob",
@@ -455,6 +465,7 @@ __all__ = [
     "SiemElasticsearch",
     "SiemGoogleChronicle",
     "SiemMock",
+    "SiemOpenSearch",
     "SiemQRadar",
     "SiemRapid7InsightIdr",
     "SiemSentinel",
@@ -467,6 +478,7 @@ __all__ = [
     "SinkElasticsearch",
     "SinkGoogleSecOps",
     "SinkMock",
+    "SinkOpenSearch",
     "SinkSplunk",
     "SlackCredential",
     "SlackCredential_Token",
