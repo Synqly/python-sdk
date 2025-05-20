@@ -5,8 +5,8 @@ import typing
 
 from ....core.datetime_utils import serialize_datetime
 from ...common.types.id import Id
+from ...operation_base.types.async_operation_request_id import AsyncOperationRequestId
 from ...operation_base.types.operation_error import OperationError
-from ...operation_base.types.operation_id import OperationId
 from ...operation_base.types.operation_input import OperationInput
 from ...operation_base.types.operation_schedule import OperationSchedule
 from ...operation_base.types.operation_status import OperationStatus
@@ -29,7 +29,7 @@ class OperationWebhookPayload(pydantic.BaseModel):
     A unique identifier for this webhook event
     """
 
-    id: OperationId = pydantic.Field()
+    id: AsyncOperationRequestId = pydantic.Field()
     """
     ID of the operation
     """

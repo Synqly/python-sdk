@@ -19,6 +19,7 @@ from . import (
     members,
     meta,
     operation_base,
+    operation_id_generated,
     operations,
     organization,
     organization_base,
@@ -216,7 +217,15 @@ from .members import (
     UpdateMemberResponse,
 )
 from .meta import GetOpenApiSpecResponse
-from .operation_base import Operation, OperationError, OperationId, OperationInput, OperationSchedule, OperationStatus
+from .operation_base import (
+    AsyncOperationRequestId,
+    Operation,
+    OperationError,
+    OperationInput,
+    OperationSchedule,
+    OperationStatus,
+)
+from .operation_id_generated import OperationId
 from .operations import ListOperationsResponse
 from .organization import PatchOrganizationResponse, UpdateOrganizationRequest, UpdateOrganizationResponse
 from .organization_base import (
@@ -655,6 +664,7 @@ __all__ = [
     "AssetsServiceNowDataset",
     "AssetsServiceNowMock",
     "AssetsTaniumCloud",
+    "AsyncOperationRequestId",
     "Audit",
     "AuditActions",
     "AuditPermissions",
@@ -1215,6 +1225,7 @@ __all__ = [
     "members",
     "meta",
     "operation_base",
+    "operation_id_generated",
     "operations",
     "organization",
     "organization_base",

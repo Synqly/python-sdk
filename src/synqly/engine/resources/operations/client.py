@@ -19,7 +19,7 @@ from ..common.errors.too_many_requests_error import TooManyRequestsError
 from ..common.errors.unauthorized_error import UnauthorizedError
 from ..common.errors.unsupported_media_type_error import UnsupportedMediaTypeError
 from ..common.types.problem import Problem
-from ..operation_base.types.operation_id import OperationId
+from ..operation_base.types.async_operation_request_id import AsyncOperationRequestId
 from .types.create_operation_request import CreateOperationRequest
 from .types.create_operation_response import CreateOperationResponse
 from .types.get_operation_response import GetOperationResponse
@@ -38,13 +38,13 @@ class OperationsClient:
         self._client_wrapper = client_wrapper
 
     def get(
-        self, operation_id: OperationId, *, request_options: typing.Optional[RequestOptions] = None
+        self, operation_id: AsyncOperationRequestId, *, request_options: typing.Optional[RequestOptions] = None
     ) -> GetOperationResponse:
         """
         Returns the `Asynchronous Operation` object matching `{operationId}`.
 
         Parameters:
-            - operation_id: OperationId.
+            - operation_id: AsyncOperationRequestId.
 
             - request_options: typing.Optional[RequestOptions]. Request-specific configuration.
         """
@@ -159,12 +159,14 @@ class OperationsClient:
             raise ApiError(status_code=_response.status_code, body=_response.text)
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
-    def cancel(self, operation_id: OperationId, *, request_options: typing.Optional[RequestOptions] = None) -> None:
+    def cancel(
+        self, operation_id: AsyncOperationRequestId, *, request_options: typing.Optional[RequestOptions] = None
+    ) -> None:
         """
         Cancels the `Asynchronous Operation` matching `{operationId}`.
 
         Parameters:
-            - operation_id: OperationId.
+            - operation_id: AsyncOperationRequestId.
 
             - request_options: typing.Optional[RequestOptions]. Request-specific configuration.
         """
@@ -225,13 +227,13 @@ class AsyncOperationsClient:
         self._client_wrapper = client_wrapper
 
     async def get(
-        self, operation_id: OperationId, *, request_options: typing.Optional[RequestOptions] = None
+        self, operation_id: AsyncOperationRequestId, *, request_options: typing.Optional[RequestOptions] = None
     ) -> GetOperationResponse:
         """
         Returns the `Asynchronous Operation` object matching `{operationId}`.
 
         Parameters:
-            - operation_id: OperationId.
+            - operation_id: AsyncOperationRequestId.
 
             - request_options: typing.Optional[RequestOptions]. Request-specific configuration.
         """
@@ -347,13 +349,13 @@ class AsyncOperationsClient:
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
     async def cancel(
-        self, operation_id: OperationId, *, request_options: typing.Optional[RequestOptions] = None
+        self, operation_id: AsyncOperationRequestId, *, request_options: typing.Optional[RequestOptions] = None
     ) -> None:
         """
         Cancels the `Asynchronous Operation` matching `{operationId}`.
 
         Parameters:
-            - operation_id: OperationId.
+            - operation_id: AsyncOperationRequestId.
 
             - request_options: typing.Optional[RequestOptions]. Request-specific configuration.
         """

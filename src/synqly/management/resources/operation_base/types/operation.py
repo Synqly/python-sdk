@@ -5,8 +5,8 @@ import typing
 
 from ....core.datetime_utils import serialize_datetime
 from ...common.types.id import Id
+from .async_operation_request_id import AsyncOperationRequestId
 from .operation_error import OperationError
-from .operation_id import OperationId
 from .operation_input import OperationInput
 from .operation_schedule import OperationSchedule
 from .operation_status import OperationStatus
@@ -18,7 +18,7 @@ except ImportError:
 
 
 class Operation(pydantic.BaseModel):
-    id: OperationId = pydantic.Field()
+    id: AsyncOperationRequestId = pydantic.Field()
     """
     ID of the operation
     """

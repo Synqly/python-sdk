@@ -13,6 +13,7 @@ from . import (
     notifications,
     ocsf,
     operation_base,
+    operation_id_generated,
     operations,
     organization_webhook_base,
     siem,
@@ -139,7 +140,15 @@ from .notifications import (
     NotificationId,
     NotificationStatus,
 )
-from .operation_base import Operation, OperationError, OperationId, OperationInput, OperationSchedule, OperationStatus
+from .operation_base import (
+    AsyncOperationRequestId,
+    Operation,
+    OperationError,
+    OperationInput,
+    OperationSchedule,
+    OperationStatus,
+)
+from .operation_id_generated import OperationId
 from .operations import (
     CreateOperationRequest,
     CreateOperationResponse,
@@ -237,6 +246,7 @@ __all__ = [
     "ApiResponse",
     "Application",
     "Asset",
+    "AsyncOperationRequestId",
     "Attachment",
     "AttachmentId",
     "AttachmentMetadata",
@@ -440,6 +450,7 @@ __all__ = [
     "notifications",
     "ocsf",
     "operation_base",
+    "operation_id_generated",
     "operations",
     "organization_webhook_base",
     "siem",

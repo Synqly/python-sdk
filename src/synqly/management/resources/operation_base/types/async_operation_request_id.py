@@ -2,4 +2,4 @@
 
 from ...common.types.id import Id
 
-OperationId = Id
+AsyncOperationRequestId = Id
