@@ -39,6 +39,7 @@ from .azure_monitor_logs_credential import (
     AzureMonitorLogsCredential_TokenId,
 )
 from .cloud_security_crowd_strike import CloudSecurityCrowdStrike
+from .cloud_security_defender import CloudSecurityDefender
 from .crowd_strike_credential import (
     CrowdStrikeCredential,
     CrowdStrikeCredential_OAuthClient,
@@ -123,6 +124,7 @@ from .provider_config import (
     ProviderConfig_AssetsServicenowMock,
     ProviderConfig_AssetsTaniumCloud,
     ProviderConfig_CloudsecurityCrowdstrike,
+    ProviderConfig_CloudsecurityDefender,
     ProviderConfig_EdrCrowdstrike,
     ProviderConfig_EdrDefender,
     ProviderConfig_EdrMalwarebytes,
@@ -310,6 +312,7 @@ __all__ = [
     "AzureMonitorLogsCredential_Token",
     "AzureMonitorLogsCredential_TokenId",
     "CloudSecurityCrowdStrike",
+    "CloudSecurityDefender",
     "CrowdStrikeCredential",
     "CrowdStrikeCredential_OAuthClient",
     "CrowdStrikeCredential_OAuthClientId",
@@ -396,6 +399,7 @@ __all__ = [
     "ProviderConfig_AssetsServicenowMock",
     "ProviderConfig_AssetsTaniumCloud",
     "ProviderConfig_CloudsecurityCrowdstrike",
+    "ProviderConfig_CloudsecurityDefender",
     "ProviderConfig_EdrCrowdstrike",
     "ProviderConfig_EdrDefender",
     "ProviderConfig_EdrMalwarebytes",

@@ -15,6 +15,7 @@ from .assets_service_now import AssetsServiceNow
 from .assets_service_now_mock import AssetsServiceNowMock
 from .assets_tanium_cloud import AssetsTaniumCloud
 from .cloud_security_crowd_strike import CloudSecurityCrowdStrike
+from .cloud_security_defender import CloudSecurityDefender
 from .edr_crowd_strike import EdrCrowdStrike
 from .edr_defender import EdrDefender
 from .edr_malwarebytes import EdrMalwarebytes
@@ -162,6 +163,15 @@ class ProviderConfig_AssetsTaniumCloud(AssetsTaniumCloud):
 
 class ProviderConfig_CloudsecurityCrowdstrike(CloudSecurityCrowdStrike):
     type: typing.Literal["cloudsecurity_crowdstrike"]
+
+    class Config:
+        frozen = True
+        smart_union = True
+        allow_population_by_field_name = True
+
+
+class ProviderConfig_CloudsecurityDefender(CloudSecurityDefender):
+    type: typing.Literal["cloudsecurity_defender"]
 
     class Config:
         frozen = True
@@ -658,6 +668,7 @@ ProviderConfig = typing.Union[
     ProviderConfig_AssetsServicenowMock,
     ProviderConfig_AssetsTaniumCloud,
     ProviderConfig_CloudsecurityCrowdstrike,
+    ProviderConfig_CloudsecurityDefender,
     ProviderConfig_EdrCrowdstrike,
     ProviderConfig_EdrDefender,
     ProviderConfig_EdrMalwarebytes,
