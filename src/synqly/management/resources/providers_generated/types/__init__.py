@@ -4,6 +4,7 @@ from .armis_credential import ArmisCredential, ArmisCredential_Token, ArmisCrede
 from .assets_armis_centrix import AssetsArmisCentrix
 from .assets_armis_centrix_mock import AssetsArmisCentrixMock
 from .assets_armis_dataset import AssetsArmisDataset
+from .assets_crowd_strike import AssetsCrowdStrike
 from .assets_nozomi_vantage import AssetsNozomiVantage
 from .assets_nozomi_vantage_dataset import AssetsNozomiVantageDataset
 from .assets_nozomi_vantage_mock import AssetsNozomiVantageMock
@@ -113,6 +114,7 @@ from .provider_config import (
     ProviderConfig,
     ProviderConfig_AssetsArmisCentrix,
     ProviderConfig_AssetsArmisCentrixMock,
+    ProviderConfig_AssetsCrowdstrike,
     ProviderConfig_AssetsNozomiVantage,
     ProviderConfig_AssetsNozomiVantageMock,
     ProviderConfig_AssetsQualysCloud,
@@ -275,6 +277,7 @@ __all__ = [
     "AssetsArmisCentrix",
     "AssetsArmisCentrixMock",
     "AssetsArmisDataset",
+    "AssetsCrowdStrike",
     "AssetsNozomiVantage",
     "AssetsNozomiVantageDataset",
     "AssetsNozomiVantageMock",
@@ -384,6 +387,7 @@ __all__ = [
     "ProviderConfigId",
     "ProviderConfig_AssetsArmisCentrix",
     "ProviderConfig_AssetsArmisCentrixMock",
+    "ProviderConfig_AssetsCrowdstrike",
     "ProviderConfig_AssetsNozomiVantage",
     "ProviderConfig_AssetsNozomiVantageMock",
     "ProviderConfig_AssetsQualysCloud",

@@ -12,19 +12,19 @@ except ImportError:
     import pydantic  # type: ignore
 
 
-class SiemCrowdstrike(pydantic.BaseModel):
+class AssetsCrowdStrike(pydantic.BaseModel):
     """
-    Configuration for CrowdStrike Falcon NextGen SIEM
+    Configuration for CrowdStrike Falcon as an Assets Provider
     """
 
     credential: CrowdStrikeCredential = pydantic.Field()
     """
-    The credential to use for the CrowdStrike Falcon NextGen SIEM tenant.
+    The credential to use for the CrowdStrike Falcon tenant.
     """
 
     url: typing.Optional[str] = pydantic.Field(default=None)
     """
-    The root domain where your CrowdStrike Falcon NextGen SIEM tenant is located.
+    The root domain where your CrowdStrike Falcon tenant is located.
     """
 
     def json(self, **kwargs: typing.Any) -> str:

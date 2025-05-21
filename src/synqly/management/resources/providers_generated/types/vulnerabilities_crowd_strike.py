@@ -17,7 +17,11 @@ class VulnerabilitiesCrowdStrike(pydantic.BaseModel):
     Configuration for CrowdStrike Falcon as a Vulnerabilities Provider
     """
 
-    credential: CrowdStrikeCredential
+    credential: CrowdStrikeCredential = pydantic.Field()
+    """
+    The credential to use for the CrowdStrike Falcon tenant.
+    """
+
     url: typing.Optional[str] = pydantic.Field(default=None)
     """
     The root domain where your CrowdStrike Falcon tenant is located.

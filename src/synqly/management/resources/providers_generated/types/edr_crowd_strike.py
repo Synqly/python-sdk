@@ -17,7 +17,11 @@ class EdrCrowdStrike(pydantic.BaseModel):
     Configuration for the CrowdStrike EDR Provider
     """
 
-    credential: CrowdStrikeCredential
+    credential: CrowdStrikeCredential = pydantic.Field()
+    """
+    The credential to use for the CrowdStrike EDR Provider
+    """
+
     url: typing.Optional[str] = pydantic.Field(default=None)
     """
     The root domain where your CrowdStrike Falcon tenant is located.

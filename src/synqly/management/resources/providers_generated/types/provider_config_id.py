@@ -21,6 +21,11 @@ class ProviderConfigId(str, enum.Enum):
     [MOCK] Armis Centrix™ for Asset Management and Security
     """
 
+    ASSETS_CROWD_STRIKE = "assets_crowdstrike"
+    """
+    CrowdStrike Falcon Spotlight
+    """
+
     ASSETS_NOZOMI_VANTAGE = "assets_nozomi_vantage"
     """
     Nozomi Vantage
@@ -335,6 +340,7 @@ class ProviderConfigId(str, enum.Enum):
         self,
         assets_armis_centrix: typing.Callable[[], T_Result],
         assets_armis_centrix_mock: typing.Callable[[], T_Result],
+        assets_crowd_strike: typing.Callable[[], T_Result],
         assets_nozomi_vantage: typing.Callable[[], T_Result],
         assets_nozomi_vantage_mock: typing.Callable[[], T_Result],
         assets_qualys_cloud: typing.Callable[[], T_Result],
@@ -402,6 +408,8 @@ class ProviderConfigId(str, enum.Enum):
             return assets_armis_centrix()
         if self is ProviderConfigId.ASSETS_ARMIS_CENTRIX_MOCK:
             return assets_armis_centrix_mock()
+        if self is ProviderConfigId.ASSETS_CROWD_STRIKE:
+            return assets_crowd_strike()
         if self is ProviderConfigId.ASSETS_NOZOMI_VANTAGE:
             return assets_nozomi_vantage()
         if self is ProviderConfigId.ASSETS_NOZOMI_VANTAGE_MOCK:
