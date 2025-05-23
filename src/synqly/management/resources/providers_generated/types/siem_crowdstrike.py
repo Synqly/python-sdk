@@ -5,6 +5,7 @@ import typing
 
 from ....core.datetime_utils import serialize_datetime
 from .crowd_strike_credential import CrowdStrikeCredential
+from .crowdstrike_hec_credential import CrowdstrikeHecCredential
 
 try:
     import pydantic.v1 as pydantic  # type: ignore
@@ -20,6 +21,16 @@ class SiemCrowdstrike(pydantic.BaseModel):
     credential: CrowdStrikeCredential = pydantic.Field()
     """
     The credential to use for the CrowdStrike Falcon NextGen SIEM tenant.
+    """
+
+    hec_credential: typing.Optional[CrowdstrikeHecCredential] = pydantic.Field(default=None)
+    """
+    Token credential to use for connecting to the CrowdStrike HEC service. If not provided, sending events to CrowdStrike is disabled.
+    """
+
+    hec_url: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    The generated CrowdStrike HEC URL provided with your token. This must be an HTTPS URL.
     """
 
     url: typing.Optional[str] = pydantic.Field(default=None)
