@@ -1,5 +1,6 @@
 import sys
 import argparse
+import httpx
 import pprint
 from pathlib import Path
 
@@ -14,6 +15,29 @@ from shared import utils
 # Synqly Python SDK imports
 from synqly import engine
 from synqly import management as mgmt
+from synqly.management.client import SynqlyManagement
+
+TENANT_NAME = "Tenant ABC"
+
+def clean_example(app: utils.App, synqly_org_token: str):
+    if app != None and len(app.tenants) > 0:
+        app._cleanup_handler()
+    elif synqly_org_token != None:
+        transport = httpx.HTTPTransport(retries=3)
+        management_client = SynqlyManagement(
+            token=synqly_org_token,
+            httpx_client=httpx.Client(transport=transport),
+        )
+
+        available_accounts = management_client.accounts.list()
+        
+        for account in available_accounts.result:
+            if account.fullname == TENANT_NAME:
+                try:
+                    management_client.accounts.delete(account.id)
+                    print("Cleaned up account '{}'".format(account.id))
+                except Exception as e:
+                    print("Error deleting account '{}': {}".format(account.name, str(e)))
 
 
 def parse_args():
@@ -130,11 +154,11 @@ def main():
 
     # Create tenants within the Application
     try:
-        app.new_tenant(synqly_org_token, "Tenant ABC")
-        print("Tenant ABC created")
+        app.new_tenant(synqly_org_token, TENANT_NAME)
+        print("{} created".format(TENANT_NAME))
     except Exception as e:
-        print("Error creating Tenant ABC:" + str(e))
-        app._cleanup_handler()
+        print("Error creating {}: {}".format(TENANT_NAME, str(e)))
+        clean_example(app, synqly_org_token)
 
     # Placeholder variables for the IDs of the Credentials we will create
     abc_credential_id = ""
@@ -142,24 +166,24 @@ def main():
     # Create a Synqly Credential for splunk connector.
     try:
         abc_credential_id = app.create_credential(
-            "Tenant ABC",
+            TENANT_NAME,
             "edr",
             sentinelone_credential_config(sentinelone_token),
         )
     except Exception as e:
-        print("Error creating Credential for Tenant ABC: " + str(e))
-        app._cleanup_handler()
+        print("Error creating Credential for {}: {}".format(TENANT_NAME, str(e)))
+        clean_example(app, synqly_org_token)
         raise e
 
     # Use the stored credential ID to configure a SentinelOne Integration for Tenant ABC
     try:
         app.configure_integration(
-            "Tenant ABC",
+            TENANT_NAME,
             sentinelone_provider_config(sentinelone_url, abc_credential_id),
         )
     except Exception as e:
-        print("Error configuring provider integration for Tenant ABC: " + str(e))
-        app._cleanup_handler()
+        print("Error configuring provider integration for {}: {}".format(TENANT_NAME, str(e)))
+        clean_example(app, synqly_org_token)
         raise e
 
     # Start a background job to simulate data generation
@@ -167,11 +191,11 @@ def main():
         demo_edr(app, 5)
     except Exception as e:
         print("Error running background job: " + str(e))
-        app._cleanup_handler()
+        clean_example(app, synqly_org_token)
         raise e
 
     # Clean up Synqly Accounts and Integrations
-    app._cleanup_handler()
+    clean_example(app, synqly_org_token)
 
 
 try:

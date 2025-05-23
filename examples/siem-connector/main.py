@@ -1,6 +1,7 @@
 import sys
 import time
 import argparse
+import httpx
 from pathlib import Path
 
 # Add the root directory to the system path so that we can import common
@@ -14,6 +15,30 @@ from shared import utils
 # Synqly Python SDK imports
 from synqly import engine
 from synqly import management as mgmt
+from synqly.management.client import SynqlyManagement
+
+TENANT_ABC_NAME = "Tenant ABC"
+TENANT_XYZ_NAME = "Tenant XYZ"
+
+def clean_example(app: utils.App, synqly_org_token: str):
+    if app != None and len(app.tenants) > 0:
+        app._cleanup_handler()
+    elif synqly_org_token != None:
+        transport = httpx.HTTPTransport(retries=3)
+        management_client = SynqlyManagement(
+            token=synqly_org_token,
+            httpx_client=httpx.Client(transport=transport),
+        )
+
+        available_accounts = management_client.accounts.list()
+        
+        for account in available_accounts.result:
+            if account.fullname == TENANT_ABC_NAME or account.fullname == TENANT_XYZ_NAME:
+                try:
+                    management_client.accounts.delete(account.id)
+                    print("Cleaned up account '{}'".format(account.id))
+                except Exception as e:
+                    print("Error deleting account '{}': {}".format(account.name, str(e)))
 
 
 def parse_args():
@@ -84,7 +109,7 @@ def splunk_provider_config(splunk_url, credential_id):
     )
 
 
-def background_job(app, duration_seconds):
+def background_job(app, duration_seconds, synqly_org_token):
     start_time = time.time()
     end_time = start_time + duration_seconds
 
@@ -96,7 +121,7 @@ def background_job(app, duration_seconds):
                     duration_seconds
                 )
             )
-            app._cleanup_handler()
+            clean_example(app, synqly_org_token)
             return
 
         # Iterate through each tenant and send an event to their Event Logger
@@ -177,18 +202,18 @@ def main():
 
     # Create tenants within the Application
     try:
-        app.new_tenant(synqly_org_token, "Tenant ABC")
-        print("Tenant ABC created")
+        app.new_tenant(synqly_org_token, TENANT_ABC_NAME)
+        print("{} created".format(TENANT_ABC_NAME))
     except Exception as e:
-        print("Error creating Tenant ABC:" + str(e))
-        app._cleanup_handler()
+        print("Error creating {}: {}".format(TENANT_ABC_NAME, str(e)))
+        clean_example(app, synqly_org_token)
 
     try:
-        app.new_tenant(synqly_org_token, "Tenant XYZ")
-        print("Tenant XYZ created")
+        app.new_tenant(synqly_org_token, TENANT_XYZ_NAME)
+        print("{} created".format(TENANT_XYZ_NAME))
     except Exception as e:
-        print("Error creating Tenant XYZ:" + str(e))
-        app._cleanup_handler()
+        print("Error creating {}: {}".format(TENANT_XYZ_NAME, str(e)))
+        clean_example(app, synqly_org_token)
 
     # Placeholder variables for the IDs of the Credentials we will create
     xyz_credential_id = ""
@@ -196,46 +221,46 @@ def main():
     # Create a Synqly Credential for splunk connector.
     try:
         xyz_credential_id = app.create_credential(
-            "Tenant XYZ",
+            TENANT_XYZ_NAME,
             "siem",
             splunk_credential_config(splunk_hec_token),
         )
     except Exception as e:
-        print("Error creating Credential for Tenant XYZ: " + str(e))
-        app._cleanup_handler()
+        print("Error creating Credential for {}: {}".format(TENANT_XYZ_NAME, str(e)))
+        clean_example(app, synqly_org_token)
         raise e
 
     # Configure a mock integration for tenant ABC and an S3 Integration for Tenant XYZ
     try:
         app.configure_integration(
-            "Tenant ABC",
+            TENANT_ABC_NAME,
             mock_provider_config(),
         )
     except Exception as e:
-        print("Error configuring provider integration for Tenant ABC: " + str(e))
-        app._cleanup_handler()
+        print("Error configuring provider integration for {}: {}".format(TENANT_ABC_NAME, str(e)))
+        clean_example(app, synqly_org_token)
         raise e
 
     try:
         app.configure_integration(
-            "Tenant XYZ",
+            TENANT_XYZ_NAME,
             splunk_provider_config(splunk_url, xyz_credential_id),
         )
     except Exception as e:
-        print("Error configuring provider integration for Tenant XYZ: " + str(e))
-        app._cleanup_handler()
+        print("Error configuring provider integration for {}: {}".format(TENANT_XYZ_NAME, str(e)))
+        clean_example(app, synqly_org_token)
         raise e
 
     # Start a background job to generate data
     try:
-        background_job(app, duration_seconds)
+        background_job(app, duration_seconds, synqly_org_token)
     except Exception as e:
         print("Error running background job: " + str(e))
-        app._cleanup_handler()
+        clean_example(app, synqly_org_token)
         raise e
 
     # Clean up Synqly Accounts and Integrations
-    app._cleanup_handler()
+    clean_example(app, synqly_org_token)
 
 
 try:

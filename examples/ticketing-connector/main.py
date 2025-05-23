@@ -8,6 +8,7 @@ Ticketing Integration
 # Standard imports
 import argparse
 import base64
+import httpx
 from pathlib import Path
 import sys
 import time
@@ -23,6 +24,29 @@ from shared import utils
 # Synqly Python SDK imports
 from synqly import engine
 from synqly import management as mgmt
+from synqly.management.client import SynqlyManagement
+
+TENANT_NAME = "Golden Ticket Solutions"
+
+def clean_example(app: utils.App, synqly_org_token: str):
+    if app != None and len(app.tenants) > 0:
+        app._cleanup_handler()
+    elif synqly_org_token != None:
+        transport = httpx.HTTPTransport(retries=3)
+        management_client = SynqlyManagement(
+            token=synqly_org_token,
+            httpx_client=httpx.Client(transport=transport),
+        )
+
+        available_accounts = management_client.accounts.list()
+        
+        for account in available_accounts.result:
+            if account.fullname == TENANT_NAME:
+                try:
+                    management_client.accounts.delete(account.id)
+                    print("Cleaned up account '{}'".format(account.id))
+                except Exception as e:
+                    print("Error deleting account '{}': {}".format(account.name, str(e)))
 
 
 def parse_args():
@@ -243,15 +267,13 @@ def main():
     # Initialize an empty application to store our simulated tenants
     app = utils.App("ticketing")
 
-    tenant_name = "Golden Ticket Solutions"
-
     # Initialize tenants within our Application
     try:
-        app.new_tenant(synqly_org_token, tenant_name)
-        print("Tenant {} created".format(tenant_name))
+        app.new_tenant(synqly_org_token, TENANT_NAME)
+        print("Tenant {} created".format(TENANT_NAME))
     except Exception as e:
-        print("Error creating tenant {}: ".format(tenant_name) + str(e))
-        app._cleanup_handler()
+        print("Error creating tenant {}: ".format(TENANT_NAME) + str(e))
+        clean_example(app, synqly_org_token)
         raise e
 
     # Configure a ticketing integration based on the configuration. If no jira credentials
@@ -265,20 +287,20 @@ def main():
         provider_config = mock_provider_config()
 
     try:
-        app.configure_integration(tenant_name, provider_config)
+        app.configure_integration(TENANT_NAME, provider_config)
     except Exception as e:
-        print("Error configuring provider integration for tenant {}: ".format(tenant_name) + str(e))
-        app._cleanup_handler()
+        print("Error configuring provider integration for tenant {}: ".format(TENANT_NAME) + str(e))
+        clean_example(app, synqly_org_token)
         raise e
 
     try:
-        ticketing_actions(app.tenants[tenant_name], project_key, jira_username)
+        ticketing_actions(app.tenants[TENANT_NAME], project_key, jira_username)
     except Exception as e:
         print("Error running background job: " + str(e))
-        app._cleanup_handler()
+        clean_example(app, synqly_org_token)
         raise e
 
-    app._cleanup_handler()
+    clean_example(app, synqly_org_token)
 
 
 try:
