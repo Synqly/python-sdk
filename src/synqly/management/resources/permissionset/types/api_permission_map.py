@@ -9,6 +9,7 @@ from .alarm_policies_permissions import AlarmPoliciesPermissions
 from .alarms_permissions import AlarmsPermissions
 from .audit_permissions import AuditPermissions
 from .auth_permissions import AuthPermissions
+from .billing_permissions import BillingPermissions
 from .bridges_permissions import BridgesPermissions
 from .credentials_permissions import CredentialsPermissions
 from .integration_points_permissions import IntegrationPointsPermissions
@@ -38,6 +39,7 @@ class ApiPermissionMap(pydantic.BaseModel):
     alarm_policies: typing.Optional[AlarmPoliciesPermissions] = None
     audit: typing.Optional[AuditPermissions] = None
     auth: typing.Optional[AuthPermissions] = None
+    billing: typing.Optional[BillingPermissions] = None
     bridges: typing.Optional[BridgesPermissions] = None
     credentials: typing.Optional[CredentialsPermissions] = None
     integrations: typing.Optional[IntegrationsPermissions] = None
