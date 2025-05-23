@@ -14,6 +14,10 @@ except ImportError:
 
 class ListIntegrationWebHooksResponse(pydantic.BaseModel):
     result: typing.List[IntegrationWebHook]
+    url: str = pydantic.Field()
+    """
+    Unique URL for this webhook. This is the URL that the end-user can use to manually create the webhook in the provider.
+    """
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}
