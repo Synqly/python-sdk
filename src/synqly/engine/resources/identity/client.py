@@ -234,13 +234,21 @@ class IdentityClient:
             raise ApiError(status_code=_response.status_code, body=_response.text)
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
-    def get_user(self, user_id: UserId, *, request_options: typing.Optional[RequestOptions] = None) -> GetUserResponse:
+    def get_user(
+        self,
+        user_id: UserId,
+        *,
+        meta: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> GetUserResponse:
         """
         Returns a `User` object wrapped in an OCSF Entity Management event of type Read from the token-linked identity provider. Depending
         on the providers offerings, this may include additional user information, such as the user's current groups and roles.
 
         Parameters:
             - user_id: UserId.
+
+            - meta: typing.Optional[typing.Union[str, typing.Sequence[str]]]. Add metadata to the response by invoking meta functions. Documentation for meta functions is available at https://docs.synqly.com/api-reference/meta-functions. Not all meta function are available at every endpoint.
 
             - request_options: typing.Optional[RequestOptions]. Request-specific configuration.
         """
@@ -250,7 +258,16 @@ class IdentityClient:
                 f"{self._client_wrapper.get_base_url()}/", f"v1/identity/users/{jsonable_encoder(user_id)}"
             ),
             params=jsonable_encoder(
-                request_options.get("additional_query_parameters") if request_options is not None else None
+                remove_none_from_dict(
+                    {
+                        "meta": meta,
+                        **(
+                            request_options.get("additional_query_parameters", {})
+                            if request_options is not None
+                            else {}
+                        ),
+                    }
+                )
             ),
             headers=jsonable_encoder(
                 remove_none_from_dict(
@@ -1030,7 +1047,11 @@ class AsyncIdentityClient:
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
     async def get_user(
-        self, user_id: UserId, *, request_options: typing.Optional[RequestOptions] = None
+        self,
+        user_id: UserId,
+        *,
+        meta: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
+        request_options: typing.Optional[RequestOptions] = None,
     ) -> GetUserResponse:
         """
         Returns a `User` object wrapped in an OCSF Entity Management event of type Read from the token-linked identity provider. Depending
@@ -1038,6 +1059,8 @@ class AsyncIdentityClient:
 
         Parameters:
             - user_id: UserId.
+
+            - meta: typing.Optional[typing.Union[str, typing.Sequence[str]]]. Add metadata to the response by invoking meta functions. Documentation for meta functions is available at https://docs.synqly.com/api-reference/meta-functions. Not all meta function are available at every endpoint.
 
             - request_options: typing.Optional[RequestOptions]. Request-specific configuration.
         """
@@ -1047,7 +1070,16 @@ class AsyncIdentityClient:
                 f"{self._client_wrapper.get_base_url()}/", f"v1/identity/users/{jsonable_encoder(user_id)}"
             ),
             params=jsonable_encoder(
-                request_options.get("additional_query_parameters") if request_options is not None else None
+                remove_none_from_dict(
+                    {
+                        "meta": meta,
+                        **(
+                            request_options.get("additional_query_parameters", {})
+                            if request_options is not None
+                            else {}
+                        ),
+                    }
+                )
             ),
             headers=jsonable_encoder(
                 remove_none_from_dict(
