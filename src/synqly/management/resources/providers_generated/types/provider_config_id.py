@@ -261,6 +261,11 @@ class ProviderConfigId(str, enum.Enum):
     Autotask Operations Cloud
     """
 
+    TICKETING_FRESHDESK = "ticketing_freshdesk"
+    """
+    Freshdesk
+    """
+
     TICKETING_JIRA = "ticketing_jira"
     """
     Atlassian Jira
@@ -393,6 +398,7 @@ class ProviderConfigId(str, enum.Enum):
         storage_gcs: typing.Callable[[], T_Result],
         storage_mock: typing.Callable[[], T_Result],
         ticketing_autotask: typing.Callable[[], T_Result],
+        ticketing_freshdesk: typing.Callable[[], T_Result],
         ticketing_jira: typing.Callable[[], T_Result],
         ticketing_mock: typing.Callable[[], T_Result],
         ticketing_pager_duty: typing.Callable[[], T_Result],
@@ -510,6 +516,8 @@ class ProviderConfigId(str, enum.Enum):
             return storage_mock()
         if self is ProviderConfigId.TICKETING_AUTOTASK:
             return ticketing_autotask()
+        if self is ProviderConfigId.TICKETING_FRESHDESK:
+            return ticketing_freshdesk()
         if self is ProviderConfigId.TICKETING_JIRA:
             return ticketing_jira()
         if self is ProviderConfigId.TICKETING_MOCK:

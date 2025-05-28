@@ -73,6 +73,7 @@ from .elasticsearch_shared_secret import (
     ElasticsearchSharedSecret_SecretId,
 )
 from .entra_id_credential import EntraIdCredential, EntraIdCredential_OAuthClient, EntraIdCredential_OAuthClientId
+from .freshdesk_credential import FreshdeskCredential, FreshdeskCredential_Token, FreshdeskCredential_TokenId
 from .gcs_credential import GcsCredential, GcsCredential_Aws, GcsCredential_AwsId
 from .google_chronicle_credential import (
     GoogleChronicleCredential,
@@ -163,6 +164,7 @@ from .provider_config import (
     ProviderConfig_StorageGcs,
     ProviderConfig_StorageMockStorage,
     ProviderConfig_TicketingAutotask,
+    ProviderConfig_TicketingFreshdesk,
     ProviderConfig_TicketingJira,
     ProviderConfig_TicketingMockTicketing,
     ProviderConfig_TicketingPagerduty,
@@ -252,6 +254,7 @@ from .tenable_cloud_credential import (
     TenableCloudCredential_TokenId,
 )
 from .ticketing_autotask import TicketingAutotask
+from .ticketing_freshdesk import TicketingFreshdesk
 from .ticketing_jira import TicketingJira
 from .ticketing_mock import TicketingMock
 from .ticketing_pager_duty import TicketingPagerDuty
@@ -342,6 +345,9 @@ __all__ = [
     "EntraIdCredential",
     "EntraIdCredential_OAuthClient",
     "EntraIdCredential_OAuthClientId",
+    "FreshdeskCredential",
+    "FreshdeskCredential_Token",
+    "FreshdeskCredential_TokenId",
     "GcsCredential",
     "GcsCredential_Aws",
     "GcsCredential_AwsId",
@@ -438,6 +444,7 @@ __all__ = [
     "ProviderConfig_StorageGcs",
     "ProviderConfig_StorageMockStorage",
     "ProviderConfig_TicketingAutotask",
+    "ProviderConfig_TicketingFreshdesk",
     "ProviderConfig_TicketingJira",
     "ProviderConfig_TicketingMockTicketing",
     "ProviderConfig_TicketingPagerduty",
@@ -529,6 +536,7 @@ __all__ = [
     "TenableCloudCredential_Token",
     "TenableCloudCredential_TokenId",
     "TicketingAutotask",
+    "TicketingFreshdesk",
     "TicketingJira",
     "TicketingMock",
     "TicketingPagerDuty",
