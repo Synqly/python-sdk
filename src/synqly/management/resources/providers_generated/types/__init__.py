@@ -191,6 +191,11 @@ from .rapid_7_insight_cloud_credential import (
 )
 from .sentinel_credential import SentinelCredential, SentinelCredential_OAuthClient, SentinelCredential_OAuthClientId
 from .sentinel_one_credential import SentinelOneCredential, SentinelOneCredential_Token, SentinelOneCredential_TokenId
+from .sentinel_one_edr_events_credential import (
+    SentinelOneEdrEventsCredential,
+    SentinelOneEdrEventsCredential_Token,
+    SentinelOneEdrEventsCredential_TokenId,
+)
 from .service_now_credential import (
     ServiceNowCredential,
     ServiceNowCredential_Basic,
@@ -475,6 +480,9 @@ __all__ = [
     "SentinelOneCredential",
     "SentinelOneCredential_Token",
     "SentinelOneCredential_TokenId",
+    "SentinelOneEdrEventsCredential",
+    "SentinelOneEdrEventsCredential_Token",
+    "SentinelOneEdrEventsCredential_TokenId",
     "ServiceNowCredential",
     "ServiceNowCredential_Basic",
     "ServiceNowCredential_BasicId",

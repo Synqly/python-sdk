@@ -11,6 +11,7 @@ from .network_quarantine_response import NetworkQuarantineResponse
 from .posture_score import PostureScore
 from .query_alerts_response import QueryAlertsResponse
 from .query_applications_response import QueryApplicationsResponse
+from .query_edr_events_response import QueryEdrEventsResponse
 from .query_endpoints_response import QueryEndpointsResponse
 from .query_iocs_response import QueryIocsResponse
 from .query_posture_score_response import QueryPostureScoreResponse
@@ -29,6 +30,7 @@ __all__ = [
     "PostureScore",
     "QueryAlertsResponse",
     "QueryApplicationsResponse",
+    "QueryEdrEventsResponse",
     "QueryEndpointsResponse",
     "QueryIocsResponse",
     "QueryPostureScoreResponse",

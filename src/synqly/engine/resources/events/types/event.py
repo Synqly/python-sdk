@@ -18,6 +18,7 @@ from ...ocsf.resources.v_1_3_0.resources.configstate.resources.classes.types.con
 from ...ocsf.resources.v_1_3_0.resources.detectionfinding.resources.classes.types.detection_finding import (
     DetectionFinding,
 )
+from ...ocsf.resources.v_1_3_0.resources.dnsactivity.resources.classes.types.dns_activity import DnsActivity
 from ...ocsf.resources.v_1_3_0.resources.fileactivity.resources.classes.types.file_activity import FileActivity
 from ...ocsf.resources.v_1_3_0.resources.groupmanagement.resources.classes.types.group_management import GroupManagement
 from ...ocsf.resources.v_1_3_0.resources.incidentfinding.resources.classes.types.incident_finding import IncidentFinding
@@ -105,6 +106,15 @@ class Event_DeviceConfigState(ConfigState):
 
 class Event_DetectionFinding(DetectionFinding):
     class_name: typing.Literal["Detection Finding"]
+
+    class Config:
+        frozen = True
+        smart_union = True
+        allow_population_by_field_name = True
+
+
+class Event_DnsActivity(DnsActivity):
+    class_name: typing.Literal["DNS Activity"]
 
     class Config:
         frozen = True
@@ -247,6 +257,7 @@ Event = typing.Union[
     Event_ComplianceFinding,
     Event_DeviceConfigState,
     Event_DetectionFinding,
+    Event_DnsActivity,
     Event_FileSystemActivity,
     Event_GroupManagement,
     Event_IncidentFinding,

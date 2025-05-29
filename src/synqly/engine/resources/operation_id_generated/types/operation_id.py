@@ -17,6 +17,7 @@ class OperationId(str, enum.Enum):
     EDR_NETWORK_QUARANTINE = "edr_network_quarantine"
     EDR_QUERY_ALERTS = "edr_query_alerts"
     EDR_QUERY_APPLICATIONS = "edr_query_applications"
+    EDR_QUERY_EDR_EVENTS = "edr_query_edr_events"
     EDR_QUERY_ENDPOINTS = "edr_query_endpoints"
     EDR_QUERY_IOCS = "edr_query_iocs"
     EDR_QUERY_POSTURE_SCORE = "edr_query_posture_score"
@@ -84,6 +85,7 @@ class OperationId(str, enum.Enum):
         edr_network_quarantine: typing.Callable[[], T_Result],
         edr_query_alerts: typing.Callable[[], T_Result],
         edr_query_applications: typing.Callable[[], T_Result],
+        edr_query_edr_events: typing.Callable[[], T_Result],
         edr_query_endpoints: typing.Callable[[], T_Result],
         edr_query_iocs: typing.Callable[[], T_Result],
         edr_query_posture_score: typing.Callable[[], T_Result],
@@ -159,6 +161,8 @@ class OperationId(str, enum.Enum):
             return edr_query_alerts()
         if self is OperationId.EDR_QUERY_APPLICATIONS:
             return edr_query_applications()
+        if self is OperationId.EDR_QUERY_EDR_EVENTS:
+            return edr_query_edr_events()
         if self is OperationId.EDR_QUERY_ENDPOINTS:
             return edr_query_endpoints()
         if self is OperationId.EDR_QUERY_IOCS:

@@ -6,6 +6,7 @@ from .authentication import Authentication
 from .cloud_resources_inventory_info import CloudResourcesInventoryInfo
 from .compliance_finding import ComplianceFinding
 from .detection_finding import DetectionFinding
+from .dns_activity import DnsActivity
 from .entity_management import EntityManagement
 from .file_activity import FileActivity
 from .group_management import GroupManagement
@@ -26,6 +27,7 @@ __all__ = [
     "CloudResourcesInventoryInfo",
     "ComplianceFinding",
     "DetectionFinding",
+    "DnsActivity",
     "EntityManagement",
     "FileActivity",
     "GroupManagement",
