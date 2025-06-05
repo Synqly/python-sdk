@@ -27,6 +27,11 @@ class Project(pydantic.BaseModel):
     Name of the project
     """
 
+    custom_fields: typing.Optional[typing.Dict[str, typing.Any]] = pydantic.Field(default=None)
+    """
+    Custom mapped fields for this project.
+    """
+
     unmapped: typing.Optional[Object] = pydantic.Field(default=None)
     """
     The attributes that are not mapped to the project schema. The names and values of those attributes are specific to the provider.

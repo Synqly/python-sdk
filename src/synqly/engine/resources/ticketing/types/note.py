@@ -46,6 +46,11 @@ class Note(pydantic.BaseModel):
     The date the comment was last updated.
     """
 
+    custom_fields: typing.Optional[typing.Dict[str, typing.Any]] = pydantic.Field(default=None)
+    """
+    Custom mapped fields for this note.
+    """
+
     unmapped: typing.Optional[Object] = pydantic.Field(default=None)
     """
     The attributes that are not mapped to the comment schema. The names and values of those attributes are specific to the provider.
