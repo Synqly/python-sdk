@@ -81,6 +81,11 @@ from .google_chronicle_credential import (
     GoogleChronicleCredential_OAuthClientId,
 )
 from .google_credential import GoogleCredential, GoogleCredential_OAuthClient, GoogleCredential_OAuthClientId
+from .google_service_account_credential import (
+    GoogleServiceAccountCredential,
+    GoogleServiceAccountCredential_OAuthClient,
+    GoogleServiceAccountCredential_OAuthClientId,
+)
 from .identity_entra_id import IdentityEntraId
 from .identity_google import IdentityGoogle
 from .identity_okta import IdentityOkta
@@ -143,6 +148,7 @@ from .provider_config import (
     ProviderConfig_SiemCrowdstrike,
     ProviderConfig_SiemElasticsearch,
     ProviderConfig_SiemGoogleChronicle,
+    ProviderConfig_SiemGoogleSecurityOperations,
     ProviderConfig_SiemMockSiem,
     ProviderConfig_SiemOpensearch,
     ProviderConfig_SiemQRadar,
@@ -156,6 +162,7 @@ from .provider_config import (
     ProviderConfig_SinkCrowdstrikeHec,
     ProviderConfig_SinkElasticsearch,
     ProviderConfig_SinkGoogleSecOps,
+    ProviderConfig_SinkGoogleSecurityOperations,
     ProviderConfig_SinkMockSink,
     ProviderConfig_SinkOpensearch,
     ProviderConfig_SinkSplunk,
@@ -206,6 +213,7 @@ from .service_now_credential import (
 from .siem_crowdstrike import SiemCrowdstrike
 from .siem_elasticsearch import SiemElasticsearch
 from .siem_google_chronicle import SiemGoogleChronicle
+from .siem_google_security_operations import SiemGoogleSecurityOperations
 from .siem_mock import SiemMock
 from .siem_open_search import SiemOpenSearch
 from .siem_q_radar import SiemQRadar
@@ -219,6 +227,7 @@ from .sink_azure_monitor_logs import SinkAzureMonitorLogs
 from .sink_crowdstrike_hec import SinkCrowdstrikeHec
 from .sink_elasticsearch import SinkElasticsearch
 from .sink_google_sec_ops import SinkGoogleSecOps
+from .sink_google_security_operations import SinkGoogleSecurityOperations
 from .sink_mock import SinkMock
 from .sink_open_search import SinkOpenSearch
 from .sink_splunk import SinkSplunk
@@ -362,6 +371,9 @@ __all__ = [
     "GoogleCredential",
     "GoogleCredential_OAuthClient",
     "GoogleCredential_OAuthClientId",
+    "GoogleServiceAccountCredential",
+    "GoogleServiceAccountCredential_OAuthClient",
+    "GoogleServiceAccountCredential_OAuthClientId",
     "IdentityEntraId",
     "IdentityGoogle",
     "IdentityOkta",
@@ -428,6 +440,7 @@ __all__ = [
     "ProviderConfig_SiemCrowdstrike",
     "ProviderConfig_SiemElasticsearch",
     "ProviderConfig_SiemGoogleChronicle",
+    "ProviderConfig_SiemGoogleSecurityOperations",
     "ProviderConfig_SiemMockSiem",
     "ProviderConfig_SiemOpensearch",
     "ProviderConfig_SiemQRadar",
@@ -441,6 +454,7 @@ __all__ = [
     "ProviderConfig_SinkCrowdstrikeHec",
     "ProviderConfig_SinkElasticsearch",
     "ProviderConfig_SinkGoogleSecOps",
+    "ProviderConfig_SinkGoogleSecurityOperations",
     "ProviderConfig_SinkMockSink",
     "ProviderConfig_SinkOpensearch",
     "ProviderConfig_SinkSplunk",
@@ -491,6 +505,7 @@ __all__ = [
     "SiemCrowdstrike",
     "SiemElasticsearch",
     "SiemGoogleChronicle",
+    "SiemGoogleSecurityOperations",
     "SiemMock",
     "SiemOpenSearch",
     "SiemQRadar",
@@ -504,6 +519,7 @@ __all__ = [
     "SinkCrowdstrikeHec",
     "SinkElasticsearch",
     "SinkGoogleSecOps",
+    "SinkGoogleSecurityOperations",
     "SinkMock",
     "SinkOpenSearch",
     "SinkSplunk",

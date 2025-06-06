@@ -4,7 +4,7 @@ import datetime as dt
 import typing
 
 from ....core.datetime_utils import serialize_datetime
-from .google_chronicle_credential import GoogleChronicleCredential
+from .google_service_account_credential import GoogleServiceAccountCredential
 
 try:
     import pydantic.v1 as pydantic  # type: ignore
@@ -12,24 +12,34 @@ except ImportError:
     import pydantic  # type: ignore
 
 
-class SinkGoogleSecOps(pydantic.BaseModel):
+class SinkGoogleSecurityOperations(pydantic.BaseModel):
     """
-    Configuration for Google Security Operations (formerly Google Chronicle) as a Sink Provider connecting via the older Malachite API.
+    Configuration for Google Security Operations (formerly Google Chronicle) as a Sink Provider.
     """
 
-    credential: GoogleChronicleCredential = pydantic.Field()
+    credential: GoogleServiceAccountCredential = pydantic.Field()
     """
-    The credential set used to write events to Google SecOps.
+    Google OAuth 2.0 credentials with an email address.
     """
 
     customer_id: str = pydantic.Field()
     """
-    The customer ID reported when writing events.
+    The customer ID of the Google SecOps instance
+    """
+
+    project_id: str = pydantic.Field()
+    """
+    The project ID of the Google SecOps instance.
+    """
+
+    region: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    The region of the Google SecOps instance. Usually 'us' or 'eu'.
     """
 
     url: typing.Optional[str] = pydantic.Field(default=None)
     """
-    (Optional) Ingestion URL for the Google SecOps instance. This should be the base event ingestion URL, without any path components.
+    The base API URL for posting event, without any path components.
     """
 
     def json(self, **kwargs: typing.Any) -> str:

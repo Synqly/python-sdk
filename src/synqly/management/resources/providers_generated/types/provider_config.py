@@ -33,6 +33,7 @@ from .notifications_teams import NotificationsTeams
 from .siem_crowdstrike import SiemCrowdstrike
 from .siem_elasticsearch import SiemElasticsearch
 from .siem_google_chronicle import SiemGoogleChronicle
+from .siem_google_security_operations import SiemGoogleSecurityOperations
 from .siem_mock import SiemMock
 from .siem_open_search import SiemOpenSearch
 from .siem_q_radar import SiemQRadar
@@ -46,6 +47,7 @@ from .sink_azure_monitor_logs import SinkAzureMonitorLogs
 from .sink_crowdstrike_hec import SinkCrowdstrikeHec
 from .sink_elasticsearch import SinkElasticsearch
 from .sink_google_sec_ops import SinkGoogleSecOps
+from .sink_google_security_operations import SinkGoogleSecurityOperations
 from .sink_mock import SinkMock
 from .sink_open_search import SinkOpenSearch
 from .sink_splunk import SinkSplunk
@@ -333,6 +335,15 @@ class ProviderConfig_SiemGoogleChronicle(SiemGoogleChronicle):
         allow_population_by_field_name = True
 
 
+class ProviderConfig_SiemGoogleSecurityOperations(SiemGoogleSecurityOperations):
+    type: typing.Literal["siem_google_security_operations"]
+
+    class Config:
+        frozen = True
+        smart_union = True
+        allow_population_by_field_name = True
+
+
 class ProviderConfig_SiemMockSiem(SiemMock):
     type: typing.Literal["siem_mock_siem"]
 
@@ -443,6 +454,15 @@ class ProviderConfig_SinkElasticsearch(SinkElasticsearch):
 
 class ProviderConfig_SinkGoogleSecOps(SinkGoogleSecOps):
     type: typing.Literal["sink_google_sec_ops"]
+
+    class Config:
+        frozen = True
+        smart_union = True
+        allow_population_by_field_name = True
+
+
+class ProviderConfig_SinkGoogleSecurityOperations(SinkGoogleSecurityOperations):
+    type: typing.Literal["sink_google_security_operations"]
 
     class Config:
         frozen = True
@@ -696,6 +716,7 @@ ProviderConfig = typing.Union[
     ProviderConfig_SiemCrowdstrike,
     ProviderConfig_SiemElasticsearch,
     ProviderConfig_SiemGoogleChronicle,
+    ProviderConfig_SiemGoogleSecurityOperations,
     ProviderConfig_SiemMockSiem,
     ProviderConfig_SiemOpensearch,
     ProviderConfig_SiemQRadar,
@@ -709,6 +730,7 @@ ProviderConfig = typing.Union[
     ProviderConfig_SinkCrowdstrikeHec,
     ProviderConfig_SinkElasticsearch,
     ProviderConfig_SinkGoogleSecOps,
+    ProviderConfig_SinkGoogleSecurityOperations,
     ProviderConfig_SinkMockSink,
     ProviderConfig_SinkOpensearch,
     ProviderConfig_SinkSplunk,

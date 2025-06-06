@@ -153,6 +153,11 @@ class ProviderConfigId(str, enum.Enum):
 
     SIEM_GOOGLE_CHRONICLE = "siem_google_chronicle"
     """
+    Google Security Operations (Chronicle Compatibility)
+    """
+
+    SIEM_GOOGLE_SECURITY_OPERATIONS = "siem_google_security_operations"
+    """
     Google Security Operations
     """
 
@@ -217,6 +222,11 @@ class ProviderConfigId(str, enum.Enum):
     """
 
     SINK_GOOGLE_SEC_OPS = "sink_google_sec_ops"
+    """
+    Google Security Operations (Chronicle Compatibility)
+    """
+
+    SINK_GOOGLE_SECURITY_OPERATIONS = "sink_google_security_operations"
     """
     Google Security Operations
     """
@@ -377,6 +387,7 @@ class ProviderConfigId(str, enum.Enum):
         siem_crowdstrike: typing.Callable[[], T_Result],
         siem_elasticsearch: typing.Callable[[], T_Result],
         siem_google_chronicle: typing.Callable[[], T_Result],
+        siem_google_security_operations: typing.Callable[[], T_Result],
         siem_mock: typing.Callable[[], T_Result],
         siem_open_search: typing.Callable[[], T_Result],
         siem_q_radar: typing.Callable[[], T_Result],
@@ -390,6 +401,7 @@ class ProviderConfigId(str, enum.Enum):
         sink_crowdstrike_hec: typing.Callable[[], T_Result],
         sink_elasticsearch: typing.Callable[[], T_Result],
         sink_google_sec_ops: typing.Callable[[], T_Result],
+        sink_google_security_operations: typing.Callable[[], T_Result],
         sink_mock: typing.Callable[[], T_Result],
         sink_open_search: typing.Callable[[], T_Result],
         sink_splunk: typing.Callable[[], T_Result],
@@ -474,6 +486,8 @@ class ProviderConfigId(str, enum.Enum):
             return siem_elasticsearch()
         if self is ProviderConfigId.SIEM_GOOGLE_CHRONICLE:
             return siem_google_chronicle()
+        if self is ProviderConfigId.SIEM_GOOGLE_SECURITY_OPERATIONS:
+            return siem_google_security_operations()
         if self is ProviderConfigId.SIEM_MOCK:
             return siem_mock()
         if self is ProviderConfigId.SIEM_OPEN_SEARCH:
@@ -500,6 +514,8 @@ class ProviderConfigId(str, enum.Enum):
             return sink_elasticsearch()
         if self is ProviderConfigId.SINK_GOOGLE_SEC_OPS:
             return sink_google_sec_ops()
+        if self is ProviderConfigId.SINK_GOOGLE_SECURITY_OPERATIONS:
+            return sink_google_security_operations()
         if self is ProviderConfigId.SINK_MOCK:
             return sink_mock()
         if self is ProviderConfigId.SINK_OPEN_SEARCH:

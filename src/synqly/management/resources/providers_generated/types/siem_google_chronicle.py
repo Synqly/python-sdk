@@ -14,7 +14,7 @@ except ImportError:
 
 class SiemGoogleChronicle(pydantic.BaseModel):
     """
-    Configuration for Google Security Operations (formerly Google Chronicle) as a SIEM Provider.
+    Configuration for Google Security Operations (formerly Google Chronicle) as a SIEM Provider connecting via the older Backstory and Malachite APIs.
     """
 
     customer_id: typing.Optional[str] = pydantic.Field(default=None)
