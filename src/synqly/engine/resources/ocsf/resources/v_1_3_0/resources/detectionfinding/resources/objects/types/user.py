@@ -56,6 +56,11 @@ class User(pydantic.BaseModel):
     The administrative groups to which the user belongs.
     """
 
+    has_mfa: typing.Optional[bool] = pydantic.Field(default=None)
+    """
+    The user has a multi-factor or secondary-factor device assigned.
+    """
+
     ldap_person: typing.Optional[LdapPerson] = pydantic.Field(default=None)
     """
     The additional LDAP attributes that describe a person.
