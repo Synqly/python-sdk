@@ -15,6 +15,8 @@ from .assets_service_now import AssetsServiceNow
 from .assets_service_now_dataset import AssetsServiceNowDataset
 from .assets_service_now_mock import AssetsServiceNowMock
 from .assets_tanium_cloud import AssetsTaniumCloud
+from .assets_tanium_cloud_dataset import AssetsTaniumCloudDataset
+from .assets_tanium_cloud_mock import AssetsTaniumCloudMock
 from .autotask_api_integration_code_credential import (
     AutotaskApiIntegrationCodeCredential,
     AutotaskApiIntegrationCodeCredential_Secret,
@@ -129,6 +131,7 @@ from .provider_config import (
     ProviderConfig_AssetsServicenow,
     ProviderConfig_AssetsServicenowMock,
     ProviderConfig_AssetsTaniumCloud,
+    ProviderConfig_AssetsTaniumCloudMock,
     ProviderConfig_CloudsecurityCrowdstrike,
     ProviderConfig_CloudsecurityDefender,
     ProviderConfig_EdrCrowdstrike,
@@ -307,6 +310,8 @@ __all__ = [
     "AssetsServiceNowDataset",
     "AssetsServiceNowMock",
     "AssetsTaniumCloud",
+    "AssetsTaniumCloudDataset",
+    "AssetsTaniumCloudMock",
     "AutotaskApiIntegrationCodeCredential",
     "AutotaskApiIntegrationCodeCredential_Secret",
     "AutotaskApiIntegrationCodeCredential_SecretId",
@@ -421,6 +426,7 @@ __all__ = [
     "ProviderConfig_AssetsServicenow",
     "ProviderConfig_AssetsServicenowMock",
     "ProviderConfig_AssetsTaniumCloud",
+    "ProviderConfig_AssetsTaniumCloudMock",
     "ProviderConfig_CloudsecurityCrowdstrike",
     "ProviderConfig_CloudsecurityDefender",
     "ProviderConfig_EdrCrowdstrike",
