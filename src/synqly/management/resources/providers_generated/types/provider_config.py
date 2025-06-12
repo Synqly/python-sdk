@@ -6,6 +6,7 @@ import typing
 
 from .assets_armis_centrix import AssetsArmisCentrix
 from .assets_armis_centrix_mock import AssetsArmisCentrixMock
+from .assets_axonius import AssetsAxonius
 from .assets_crowd_strike import AssetsCrowdStrike
 from .assets_nozomi_vantage import AssetsNozomiVantage
 from .assets_nozomi_vantage_mock import AssetsNozomiVantageMock
@@ -86,6 +87,15 @@ class ProviderConfig_AssetsArmisCentrix(AssetsArmisCentrix):
 
 class ProviderConfig_AssetsArmisCentrixMock(AssetsArmisCentrixMock):
     type: typing.Literal["assets_armis_centrix_mock"]
+
+    class Config:
+        frozen = True
+        smart_union = True
+        allow_population_by_field_name = True
+
+
+class ProviderConfig_AssetsAxonius(AssetsAxonius):
+    type: typing.Literal["assets_axonius"]
 
     class Config:
         frozen = True
@@ -699,6 +709,7 @@ class ProviderConfig_VulnerabilitiesTenableCloud(VulnerabilitiesTenableCloud):
 ProviderConfig = typing.Union[
     ProviderConfig_AssetsArmisCentrix,
     ProviderConfig_AssetsArmisCentrixMock,
+    ProviderConfig_AssetsAxonius,
     ProviderConfig_AssetsCrowdstrike,
     ProviderConfig_AssetsNozomiVantage,
     ProviderConfig_AssetsNozomiVantageMock,

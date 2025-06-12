@@ -4,6 +4,7 @@ from .armis_credential import ArmisCredential, ArmisCredential_Token, ArmisCrede
 from .assets_armis_centrix import AssetsArmisCentrix
 from .assets_armis_centrix_mock import AssetsArmisCentrixMock
 from .assets_armis_dataset import AssetsArmisDataset
+from .assets_axonius import AssetsAxonius
 from .assets_crowd_strike import AssetsCrowdStrike
 from .assets_nozomi_vantage import AssetsNozomiVantage
 from .assets_nozomi_vantage_dataset import AssetsNozomiVantageDataset
@@ -34,6 +35,7 @@ from .aws_security_lake_credential import (
     AwsSecurityLakeCredential_AwsId,
 )
 from .aws_sqs_credential import AwsSqsCredential, AwsSqsCredential_Aws, AwsSqsCredential_AwsId
+from .axonius_credential import AxoniusCredential, AxoniusCredential_Basic, AxoniusCredential_BasicId
 from .azure_blob_credential import AzureBlobCredential, AzureBlobCredential_Token, AzureBlobCredential_TokenId
 from .azure_monitor_logs_credential import (
     AzureMonitorLogsCredential,
@@ -123,6 +125,7 @@ from .provider_config import (
     ProviderConfig,
     ProviderConfig_AssetsArmisCentrix,
     ProviderConfig_AssetsArmisCentrixMock,
+    ProviderConfig_AssetsAxonius,
     ProviderConfig_AssetsCrowdstrike,
     ProviderConfig_AssetsNozomiVantage,
     ProviderConfig_AssetsNozomiVantageMock,
@@ -299,6 +302,7 @@ __all__ = [
     "AssetsArmisCentrix",
     "AssetsArmisCentrixMock",
     "AssetsArmisDataset",
+    "AssetsAxonius",
     "AssetsCrowdStrike",
     "AssetsNozomiVantage",
     "AssetsNozomiVantageDataset",
@@ -327,6 +331,9 @@ __all__ = [
     "AwsSqsCredential",
     "AwsSqsCredential_Aws",
     "AwsSqsCredential_AwsId",
+    "AxoniusCredential",
+    "AxoniusCredential_Basic",
+    "AxoniusCredential_BasicId",
     "AzureBlobCredential",
     "AzureBlobCredential_Token",
     "AzureBlobCredential_TokenId",
@@ -418,6 +425,7 @@ __all__ = [
     "ProviderConfigId",
     "ProviderConfig_AssetsArmisCentrix",
     "ProviderConfig_AssetsArmisCentrixMock",
+    "ProviderConfig_AssetsAxonius",
     "ProviderConfig_AssetsCrowdstrike",
     "ProviderConfig_AssetsNozomiVantage",
     "ProviderConfig_AssetsNozomiVantageMock",
