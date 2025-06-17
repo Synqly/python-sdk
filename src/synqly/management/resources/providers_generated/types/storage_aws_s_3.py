@@ -4,7 +4,6 @@ import datetime as dt
 import typing
 
 from ....core.datetime_utils import serialize_datetime
-from ...transforms.types.transform_id import TransformId
 from .aws_s_3_credential import AwsS3Credential
 
 try:
@@ -32,11 +31,6 @@ class StorageAwsS3(pydantic.BaseModel):
     region: str = pydantic.Field()
     """
     AWS region where the S3 bucket is located.
-    """
-
-    transforms: typing.Optional[typing.List[TransformId]] = pydantic.Field(default=None)
-    """
-    Optional list of transformations used to modify requests before they are sent to the external service.
     """
 
     def json(self, **kwargs: typing.Any) -> str:

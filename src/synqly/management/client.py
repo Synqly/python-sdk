@@ -24,7 +24,6 @@ from .resources.roles.client import AsyncRolesClient, RolesClient
 from .resources.status.client import AsyncStatusClient, StatusClient
 from .resources.sub_orgs.client import AsyncSubOrgsClient, SubOrgsClient
 from .resources.tokens.client import AsyncTokensClient, TokensClient
-from .resources.transforms.client import AsyncTransformsClient, TransformsClient
 
 
 class SynqlyManagement:
@@ -83,7 +82,6 @@ class SynqlyManagement:
         self.status = StatusClient(client_wrapper=self._client_wrapper)
         self.sub_orgs = SubOrgsClient(client_wrapper=self._client_wrapper)
         self.tokens = TokensClient(client_wrapper=self._client_wrapper)
-        self.transforms = TransformsClient(client_wrapper=self._client_wrapper)
 
 
 class AsyncSynqlyManagement:
@@ -142,7 +140,6 @@ class AsyncSynqlyManagement:
         self.status = AsyncStatusClient(client_wrapper=self._client_wrapper)
         self.sub_orgs = AsyncSubOrgsClient(client_wrapper=self._client_wrapper)
         self.tokens = AsyncTokensClient(client_wrapper=self._client_wrapper)
-        self.transforms = AsyncTransformsClient(client_wrapper=self._client_wrapper)
 
 
 def _get_base_url(*, base_url: typing.Optional[str] = None, environment: SynqlyManagementEnvironment) -> str:

@@ -4,7 +4,6 @@ import datetime as dt
 import typing
 
 from ....core.datetime_utils import serialize_datetime
-from ...transforms.types.transform_id import TransformId
 from .azure_blob_credential import AzureBlobCredential
 
 try:
@@ -24,10 +23,6 @@ class StorageAzureBlob(pydantic.BaseModel):
     """
 
     credential: AzureBlobCredential
-    transforms: typing.Optional[typing.List[TransformId]] = pydantic.Field(default=None)
-    """
-    Optional list of transformations used to modify requests before they are sent to the external service.
-    """
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}

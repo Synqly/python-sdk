@@ -36,7 +36,6 @@ from . import (
     sub_orgs,
     token_base,
     tokens,
-    transforms,
     usage,
 )
 from .account_base import AccountId
@@ -649,17 +648,6 @@ from .tokens import (
     ResetTokenResponse,
     SynqlyIntegrationsTokenResponse,
 )
-from .transforms import (
-    CreateTransformRequest,
-    CreateTransformResponse,
-    GetTransformResponse,
-    ListTransformsResponse,
-    PatchTransformResponse,
-    Transform,
-    TransformId,
-    UpdateTransformRequest,
-    UpdateTransformResponse,
-)
 from .usage import Usage
 
 __all__ = [
@@ -787,8 +775,6 @@ __all__ = [
     "CreateSynqlyIntegrationsTokenResponse",
     "CreateTokenRequest",
     "CreateTokenResponse",
-    "CreateTransformRequest",
-    "CreateTransformResponse",
     "Credential",
     "CredentialBase",
     "CredentialConfig",
@@ -862,7 +848,6 @@ __all__ = [
     "GetStatusTimeseries",
     "GetStatusTimeseriesResult",
     "GetTokenResponse",
-    "GetTransformResponse",
     "GoogleChronicleCredential",
     "GoogleChronicleCredential_OAuthClient",
     "GoogleChronicleCredential_OAuthClientId",
@@ -913,7 +898,6 @@ __all__ = [
     "ListStatusOptions",
     "ListStatusResponse",
     "ListTokensResponse",
-    "ListTransformsResponse",
     "LogonRequest",
     "LogonResponse",
     "LogonResponseResult",
@@ -988,7 +972,6 @@ __all__ = [
     "PatchOrganizationResponse",
     "PatchOrganizationWebhookResponse",
     "PatchRoleResponse",
-    "PatchTransformResponse",
     "Permission",
     "PermissionSet",
     "PermissionSetActions",
@@ -1217,8 +1200,6 @@ __all__ = [
     "TorqCredential",
     "TorqCredential_OAuthClient",
     "TorqCredential_OAuthClientId",
-    "Transform",
-    "TransformId",
     "TransformsActions",
     "TransformsPermissions",
     "UnauthorizedError",
@@ -1241,8 +1222,6 @@ __all__ = [
     "UpdateOrganizationWebhookResponse",
     "UpdateRoleRequest",
     "UpdateRoleResponse",
-    "UpdateTransformRequest",
-    "UpdateTransformResponse",
     "Usage",
     "VerifyIntegrationRequest",
     "VulnerabilitiesCrowdStrike",
@@ -1300,6 +1279,5 @@ __all__ = [
     "sub_orgs",
     "token_base",
     "tokens",
-    "transforms",
     "usage",
 ]
