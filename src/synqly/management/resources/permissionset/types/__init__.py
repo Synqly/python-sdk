@@ -23,6 +23,8 @@ from .integration_points_permissions import IntegrationPointsPermissions
 from .integrations_actions import IntegrationsActions
 from .integrations_permissions import IntegrationsPermissions
 from .list_permission_sets_response import ListPermissionSetsResponse
+from .mappings_actions import MappingsActions
+from .mappings_permissions import MappingsPermissions
 from .members_actions import MembersActions
 from .members_permissions import MembersPermissions
 from .operations_actions import OperationsActions
@@ -72,6 +74,8 @@ __all__ = [
     "IntegrationsActions",
     "IntegrationsPermissions",
     "ListPermissionSetsResponse",
+    "MappingsActions",
+    "MappingsPermissions",
     "MembersActions",
     "MembersPermissions",
     "OperationsActions",

@@ -14,6 +14,7 @@ from .resources.capabilities.client import AsyncCapabilitiesClient, Capabilities
 from .resources.credentials.client import AsyncCredentialsClient, CredentialsClient
 from .resources.integration_points.client import AsyncIntegrationPointsClient, IntegrationPointsClient
 from .resources.integrations.client import AsyncIntegrationsClient, IntegrationsClient
+from .resources.mappings.client import AsyncMappingsClient, MappingsClient
 from .resources.members.client import AsyncMembersClient, MembersClient
 from .resources.meta.client import AsyncMetaClient, MetaClient
 from .resources.operations.client import AsyncOperationsClient, OperationsClient
@@ -72,6 +73,7 @@ class SynqlyManagement:
         self.credentials = CredentialsClient(client_wrapper=self._client_wrapper)
         self.integration_points = IntegrationPointsClient(client_wrapper=self._client_wrapper)
         self.integrations = IntegrationsClient(client_wrapper=self._client_wrapper)
+        self.mappings = MappingsClient(client_wrapper=self._client_wrapper)
         self.members = MembersClient(client_wrapper=self._client_wrapper)
         self.meta = MetaClient(client_wrapper=self._client_wrapper)
         self.operations = OperationsClient(client_wrapper=self._client_wrapper)
@@ -130,6 +132,7 @@ class AsyncSynqlyManagement:
         self.credentials = AsyncCredentialsClient(client_wrapper=self._client_wrapper)
         self.integration_points = AsyncIntegrationPointsClient(client_wrapper=self._client_wrapper)
         self.integrations = AsyncIntegrationsClient(client_wrapper=self._client_wrapper)
+        self.mappings = AsyncMappingsClient(client_wrapper=self._client_wrapper)
         self.members = AsyncMembersClient(client_wrapper=self._client_wrapper)
         self.meta = AsyncMetaClient(client_wrapper=self._client_wrapper)
         self.operations = AsyncOperationsClient(client_wrapper=self._client_wrapper)

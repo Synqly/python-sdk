@@ -14,6 +14,7 @@ from .bridges_permissions import BridgesPermissions
 from .credentials_permissions import CredentialsPermissions
 from .integration_points_permissions import IntegrationPointsPermissions
 from .integrations_permissions import IntegrationsPermissions
+from .mappings_permissions import MappingsPermissions
 from .members_permissions import MembersPermissions
 from .operations_permissions import OperationsPermissions
 from .organization_permissions import OrganizationPermissions
@@ -45,6 +46,7 @@ class ApiPermissionMap(pydantic.BaseModel):
     integrations: typing.Optional[IntegrationsPermissions] = None
     integration_points: typing.Optional[IntegrationPointsPermissions] = None
     operations: typing.Optional[OperationsPermissions] = None
+    mappings: typing.Optional[MappingsPermissions] = None
     members: typing.Optional[MembersPermissions] = None
     organizations: typing.Optional[OrganizationPermissions] = None
     permission_set: typing.Optional[PermissionSetPermissions] = None
