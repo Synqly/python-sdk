@@ -30,7 +30,7 @@ class CloudSecurityDefender(pydantic.BaseModel):
 
     url: typing.Optional[str] = pydantic.Field(default=None)
     """
-    The root domain where your Microsoft Defender for Cloud workspace is located.
+    Base URL to your Microsoft Defender for Cloud workspace.
     """
 
     def json(self, **kwargs: typing.Any) -> str:

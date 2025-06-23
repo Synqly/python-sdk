@@ -14,13 +14,15 @@ except ImportError:
 
 class TicketingServiceNowSir(pydantic.BaseModel):
     """
-    Configuration for ServiceNow Security Incident Response as a Ticketing Provider
+    Configuration for ServiceNow Security Incident Response (SIR).
+
+    [Configuration guide](https://docs.synqly.com/guides/provider-configuration/servicenow-ticketing-setup)
     """
 
     credential: ServiceNowCredential
     url: str = pydantic.Field()
     """
-    URL for the ServiceNow API. This should be the base URL for the API, without any path components and must be HTTPS. For example, "https://tenant.service-now.com".
+    Base URL for the ServiceNow API.
     """
 
     def json(self, **kwargs: typing.Any) -> str:

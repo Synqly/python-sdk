@@ -14,13 +14,15 @@ except ImportError:
 
 class VulnerabilitiesQualysCloud(pydantic.BaseModel):
     """
-    Configuration for Qualys Cloud Platform as a Vulnerabilities Provider
+    Configuration for Qualys Vulnerability Management, Detection & Response (VMDR).
+
+    [Configuration guide](https://docs.synqly.com/guides/provider-configuration/qualys-vulns-setup)
     """
 
     credential: QualysCloudCredential
     url: str = pydantic.Field()
     """
-    URL for the Qualys Cloud API. This should be the base URL for the API, without any path components and must be HTTPS. For example, "https://qualysguard.qg4.apps.qualys.com".
+    Base URL for the Qualys Cloud API.
     """
 
     def json(self, **kwargs: typing.Any) -> str:

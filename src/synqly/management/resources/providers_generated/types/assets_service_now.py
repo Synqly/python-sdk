@@ -14,13 +14,15 @@ except ImportError:
 
 class AssetsServiceNow(pydantic.BaseModel):
     """
-    Configuration for ServiceNow as an Assets Provider
+    Configuration for ServiceNow Configuration Management Database (CMDB).
+
+    [Configuration guide](https://docs.synqly.com/guides/provider-configuration/servicenow-assets-setup)
     """
 
     credential: ServiceNowCredential
     url: str = pydantic.Field()
     """
-    URL for the ServiceNow API. This should be the base URL for the API, without any path components and must be HTTPS. For example, "https://tenant.service-now.com".
+    Base URL for the ServiceNow API.
     """
 
     def json(self, **kwargs: typing.Any) -> str:

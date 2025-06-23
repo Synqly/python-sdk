@@ -15,29 +15,31 @@ except ImportError:
 
 class SiemElasticsearch(pydantic.BaseModel):
     """
-    Configuration for Elasticsearch search and analytics engine. Supports both managed and self-hosted Elasticsearch deployments
+    Configuration for Elastic SIEM.
+
+    [Configuration guide](https://docs.synqly.com/guides/provider-configuration/elastic-setup)
     """
 
     auth_options: typing.Optional[ElasticsearchAuthOptions] = None
     create_index: typing.Optional[str] = pydantic.Field(default=None)
     """
-    Optional. The index or data stream to use when writing events. Defaults to the 'index' setting if not set.
+    The index or data stream to use when writing events. Defaults to the `index` setting if not set.
     """
 
     credential: ElasticsearchCredential
     index: typing.Optional[str] = pydantic.Field(default=None)
     """
-    Optional. The index, data stream, or index alias to read events from.
+    The index, data stream, or index alias to read events from.
     """
 
     skip_tls_verify: typing.Optional[bool] = pydantic.Field(default=None)
     """
-    If true, skips verification of the Elasticsearch server's TLS certificate.
+    When true, skips verification of the Elasticsearch TLS certificate.
     """
 
     url: str = pydantic.Field()
     """
-    URL for the Elasticsearch API. This should be the base URL for the API, without any path components and must be HTTPS. For example, "https://tenant.elastic.com".
+    Base URL for the Elasticsearch API.
     """
 
     def json(self, **kwargs: typing.Any) -> str:

@@ -14,7 +14,9 @@ except ImportError:
 
 class TicketingFreshdesk(pydantic.BaseModel):
     """
-    Configuration for Freshdesk as a Ticketing Provider
+    Configuration for Freshdesk.
+
+    [Configuration guide](https://docs.synqly.com/guides/provider-configuration/freshdesk-ticketing-setup)
     """
 
     credential: FreshdeskCredential

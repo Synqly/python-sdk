@@ -15,7 +15,9 @@ except ImportError:
 
 class TicketingServiceNow(pydantic.BaseModel):
     """
-    Configuration for ServiceNow as a Ticketing Provider
+    Configuration for ServiceNow IT Service Management (ITSM).
+
+    [Configuration guide](https://docs.synqly.com/guides/provider-configuration/servicenow-ticketing-setup)
     """
 
     credential: ServiceNowCredential
@@ -26,12 +28,12 @@ class TicketingServiceNow(pydantic.BaseModel):
 
     default_project: typing.Optional[str] = pydantic.Field(default=None)
     """
-    Default Project for the integration. This maps to the custom table for tickets. This table should be derived from Incident table. If not provided, defaults to the incident table.
+    Default Project for the integration. This maps to the custom table for tickets. This table should be derived from Incident table. Defaults to the incident table if not specified.
     """
 
     url: str = pydantic.Field()
     """
-    URL for the ServiceNow API. This should be the base URL for the API, without any path components and must be HTTPS. For example, "https://tenant.service-now.com".
+    Base URL for the ServiceNow API.
     """
 
     def json(self, **kwargs: typing.Any) -> str:

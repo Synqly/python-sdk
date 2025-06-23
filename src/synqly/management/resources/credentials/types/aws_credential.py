@@ -14,12 +14,13 @@ except ImportError:
 
 class AwsCredential(CredentialBase):
     """
-    AWS access key to authenticate with AWS. Access keys are long-term credentials for an IAM user and consist of an ID and secret. Follow [this guide to generate access and secret keys](https://docs.aws.amazon.com/general/latest/gr/aws-sec-cred-types.html#access-keys-and-secret-access-keys). You may optionally provide a session token if you are using temporary credentials.
+    Access key to authenticate with AWS. Access keys are long-term credentials for an IAM user and consist of an Access Key ID and a Secret Access Key. Follow [this guide to generate credentials](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_access-keys.html).
+    You may optionally provide a session token if you are using temporary credentials.
     """
 
     access_key_id: str = pydantic.Field()
     """
-    ID portion of the AWS access key pair.
+    Access Key ID portion of the AWS access key pair.
     """
 
     secret_access_key: str = pydantic.Field()

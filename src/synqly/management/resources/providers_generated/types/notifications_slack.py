@@ -14,12 +14,14 @@ except ImportError:
 
 class NotificationsSlack(pydantic.BaseModel):
     """
-    Configuration for the Slack Notification Provider
+    Configuration for Slack.
+
+    [Configuration guide](https://docs.synqly.com/guides/provider-configuration/slack-notification-setup)
     """
 
     channel: str = pydantic.Field()
     """
-    The channel to send notifications to. Should be the ID of the desired channel.
+    Channel to send notifications to. Must be a valid existing channel.
     """
 
     credential: SlackCredential

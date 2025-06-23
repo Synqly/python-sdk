@@ -14,13 +14,15 @@ except ImportError:
 
 class EdrSophos(pydantic.BaseModel):
     """
-    Configuration for the Sophos EDR Provider
+    Configuration for Sophos Endpoint.
+
+    [Configuration guide](https://docs.synqly.com/guides/provider-configuration/sophos-setup)
     """
 
     credential: SophosCredential
     url: typing.Optional[str] = pydantic.Field(default=None)
     """
-    Optional root domain where your Sophos tenant is located.
+    Base URL for the Sophos Endpoint API.
     """
 
     def json(self, **kwargs: typing.Any) -> str:

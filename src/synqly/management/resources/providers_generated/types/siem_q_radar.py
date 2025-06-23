@@ -14,23 +14,25 @@ except ImportError:
 
 class SiemQRadar(pydantic.BaseModel):
     """
-    Configuration for IBM QRadar as a SIEM Provider.
+    Configuration for IBM QRadar SIEM.
+
+    [Configuration guide](https://docs.synqly.com/guides/provider-configuration/qradar-setup)
     """
 
     collection_port: int = pydantic.Field()
     """
-    The QRadar HTTP Receiver URL, stored as a secret. This URL has a special port in QRadar and is stored in a credential to protect that information. See https://www.youtube.com/watch?v=UEBLVVNpyfg for a demonstration of setting up and mapping and HTTP Receiver in QRadar.
+    Port used by QRadar to accept incoming HTTP Receiver events.
     """
 
     credential: QRadarCredential
     skip_tls_verify: typing.Optional[bool] = pydantic.Field(default=None)
     """
-    If true, skips verification of the QRadar server's TLS certificate.
+    When true, skips verification of the QRadar TLS certificate.
     """
 
     url: str = pydantic.Field()
     """
-    URL for the QRadar instance. This should be the base URL instance, without any path components and must be HTTPS. For example, "https://qradar.westus2.cloudapp.azure.com".
+    Base URL for the QRadar API.
     """
 
     def json(self, **kwargs: typing.Any) -> str:

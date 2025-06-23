@@ -15,6 +15,8 @@ except ImportError:
 class StorageGcs(pydantic.BaseModel):
     """
     Configuration for Google Cloud Storage for storing unstructured data
+
+    [Configuration guide](https://docs.synqly.com/guides/provider-configuration/google-gcs-storage-setup)
     """
 
     bucket: str = pydantic.Field()

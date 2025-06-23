@@ -14,13 +14,15 @@ except ImportError:
 
 class SinkCrowdstrikeHec(pydantic.BaseModel):
     """
-    Configuration for Crowdstrike HEC as a Sink Provider
+    Configuration for CrowdStrike Falcon® Next-Gen SIEM (HEC).
+
+    [Configuration guide](https://docs.synqly.com/guides/provider-configuration/crowdstrike-sink-setup)
     """
 
     credential: CrowdstrikeHecCredential
     url: str = pydantic.Field()
     """
-    API URL for the CrowdStrike HEC API. This must be an HTTPS URL, for example "https://<some-guid>.ingest.us-2.crowdstrike.com/services/collector".
+    HTTPS URL for the CrowdStrike HTTP Event Collector (HEC) API.
     """
 
     def json(self, **kwargs: typing.Any) -> str:

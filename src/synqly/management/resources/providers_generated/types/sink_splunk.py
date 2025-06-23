@@ -14,17 +14,19 @@ except ImportError:
 
 class SinkSplunk(pydantic.BaseModel):
     """
-    Configuration for Splunk as a Sink provider. This integration allows sending data to Splunk using an HTTP Event Collector (HEC).
+    Configuration for Splunk as a Sink provider. Allows sending data to Splunk using an HTTP Event Collector (HEC).
+
+    [Configuration guide](https://docs.synqly.com/guides/provider-configuration/splunk-setup)
     """
 
     hec_credential: SplunkHecToken = pydantic.Field()
     """
-    Token credential to use for connecting to the Splunk HEC service.
+    Credential to use when connecting to the Splunk HEC service. If not provided, sending events to Splunk is disabled.
     """
 
     hec_url: str = pydantic.Field()
     """
-    URL for the Splunk HEC endpoint. This must include the full path to the HEC endpoint. For example, "https://tenant.cloud.splunk.com:8088/services_collector_event".
+    URL for the Splunk HEC endpoint. Must include the full path to the HEC endpoint.
     """
 
     index: typing.Optional[str] = pydantic.Field(default=None)
@@ -34,17 +36,17 @@ class SinkSplunk(pydantic.BaseModel):
 
     skip_tls_verify: typing.Optional[bool] = pydantic.Field(default=None)
     """
-    If true, skips verification of the Splunk server's TLS certificate.
+    When true, skips verification of the Splunk TLS certificate.
     """
 
     source: typing.Optional[str] = pydantic.Field(default=None)
     """
-    Splunk source to send events to. If not provided, will use the default source for the Splunk collector.
+    Splunk source to send events to. If not provided the default source for the Splunk collector is used.
     """
 
     source_type: typing.Optional[str] = pydantic.Field(default=None)
     """
-    Splunk source type to send events to. If not provided, will use the default source type for the Splunk collector.
+    Splunk source type to send events to. If not provided the default source type for the Splunk collector is used.
     """
 
     def json(self, **kwargs: typing.Any) -> str:

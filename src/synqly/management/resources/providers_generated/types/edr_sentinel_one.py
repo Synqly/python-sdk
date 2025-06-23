@@ -15,19 +15,25 @@ except ImportError:
 
 class EdrSentinelOne(pydantic.BaseModel):
     """
-    Configuration for the SentinelOne EDR Provider
+    Configuration for SentinelOne Singularity™ Endpoint.
+
+    [Configuration guide](https://docs.synqly.com/guides/provider-configuration/sentinelone-setup)
     """
 
     credential: SentinelOneCredential
-    edr_events_credential: typing.Optional[SentinelOneEdrEventsCredential] = None
+    edr_events_credential: typing.Optional[SentinelOneEdrEventsCredential] = pydantic.Field(default=None)
+    """
+    Credential used for the SentinelOne Singularity Data Lake API. This credential is required when querying EDR events.
+    """
+
     edr_events_url: typing.Optional[str] = pydantic.Field(default=None)
     """
-    Base URL for the SentinelOne Singularity Data Lake API. This URL is required if you plan to use the EDR Events API.
+    Base URL for the SentinelOne Singularity Data Lake API. This URL is required is required when querying EDR events.
     """
 
     url: str = pydantic.Field()
     """
-    URL for the SentinelOne Management API. This should be the base URL for the API, without any path components. For example, "https://your_management_url".
+    Base URL for the SentinelOne Management API.
     """
 
     def json(self, **kwargs: typing.Any) -> str:

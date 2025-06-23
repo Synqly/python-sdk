@@ -20,7 +20,7 @@ class AssetsQualysCloud(pydantic.BaseModel):
     credential: QualysCloudCredential
     url: str = pydantic.Field()
     """
-    URL for the Qualys Cloud API. This should be the base URL for the API, without any path components. For example, "https://qualys.com".
+    URL for the Qualys Cloud API. This should be the base URL for the API, without any path components.
     """
 
     def json(self, **kwargs: typing.Any) -> str:

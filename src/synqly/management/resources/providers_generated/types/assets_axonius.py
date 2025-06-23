@@ -15,12 +15,14 @@ except ImportError:
 class AssetsAxonius(pydantic.BaseModel):
     """
     Configuration for the Axonius Assets Provider
+
+    [Configuration guide](https://docs.synqly.com/guides/provider-configuration/axonius-asset-setup)
     """
 
     credential: AxoniusCredential
     url: str = pydantic.Field()
     """
-    URL for the Axonius API. This should be the base URL for the API, without any path components.
+    Base URL for the Axonius API.
     """
 
     def json(self, **kwargs: typing.Any) -> str:

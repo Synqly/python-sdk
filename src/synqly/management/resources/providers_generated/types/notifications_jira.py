@@ -14,13 +14,15 @@ except ImportError:
 
 class NotificationsJira(pydantic.BaseModel):
     """
-    Configuration for Jira as a Notification Provider
+    Configuration for Atlassian Jira.
+
+    [Configuration guide](https://docs.synqly.com/guides/provider-configuration/jira-notification-setup)
     """
 
     credential: JiraCredential
     url: str = pydantic.Field()
     """
-    URL for the Jira API. This should be the base URL for the API, without any path components and must be HTTPS. For example, "https://tenant.atlassian.net".
+    Base URL for the Jira API.
     """
 
     def json(self, **kwargs: typing.Any) -> str:

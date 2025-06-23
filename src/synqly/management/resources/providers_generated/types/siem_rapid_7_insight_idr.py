@@ -14,13 +14,15 @@ except ImportError:
 
 class SiemRapid7InsightIdr(pydantic.BaseModel):
     """
-    Configuration for Rapid7 InsightIDR as a SIEM Provider.
+    Configuration for Rapid7 InsightIDR.
+
+    [Configuration guide](https://docs.synqly.com/guides/provider-configuration/rapid7-idr-setup)
     """
 
     credential: Rapid7InsightCloudCredential
     url: str = pydantic.Field()
     """
-    URL for the Rapid7 API. This should be the base URL for the API, without any path components and must be HTTPS. For example, "https://us2.api.insight.rapid7.com".
+    Base URL for the Rapid7 API.
     """
 
     def json(self, **kwargs: typing.Any) -> str:

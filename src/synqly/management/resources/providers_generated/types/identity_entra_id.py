@@ -14,18 +14,20 @@ except ImportError:
 
 class IdentityEntraId(pydantic.BaseModel):
     """
-    Configuration for the Microsoft Entra ID Identity Provider
+    Configuration for Microsoft Entra ID.
+
+    [Configuration guide](https://docs.synqly.com/guides/provider-configuration/entra-id-setup)
     """
 
     credential: EntraIdCredential
     tenant_id: str = pydantic.Field()
     """
-    Azure Directory (tenant) ID.
+    Azure Directory (tenant) identifier.
     """
 
     url: typing.Optional[str] = pydantic.Field(default=None)
     """
-    Optional URL override for the Microsoft Graph API. This should be the base URL for the API without any path components.
+    Base URL for the the Microsoft Graph API.
     """
 
     def json(self, **kwargs: typing.Any) -> str:

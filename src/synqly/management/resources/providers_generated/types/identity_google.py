@@ -14,18 +14,20 @@ except ImportError:
 
 class IdentityGoogle(pydantic.BaseModel):
     """
-    Configuration for the Google Identity Provider
+    Configuration for Google Workspace.
+
+    [Configuration guide](https://docs.synqly.com/guides/provider-configuration/google-workspace-setup)
     """
 
     client_email: str = pydantic.Field()
     """
-    The client email associated with the service account key. Typically this will be of the form `<service-account-name>@<project-id>.iam.gserviceaccount.com`.
+    Client email associated with the service account key.
     """
 
     credential: GoogleCredential
     delegate: str = pydantic.Field()
     """
-    The email address of the user that the service account is impersonating for domain-wide delegation. For more information, see [this Google support article](https://support.google.com/a/answer/162106).
+    Email address of the user that the service account is impersonating for domain-wide delegation. For more information, see [this Google support article](https://support.google.com/a/answer/162106).
     """
 
     def json(self, **kwargs: typing.Any) -> str:

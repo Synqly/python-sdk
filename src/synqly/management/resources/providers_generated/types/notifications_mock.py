@@ -13,7 +13,7 @@ except ImportError:
 
 class NotificationsMock(pydantic.BaseModel):
     """
-    Configuration for the Mock in-memory notification handler. This provider is for testing purposes only.
+    Configuration for the Synqly mock in-memory SIEM Provider. This provider is for testing purposes only and does not retain noficiations pushed to it.
     """
 
     channel: typing.Optional[str] = pydantic.Field(default=None)

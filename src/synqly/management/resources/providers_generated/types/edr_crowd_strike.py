@@ -14,17 +14,15 @@ except ImportError:
 
 class EdrCrowdStrike(pydantic.BaseModel):
     """
-    Configuration for the CrowdStrike EDR Provider
+    Configuration for CrowdStrike Falcon® Insight EDR.
+
+    [Configuration guide](https://docs.synqly.com/guides/provider-configuration/crowdstrike-edr-setup)
     """
 
-    credential: CrowdStrikeCredential = pydantic.Field()
-    """
-    The credential to use for the CrowdStrike EDR Provider
-    """
-
+    credential: CrowdStrikeCredential
     url: typing.Optional[str] = pydantic.Field(default=None)
     """
-    The root domain where your CrowdStrike Falcon tenant is located.
+    Base URL for the CrowdStrike Falcon® API.
     """
 
     def json(self, **kwargs: typing.Any) -> str:

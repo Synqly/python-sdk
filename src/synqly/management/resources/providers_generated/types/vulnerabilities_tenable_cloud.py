@@ -14,13 +14,15 @@ except ImportError:
 
 class VulnerabilitiesTenableCloud(pydantic.BaseModel):
     """
-    Configuration for Tenable Cloud as a Vulnerabilities Provider
+    Configuration for Tenable Vulnerability Management.
+
+    [Configuration guide](https://docs.synqly.com/guides/provider-configuration/tenable-vulns-setup)
     """
 
     credential: TenableCloudCredential
     url: typing.Optional[str] = pydantic.Field(default=None)
     """
-    URL for the Tenable Cloud API. This should be the base URL for the API, without any path components and must be HTTPS. If not provided, defaults to "https://cloud.tenable.com".
+    Base URL for the Tenable Cloud API.
     """
 
     def json(self, **kwargs: typing.Any) -> str:

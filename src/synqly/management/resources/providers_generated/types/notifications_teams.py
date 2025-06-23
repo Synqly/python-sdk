@@ -14,28 +14,30 @@ except ImportError:
 
 class NotificationsTeams(pydantic.BaseModel):
     """
-    Configuration for sending messages to Microsoft Teams. This provider can be configured as a public webhook or with OAuth.
+    Configuration for Microsoft Teams.
+
+    [Configuration guide](https://docs.synqly.com/guides/provider-configuration/teams-notification-setup)
     """
 
     channel_id: str = pydantic.Field()
     """
-    The ID of the channel to send messages to.
+    Identifier of the channel to send messages to.
     """
 
     credential: TeamsCredential
     endpoint: typing.Optional[str] = pydantic.Field(default=None)
     """
-    The URL of the endpoint to send messages to. Only specified here if OAuth. For public, please refer to TeamsCredential.
+    URL of the endpoint to send messages to. Only required if OAuth Client Credentials are used for authentication.
     """
 
     team_id: str = pydantic.Field()
     """
-    The ID of the team to send messages to.
+    Identifier of the team to send messages to.
     """
 
     tenant_id: typing.Optional[str] = pydantic.Field(default=None)
     """
-    Azure Directory (tenant) ID. Only if OAuth is used.
+    Azure Directory (tenant) ID. Only required if OAuth Client Credentials are used for authentication.
     """
 
     def json(self, **kwargs: typing.Any) -> str:

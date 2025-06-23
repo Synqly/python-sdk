@@ -15,12 +15,16 @@ except ImportError:
 class SiemSentinel(pydantic.BaseModel):
     """
     Configuration for Microsoft Sentinel SIEM Product.
+
+    [Configuration guide](https://docs.synqly.com/guides/provider-configuration/microsoft-sentinel-siem-setup)
     """
 
     credential: SentinelCredential
     default_tables: typing.Optional[typing.List[str]] = pydantic.Field(default=None)
     """
-    The default tables to use for queries. Supply this value if you would like to a subset of the default tables or non-ASIM data tables with Sentinel/Log Analytics queries. If more than one table is specified, a union operator will join them to query all of the tables at once. Supply a single value with "_" if you would like to query all tables without the normalizing ASIM transformations. **Note** that a single "_" entry will map to a 'union \*' query. Relying heavily on these queries is generally discouraged by Sentinel because they are slower and more resource intensive.
+    The default tables to use for queries. Supply this value if you would like to a subset of the default tables or non-ASIM data tables with Sentinel/Log Analytics queries.
+    If more than one table is specified, a union operator will join them to query all of the tables at once. Supply a single value with `*` if you would like to query all tables without the normalizing ASIM transformations.
+    **Note** that a single `*` entry will map to a `union *` query. Relying heavily on these queries is generally discouraged by Sentinel because they are slower and more resource intensive.
     """
 
     ingest_url: typing.Optional[str] = pydantic.Field(default=None)
@@ -30,47 +34,47 @@ class SiemSentinel(pydantic.BaseModel):
 
     logs_url: typing.Optional[str] = pydantic.Field(default=None)
     """
-    The root URL for the Microsoft Azure Monitor Logs API. This is optional and should only be supplied if using an alternate Microsoft cloud, such as GovCloud.
+    Base URL for the Microsoft Azure Monitor Logs API. Should only be supplied if using an alternate Microsoft cloud, such as GovCloud.
     """
 
     management_url: typing.Optional[str] = pydantic.Field(default=None)
     """
-    The root URL for the Microsoft Azure Management API. This is optional and should only be supplied if using an alternate Microsoft cloud, such as GovCloud.
+    Base URL for the Microsoft Azure Management API. Should only be supplied if using an alternate Microsoft cloud, such as GovCloud.
     """
 
     resource_group: str = pydantic.Field()
     """
-    The Azure resource group name that contains the Microsoft Sentinel workspace.
+    Azure resource group name that contains the Microsoft Sentinel workspace.
     """
 
     rule_id: typing.Optional[str] = pydantic.Field(default=None)
     """
-    Your Data Collection Rule immutable ID. This value must be supplied to ingest data into Microsoft Sentinel.
+    Immutable ID of the Data Collection Rule. This value must be supplied to ingest data into Microsoft Sentinel.
     """
 
     stream_name: typing.Optional[str] = pydantic.Field(default=None)
     """
-    The name of the Data Collection Rule stream. This value must be supplied to ingest data into Microsoft Sentinel.
+    Name of the Data Collection Rule stream. This value must be supplied to ingest data into Microsoft Sentinel.
     """
 
     subscription_id: str = pydantic.Field()
     """
-    The Azure subscription ID that contains the Microsoft Sentinel workspace.
+    Azure subscription ID that contains the Microsoft Sentinel workspace.
     """
 
     tenant_id: str = pydantic.Field()
     """
-    The Azure Active Directory tenant ID that contains the Microsoft Sentinel workspace.
+    Azure Active Directory tenant ID that contains the Microsoft Sentinel workspace.
     """
 
     workspace_id: str = pydantic.Field()
     """
-    The ID of the Microsoft Sentinel Log Analytics workspace.
+    ID of the Microsoft Sentinel Log Analytics workspace.
     """
 
     workspace_name: str = pydantic.Field()
     """
-    The name of the Microsoft Sentinel Log Analytics workspace.
+    Name of the Microsoft Sentinel Log Analytics workspace.
     """
 
     def json(self, **kwargs: typing.Any) -> str:

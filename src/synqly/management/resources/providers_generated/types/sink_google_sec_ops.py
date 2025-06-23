@@ -15,11 +15,13 @@ except ImportError:
 class SinkGoogleSecOps(pydantic.BaseModel):
     """
     Configuration for Google Security Operations (formerly Google Chronicle) as a Sink Provider connecting via the older Malachite API.
+
+    [Configuration guide](https://docs.synqly.com/guides/provider-configuration/google-chronicle-setup)
     """
 
     credential: GoogleChronicleCredential = pydantic.Field()
     """
-    The credential set used to write events to Google SecOps.
+    Credentials used when writing events.
     """
 
     customer_id: str = pydantic.Field()
@@ -29,7 +31,7 @@ class SinkGoogleSecOps(pydantic.BaseModel):
 
     url: typing.Optional[str] = pydantic.Field(default=None)
     """
-    (Optional) Ingestion URL for the Google SecOps instance. This should be the base event ingestion URL, without any path components.
+    Base URL for the Google SecOps Ingestion API.
     """
 
     def json(self, **kwargs: typing.Any) -> str:

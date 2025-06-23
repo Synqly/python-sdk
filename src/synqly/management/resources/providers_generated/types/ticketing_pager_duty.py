@@ -14,13 +14,15 @@ except ImportError:
 
 class TicketingPagerDuty(pydantic.BaseModel):
     """
-    Configuration for PagerDuty as a Ticketing Provider
+    Configuration for PagerDuty Operations Cloud.
+
+    [Configuration guide](https://docs.synqly.com/guides/provider-configuration/pagerduty-ticketing-setup)
     """
 
     credential: PagerDutyCredential
     url: str = pydantic.Field()
     """
-    URL for the PagerDuty API. This should be the base URL for the API, without any path components and must be HTTPS. For example, "https://api.pagerduty.com".
+    Base URL for the PagerDuty API.
     """
 
     def json(self, **kwargs: typing.Any) -> str:

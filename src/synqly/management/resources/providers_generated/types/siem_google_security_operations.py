@@ -15,11 +15,13 @@ except ImportError:
 class SiemGoogleSecurityOperations(pydantic.BaseModel):
     """
     Configuration for Google Security Operations (formerly Google Chronicle) as a SIEM Provider.
+
+    [Configuration guide](https://docs.synqly.com/guides/provider-configuration/google-security-operations-siem-setup)
     """
 
     credential: GoogleServiceAccountCredential = pydantic.Field()
     """
-    Google OAuth 2.0 credentials with an email address.
+    Credentials used for accessing the Google SecOps instance.
     """
 
     customer_id: str = pydantic.Field()
@@ -34,12 +36,12 @@ class SiemGoogleSecurityOperations(pydantic.BaseModel):
 
     region: typing.Optional[str] = pydantic.Field(default=None)
     """
-    The region of the Google SecOps instance. Usually 'us' or 'eu'.
+    The region of the Google SecOps instance. Usually `us` or `eu`.
     """
 
     url: typing.Optional[str] = pydantic.Field(default=None)
     """
-    The base API URL for posting event, without any path components.
+    The base URL for the Google SecOps API.
     """
 
     def json(self, **kwargs: typing.Any) -> str:

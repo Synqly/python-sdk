@@ -15,19 +15,21 @@ except ImportError:
 
 class TicketingAutotask(pydantic.BaseModel):
     """
-    Configuration for Autotask as a Ticketing Provider
+    Configuration for Autotask Operations Cloud.
+
+    [Configuration guide](https://docs.synqly.com/guides/provider-configuration/autotask-ticketing-setup)
     """
 
     api_integration_code_credential: AutotaskApiIntegrationCodeCredential
     secret_credential: AutotaskSecretCredential
     user_name: str = pydantic.Field()
     """
-    User name for the Autotask API.
+    User name of the API User created to authenticate with the Autotask API.
     """
 
     zone_path: str = pydantic.Field()
     """
-    Zone path for the Autotask API.
+    Zone for the Autotask API.
     """
 
     def json(self, **kwargs: typing.Any) -> str:

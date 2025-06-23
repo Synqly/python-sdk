@@ -14,17 +14,19 @@ except ImportError:
 
 class IdentityPingOne(pydantic.BaseModel):
     """
-    Configuration for the PingOne Identity Platform
+    Configuration for PingOne Cloud Platform.
+
+    [Configuration guide](https://docs.synqly.com/guides/provider-configuration/ping-identity-setup)
     """
 
     auth_url: str = pydantic.Field()
     """
-    The URL base for making authentication requests to PingOne.
+    Base URL for making authentication requests to PingOne.
     """
 
     client_id: str = pydantic.Field()
     """
-    The client ID for the application set up as a worker.
+    Client ID for the application set up as a worker.
     """
 
     credential: PingOneCredential
@@ -35,7 +37,7 @@ class IdentityPingOne(pydantic.BaseModel):
 
     url: str = pydantic.Field()
     """
-    URL for the PingOne API. This should be the base URL for the API, without any path components.
+    Base URL for the PingOne API.
     """
 
     def json(self, **kwargs: typing.Any) -> str:

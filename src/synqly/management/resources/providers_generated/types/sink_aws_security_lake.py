@@ -14,10 +14,16 @@ except ImportError:
 
 class SinkAwsSecurityLake(pydantic.BaseModel):
     """
-    Configuration for AWS Security Lake provider. Events are written directly to an AWS S3 bucket in Apache Parquet format.
+    Configuration for Amazon Security Lake as a Sink provider. Events are written directly to an AWS S3 bucket in Apache Parquet format.
+
+    [Configuration guide](https://docs.synqly.com/guides/provider-configuration/amazon-security-lake-sink-setup)
     """
 
-    credential: AwsSecurityLakeCredential
+    credential: AwsSecurityLakeCredential = pydantic.Field()
+    """
+    AWS Access Keys with write access to the configured S3 bucket.
+    """
+
     region: typing.Optional[str] = pydantic.Field(default=None)
     """
     Override the default AWS region for this integration. If not present, the region will be inferred from the URL.
@@ -25,7 +31,7 @@ class SinkAwsSecurityLake(pydantic.BaseModel):
 
     url: str = pydantic.Field()
     """
-    URL of the S3 bucket where the AWS Security Lake events are stored.
+    URL of the S3 bucket where the Amazon Security Lake events are stored.
     """
 
     def json(self, **kwargs: typing.Any) -> str:

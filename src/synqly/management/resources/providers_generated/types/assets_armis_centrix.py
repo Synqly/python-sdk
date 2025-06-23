@@ -14,13 +14,15 @@ except ImportError:
 
 class AssetsArmisCentrix(pydantic.BaseModel):
     """
-    Configuration for the Armis Centrix Assets Provider
+    Configuration for Armis Centrix™ for Asset Management and Security.
+
+    [Configuration guide](https://docs.synqly.com/guides/provider-configuration/armis-centrix-setup)
     """
 
     credential: ArmisCredential
     url: str = pydantic.Field()
     """
-    URL for the Armis Centrix API. This should be the base URL for the API, without any path components. For example, "https://tenant.armis.com".
+    Base URL for the Armis Centrix™ API.
     """
 
     def json(self, **kwargs: typing.Any) -> str:

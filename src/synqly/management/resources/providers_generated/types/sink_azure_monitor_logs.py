@@ -15,6 +15,8 @@ except ImportError:
 class SinkAzureMonitorLogs(pydantic.BaseModel):
     """
     Configuration for Azure Monitor Logs as a Sink Provider. Azure Monitor Logs is a feature of Azure Monitor that collects and organizes log and performance data from monitored resources.
+
+    [Configuration guide](https://docs.synqly.com/guides/provider-configuration/azure-monitor-logs)
     """
 
     client_id: str = pydantic.Field()
@@ -22,7 +24,11 @@ class SinkAzureMonitorLogs(pydantic.BaseModel):
     Azure Client (Application) ID.
     """
 
-    credential: AzureMonitorLogsCredential
+    credential: AzureMonitorLogsCredential = pydantic.Field()
+    """
+    Credential with access to the configured data collection endpoint.
+    """
+
     rule_id: str = pydantic.Field()
     """
     Data collection rule immutable ID.
@@ -30,7 +36,7 @@ class SinkAzureMonitorLogs(pydantic.BaseModel):
 
     stream_name: str = pydantic.Field()
     """
-    Name of the Data collection rule stream.
+    Name of the data collection rule stream.
     """
 
     tenant_id: str = pydantic.Field()

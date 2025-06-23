@@ -16,16 +16,18 @@ except ImportError:
 class SiemSumoLogic(pydantic.BaseModel):
     """
     Configuration for Sumo Logic Cloud SIEM.
+
+    [Configuration guide](https://docs.synqly.com/guides/provider-configuration/sumo-logic-setup)
     """
 
     auto_parse_logs: typing.Optional[bool] = pydantic.Field(default=None)
     """
-    Automatically parse logs as JSON when running log queries against Sumo Logic.
+    Automatically parse logs as JSON when running log queries.
     """
 
     collection_url: typing.Optional[SumoLogicCollectionUrl] = pydantic.Field(default=None)
     """
-    Required if you need to send Sumo Logic events from the Synqly API.
+    Secure Sumo Logic Collection URL for writing events. If not provided, sending events to Sumo Logic is disabled.
     """
 
     credential: SumoLogicCredential
@@ -36,7 +38,8 @@ class SiemSumoLogic(pydantic.BaseModel):
 
     url: str = pydantic.Field()
     """
-    Your Sumo Logic API endpoint. See https://help.sumologic.com/docs/api/getting-started/#sumo-logic-endpoints-by-deployment-and-firewall-security for help determining which base URL to use.
+    Base URL for the Sumo Logic API.
+    [Sumo Logic endpoints by deployment and firewall security](https://help.sumologic.com/docs/api/getting-started/#sumo-logic-endpoints-by-deployment-and-firewall-security).
     """
 
     def json(self, **kwargs: typing.Any) -> str:

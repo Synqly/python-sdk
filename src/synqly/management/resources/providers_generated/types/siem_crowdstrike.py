@@ -15,7 +15,9 @@ except ImportError:
 
 class SiemCrowdstrike(pydantic.BaseModel):
     """
-    Configuration for CrowdStrike Falcon NextGen SIEM
+    Configuration for CrowdStrike Falcon® Next-Gen SIEM.
+
+    [Configuration guide](https://docs.synqly.com/guides/provider-configuration/crowdstrike-siem-setup)
     """
 
     credential: CrowdStrikeCredential = pydantic.Field()
@@ -30,12 +32,12 @@ class SiemCrowdstrike(pydantic.BaseModel):
 
     hec_url: typing.Optional[str] = pydantic.Field(default=None)
     """
-    The generated CrowdStrike HEC URL provided with your token. This must be an HTTPS URL.
+    The generated CrowdStrike HEC URL provided with your token.
     """
 
     url: typing.Optional[str] = pydantic.Field(default=None)
     """
-    The root domain where your CrowdStrike Falcon NextGen SIEM tenant is located.
+    Base URL for the CrowdStrike Falcon® Next-Gen SIEM API.
     """
 
     def json(self, **kwargs: typing.Any) -> str:

@@ -14,18 +14,20 @@ except ImportError:
 
 class VulnerabilitiesNucleus(pydantic.BaseModel):
     """
-    Configuration for Nucleus as a Vulnerabilities Provider
+    Configuration for Nucleus Vulnerability Management.
+
+    [Configuration guide](https://docs.synqly.com/guides/provider-configuration/nucleus-vulns-setup)
     """
 
     credential: NucleusCredential
     project_id: str = pydantic.Field()
     """
-    The **project_id** is a string representing a numeric ID (e.g., "12345") and can be found in the Nucleus UI by selecting **Global Dashboard** from the left-hand menu, then choosing **All Projects** at the top, where the **Projects** widget lists all projects with their IDs.
+    Numeric identifier for a Nucleus project.
     """
 
     url: str = pydantic.Field()
     """
-    URL for the Nucleus API. This should be the base URL for the API, without any path components and must be HTTPS, e.g. "https://{sandbox}.nucleussec.com" .
+    Base URL for the Nucleus API.
     """
 
     def json(self, **kwargs: typing.Any) -> str:

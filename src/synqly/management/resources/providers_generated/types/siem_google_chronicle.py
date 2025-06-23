@@ -15,31 +15,33 @@ except ImportError:
 class SiemGoogleChronicle(pydantic.BaseModel):
     """
     Configuration for Google Security Operations (formerly Google Chronicle) as a SIEM Provider connecting via the older Backstory and Malachite APIs.
+
+    [Configuration guide](https://docs.synqly.com/guides/provider-configuration/google-chronicle-setup)
     """
 
     customer_id: typing.Optional[str] = pydantic.Field(default=None)
     """
-    Optional. The customer ID reported when writing events. This is required for ingestion.
+    The customer ID reported when writing events. This field is required if writing events.
     """
 
     ingestion_credential: typing.Optional[GoogleChronicleCredential] = pydantic.Field(default=None)
     """
-    Optional. Google OAuth 2.0 credentials with an email address. Without this credential the provider will not be able to ingest events.
+    Credentials used for writing events. If not specified then writing events is disabled.
     """
 
     ingestion_url: typing.Optional[str] = pydantic.Field(default=None)
     """
-    Optional. Ingestion URL for the Google SecOps instance. This should be the base event ingestion URL, without any path components.
+    Base URL for the Google SecOps Ingestion API.
     """
 
     search_credential: GoogleChronicleCredential = pydantic.Field()
     """
-    Google OAuth 2.0 credentials with an email address.
+    Credentials used for querying and reading events.
     """
 
     search_url: typing.Optional[str] = pydantic.Field(default=None)
     """
-    Search URL for the Google SecOps instance. This should be the base event search URL, without any path components.
+    Base URL for the Google SecOps Search API.
     """
 
     def json(self, **kwargs: typing.Any) -> str:

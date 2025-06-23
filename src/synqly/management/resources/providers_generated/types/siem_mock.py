@@ -13,7 +13,7 @@ except ImportError:
 
 class SiemMock(pydantic.BaseModel):
     """
-    Configuration for the Synqly mock in-memory SIEM handler. This provider is for testing purposes only and does not retain events pushed to it.
+    Configuration for the Synqly mock in-memory SIEM Provider. This provider is for testing purposes only and does not retain events pushed to it.
     """
 
     index: typing.Optional[str] = pydantic.Field(default=None)

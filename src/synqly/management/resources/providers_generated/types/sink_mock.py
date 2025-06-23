@@ -13,12 +13,12 @@ except ImportError:
 
 class SinkMock(pydantic.BaseModel):
     """
-    Configuration for the Synqly mock in-memory sink handler. This provider is for testing purposes only and does not retain events pushed to it.
+    Configuration for the Synqly mock in-memory Sink Provider. This provider is for testing purposes only and does not retain events pushed to it.
     """
 
     destination: typing.Optional[str] = pydantic.Field(default=None)
     """
-    Name of the destination where events are stored. This property is unused.
+    Name of the destination where events are stored. This field is unused and only used to demonstrate Provider configuration.
     """
 
     def json(self, **kwargs: typing.Any) -> str:

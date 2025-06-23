@@ -13,7 +13,7 @@ except ImportError:
 
 class StorageMock(pydantic.BaseModel):
     """
-    Configuration for the Synqly mock in-memory storage handler. This provider is for testing purposes only and does not retain files pushed to it.
+    Configuration for the Synqly mock in-memory storage Provider. This provider is for testing purposes only and does not retain files pushed to it.
     """
 
     bucket: str = pydantic.Field()

@@ -14,18 +14,20 @@ except ImportError:
 
 class EdrDefender(pydantic.BaseModel):
     """
-    Configuration for the Microsoft Defender EDR Provider
+    Configuration for Microsoft Defender for Endpoint.
+
+    [Configuration guide](https://docs.synqly.com/guides/provider-configuration/defender-setup)
     """
 
     credential: DefenderCredential
     tenant_id: str = pydantic.Field()
     """
-    TenantId for the Microsoft Defender Management Console.
+    Tenant ID for the Microsoft Defender Management Console.
     """
 
     url: str = pydantic.Field()
     """
-    URL for the Microsoft Defender Management Console.
+    Base URL for the Microsoft Defender API.
     """
 
     def json(self, **kwargs: typing.Any) -> str:

@@ -14,23 +14,25 @@ except ImportError:
 
 class StorageAwsS3(pydantic.BaseModel):
     """
-    Configuration for AWS S3 as a Storage Provider
+    Configuration for Amazon S3.
+
+    [Configuration guide](https://docs.synqly.com/guides/provider-configuration/aws-s3-storage-setup)
     """
 
     bucket: str = pydantic.Field()
     """
-    Name of the AWS S3 bucket where files are stored.
+    Name of the Amazon S3 bucket where files are stored.
     """
 
     credential: AwsS3Credential
     endpoint: typing.Optional[str] = pydantic.Field(default=None)
     """
-    Endpoint used for connecting to the external service. If not provided, will connect to the default endpoint for the Provider.
+    Endpoint used for connecting to Amazon S3 the external service. If not provided, the default Amazon S3 endpoint will be used.
     """
 
     region: str = pydantic.Field()
     """
-    AWS region where the S3 bucket is located.
+    AWS region where the Amazon S3 bucket is located.
     """
 
     def json(self, **kwargs: typing.Any) -> str:

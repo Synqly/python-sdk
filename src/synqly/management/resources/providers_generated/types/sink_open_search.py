@@ -25,12 +25,12 @@ class SinkOpenSearch(pydantic.BaseModel):
     credential: OpenSearchCredential
     skip_tls_verify: typing.Optional[bool] = pydantic.Field(default=None)
     """
-    If true, skips verification of the OpenSearch server's TLS certificate.
+    When true, skips verification of the OpenSearch TLS certificate.
     """
 
     url: str = pydantic.Field()
     """
-    URL for the OpenSearch API. This should be the base URL for the API, without any path components and must be HTTPS.
+    Base URL for the OpenSearch API.
     """
 
     def json(self, **kwargs: typing.Any) -> str:

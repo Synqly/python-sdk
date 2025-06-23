@@ -14,22 +14,24 @@ except ImportError:
 
 class SinkAwsSqs(pydantic.BaseModel):
     """
-    Configuration for AWS Simple Queue Service (SQS) as a Sink Provider.
+    Configuration for Amazon Simple Queue Service (SQS).
+
+    [Configuration guide](https://docs.synqly.com/guides/provider-configuration/aws-sqs-sink-setup)
     """
 
     credential: AwsSqsCredential = pydantic.Field()
     """
-    Credential ID that stores AWS authentication key and secret. This token pair must have write access to the configured SQS queue
+    AWS Access Keys with write access to the configured SQS queue.
     """
 
     region: typing.Optional[str] = pydantic.Field(default=None)
     """
-    Override the default AWS region for this integration. If not present, the region will be inferred from the URL.
+    Overrides the default AWS region. If not present, the region will be inferred from the URL.
     """
 
     url: str = pydantic.Field()
     """
-    URL of the SQS queue where events are sent. Must be in the format `https://sqs.{region}.amazonaws.com_{account_id}/{queue_name}`.
+    URL of the SQS queue where events are sent.
     """
 
     def json(self, **kwargs: typing.Any) -> str:

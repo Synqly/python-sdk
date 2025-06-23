@@ -14,13 +14,15 @@ except ImportError:
 
 class IdentityOkta(pydantic.BaseModel):
     """
-    Configuration for the Okta Identity Provider
+    Configuration for Okta Identity.
+
+    [Configuration guide](https://docs.synqly.com/guides/provider-configuration/okta-identity-setup)
     """
 
     credential: OktaCredential
     url: str = pydantic.Field()
     """
-    URL for the Okta API. This should be the base URL for the API, without any path components and must be HTTPS. For example, "https://tenant.okta.com".
+    Base URL for the Okta API.
     """
 
     def json(self, **kwargs: typing.Any) -> str:

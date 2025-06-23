@@ -93,7 +93,7 @@ class ProviderConfigId(str, enum.Enum):
 
     EDR_MALWAREBYTES = "edr_malwarebytes"
     """
-    Malwarebytes EDR
+    ThreatDown Endpoint Detection & Response
     """
 
     EDR_SENTINEL_ONE = "edr_sentinelone"
@@ -103,7 +103,7 @@ class ProviderConfigId(str, enum.Enum):
 
     EDR_SOPHOS = "edr_sophos"
     """
-    Sophos EDR
+    Sophos Endpoint
     """
 
     IDENTITY_ENTRA_ID = "identity_entra_id"
@@ -133,7 +133,7 @@ class ProviderConfigId(str, enum.Enum):
 
     NOTIFICATIONS_MOCK = "notifications_mock_notifications"
     """
-    Notifications Test
+    Synqly Test Provider
     """
 
     NOTIFICATIONS_SLACK_WEBHOOK = "notifications_slack_webhook"
@@ -153,7 +153,7 @@ class ProviderConfigId(str, enum.Enum):
 
     SIEM_CROWDSTRIKE = "siem_crowdstrike"
     """
-    CrowdStrike Falcon Next-Gen SIEM
+    CrowdStrike Falcon® Next-Gen SIEM
     """
 
     SIEM_ELASTICSEARCH = "siem_elasticsearch"
@@ -173,7 +173,7 @@ class ProviderConfigId(str, enum.Enum):
 
     SIEM_MOCK = "siem_mock_siem"
     """
-    SIEM Test
+    Synqly Test Provider
     """
 
     SIEM_OPEN_SEARCH = "siem_opensearch"
@@ -183,7 +183,7 @@ class ProviderConfigId(str, enum.Enum):
 
     SIEM_Q_RADAR = "siem_q_radar"
     """
-    QRadar
+    IBM QRadar SIEM
     """
 
     SIEM_RAPID_7_INSIGHT_IDR = "siem_rapid7_insightidr"
@@ -208,12 +208,12 @@ class ProviderConfigId(str, enum.Enum):
 
     SINK_AWS_SECURITY_LAKE = "sink_aws_security_lake"
     """
-    AWS Security Lake
+    Amazon Security Lake
     """
 
     SINK_AWS_SQS = "sink_aws_sqs"
     """
-    AWS Simple Queue Service
+    Amazon Simple Queue Service (SQS)
     """
 
     SINK_AZURE_MONITOR_LOGS = "sink_azure_monitor_logs"
@@ -223,12 +223,12 @@ class ProviderConfigId(str, enum.Enum):
 
     SINK_CROWDSTRIKE_HEC = "sink_crowdstrike_hec"
     """
-    Crowdstrike HEC
+    CrowdStrike Falcon® Next-Gen SIEM (HEC)
     """
 
     SINK_ELASTICSEARCH = "sink_elasticsearch"
     """
-    Elastic
+    Elasticsearch
     """
 
     SINK_GOOGLE_SEC_OPS = "sink_google_sec_ops"
@@ -243,7 +243,7 @@ class ProviderConfigId(str, enum.Enum):
 
     SINK_MOCK = "sink_mock_sink"
     """
-    Sink Test
+    Synqly Test Provider
     """
 
     SINK_OPEN_SEARCH = "sink_opensearch"
@@ -258,7 +258,7 @@ class ProviderConfigId(str, enum.Enum):
 
     STORAGE_AWS_S_3 = "storage_aws_s3"
     """
-    AWS S3
+    Amazon S3
     """
 
     STORAGE_AZURE_BLOB = "storage_azure_blob"
@@ -273,7 +273,7 @@ class ProviderConfigId(str, enum.Enum):
 
     STORAGE_MOCK = "storage_mock_storage"
     """
-    Storage Test
+    Synqly Test Provider
     """
 
     TICKETING_AUTOTASK = "ticketing_autotask"
@@ -293,7 +293,7 @@ class ProviderConfigId(str, enum.Enum):
 
     TICKETING_MOCK = "ticketing_mock_ticketing"
     """
-    Ticketing Test
+    Synqly Test Provider
     """
 
     TICKETING_PAGER_DUTY = "ticketing_pagerduty"
@@ -323,7 +323,7 @@ class ProviderConfigId(str, enum.Enum):
 
     VULNERABILITIES_CROWD_STRIKE = "vulnerabilities_crowdstrike"
     """
-    CrowdStrike Falcon Spotlight
+    CrowdStrike Falcon® Spotlight
     """
 
     VULNERABILITIES_NUCLEUS = "vulnerabilities_nucleus"
@@ -343,7 +343,7 @@ class ProviderConfigId(str, enum.Enum):
 
     VULNERABILITIES_RAPID_7_INSIGHT_CLOUD = "vulnerabilities_rapid7_insight_cloud"
     """
-    Rapid7 Insight Vulnerability Management Cloud
+    Rapid7 InsightVM
     """
 
     VULNERABILITIES_RAPID_7_INSIGHT_CLOUD_MOCK = "vulnerabilities_rapid7_insight_cloud_mock"

@@ -15,7 +15,9 @@ except ImportError:
 
 class TicketingTorq(pydantic.BaseModel):
     """
-    Configuration for Torq as a Ticketing Provider
+    Configuration for Torq.
+
+    [Configuration guide](https://docs.synqly.com/guides/provider-configuration/torq-ticketing-setup)
     """
 
     credential: TorqCredential

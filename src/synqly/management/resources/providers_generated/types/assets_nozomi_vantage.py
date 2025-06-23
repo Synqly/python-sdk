@@ -14,13 +14,19 @@ except ImportError:
 
 class AssetsNozomiVantage(pydantic.BaseModel):
     """
-    Configuration for the Nozomi Vantage provider
+    Configuration for Nozomi Vantage.
+
+    [Configuration guide](https://docs.synqly.com/guides/provider-configuration/nozomi-vantage-setup)
     """
 
-    credential: NozomiVantageCredential
+    credential: NozomiVantageCredential = pydantic.Field()
+    """
+    Credentials used to authenticate with Nozomi Vantage.
+    """
+
     url: str = pydantic.Field()
     """
-    URL for the Nozomi Vantage API. This should be the base URL for the API, without any path components. For example, "https://tenant.us1.vantage.nozominetworks.io".
+    Base URL for the Nozomi Vantage API.
     """
 
     def json(self, **kwargs: typing.Any) -> str:

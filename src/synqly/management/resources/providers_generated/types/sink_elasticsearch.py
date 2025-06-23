@@ -15,7 +15,9 @@ except ImportError:
 
 class SinkElasticsearch(pydantic.BaseModel):
     """
-    Configuration for Elasticsearch search and analytics engine. Supports both managed and self-hosted Elasticsearch deployments
+    Configuration for Elasticsearch.
+
+    [Configuration guide](https://docs.synqly.com/guides/provider-configuration/elastic-setup)
     """
 
     auth_options: typing.Optional[ElasticsearchAuthOptions] = None
@@ -27,12 +29,12 @@ class SinkElasticsearch(pydantic.BaseModel):
     credential: ElasticsearchCredential
     skip_tls_verify: typing.Optional[bool] = pydantic.Field(default=None)
     """
-    If true, skips verification of the Elasticsearch server's TLS certificate.
+    When true, skips verification of the Elasticsearch TLS certificate.
     """
 
     url: str = pydantic.Field()
     """
-    URL for the Elasticsearch API. This should be the base URL for the API, without any path components and must be HTTPS. For example, "https://tenant.elastic.com".
+    Base URL for the Elasticsearch API.
     """
 
     def json(self, **kwargs: typing.Any) -> str:

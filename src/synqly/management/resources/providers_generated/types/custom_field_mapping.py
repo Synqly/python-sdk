@@ -14,7 +14,7 @@ except ImportError:
 class CustomFieldMapping(pydantic.BaseModel):
     name: str = pydantic.Field()
     """
-    Name for the custom field that you will use in the `custom_fields` field in ticket objects within Synqly.
+    Name for the custom field that you will use in the `custom_fields` field in the returned ticket objects.
     """
 
     project_id: str = pydantic.Field()
