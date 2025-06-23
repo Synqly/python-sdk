@@ -190,6 +190,7 @@ from .provider_config import (
     ProviderConfig_VulnerabilitiesQualysCloud,
     ProviderConfig_VulnerabilitiesQualysCloudMock,
     ProviderConfig_VulnerabilitiesRapid7InsightCloud,
+    ProviderConfig_VulnerabilitiesRapid7InsightCloudMock,
     ProviderConfig_VulnerabilitiesTaniumCloud,
     ProviderConfig_VulnerabilitiesTaniumCloudMock,
     ProviderConfig_VulnerabilitiesTenableCloud,
@@ -289,6 +290,8 @@ from .vulnerabilities_qualys_cloud import VulnerabilitiesQualysCloud
 from .vulnerabilities_qualys_cloud_dataset import VulnerabilitiesQualysCloudDataset
 from .vulnerabilities_qualys_cloud_mock import VulnerabilitiesQualysCloudMock
 from .vulnerabilities_rapid_7_insight_cloud import VulnerabilitiesRapid7InsightCloud
+from .vulnerabilities_rapid_7_insight_cloud_dataset import VulnerabilitiesRapid7InsightCloudDataset
+from .vulnerabilities_rapid_7_insight_cloud_mock import VulnerabilitiesRapid7InsightCloudMock
 from .vulnerabilities_tanium_cloud import VulnerabilitiesTaniumCloud
 from .vulnerabilities_tanium_cloud_dataset import VulnerabilitiesTaniumCloudDataset
 from .vulnerabilities_tanium_cloud_mock import VulnerabilitiesTaniumCloudMock
@@ -490,6 +493,7 @@ __all__ = [
     "ProviderConfig_VulnerabilitiesQualysCloud",
     "ProviderConfig_VulnerabilitiesQualysCloudMock",
     "ProviderConfig_VulnerabilitiesRapid7InsightCloud",
+    "ProviderConfig_VulnerabilitiesRapid7InsightCloudMock",
     "ProviderConfig_VulnerabilitiesTaniumCloud",
     "ProviderConfig_VulnerabilitiesTaniumCloudMock",
     "ProviderConfig_VulnerabilitiesTenableCloud",
@@ -591,6 +595,8 @@ __all__ = [
     "VulnerabilitiesQualysCloudDataset",
     "VulnerabilitiesQualysCloudMock",
     "VulnerabilitiesRapid7InsightCloud",
+    "VulnerabilitiesRapid7InsightCloudDataset",
+    "VulnerabilitiesRapid7InsightCloudMock",
     "VulnerabilitiesTaniumCloud",
     "VulnerabilitiesTaniumCloudDataset",
     "VulnerabilitiesTaniumCloudMock",
