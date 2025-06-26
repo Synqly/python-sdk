@@ -61,6 +61,11 @@ class ProviderConfigId(str, enum.Enum):
     [MOCK] ServiceNow Configuration Management Database (CMDB)
     """
 
+    ASSETS_SEVCO = "assets_sevco"
+    """
+    Sevco for Asset Management and Security
+    """
+
     ASSETS_TANIUM_CLOUD = "assets_tanium_cloud"
     """
     Tanium Vulnerability Management
@@ -383,6 +388,7 @@ class ProviderConfigId(str, enum.Enum):
         assets_qualys_cloud_mock: typing.Callable[[], T_Result],
         assets_service_now: typing.Callable[[], T_Result],
         assets_service_now_mock: typing.Callable[[], T_Result],
+        assets_sevco: typing.Callable[[], T_Result],
         assets_tanium_cloud: typing.Callable[[], T_Result],
         assets_tanium_cloud_mock: typing.Callable[[], T_Result],
         cloud_security_crowd_strike: typing.Callable[[], T_Result],
@@ -466,6 +472,8 @@ class ProviderConfigId(str, enum.Enum):
             return assets_service_now()
         if self is ProviderConfigId.ASSETS_SERVICE_NOW_MOCK:
             return assets_service_now_mock()
+        if self is ProviderConfigId.ASSETS_SEVCO:
+            return assets_sevco()
         if self is ProviderConfigId.ASSETS_TANIUM_CLOUD:
             return assets_tanium_cloud()
         if self is ProviderConfigId.ASSETS_TANIUM_CLOUD_MOCK:

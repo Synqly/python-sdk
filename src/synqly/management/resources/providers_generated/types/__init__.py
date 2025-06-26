@@ -15,6 +15,7 @@ from .assets_qualys_cloud_mock import AssetsQualysCloudMock
 from .assets_service_now import AssetsServiceNow
 from .assets_service_now_dataset import AssetsServiceNowDataset
 from .assets_service_now_mock import AssetsServiceNowMock
+from .assets_sevco import AssetsSevco
 from .assets_tanium_cloud import AssetsTaniumCloud
 from .assets_tanium_cloud_dataset import AssetsTaniumCloudDataset
 from .assets_tanium_cloud_mock import AssetsTaniumCloudMock
@@ -133,6 +134,7 @@ from .provider_config import (
     ProviderConfig_AssetsQualysCloudMock,
     ProviderConfig_AssetsServicenow,
     ProviderConfig_AssetsServicenowMock,
+    ProviderConfig_AssetsSevco,
     ProviderConfig_AssetsTaniumCloud,
     ProviderConfig_AssetsTaniumCloudMock,
     ProviderConfig_CloudsecurityCrowdstrike,
@@ -217,6 +219,7 @@ from .service_now_credential import (
     ServiceNowCredential_Token,
     ServiceNowCredential_TokenId,
 )
+from .sevco_credential import SevcoCredential, SevcoCredential_Token, SevcoCredential_TokenId
 from .siem_crowdstrike import SiemCrowdstrike
 from .siem_elasticsearch import SiemElasticsearch
 from .siem_google_chronicle import SiemGoogleChronicle
@@ -316,6 +319,7 @@ __all__ = [
     "AssetsServiceNow",
     "AssetsServiceNowDataset",
     "AssetsServiceNowMock",
+    "AssetsSevco",
     "AssetsTaniumCloud",
     "AssetsTaniumCloudDataset",
     "AssetsTaniumCloudMock",
@@ -436,6 +440,7 @@ __all__ = [
     "ProviderConfig_AssetsQualysCloudMock",
     "ProviderConfig_AssetsServicenow",
     "ProviderConfig_AssetsServicenowMock",
+    "ProviderConfig_AssetsSevco",
     "ProviderConfig_AssetsTaniumCloud",
     "ProviderConfig_AssetsTaniumCloudMock",
     "ProviderConfig_CloudsecurityCrowdstrike",
@@ -520,6 +525,9 @@ __all__ = [
     "ServiceNowCredential_BasicId",
     "ServiceNowCredential_Token",
     "ServiceNowCredential_TokenId",
+    "SevcoCredential",
+    "SevcoCredential_Token",
+    "SevcoCredential_TokenId",
     "SiemCrowdstrike",
     "SiemElasticsearch",
     "SiemGoogleChronicle",
