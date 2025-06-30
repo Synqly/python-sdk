@@ -3,6 +3,15 @@
 from .create_device_request import CreateDeviceRequest
 from .create_device_response import CreateDeviceResponse
 from .device import Device
+from .get_labels_response import GetLabelsResponse
+from .label import Label
 from .query_devices_response import QueryDevicesResponse
 
-__all__ = ["CreateDeviceRequest", "CreateDeviceResponse", "Device", "QueryDevicesResponse"]
+__all__ = [
+    "CreateDeviceRequest",
+    "CreateDeviceResponse",
+    "Device",
+    "GetLabelsResponse",
+    "Label",
+    "QueryDevicesResponse",
+]

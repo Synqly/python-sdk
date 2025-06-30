@@ -25,6 +25,7 @@ from ..common.errors.unsupported_media_type_error import UnsupportedMediaTypeErr
 from ..common.types.problem import Problem
 from .types.create_device_request import CreateDeviceRequest
 from .types.create_device_response import CreateDeviceResponse
+from .types.get_labels_response import GetLabelsResponse
 from .types.query_devices_response import QueryDevicesResponse
 
 try:
@@ -203,6 +204,56 @@ class AssetsClient:
             raise ApiError(status_code=_response.status_code, body=_response.text)
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
+    def get_labels(
+        self, *, filter: typing.Optional[str] = None, request_options: typing.Optional[RequestOptions] = None
+    ) -> GetLabelsResponse:
+        """
+        Get labels from an asset inventory system
+
+        Parameters:
+            - filter: typing.Optional[str]. Filter results by this query. For more information on filtering, refer to the Assets Filtering Guide.
+                                            Defaults to no filter.
+            - request_options: typing.Optional[RequestOptions]. Request-specific configuration.
+        """
+        _response = self._client_wrapper.httpx_client.request(
+            "GET",
+            urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", "v1/assets/labels"),
+            params=jsonable_encoder(
+                remove_none_from_dict(
+                    {
+                        "filter": filter,
+                        **(
+                            request_options.get("additional_query_parameters", {})
+                            if request_options is not None
+                            else {}
+                        ),
+                    }
+                )
+            ),
+            headers=jsonable_encoder(
+                remove_none_from_dict(
+                    {
+                        **self._client_wrapper.get_headers(),
+                        **(request_options.get("additional_headers", {}) if request_options is not None else {}),
+                    }
+                )
+            ),
+            timeout=request_options.get("timeout_in_seconds")
+            if request_options is not None and request_options.get("timeout_in_seconds") is not None
+            else 60,
+            retries=0,
+            max_retries=request_options.get("max_retries") if request_options is not None else 0,  # type: ignore
+        )
+        if 200 <= _response.status_code < 300:
+            return pydantic.parse_obj_as(GetLabelsResponse, _response.json())  # type: ignore
+        if _response.status_code == 400:
+            raise BadRequestError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
+        try:
+            _response_json = _response.json()
+        except JSONDecodeError:
+            raise ApiError(status_code=_response.status_code, body=_response.text)
+        raise ApiError(status_code=_response.status_code, body=_response_json)
+
 
 class AsyncAssetsClient:
     def __init__(self, *, client_wrapper: AsyncClientWrapper):
@@ -365,6 +416,56 @@ class AsyncAssetsClient:
             raise ServiceUnavailableError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
         if _response.status_code == 504:
             raise GatewayTimeoutError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
+        try:
+            _response_json = _response.json()
+        except JSONDecodeError:
+            raise ApiError(status_code=_response.status_code, body=_response.text)
+        raise ApiError(status_code=_response.status_code, body=_response_json)
+
+    async def get_labels(
+        self, *, filter: typing.Optional[str] = None, request_options: typing.Optional[RequestOptions] = None
+    ) -> GetLabelsResponse:
+        """
+        Get labels from an asset inventory system
+
+        Parameters:
+            - filter: typing.Optional[str]. Filter results by this query. For more information on filtering, refer to the Assets Filtering Guide.
+                                            Defaults to no filter.
+            - request_options: typing.Optional[RequestOptions]. Request-specific configuration.
+        """
+        _response = await self._client_wrapper.httpx_client.request(
+            "GET",
+            urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", "v1/assets/labels"),
+            params=jsonable_encoder(
+                remove_none_from_dict(
+                    {
+                        "filter": filter,
+                        **(
+                            request_options.get("additional_query_parameters", {})
+                            if request_options is not None
+                            else {}
+                        ),
+                    }
+                )
+            ),
+            headers=jsonable_encoder(
+                remove_none_from_dict(
+                    {
+                        **self._client_wrapper.get_headers(),
+                        **(request_options.get("additional_headers", {}) if request_options is not None else {}),
+                    }
+                )
+            ),
+            timeout=request_options.get("timeout_in_seconds")
+            if request_options is not None and request_options.get("timeout_in_seconds") is not None
+            else 60,
+            retries=0,
+            max_retries=request_options.get("max_retries") if request_options is not None else 0,  # type: ignore
+        )
+        if 200 <= _response.status_code < 300:
+            return pydantic.parse_obj_as(GetLabelsResponse, _response.json())  # type: ignore
+        if _response.status_code == 400:
+            raise BadRequestError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
         try:
             _response_json = _response.json()
         except JSONDecodeError:

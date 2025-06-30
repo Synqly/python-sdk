@@ -8,6 +8,7 @@ T_Result = typing.TypeVar("T_Result")
 
 class OperationId(str, enum.Enum):
     ASSETS_CREATE_ASSET = "assets_create_asset"
+    ASSETS_GET_LABELS = "assets_get_labels"
     ASSETS_QUERY_DEVICES = "assets_query_devices"
     CLOUDSECURITY_QUERY_CLOUD_RESOURCE_INVENTORY = "cloudsecurity_query_cloud_resource_inventory"
     CLOUDSECURITY_QUERY_COMPLIANCE_FINDINGS = "cloudsecurity_query_compliance_findings"
@@ -76,6 +77,7 @@ class OperationId(str, enum.Enum):
     def visit(
         self,
         assets_create_asset: typing.Callable[[], T_Result],
+        assets_get_labels: typing.Callable[[], T_Result],
         assets_query_devices: typing.Callable[[], T_Result],
         cloudsecurity_query_cloud_resource_inventory: typing.Callable[[], T_Result],
         cloudsecurity_query_compliance_findings: typing.Callable[[], T_Result],
@@ -143,6 +145,8 @@ class OperationId(str, enum.Enum):
     ) -> T_Result:
         if self is OperationId.ASSETS_CREATE_ASSET:
             return assets_create_asset()
+        if self is OperationId.ASSETS_GET_LABELS:
+            return assets_get_labels()
         if self is OperationId.ASSETS_QUERY_DEVICES:
             return assets_query_devices()
         if self is OperationId.CLOUDSECURITY_QUERY_CLOUD_RESOURCE_INVENTORY:

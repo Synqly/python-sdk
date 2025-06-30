@@ -23,7 +23,7 @@ from . import (
     ticketing,
     vulnerabilities,
 )
-from .assets import CreateDeviceRequest, CreateDeviceResponse, Device, QueryDevicesResponse
+from .assets import CreateDeviceRequest, CreateDeviceResponse, Device, GetLabelsResponse, Label, QueryDevicesResponse
 from .cloudsecurity import QueryCloudResourceInventoryResponse, QueryComplianceFindingsResponse
 from .common import (
     ActionId,
@@ -324,6 +324,7 @@ __all__ = [
     "GetGroupResponse",
     "GetInvestigationResponse",
     "GetInvestigationResponseGeneric",
+    "GetLabelsResponse",
     "GetNotificationResponse",
     "GetOperationResponse",
     "GetScanActivityResponse",
@@ -337,6 +338,7 @@ __all__ = [
     "InternalServerError",
     "Investigation",
     "IssueTypeId",
+    "Label",
     "ListAttachmentsMetadataResponse",
     "ListCommentsResponse",
     "ListIntegrationWebHooksResponse",
