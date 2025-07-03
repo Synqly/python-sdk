@@ -24,7 +24,7 @@ from . import (
     vulnerabilities,
 )
 from .assets import CreateDeviceRequest, CreateDeviceResponse, Device, GetLabelsResponse, Label, QueryDevicesResponse
-from .cloudsecurity import QueryCloudResourceInventoryResponse, QueryComplianceFindingsResponse
+from .cloudsecurity import QueryCloudResourceInventoryResponse, QueryComplianceFindingsResponse, QueryIomsResponse
 from .common import (
     ActionId,
     BadGatewayError,
@@ -406,6 +406,7 @@ __all__ = [
     "QueryInvestigationResponse",
     "QueryInvestigationResponseGeneric",
     "QueryIocsResponse",
+    "QueryIomsResponse",
     "QueryLogProvidersResponse",
     "QueryPostureScoreResponse",
     "QueryScansResponse",
