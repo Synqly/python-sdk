@@ -13,6 +13,10 @@ class Permissions(str, enum.Enum):
     ACCOUNT_MANAGER = "account-manager"
     CONNECT_UI = "connect-ui"
     TOKEN_ISSUER = "token-issuer"
+    MCP_INTEGRATIONS_USE_ONLY = "mcp-integrations-use-only"
+    """
+    Permission set that provides the minimum level of access necessary for MCP use. Gives read access to accounts and integrations and the ability to use any Connector API.
+    """
 
     def visit(
         self,
@@ -22,6 +26,7 @@ class Permissions(str, enum.Enum):
         account_manager: typing.Callable[[], T_Result],
         connect_ui: typing.Callable[[], T_Result],
         token_issuer: typing.Callable[[], T_Result],
+        mcp_integrations_use_only: typing.Callable[[], T_Result],
     ) -> T_Result:
         if self is Permissions.ADMINISTRATOR:
             return administrator()
@@ -35,3 +40,5 @@ class Permissions(str, enum.Enum):
             return connect_ui()
         if self is Permissions.TOKEN_ISSUER:
             return token_issuer()
+        if self is Permissions.MCP_INTEGRATIONS_USE_ONLY:
+            return mcp_integrations_use_only()
