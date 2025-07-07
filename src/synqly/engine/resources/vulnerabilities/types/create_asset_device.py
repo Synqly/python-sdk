@@ -4,6 +4,7 @@ import datetime as dt
 import typing
 
 from ....core.datetime_utils import serialize_datetime
+from .create_asset_status import CreateAssetStatus
 
 try:
     import pydantic.v1 as pydantic  # type: ignore
@@ -12,9 +13,14 @@ except ImportError:
 
 
 class CreateAssetDevice(pydantic.BaseModel):
-    uid: str = pydantic.Field()
+    uid: typing.Optional[str] = pydantic.Field(default=None)
     """
     ID of the device.
+    """
+
+    status: CreateAssetStatus = pydantic.Field()
+    """
+    Status of the creation of the asset in the providers system.
     """
 
     def json(self, **kwargs: typing.Any) -> str:

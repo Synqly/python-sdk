@@ -4,6 +4,7 @@ from .asset import Asset
 from .create_asset_device import CreateAssetDevice
 from .create_asset_request import CreateAssetRequest
 from .create_asset_response import CreateAssetResponse
+from .create_asset_status import CreateAssetStatus
 from .create_findings_error import CreateFindingsError
 from .create_findings_request import CreateFindingsRequest
 from .create_findings_response import CreateFindingsResponse
@@ -29,6 +30,7 @@ __all__ = [
     "CreateAssetDevice",
     "CreateAssetRequest",
     "CreateAssetResponse",
+    "CreateAssetStatus",
     "CreateFindingsError",
     "CreateFindingsRequest",
     "CreateFindingsResponse",
