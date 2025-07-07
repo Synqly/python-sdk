@@ -23,7 +23,18 @@ from . import (
     ticketing,
     vulnerabilities,
 )
-from .assets import CreateDeviceRequest, CreateDeviceResponse, Device, GetLabelsResponse, Label, QueryDevicesResponse
+from .assets import (
+    CreateDeviceRequest,
+    CreateDeviceRequestGeneric,
+    CreateDeviceResponse,
+    CreateDeviceResponseGeneric,
+    Device,
+    GetLabelsResponse,
+    GetLabelsResponseGeneric,
+    Label,
+    QueryDevicesResponse,
+    QueryDevicesResponseGeneric,
+)
 from .cloudsecurity import QueryCloudResourceInventoryResponse, QueryComplianceFindingsResponse, QueryIomsResponse
 from .common import (
     ActionId,
@@ -270,7 +281,9 @@ __all__ = [
     "CreateCommentRequest",
     "CreateCommentResponse",
     "CreateDeviceRequest",
+    "CreateDeviceRequestGeneric",
     "CreateDeviceResponse",
+    "CreateDeviceResponseGeneric",
     "CreateFindingsError",
     "CreateFindingsRequest",
     "CreateFindingsResponse",
@@ -327,6 +340,7 @@ __all__ = [
     "GetInvestigationResponse",
     "GetInvestigationResponseGeneric",
     "GetLabelsResponse",
+    "GetLabelsResponseGeneric",
     "GetNotificationResponse",
     "GetOperationResponse",
     "GetScanActivityResponse",
@@ -399,6 +413,7 @@ __all__ = [
     "QueryCloudResourceInventoryResponse",
     "QueryComplianceFindingsResponse",
     "QueryDevicesResponse",
+    "QueryDevicesResponseGeneric",
     "QueryEdrEventsResponse",
     "QueryEndpointsResponse",
     "QueryEventStatus",
