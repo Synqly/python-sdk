@@ -23,6 +23,12 @@ class WebhookItem(pydantic.BaseModel):
     If specified, only events matching this list will be sent to `webhook_url`. If no filters are specified, all events sent from providers will be forwarded to `webhook_url`.
     """
 
+    integrator_key: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    The key used to sign outgoing web hook payloads. If not specified a random key is automatically generated.
+    Use this key at the target URL to validate that the incoming payload was signed by Synqly. The payload is signed symmetrically with the `integrator_key` using the `HMAC-SHA256` signature scheme. The key should be randomly generated and between 24 bytes (192 bits) and 64 bytes (512 bits) long.
+    """
+
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}
         return super().json(**kwargs_with_defaults)
