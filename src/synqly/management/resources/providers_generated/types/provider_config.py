@@ -24,6 +24,7 @@ from .edr_defender import EdrDefender
 from .edr_malwarebytes import EdrMalwarebytes
 from .edr_sentinel_one import EdrSentinelOne
 from .edr_sophos import EdrSophos
+from .edr_tanium import EdrTanium
 from .identity_entra_id import IdentityEntraId
 from .identity_google import IdentityGoogle
 from .identity_okta import IdentityOkta
@@ -251,6 +252,15 @@ class ProviderConfig_EdrSentinelone(EdrSentinelOne):
 
 class ProviderConfig_EdrSophos(EdrSophos):
     type: typing.Literal["edr_sophos"]
+
+    class Config:
+        frozen = True
+        smart_union = True
+        allow_population_by_field_name = True
+
+
+class ProviderConfig_EdrTanium(EdrTanium):
+    type: typing.Literal["edr_tanium"]
 
     class Config:
         frozen = True
@@ -747,6 +757,7 @@ ProviderConfig = typing.Union[
     ProviderConfig_EdrMalwarebytes,
     ProviderConfig_EdrSentinelone,
     ProviderConfig_EdrSophos,
+    ProviderConfig_EdrTanium,
     ProviderConfig_IdentityEntraId,
     ProviderConfig_IdentityGoogle,
     ProviderConfig_IdentityOkta,

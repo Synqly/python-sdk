@@ -62,6 +62,7 @@ from .edr_defender import EdrDefender
 from .edr_malwarebytes import EdrMalwarebytes
 from .edr_sentinel_one import EdrSentinelOne
 from .edr_sophos import EdrSophos
+from .edr_tanium import EdrTanium
 from .elasticsearch_auth_options import ElasticsearchAuthOptions
 from .elasticsearch_credential import (
     ElasticsearchCredential,
@@ -144,6 +145,7 @@ from .provider_config import (
     ProviderConfig_EdrMalwarebytes,
     ProviderConfig_EdrSentinelone,
     ProviderConfig_EdrSophos,
+    ProviderConfig_EdrTanium,
     ProviderConfig_IdentityEntraId,
     ProviderConfig_IdentityGoogle,
     ProviderConfig_IdentityOkta,
@@ -364,6 +366,7 @@ __all__ = [
     "EdrMalwarebytes",
     "EdrSentinelOne",
     "EdrSophos",
+    "EdrTanium",
     "ElasticsearchAuthOptions",
     "ElasticsearchCredential",
     "ElasticsearchCredential_Basic",
@@ -450,6 +453,7 @@ __all__ = [
     "ProviderConfig_EdrMalwarebytes",
     "ProviderConfig_EdrSentinelone",
     "ProviderConfig_EdrSophos",
+    "ProviderConfig_EdrTanium",
     "ProviderConfig_IdentityEntraId",
     "ProviderConfig_IdentityGoogle",
     "ProviderConfig_IdentityOkta",

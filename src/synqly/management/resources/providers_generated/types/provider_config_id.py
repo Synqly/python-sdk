@@ -111,6 +111,11 @@ class ProviderConfigId(str, enum.Enum):
     Sophos Endpoint
     """
 
+    EDR_TANIUM = "edr_tanium"
+    """
+    Tanium EDR
+    """
+
     IDENTITY_ENTRA_ID = "identity_entra_id"
     """
     Microsoft Entra ID
@@ -398,6 +403,7 @@ class ProviderConfigId(str, enum.Enum):
         edr_malwarebytes: typing.Callable[[], T_Result],
         edr_sentinel_one: typing.Callable[[], T_Result],
         edr_sophos: typing.Callable[[], T_Result],
+        edr_tanium: typing.Callable[[], T_Result],
         identity_entra_id: typing.Callable[[], T_Result],
         identity_google: typing.Callable[[], T_Result],
         identity_okta: typing.Callable[[], T_Result],
@@ -492,6 +498,8 @@ class ProviderConfigId(str, enum.Enum):
             return edr_sentinel_one()
         if self is ProviderConfigId.EDR_SOPHOS:
             return edr_sophos()
+        if self is ProviderConfigId.EDR_TANIUM:
+            return edr_tanium()
         if self is ProviderConfigId.IDENTITY_ENTRA_ID:
             return identity_entra_id()
         if self is ProviderConfigId.IDENTITY_GOOGLE:
