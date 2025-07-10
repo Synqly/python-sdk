@@ -45,6 +45,7 @@ class CloudsecurityClient:
         order: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
         filter: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
         cursor: typing.Optional[str] = None,
+        include_raw_data: typing.Optional[bool] = None,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> QueryIomsResponse:
         """
@@ -62,6 +63,8 @@ class CloudsecurityClient:
                                                                                 If used more than once, the queries are ANDed together.
             - cursor: typing.Optional[str]. Start search from cursor position.
 
+            - include_raw_data: typing.Optional[bool]. Include the raw data from the CloudSecurity in the response. Defaults to `false`.
+
             - request_options: typing.Optional[RequestOptions]. Request-specific configuration.
         """
         _response = self._client_wrapper.httpx_client.request(
@@ -75,6 +78,7 @@ class CloudsecurityClient:
                         "order": order,
                         "filter": filter,
                         "cursor": cursor,
+                        "include_raw_data": include_raw_data,
                         **(
                             request_options.get("additional_query_parameters", {})
                             if request_options is not None
@@ -123,6 +127,7 @@ class CloudsecurityClient:
         order: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
         filter: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
         cursor: typing.Optional[str] = None,
+        include_raw_data: typing.Optional[bool] = None,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> QueryCloudResourceInventoryResponse:
         """
@@ -140,6 +145,8 @@ class CloudsecurityClient:
                                                                                 If used more than once, the queries are ANDed together.
             - cursor: typing.Optional[str]. Start search from cursor position.
 
+            - include_raw_data: typing.Optional[bool]. Include the raw data from the CloudSecurity in the response. Defaults to `false`.
+
             - request_options: typing.Optional[RequestOptions]. Request-specific configuration.
         """
         _response = self._client_wrapper.httpx_client.request(
@@ -153,6 +160,7 @@ class CloudsecurityClient:
                         "order": order,
                         "filter": filter,
                         "cursor": cursor,
+                        "include_raw_data": include_raw_data,
                         **(
                             request_options.get("additional_query_parameters", {})
                             if request_options is not None
@@ -201,6 +209,7 @@ class CloudsecurityClient:
         cursor: typing.Optional[str] = None,
         order: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
         filter: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
+        include_raw_data: typing.Optional[bool] = None,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> QueryComplianceFindingsResponse:
         """
@@ -218,6 +227,8 @@ class CloudsecurityClient:
                                                                                The ordering defaults to `asc` if not specified.
             - filter: typing.Optional[typing.Union[str, typing.Sequence[str]]]. Filter results by this query. For more information on filtering, refer to our Filtering Guide. Defaults to no filter.
                                                                                 If used more than once, the queries are ANDed together.
+            - include_raw_data: typing.Optional[bool]. Include the raw data from the CloudSecurity in the response. Defaults to `false`.
+
             - request_options: typing.Optional[RequestOptions]. Request-specific configuration.
         """
         _response = self._client_wrapper.httpx_client.request(
@@ -231,6 +242,7 @@ class CloudsecurityClient:
                         "cursor": cursor,
                         "order": order,
                         "filter": filter,
+                        "include_raw_data": include_raw_data,
                         **(
                             request_options.get("additional_query_parameters", {})
                             if request_options is not None
@@ -300,6 +312,7 @@ class AsyncCloudsecurityClient:
         order: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
         filter: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
         cursor: typing.Optional[str] = None,
+        include_raw_data: typing.Optional[bool] = None,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> QueryIomsResponse:
         """
@@ -317,6 +330,8 @@ class AsyncCloudsecurityClient:
                                                                                 If used more than once, the queries are ANDed together.
             - cursor: typing.Optional[str]. Start search from cursor position.
 
+            - include_raw_data: typing.Optional[bool]. Include the raw data from the CloudSecurity in the response. Defaults to `false`.
+
             - request_options: typing.Optional[RequestOptions]. Request-specific configuration.
         """
         _response = await self._client_wrapper.httpx_client.request(
@@ -330,6 +345,7 @@ class AsyncCloudsecurityClient:
                         "order": order,
                         "filter": filter,
                         "cursor": cursor,
+                        "include_raw_data": include_raw_data,
                         **(
                             request_options.get("additional_query_parameters", {})
                             if request_options is not None
@@ -378,6 +394,7 @@ class AsyncCloudsecurityClient:
         order: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
         filter: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
         cursor: typing.Optional[str] = None,
+        include_raw_data: typing.Optional[bool] = None,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> QueryCloudResourceInventoryResponse:
         """
@@ -395,6 +412,8 @@ class AsyncCloudsecurityClient:
                                                                                 If used more than once, the queries are ANDed together.
             - cursor: typing.Optional[str]. Start search from cursor position.
 
+            - include_raw_data: typing.Optional[bool]. Include the raw data from the CloudSecurity in the response. Defaults to `false`.
+
             - request_options: typing.Optional[RequestOptions]. Request-specific configuration.
         """
         _response = await self._client_wrapper.httpx_client.request(
@@ -408,6 +427,7 @@ class AsyncCloudsecurityClient:
                         "order": order,
                         "filter": filter,
                         "cursor": cursor,
+                        "include_raw_data": include_raw_data,
                         **(
                             request_options.get("additional_query_parameters", {})
                             if request_options is not None
@@ -456,6 +476,7 @@ class AsyncCloudsecurityClient:
         cursor: typing.Optional[str] = None,
         order: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
         filter: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
+        include_raw_data: typing.Optional[bool] = None,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> QueryComplianceFindingsResponse:
         """
@@ -473,6 +494,8 @@ class AsyncCloudsecurityClient:
                                                                                The ordering defaults to `asc` if not specified.
             - filter: typing.Optional[typing.Union[str, typing.Sequence[str]]]. Filter results by this query. For more information on filtering, refer to our Filtering Guide. Defaults to no filter.
                                                                                 If used more than once, the queries are ANDed together.
+            - include_raw_data: typing.Optional[bool]. Include the raw data from the CloudSecurity in the response. Defaults to `false`.
+
             - request_options: typing.Optional[RequestOptions]. Request-specific configuration.
         """
         _response = await self._client_wrapper.httpx_client.request(
@@ -486,6 +509,7 @@ class AsyncCloudsecurityClient:
                         "cursor": cursor,
                         "order": order,
                         "filter": filter,
+                        "include_raw_data": include_raw_data,
                         **(
                             request_options.get("additional_query_parameters", {})
                             if request_options is not None
