@@ -32,6 +32,11 @@ class SiemElasticsearch(pydantic.BaseModel):
     The index, data stream, or index alias to read events from.
     """
 
+    kibana_url: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    Base URL for the Kibana API.
+    """
+
     skip_tls_verify: typing.Optional[bool] = pydantic.Field(default=None)
     """
     When true, skips verification of the Elasticsearch TLS certificate.

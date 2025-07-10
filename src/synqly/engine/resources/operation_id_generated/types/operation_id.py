@@ -41,6 +41,7 @@ class OperationId(str, enum.Enum):
     SIEM_GET_INVESTIGATION = "siem_get_investigation"
     SIEM_PATCH_INVESTIGATION = "siem_patch_investigation"
     SIEM_POST_EVENTS = "siem_post_events"
+    SIEM_QUERY_ALERTS = "siem_query_alerts"
     SIEM_QUERY_EVENTS = "siem_query_events"
     SIEM_QUERY_INVESTIGATIONS = "siem_query_investigations"
     SIEM_QUERY_LOG_PROVIDERS = "siem_query_log_providers"
@@ -111,6 +112,7 @@ class OperationId(str, enum.Enum):
         siem_get_investigation: typing.Callable[[], T_Result],
         siem_patch_investigation: typing.Callable[[], T_Result],
         siem_post_events: typing.Callable[[], T_Result],
+        siem_query_alerts: typing.Callable[[], T_Result],
         siem_query_events: typing.Callable[[], T_Result],
         siem_query_investigations: typing.Callable[[], T_Result],
         siem_query_log_providers: typing.Callable[[], T_Result],
@@ -213,6 +215,8 @@ class OperationId(str, enum.Enum):
             return siem_patch_investigation()
         if self is OperationId.SIEM_POST_EVENTS:
             return siem_post_events()
+        if self is OperationId.SIEM_QUERY_ALERTS:
+            return siem_query_alerts()
         if self is OperationId.SIEM_QUERY_EVENTS:
             return siem_query_events()
         if self is OperationId.SIEM_QUERY_INVESTIGATIONS:

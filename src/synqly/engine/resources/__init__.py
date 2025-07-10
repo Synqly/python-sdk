@@ -183,6 +183,7 @@ from .siem import (
     QueryInvestigationResponse,
     QueryInvestigationResponseGeneric,
     QueryLogProvidersResponse,
+    QuerySiemAlertsResponse,
     QuerySiemEventsResponse,
 )
 from .storage import ListStorageResponse, StoragePath
@@ -427,6 +428,7 @@ __all__ = [
     "QueryLogProvidersResponse",
     "QueryPostureScoreResponse",
     "QueryScansResponse",
+    "QuerySiemAlertsResponse",
     "QuerySiemEventsResponse",
     "QueryStatus",
     "QueryThreatsResponse",

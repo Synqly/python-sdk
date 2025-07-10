@@ -13,6 +13,7 @@ from .types import (
     QueryInvestigationResponse,
     QueryInvestigationResponseGeneric,
     QueryLogProvidersResponse,
+    QuerySiemAlertsResponse,
     QuerySiemEventsResponse,
 )
 
@@ -29,5 +30,6 @@ __all__ = [
     "QueryInvestigationResponse",
     "QueryInvestigationResponseGeneric",
     "QueryLogProvidersResponse",
+    "QuerySiemAlertsResponse",
     "QuerySiemEventsResponse",
 ]

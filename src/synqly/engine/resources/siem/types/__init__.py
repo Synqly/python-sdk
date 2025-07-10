@@ -12,6 +12,7 @@ from .query_event_status import QueryEventStatus
 from .query_investigation_response import QueryInvestigationResponse
 from .query_investigation_response_generic import QueryInvestigationResponseGeneric
 from .query_log_providers_response import QueryLogProvidersResponse
+from .query_siem_alerts_response import QuerySiemAlertsResponse
 from .query_siem_events_response import QuerySiemEventsResponse
 
 __all__ = [
@@ -27,5 +28,6 @@ __all__ = [
     "QueryInvestigationResponse",
     "QueryInvestigationResponseGeneric",
     "QueryLogProvidersResponse",
+    "QuerySiemAlertsResponse",
     "QuerySiemEventsResponse",
 ]
