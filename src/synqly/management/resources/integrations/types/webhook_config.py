@@ -17,7 +17,7 @@ class WebhookConfig(pydantic.BaseModel):
     """
     The key used by Synqly to verify incoming webhook payloads sent by the Provider. The format and requirements for this key is Provider specific:
     
-    - **ServiceNow**: Synqly will automatically configure webhooks, using this key as the signing key. If this key is not specified, a random key will be generated.
+    - **ServiceNow**: ServiceNow does not support webhook signing at this time.
     - **Jira**: Synqly does _not_ automatically configure Jira webhooks. A user with administrator privileges must configure the webhook, including the signing key. If this key is not specified, Synqly will _not_ validate incoming webhooks from Jira. It is strongly recommended that a key is specified and configured with Jira to ensure the integrity of incoming payloads.
     """
 
