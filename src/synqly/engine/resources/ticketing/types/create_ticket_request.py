@@ -15,7 +15,7 @@ except ImportError:
 
 
 class CreateTicketRequest(BaseResourceRequest):
-    summary: str = pydantic.Field()
+    summary: typing.Optional[str] = pydantic.Field(default=None)
     """
     Ticket summary.
     """

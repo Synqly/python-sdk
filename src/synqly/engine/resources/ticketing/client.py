@@ -42,6 +42,7 @@ from .types.list_notes_response import ListNotesResponse
 from .types.list_projects_response import ListProjectsResponse
 from .types.list_remote_fields_response import ListRemoteFieldsResponse
 from .types.note_id import NoteId
+from .types.patch_note_response import PatchNoteResponse
 from .types.patch_ticket_response import PatchTicketResponse
 from .types.query_tickets_response import QueryTicketsResponse
 from .types.ticket_id import TicketId
@@ -1252,7 +1253,7 @@ class TicketingClient:
         *,
         request: typing.Sequence[PatchOperation],
         request_options: typing.Optional[RequestOptions] = None,
-    ) -> CreateNoteResponse:
+    ) -> PatchNoteResponse:
         """
         Update a note matching {noteId} title and/or content on the ticket matching {ticketId} from the token-linked Integration.
 
@@ -1295,7 +1296,7 @@ class TicketingClient:
             max_retries=request_options.get("max_retries") if request_options is not None else 0,  # type: ignore
         )
         if 200 <= _response.status_code < 300:
-            return pydantic.parse_obj_as(CreateNoteResponse, _response.json())  # type: ignore
+            return pydantic.parse_obj_as(PatchNoteResponse, _response.json())  # type: ignore
         if _response.status_code == 400:
             raise BadRequestError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
         if _response.status_code == 401:
@@ -2526,7 +2527,7 @@ class AsyncTicketingClient:
         *,
         request: typing.Sequence[PatchOperation],
         request_options: typing.Optional[RequestOptions] = None,
-    ) -> CreateNoteResponse:
+    ) -> PatchNoteResponse:
         """
         Update a note matching {noteId} title and/or content on the ticket matching {ticketId} from the token-linked Integration.
 
@@ -2569,7 +2570,7 @@ class AsyncTicketingClient:
             max_retries=request_options.get("max_retries") if request_options is not None else 0,  # type: ignore
         )
         if 200 <= _response.status_code < 300:
-            return pydantic.parse_obj_as(CreateNoteResponse, _response.json())  # type: ignore
+            return pydantic.parse_obj_as(PatchNoteResponse, _response.json())  # type: ignore
         if _response.status_code == 400:
             raise BadRequestError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
         if _response.status_code == 401:

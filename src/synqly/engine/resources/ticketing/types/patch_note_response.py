@@ -5,7 +5,7 @@ import typing
 
 from ....core.datetime_utils import serialize_datetime
 from ...engine.types.api_response import ApiResponse
-from .remote_field import RemoteField
+from .note import Note
 
 try:
     import pydantic.v1 as pydantic  # type: ignore
@@ -13,8 +13,8 @@ except ImportError:
     import pydantic  # type: ignore
 
 
-class ListRemoteFieldsResponse(ApiResponse):
-    result: typing.List[RemoteField]
+class PatchNoteResponse(ApiResponse):
+    result: Note
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}

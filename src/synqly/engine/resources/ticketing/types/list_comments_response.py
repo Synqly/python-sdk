@@ -4,7 +4,7 @@ import datetime as dt
 import typing
 
 from ....core.datetime_utils import serialize_datetime
-from ...engine.types.api_query_response import ApiQueryResponse
+from ...engine.types.api_response import ApiResponse
 from .comment import Comment
 
 try:
@@ -13,7 +13,7 @@ except ImportError:
     import pydantic  # type: ignore
 
 
-class ListCommentsResponse(ApiQueryResponse):
+class ListCommentsResponse(ApiResponse):
     result: typing.List[Comment]
 
     def json(self, **kwargs: typing.Any) -> str:

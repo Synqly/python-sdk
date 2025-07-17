@@ -4,7 +4,7 @@ import datetime as dt
 import typing
 
 from ....core.datetime_utils import serialize_datetime
-from ...engine.types.api_query_response import ApiQueryResponse
+from ...engine.types.api_response import ApiResponse
 from .attachment_metadata import AttachmentMetadata
 
 try:
@@ -13,7 +13,7 @@ except ImportError:
     import pydantic  # type: ignore
 
 
-class ListAttachmentsMetadataResponse(ApiQueryResponse):
+class ListAttachmentsMetadataResponse(ApiResponse):
     result: typing.List[AttachmentMetadata]
 
     def json(self, **kwargs: typing.Any) -> str:

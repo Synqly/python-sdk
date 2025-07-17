@@ -24,6 +24,7 @@ from .list_projects_response import ListProjectsResponse
 from .list_remote_fields_response import ListRemoteFieldsResponse
 from .note import Note
 from .note_id import NoteId
+from .patch_note_response import PatchNoteResponse
 from .patch_ticket_response import PatchTicketResponse
 from .priority import Priority
 from .project import Project
@@ -63,6 +64,7 @@ __all__ = [
     "ListRemoteFieldsResponse",
     "Note",
     "NoteId",
+    "PatchNoteResponse",
     "PatchTicketResponse",
     "Priority",
     "Project",

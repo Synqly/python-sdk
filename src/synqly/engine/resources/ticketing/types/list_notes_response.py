@@ -4,6 +4,7 @@ import datetime as dt
 import typing
 
 from ....core.datetime_utils import serialize_datetime
+from ...engine.types.api_response import ApiResponse
 from .note import Note
 
 try:
@@ -12,7 +13,7 @@ except ImportError:
     import pydantic  # type: ignore
 
 
-class ListNotesResponse(pydantic.BaseModel):
+class ListNotesResponse(ApiResponse):
     result: typing.List[Note]
 
     def json(self, **kwargs: typing.Any) -> str:
@@ -26,5 +27,6 @@ class ListNotesResponse(pydantic.BaseModel):
     class Config:
         frozen = True
         smart_union = True
+        allow_population_by_field_name = True
         extra = pydantic.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}
