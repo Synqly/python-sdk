@@ -19,7 +19,7 @@ class CreateIntegrationTokenRequest(pydantic.BaseModel):
 
     token_ttl: typing.Optional[str] = pydantic.Field(default=None)
     """
-    Token time-to-live. If not provided, defaults to the TTL of the token used to call this API. Use the format "1h", "1m", "1s" for hours, minutes, and seconds respectively.
+    Token time-to-live. If not provided, defaults to 10 minutes. Use the format "1h", "1m", "1s" for hours, minutes, and seconds respectively, e.g., "2h" for 2 hours.
     """
 
     def json(self, **kwargs: typing.Any) -> str:
