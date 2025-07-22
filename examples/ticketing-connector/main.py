@@ -119,6 +119,7 @@ def jira_provider_config(jira_url: str, jira_username: str, jira_token: str):
     return mgmt.ProviderConfig_TicketingJira(
         type="ticketing_jira",
         url=jira_url,
+        default_issue_type="Bug",
         credential=mgmt.JiraCredential_Basic(
             type="basic",
             username=jira_username,
