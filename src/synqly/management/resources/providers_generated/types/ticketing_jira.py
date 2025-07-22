@@ -26,6 +26,11 @@ class TicketingJira(pydantic.BaseModel):
     Custom field mappings for this provider.
     """
 
+    default_issue_type: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    Default Issue Type for the integration. If provided, the issue_type field becomes optional in ticket creation requests.
+    """
+
     default_project: typing.Optional[str] = pydantic.Field(default=None)
     """
     Default Project for the integration.
