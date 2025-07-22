@@ -35,7 +35,12 @@ from .assets import (
     QueryDevicesResponse,
     QueryDevicesResponseGeneric,
 )
-from .cloudsecurity import QueryCloudResourceInventoryResponse, QueryComplianceFindingsResponse, QueryIomsResponse
+from .cloudsecurity import (
+    QueryCloudResourceInventoryResponse,
+    QueryComplianceFindingsResponse,
+    QueryEventsResponse,
+    QueryIomsResponse,
+)
 from .common import (
     ActionId,
     BadGatewayError,
@@ -105,6 +110,7 @@ from .events import (
     Event,
     Event_AccountChange,
     Event_ApiActivity,
+    Event_ApplicationLifecycle,
     Event_Authentication,
     Event_AuthorizeSession,
     Event_BaseEvent,
@@ -309,6 +315,7 @@ __all__ = [
     "EventId",
     "Event_AccountChange",
     "Event_ApiActivity",
+    "Event_ApplicationLifecycle",
     "Event_Authentication",
     "Event_AuthorizeSession",
     "Event_BaseEvent",
@@ -420,6 +427,7 @@ __all__ = [
     "QueryEdrEventsResponse",
     "QueryEndpointsResponse",
     "QueryEventStatus",
+    "QueryEventsResponse",
     "QueryFindingsResponse",
     "QueryGroupsResponse",
     "QueryIdentityAuditLogResponse",

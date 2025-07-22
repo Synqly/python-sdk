@@ -3,6 +3,7 @@
 from .resources import (
     accountchange,
     apiactivity,
+    applicationlifecycle,
     authentication,
     authorizesession,
     baseevent,
@@ -25,11 +26,13 @@ from .resources import (
     useraccessmanagement,
     vulnerabilityfinding,
     webresourceaccessactivity,
+    webresourcesactivity,
 )
 
 __all__ = [
     "accountchange",
     "apiactivity",
+    "applicationlifecycle",
     "authentication",
     "authorizesession",
     "baseevent",
@@ -52,4 +55,5 @@ __all__ = [
     "useraccessmanagement",
     "vulnerabilityfinding",
     "webresourceaccessactivity",
+    "webresourcesactivity",
 ]

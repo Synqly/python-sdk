@@ -12,6 +12,7 @@ class OperationId(str, enum.Enum):
     ASSETS_QUERY_DEVICES = "assets_query_devices"
     CLOUDSECURITY_QUERY_CLOUD_RESOURCE_INVENTORY = "cloudsecurity_query_cloud_resource_inventory"
     CLOUDSECURITY_QUERY_COMPLIANCE_FINDINGS = "cloudsecurity_query_compliance_findings"
+    CLOUDSECURITY_QUERY_EVENTS = "cloudsecurity_query_events"
     CLOUDSECURITY_QUERY_IOMS = "cloudsecurity_query_ioms"
     EDR_CREATE_IOCS = "edr_create_iocs"
     EDR_DELETE_IOCS = "edr_delete_iocs"
@@ -83,6 +84,7 @@ class OperationId(str, enum.Enum):
         assets_query_devices: typing.Callable[[], T_Result],
         cloudsecurity_query_cloud_resource_inventory: typing.Callable[[], T_Result],
         cloudsecurity_query_compliance_findings: typing.Callable[[], T_Result],
+        cloudsecurity_query_events: typing.Callable[[], T_Result],
         cloudsecurity_query_ioms: typing.Callable[[], T_Result],
         edr_create_iocs: typing.Callable[[], T_Result],
         edr_delete_iocs: typing.Callable[[], T_Result],
@@ -157,6 +159,8 @@ class OperationId(str, enum.Enum):
             return cloudsecurity_query_cloud_resource_inventory()
         if self is OperationId.CLOUDSECURITY_QUERY_COMPLIANCE_FINDINGS:
             return cloudsecurity_query_compliance_findings()
+        if self is OperationId.CLOUDSECURITY_QUERY_EVENTS:
+            return cloudsecurity_query_events()
         if self is OperationId.CLOUDSECURITY_QUERY_IOMS:
             return cloudsecurity_query_ioms()
         if self is OperationId.EDR_CREATE_IOCS:

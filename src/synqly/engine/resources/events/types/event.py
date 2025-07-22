@@ -6,6 +6,9 @@ import typing
 
 from ...ocsf.resources.v_1_3_0.resources.accountchange.resources.classes.types.account_change import AccountChange
 from ...ocsf.resources.v_1_3_0.resources.apiactivity.resources.classes.types.api_activity import ApiActivity
+from ...ocsf.resources.v_1_3_0.resources.applicationlifecycle.resources.classes.types.application_lifecycle import (
+    ApplicationLifecycle,
+)
 from ...ocsf.resources.v_1_3_0.resources.authentication.resources.classes.types.authentication import Authentication
 from ...ocsf.resources.v_1_3_0.resources.authorizesession.resources.classes.types.authorize_session import (
     AuthorizeSession,
@@ -248,6 +251,15 @@ class Event_WebResourceAccessActivity(WebResourceAccessActivity):
         allow_population_by_field_name = True
 
 
+class Event_ApplicationLifecycle(ApplicationLifecycle):
+    class_name: typing.Literal["Application Lifecycle"]
+
+    class Config:
+        frozen = True
+        smart_union = True
+        allow_population_by_field_name = True
+
+
 Event = typing.Union[
     Event_AccountChange,
     Event_ApiActivity,
@@ -272,4 +284,5 @@ Event = typing.Union[
     Event_UserAccessManagement,
     Event_VulnerabilityFinding,
     Event_WebResourceAccessActivity,
+    Event_ApplicationLifecycle,
 ]
