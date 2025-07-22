@@ -22,6 +22,7 @@ from ..common.errors.service_unavailable_error import ServiceUnavailableError
 from ..common.errors.too_many_requests_error import TooManyRequestsError
 from ..common.errors.unauthorized_error import UnauthorizedError
 from ..common.errors.unsupported_media_type_error import UnsupportedMediaTypeError
+from ..common.types.id import Id
 from ..common.types.patch_operation import PatchOperation
 from ..common.types.problem import Problem
 from .types.attachment_id import AttachmentId
@@ -39,11 +40,13 @@ from .types.get_ticket_response import GetTicketResponse
 from .types.list_attachments_metadata_response import ListAttachmentsMetadataResponse
 from .types.list_comments_response import ListCommentsResponse
 from .types.list_notes_response import ListNotesResponse
+from .types.list_on_call_response import ListOnCallResponse
 from .types.list_projects_response import ListProjectsResponse
 from .types.list_remote_fields_response import ListRemoteFieldsResponse
 from .types.note_id import NoteId
 from .types.patch_note_response import PatchNoteResponse
 from .types.patch_ticket_response import PatchTicketResponse
+from .types.query_escalation_policies_response import QueryEscalationPoliciesResponse
 from .types.query_tickets_response import QueryTicketsResponse
 from .types.ticket_id import TicketId
 
@@ -1329,6 +1332,178 @@ class TicketingClient:
             raise ApiError(status_code=_response.status_code, body=_response.text)
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
+    def query_escalation_policies(
+        self,
+        *,
+        meta: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
+        limit: typing.Optional[int] = None,
+        cursor: typing.Optional[str] = None,
+        filter: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> QueryEscalationPoliciesResponse:
+        """
+        Returns a list of escalation policies.
+
+        Parameters:
+            - meta: typing.Optional[typing.Union[str, typing.Sequence[str]]]. Add metadata to the response by invoking meta functions. Documentation for meta functions is available at https://docs.synqly.com/api-reference/meta-functions. Not all meta function are available at every endpoint.
+
+            - limit: typing.Optional[int]. Number of escalation policies to return. Defaults to 50.
+
+            - cursor: typing.Optional[str]. Start search from cursor position.
+
+            - filter: typing.Optional[typing.Union[str, typing.Sequence[str]]]. Filter results by this query. For more information on filtering, refer to our Filtering Guide. Defaults to no filter.
+                                                                                If used more than once, the queries are ANDed together.
+            - request_options: typing.Optional[RequestOptions]. Request-specific configuration.
+        """
+        _response = self._client_wrapper.httpx_client.request(
+            "GET",
+            urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", "v1/ticketing/escalation-policies"),
+            params=jsonable_encoder(
+                remove_none_from_dict(
+                    {
+                        "meta": meta,
+                        "limit": limit,
+                        "cursor": cursor,
+                        "filter": filter,
+                        **(
+                            request_options.get("additional_query_parameters", {})
+                            if request_options is not None
+                            else {}
+                        ),
+                    }
+                )
+            ),
+            headers=jsonable_encoder(
+                remove_none_from_dict(
+                    {
+                        **self._client_wrapper.get_headers(),
+                        **(request_options.get("additional_headers", {}) if request_options is not None else {}),
+                    }
+                )
+            ),
+            timeout=request_options.get("timeout_in_seconds")
+            if request_options is not None and request_options.get("timeout_in_seconds") is not None
+            else 60,
+            retries=0,
+            max_retries=request_options.get("max_retries") if request_options is not None else 0,  # type: ignore
+        )
+        if 200 <= _response.status_code < 300:
+            return pydantic.parse_obj_as(QueryEscalationPoliciesResponse, _response.json())  # type: ignore
+        if _response.status_code == 400:
+            raise BadRequestError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
+        if _response.status_code == 401:
+            raise UnauthorizedError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
+        if _response.status_code == 403:
+            raise ForbiddenError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
+        if _response.status_code == 404:
+            raise NotFoundError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
+        if _response.status_code == 405:
+            raise MethodNotAllowedError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
+        if _response.status_code == 409:
+            raise ConflictError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
+        if _response.status_code == 415:
+            raise UnsupportedMediaTypeError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
+        if _response.status_code == 429:
+            raise TooManyRequestsError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
+        if _response.status_code == 500:
+            raise InternalServerError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
+        if _response.status_code == 501:
+            raise NotImplementedError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
+        if _response.status_code == 502:
+            raise BadGatewayError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
+        if _response.status_code == 503:
+            raise ServiceUnavailableError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
+        if _response.status_code == 504:
+            raise GatewayTimeoutError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
+        try:
+            _response_json = _response.json()
+        except JSONDecodeError:
+            raise ApiError(status_code=_response.status_code, body=_response.text)
+        raise ApiError(status_code=_response.status_code, body=_response_json)
+
+    def list_on_call(
+        self,
+        escalation_policy_id: Id,
+        *,
+        meta: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> ListOnCallResponse:
+        """
+        Returns a list of all on-call agents for an escalation policy.
+
+        Parameters:
+            - escalation_policy_id: Id.
+
+            - meta: typing.Optional[typing.Union[str, typing.Sequence[str]]]. Add metadata to the response by invoking meta functions. Documentation for meta functions is available at https://docs.synqly.com/api-reference/meta-functions. Not all meta function are available at every endpoint.
+
+            - request_options: typing.Optional[RequestOptions]. Request-specific configuration.
+        """
+        _response = self._client_wrapper.httpx_client.request(
+            "GET",
+            urllib.parse.urljoin(
+                f"{self._client_wrapper.get_base_url()}/",
+                f"v1/ticketing/escalation-policies/{jsonable_encoder(escalation_policy_id)}/on-call",
+            ),
+            params=jsonable_encoder(
+                remove_none_from_dict(
+                    {
+                        "meta": meta,
+                        **(
+                            request_options.get("additional_query_parameters", {})
+                            if request_options is not None
+                            else {}
+                        ),
+                    }
+                )
+            ),
+            headers=jsonable_encoder(
+                remove_none_from_dict(
+                    {
+                        **self._client_wrapper.get_headers(),
+                        **(request_options.get("additional_headers", {}) if request_options is not None else {}),
+                    }
+                )
+            ),
+            timeout=request_options.get("timeout_in_seconds")
+            if request_options is not None and request_options.get("timeout_in_seconds") is not None
+            else 60,
+            retries=0,
+            max_retries=request_options.get("max_retries") if request_options is not None else 0,  # type: ignore
+        )
+        if 200 <= _response.status_code < 300:
+            return pydantic.parse_obj_as(ListOnCallResponse, _response.json())  # type: ignore
+        if _response.status_code == 400:
+            raise BadRequestError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
+        if _response.status_code == 401:
+            raise UnauthorizedError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
+        if _response.status_code == 403:
+            raise ForbiddenError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
+        if _response.status_code == 404:
+            raise NotFoundError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
+        if _response.status_code == 405:
+            raise MethodNotAllowedError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
+        if _response.status_code == 409:
+            raise ConflictError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
+        if _response.status_code == 415:
+            raise UnsupportedMediaTypeError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
+        if _response.status_code == 429:
+            raise TooManyRequestsError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
+        if _response.status_code == 500:
+            raise InternalServerError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
+        if _response.status_code == 501:
+            raise NotImplementedError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
+        if _response.status_code == 502:
+            raise BadGatewayError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
+        if _response.status_code == 503:
+            raise ServiceUnavailableError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
+        if _response.status_code == 504:
+            raise GatewayTimeoutError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
+        try:
+            _response_json = _response.json()
+        except JSONDecodeError:
+            raise ApiError(status_code=_response.status_code, body=_response.text)
+        raise ApiError(status_code=_response.status_code, body=_response_json)
+
 
 class AsyncTicketingClient:
     def __init__(self, *, client_wrapper: AsyncClientWrapper):
@@ -2571,6 +2746,178 @@ class AsyncTicketingClient:
         )
         if 200 <= _response.status_code < 300:
             return pydantic.parse_obj_as(PatchNoteResponse, _response.json())  # type: ignore
+        if _response.status_code == 400:
+            raise BadRequestError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
+        if _response.status_code == 401:
+            raise UnauthorizedError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
+        if _response.status_code == 403:
+            raise ForbiddenError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
+        if _response.status_code == 404:
+            raise NotFoundError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
+        if _response.status_code == 405:
+            raise MethodNotAllowedError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
+        if _response.status_code == 409:
+            raise ConflictError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
+        if _response.status_code == 415:
+            raise UnsupportedMediaTypeError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
+        if _response.status_code == 429:
+            raise TooManyRequestsError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
+        if _response.status_code == 500:
+            raise InternalServerError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
+        if _response.status_code == 501:
+            raise NotImplementedError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
+        if _response.status_code == 502:
+            raise BadGatewayError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
+        if _response.status_code == 503:
+            raise ServiceUnavailableError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
+        if _response.status_code == 504:
+            raise GatewayTimeoutError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
+        try:
+            _response_json = _response.json()
+        except JSONDecodeError:
+            raise ApiError(status_code=_response.status_code, body=_response.text)
+        raise ApiError(status_code=_response.status_code, body=_response_json)
+
+    async def query_escalation_policies(
+        self,
+        *,
+        meta: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
+        limit: typing.Optional[int] = None,
+        cursor: typing.Optional[str] = None,
+        filter: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> QueryEscalationPoliciesResponse:
+        """
+        Returns a list of escalation policies.
+
+        Parameters:
+            - meta: typing.Optional[typing.Union[str, typing.Sequence[str]]]. Add metadata to the response by invoking meta functions. Documentation for meta functions is available at https://docs.synqly.com/api-reference/meta-functions. Not all meta function are available at every endpoint.
+
+            - limit: typing.Optional[int]. Number of escalation policies to return. Defaults to 50.
+
+            - cursor: typing.Optional[str]. Start search from cursor position.
+
+            - filter: typing.Optional[typing.Union[str, typing.Sequence[str]]]. Filter results by this query. For more information on filtering, refer to our Filtering Guide. Defaults to no filter.
+                                                                                If used more than once, the queries are ANDed together.
+            - request_options: typing.Optional[RequestOptions]. Request-specific configuration.
+        """
+        _response = await self._client_wrapper.httpx_client.request(
+            "GET",
+            urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", "v1/ticketing/escalation-policies"),
+            params=jsonable_encoder(
+                remove_none_from_dict(
+                    {
+                        "meta": meta,
+                        "limit": limit,
+                        "cursor": cursor,
+                        "filter": filter,
+                        **(
+                            request_options.get("additional_query_parameters", {})
+                            if request_options is not None
+                            else {}
+                        ),
+                    }
+                )
+            ),
+            headers=jsonable_encoder(
+                remove_none_from_dict(
+                    {
+                        **self._client_wrapper.get_headers(),
+                        **(request_options.get("additional_headers", {}) if request_options is not None else {}),
+                    }
+                )
+            ),
+            timeout=request_options.get("timeout_in_seconds")
+            if request_options is not None and request_options.get("timeout_in_seconds") is not None
+            else 60,
+            retries=0,
+            max_retries=request_options.get("max_retries") if request_options is not None else 0,  # type: ignore
+        )
+        if 200 <= _response.status_code < 300:
+            return pydantic.parse_obj_as(QueryEscalationPoliciesResponse, _response.json())  # type: ignore
+        if _response.status_code == 400:
+            raise BadRequestError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
+        if _response.status_code == 401:
+            raise UnauthorizedError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
+        if _response.status_code == 403:
+            raise ForbiddenError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
+        if _response.status_code == 404:
+            raise NotFoundError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
+        if _response.status_code == 405:
+            raise MethodNotAllowedError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
+        if _response.status_code == 409:
+            raise ConflictError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
+        if _response.status_code == 415:
+            raise UnsupportedMediaTypeError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
+        if _response.status_code == 429:
+            raise TooManyRequestsError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
+        if _response.status_code == 500:
+            raise InternalServerError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
+        if _response.status_code == 501:
+            raise NotImplementedError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
+        if _response.status_code == 502:
+            raise BadGatewayError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
+        if _response.status_code == 503:
+            raise ServiceUnavailableError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
+        if _response.status_code == 504:
+            raise GatewayTimeoutError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
+        try:
+            _response_json = _response.json()
+        except JSONDecodeError:
+            raise ApiError(status_code=_response.status_code, body=_response.text)
+        raise ApiError(status_code=_response.status_code, body=_response_json)
+
+    async def list_on_call(
+        self,
+        escalation_policy_id: Id,
+        *,
+        meta: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> ListOnCallResponse:
+        """
+        Returns a list of all on-call agents for an escalation policy.
+
+        Parameters:
+            - escalation_policy_id: Id.
+
+            - meta: typing.Optional[typing.Union[str, typing.Sequence[str]]]. Add metadata to the response by invoking meta functions. Documentation for meta functions is available at https://docs.synqly.com/api-reference/meta-functions. Not all meta function are available at every endpoint.
+
+            - request_options: typing.Optional[RequestOptions]. Request-specific configuration.
+        """
+        _response = await self._client_wrapper.httpx_client.request(
+            "GET",
+            urllib.parse.urljoin(
+                f"{self._client_wrapper.get_base_url()}/",
+                f"v1/ticketing/escalation-policies/{jsonable_encoder(escalation_policy_id)}/on-call",
+            ),
+            params=jsonable_encoder(
+                remove_none_from_dict(
+                    {
+                        "meta": meta,
+                        **(
+                            request_options.get("additional_query_parameters", {})
+                            if request_options is not None
+                            else {}
+                        ),
+                    }
+                )
+            ),
+            headers=jsonable_encoder(
+                remove_none_from_dict(
+                    {
+                        **self._client_wrapper.get_headers(),
+                        **(request_options.get("additional_headers", {}) if request_options is not None else {}),
+                    }
+                )
+            ),
+            timeout=request_options.get("timeout_in_seconds")
+            if request_options is not None and request_options.get("timeout_in_seconds") is not None
+            else 60,
+            retries=0,
+            max_retries=request_options.get("max_retries") if request_options is not None else 0,  # type: ignore
+        )
+        if 200 <= _response.status_code < 300:
+            return pydantic.parse_obj_as(ListOnCallResponse, _response.json())  # type: ignore
         if _response.status_code == 400:
             raise BadRequestError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
         if _response.status_code == 401:

@@ -63,10 +63,12 @@ class OperationId(str, enum.Enum):
     TICKETING_LIST_ATTACHMENTS_METADATA = "ticketing_list_attachments_metadata"
     TICKETING_LIST_COMMENTS = "ticketing_list_comments"
     TICKETING_LIST_NOTES = "ticketing_list_notes"
+    TICKETING_LIST_ON_CALL = "ticketing_list_on_call"
     TICKETING_LIST_PROJECTS = "ticketing_list_projects"
     TICKETING_LIST_REMOTE_FIELDS = "ticketing_list_remote_fields"
     TICKETING_PATCH_NOTE = "ticketing_patch_note"
     TICKETING_PATCH_TICKET = "ticketing_patch_ticket"
+    TICKETING_QUERY_ESCALATION_POLICIES = "ticketing_query_escalation_policies"
     TICKETING_QUERY_TICKETS = "ticketing_query_tickets"
     VULNERABILITIES_CREATE_ASSET = "vulnerabilities_create_asset"
     VULNERABILITIES_CREATE_FINDINGS = "vulnerabilities_create_findings"
@@ -135,10 +137,12 @@ class OperationId(str, enum.Enum):
         ticketing_list_attachments_metadata: typing.Callable[[], T_Result],
         ticketing_list_comments: typing.Callable[[], T_Result],
         ticketing_list_notes: typing.Callable[[], T_Result],
+        ticketing_list_on_call: typing.Callable[[], T_Result],
         ticketing_list_projects: typing.Callable[[], T_Result],
         ticketing_list_remote_fields: typing.Callable[[], T_Result],
         ticketing_patch_note: typing.Callable[[], T_Result],
         ticketing_patch_ticket: typing.Callable[[], T_Result],
+        ticketing_query_escalation_policies: typing.Callable[[], T_Result],
         ticketing_query_tickets: typing.Callable[[], T_Result],
         vulnerabilities_create_asset: typing.Callable[[], T_Result],
         vulnerabilities_create_findings: typing.Callable[[], T_Result],
@@ -261,6 +265,8 @@ class OperationId(str, enum.Enum):
             return ticketing_list_comments()
         if self is OperationId.TICKETING_LIST_NOTES:
             return ticketing_list_notes()
+        if self is OperationId.TICKETING_LIST_ON_CALL:
+            return ticketing_list_on_call()
         if self is OperationId.TICKETING_LIST_PROJECTS:
             return ticketing_list_projects()
         if self is OperationId.TICKETING_LIST_REMOTE_FIELDS:
@@ -269,6 +275,8 @@ class OperationId(str, enum.Enum):
             return ticketing_patch_note()
         if self is OperationId.TICKETING_PATCH_TICKET:
             return ticketing_patch_ticket()
+        if self is OperationId.TICKETING_QUERY_ESCALATION_POLICIES:
+            return ticketing_query_escalation_policies()
         if self is OperationId.TICKETING_QUERY_TICKETS:
             return ticketing_query_tickets()
         if self is OperationId.VULNERABILITIES_CREATE_ASSET:
