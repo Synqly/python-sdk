@@ -4,6 +4,7 @@ import datetime as dt
 import typing
 
 from ....core.datetime_utils import serialize_datetime
+from .custom_field_mapping import CustomFieldMapping
 from .service_now_credential import ServiceNowCredential
 
 try:
@@ -20,6 +21,16 @@ class TicketingServiceNowSir(pydantic.BaseModel):
     """
 
     credential: ServiceNowCredential
+    custom_field_mappings: typing.Optional[typing.List[CustomFieldMapping]] = pydantic.Field(default=None)
+    """
+    Custom field mappings for this provider.
+    """
+
+    default_project: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    Default Project for the integration. This maps to the custom table for tickets. This table should be derived from Security Incident table. Defaults to the security incident table if not specified.
+    """
+
     url: str = pydantic.Field()
     """
     Base URL for the ServiceNow API.
