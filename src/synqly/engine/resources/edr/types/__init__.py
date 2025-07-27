@@ -3,57 +3,37 @@
 from .application import Application
 from .connection_state import ConnectionState
 from .create_iocs_request import CreateIocsRequest
-from .create_iocs_request_generic import CreateIocsRequestGeneric
 from .create_iocs_response import CreateIocsResponse
-from .create_iocs_response_generic import CreateIocsResponseGeneric
 from .delete_iocs_response import DeleteIocsResponse
 from .get_endpoint_response import GetEndpointResponse
-from .get_endpoint_response_generic import GetEndpointResponseGeneric
 from .network_quarantine_request import NetworkQuarantineRequest
 from .network_quarantine_response import NetworkQuarantineResponse
 from .posture_score import PostureScore
 from .query_alerts_response import QueryAlertsResponse
-from .query_alerts_response_generic import QueryAlertsResponseGeneric
 from .query_applications_response import QueryApplicationsResponse
-from .query_applications_response_generic import QueryApplicationsResponseGeneric
 from .query_edr_events_response import QueryEdrEventsResponse
-from .query_edr_events_response_generic import QueryEdrEventsResponseGeneric
 from .query_endpoints_response import QueryEndpointsResponse
-from .query_endpoints_response_generic import QueryEndpointsResponseGeneric
 from .query_iocs_response import QueryIocsResponse
-from .query_iocs_response_generic import QueryIocsResponseGeneric
 from .query_posture_score_response import QueryPostureScoreResponse
-from .query_posture_score_response_generic import QueryPostureScoreResponseGeneric
 from .query_threats_response import QueryThreatsResponse
-from .query_threats_response_generic import QueryThreatsResponseGeneric
 from .threat_event import ThreatEvent
 
 __all__ = [
     "Application",
     "ConnectionState",
     "CreateIocsRequest",
-    "CreateIocsRequestGeneric",
     "CreateIocsResponse",
-    "CreateIocsResponseGeneric",
     "DeleteIocsResponse",
     "GetEndpointResponse",
-    "GetEndpointResponseGeneric",
     "NetworkQuarantineRequest",
     "NetworkQuarantineResponse",
     "PostureScore",
     "QueryAlertsResponse",
-    "QueryAlertsResponseGeneric",
     "QueryApplicationsResponse",
-    "QueryApplicationsResponseGeneric",
     "QueryEdrEventsResponse",
-    "QueryEdrEventsResponseGeneric",
     "QueryEndpointsResponse",
-    "QueryEndpointsResponseGeneric",
     "QueryIocsResponse",
-    "QueryIocsResponseGeneric",
     "QueryPostureScoreResponse",
-    "QueryPostureScoreResponseGeneric",
     "QueryThreatsResponse",
-    "QueryThreatsResponseGeneric",
     "ThreatEvent",
 ]
