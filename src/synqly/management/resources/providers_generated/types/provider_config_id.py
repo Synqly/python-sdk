@@ -361,6 +361,11 @@ class ProviderConfigId(str, enum.Enum):
     [MOCK] Rapid7 Insight Vulnerability Management Cloud
     """
 
+    VULNERABILITIES_SERVICE_NOW = "vulnerabilities_servicenow_vr"
+    """
+    ServiceNow Vulnerability Response
+    """
+
     VULNERABILITIES_TANIUM_CLOUD = "vulnerabilities_tanium_cloud"
     """
     Tanium Vulnerability Management
@@ -453,6 +458,7 @@ class ProviderConfigId(str, enum.Enum):
         vulnerabilities_qualys_cloud_mock: typing.Callable[[], T_Result],
         vulnerabilities_rapid_7_insight_cloud: typing.Callable[[], T_Result],
         vulnerabilities_rapid_7_insight_cloud_mock: typing.Callable[[], T_Result],
+        vulnerabilities_service_now: typing.Callable[[], T_Result],
         vulnerabilities_tanium_cloud: typing.Callable[[], T_Result],
         vulnerabilities_tanium_cloud_mock: typing.Callable[[], T_Result],
         vulnerabilities_tenable_cloud: typing.Callable[[], T_Result],
@@ -598,6 +604,8 @@ class ProviderConfigId(str, enum.Enum):
             return vulnerabilities_rapid_7_insight_cloud()
         if self is ProviderConfigId.VULNERABILITIES_RAPID_7_INSIGHT_CLOUD_MOCK:
             return vulnerabilities_rapid_7_insight_cloud_mock()
+        if self is ProviderConfigId.VULNERABILITIES_SERVICE_NOW:
+            return vulnerabilities_service_now()
         if self is ProviderConfigId.VULNERABILITIES_TANIUM_CLOUD:
             return vulnerabilities_tanium_cloud()
         if self is ProviderConfigId.VULNERABILITIES_TANIUM_CLOUD_MOCK:
