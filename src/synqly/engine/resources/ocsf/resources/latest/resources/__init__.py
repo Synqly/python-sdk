@@ -4,6 +4,7 @@ from . import events
 from .events import (
     AccountChange,
     ApiActivity,
+    ApplicationSecurityPostureFinding,
     Authentication,
     CloudResourcesInventoryInfo,
     ComplianceFinding,
@@ -26,6 +27,7 @@ from .events import (
 __all__ = [
     "AccountChange",
     "ApiActivity",
+    "ApplicationSecurityPostureFinding",
     "Authentication",
     "CloudResourcesInventoryInfo",
     "ComplianceFinding",

@@ -3,6 +3,7 @@
 from .resources import (
     AccountChange,
     ApiActivity,
+    ApplicationSecurityPostureFinding,
     Authentication,
     CloudResourcesInventoryInfo,
     ComplianceFinding,
@@ -26,6 +27,7 @@ from .resources import (
 __all__ = [
     "AccountChange",
     "ApiActivity",
+    "ApplicationSecurityPostureFinding",
     "Authentication",
     "CloudResourcesInventoryInfo",
     "ComplianceFinding",

@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import typing
 
+from .appsec_open_text_application_security import AppsecOpenTextApplicationSecurity
 from .assets_armis_centrix import AssetsArmisCentrix
 from .assets_armis_centrix_mock import AssetsArmisCentrixMock
 from .assets_axonius import AssetsAxonius
@@ -78,6 +79,15 @@ from .vulnerabilities_service_now import VulnerabilitiesServiceNow
 from .vulnerabilities_tanium_cloud import VulnerabilitiesTaniumCloud
 from .vulnerabilities_tanium_cloud_mock import VulnerabilitiesTaniumCloudMock
 from .vulnerabilities_tenable_cloud import VulnerabilitiesTenableCloud
+
+
+class ProviderConfig_AppsecOpentextApplicationSecurity(AppsecOpenTextApplicationSecurity):
+    type: typing.Literal["appsec_opentext_application_security"]
+
+    class Config:
+        frozen = True
+        smart_union = True
+        allow_population_by_field_name = True
 
 
 class ProviderConfig_AssetsArmisCentrix(AssetsArmisCentrix):
@@ -747,6 +757,7 @@ class ProviderConfig_VulnerabilitiesTenableCloud(VulnerabilitiesTenableCloud):
 
 
 ProviderConfig = typing.Union[
+    ProviderConfig_AppsecOpentextApplicationSecurity,
     ProviderConfig_AssetsArmisCentrix,
     ProviderConfig_AssetsArmisCentrixMock,
     ProviderConfig_AssetsAxonius,

@@ -3,6 +3,7 @@
 from .types import (
     AccountChange,
     ApiActivity,
+    ApplicationSecurityPostureFinding,
     Authentication,
     CloudResourcesInventoryInfo,
     ComplianceFinding,
@@ -25,6 +26,7 @@ from .types import (
 __all__ = [
     "AccountChange",
     "ApiActivity",
+    "ApplicationSecurityPostureFinding",
     "Authentication",
     "CloudResourcesInventoryInfo",
     "ComplianceFinding",

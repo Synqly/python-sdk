@@ -11,6 +11,7 @@ class CategoryId(str, enum.Enum):
     Id of the Integrations category
     """
 
+    APPSEC = "appsec"
     ASSETS = "assets"
     CLOUDSECURITY = "cloudsecurity"
     EDR = "edr"
@@ -24,6 +25,7 @@ class CategoryId(str, enum.Enum):
 
     def visit(
         self,
+        appsec: typing.Callable[[], T_Result],
         assets: typing.Callable[[], T_Result],
         cloudsecurity: typing.Callable[[], T_Result],
         edr: typing.Callable[[], T_Result],
@@ -35,6 +37,8 @@ class CategoryId(str, enum.Enum):
         ticketing: typing.Callable[[], T_Result],
         vulnerabilities: typing.Callable[[], T_Result],
     ) -> T_Result:
+        if self is CategoryId.APPSEC:
+            return appsec()
         if self is CategoryId.ASSETS:
             return assets()
         if self is CategoryId.CLOUDSECURITY:

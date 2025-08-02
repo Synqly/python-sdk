@@ -6,6 +6,7 @@ import httpx
 
 from .core.client_wrapper import AsyncClientWrapper, SyncClientWrapper
 from .environment import SynqlyEngineEnvironment
+from .resources.appsec.client import AppsecClient, AsyncAppsecClient
 from .resources.assets.client import AssetsClient, AsyncAssetsClient
 from .resources.cloudsecurity.client import AsyncCloudsecurityClient, CloudsecurityClient
 from .resources.edr.client import AsyncEdrClient, EdrClient
@@ -59,6 +60,7 @@ class SynqlyEngine:
             token=token,
             httpx_client=httpx.Client(timeout=timeout) if httpx_client is None else httpx_client,
         )
+        self.appsec = AppsecClient(client_wrapper=self._client_wrapper)
         self.assets = AssetsClient(client_wrapper=self._client_wrapper)
         self.cloudsecurity = CloudsecurityClient(client_wrapper=self._client_wrapper)
         self.edr = EdrClient(client_wrapper=self._client_wrapper)
@@ -112,6 +114,7 @@ class AsyncSynqlyEngine:
             token=token,
             httpx_client=httpx.AsyncClient(timeout=timeout) if httpx_client is None else httpx_client,
         )
+        self.appsec = AsyncAppsecClient(client_wrapper=self._client_wrapper)
         self.assets = AsyncAssetsClient(client_wrapper=self._client_wrapper)
         self.cloudsecurity = AsyncCloudsecurityClient(client_wrapper=self._client_wrapper)
         self.edr = AsyncEdrClient(client_wrapper=self._client_wrapper)

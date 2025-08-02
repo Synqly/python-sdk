@@ -7,6 +7,10 @@ T_Result = typing.TypeVar("T_Result")
 
 
 class OperationId(str, enum.Enum):
+    APPSEC_GET_APPLICATION_FINDING_DETAILS = "appsec_get_application_finding_details"
+    APPSEC_QUERY_APPLICATION_FINDINGS = "appsec_query_application_findings"
+    APPSEC_QUERY_APPLICATIONS = "appsec_query_applications"
+    APPSEC_QUERY_FINDINGS = "appsec_query_findings"
     ASSETS_CREATE_ASSET = "assets_create_asset"
     ASSETS_GET_LABELS = "assets_get_labels"
     ASSETS_QUERY_DEVICES = "assets_query_devices"
@@ -81,6 +85,10 @@ class OperationId(str, enum.Enum):
 
     def visit(
         self,
+        appsec_get_application_finding_details: typing.Callable[[], T_Result],
+        appsec_query_application_findings: typing.Callable[[], T_Result],
+        appsec_query_applications: typing.Callable[[], T_Result],
+        appsec_query_findings: typing.Callable[[], T_Result],
         assets_create_asset: typing.Callable[[], T_Result],
         assets_get_labels: typing.Callable[[], T_Result],
         assets_query_devices: typing.Callable[[], T_Result],
@@ -153,6 +161,14 @@ class OperationId(str, enum.Enum):
         vulnerabilities_update_asset: typing.Callable[[], T_Result],
         vulnerabilities_update_finding: typing.Callable[[], T_Result],
     ) -> T_Result:
+        if self is OperationId.APPSEC_GET_APPLICATION_FINDING_DETAILS:
+            return appsec_get_application_finding_details()
+        if self is OperationId.APPSEC_QUERY_APPLICATION_FINDINGS:
+            return appsec_query_application_findings()
+        if self is OperationId.APPSEC_QUERY_APPLICATIONS:
+            return appsec_query_applications()
+        if self is OperationId.APPSEC_QUERY_FINDINGS:
+            return appsec_query_findings()
         if self is OperationId.ASSETS_CREATE_ASSET:
             return assets_create_asset()
         if self is OperationId.ASSETS_GET_LABELS:

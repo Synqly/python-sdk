@@ -11,6 +11,11 @@ class ProviderConfigId(str, enum.Enum):
     List of supported providers.
     """
 
+    APPSEC_OPEN_TEXT_APPLICATION_SECURITY = "appsec_opentext_application_security"
+    """
+    OpenText Core Application Security
+    """
+
     ASSETS_ARMIS_CENTRIX = "assets_armis_centrix"
     """
     Armis Centrix™ for Asset Management and Security
@@ -388,6 +393,7 @@ class ProviderConfigId(str, enum.Enum):
 
     def visit(
         self,
+        appsec_open_text_application_security: typing.Callable[[], T_Result],
         assets_armis_centrix: typing.Callable[[], T_Result],
         assets_armis_centrix_mock: typing.Callable[[], T_Result],
         assets_axonius: typing.Callable[[], T_Result],
@@ -464,6 +470,8 @@ class ProviderConfigId(str, enum.Enum):
         vulnerabilities_tenable_cloud: typing.Callable[[], T_Result],
         all_: typing.Callable[[], T_Result],
     ) -> T_Result:
+        if self is ProviderConfigId.APPSEC_OPEN_TEXT_APPLICATION_SECURITY:
+            return appsec_open_text_application_security()
         if self is ProviderConfigId.ASSETS_ARMIS_CENTRIX:
             return assets_armis_centrix()
         if self is ProviderConfigId.ASSETS_ARMIS_CENTRIX_MOCK:
