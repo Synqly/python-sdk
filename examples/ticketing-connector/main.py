@@ -165,8 +165,8 @@ def ticketing_actions(tenant: utils.Tenant, project_key: str, username: str):
     # Query for all tickets created by the user that are not "Done"
     q = tenant.synqly_engine_client.ticketing.query_tickets(
         filter=[
-            'creator[eq]"'+username+'"',
-            'status[ne]"Done"'
+            'creator[eq]'+username,
+            'status[ne]Done'
         ],
     )
     print('\nQuerying all tickets created by '+username+' that are not "Done"')
@@ -190,8 +190,8 @@ def ticketing_actions(tenant: utils.Tenant, project_key: str, username: str):
     # Query for all tickets created by the user that are "Done"
     q = tenant.synqly_engine_client.ticketing.query_tickets(
         filter=[
-            'creator[eq]"'+username+'"',
-            'status[eq]"Done"'
+            'creator[eq]'+username,
+            'status[eq]Done'
         ],
     )
     print('\nQuerying all tickets created by '+username+' that are "Done"')
