@@ -4,6 +4,7 @@ Synqly Python SDK - Identity Example
 This example demonstrates how to use Synqly Python SDK to create an Identity Integration for a tenant.
 """
 
+import os
 import sys
 import argparse
 import configparser
@@ -139,6 +140,12 @@ def do_example(tenant: utils.Tenant, tests_email: str):
     except Exception as e:
         print("There was an error disabling the user '{}' for tenant '{}': {}".format(tests_email, tenant.tenant_name, str(e)))
 
+def file_or_string(value):
+    if os.path.isfile(value):
+        return True
+    
+    return False
+
 def load_configuration():
     parser = argparse.ArgumentParser(
         description="Synqly Python SDK IAM Connector Example"
@@ -196,6 +203,11 @@ def load_configuration():
         args.pingone_secret = config.get('pingone', 'secret', fallback=None)
         args.pingone_url = config.get('pingone', 'url', fallback=None)
         args.synqly_org_token = config.get('synqly', 'org_token', fallback=None)
+    
+    # Check if given secret is a file path
+    if file_or_string(args.google_secret):
+        with open(args.google_secret, 'r') as f:
+            args.google_secret = f.read()
     
     if args.synqly_org_token == None:
         return None, "Please provide a Synqly Organization Token"
