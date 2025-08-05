@@ -20,6 +20,7 @@ from synqly.management.client import SynqlyManagement
 TENANT_ABC_NAME = "Tenant ABC"
 TENANT_XYZ_NAME = "Tenant XYZ"
 
+
 def clean_example(app: utils.App, synqly_org_token: str):
     if app != None and len(app.tenants) > 0:
         app._cleanup_handler()
@@ -31,14 +32,19 @@ def clean_example(app: utils.App, synqly_org_token: str):
         )
 
         available_accounts = management_client.accounts.list()
-        
+
         for account in available_accounts.result:
-            if account.fullname == TENANT_ABC_NAME or account.fullname == TENANT_XYZ_NAME:
+            if (
+                account.fullname == TENANT_ABC_NAME
+                or account.fullname == TENANT_XYZ_NAME
+            ):
                 try:
                     management_client.accounts.delete(account.id)
                     print("Cleaned up account '{}'".format(account.id))
                 except Exception as e:
-                    print("Error deleting account '{}': {}".format(account.name, str(e)))
+                    print(
+                        "Error deleting account '{}': {}".format(account.name, str(e))
+                    )
 
 
 def parse_args():
@@ -258,7 +264,11 @@ def main():
             mock_provider_config(),
         )
     except Exception as e:
-        print("Error configuring provider integration for {}: {}".format(TENANT_ABC_NAME, str(e)))
+        print(
+            "Error configuring provider integration for {}: {}".format(
+                TENANT_ABC_NAME, str(e)
+            )
+        )
         clean_example(app, synqly_org_token)
         raise e
     try:
@@ -267,7 +277,11 @@ def main():
             sqs_provider_config(sqs_url, xyz_credential_id),
         )
     except Exception as e:
-        print("Error configuring provider integration for {}: {}".format(TENANT_XYZ_NAME, str(e)))
+        print(
+            "Error configuring provider integration for {}: {}".format(
+                TENANT_XYZ_NAME, str(e)
+            )
+        )
         clean_example(app, synqly_org_token)
         raise e
 
