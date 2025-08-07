@@ -63,6 +63,7 @@ from .storage_mock import StorageMock
 from .ticketing_autotask import TicketingAutotask
 from .ticketing_freshdesk import TicketingFreshdesk
 from .ticketing_jira import TicketingJira
+from .ticketing_jira_service_management import TicketingJiraServiceManagement
 from .ticketing_mock import TicketingMock
 from .ticketing_pager_duty import TicketingPagerDuty
 from .ticketing_service_now import TicketingServiceNow
@@ -612,6 +613,15 @@ class ProviderConfig_TicketingJira(TicketingJira):
         allow_population_by_field_name = True
 
 
+class ProviderConfig_TicketingJiraServiceManagement(TicketingJiraServiceManagement):
+    type: typing.Literal["ticketing_jira_service_management"]
+
+    class Config:
+        frozen = True
+        smart_union = True
+        allow_population_by_field_name = True
+
+
 class ProviderConfig_TicketingMockTicketing(TicketingMock):
     type: typing.Literal["ticketing_mock_ticketing"]
 
@@ -816,6 +826,7 @@ ProviderConfig = typing.Union[
     ProviderConfig_TicketingAutotask,
     ProviderConfig_TicketingFreshdesk,
     ProviderConfig_TicketingJira,
+    ProviderConfig_TicketingJiraServiceManagement,
     ProviderConfig_TicketingMockTicketing,
     ProviderConfig_TicketingPagerduty,
     ProviderConfig_TicketingServicenow,

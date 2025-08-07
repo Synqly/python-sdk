@@ -190,6 +190,7 @@ from .provider_config import (
     ProviderConfig_TicketingAutotask,
     ProviderConfig_TicketingFreshdesk,
     ProviderConfig_TicketingJira,
+    ProviderConfig_TicketingJiraServiceManagement,
     ProviderConfig_TicketingMockTicketing,
     ProviderConfig_TicketingPagerduty,
     ProviderConfig_TicketingServicenow,
@@ -290,6 +291,7 @@ from .tenable_cloud_credential import (
 from .ticketing_autotask import TicketingAutotask
 from .ticketing_freshdesk import TicketingFreshdesk
 from .ticketing_jira import TicketingJira
+from .ticketing_jira_service_management import TicketingJiraServiceManagement
 from .ticketing_mock import TicketingMock
 from .ticketing_pager_duty import TicketingPagerDuty
 from .ticketing_service_now import TicketingServiceNow
@@ -505,6 +507,7 @@ __all__ = [
     "ProviderConfig_TicketingAutotask",
     "ProviderConfig_TicketingFreshdesk",
     "ProviderConfig_TicketingJira",
+    "ProviderConfig_TicketingJiraServiceManagement",
     "ProviderConfig_TicketingMockTicketing",
     "ProviderConfig_TicketingPagerduty",
     "ProviderConfig_TicketingServicenow",
@@ -607,6 +610,7 @@ __all__ = [
     "TicketingAutotask",
     "TicketingFreshdesk",
     "TicketingJira",
+    "TicketingJiraServiceManagement",
     "TicketingMock",
     "TicketingPagerDuty",
     "TicketingServiceNow",

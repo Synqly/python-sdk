@@ -306,6 +306,11 @@ class ProviderConfigId(str, enum.Enum):
     Atlassian Jira
     """
 
+    TICKETING_JIRA_SERVICE_MANAGEMENT = "ticketing_jira_service_management"
+    """
+    Jira Service Management
+    """
+
     TICKETING_MOCK = "ticketing_mock_ticketing"
     """
     Synqly Test Provider
@@ -452,6 +457,7 @@ class ProviderConfigId(str, enum.Enum):
         ticketing_autotask: typing.Callable[[], T_Result],
         ticketing_freshdesk: typing.Callable[[], T_Result],
         ticketing_jira: typing.Callable[[], T_Result],
+        ticketing_jira_service_management: typing.Callable[[], T_Result],
         ticketing_mock: typing.Callable[[], T_Result],
         ticketing_pager_duty: typing.Callable[[], T_Result],
         ticketing_service_now: typing.Callable[[], T_Result],
@@ -588,6 +594,8 @@ class ProviderConfigId(str, enum.Enum):
             return ticketing_freshdesk()
         if self is ProviderConfigId.TICKETING_JIRA:
             return ticketing_jira()
+        if self is ProviderConfigId.TICKETING_JIRA_SERVICE_MANAGEMENT:
+            return ticketing_jira_service_management()
         if self is ProviderConfigId.TICKETING_MOCK:
             return ticketing_mock()
         if self is ProviderConfigId.TICKETING_PAGER_DUTY:
