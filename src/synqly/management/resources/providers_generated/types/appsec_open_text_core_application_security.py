@@ -4,7 +4,8 @@ import datetime as dt
 import typing
 
 from ....core.datetime_utils import serialize_datetime
-from .open_text_application_security_credential import OpenTextApplicationSecurityCredential
+from .open_text_core_application_security_credential import OpenTextCoreApplicationSecurityCredential
+from .open_text_core_application_security_url import OpenTextCoreApplicationSecurityUrl
 
 try:
     import pydantic.v1 as pydantic  # type: ignore
@@ -12,19 +13,19 @@ except ImportError:
     import pydantic  # type: ignore
 
 
-class AppsecOpenTextApplicationSecurity(pydantic.BaseModel):
+class AppsecOpenTextCoreApplicationSecurity(pydantic.BaseModel):
     """
     Configuration for OpenText Core Application Security (formerly Fortify On Demand) as an application security provider.
     """
 
-    credential: OpenTextApplicationSecurityCredential = pydantic.Field()
+    credential: OpenTextCoreApplicationSecurityCredential = pydantic.Field()
     """
     Credentials used for accessing the OpenText Core Application Security API.
     """
 
-    url: str = pydantic.Field()
+    url: OpenTextCoreApplicationSecurityUrl = pydantic.Field()
     """
-    Base URL for the OpenText Core Application Security API.
+    Base URL for the OpenText Core Application Security API. This URL should be the same as the URL used to access the OpenText Core Application Security web interface.
     """
 
     def json(self, **kwargs: typing.Any) -> str:

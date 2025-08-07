@@ -56,7 +56,7 @@ class AppsecClient:
         Parameters:
             - meta: typing.Optional[typing.Union[str, typing.Sequence[str]]]. Add metadata to the response by invoking meta functions. Documentation for meta functions is available at https://docs.synqly.com/api-reference/meta-functions. Not all meta function are available at every endpoint.
 
-            - limit: typing.Optional[int]. Number of events to return. Defaults to 100.
+            - limit: typing.Optional[int]. Number of applications to return.
 
             - order: typing.Optional[typing.Union[str, typing.Sequence[str]]]. Select a field to order the results by. Defaults to `name`. To control the direction of the sorting, append
                                                                                `[asc]` or `[desc]` to the field name. For example, `name[asc]` will sort the results by `name` in ascending order.
@@ -153,7 +153,7 @@ class AppsecClient:
 
             - meta: typing.Optional[typing.Union[str, typing.Sequence[str]]]. Add metadata to the response by invoking meta functions. Documentation for meta functions is available at https://docs.synqly.com/api-reference/meta-functions. Not all meta function are available at every endpoint.
 
-            - limit: typing.Optional[int]. Number of events to return. Defaults to 100.
+            - limit: typing.Optional[int]. Number of findings to return.
 
             - order: typing.Optional[typing.Union[str, typing.Sequence[str]]]. Select a field to order the results by. Defaults to `name`. To control the direction of the sorting, append
                                                                                `[asc]` or `[desc]` to the field name. For example, `name[asc]` will sort the results by `name` in ascending order.
@@ -238,6 +238,7 @@ class AppsecClient:
         self,
         *,
         filter: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
+        limit: typing.Optional[int] = None,
         cursor: typing.Optional[str] = None,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AppSecQueryFindingsResponse:
@@ -247,6 +248,8 @@ class AppsecClient:
         Parameters:
             - filter: typing.Optional[typing.Union[str, typing.Sequence[str]]]. Filter results by this query. For more information on filtering, refer to our Filtering Guide. Defaults to no filter.
                                                                                 If used more than once, the queries are ANDed together.
+            - limit: typing.Optional[int]. Number of findings to return.
+
             - cursor: typing.Optional[str]. Start search from cursor position.
 
             - request_options: typing.Optional[RequestOptions]. Request-specific configuration.
@@ -258,6 +261,7 @@ class AppsecClient:
                 remove_none_from_dict(
                     {
                         "filter": filter,
+                        "limit": limit,
                         "cursor": cursor,
                         **(
                             request_options.get("additional_query_parameters", {})
@@ -410,7 +414,7 @@ class AsyncAppsecClient:
         Parameters:
             - meta: typing.Optional[typing.Union[str, typing.Sequence[str]]]. Add metadata to the response by invoking meta functions. Documentation for meta functions is available at https://docs.synqly.com/api-reference/meta-functions. Not all meta function are available at every endpoint.
 
-            - limit: typing.Optional[int]. Number of events to return. Defaults to 100.
+            - limit: typing.Optional[int]. Number of applications to return.
 
             - order: typing.Optional[typing.Union[str, typing.Sequence[str]]]. Select a field to order the results by. Defaults to `name`. To control the direction of the sorting, append
                                                                                `[asc]` or `[desc]` to the field name. For example, `name[asc]` will sort the results by `name` in ascending order.
@@ -507,7 +511,7 @@ class AsyncAppsecClient:
 
             - meta: typing.Optional[typing.Union[str, typing.Sequence[str]]]. Add metadata to the response by invoking meta functions. Documentation for meta functions is available at https://docs.synqly.com/api-reference/meta-functions. Not all meta function are available at every endpoint.
 
-            - limit: typing.Optional[int]. Number of events to return. Defaults to 100.
+            - limit: typing.Optional[int]. Number of findings to return.
 
             - order: typing.Optional[typing.Union[str, typing.Sequence[str]]]. Select a field to order the results by. Defaults to `name`. To control the direction of the sorting, append
                                                                                `[asc]` or `[desc]` to the field name. For example, `name[asc]` will sort the results by `name` in ascending order.
@@ -592,6 +596,7 @@ class AsyncAppsecClient:
         self,
         *,
         filter: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
+        limit: typing.Optional[int] = None,
         cursor: typing.Optional[str] = None,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AppSecQueryFindingsResponse:
@@ -601,6 +606,8 @@ class AsyncAppsecClient:
         Parameters:
             - filter: typing.Optional[typing.Union[str, typing.Sequence[str]]]. Filter results by this query. For more information on filtering, refer to our Filtering Guide. Defaults to no filter.
                                                                                 If used more than once, the queries are ANDed together.
+            - limit: typing.Optional[int]. Number of findings to return.
+
             - cursor: typing.Optional[str]. Start search from cursor position.
 
             - request_options: typing.Optional[RequestOptions]. Request-specific configuration.
@@ -612,6 +619,7 @@ class AsyncAppsecClient:
                 remove_none_from_dict(
                     {
                         "filter": filter,
+                        "limit": limit,
                         "cursor": cursor,
                         **(
                             request_options.get("additional_query_parameters", {})

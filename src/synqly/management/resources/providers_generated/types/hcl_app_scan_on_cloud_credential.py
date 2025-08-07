@@ -13,7 +13,7 @@ except ImportError:
     import pydantic  # type: ignore
 
 
-class OpenTextApplicationSecurityCredential_OAuthClient(OAuthClientCredential):
+class HclAppScanOnCloudCredential_OAuthClient(OAuthClientCredential):
     type: typing.Literal["o_auth_client"]
 
     class Config:
@@ -22,7 +22,7 @@ class OpenTextApplicationSecurityCredential_OAuthClient(OAuthClientCredential):
         allow_population_by_field_name = True
 
 
-class OpenTextApplicationSecurityCredential_OAuthClientId(pydantic.BaseModel):
+class HclAppScanOnCloudCredential_OAuthClientId(pydantic.BaseModel):
     type: typing.Literal["o_auth_client_id"]
     value: OAuthClientCredentialId
 
@@ -31,6 +31,6 @@ class OpenTextApplicationSecurityCredential_OAuthClientId(pydantic.BaseModel):
         smart_union = True
 
 
-OpenTextApplicationSecurityCredential = typing.Union[
-    OpenTextApplicationSecurityCredential_OAuthClient, OpenTextApplicationSecurityCredential_OAuthClientId
+HclAppScanOnCloudCredential = typing.Union[
+    HclAppScanOnCloudCredential_OAuthClient, HclAppScanOnCloudCredential_OAuthClientId
 ]
