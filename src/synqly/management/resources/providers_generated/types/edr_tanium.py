@@ -22,7 +22,7 @@ class EdrTanium(pydantic.BaseModel):
     credential: TaniumCloudCredential
     url: str = pydantic.Field()
     """
-    URL for the Tanium Cloud API. This should be the base URL for the API, without any path components and must be HTTPS, e.g. "https://<customername>-api.cloud.tanium.com" or "https://<customername>-api.titankube.com".
+    Base URL for the Tanium Cloud API
     """
 
     def json(self, **kwargs: typing.Any) -> str:
