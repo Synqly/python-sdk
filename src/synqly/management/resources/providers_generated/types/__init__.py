@@ -31,6 +31,7 @@ from .autotask_secret_credential import (
     AutotaskSecretCredential_Secret,
     AutotaskSecretCredential_SecretId,
 )
+from .aws_region import AwsRegion
 from .aws_s_3_credential import AwsS3Credential, AwsS3Credential_Aws, AwsS3Credential_AwsId
 from .aws_security_lake_credential import (
     AwsSecurityLakeCredential,
@@ -182,6 +183,7 @@ from .provider_config import (
     ProviderConfig_SiemSentinel,
     ProviderConfig_SiemSplunk,
     ProviderConfig_SiemSumoLogic,
+    ProviderConfig_SinkAwsS3,
     ProviderConfig_SinkAwsSecurityLake,
     ProviderConfig_SinkAwsSqs,
     ProviderConfig_SinkAzureMonitorLogs,
@@ -251,6 +253,7 @@ from .siem_rapid_7_insight_idr import SiemRapid7InsightIdr
 from .siem_sentinel import SiemSentinel
 from .siem_splunk import SiemSplunk
 from .siem_sumo_logic import SiemSumoLogic
+from .sink_aws_s_3 import SinkAwsS3
 from .sink_aws_security_lake import SinkAwsSecurityLake
 from .sink_aws_sqs import SinkAwsSqs
 from .sink_azure_monitor_logs import SinkAzureMonitorLogs
@@ -353,6 +356,7 @@ __all__ = [
     "AutotaskSecretCredential",
     "AutotaskSecretCredential_Secret",
     "AutotaskSecretCredential_SecretId",
+    "AwsRegion",
     "AwsS3Credential",
     "AwsS3Credential_Aws",
     "AwsS3Credential_AwsId",
@@ -506,6 +510,7 @@ __all__ = [
     "ProviderConfig_SiemSentinel",
     "ProviderConfig_SiemSplunk",
     "ProviderConfig_SiemSumoLogic",
+    "ProviderConfig_SinkAwsS3",
     "ProviderConfig_SinkAwsSecurityLake",
     "ProviderConfig_SinkAwsSqs",
     "ProviderConfig_SinkAzureMonitorLogs",
@@ -577,6 +582,7 @@ __all__ = [
     "SiemSentinel",
     "SiemSplunk",
     "SiemSumoLogic",
+    "SinkAwsS3",
     "SinkAwsSecurityLake",
     "SinkAwsSqs",
     "SinkAzureMonitorLogs",

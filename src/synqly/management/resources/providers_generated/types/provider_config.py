@@ -47,6 +47,7 @@ from .siem_rapid_7_insight_idr import SiemRapid7InsightIdr
 from .siem_sentinel import SiemSentinel
 from .siem_splunk import SiemSplunk
 from .siem_sumo_logic import SiemSumoLogic
+from .sink_aws_s_3 import SinkAwsS3
 from .sink_aws_security_lake import SinkAwsSecurityLake
 from .sink_aws_sqs import SinkAwsSqs
 from .sink_azure_monitor_logs import SinkAzureMonitorLogs
@@ -470,6 +471,15 @@ class ProviderConfig_SiemSumoLogic(SiemSumoLogic):
         allow_population_by_field_name = True
 
 
+class ProviderConfig_SinkAwsS3(SinkAwsS3):
+    type: typing.Literal["sink_aws_s3"]
+
+    class Config:
+        frozen = True
+        smart_union = True
+        allow_population_by_field_name = True
+
+
 class ProviderConfig_SinkAwsSecurityLake(SinkAwsSecurityLake):
     type: typing.Literal["sink_aws_security_lake"]
 
@@ -820,6 +830,7 @@ ProviderConfig = typing.Union[
     ProviderConfig_SiemSentinel,
     ProviderConfig_SiemSplunk,
     ProviderConfig_SiemSumoLogic,
+    ProviderConfig_SinkAwsS3,
     ProviderConfig_SinkAwsSecurityLake,
     ProviderConfig_SinkAwsSqs,
     ProviderConfig_SinkAzureMonitorLogs,

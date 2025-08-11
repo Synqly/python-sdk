@@ -39,12 +39,18 @@ class SinkClient:
         self._client_wrapper = client_wrapper
 
     def post_events(
-        self, *, request: typing.Sequence[Event], request_options: typing.Optional[RequestOptions] = None
+        self,
+        *,
+        location: typing.Optional[str] = None,
+        request: typing.Sequence[Event],
+        request_options: typing.Optional[RequestOptions] = None,
     ) -> None:
         """
         Writes a batch of `Event` objects to the Sink configured with the token used for authentication.
 
         Parameters:
+            - location: typing.Optional[str]. Updates the path or queue name for the sink. If not provided, the default path or queue name is used. When provided, the path or queue name is appended to the default path or queue name.
+
             - request: typing.Sequence[Event].
 
             - request_options: typing.Optional[RequestOptions]. Request-specific configuration.
@@ -53,7 +59,16 @@ class SinkClient:
             "POST",
             urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", "v1/sink/events"),
             params=jsonable_encoder(
-                request_options.get("additional_query_parameters") if request_options is not None else None
+                remove_none_from_dict(
+                    {
+                        "location": location,
+                        **(
+                            request_options.get("additional_query_parameters", {})
+                            if request_options is not None
+                            else {}
+                        ),
+                    }
+                )
             ),
             json=jsonable_encoder(request)
             if request_options is None or request_options.get("additional_body_parameters") is None
@@ -115,12 +130,18 @@ class AsyncSinkClient:
         self._client_wrapper = client_wrapper
 
     async def post_events(
-        self, *, request: typing.Sequence[Event], request_options: typing.Optional[RequestOptions] = None
+        self,
+        *,
+        location: typing.Optional[str] = None,
+        request: typing.Sequence[Event],
+        request_options: typing.Optional[RequestOptions] = None,
     ) -> None:
         """
         Writes a batch of `Event` objects to the Sink configured with the token used for authentication.
 
         Parameters:
+            - location: typing.Optional[str]. Updates the path or queue name for the sink. If not provided, the default path or queue name is used. When provided, the path or queue name is appended to the default path or queue name.
+
             - request: typing.Sequence[Event].
 
             - request_options: typing.Optional[RequestOptions]. Request-specific configuration.
@@ -129,7 +150,16 @@ class AsyncSinkClient:
             "POST",
             urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", "v1/sink/events"),
             params=jsonable_encoder(
-                request_options.get("additional_query_parameters") if request_options is not None else None
+                remove_none_from_dict(
+                    {
+                        "location": location,
+                        **(
+                            request_options.get("additional_query_parameters", {})
+                            if request_options is not None
+                            else {}
+                        ),
+                    }
+                )
             ),
             json=jsonable_encoder(request)
             if request_options is None or request_options.get("additional_body_parameters") is None
