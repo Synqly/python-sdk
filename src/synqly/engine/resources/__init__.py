@@ -54,9 +54,13 @@ from .assets import (
 )
 from .cloudsecurity import (
     QueryCloudResourceInventoryResponse,
+    QueryCloudResourceInventoryResponseGeneric,
     QueryComplianceFindingsResponse,
+    QueryComplianceFindingsResponseGeneric,
     QueryEventsResponse,
+    QueryEventsResponseGeneric,
     QueryIomsResponse,
+    QueryIomsResponseGeneric,
 )
 from .common import (
     ActionId,
@@ -500,7 +504,9 @@ __all__ = [
     "QueryApplicationsResponseGeneric",
     "QueryAssetsResponse",
     "QueryCloudResourceInventoryResponse",
+    "QueryCloudResourceInventoryResponseGeneric",
     "QueryComplianceFindingsResponse",
+    "QueryComplianceFindingsResponseGeneric",
     "QueryDevicesResponse",
     "QueryDevicesResponseGeneric",
     "QueryEdrEventsResponse",
@@ -510,6 +516,7 @@ __all__ = [
     "QueryEscalationPoliciesResponse",
     "QueryEventStatus",
     "QueryEventsResponse",
+    "QueryEventsResponseGeneric",
     "QueryFindingsResponse",
     "QueryGroupsResponse",
     "QueryGroupsResponseGeneric",
@@ -520,6 +527,7 @@ __all__ = [
     "QueryIocsResponse",
     "QueryIocsResponseGeneric",
     "QueryIomsResponse",
+    "QueryIomsResponseGeneric",
     "QueryLogProvidersResponse",
     "QueryPostureScoreResponse",
     "QueryPostureScoreResponseGeneric",
