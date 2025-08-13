@@ -21,7 +21,7 @@ class RequestBody(pydantic.BaseModel):
     If true the request body is required, false otherwise.
     """
 
-    schema_: typing.Dict[str, typing.Any] = pydantic.Field(alias="schema")
+    schema_: typing.Optional[typing.Dict[str, typing.Any]] = pydantic.Field(alias="schema", default=None)
     """
     The schema defining the type used for the request body. If
     expanded will be a full JSON schema of the entire request body,
