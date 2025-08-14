@@ -7,6 +7,8 @@ from .assets_armis_centrix import AssetsArmisCentrix
 from .assets_armis_centrix_mock import AssetsArmisCentrixMock
 from .assets_armis_dataset import AssetsArmisDataset
 from .assets_axonius import AssetsAxonius
+from .assets_axonius_dataset import AssetsAxoniusDataset
+from .assets_axonius_mock import AssetsAxoniusMock
 from .assets_crowd_strike import AssetsCrowdStrike
 from .assets_nozomi_vantage import AssetsNozomiVantage
 from .assets_nozomi_vantage_dataset import AssetsNozomiVantageDataset
@@ -145,6 +147,7 @@ from .provider_config import (
     ProviderConfig_AssetsArmisCentrix,
     ProviderConfig_AssetsArmisCentrixMock,
     ProviderConfig_AssetsAxonius,
+    ProviderConfig_AssetsAxoniusMock,
     ProviderConfig_AssetsCrowdstrike,
     ProviderConfig_AssetsNozomiVantage,
     ProviderConfig_AssetsNozomiVantageMock,
@@ -336,6 +339,8 @@ __all__ = [
     "AssetsArmisCentrixMock",
     "AssetsArmisDataset",
     "AssetsAxonius",
+    "AssetsAxoniusDataset",
+    "AssetsAxoniusMock",
     "AssetsCrowdStrike",
     "AssetsNozomiVantage",
     "AssetsNozomiVantageDataset",
@@ -472,6 +477,7 @@ __all__ = [
     "ProviderConfig_AssetsArmisCentrix",
     "ProviderConfig_AssetsArmisCentrixMock",
     "ProviderConfig_AssetsAxonius",
+    "ProviderConfig_AssetsAxoniusMock",
     "ProviderConfig_AssetsCrowdstrike",
     "ProviderConfig_AssetsNozomiVantage",
     "ProviderConfig_AssetsNozomiVantageMock",

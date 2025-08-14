@@ -36,6 +36,11 @@ class ProviderConfigId(str, enum.Enum):
     Axonius Asset Cloud
     """
 
+    ASSETS_AXONIUS_MOCK = "assets_axonius_mock"
+    """
+    [MOCK] Axonius Asset Cloud
+    """
+
     ASSETS_CROWD_STRIKE = "assets_crowdstrike"
     """
     CrowdStrike Falcon Spotlight
@@ -413,6 +418,7 @@ class ProviderConfigId(str, enum.Enum):
         assets_armis_centrix: typing.Callable[[], T_Result],
         assets_armis_centrix_mock: typing.Callable[[], T_Result],
         assets_axonius: typing.Callable[[], T_Result],
+        assets_axonius_mock: typing.Callable[[], T_Result],
         assets_crowd_strike: typing.Callable[[], T_Result],
         assets_nozomi_vantage: typing.Callable[[], T_Result],
         assets_nozomi_vantage_mock: typing.Callable[[], T_Result],
@@ -498,6 +504,8 @@ class ProviderConfigId(str, enum.Enum):
             return assets_armis_centrix_mock()
         if self is ProviderConfigId.ASSETS_AXONIUS:
             return assets_axonius()
+        if self is ProviderConfigId.ASSETS_AXONIUS_MOCK:
+            return assets_axonius_mock()
         if self is ProviderConfigId.ASSETS_CROWD_STRIKE:
             return assets_crowd_strike()
         if self is ProviderConfigId.ASSETS_NOZOMI_VANTAGE:

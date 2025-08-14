@@ -9,6 +9,7 @@ from .appsec_open_text_core_application_security import AppsecOpenTextCoreApplic
 from .assets_armis_centrix import AssetsArmisCentrix
 from .assets_armis_centrix_mock import AssetsArmisCentrixMock
 from .assets_axonius import AssetsAxonius
+from .assets_axonius_mock import AssetsAxoniusMock
 from .assets_crowd_strike import AssetsCrowdStrike
 from .assets_nozomi_vantage import AssetsNozomiVantage
 from .assets_nozomi_vantage_mock import AssetsNozomiVantageMock
@@ -122,6 +123,15 @@ class ProviderConfig_AssetsArmisCentrixMock(AssetsArmisCentrixMock):
 
 class ProviderConfig_AssetsAxonius(AssetsAxonius):
     type: typing.Literal["assets_axonius"]
+
+    class Config:
+        frozen = True
+        smart_union = True
+        allow_population_by_field_name = True
+
+
+class ProviderConfig_AssetsAxoniusMock(AssetsAxoniusMock):
+    type: typing.Literal["assets_axonius_mock"]
 
     class Config:
         frozen = True
@@ -792,6 +802,7 @@ ProviderConfig = typing.Union[
     ProviderConfig_AssetsArmisCentrix,
     ProviderConfig_AssetsArmisCentrixMock,
     ProviderConfig_AssetsAxonius,
+    ProviderConfig_AssetsAxoniusMock,
     ProviderConfig_AssetsCrowdstrike,
     ProviderConfig_AssetsNozomiVantage,
     ProviderConfig_AssetsNozomiVantageMock,
