@@ -10,6 +10,8 @@ from .assets_axonius import AssetsAxonius
 from .assets_axonius_dataset import AssetsAxoniusDataset
 from .assets_axonius_mock import AssetsAxoniusMock
 from .assets_crowd_strike import AssetsCrowdStrike
+from .assets_crowd_strike_dataset import AssetsCrowdStrikeDataset
+from .assets_crowd_strike_mock import AssetsCrowdStrikeMock
 from .assets_nozomi_vantage import AssetsNozomiVantage
 from .assets_nozomi_vantage_dataset import AssetsNozomiVantageDataset
 from .assets_nozomi_vantage_mock import AssetsNozomiVantageMock
@@ -149,6 +151,7 @@ from .provider_config import (
     ProviderConfig_AssetsAxonius,
     ProviderConfig_AssetsAxoniusMock,
     ProviderConfig_AssetsCrowdstrike,
+    ProviderConfig_AssetsCrowdstrikeMock,
     ProviderConfig_AssetsNozomiVantage,
     ProviderConfig_AssetsNozomiVantageMock,
     ProviderConfig_AssetsQualysCloud,
@@ -342,6 +345,8 @@ __all__ = [
     "AssetsAxoniusDataset",
     "AssetsAxoniusMock",
     "AssetsCrowdStrike",
+    "AssetsCrowdStrikeDataset",
+    "AssetsCrowdStrikeMock",
     "AssetsNozomiVantage",
     "AssetsNozomiVantageDataset",
     "AssetsNozomiVantageMock",
@@ -479,6 +484,7 @@ __all__ = [
     "ProviderConfig_AssetsAxonius",
     "ProviderConfig_AssetsAxoniusMock",
     "ProviderConfig_AssetsCrowdstrike",
+    "ProviderConfig_AssetsCrowdstrikeMock",
     "ProviderConfig_AssetsNozomiVantage",
     "ProviderConfig_AssetsNozomiVantageMock",
     "ProviderConfig_AssetsQualysCloud",
