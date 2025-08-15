@@ -16,6 +16,8 @@ except ImportError:
 class AppsecHclAppScanOnCloud(pydantic.BaseModel):
     """
     Configuration for HCL AppScan on Cloud as an application security provider.
+
+    [Configuration guide](https://docs.synqly.com/guides/provider-configuration/hcl-appscan-appsec-setup)
     """
 
     credential: HclAppScanOnCloudCredential = pydantic.Field()

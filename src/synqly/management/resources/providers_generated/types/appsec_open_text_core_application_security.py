@@ -16,6 +16,8 @@ except ImportError:
 class AppsecOpenTextCoreApplicationSecurity(pydantic.BaseModel):
     """
     Configuration for OpenText Core Application Security (formerly Fortify On Demand) as an application security provider.
+
+    [Configuration guide](https://docs.synqly.com/guides/provider-configuration/opentext-core-applicationsecurity-appsec-setup)
     """
 
     credential: OpenTextCoreApplicationSecurityCredential = pydantic.Field()
