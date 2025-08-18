@@ -22,6 +22,9 @@ from ...ocsf.resources.v_1_3_0.resources.detectionfinding.resources.classes.type
     DetectionFinding,
 )
 from ...ocsf.resources.v_1_3_0.resources.dnsactivity.resources.classes.types.dns_activity import DnsActivity
+from ...ocsf.resources.v_1_3_0.resources.entitymanagement.resources.classes.types.entity_management import (
+    EntityManagement,
+)
 from ...ocsf.resources.v_1_3_0.resources.fileactivity.resources.classes.types.file_activity import FileActivity
 from ...ocsf.resources.v_1_3_0.resources.groupmanagement.resources.classes.types.group_management import GroupManagement
 from ...ocsf.resources.v_1_3_0.resources.incidentfinding.resources.classes.types.incident_finding import IncidentFinding
@@ -55,6 +58,15 @@ class Event_AccountChange(AccountChange):
 
 class Event_ApiActivity(ApiActivity):
     class_name: typing.Literal["API Activity"]
+
+    class Config:
+        frozen = True
+        smart_union = True
+        allow_population_by_field_name = True
+
+
+class Event_EntityManagement(EntityManagement):
+    class_name: typing.Literal["Entity Management"]
 
     class Config:
         frozen = True
@@ -263,6 +275,7 @@ class Event_ApplicationLifecycle(ApplicationLifecycle):
 Event = typing.Union[
     Event_AccountChange,
     Event_ApiActivity,
+    Event_EntityManagement,
     Event_Authentication,
     Event_AuthorizeSession,
     Event_BaseEvent,
