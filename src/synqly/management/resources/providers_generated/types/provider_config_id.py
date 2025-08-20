@@ -96,6 +96,11 @@ class ProviderConfigId(str, enum.Enum):
     [MOCK] Tanium Vulnerability Management
     """
 
+    CLOUD_SECURITY_AWS = "cloudsecurity_aws"
+    """
+    AWS Cloud Security
+    """
+
     CLOUD_SECURITY_CROWD_STRIKE = "cloudsecurity_crowdstrike"
     """
     CrowdStrike Falcon® Insight EDR
@@ -435,6 +440,7 @@ class ProviderConfigId(str, enum.Enum):
         assets_sevco: typing.Callable[[], T_Result],
         assets_tanium_cloud: typing.Callable[[], T_Result],
         assets_tanium_cloud_mock: typing.Callable[[], T_Result],
+        cloud_security_aws: typing.Callable[[], T_Result],
         cloud_security_crowd_strike: typing.Callable[[], T_Result],
         cloud_security_defender: typing.Callable[[], T_Result],
         edr_crowd_strike: typing.Callable[[], T_Result],
@@ -534,6 +540,8 @@ class ProviderConfigId(str, enum.Enum):
             return assets_tanium_cloud()
         if self is ProviderConfigId.ASSETS_TANIUM_CLOUD_MOCK:
             return assets_tanium_cloud_mock()
+        if self is ProviderConfigId.CLOUD_SECURITY_AWS:
+            return cloud_security_aws()
         if self is ProviderConfigId.CLOUD_SECURITY_CROWD_STRIKE:
             return cloud_security_crowd_strike()
         if self is ProviderConfigId.CLOUD_SECURITY_DEFENDER:
