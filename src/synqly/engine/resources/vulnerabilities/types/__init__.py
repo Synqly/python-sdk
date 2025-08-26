@@ -28,6 +28,8 @@ from .scan_frequency_option import ScanFrequencyOption
 from .scan_schedule import ScanSchedule
 from .security_finding import SecurityFinding
 from .update_finding_request import UpdateFindingRequest
+from .upload_scan_request import UploadScanRequest
+from .upload_scan_response import UploadScanResponse
 from .user import User
 from .vulnerability_severity_filter_value import VulnerabilitySeverityFilterValue
 from .vulnerability_state_filter_value import VulnerabilityStateFilterValue
@@ -62,6 +64,8 @@ __all__ = [
     "ScanSchedule",
     "SecurityFinding",
     "UpdateFindingRequest",
+    "UploadScanRequest",
+    "UploadScanResponse",
     "User",
     "VulnerabilitySeverityFilterValue",
     "VulnerabilityStateFilterValue",

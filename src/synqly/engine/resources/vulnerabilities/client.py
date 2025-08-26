@@ -33,6 +33,8 @@ from .types.query_assets_response import QueryAssetsResponse
 from .types.query_findings_response import QueryFindingsResponse
 from .types.query_scans_response import QueryScansResponse
 from .types.update_finding_request import UpdateFindingRequest
+from .types.upload_scan_request import UploadScanRequest
+from .types.upload_scan_response import UploadScanResponse
 
 try:
     import pydantic.v1 as pydantic  # type: ignore
@@ -670,6 +672,53 @@ class VulnerabilitiesClient:
             raise ApiError(status_code=_response.status_code, body=_response.text)
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
+    def upload_scan(
+        self, *, request: UploadScanRequest, request_options: typing.Optional[RequestOptions] = None
+    ) -> UploadScanResponse:
+        """
+        Upload a scan in a vulnerability scanning system
+
+        Parameters:
+            - request: UploadScanRequest.
+
+            - request_options: typing.Optional[RequestOptions]. Request-specific configuration.
+        """
+        _response = self._client_wrapper.httpx_client.request(
+            "POST",
+            urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", "v1/vulnerabilities/scans"),
+            params=jsonable_encoder(
+                request_options.get("additional_query_parameters") if request_options is not None else None
+            ),
+            json=jsonable_encoder(request)
+            if request_options is None or request_options.get("additional_body_parameters") is None
+            else {
+                **jsonable_encoder(request),
+                **(jsonable_encoder(remove_none_from_dict(request_options.get("additional_body_parameters", {})))),
+            },
+            headers=jsonable_encoder(
+                remove_none_from_dict(
+                    {
+                        **self._client_wrapper.get_headers(),
+                        **(request_options.get("additional_headers", {}) if request_options is not None else {}),
+                    }
+                )
+            ),
+            timeout=request_options.get("timeout_in_seconds")
+            if request_options is not None and request_options.get("timeout_in_seconds") is not None
+            else 60,
+            retries=0,
+            max_retries=request_options.get("max_retries") if request_options is not None else 0,  # type: ignore
+        )
+        if 200 <= _response.status_code < 300:
+            return pydantic.parse_obj_as(UploadScanResponse, _response.json())  # type: ignore
+        if _response.status_code == 400:
+            raise BadRequestError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
+        try:
+            _response_json = _response.json()
+        except JSONDecodeError:
+            raise ApiError(status_code=_response.status_code, body=_response.text)
+        raise ApiError(status_code=_response.status_code, body=_response_json)
+
 
 class AsyncVulnerabilitiesClient:
     def __init__(self, *, client_wrapper: AsyncClientWrapper):
@@ -1292,6 +1341,53 @@ class AsyncVulnerabilitiesClient:
             raise ServiceUnavailableError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
         if _response.status_code == 504:
             raise GatewayTimeoutError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
+        try:
+            _response_json = _response.json()
+        except JSONDecodeError:
+            raise ApiError(status_code=_response.status_code, body=_response.text)
+        raise ApiError(status_code=_response.status_code, body=_response_json)
+
+    async def upload_scan(
+        self, *, request: UploadScanRequest, request_options: typing.Optional[RequestOptions] = None
+    ) -> UploadScanResponse:
+        """
+        Upload a scan in a vulnerability scanning system
+
+        Parameters:
+            - request: UploadScanRequest.
+
+            - request_options: typing.Optional[RequestOptions]. Request-specific configuration.
+        """
+        _response = await self._client_wrapper.httpx_client.request(
+            "POST",
+            urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", "v1/vulnerabilities/scans"),
+            params=jsonable_encoder(
+                request_options.get("additional_query_parameters") if request_options is not None else None
+            ),
+            json=jsonable_encoder(request)
+            if request_options is None or request_options.get("additional_body_parameters") is None
+            else {
+                **jsonable_encoder(request),
+                **(jsonable_encoder(remove_none_from_dict(request_options.get("additional_body_parameters", {})))),
+            },
+            headers=jsonable_encoder(
+                remove_none_from_dict(
+                    {
+                        **self._client_wrapper.get_headers(),
+                        **(request_options.get("additional_headers", {}) if request_options is not None else {}),
+                    }
+                )
+            ),
+            timeout=request_options.get("timeout_in_seconds")
+            if request_options is not None and request_options.get("timeout_in_seconds") is not None
+            else 60,
+            retries=0,
+            max_retries=request_options.get("max_retries") if request_options is not None else 0,  # type: ignore
+        )
+        if 200 <= _response.status_code < 300:
+            return pydantic.parse_obj_as(UploadScanResponse, _response.json())  # type: ignore
+        if _response.status_code == 400:
+            raise BadRequestError(pydantic.parse_obj_as(Problem, _response.json()))  # type: ignore
         try:
             _response_json = _response.json()
         except JSONDecodeError:

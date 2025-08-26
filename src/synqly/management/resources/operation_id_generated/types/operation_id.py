@@ -82,6 +82,7 @@ class OperationId(str, enum.Enum):
     VULNERABILITIES_QUERY_SCANS = "vulnerabilities_query_scans"
     VULNERABILITIES_UPDATE_ASSET = "vulnerabilities_update_asset"
     VULNERABILITIES_UPDATE_FINDING = "vulnerabilities_update_finding"
+    VULNERABILITIES_UPLOAD_SCAN = "vulnerabilities_upload_scan"
 
     def visit(
         self,
@@ -160,6 +161,7 @@ class OperationId(str, enum.Enum):
         vulnerabilities_query_scans: typing.Callable[[], T_Result],
         vulnerabilities_update_asset: typing.Callable[[], T_Result],
         vulnerabilities_update_finding: typing.Callable[[], T_Result],
+        vulnerabilities_upload_scan: typing.Callable[[], T_Result],
     ) -> T_Result:
         if self is OperationId.APPSEC_GET_APPLICATION_FINDING_DETAILS:
             return appsec_get_application_finding_details()
@@ -311,3 +313,5 @@ class OperationId(str, enum.Enum):
             return vulnerabilities_update_asset()
         if self is OperationId.VULNERABILITIES_UPDATE_FINDING:
             return vulnerabilities_update_finding()
+        if self is OperationId.VULNERABILITIES_UPLOAD_SCAN:
+            return vulnerabilities_upload_scan()
