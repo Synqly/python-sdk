@@ -5,7 +5,7 @@ import typing
 
 from ....core.datetime_utils import serialize_datetime
 from ...engine.types.api_query_response import ApiQueryResponse
-from .app_sec_finding_result import AppSecFindingResult
+from .app_sec_posture_finding import AppSecPostureFinding
 
 try:
     import pydantic.v1 as pydantic  # type: ignore
@@ -18,7 +18,7 @@ class AppSecQueryFindingsResponse(ApiQueryResponse):
     The combined result of an application's finding and the application details from the token-linked application security integration.
     """
 
-    result: typing.List[AppSecFindingResult]
+    result: typing.List[AppSecPostureFinding]
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}

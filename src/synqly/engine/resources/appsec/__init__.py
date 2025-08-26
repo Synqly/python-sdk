@@ -2,8 +2,6 @@
 
 from .types import (
     AppSecApplication,
-    AppSecApplicationUidType,
-    AppSecFindingResult,
     AppSecGetApplicationFindingDetailsResponse,
     AppSecGetApplicationFindingDetailsResponseGeneric,
     AppSecPostureFinding,
@@ -19,8 +17,6 @@ from .types import (
 
 __all__ = [
     "AppSecApplication",
-    "AppSecApplicationUidType",
-    "AppSecFindingResult",
     "AppSecGetApplicationFindingDetailsResponse",
     "AppSecGetApplicationFindingDetailsResponseGeneric",
     "AppSecPostureFinding",

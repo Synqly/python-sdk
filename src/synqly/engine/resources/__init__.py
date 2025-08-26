@@ -26,8 +26,6 @@ from . import (
 )
 from .appsec import (
     AppSecApplication,
-    AppSecApplicationUidType,
-    AppSecFindingResult,
     AppSecGetApplicationFindingDetailsResponse,
     AppSecGetApplicationFindingDetailsResponseGeneric,
     AppSecPostureFinding,
@@ -334,8 +332,6 @@ __all__ = [
     "ApiQueryResponse",
     "ApiResponse",
     "AppSecApplication",
-    "AppSecApplicationUidType",
-    "AppSecFindingResult",
     "AppSecGetApplicationFindingDetailsResponse",
     "AppSecGetApplicationFindingDetailsResponseGeneric",
     "AppSecPostureFinding",

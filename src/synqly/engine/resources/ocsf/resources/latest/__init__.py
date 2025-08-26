@@ -16,12 +16,14 @@ from .resources import (
     InventoryInfo,
     ModuleActivity,
     NetworkActivity,
+    Ocsf150Application,
     ProcessActivity,
     ScheduledJobActivity,
     SecurityFinding,
     VulnerabilityFinding,
     WebResourceAccessActivity,
     events,
+    objects,
 )
 
 __all__ = [
@@ -40,10 +42,12 @@ __all__ = [
     "InventoryInfo",
     "ModuleActivity",
     "NetworkActivity",
+    "Ocsf150Application",
     "ProcessActivity",
     "ScheduledJobActivity",
     "SecurityFinding",
     "VulnerabilityFinding",
     "WebResourceAccessActivity",
     "events",
+    "objects",
 ]
