@@ -4,6 +4,8 @@ import datetime as dt
 import typing
 
 from ....core.datetime_utils import serialize_datetime
+from .ping_one_apiurl import PingOneApiurl
+from .ping_one_auth_url import PingOneAuthUrl
 from .ping_one_credential import PingOneCredential
 
 try:
@@ -19,7 +21,7 @@ class IdentityPingOne(pydantic.BaseModel):
     [Configuration guide](https://docs.synqly.com/guides/provider-configuration/ping-identity-setup)
     """
 
-    auth_url: str = pydantic.Field()
+    auth_url: PingOneAuthUrl = pydantic.Field()
     """
     Base URL for making authentication requests to PingOne.
     """
@@ -35,7 +37,7 @@ class IdentityPingOne(pydantic.BaseModel):
     The organization ID that the client app is a part of.
     """
 
-    url: str = pydantic.Field()
+    url: PingOneApiurl = pydantic.Field()
     """
     Base URL for the PingOne API.
     """

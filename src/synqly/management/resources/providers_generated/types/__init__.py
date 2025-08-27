@@ -145,6 +145,8 @@ from .open_text_core_application_security_credential import (
 )
 from .open_text_core_application_security_url import OpenTextCoreApplicationSecurityUrl
 from .pager_duty_credential import PagerDutyCredential, PagerDutyCredential_Token, PagerDutyCredential_TokenId
+from .ping_one_apiurl import PingOneApiurl
+from .ping_one_auth_url import PingOneAuthUrl
 from .ping_one_credential import PingOneCredential, PingOneCredential_Token, PingOneCredential_TokenId
 from .provider_config import (
     ProviderConfig,
@@ -484,6 +486,8 @@ __all__ = [
     "PagerDutyCredential",
     "PagerDutyCredential_Token",
     "PagerDutyCredential_TokenId",
+    "PingOneApiurl",
+    "PingOneAuthUrl",
     "PingOneCredential",
     "PingOneCredential_Token",
     "PingOneCredential_TokenId",
