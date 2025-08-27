@@ -22,6 +22,7 @@ from ..common.errors.too_many_requests_error import TooManyRequestsError
 from ..common.errors.unauthorized_error import UnauthorizedError
 from ..common.errors.unsupported_media_type_error import UnsupportedMediaTypeError
 from ..common.types.problem import Problem
+from ..organization_base.types.organization_id import OrganizationId
 from .types.change_password_request import ChangePasswordRequest
 
 try:
@@ -37,18 +38,28 @@ class AuthClient:
     def __init__(self, *, client_wrapper: SyncClientWrapper):
         self._client_wrapper = client_wrapper
 
-    def logon(self, *, request: LogonRequest, request_options: typing.Optional[RequestOptions] = None) -> LogonResponse:
+    def logon(
+        self,
+        organization_id: OrganizationId,
+        *,
+        request: LogonRequest,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> LogonResponse:
         """
-        Initiates a new session for the given member in a Synqly organization. The organization is identified by the given organization token.
+        Initiates a new session for the given member in specified Synqly organization.
 
         Parameters:
+            - organization_id: OrganizationId.
+
             - request: LogonRequest.
 
             - request_options: typing.Optional[RequestOptions]. Request-specific configuration.
         """
         _response = self._client_wrapper.httpx_client.request(
             "POST",
-            urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", "v1/auth/logon"),
+            urllib.parse.urljoin(
+                f"{self._client_wrapper.get_base_url()}/", f"v1/auth/logon/{jsonable_encoder(organization_id)}"
+            ),
             params=jsonable_encoder(
                 request_options.get("additional_query_parameters") if request_options is not None else None
             ),
@@ -223,19 +234,27 @@ class AsyncAuthClient:
         self._client_wrapper = client_wrapper
 
     async def logon(
-        self, *, request: LogonRequest, request_options: typing.Optional[RequestOptions] = None
+        self,
+        organization_id: OrganizationId,
+        *,
+        request: LogonRequest,
+        request_options: typing.Optional[RequestOptions] = None,
     ) -> LogonResponse:
         """
-        Initiates a new session for the given member in a Synqly organization. The organization is identified by the given organization token.
+        Initiates a new session for the given member in specified Synqly organization.
 
         Parameters:
+            - organization_id: OrganizationId.
+
             - request: LogonRequest.
 
             - request_options: typing.Optional[RequestOptions]. Request-specific configuration.
         """
         _response = await self._client_wrapper.httpx_client.request(
             "POST",
-            urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", "v1/auth/logon"),
+            urllib.parse.urljoin(
+                f"{self._client_wrapper.get_base_url()}/", f"v1/auth/logon/{jsonable_encoder(organization_id)}"
+            ),
             params=jsonable_encoder(
                 request_options.get("additional_query_parameters") if request_options is not None else None
             ),
