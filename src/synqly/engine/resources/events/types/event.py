@@ -45,6 +45,9 @@ from ...ocsf.resources.v_1_3_0.resources.vulnerabilityfinding.resources.classes.
 from ...ocsf.resources.v_1_3_0.resources.webresourceaccessactivity.resources.classes.types.web_resource_access_activity import (
     WebResourceAccessActivity,
 )
+from ...ocsf.resources.v_1_6_0.resources.emailactivity.resources.classes.types.email_activity import EmailActivity
+from ...ocsf.resources.v_1_6_0.resources.filehostingactivity.resources.classes.types.file_hosting import FileHosting
+from ...ocsf.resources.v_1_6_0.resources.httpactivity.resources.classes.types.http_activity import HttpActivity
 
 
 class Event_AccountChange(AccountChange):
@@ -130,6 +133,15 @@ class Event_DetectionFinding(DetectionFinding):
 
 class Event_DnsActivity(DnsActivity):
     class_name: typing.Literal["DNS Activity"]
+
+    class Config:
+        frozen = True
+        smart_union = True
+        allow_population_by_field_name = True
+
+
+class Event_HttpActivity(HttpActivity):
+    class_name: typing.Literal["HTTP Activity"]
 
     class Config:
         frozen = True
@@ -272,6 +284,24 @@ class Event_ApplicationLifecycle(ApplicationLifecycle):
         allow_population_by_field_name = True
 
 
+class Event_FileHostingActivity(FileHosting):
+    class_name: typing.Literal["File Hosting Activity"]
+
+    class Config:
+        frozen = True
+        smart_union = True
+        allow_population_by_field_name = True
+
+
+class Event_EmailActivity(EmailActivity):
+    class_name: typing.Literal["Email Activity"]
+
+    class Config:
+        frozen = True
+        smart_union = True
+        allow_population_by_field_name = True
+
+
 Event = typing.Union[
     Event_AccountChange,
     Event_ApiActivity,
@@ -283,6 +313,7 @@ Event = typing.Union[
     Event_DeviceConfigState,
     Event_DetectionFinding,
     Event_DnsActivity,
+    Event_HttpActivity,
     Event_FileSystemActivity,
     Event_GroupManagement,
     Event_IncidentFinding,
@@ -298,4 +329,6 @@ Event = typing.Union[
     Event_VulnerabilityFinding,
     Event_WebResourceAccessActivity,
     Event_ApplicationLifecycle,
+    Event_FileHostingActivity,
+    Event_EmailActivity,
 ]

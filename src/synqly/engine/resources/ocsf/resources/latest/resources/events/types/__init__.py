@@ -8,9 +8,12 @@ from .cloud_resources_inventory_info import CloudResourcesInventoryInfo
 from .compliance_finding import ComplianceFinding
 from .detection_finding import DetectionFinding
 from .dns_activity import DnsActivity
+from .email_activity import EmailActivity
 from .entity_management import EntityManagement
 from .file_activity import FileActivity
+from .file_hosting_activity import FileHostingActivity
 from .group_management import GroupManagement
+from .http_activity import HttpActivity
 from .incident_finding import IncidentFinding
 from .inventory_info import InventoryInfo
 from .module_activity import ModuleActivity
@@ -30,9 +33,12 @@ __all__ = [
     "ComplianceFinding",
     "DetectionFinding",
     "DnsActivity",
+    "EmailActivity",
     "EntityManagement",
     "FileActivity",
+    "FileHostingActivity",
     "GroupManagement",
+    "HttpActivity",
     "IncidentFinding",
     "InventoryInfo",
     "ModuleActivity",
