@@ -5,6 +5,7 @@ import typing
 
 from ....core.datetime_utils import serialize_datetime
 from ...engine.types.api_response import ApiResponse
+from ...organization_webhook_base.types.webhook_event import WebhookEvent
 from ...ticketing.types.priority import Priority
 
 try:
@@ -32,6 +33,11 @@ class TicketingWebhookResponse(ApiResponse):
     short_description: typing.Optional[str] = pydantic.Field(default=None)
     """
     Short Description of the ticket in the ticketing system.
+    """
+
+    event_type: typing.Optional[WebhookEvent] = pydantic.Field(default=None)
+    """
+    The type of event that was sent by the ticketing system.
     """
 
     raw_payload: str = pydantic.Field()

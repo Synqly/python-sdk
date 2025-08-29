@@ -195,7 +195,6 @@ from .integrations import (
     UpdateIntegrationResponse,
     VerifyIntegrationRequest,
     WebhookConfig,
-    WebhookEvent,
     WebhookItem,
 )
 from .management import AdditionalMapping, MappingChain, MappingDataType
@@ -256,7 +255,7 @@ from .organization_base import (
     OrganizationOptions,
     OrganizationType,
 )
-from .organization_webhook_base import WebhookFilter, WebhookId
+from .organization_webhook_base import WebhookEvent, WebhookFilter, WebhookId
 from .organization_webhook_events import OrganizationWebhookPayload
 from .organization_webhooks import (
     CreateOrganizationWebhookRequest,

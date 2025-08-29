@@ -214,7 +214,7 @@ from .operations import (
     GetOperationResponse,
     OperationWebhookPayload,
 )
-from .organization_webhook_base import WebhookFilter, WebhookId
+from .organization_webhook_base import WebhookEvent, WebhookFilter, WebhookId
 from .siem import (
     Evidence,
     GetEvidenceResponse,
@@ -591,6 +591,7 @@ __all__ = [
     "ValueMappingId",
     "VulnerabilitySeverityFilterValue",
     "VulnerabilityStateFilterValue",
+    "WebhookEvent",
     "WebhookFilter",
     "WebhookId",
     "appsec",
