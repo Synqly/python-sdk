@@ -20,7 +20,7 @@ class EdrSophos(pydantic.BaseModel):
     """
 
     credential: SophosCredential
-    url: typing.Optional[str] = pydantic.Field(default=None)
+    url: str = pydantic.Field()
     """
     Base URL for the Sophos Endpoint API.
     """
