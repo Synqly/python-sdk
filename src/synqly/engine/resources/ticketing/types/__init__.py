@@ -12,32 +12,42 @@ from .create_attachment_request import CreateAttachmentRequest
 from .create_attachment_response import CreateAttachmentResponse
 from .create_comment_request import CreateCommentRequest
 from .create_comment_response import CreateCommentResponse
+from .create_comment_response_generic import CreateCommentResponseGeneric
 from .create_note_request import CreateNoteRequest
 from .create_note_response import CreateNoteResponse
+from .create_note_response_generic import CreateNoteResponseGeneric
 from .create_ticket_request import CreateTicketRequest
 from .create_ticket_response import CreateTicketResponse
+from .create_ticket_response_generic import CreateTicketResponseGeneric
 from .download_attachment_response import DownloadAttachmentResponse
 from .escalation_policy import EscalationPolicy
 from .escalation_policy_rule import EscalationPolicyRule
 from .field_mapping_id import FieldMappingId
 from .get_ticket_response import GetTicketResponse
+from .get_ticket_response_generic import GetTicketResponseGeneric
 from .group_summary import GroupSummary
 from .issue_type_id import IssueTypeId
 from .list_attachments_metadata_response import ListAttachmentsMetadataResponse
 from .list_comments_response import ListCommentsResponse
+from .list_comments_response_generic import ListCommentsResponseGeneric
 from .list_notes_response import ListNotesResponse
+from .list_notes_response_generic import ListNotesResponseGeneric
 from .list_on_call_response import ListOnCallResponse
 from .list_projects_response import ListProjectsResponse
+from .list_projects_response_generic import ListProjectsResponseGeneric
 from .list_remote_fields_response import ListRemoteFieldsResponse
 from .note import Note
 from .note_id import NoteId
 from .patch_note_response import PatchNoteResponse
+from .patch_note_response_generic import PatchNoteResponseGeneric
 from .patch_ticket_response import PatchTicketResponse
+from .patch_ticket_response_generic import PatchTicketResponseGeneric
 from .priority import Priority
 from .project import Project
 from .project_id import ProjectId
 from .query_escalation_policies_response import QueryEscalationPoliciesResponse
 from .query_tickets_response import QueryTicketsResponse
+from .query_tickets_response_generic import QueryTicketsResponseGeneric
 from .remote_field import RemoteField
 from .remote_field_schema import RemoteFieldSchema
 from .remote_field_scope import RemoteFieldScope
@@ -65,32 +75,42 @@ __all__ = [
     "CreateAttachmentResponse",
     "CreateCommentRequest",
     "CreateCommentResponse",
+    "CreateCommentResponseGeneric",
     "CreateNoteRequest",
     "CreateNoteResponse",
+    "CreateNoteResponseGeneric",
     "CreateTicketRequest",
     "CreateTicketResponse",
+    "CreateTicketResponseGeneric",
     "DownloadAttachmentResponse",
     "EscalationPolicy",
     "EscalationPolicyRule",
     "FieldMappingId",
     "GetTicketResponse",
+    "GetTicketResponseGeneric",
     "GroupSummary",
     "IssueTypeId",
     "ListAttachmentsMetadataResponse",
     "ListCommentsResponse",
+    "ListCommentsResponseGeneric",
     "ListNotesResponse",
+    "ListNotesResponseGeneric",
     "ListOnCallResponse",
     "ListProjectsResponse",
+    "ListProjectsResponseGeneric",
     "ListRemoteFieldsResponse",
     "Note",
     "NoteId",
     "PatchNoteResponse",
+    "PatchNoteResponseGeneric",
     "PatchTicketResponse",
+    "PatchTicketResponseGeneric",
     "Priority",
     "Project",
     "ProjectId",
     "QueryEscalationPoliciesResponse",
     "QueryTicketsResponse",
+    "QueryTicketsResponseGeneric",
     "RemoteField",
     "RemoteFieldSchema",
     "RemoteFieldScope",
