@@ -40,6 +40,11 @@ class File(pydantic.BaseModel):
     The name of the user who last accessed the object.
     """
 
+    accessor_app: typing.Optional[Product] = pydantic.Field(default=None)
+    """
+    The app which mediated access to the file. This could be separate from the source app, for example a case where a user exports a report from a web app. The source app would be their browser and the accessor app the web app.
+    """
+
     attributes: typing.Optional[int] = pydantic.Field(default=None)
     """
     The bitmask value that represents the file attributes.
@@ -93,6 +98,11 @@ class File(pydantic.BaseModel):
     is_system: typing.Optional[bool] = pydantic.Field(default=None)
     """
     The indication of whether the object is part of the operating system.
+    """
+
+    labels: typing.Optional[typing.List[str]] = pydantic.Field(default=None)
+    """
+    Labels associated with the object, such as security or sensitivity labels created by a scanning app.
     """
 
     mime_type: typing.Optional[str] = pydantic.Field(default=None)

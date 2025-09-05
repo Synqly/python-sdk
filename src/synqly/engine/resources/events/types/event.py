@@ -14,6 +14,7 @@ from ...ocsf.resources.v_1_3_0.resources.authorizesession.resources.classes.type
     AuthorizeSession,
 )
 from ...ocsf.resources.v_1_3_0.resources.baseevent.resources.classes.types.base_event import BaseEvent
+from ...ocsf.resources.v_1_3_0.resources.cloudactivity.resources.classes.types.cloud_activity import CloudActivity
 from ...ocsf.resources.v_1_3_0.resources.compliancefinding.resources.classes.types.compliance_finding import (
     ComplianceFinding,
 )
@@ -302,6 +303,15 @@ class Event_EmailActivity(EmailActivity):
         allow_population_by_field_name = True
 
 
+class Event_CloudActivity(CloudActivity):
+    class_name: typing.Literal["Cloud Activity"]
+
+    class Config:
+        frozen = True
+        smart_union = True
+        allow_population_by_field_name = True
+
+
 Event = typing.Union[
     Event_AccountChange,
     Event_ApiActivity,
@@ -331,4 +341,5 @@ Event = typing.Union[
     Event_ApplicationLifecycle,
     Event_FileHostingActivity,
     Event_EmailActivity,
+    Event_CloudActivity,
 ]

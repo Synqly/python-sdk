@@ -6,9 +6,9 @@ import typing
 from ..........core.datetime_utils import serialize_datetime
 from ...base.types.email_address import EmailAddress
 from ...base.types.ip_address import IpAddress
+from ...base.types.timestamp import Timestamp
 from .file import File
 from .http_header import HttpHeader
-from .url import Url
 
 try:
     import pydantic.v1 as pydantic  # type: ignore
@@ -19,6 +19,11 @@ except ImportError:
 class Email(pydantic.BaseModel):
     """
     The Email object describes the email metadata such as sender, recipients, and direction, and can include embedded URLs and files.
+    """
+
+    bcc: typing.Optional[typing.List[str]] = pydantic.Field(default=None)
+    """
+    The BCC recipients of the email. Similar to cc field but for BCC recipients.
     """
 
     cc: typing.Optional[typing.List[EmailAddress]] = pydantic.Field(default=None)
@@ -61,6 +66,16 @@ class Email(pydantic.BaseModel):
     Additional HTTP headers of an HTTP request or response.
     """
 
+    is_externally_viewable: typing.Optional[bool] = pydantic.Field(default=None)
+    """
+    True if the email is viewable externally (presumably by external users).
+    """
+
+    labels: typing.Optional[typing.List[str]] = pydantic.Field(default=None)
+    """
+    Labels associated with the object, such as security or sensitivity labels created by a scanning app.
+    """
+
     message_uid: typing.Optional[str] = pydantic.Field(default=None)
     """
     The email header Message-ID value, as defined by RFC 5322.
@@ -79,6 +94,11 @@ class Email(pydantic.BaseModel):
     reply_to_mailboxes: typing.Optional[typing.List[str]] = pydantic.Field(default=None)
     """
     The human-readable email header Reply To Mailbox values. For example <code>'Example User &lt;example.user@usersdomain.com&gt;'</code>.
+    """
+
+    sender_mailbox_uid: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    Unique ID of the sender mailbox. This is distinct from the sender's email address.
     """
 
     size: typing.Optional[int] = pydantic.Field(default=None)
@@ -101,6 +121,16 @@ class Email(pydantic.BaseModel):
     The email header Subject value, as defined by RFC 5322.
     """
 
+    time_sent: typing.Optional[Timestamp] = pydantic.Field(default=None)
+    """
+    The time at which the email was sent.
+    """
+
+    time_sent_dt: typing.Optional[dt.datetime] = pydantic.Field(default=None)
+    """
+    The time at which the email was sent.
+    """
+
     to: typing.Optional[typing.List[EmailAddress]] = pydantic.Field(default=None)
     """
     The machine-readable email header To values, as defined by RFC 5322. For example <code>example.user@usersdomain.com</code>
@@ -116,7 +146,7 @@ class Email(pydantic.BaseModel):
     The unique identifier of the email thread.
     """
 
-    urls: typing.Optional[typing.List[Url]] = pydantic.Field(default=None)
+    urls: typing.Optional[typing.List[str]] = pydantic.Field(default=None)
     """
     The URLs embedded in the email.
     """

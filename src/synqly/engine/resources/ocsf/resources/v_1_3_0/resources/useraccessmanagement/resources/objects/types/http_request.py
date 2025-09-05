@@ -60,6 +60,11 @@ class HttpRequest(pydantic.BaseModel):
     The request header that identifies the operating system and web browser.
     """
 
+    user_agent_name: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    Concise version of the user agent, e.g. Chrome or Firefox instead of the full user-agent string.
+    """
+
     version: typing.Optional[str] = pydantic.Field(default=None)
     """
     The Hypertext Transfer Protocol (HTTP) version.

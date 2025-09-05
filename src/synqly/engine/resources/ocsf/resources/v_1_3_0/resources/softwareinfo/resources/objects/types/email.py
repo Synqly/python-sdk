@@ -6,6 +6,7 @@ import typing
 from ..........core.datetime_utils import serialize_datetime
 from ...base.types.email_address import EmailAddress
 from ...base.types.ip_address import IpAddress
+from ...base.types.timestamp import Timestamp
 
 try:
     import pydantic.v1 as pydantic  # type: ignore
@@ -16,6 +17,11 @@ except ImportError:
 class Email(pydantic.BaseModel):
     """
     The Email object describes the email metadata such as sender, recipients, and direction. Defined by D3FEND <a target='_blank' href='https://d3fend.mitre.org/dao/artifact/d3f:Email/'>d3f:Email</a>.
+    """
+
+    bcc: typing.Optional[typing.List[str]] = pydantic.Field(default=None)
+    """
+    The BCC recipients of the email. Similar to cc field but for BCC recipients.
     """
 
     cc: typing.Optional[typing.List[EmailAddress]] = pydantic.Field(default=None)
@@ -33,6 +39,16 @@ class Email(pydantic.BaseModel):
     The email header From values, as defined by RFC 5322.
     """
 
+    is_externally_viewable: typing.Optional[bool] = pydantic.Field(default=None)
+    """
+    True if the email is viewable externally (presumably by external users).
+    """
+
+    labels: typing.Optional[typing.List[str]] = pydantic.Field(default=None)
+    """
+    Labels associated with the object, such as security or sensitivity labels created by a scanning app.
+    """
+
     message_uid: typing.Optional[str] = pydantic.Field(default=None)
     """
     The email header Message-Id value, as defined by RFC 5322.
@@ -46,6 +62,11 @@ class Email(pydantic.BaseModel):
     reply_to: typing.Optional[EmailAddress] = pydantic.Field(default=None)
     """
     The email header Reply-To values, as defined by RFC 5322.
+    """
+
+    sender_mailbox_uid: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    Unique ID of the sender mailbox. This is distinct from the sender's email address.
     """
 
     size: typing.Optional[int] = pydantic.Field(default=None)
@@ -66,6 +87,16 @@ class Email(pydantic.BaseModel):
     subject: typing.Optional[str] = pydantic.Field(default=None)
     """
     The email header Subject value, as defined by RFC 5322.
+    """
+
+    time_sent: typing.Optional[Timestamp] = pydantic.Field(default=None)
+    """
+    The time at which the email was sent.
+    """
+
+    time_sent_dt: typing.Optional[dt.datetime] = pydantic.Field(default=None)
+    """
+    The time at which the email was sent.
     """
 
     to: typing.List[EmailAddress] = pydantic.Field()

@@ -4,6 +4,7 @@ from .account_change import AccountChange
 from .api_activity import ApiActivity
 from .application_security_posture_finding import ApplicationSecurityPostureFinding
 from .authentication import Authentication
+from .cloud_activity import CloudActivity
 from .cloud_resources_inventory_info import CloudResourcesInventoryInfo
 from .compliance_finding import ComplianceFinding
 from .detection_finding import DetectionFinding
@@ -29,6 +30,7 @@ __all__ = [
     "ApiActivity",
     "ApplicationSecurityPostureFinding",
     "Authentication",
+    "CloudActivity",
     "CloudResourcesInventoryInfo",
     "ComplianceFinding",
     "DetectionFinding",

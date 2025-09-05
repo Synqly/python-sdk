@@ -23,6 +23,11 @@ class Product(pydantic.BaseModel):
     The Common Platform Enumeration (CPE) name as described by (<a target='_blank' href='https://nvd.nist.gov/products/cpe'>NIST</a>) For example: <code>cpe:/a:apple:safari:16.2</code>.
     """
 
+    distribution_mode: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    Indicates the source from which the app was installed, such as the app store.
+    """
+
     feature: typing.Optional[Feature] = pydantic.Field(default=None)
     """
     The feature that reported the event.
@@ -61,6 +66,11 @@ class Product(pydantic.BaseModel):
     version: typing.Optional[str] = pydantic.Field(default=None)
     """
     The version of the product, as defined by the event source. For example: <code>2013.1.3-beta</code>.
+    """
+
+    workload: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    The product workload associated with the event.
     """
 
     def json(self, **kwargs: typing.Any) -> str:

@@ -106,6 +106,11 @@ class Location(pydantic.BaseModel):
     The alphanumeric code that identifies the principal subdivision (e.g. province or state) of the country. For example, 'CH-VD' for the Canton of Vaud, Switzerland
     """
 
+    timezone: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    Timezone string. This provides timezone information that may be present even when latitude and longitude are absent.
+    """
+
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}
         return super().json(**kwargs_with_defaults)

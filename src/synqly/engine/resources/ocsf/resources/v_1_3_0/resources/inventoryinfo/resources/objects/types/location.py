@@ -81,6 +81,11 @@ class Location(pydantic.BaseModel):
     The alphanumeric code that identifies the principal subdivision (e.g. province or state) of the country. Region codes are defined at <a target='_blank' href='https://www.iso.org/iso-3166-country-codes.html'>ISO 3166-2</a> and have a limit of three characters. For example, see <a target='_blank' href='https://www.iso.org/obp/ui/#iso:code:3166:US'>the region codes for the US</a>.
     """
 
+    timezone: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    Timezone string. This provides timezone information that may be present even when latitude and longitude are absent.
+    """
+
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}
         return super().json(**kwargs_with_defaults)

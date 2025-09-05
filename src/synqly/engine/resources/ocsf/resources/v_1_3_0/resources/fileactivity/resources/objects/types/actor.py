@@ -4,7 +4,9 @@ import datetime as dt
 import typing
 
 from ..........core.datetime_utils import serialize_datetime
+from .actor_actor_type_id import ActorActorTypeId
 from .authorization import Authorization
+from .group import Group
 from .idp import Idp
 from .process import Process
 from .session import Session
@@ -21,6 +23,16 @@ class Actor(pydantic.BaseModel):
     The Actor object contains details about the user, role, application, service, or process that initiated or performed a specific activity.
     """
 
+    actor_type: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    The actor type, normalized to the caption of the actor_type_id value. In the case of 'Other', it is defined by the data source.
+    """
+
+    actor_type_id: typing.Optional[ActorActorTypeId] = pydantic.Field(default=None)
+    """
+    The normalized identifier of the actor type.
+    """
+
     app_name: typing.Optional[str] = pydantic.Field(default=None)
     """
     The client application or service that initiated the activity. This can be in conjunction with the <code>user</code> if present. Note that <code>app_name</code> is distinct from the <code>process</code> if present.
@@ -34,6 +46,11 @@ class Actor(pydantic.BaseModel):
     authorizations: typing.Optional[typing.List[Authorization]] = pydantic.Field(default=None)
     """
     Provides details about an authorization, such as authorization outcome, and any associated policies related to the activity/event.
+    """
+
+    groups: typing.Optional[typing.List[Group]] = pydantic.Field(default=None)
+    """
+    Groups which are pertinent to the action. For example, the team name for Teams, where the user may not necessarily be a member of the group, but it is still relevant to the action taken.
     """
 
     idp: typing.Optional[Idp] = pydantic.Field(default=None)
