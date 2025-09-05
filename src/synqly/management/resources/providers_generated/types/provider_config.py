@@ -77,6 +77,7 @@ from .ticketing_service_now_sir import TicketingServiceNowSir
 from .ticketing_torq import TicketingTorq
 from .ticketing_zendesk import TicketingZendesk
 from .vulnerabilities_crowd_strike import VulnerabilitiesCrowdStrike
+from .vulnerabilities_crowd_strike_mock import VulnerabilitiesCrowdStrikeMock
 from .vulnerabilities_nucleus import VulnerabilitiesNucleus
 from .vulnerabilities_qualys_cloud import VulnerabilitiesQualysCloud
 from .vulnerabilities_qualys_cloud_mock import VulnerabilitiesQualysCloudMock
@@ -745,6 +746,15 @@ class ProviderConfig_VulnerabilitiesCrowdstrike(VulnerabilitiesCrowdStrike):
         allow_population_by_field_name = True
 
 
+class ProviderConfig_VulnerabilitiesCrowdstrikeMock(VulnerabilitiesCrowdStrikeMock):
+    type: typing.Literal["vulnerabilities_crowdstrike_mock"]
+
+    class Config:
+        frozen = True
+        smart_union = True
+        allow_population_by_field_name = True
+
+
 class ProviderConfig_VulnerabilitiesNucleus(VulnerabilitiesNucleus):
     type: typing.Literal["vulnerabilities_nucleus"]
 
@@ -900,6 +910,7 @@ ProviderConfig = typing.Union[
     ProviderConfig_TicketingTorq,
     ProviderConfig_TicketingZendesk,
     ProviderConfig_VulnerabilitiesCrowdstrike,
+    ProviderConfig_VulnerabilitiesCrowdstrikeMock,
     ProviderConfig_VulnerabilitiesNucleus,
     ProviderConfig_VulnerabilitiesQualysCloud,
     ProviderConfig_VulnerabilitiesQualysCloudMock,

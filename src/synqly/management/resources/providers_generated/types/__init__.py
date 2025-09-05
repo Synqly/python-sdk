@@ -223,6 +223,7 @@ from .provider_config import (
     ProviderConfig_TicketingTorq,
     ProviderConfig_TicketingZendesk,
     ProviderConfig_VulnerabilitiesCrowdstrike,
+    ProviderConfig_VulnerabilitiesCrowdstrikeMock,
     ProviderConfig_VulnerabilitiesNucleus,
     ProviderConfig_VulnerabilitiesQualysCloud,
     ProviderConfig_VulnerabilitiesQualysCloudMock,
@@ -326,6 +327,8 @@ from .ticketing_torq import TicketingTorq
 from .ticketing_zendesk import TicketingZendesk
 from .torq_credential import TorqCredential, TorqCredential_OAuthClient, TorqCredential_OAuthClientId
 from .vulnerabilities_crowd_strike import VulnerabilitiesCrowdStrike
+from .vulnerabilities_crowd_strike_dataset import VulnerabilitiesCrowdStrikeDataset
+from .vulnerabilities_crowd_strike_mock import VulnerabilitiesCrowdStrikeMock
 from .vulnerabilities_nucleus import VulnerabilitiesNucleus
 from .vulnerabilities_qualys_cloud import VulnerabilitiesQualysCloud
 from .vulnerabilities_qualys_cloud_dataset import VulnerabilitiesQualysCloudDataset
@@ -566,6 +569,7 @@ __all__ = [
     "ProviderConfig_TicketingTorq",
     "ProviderConfig_TicketingZendesk",
     "ProviderConfig_VulnerabilitiesCrowdstrike",
+    "ProviderConfig_VulnerabilitiesCrowdstrikeMock",
     "ProviderConfig_VulnerabilitiesNucleus",
     "ProviderConfig_VulnerabilitiesQualysCloud",
     "ProviderConfig_VulnerabilitiesQualysCloudMock",
@@ -673,6 +677,8 @@ __all__ = [
     "TorqCredential_OAuthClient",
     "TorqCredential_OAuthClientId",
     "VulnerabilitiesCrowdStrike",
+    "VulnerabilitiesCrowdStrikeDataset",
+    "VulnerabilitiesCrowdStrikeMock",
     "VulnerabilitiesNucleus",
     "VulnerabilitiesQualysCloud",
     "VulnerabilitiesQualysCloudDataset",
