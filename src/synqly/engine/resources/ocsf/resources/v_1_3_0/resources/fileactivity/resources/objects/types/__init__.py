@@ -90,6 +90,8 @@ from .tactic import Tactic
 from .technique import Technique
 from .timespan import Timespan
 from .timespan_type_id import TimespanTypeId
+from .url import Url
+from .url_category_ids import UrlCategoryIds
 from .user import User
 from .user_mfa_status_id import UserMfaStatusId
 from .user_risk_level_id import UserRiskLevelId
@@ -190,6 +192,8 @@ __all__ = [
     "Technique",
     "Timespan",
     "TimespanTypeId",
+    "Url",
+    "UrlCategoryIds",
     "User",
     "UserMfaStatusId",
     "UserRiskLevelId",

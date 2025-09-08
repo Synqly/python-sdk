@@ -12,6 +12,7 @@ from .file_type_id import FileTypeId
 from .fingerprint import Fingerprint
 from .object import Object
 from .product import Product
+from .url import Url
 from .user import User
 
 try:
@@ -178,6 +179,11 @@ class File(pydantic.BaseModel):
     uid: typing.Optional[str] = pydantic.Field(default=None)
     """
     The unique identifier of the file as defined by the storage system, such the file system file ID.
+    """
+
+    url: typing.Optional[Url] = pydantic.Field(default=None)
+    """
+    The URL object that pertains to the event or object. See specific usage.
     """
 
     version: typing.Optional[str] = pydantic.Field(default=None)

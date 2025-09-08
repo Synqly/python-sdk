@@ -85,6 +85,8 @@ from .ticket import Ticket
 from .ticket_type_id import TicketTypeId
 from .timespan import Timespan
 from .timespan_type_id import TimespanTypeId
+from .url import Url
+from .url_category_ids import UrlCategoryIds
 from .user import User
 from .user_mfa_status_id import UserMfaStatusId
 from .user_risk_level_id import UserRiskLevelId
@@ -180,6 +182,8 @@ __all__ = [
     "TicketTypeId",
     "Timespan",
     "TimespanTypeId",
+    "Url",
+    "UrlCategoryIds",
     "User",
     "UserMfaStatusId",
     "UserRiskLevelId",

@@ -34,6 +34,11 @@ class Sharing(pydantic.BaseModel):
     True if the recipients have permission to re-share the resource.
     """
 
+    link_id: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    Unique ID of a sharing link.
+    """
+
     permissions: typing.Optional[typing.List[SharingPermission]] = pydantic.Field(default=None)
     """
     List of permissions granted.
@@ -47,6 +52,11 @@ class Sharing(pydantic.BaseModel):
     scope_id: typing.Optional[SharingScopeId] = pydantic.Field(default=None)
     """
     The normalized identifier of the sharing scope.
+    """
+
+    sharing_action: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    Describes the nature of a sharing action, such as creating a link for others to access a resource.
     """
 
     def json(self, **kwargs: typing.Any) -> str:

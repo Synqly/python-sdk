@@ -40,7 +40,7 @@ except ImportError:
 
 class CloudActivity(pydantic.BaseModel):
     """
-    Cloud activity events report events and actions logged or collected from a cloud environment. This class extends Web Resources Activity with additional fields for cloud-specific metadata.
+    Cloud activity events report events and actions logged or collected from a cloud environment. This class is based on Web Resources Activity, but is more broad and suited to event logs with diverse types of data available.
     """
 
     activity_id: ActivityId = pydantic.Field()

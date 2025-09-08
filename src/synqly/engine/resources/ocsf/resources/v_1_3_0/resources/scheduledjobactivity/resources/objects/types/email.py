@@ -7,6 +7,7 @@ from ..........core.datetime_utils import serialize_datetime
 from ...base.types.email_address import EmailAddress
 from ...base.types.ip_address import IpAddress
 from ...base.types.timestamp import Timestamp
+from .file import File
 
 try:
     import pydantic.v1 as pydantic  # type: ignore
@@ -32,6 +33,11 @@ class Email(pydantic.BaseModel):
     delivered_to: typing.Optional[EmailAddress] = pydantic.Field(default=None)
     """
     The <strong>Delivered-To</strong> email header field.
+    """
+
+    files: typing.Optional[typing.List[File]] = pydantic.Field(default=None)
+    """
+    The files that are part of the event or object.
     """
 
     from_: EmailAddress = pydantic.Field(alias="from")
