@@ -4,46 +4,59 @@ import typing
 
 import httpx
 
+from .accounts.client import AccountsClient, AsyncAccountsClient
+from .audit.client import AsyncAuditClient, AuditClient
+from .auth.client import AsyncAuthClient, AuthClient
+from .bridges.client import AsyncBridgesClient, BridgesClient
+from .capabilities.client import AsyncCapabilitiesClient, CapabilitiesClient
 from .core.client_wrapper import AsyncClientWrapper, SyncClientWrapper
+from .credentials.client import AsyncCredentialsClient, CredentialsClient
 from .environment import SynqlyManagementEnvironment
-from .resources.accounts.client import AccountsClient, AsyncAccountsClient
-from .resources.audit.client import AsyncAuditClient, AuditClient
-from .resources.auth.client import AsyncAuthClient, AuthClient
-from .resources.bridges.client import AsyncBridgesClient, BridgesClient
-from .resources.capabilities.client import AsyncCapabilitiesClient, CapabilitiesClient
-from .resources.credentials.client import AsyncCredentialsClient, CredentialsClient
-from .resources.integration_points.client import AsyncIntegrationPointsClient, IntegrationPointsClient
-from .resources.integrations.client import AsyncIntegrationsClient, IntegrationsClient
-from .resources.mappings.client import AsyncMappingsClient, MappingsClient
-from .resources.members.client import AsyncMembersClient, MembersClient
-from .resources.meta.client import AsyncMetaClient, MetaClient
-from .resources.operations.client import AsyncOperationsClient, OperationsClient
-from .resources.organization.client import AsyncOrganizationClient, OrganizationClient
-from .resources.organization_webhooks.client import AsyncOrganizationWebhooksClient, OrganizationWebhooksClient
-from .resources.permissionset.client import AsyncPermissionsetClient, PermissionsetClient
-from .resources.roles.client import AsyncRolesClient, RolesClient
-from .resources.status.client import AsyncStatusClient, StatusClient
-from .resources.sub_orgs.client import AsyncSubOrgsClient, SubOrgsClient
-from .resources.tokens.client import AsyncTokensClient, TokensClient
+from .integration_points.client import AsyncIntegrationPointsClient, IntegrationPointsClient
+from .integrations.client import AsyncIntegrationsClient, IntegrationsClient
+from .mappings.client import AsyncMappingsClient, MappingsClient
+from .members.client import AsyncMembersClient, MembersClient
+from .meta.client import AsyncMetaClient, MetaClient
+from .operations.client import AsyncOperationsClient, OperationsClient
+from .organization.client import AsyncOrganizationClient, OrganizationClient
+from .organization_webhooks.client import AsyncOrganizationWebhooksClient, OrganizationWebhooksClient
+from .permissionset.client import AsyncPermissionsetClient, PermissionsetClient
+from .roles.client import AsyncRolesClient, RolesClient
+from .status.client import AsyncStatusClient, StatusClient
+from .sub_orgs.client import AsyncSubOrgsClient, SubOrgsClient
+from .tokens.client import AsyncTokensClient, TokensClient
 
 
 class SynqlyManagement:
     """
-    Use this class to access the different functions within the SDK. You can instantiate any number of clients with different configuration that will propogate to these functions.
+    Use this class to access the different functions within the SDK. You can instantiate any number of clients with different configuration that will propagate to these functions.
 
-    Parameters:
-        - base_url: typing.Optional[str]. The base url to use for requests from the client.
+    Parameters
+    ----------
+    base_url : typing.Optional[str]
+        The base url to use for requests from the client.
 
-        - environment: SynqlyManagementEnvironment. The environment to use for requests from the client. from .environment import SynqlyManagementEnvironment
+    environment : SynqlyManagementEnvironment
+        The environment to use for requests from the client. from .environment import SynqlyManagementEnvironment
 
-                                                    Defaults to SynqlyManagementEnvironment.SYNQLY
 
-        - token: typing.Union[str, typing.Callable[[], str]].
 
-        - timeout: typing.Optional[float]. The timeout to be used, in seconds, for requests by default the timeout is 60 seconds.
+        Defaults to SynqlyManagementEnvironment.SYNQLY
 
-        - httpx_client: typing.Optional[httpx.Client]. The httpx client to use for making requests, a preconfigured client is used by default, however this is useful should you want to pass in any custom httpx configuration.
-    ---
+
+
+    token : typing.Union[str, typing.Callable[[], str]]
+    timeout : typing.Optional[float]
+        The timeout to be used, in seconds, for requests. By default the timeout is 60 seconds, unless a custom httpx client is used, in which case this default is not enforced.
+
+    follow_redirects : typing.Optional[bool]
+        Whether the default httpx client follows redirects or not, this is irrelevant if a custom httpx client is passed in.
+
+    httpx_client : typing.Optional[httpx.Client]
+        The httpx client to use for making requests, a preconfigured client is used by default, however this is useful should you want to pass in any custom httpx configuration.
+
+    Examples
+    --------
     from synqly.client import SynqlyManagement
 
     client = SynqlyManagement(
@@ -57,13 +70,20 @@ class SynqlyManagement:
         base_url: typing.Optional[str] = None,
         environment: SynqlyManagementEnvironment = SynqlyManagementEnvironment.SYNQLY,
         token: typing.Union[str, typing.Callable[[], str]],
-        timeout: typing.Optional[float] = 60,
+        timeout: typing.Optional[float] = None,
+        follow_redirects: typing.Optional[bool] = True,
         httpx_client: typing.Optional[httpx.Client] = None
     ):
+        _defaulted_timeout = timeout if timeout is not None else 60 if httpx_client is None else None
         self._client_wrapper = SyncClientWrapper(
             base_url=_get_base_url(base_url=base_url, environment=environment),
             token=token,
-            httpx_client=httpx.Client(timeout=timeout) if httpx_client is None else httpx_client,
+            httpx_client=httpx_client
+            if httpx_client is not None
+            else httpx.Client(timeout=_defaulted_timeout, follow_redirects=follow_redirects)
+            if follow_redirects is not None
+            else httpx.Client(timeout=_defaulted_timeout),
+            timeout=_defaulted_timeout,
         )
         self.accounts = AccountsClient(client_wrapper=self._client_wrapper)
         self.audit = AuditClient(client_wrapper=self._client_wrapper)
@@ -88,21 +108,34 @@ class SynqlyManagement:
 
 class AsyncSynqlyManagement:
     """
-    Use this class to access the different functions within the SDK. You can instantiate any number of clients with different configuration that will propogate to these functions.
+    Use this class to access the different functions within the SDK. You can instantiate any number of clients with different configuration that will propagate to these functions.
 
-    Parameters:
-        - base_url: typing.Optional[str]. The base url to use for requests from the client.
+    Parameters
+    ----------
+    base_url : typing.Optional[str]
+        The base url to use for requests from the client.
 
-        - environment: SynqlyManagementEnvironment. The environment to use for requests from the client. from .environment import SynqlyManagementEnvironment
+    environment : SynqlyManagementEnvironment
+        The environment to use for requests from the client. from .environment import SynqlyManagementEnvironment
 
-                                                    Defaults to SynqlyManagementEnvironment.SYNQLY
 
-        - token: typing.Union[str, typing.Callable[[], str]].
 
-        - timeout: typing.Optional[float]. The timeout to be used, in seconds, for requests by default the timeout is 60 seconds.
+        Defaults to SynqlyManagementEnvironment.SYNQLY
 
-        - httpx_client: typing.Optional[httpx.AsyncClient]. The httpx client to use for making requests, a preconfigured client is used by default, however this is useful should you want to pass in any custom httpx configuration.
-    ---
+
+
+    token : typing.Union[str, typing.Callable[[], str]]
+    timeout : typing.Optional[float]
+        The timeout to be used, in seconds, for requests. By default the timeout is 60 seconds, unless a custom httpx client is used, in which case this default is not enforced.
+
+    follow_redirects : typing.Optional[bool]
+        Whether the default httpx client follows redirects or not, this is irrelevant if a custom httpx client is passed in.
+
+    httpx_client : typing.Optional[httpx.AsyncClient]
+        The httpx client to use for making requests, a preconfigured client is used by default, however this is useful should you want to pass in any custom httpx configuration.
+
+    Examples
+    --------
     from synqly.client import AsyncSynqlyManagement
 
     client = AsyncSynqlyManagement(
@@ -116,13 +149,20 @@ class AsyncSynqlyManagement:
         base_url: typing.Optional[str] = None,
         environment: SynqlyManagementEnvironment = SynqlyManagementEnvironment.SYNQLY,
         token: typing.Union[str, typing.Callable[[], str]],
-        timeout: typing.Optional[float] = 60,
+        timeout: typing.Optional[float] = None,
+        follow_redirects: typing.Optional[bool] = True,
         httpx_client: typing.Optional[httpx.AsyncClient] = None
     ):
+        _defaulted_timeout = timeout if timeout is not None else 60 if httpx_client is None else None
         self._client_wrapper = AsyncClientWrapper(
             base_url=_get_base_url(base_url=base_url, environment=environment),
             token=token,
-            httpx_client=httpx.AsyncClient(timeout=timeout) if httpx_client is None else httpx_client,
+            httpx_client=httpx_client
+            if httpx_client is not None
+            else httpx.AsyncClient(timeout=_defaulted_timeout, follow_redirects=follow_redirects)
+            if follow_redirects is not None
+            else httpx.AsyncClient(timeout=_defaulted_timeout),
+            timeout=_defaulted_timeout,
         )
         self.accounts = AsyncAccountsClient(client_wrapper=self._client_wrapper)
         self.audit = AsyncAuditClient(client_wrapper=self._client_wrapper)
