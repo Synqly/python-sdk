@@ -296,6 +296,11 @@ class ProviderConfigId(str, enum.Enum):
     OpenSearch
     """
 
+    SINK_Q_RADAR = "sink_q_radar"
+    """
+    IBM QRadar Sink
+    """
+
     SINK_SPLUNK = "sink_splunk"
     """
     Splunk Enterprise Security
@@ -490,6 +495,7 @@ class ProviderConfigId(str, enum.Enum):
         sink_google_security_operations: typing.Callable[[], T_Result],
         sink_mock: typing.Callable[[], T_Result],
         sink_open_search: typing.Callable[[], T_Result],
+        sink_q_radar: typing.Callable[[], T_Result],
         sink_splunk: typing.Callable[[], T_Result],
         storage_aws_s_3: typing.Callable[[], T_Result],
         storage_azure_blob: typing.Callable[[], T_Result],
@@ -632,6 +638,8 @@ class ProviderConfigId(str, enum.Enum):
             return sink_mock()
         if self is ProviderConfigId.SINK_OPEN_SEARCH:
             return sink_open_search()
+        if self is ProviderConfigId.SINK_Q_RADAR:
+            return sink_q_radar()
         if self is ProviderConfigId.SINK_SPLUNK:
             return sink_splunk()
         if self is ProviderConfigId.STORAGE_AWS_S_3:

@@ -61,6 +61,7 @@ from .sink_google_sec_ops import SinkGoogleSecOps
 from .sink_google_security_operations import SinkGoogleSecurityOperations
 from .sink_mock import SinkMock
 from .sink_open_search import SinkOpenSearch
+from .sink_q_radar import SinkQRadar
 from .sink_splunk import SinkSplunk
 from .storage_aws_s_3 import StorageAwsS3
 from .storage_azure_blob import StorageAzureBlob
@@ -602,6 +603,15 @@ class ProviderConfig_SinkOpensearch(SinkOpenSearch):
         allow_population_by_field_name = True
 
 
+class ProviderConfig_SinkQRadar(SinkQRadar):
+    type: typing.Literal["sink_q_radar"]
+
+    class Config:
+        frozen = True
+        smart_union = True
+        allow_population_by_field_name = True
+
+
 class ProviderConfig_SinkSplunk(SinkSplunk):
     type: typing.Literal["sink_splunk"]
 
@@ -894,6 +904,7 @@ ProviderConfig = typing.Union[
     ProviderConfig_SinkGoogleSecurityOperations,
     ProviderConfig_SinkMockSink,
     ProviderConfig_SinkOpensearch,
+    ProviderConfig_SinkQRadar,
     ProviderConfig_SinkSplunk,
     ProviderConfig_StorageAwsS3,
     ProviderConfig_StorageAzureBlob,

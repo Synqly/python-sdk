@@ -207,6 +207,7 @@ from .provider_config import (
     ProviderConfig_SinkGoogleSecurityOperations,
     ProviderConfig_SinkMockSink,
     ProviderConfig_SinkOpensearch,
+    ProviderConfig_SinkQRadar,
     ProviderConfig_SinkSplunk,
     ProviderConfig_StorageAwsS3,
     ProviderConfig_StorageAzureBlob,
@@ -278,6 +279,7 @@ from .sink_google_sec_ops import SinkGoogleSecOps
 from .sink_google_security_operations import SinkGoogleSecurityOperations
 from .sink_mock import SinkMock
 from .sink_open_search import SinkOpenSearch
+from .sink_q_radar import SinkQRadar
 from .sink_splunk import SinkSplunk
 from .slack_credential import SlackCredential, SlackCredential_Token, SlackCredential_TokenId
 from .slack_webhook_credential import (
@@ -553,6 +555,7 @@ __all__ = [
     "ProviderConfig_SinkGoogleSecurityOperations",
     "ProviderConfig_SinkMockSink",
     "ProviderConfig_SinkOpensearch",
+    "ProviderConfig_SinkQRadar",
     "ProviderConfig_SinkSplunk",
     "ProviderConfig_StorageAwsS3",
     "ProviderConfig_StorageAzureBlob",
@@ -626,6 +629,7 @@ __all__ = [
     "SinkGoogleSecurityOperations",
     "SinkMock",
     "SinkOpenSearch",
+    "SinkQRadar",
     "SinkSplunk",
     "SlackCredential",
     "SlackCredential_Token",
