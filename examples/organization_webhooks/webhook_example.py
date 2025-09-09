@@ -54,7 +54,32 @@ received_webhooks: typing.List[mgmt.OrganizationWebhookPayload] = []
 webhook_secret = None
 
 
-# Create a Flask app to receive webhooks
+def validate_webhook_signature(payload_body, signature_header, integrator_key):
+    """
+    Validate a webhook signature from Synqly
+
+    Args:
+        payload_body (bytes): Raw request body
+        signature_header (str): Value from Synqly-Signature header
+        integrator_key (str): Your webhook secret (Integrator Key)
+
+    Returns:
+        bool: True if signature is valid, False otherwise
+    """
+    # Remove 'sha256=' prefix if present
+    received_signature = signature_header.replace('sha256=', '')
+
+    # Generate expected signature
+    expected_signature = hmac.new(
+        integrator_key.encode('utf-8'),
+        payload_body,
+        hashlib.sha256
+    ).hexdigest()
+
+    # Use timing-safe comparison
+    return hmac.compare_digest(received_signature, expected_signature)
+
+
 def create_flask_app():
     """Create and configure Flask application for webhook reception."""
     app = Flask(__name__)
@@ -67,25 +92,9 @@ def create_flask_app():
             payload = request.get_data()
             signature = request.headers.get('X-Synqly-Signature')
 
-            # Verify webhook signature if secret is available
-            if webhook_secret and signature:
-                # Extract timestamp and signature from header
-                # Format: t=1234567890,v1=signature
-                if ',' in signature:
-                    timestamp_part, sig_part = signature.split(',', 1)
-                    if timestamp_part.startswith('t=') and sig_part.startswith('v1='):
-                        expected_signature = hmac.new(
-                            webhook_secret.encode(),
-                            f"{timestamp_part}.{payload.decode()}".encode(),
-                            hashlib.sha256
-                        ).hexdigest()
-
-                        provided_signature = sig_part[4:]  # Remove 'v1=' prefix
-
-                        if not hmac.compare_digest(expected_signature, provided_signature):
-                            print("⚠️  Webhook signature verification failed")
-                            return jsonify({"error": "Invalid signature"}), 401
-                print("✅ Webhook signature verification passed")
+            if not validate_webhook_signature(payload, signature, webhook_secret):
+                print("❌ Webhook signature verification failed")
+                return jsonify({"error": "Invalid signature"}), 401
 
             # Parse JSON payload
             data = json.loads(payload.decode())
@@ -98,7 +107,7 @@ def create_flask_app():
 
             received_webhooks.append(webhook_payload)
 
-            print("✅ Webhook received!")
+            print("✅ Webhook received and validated")
             print(f"   Payload: {json.dumps(data, indent=4)}")
 
             return jsonify({"status": "received"}), 200
@@ -201,9 +210,16 @@ def main():
         print("\n🔧 Setting up organization webhook...")
         webhook_secret = generate_webhook_secret()
 
+        # In case the webhook already exists, delete it
+        try:
+            mgmt_client.organization_webhooks.delete(webhook_id="demo-webhook")
+        except mgmt.NotFoundError:
+            pass
+
         # Create new webhook for account creation events
         print("🆕 Creating new webhook...")
         webhook_config = mgmt_client.organization_webhooks.create(
+            request=mgmt.CreateOrganizationWebhookRequest(
             name="demo-webhook",
             fullname="Demo Webhook for Account Creation",
             environment="test",
@@ -211,7 +227,8 @@ def main():
             url=f"{public_url}/webhooks",
             secret=mgmt.OrganizationWebhookSecret(
                 value=webhook_secret,
-                expires=datetime.now() + timedelta(days=30)  # Expire in 30 days
+                    expires=datetime.now() + timedelta(days=30)  # Expire in 30 days
+                )
             )
         )
         webhook_id = webhook_config.result.id
@@ -224,8 +241,10 @@ def main():
         test_account_name = f"~test-account-{int(time.time())}"
 
         account_response = mgmt_client.accounts.create(
-            name=test_account_name,
-            environment="test",
+            request=mgmt.CreateAccountRequest(
+                name=test_account_name,
+                environment="test",
+            )
         )
         account_id = account_response.result.account.id
         print(f"✅ Created test account: {test_account_name} ({account_id})")
