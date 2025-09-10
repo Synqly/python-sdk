@@ -4,41 +4,54 @@ import typing
 
 import httpx
 
+from .appsec.client import AppsecClient, AsyncAppsecClient
+from .assets.client import AssetsClient, AsyncAssetsClient
+from .cloudsecurity.client import AsyncCloudsecurityClient, CloudsecurityClient
 from .core.client_wrapper import AsyncClientWrapper, SyncClientWrapper
+from .edr.client import AsyncEdrClient, EdrClient
 from .environment import SynqlyEngineEnvironment
-from .resources.appsec.client import AppsecClient, AsyncAppsecClient
-from .resources.assets.client import AssetsClient, AsyncAssetsClient
-from .resources.cloudsecurity.client import AsyncCloudsecurityClient, CloudsecurityClient
-from .resources.edr.client import AsyncEdrClient, EdrClient
-from .resources.hooks.client import AsyncHooksClient, HooksClient
-from .resources.identity.client import AsyncIdentityClient, IdentityClient
-from .resources.integration_webhooks.client import AsyncIntegrationWebhooksClient, IntegrationWebhooksClient
-from .resources.notifications.client import AsyncNotificationsClient, NotificationsClient
-from .resources.operations.client import AsyncOperationsClient, OperationsClient
-from .resources.siem.client import AsyncSiemClient, SiemClient
-from .resources.sink.client import AsyncSinkClient, SinkClient
-from .resources.storage.client import AsyncStorageClient, StorageClient
-from .resources.ticketing.client import AsyncTicketingClient, TicketingClient
-from .resources.vulnerabilities.client import AsyncVulnerabilitiesClient, VulnerabilitiesClient
+from .hooks.client import AsyncHooksClient, HooksClient
+from .identity.client import AsyncIdentityClient, IdentityClient
+from .integration_webhooks.client import AsyncIntegrationWebhooksClient, IntegrationWebhooksClient
+from .notifications.client import AsyncNotificationsClient, NotificationsClient
+from .operations.client import AsyncOperationsClient, OperationsClient
+from .siem.client import AsyncSiemClient, SiemClient
+from .sink.client import AsyncSinkClient, SinkClient
+from .storage.client import AsyncStorageClient, StorageClient
+from .ticketing.client import AsyncTicketingClient, TicketingClient
+from .vulnerabilities.client import AsyncVulnerabilitiesClient, VulnerabilitiesClient
 
 
 class SynqlyEngine:
     """
-    Use this class to access the different functions within the SDK. You can instantiate any number of clients with different configuration that will propogate to these functions.
+    Use this class to access the different functions within the SDK. You can instantiate any number of clients with different configuration that will propagate to these functions.
 
-    Parameters:
-        - base_url: typing.Optional[str]. The base url to use for requests from the client.
+    Parameters
+    ----------
+    base_url : typing.Optional[str]
+        The base url to use for requests from the client.
 
-        - environment: SynqlyEngineEnvironment. The environment to use for requests from the client. from .environment import SynqlyEngineEnvironment
+    environment : SynqlyEngineEnvironment
+        The environment to use for requests from the client. from .environment import SynqlyEngineEnvironment
 
-                                                Defaults to SynqlyEngineEnvironment.SYNQLY
 
-        - token: typing.Union[str, typing.Callable[[], str]].
 
-        - timeout: typing.Optional[float]. The timeout to be used, in seconds, for requests by default the timeout is 60 seconds.
+        Defaults to SynqlyEngineEnvironment.SYNQLY
 
-        - httpx_client: typing.Optional[httpx.Client]. The httpx client to use for making requests, a preconfigured client is used by default, however this is useful should you want to pass in any custom httpx configuration.
-    ---
+
+
+    token : typing.Union[str, typing.Callable[[], str]]
+    timeout : typing.Optional[float]
+        The timeout to be used, in seconds, for requests. By default the timeout is 300 seconds, unless a custom httpx client is used, in which case this default is not enforced.
+
+    follow_redirects : typing.Optional[bool]
+        Whether the default httpx client follows redirects or not, this is irrelevant if a custom httpx client is passed in.
+
+    httpx_client : typing.Optional[httpx.Client]
+        The httpx client to use for making requests, a preconfigured client is used by default, however this is useful should you want to pass in any custom httpx configuration.
+
+    Examples
+    --------
     from synqly.client import SynqlyEngine
 
     client = SynqlyEngine(
@@ -52,13 +65,20 @@ class SynqlyEngine:
         base_url: typing.Optional[str] = None,
         environment: SynqlyEngineEnvironment = SynqlyEngineEnvironment.SYNQLY,
         token: typing.Union[str, typing.Callable[[], str]],
-        timeout: typing.Optional[float] = 60,
+        timeout: typing.Optional[float] = None,
+        follow_redirects: typing.Optional[bool] = True,
         httpx_client: typing.Optional[httpx.Client] = None
     ):
+        _defaulted_timeout = timeout if timeout is not None else 300 if httpx_client is None else None
         self._client_wrapper = SyncClientWrapper(
             base_url=_get_base_url(base_url=base_url, environment=environment),
             token=token,
-            httpx_client=httpx.Client(timeout=timeout) if httpx_client is None else httpx_client,
+            httpx_client=httpx_client
+            if httpx_client is not None
+            else httpx.Client(timeout=_defaulted_timeout, follow_redirects=follow_redirects)
+            if follow_redirects is not None
+            else httpx.Client(timeout=_defaulted_timeout),
+            timeout=_defaulted_timeout,
         )
         self.appsec = AppsecClient(client_wrapper=self._client_wrapper)
         self.assets = AssetsClient(client_wrapper=self._client_wrapper)
@@ -78,21 +98,34 @@ class SynqlyEngine:
 
 class AsyncSynqlyEngine:
     """
-    Use this class to access the different functions within the SDK. You can instantiate any number of clients with different configuration that will propogate to these functions.
+    Use this class to access the different functions within the SDK. You can instantiate any number of clients with different configuration that will propagate to these functions.
 
-    Parameters:
-        - base_url: typing.Optional[str]. The base url to use for requests from the client.
+    Parameters
+    ----------
+    base_url : typing.Optional[str]
+        The base url to use for requests from the client.
 
-        - environment: SynqlyEngineEnvironment. The environment to use for requests from the client. from .environment import SynqlyEngineEnvironment
+    environment : SynqlyEngineEnvironment
+        The environment to use for requests from the client. from .environment import SynqlyEngineEnvironment
 
-                                                Defaults to SynqlyEngineEnvironment.SYNQLY
 
-        - token: typing.Union[str, typing.Callable[[], str]].
 
-        - timeout: typing.Optional[float]. The timeout to be used, in seconds, for requests by default the timeout is 60 seconds.
+        Defaults to SynqlyEngineEnvironment.SYNQLY
 
-        - httpx_client: typing.Optional[httpx.AsyncClient]. The httpx client to use for making requests, a preconfigured client is used by default, however this is useful should you want to pass in any custom httpx configuration.
-    ---
+
+
+    token : typing.Union[str, typing.Callable[[], str]]
+    timeout : typing.Optional[float]
+        The timeout to be used, in seconds, for requests. By default the timeout is 300 seconds, unless a custom httpx client is used, in which case this default is not enforced.
+
+    follow_redirects : typing.Optional[bool]
+        Whether the default httpx client follows redirects or not, this is irrelevant if a custom httpx client is passed in.
+
+    httpx_client : typing.Optional[httpx.AsyncClient]
+        The httpx client to use for making requests, a preconfigured client is used by default, however this is useful should you want to pass in any custom httpx configuration.
+
+    Examples
+    --------
     from synqly.client import AsyncSynqlyEngine
 
     client = AsyncSynqlyEngine(
@@ -106,13 +139,20 @@ class AsyncSynqlyEngine:
         base_url: typing.Optional[str] = None,
         environment: SynqlyEngineEnvironment = SynqlyEngineEnvironment.SYNQLY,
         token: typing.Union[str, typing.Callable[[], str]],
-        timeout: typing.Optional[float] = 60,
+        timeout: typing.Optional[float] = None,
+        follow_redirects: typing.Optional[bool] = True,
         httpx_client: typing.Optional[httpx.AsyncClient] = None
     ):
+        _defaulted_timeout = timeout if timeout is not None else 300 if httpx_client is None else None
         self._client_wrapper = AsyncClientWrapper(
             base_url=_get_base_url(base_url=base_url, environment=environment),
             token=token,
-            httpx_client=httpx.AsyncClient(timeout=timeout) if httpx_client is None else httpx_client,
+            httpx_client=httpx_client
+            if httpx_client is not None
+            else httpx.AsyncClient(timeout=_defaulted_timeout, follow_redirects=follow_redirects)
+            if follow_redirects is not None
+            else httpx.AsyncClient(timeout=_defaulted_timeout),
+            timeout=_defaulted_timeout,
         )
         self.appsec = AsyncAppsecClient(client_wrapper=self._client_wrapper)
         self.assets = AsyncAssetsClient(client_wrapper=self._client_wrapper)
