@@ -32,7 +32,6 @@ class ServiceNowCredential_Basic(UncheckedBaseModel):
         )
 
     class Config:
-        frozen = True
         smart_union = True
         extra = pydantic_v1.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}
@@ -43,7 +42,6 @@ class ServiceNowCredential_BasicId(UncheckedBaseModel):
     type: typing.Literal["basic_id"] = "basic_id"
 
     class Config:
-        frozen = True
         smart_union = True
 
 
@@ -64,7 +62,6 @@ class ServiceNowCredential_Token(UncheckedBaseModel):
         )
 
     class Config:
-        frozen = True
         smart_union = True
         extra = pydantic_v1.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}
@@ -75,7 +72,6 @@ class ServiceNowCredential_TokenId(UncheckedBaseModel):
     type: typing.Literal["token_id"] = "token_id"
 
     class Config:
-        frozen = True
         smart_union = True
 
 

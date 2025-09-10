@@ -41,7 +41,6 @@ class Actor_Agent(UncheckedBaseModel):
         )
 
     class Config:
-        frozen = True
         smart_union = True
         extra = pydantic_v1.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}
@@ -70,7 +69,6 @@ class Actor_AgentSummary(UncheckedBaseModel):
         )
 
     class Config:
-        frozen = True
         smart_union = True
         extra = pydantic_v1.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}
@@ -99,7 +97,6 @@ class Actor_GroupSummary(UncheckedBaseModel):
         )
 
     class Config:
-        frozen = True
         smart_union = True
         extra = pydantic_v1.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}
@@ -128,7 +125,6 @@ class Actor_ScheduleSummary(UncheckedBaseModel):
         )
 
     class Config:
-        frozen = True
         smart_union = True
         extra = pydantic_v1.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}

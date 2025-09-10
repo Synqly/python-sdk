@@ -34,7 +34,6 @@ class TeamsCredential_OAuthClient(UncheckedBaseModel):
         )
 
     class Config:
-        frozen = True
         smart_union = True
         extra = pydantic_v1.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}
@@ -45,7 +44,6 @@ class TeamsCredential_OAuthClientId(UncheckedBaseModel):
     type: typing.Literal["o_auth_client_id"] = "o_auth_client_id"
 
     class Config:
-        frozen = True
         smart_union = True
 
 
@@ -66,7 +64,6 @@ class TeamsCredential_WebhookUrl(UncheckedBaseModel):
         )
 
     class Config:
-        frozen = True
         smart_union = True
         extra = pydantic_v1.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}
@@ -77,7 +74,6 @@ class TeamsCredential_WebhookUrlId(UncheckedBaseModel):
     type: typing.Literal["webhook_url_id"] = "webhook_url_id"
 
     class Config:
-        frozen = True
         smart_union = True
 
 

@@ -30,7 +30,6 @@ class SlackWebhookCredential_Secret(UncheckedBaseModel):
         )
 
     class Config:
-        frozen = True
         smart_union = True
         extra = pydantic_v1.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}
@@ -41,7 +40,6 @@ class SlackWebhookCredential_SecretId(UncheckedBaseModel):
     type: typing.Literal["secret_id"] = "secret_id"
 
     class Config:
-        frozen = True
         smart_union = True
 
 

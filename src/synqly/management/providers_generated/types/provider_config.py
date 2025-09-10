@@ -99,7 +99,6 @@ class ProviderConfig_AppsecHclAppscanOnCloud(UncheckedBaseModel):
         )
 
     class Config:
-        frozen = True
         smart_union = True
         extra = pydantic_v1.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}
@@ -123,7 +122,6 @@ class ProviderConfig_AppsecOpentextCoreApplicationSecurity(UncheckedBaseModel):
         )
 
     class Config:
-        frozen = True
         smart_union = True
         extra = pydantic_v1.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}
@@ -147,7 +145,6 @@ class ProviderConfig_AssetsArmisCentrix(UncheckedBaseModel):
         )
 
     class Config:
-        frozen = True
         smart_union = True
         extra = pydantic_v1.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}
@@ -170,7 +167,6 @@ class ProviderConfig_AssetsArmisCentrixMock(UncheckedBaseModel):
         )
 
     class Config:
-        frozen = True
         smart_union = True
         extra = pydantic_v1.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}
@@ -194,7 +190,6 @@ class ProviderConfig_AssetsAxonius(UncheckedBaseModel):
         )
 
     class Config:
-        frozen = True
         smart_union = True
         extra = pydantic_v1.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}
@@ -217,7 +212,6 @@ class ProviderConfig_AssetsAxoniusMock(UncheckedBaseModel):
         )
 
     class Config:
-        frozen = True
         smart_union = True
         extra = pydantic_v1.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}
@@ -241,7 +235,6 @@ class ProviderConfig_AssetsCrowdstrike(UncheckedBaseModel):
         )
 
     class Config:
-        frozen = True
         smart_union = True
         extra = pydantic_v1.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}
@@ -264,7 +257,6 @@ class ProviderConfig_AssetsCrowdstrikeMock(UncheckedBaseModel):
         )
 
     class Config:
-        frozen = True
         smart_union = True
         extra = pydantic_v1.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}
@@ -288,7 +280,6 @@ class ProviderConfig_AssetsNozomiVantage(UncheckedBaseModel):
         )
 
     class Config:
-        frozen = True
         smart_union = True
         extra = pydantic_v1.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}
@@ -311,7 +302,6 @@ class ProviderConfig_AssetsNozomiVantageMock(UncheckedBaseModel):
         )
 
     class Config:
-        frozen = True
         smart_union = True
         extra = pydantic_v1.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}
@@ -335,7 +325,6 @@ class ProviderConfig_AssetsQualysCloud(UncheckedBaseModel):
         )
 
     class Config:
-        frozen = True
         smart_union = True
         extra = pydantic_v1.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}
@@ -358,7 +347,6 @@ class ProviderConfig_AssetsQualysCloudMock(UncheckedBaseModel):
         )
 
     class Config:
-        frozen = True
         smart_union = True
         extra = pydantic_v1.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}
@@ -382,7 +370,6 @@ class ProviderConfig_AssetsServicenow(UncheckedBaseModel):
         )
 
     class Config:
-        frozen = True
         smart_union = True
         extra = pydantic_v1.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}
@@ -405,7 +392,6 @@ class ProviderConfig_AssetsServicenowMock(UncheckedBaseModel):
         )
 
     class Config:
-        frozen = True
         smart_union = True
         extra = pydantic_v1.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}
@@ -429,7 +415,6 @@ class ProviderConfig_AssetsSevco(UncheckedBaseModel):
         )
 
     class Config:
-        frozen = True
         smart_union = True
         extra = pydantic_v1.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}
@@ -452,7 +437,6 @@ class ProviderConfig_AssetsSevcoMock(UncheckedBaseModel):
         )
 
     class Config:
-        frozen = True
         smart_union = True
         extra = pydantic_v1.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}
@@ -476,7 +460,6 @@ class ProviderConfig_AssetsTaniumCloud(UncheckedBaseModel):
         )
 
     class Config:
-        frozen = True
         smart_union = True
         extra = pydantic_v1.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}
@@ -499,7 +482,6 @@ class ProviderConfig_AssetsTaniumCloudMock(UncheckedBaseModel):
         )
 
     class Config:
-        frozen = True
         smart_union = True
         extra = pydantic_v1.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}
@@ -523,7 +505,6 @@ class ProviderConfig_CloudsecurityAws(UncheckedBaseModel):
         )
 
     class Config:
-        frozen = True
         smart_union = True
         extra = pydantic_v1.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}
@@ -547,7 +528,6 @@ class ProviderConfig_CloudsecurityCrowdstrike(UncheckedBaseModel):
         )
 
     class Config:
-        frozen = True
         smart_union = True
         extra = pydantic_v1.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}
@@ -573,7 +553,6 @@ class ProviderConfig_CloudsecurityDefender(UncheckedBaseModel):
         )
 
     class Config:
-        frozen = True
         smart_union = True
         extra = pydantic_v1.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}
@@ -597,7 +576,6 @@ class ProviderConfig_EdrCrowdstrike(UncheckedBaseModel):
         )
 
     class Config:
-        frozen = True
         smart_union = True
         extra = pydantic_v1.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}
@@ -622,7 +600,6 @@ class ProviderConfig_EdrDefender(UncheckedBaseModel):
         )
 
     class Config:
-        frozen = True
         smart_union = True
         extra = pydantic_v1.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}
@@ -647,7 +624,6 @@ class ProviderConfig_EdrMalwarebytes(UncheckedBaseModel):
         )
 
     class Config:
-        frozen = True
         smart_union = True
         extra = pydantic_v1.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}
@@ -673,7 +649,6 @@ class ProviderConfig_EdrSentinelone(UncheckedBaseModel):
         )
 
     class Config:
-        frozen = True
         smart_union = True
         extra = pydantic_v1.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}
@@ -697,7 +672,6 @@ class ProviderConfig_EdrSophos(UncheckedBaseModel):
         )
 
     class Config:
-        frozen = True
         smart_union = True
         extra = pydantic_v1.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}
@@ -721,7 +695,6 @@ class ProviderConfig_EdrTanium(UncheckedBaseModel):
         )
 
     class Config:
-        frozen = True
         smart_union = True
         extra = pydantic_v1.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}
@@ -746,7 +719,6 @@ class ProviderConfig_IdentityEntraId(UncheckedBaseModel):
         )
 
     class Config:
-        frozen = True
         smart_union = True
         extra = pydantic_v1.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}
@@ -771,7 +743,6 @@ class ProviderConfig_IdentityGoogle(UncheckedBaseModel):
         )
 
     class Config:
-        frozen = True
         smart_union = True
         extra = pydantic_v1.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}
@@ -795,7 +766,6 @@ class ProviderConfig_IdentityOkta(UncheckedBaseModel):
         )
 
     class Config:
-        frozen = True
         smart_union = True
         extra = pydantic_v1.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}
@@ -822,7 +792,6 @@ class ProviderConfig_IdentityPingone(UncheckedBaseModel):
         )
 
     class Config:
-        frozen = True
         smart_union = True
         extra = pydantic_v1.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}
@@ -846,7 +815,6 @@ class ProviderConfig_NotificationsJira(UncheckedBaseModel):
         )
 
     class Config:
-        frozen = True
         smart_union = True
         extra = pydantic_v1.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}
@@ -869,7 +837,6 @@ class ProviderConfig_NotificationsMockNotifications(UncheckedBaseModel):
         )
 
     class Config:
-        frozen = True
         smart_union = True
         extra = pydantic_v1.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}
@@ -894,7 +861,6 @@ class ProviderConfig_NotificationsSlack(UncheckedBaseModel):
         )
 
     class Config:
-        frozen = True
         smart_union = True
         extra = pydantic_v1.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}
@@ -917,7 +883,6 @@ class ProviderConfig_NotificationsSlackWebhook(UncheckedBaseModel):
         )
 
     class Config:
-        frozen = True
         smart_union = True
         extra = pydantic_v1.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}
@@ -944,7 +909,6 @@ class ProviderConfig_NotificationsTeams(UncheckedBaseModel):
         )
 
     class Config:
-        frozen = True
         smart_union = True
         extra = pydantic_v1.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}
@@ -970,7 +934,6 @@ class ProviderConfig_SiemCrowdstrike(UncheckedBaseModel):
         )
 
     class Config:
-        frozen = True
         smart_union = True
         extra = pydantic_v1.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}
@@ -999,7 +962,6 @@ class ProviderConfig_SiemElasticsearch(UncheckedBaseModel):
         )
 
     class Config:
-        frozen = True
         smart_union = True
         extra = pydantic_v1.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}
@@ -1026,7 +988,6 @@ class ProviderConfig_SiemGoogleChronicle(UncheckedBaseModel):
         )
 
     class Config:
-        frozen = True
         smart_union = True
         extra = pydantic_v1.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}
@@ -1053,7 +1014,6 @@ class ProviderConfig_SiemGoogleSecurityOperations(UncheckedBaseModel):
         )
 
     class Config:
-        frozen = True
         smart_union = True
         extra = pydantic_v1.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}
@@ -1076,7 +1036,6 @@ class ProviderConfig_SiemMockSiem(UncheckedBaseModel):
         )
 
     class Config:
-        frozen = True
         smart_union = True
         extra = pydantic_v1.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}
@@ -1103,7 +1062,6 @@ class ProviderConfig_SiemOpensearch(UncheckedBaseModel):
         )
 
     class Config:
-        frozen = True
         smart_union = True
         extra = pydantic_v1.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}
@@ -1129,7 +1087,6 @@ class ProviderConfig_SiemQRadar(UncheckedBaseModel):
         )
 
     class Config:
-        frozen = True
         smart_union = True
         extra = pydantic_v1.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}
@@ -1153,7 +1110,6 @@ class ProviderConfig_SiemRapid7Insightidr(UncheckedBaseModel):
         )
 
     class Config:
-        frozen = True
         smart_union = True
         extra = pydantic_v1.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}
@@ -1187,7 +1143,6 @@ class ProviderConfig_SiemSentinel(UncheckedBaseModel):
         )
 
     class Config:
-        frozen = True
         smart_union = True
         extra = pydantic_v1.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}
@@ -1217,7 +1172,6 @@ class ProviderConfig_SiemSplunk(UncheckedBaseModel):
         )
 
     class Config:
-        frozen = True
         smart_union = True
         extra = pydantic_v1.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}
@@ -1244,7 +1198,6 @@ class ProviderConfig_SiemSumoLogic(UncheckedBaseModel):
         )
 
     class Config:
-        frozen = True
         smart_union = True
         extra = pydantic_v1.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}
@@ -1270,7 +1223,6 @@ class ProviderConfig_SinkAwsS3(UncheckedBaseModel):
         )
 
     class Config:
-        frozen = True
         smart_union = True
         extra = pydantic_v1.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}
@@ -1295,7 +1247,6 @@ class ProviderConfig_SinkAwsSecurityLake(UncheckedBaseModel):
         )
 
     class Config:
-        frozen = True
         smart_union = True
         extra = pydantic_v1.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}
@@ -1320,7 +1271,6 @@ class ProviderConfig_SinkAwsSqs(UncheckedBaseModel):
         )
 
     class Config:
-        frozen = True
         smart_union = True
         extra = pydantic_v1.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}
@@ -1348,7 +1298,6 @@ class ProviderConfig_SinkAzureMonitorLogs(UncheckedBaseModel):
         )
 
     class Config:
-        frozen = True
         smart_union = True
         extra = pydantic_v1.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}
@@ -1372,7 +1321,6 @@ class ProviderConfig_SinkCrowdstrikeHec(UncheckedBaseModel):
         )
 
     class Config:
-        frozen = True
         smart_union = True
         extra = pydantic_v1.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}
@@ -1399,7 +1347,6 @@ class ProviderConfig_SinkElasticsearch(UncheckedBaseModel):
         )
 
     class Config:
-        frozen = True
         smart_union = True
         extra = pydantic_v1.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}
@@ -1424,7 +1371,6 @@ class ProviderConfig_SinkGoogleSecOps(UncheckedBaseModel):
         )
 
     class Config:
-        frozen = True
         smart_union = True
         extra = pydantic_v1.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}
@@ -1451,7 +1397,6 @@ class ProviderConfig_SinkGoogleSecurityOperations(UncheckedBaseModel):
         )
 
     class Config:
-        frozen = True
         smart_union = True
         extra = pydantic_v1.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}
@@ -1474,7 +1419,6 @@ class ProviderConfig_SinkMockSink(UncheckedBaseModel):
         )
 
     class Config:
-        frozen = True
         smart_union = True
         extra = pydantic_v1.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}
@@ -1500,7 +1444,6 @@ class ProviderConfig_SinkOpensearch(UncheckedBaseModel):
         )
 
     class Config:
-        frozen = True
         smart_union = True
         extra = pydantic_v1.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}
@@ -1525,7 +1468,6 @@ class ProviderConfig_SinkQRadar(UncheckedBaseModel):
         )
 
     class Config:
-        frozen = True
         smart_union = True
         extra = pydantic_v1.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}
@@ -1553,7 +1495,6 @@ class ProviderConfig_SinkSplunk(UncheckedBaseModel):
         )
 
     class Config:
-        frozen = True
         smart_union = True
         extra = pydantic_v1.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}
@@ -1579,7 +1520,6 @@ class ProviderConfig_StorageAwsS3(UncheckedBaseModel):
         )
 
     class Config:
-        frozen = True
         smart_union = True
         extra = pydantic_v1.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}
@@ -1603,7 +1543,6 @@ class ProviderConfig_StorageAzureBlob(UncheckedBaseModel):
         )
 
     class Config:
-        frozen = True
         smart_union = True
         extra = pydantic_v1.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}
@@ -1628,7 +1567,6 @@ class ProviderConfig_StorageGcs(UncheckedBaseModel):
         )
 
     class Config:
-        frozen = True
         smart_union = True
         extra = pydantic_v1.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}
@@ -1651,7 +1589,6 @@ class ProviderConfig_StorageMockStorage(UncheckedBaseModel):
         )
 
     class Config:
-        frozen = True
         smart_union = True
         extra = pydantic_v1.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}
@@ -1677,7 +1614,6 @@ class ProviderConfig_TicketingAutotask(UncheckedBaseModel):
         )
 
     class Config:
-        frozen = True
         smart_union = True
         extra = pydantic_v1.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}
@@ -1701,7 +1637,6 @@ class ProviderConfig_TicketingFreshdesk(UncheckedBaseModel):
         )
 
     class Config:
-        frozen = True
         smart_union = True
         extra = pydantic_v1.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}
@@ -1728,7 +1663,6 @@ class ProviderConfig_TicketingJira(UncheckedBaseModel):
         )
 
     class Config:
-        frozen = True
         smart_union = True
         extra = pydantic_v1.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}
@@ -1755,7 +1689,6 @@ class ProviderConfig_TicketingJiraServiceManagement(UncheckedBaseModel):
         )
 
     class Config:
-        frozen = True
         smart_union = True
         extra = pydantic_v1.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}
@@ -1779,7 +1712,6 @@ class ProviderConfig_TicketingMockTicketing(UncheckedBaseModel):
         )
 
     class Config:
-        frozen = True
         smart_union = True
         extra = pydantic_v1.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}
@@ -1803,7 +1735,6 @@ class ProviderConfig_TicketingPagerduty(UncheckedBaseModel):
         )
 
     class Config:
-        frozen = True
         smart_union = True
         extra = pydantic_v1.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}
@@ -1829,7 +1760,6 @@ class ProviderConfig_TicketingServicenow(UncheckedBaseModel):
         )
 
     class Config:
-        frozen = True
         smart_union = True
         extra = pydantic_v1.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}
@@ -1855,7 +1785,6 @@ class ProviderConfig_TicketingServicenowSir(UncheckedBaseModel):
         )
 
     class Config:
-        frozen = True
         smart_union = True
         extra = pydantic_v1.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}
@@ -1879,7 +1808,6 @@ class ProviderConfig_TicketingTorq(UncheckedBaseModel):
         )
 
     class Config:
-        frozen = True
         smart_union = True
         extra = pydantic_v1.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}
@@ -1903,7 +1831,6 @@ class ProviderConfig_TicketingZendesk(UncheckedBaseModel):
         )
 
     class Config:
-        frozen = True
         smart_union = True
         extra = pydantic_v1.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}
@@ -1927,7 +1854,6 @@ class ProviderConfig_VulnerabilitiesCrowdstrike(UncheckedBaseModel):
         )
 
     class Config:
-        frozen = True
         smart_union = True
         extra = pydantic_v1.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}
@@ -1950,7 +1876,6 @@ class ProviderConfig_VulnerabilitiesCrowdstrikeMock(UncheckedBaseModel):
         )
 
     class Config:
-        frozen = True
         smart_union = True
         extra = pydantic_v1.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}
@@ -1975,7 +1900,6 @@ class ProviderConfig_VulnerabilitiesNucleus(UncheckedBaseModel):
         )
 
     class Config:
-        frozen = True
         smart_union = True
         extra = pydantic_v1.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}
@@ -1999,7 +1923,6 @@ class ProviderConfig_VulnerabilitiesQualysCloud(UncheckedBaseModel):
         )
 
     class Config:
-        frozen = True
         smart_union = True
         extra = pydantic_v1.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}
@@ -2022,7 +1945,6 @@ class ProviderConfig_VulnerabilitiesQualysCloudMock(UncheckedBaseModel):
         )
 
     class Config:
-        frozen = True
         smart_union = True
         extra = pydantic_v1.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}
@@ -2046,7 +1968,6 @@ class ProviderConfig_VulnerabilitiesRapid7InsightCloud(UncheckedBaseModel):
         )
 
     class Config:
-        frozen = True
         smart_union = True
         extra = pydantic_v1.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}
@@ -2069,7 +1990,6 @@ class ProviderConfig_VulnerabilitiesRapid7InsightCloudMock(UncheckedBaseModel):
         )
 
     class Config:
-        frozen = True
         smart_union = True
         extra = pydantic_v1.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}
@@ -2093,7 +2013,6 @@ class ProviderConfig_VulnerabilitiesServicenowVr(UncheckedBaseModel):
         )
 
     class Config:
-        frozen = True
         smart_union = True
         extra = pydantic_v1.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}
@@ -2117,7 +2036,6 @@ class ProviderConfig_VulnerabilitiesTaniumCloud(UncheckedBaseModel):
         )
 
     class Config:
-        frozen = True
         smart_union = True
         extra = pydantic_v1.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}
@@ -2140,7 +2058,6 @@ class ProviderConfig_VulnerabilitiesTaniumCloudMock(UncheckedBaseModel):
         )
 
     class Config:
-        frozen = True
         smart_union = True
         extra = pydantic_v1.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}
@@ -2164,7 +2081,6 @@ class ProviderConfig_VulnerabilitiesTenableCloud(UncheckedBaseModel):
         )
 
     class Config:
-        frozen = True
         smart_union = True
         extra = pydantic_v1.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}

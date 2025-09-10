@@ -30,7 +30,6 @@ class SplunkHecToken_Token(UncheckedBaseModel):
         )
 
     class Config:
-        frozen = True
         smart_union = True
         extra = pydantic_v1.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}
@@ -41,7 +40,6 @@ class SplunkHecToken_TokenId(UncheckedBaseModel):
     type: typing.Literal["token_id"] = "token_id"
 
     class Config:
-        frozen = True
         smart_union = True
 
 

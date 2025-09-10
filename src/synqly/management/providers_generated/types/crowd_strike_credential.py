@@ -33,7 +33,6 @@ class CrowdStrikeCredential_OAuthClient(UncheckedBaseModel):
         )
 
     class Config:
-        frozen = True
         smart_union = True
         extra = pydantic_v1.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}
@@ -44,7 +43,6 @@ class CrowdStrikeCredential_OAuthClientId(UncheckedBaseModel):
     type: typing.Literal["o_auth_client_id"] = "o_auth_client_id"
 
     class Config:
-        frozen = True
         smart_union = True
 
 

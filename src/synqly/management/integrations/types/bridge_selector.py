@@ -14,7 +14,6 @@ class BridgeSelector_Id(UncheckedBaseModel):
     type: typing.Literal["id"] = "id"
 
     class Config:
-        frozen = True
         smart_union = True
 
 
@@ -23,7 +22,6 @@ class BridgeSelector_Labels(UncheckedBaseModel):
     type: typing.Literal["labels"] = "labels"
 
     class Config:
-        frozen = True
         smart_union = True
 
 

@@ -1963,7 +1963,6 @@ class Event_AccountChange(UncheckedBaseModel):
         )
 
     class Config:
-        frozen = True
         smart_union = True
         extra = pydantic_v1.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}
@@ -2024,7 +2023,6 @@ class Event_ApiActivity(UncheckedBaseModel):
         )
 
     class Config:
-        frozen = True
         smart_union = True
         extra = pydantic_v1.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}
@@ -2087,7 +2085,6 @@ class Event_EntityManagement(UncheckedBaseModel):
         )
 
     class Config:
-        frozen = True
         smart_union = True
         extra = pydantic_v1.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}
@@ -2160,7 +2157,6 @@ class Event_Authentication(UncheckedBaseModel):
         )
 
     class Config:
-        frozen = True
         smart_union = True
         extra = pydantic_v1.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}
@@ -2223,7 +2219,6 @@ class Event_AuthorizeSession(UncheckedBaseModel):
         )
 
     class Config:
-        frozen = True
         smart_union = True
         extra = pydantic_v1.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}
@@ -2277,7 +2272,6 @@ class Event_BaseEvent(UncheckedBaseModel):
         )
 
     class Config:
-        frozen = True
         smart_union = True
         extra = pydantic_v1.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}
@@ -2344,7 +2338,6 @@ class Event_ComplianceFinding(UncheckedBaseModel):
         )
 
     class Config:
-        frozen = True
         smart_union = True
         extra = pydantic_v1.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}
@@ -2401,7 +2394,6 @@ class Event_DeviceConfigState(UncheckedBaseModel):
         )
 
     class Config:
-        frozen = True
         smart_union = True
         extra = pydantic_v1.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}
@@ -2487,7 +2479,6 @@ class Event_DetectionFinding(UncheckedBaseModel):
         )
 
     class Config:
-        frozen = True
         smart_union = True
         extra = pydantic_v1.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}
@@ -2582,7 +2573,6 @@ class Event_DnsActivity(UncheckedBaseModel):
         )
 
     class Config:
-        frozen = True
         smart_union = True
         allow_population_by_field_name = True
         populate_by_name = True
@@ -2688,7 +2678,6 @@ class Event_HttpActivity(UncheckedBaseModel):
         )
 
     class Config:
-        frozen = True
         smart_union = True
         allow_population_by_field_name = True
         populate_by_name = True
@@ -2763,7 +2752,6 @@ class Event_FileSystemActivity(UncheckedBaseModel):
         )
 
     class Config:
-        frozen = True
         smart_union = True
         extra = pydantic_v1.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}
@@ -2825,7 +2813,6 @@ class Event_GroupManagement(UncheckedBaseModel):
         )
 
     class Config:
-        frozen = True
         smart_union = True
         extra = pydantic_v1.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}
@@ -2898,7 +2885,6 @@ class Event_IncidentFinding(UncheckedBaseModel):
         )
 
     class Config:
-        frozen = True
         smart_union = True
         extra = pydantic_v1.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}
@@ -2954,7 +2940,6 @@ class Event_DeviceInventoryInfo(UncheckedBaseModel):
         )
 
     class Config:
-        frozen = True
         smart_union = True
         extra = pydantic_v1.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}
@@ -3021,7 +3006,6 @@ class Event_ModuleActivity(UncheckedBaseModel):
         )
 
     class Config:
-        frozen = True
         smart_union = True
         extra = pydantic_v1.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}
@@ -3109,7 +3093,6 @@ class Event_NetworkActivity(UncheckedBaseModel):
         )
 
     class Config:
-        frozen = True
         smart_union = True
         allow_population_by_field_name = True
         populate_by_name = True
@@ -3184,7 +3167,6 @@ class Event_ProcessActivity(UncheckedBaseModel):
         )
 
     class Config:
-        frozen = True
         smart_union = True
         extra = pydantic_v1.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}
@@ -3256,7 +3238,6 @@ class Event_ScanActivity(UncheckedBaseModel):
         )
 
     class Config:
-        frozen = True
         smart_union = True
         extra = pydantic_v1.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}
@@ -3327,7 +3308,6 @@ class Event_ScheduledJobActivity(UncheckedBaseModel):
         )
 
     class Config:
-        frozen = True
         smart_union = True
         extra = pydantic_v1.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}
@@ -3409,7 +3389,6 @@ class Event_SecurityFinding(UncheckedBaseModel):
         )
 
     class Config:
-        frozen = True
         smart_union = True
         extra = pydantic_v1.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}
@@ -3465,7 +3444,6 @@ class Event_SoftwareInfo(UncheckedBaseModel):
         )
 
     class Config:
-        frozen = True
         smart_union = True
         extra = pydantic_v1.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}
@@ -3532,7 +3510,6 @@ class Event_UserAccessManagement(UncheckedBaseModel):
         )
 
     class Config:
-        frozen = True
         smart_union = True
         extra = pydantic_v1.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}
@@ -3602,7 +3579,6 @@ class Event_VulnerabilityFinding(UncheckedBaseModel):
         )
 
     class Config:
-        frozen = True
         smart_union = True
         extra = pydantic_v1.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}
@@ -3688,7 +3664,6 @@ class Event_WebResourceAccessActivity(UncheckedBaseModel):
         )
 
     class Config:
-        frozen = True
         smart_union = True
         extra = pydantic_v1.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}
@@ -3749,7 +3724,6 @@ class Event_ApplicationLifecycle(UncheckedBaseModel):
         )
 
     class Config:
-        frozen = True
         smart_union = True
         extra = pydantic_v1.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}
@@ -3852,7 +3826,6 @@ class Event_FileHostingActivity(UncheckedBaseModel):
         )
 
     class Config:
-        frozen = True
         smart_union = True
         extra = pydantic_v1.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}
@@ -3946,7 +3919,6 @@ class Event_EmailActivity(UncheckedBaseModel):
         )
 
     class Config:
-        frozen = True
         smart_union = True
         allow_population_by_field_name = True
         populate_by_name = True
@@ -4021,7 +3993,6 @@ class Event_CloudActivity(UncheckedBaseModel):
         )
 
     class Config:
-        frozen = True
         smart_union = True
         extra = pydantic_v1.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}

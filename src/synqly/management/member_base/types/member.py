@@ -56,7 +56,6 @@ class Member(Base):
         )
 
     class Config:
-        frozen = True
         smart_union = True
         allow_population_by_field_name = True
         populate_by_name = True

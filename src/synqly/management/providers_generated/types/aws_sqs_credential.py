@@ -32,7 +32,6 @@ class AwsSqsCredential_Aws(UncheckedBaseModel):
         )
 
     class Config:
-        frozen = True
         smart_union = True
         extra = pydantic_v1.Extra.allow
         json_encoders = {dt.datetime: serialize_datetime}
@@ -43,7 +42,6 @@ class AwsSqsCredential_AwsId(UncheckedBaseModel):
     type: typing.Literal["aws_id"] = "aws_id"
 
     class Config:
-        frozen = True
         smart_union = True
 
 
