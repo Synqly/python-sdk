@@ -81,7 +81,7 @@ def create_bridge(client: SynqlyManagement, account_id: str, bridge_name: str, l
         print(f"Bridge {bridge_name} already exists, deleting existing bridge")
         client.bridges.delete(account_id=account_id, bridge_id=bridge_name)
 
-    response = client.bridges.create(account_id=account_id, request=request)
+    response = client.bridges.create(account_id=account_id, name=bridge_name, labels=labels)
     return response.result
 
 
@@ -111,16 +111,14 @@ def create_integration(client: SynqlyManagement, account_id: str, integration_na
         skip_tls_verify=True
     )
 
-    # Create the integration request
-    request = synqly.management.CreateIntegrationRequest(
-        name=integration_name,
-        provider_config=provider_config,
-        bridge_selector=bridge_selector
-    )
-
     # Create the integration
     try:
-        response = client.integrations.create(account_id=account_id, request=request)
+        response = client.integrations.create(
+            account_id=account_id,
+            name=integration_name,
+            provider_config=provider_config,
+            bridge_selector=bridge_selector
+        )
     except synqly.management.ConflictError:
         print(f"Integration {integration_name} already exists, updating existing integration")
         existing_integration = client.integrations.get(account_id=account_id, integration_id=integration_name)
@@ -130,7 +128,7 @@ def create_integration(client: SynqlyManagement, account_id: str, integration_na
                 "bridge_selector": bridge_selector
             }
         )
-        response = client.integrations.update(account_id=account_id, integration_id=integration_name, request=updated_integration)
+        response = client.integrations.update(account_id=account_id, integration_id=integration_name, **updated_integration.dict())
         print(f"Integration {integration_name} updated\n")
 
     return response.result

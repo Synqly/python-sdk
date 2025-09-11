@@ -158,7 +158,7 @@ def main():
     )
 
     # create an account
-    account_response = mgmt_client.accounts.create(request=mgmt.CreateAccountRequest(fullname=TENANT_NAME))
+    account_response = mgmt_client.accounts.create(fullname=TENANT_NAME)
     account_id = account_response.result.account.id
 
     integration_ids: list[str] = []
@@ -179,10 +179,8 @@ def main():
 
             integration_response = mgmt_client.integrations.create(
                 account_id=account_id,
-                request=mgmt.CreateIntegrationRequest(
-                    fullname=f"CloudSecurity Example - {provider_name}",
-                    provider_config=provider_cfg,
-                ),
+                fullname=f"CloudSecurity Example - {provider_name}",
+                provider_config=provider_cfg,
             )
             integration_id = integration_response.result.integration.id
             integration_ids.append(integration_id)
@@ -191,7 +189,7 @@ def main():
             session_token_response = mgmt_client.tokens.create_integration_token(
                 account_id=account_id,
                 integration_id=integration_id,
-                request=mgmt.CreateIntegrationTokenRequest(token_ttl="10m"),
+                token_ttl="10m",
             )
             session_token = session_token_response.result.secret
 

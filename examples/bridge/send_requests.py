@@ -152,9 +152,7 @@ def main():
     token = client.tokens.create_integration_token(
         account_id=args.synqly_account,
         integration_id=args.integration_name,
-        request=CreateIntegrationTokenRequest(
-            token_ttl="1m",
-        )
+        token_ttl="1m",
     )
     print("Created a session token for the integration")
 

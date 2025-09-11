@@ -39,7 +39,7 @@ def clean_example(app: utils.App, app_config: any):
         )
 
         available_accounts = management_client.accounts.list()
-        
+
         for account in available_accounts.result:
             if account.fullname == TENANT_ARMIS_NAME or account.fullname == TENANT_NOZOMI_NAME or account.fullname == TENANT_SERVICENOW_NAME:
                 try:
@@ -89,21 +89,21 @@ def do_example(tenant: utils.Tenant):
             limit=123
         )
         devices = devices_response.result
-        
+
         if len(devices) > 0:
             device = devices[0]
 
         print("Query devices from '{}': {}".format(tenant.tenant_name, len(devices)))
     except Exception as e:
         print("Error querying devices for tenant '{}': {}".format(tenant.tenant_name, str(e)))
-    
+
     # Create Device
     try:
         # Not working, disabled while fixed...
         if False and tenant.tenant_name == TENANT_SERVICENOW_NAME:
             if device == None or device.device == None or device.device.name == "":
                 print("Skipping 'Create Device' example for Tenant '{}': There where no previous devices to generate a copy from".format(tenant.tenant_name))
-            
+
             new_device = engine.Device(
                 activity_id=device.activity_id,
                 category_uid=device.category_uid,
@@ -123,9 +123,9 @@ def do_example(tenant: utils.Tenant):
                 time=device.time,
                 type_uid=device.type_uid
             )
-            
+
             create_asset_response = tenant.synqly_engine_client.assets.create_asset(
-                request=engine.CreateDeviceRequest(device=new_device)
+                device=new_device
             )
 
             print("Asset '{}' created for tenant '{}': {}".format(device.device.name, tenant.tenant_name), create_asset_response)
@@ -138,7 +138,7 @@ def load_configuration():
     parser = argparse.ArgumentParser(
         description="Synqly Python SDK Assets Connector Example"
     )
-    
+
     parser.add_argument(
         "--use_config_file",
         dest="use_config_file",
@@ -176,7 +176,7 @@ def load_configuration():
         args.servicenow_secret = config.get('servicenow', 'secret', fallback=None)
         args.servicenow_username = config.get('servicenow', 'username', fallback=None)
         args.servicenow_url = config.get('servicenow', 'url', fallback=None)
-    
+
     if args.synqly_org_token == None:
         return None, "Please provide a Synqly Organization Token"
 

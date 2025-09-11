@@ -50,14 +50,14 @@ def provider_config_crowdstrike(url: Optional[str], client_id: str, client_secre
 
 
 def provider_config_sentinelone(url: Optional[str], token: str, xdr_url: Optional[str], xdr_token: Optional[str]) -> mgmt.ProviderConfig:
-    
+
     edr_events_credential = None
     if xdr_url and xdr_token:
         edr_events_credential = mgmt.SentinelOneEdrEventsCredential_Token(
             type="token",
             secret=xdr_token
         )
-    
+
     return mgmt.ProviderConfig_EdrSentinelone(
         type="edr_sentinelone",
          credential=mgmt.SentinelOneCredential_Token(
@@ -74,11 +74,11 @@ def provider_config_defender(url: Optional[str], client_id: str, client_secret: 
             type="o_auth_client",
             client_id=client_id,
             client_secret=client_secret,
-        ),        
+        ),
         tenant_id=tenant_id,
         url=url,
     )
-    
+
 def provider_config_sophos(url: Optional[str], client_id: str, client_secret: str) -> mgmt.ProviderConfig:
     return mgmt.ProviderConfig_EdrSophos(
         type="edr_sophos",
@@ -101,7 +101,7 @@ def provider_config_malwarebytes(url: Optional[str], client_id: str, client_secr
         account_identifier=account_id,
         url=url,
     )
-    
+
 def provider_config_tanium(url: Optional[str], token: str) -> mgmt.ProviderConfig:
     return mgmt.ProviderConfig_EdrTanium(
         type="edr_tanium",
@@ -137,7 +137,7 @@ def load_config(path: str) -> Tuple[str, Dict]:
         token = s.get("token", "").strip()
         xdr_url = s.get("xdr_url", "").strip()
         xdr_token = s.get("xdr_token", "").strip()
-        
+
         if token and xdr_url and xdr_token:
             providers["edr_sentinelone"] = {
                 "url": url,
@@ -145,17 +145,17 @@ def load_config(path: str) -> Tuple[str, Dict]:
                 "xdr_url": xdr_url,
                 "xdr_token": xdr_token,
             }
-    if cfg.has_section("edr_defender"):        
+    if cfg.has_section("edr_defender"):
         s = cfg["edr_defender"]
         url = s.get("url", "").strip() or None
         client_id = s.get("client_id", "").strip()
-        client_secret = s.get("client_secret", "").strip()        
+        client_secret = s.get("client_secret", "").strip()
         tenant_id = s.get("tenant_id", "").strip()
         if client_id and client_secret and tenant_id:
             providers["edr_defender"] = {
                 "url": url,
                 "client_id": client_id,
-                "client_secret": client_secret,                
+                "client_secret": client_secret,
                 "tenant_id": tenant_id,
             }
     if cfg.has_section("edr_sophos"):
@@ -171,7 +171,7 @@ def load_config(path: str) -> Tuple[str, Dict]:
             }
     if cfg.has_section("edr_malwarebytes"):
         s = cfg["edr_malwarebytes"]
-        url = s.get("url", "").strip() or None        
+        url = s.get("url", "").strip() or None
         client_id = s.get("client_id", "").strip()
         client_secret = s.get("client_secret", "").strip()
         account_id = s.get("account_id", "").strip()
@@ -211,7 +211,7 @@ def demo_edr(session_token: str, base_url: str):
         return
 
     print(f"Applications results: {len(results_page)}")
-    for application in results_page:  
+    for application in results_page:
         pprint.pp(application)
 
     # Query Edr Threats
@@ -248,7 +248,7 @@ def demo_edr(session_token: str, base_url: str):
         pprint.pp(endpoint)
         device_id = endpoint.device.uid
         print(f"\nGet Endpoint: {device_id}")
-        device_resp = engine_client.edr.get_endpoint(id=device_id)        
+        device_resp = engine_client.edr.get_endpoint(id=device_id)
         pprint.pp(device_resp)
         print(f"\n")
 
@@ -270,7 +270,7 @@ def main():
     )
 
     # create an account
-    account_response = mgmt_client.accounts.create(request=mgmt.CreateAccountRequest(fullname=TENANT_NAME))
+    account_response = mgmt_client.accounts.create(fullname=TENANT_NAME)
     account_id = account_response.result.account.id
 
     integration_ids: list[str] = []
@@ -278,7 +278,7 @@ def main():
     try:
         # Configure integrations for all configured providers
         for provider_name, cfg in providers.items():
-            
+
             if provider_name == "edr_crowdstrike":
                 provider_cfg = provider_config_crowdstrike(
                     cfg["url"], cfg["client_id"], cfg["client_secret"]
@@ -308,10 +308,8 @@ def main():
 
             integration_response = mgmt_client.integrations.create(
                 account_id=account_id,
-                request=mgmt.CreateIntegrationRequest(
-                    fullname=f"Edr Connector Example - {provider_name}",
-                    provider_config=provider_cfg,
-                ),
+                fullname=f"Edr Connector Example - {provider_name}",
+                provider_config=provider_cfg,
             )
             integration_id = integration_response.result.integration.id
             integration_ids.append(integration_id)
@@ -320,7 +318,7 @@ def main():
             session_token_response = mgmt_client.tokens.create_integration_token(
                 account_id=account_id,
                 integration_id=integration_id,
-                request=mgmt.CreateIntegrationTokenRequest(token_ttl="10m"),
+                token_ttl="10m",
             )
             session_token = session_token_response.result.secret
 

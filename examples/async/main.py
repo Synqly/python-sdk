@@ -89,7 +89,7 @@ def clean_example(app: utils.App, app_config: any, async_mgmt: SynqlyManagement,
         )
 
         available_accounts = management_client.accounts.list()
-        
+
         for account in available_accounts.result:
             if account.fullname == TENANT_SERVICENOW_NAME:
                 try:
@@ -123,16 +123,14 @@ def do_example(tenant: utils.Tenant, webhook_url: str):
     try:
         if webhook_url != None and webhook_url != "":
             tenant.synqly_management_client.organization_webhooks.create(
-                request = mgmt.CreateOrganizationWebhookRequest(
-                    name="test-webhook-for-async-operation",
-                    filters=[
-                        mgmt.WebhookFilter.OPERATION_COMPLETE
-                    ],
-                    secret=mgmt.OrganizationWebhookSecret(
-                        value="test1"
-                    ),
-                    url=webhook_url
-                )
+                name="test-webhook-for-async-operation",
+                filters=[
+                    mgmt.WebhookFilter.OPERATION_COMPLETE
+                ],
+                secret=mgmt.OrganizationWebhookSecret(
+                    value="test1"
+                ),
+                url=webhook_url
             )
 
         print("Async operation WebHook created successfully...")
@@ -145,15 +143,10 @@ def do_example(tenant: utils.Tenant, webhook_url: str):
         schedule_seconds = 15
         schedule_time= datetime.now() + timedelta(seconds=schedule_seconds)
         scheduled_operation_response = tenant.synqly_engine_client.operations.create(
-            request=engine.CreateOperationRequest(
-                input=engine.OperationInput(
-                    limit=123
-                ),
-                operation="assets_query_devices",
-                # schedule=engine.OperationSchedule( # Not working, commented while fixed...
-                #     run_at=schedule_time
-                # )
-            )
+            input=engine.OperationInput(
+                limit=123
+            ),
+            operation="assets_query_devices",
         )
 
         print("Async operation '{}' scheduled successfully...".format(scheduled_operation_response.result.operation.id))
@@ -177,7 +170,7 @@ def do_example(tenant: utils.Tenant, webhook_url: str):
 def init_async_configuration(app_config: any):
     if app_config.general_webhook_url == None or app_config.crowdstrike_sink_hec_secret == None or app_config.crowdstrike_sink_hec_url == None:
         return None, None, None
-    
+
     # Create Synqly Integration Token
     try:
         transport = httpx.HTTPTransport(retries=3)
@@ -187,9 +180,7 @@ def init_async_configuration(app_config: any):
         )
 
         synqly_integration_token_response = management_client.tokens.create_synqly_integrations_token(
-            request = mgmt.CreateSynqlyIntegrationsTokenRequest(
-                token_ttl = "10m"
-            )
+            token_ttl = "10m"
         )
 
         synqly_integration_token = synqly_integration_token_response.result
@@ -197,7 +188,7 @@ def init_async_configuration(app_config: any):
         print("Synqly integration token created successfully...")
     except Exception as e:
         return None, None, "error creating Synqly integration token: {}".format(str(e))
-    
+
     # Create Sink Integration
     try:
         async_mgmt_client = SynqlyManagement(
@@ -235,7 +226,9 @@ def init_async_configuration(app_config: any):
 
         integration_resp = async_mgmt_client.integrations.create(
             account_id = synqly_integration_token.account_id,
-            request = integration_req
+            name = eventName,
+            integration_point_id = integration_point_response.result.id,
+            provider_config = integration_req.provider_config
         )
 
         print("Synqly sink integration '{}' created successfully...".format(integration_resp.result.integration.id))
@@ -248,7 +241,7 @@ def load_configuration():
     parser = argparse.ArgumentParser(
         description="Synqly Python SDK Assets Connector Example"
     )
-    
+
     parser.add_argument(
         "--use_config_file",
         dest="use_config_file",
@@ -282,7 +275,7 @@ def load_configuration():
         args.servicenow_secret = config.get('servicenow', 'secret', fallback=None)
         args.servicenow_username = config.get('servicenow', 'username', fallback=None)
         args.servicenow_url = config.get('servicenow', 'url', fallback=None)
-    
+
     if args.synqly_org_token == None:
         return None, "Please provide a Synqly Organization Token"
 
@@ -305,7 +298,7 @@ def main():
     if err != None:
         print("There was an error loading the configuration: {}".format(err))
         return
-    
+
     synqly_async_integration_token, async_mgmt_client, err = init_async_configuration(app_config)
     if err != None:
         print("There was an error loading the async configurations: {}".format(err))

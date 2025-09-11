@@ -31,7 +31,7 @@ def clean_example(app: utils.App, synqly_org_token: str):
         )
 
         available_accounts = management_client.accounts.list()
-        
+
         for account in available_accounts.result:
             if account.fullname == TENANT_ABC_NAME or account.fullname == TENANT_XYZ_NAME:
                 try:

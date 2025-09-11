@@ -79,8 +79,7 @@ class App:
         """
         Each tenant needs an associated Account in Synqly, so we create that now.
         """
-        account_request = mgmt.CreateAccountRequest(fullname=new_tenant_name)
-        account_response = management_client.accounts.create(request=account_request)
+        account_response = management_client.accounts.create(fullname=new_tenant_name)
         account_id = account_response.result.account.id
 
         self.tenants[new_tenant_name] = Tenant(
@@ -109,10 +108,8 @@ class App:
         credential = tenant.synqly_management_client.credentials.create(
             # A Credential must belong to a Synqly Account
             owner_id=tenant.synqly_account_id,
-            request=mgmt.CreateCredentialRequest(
-                fullname="{} authentication token".format(provider_type),
-                config=credential_config,
-            ),
+            fullname="{} authentication token".format(provider_type),
+            config=credential_config,
         )
         print(
             "Created credential for {}. Credential ID: {}".format(
@@ -133,13 +130,10 @@ class App:
         tenant = self.tenants[tenant_name]
 
         # Use the Management API to create a Synqly Integration
-        integration_req = mgmt.CreateIntegrationRequest(
-            fullname="Python SDK Integration",
-            category=self.connector_type,
-            provider_config=provider_config,
-        )
         integration_resp = tenant.synqly_management_client.integrations.create(
-            account_id=tenant.synqly_account_id, request=integration_req
+            account_id=tenant.synqly_account_id,
+            fullname="Python SDK Integration",
+            provider_config=provider_config,
         )
         print(
             "Created {} Integration '{}' for {}".format(

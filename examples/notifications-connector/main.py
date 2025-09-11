@@ -37,7 +37,7 @@ def clean_example(app: utils.App, synqly_org_token: str):
         )
 
         available_accounts = management_client.accounts.list()
-        
+
         for account in available_accounts.result:
             if account.fullname == TENANT_NAME:
                 try:
@@ -97,24 +97,22 @@ def notify(tenant: utils.Tenant):
     # Send a notification
     print("\nSending notification")
     send_response = tenant.synqly_engine_client.notifications.create_message(
-        request=engine.CreateNotificationRequest(
-            name="Hello World",
-            description="Hello World!",
-            created_at="2021-01-01T00:00:00Z",
-            updated_at="2021-01-01T00:00:00Z",
-            id="123",
-            priority=engine.Priority.HIGH,
-            project="project",
-            status="status",
-            summary="summary",
-            issue_type="issue_type",
-            creator="creator",
-            assignee="assignee",
-            contact="contact",
-            tags=["tag1", "tag2"],
-            reference="reference",
-            notification_status=engine.NotificationStatus.OPEN,
-        )
+        name="Hello World",
+        description="Hello World!",
+        created_at="2021-01-01T00:00:00Z",
+        updated_at="2021-01-01T00:00:00Z",
+        id="123",
+        priority=engine.Priority.HIGH,
+        project="project",
+        status="status",
+        summary="summary",
+        issue_type="issue_type",
+        creator="creator",
+        assignee="assignee",
+        contact="contact",
+        tags=["tag1", "tag2"],
+        reference="reference",
+        notification_status=engine.NotificationStatus.OPEN,
     )
     print("Sent notification: {}".format(send_response.result.id))
 

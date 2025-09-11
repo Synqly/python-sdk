@@ -39,7 +39,7 @@ def clean_example(app: utils.App, synqly_org_token: str):
         )
 
         available_accounts = management_client.accounts.list()
-        
+
         for account in available_accounts.result:
             if account.fullname == TENANT_NAME:
                 try:
@@ -141,7 +141,7 @@ def ticketing_actions(tenant: utils.Tenant, project_key: str, username: str):
     print("\nCreating ticket")
     new_ticket = create_sample_ticket(tenant, project_key, username)
     create_response = tenant.synqly_engine_client.ticketing.create_ticket(
-        request=new_ticket
+        **new_ticket.dict()
     )
     print("Created ticket: {}".format(create_response.result.name))
 
@@ -209,11 +209,10 @@ def attachment_actions(tenant: utils.Tenant, ticket_id: str):
 
     # Create a new attachment
     print("\nCreating attachment")
-    tenant.synqly_engine_client.ticketing.create_attachment(ticket_id=ticket_id,
-        request=engine.CreateAttachmentRequest(
-            file_name="README.md",
-            content=content,
-        ),
+    tenant.synqly_engine_client.ticketing.create_attachment(
+        ticket_id=ticket_id,
+        file_name="README.md",
+        content=content,
     )
     print("Added an attachment to ticket {}".format(ticket_id))
 
@@ -240,7 +239,6 @@ def create_sample_ticket(tenant: utils.Tenant, project_key: str, username: str):
     """
     return engine.CreateTicketRequest(
         # Required fields for all ticket providers
-        id="SDK Example Ticket",
         name="SDK Example Ticket",
         summary="Sample ticket created by the Synqly Python SDK",
         project=project_key,

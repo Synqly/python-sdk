@@ -38,7 +38,7 @@ def clean_example(app: utils.App, app_config: any):
         )
 
         available_accounts = management_client.accounts.list()
-        
+
         for account in available_accounts.result:
             if account.fullname == TENANT_GOOGLE_NAME or account.fullname == TENANT_OKTA_NAME or account.fullname == TENANT_PINGONE_NAME:
                 try:
@@ -74,7 +74,7 @@ def configure_providers(app: utils.App, app_config: any):
     # Check Okta
     if app_config.okta_client_id != None and app_config.okta_token != None and app_config.okta_url != None:
         configure_provider(app, TENANT_OKTA_NAME, app_config.synqly_org_token, provider_config_okta(app_config.okta_client_id, app_config.okta_token, app_config.okta_url))
-    
+
     # Check PingOne
     if app_config.pingone_auth_url != None and app_config.pingone_client_id != None and app_config.pingone_environment_id != None and app_config.pingone_secret != None and app_config.pingone_url != None:
         configure_provider(app, TENANT_PINGONE_NAME, app_config.synqly_org_token, provider_config_pingone(app_config.pingone_auth_url, app_config.pingone_client_id, app_config.pingone_environment_id, app_config.pingone_secret, app_config.pingone_url))
@@ -103,7 +103,7 @@ def do_example(tenant: utils.Tenant, tests_email: str):
         if len(users) == 0:
             print("User with email '{}' not found".format(tests_email))
             return
-        
+
         user = users[0]
         print("'{}' user '{}' found!".format(tenant.tenant_name, tests_email))
     except Exception as e:
@@ -143,14 +143,14 @@ def do_example(tenant: utils.Tenant, tests_email: str):
 def file_or_string(value):
     if os.path.isfile(value):
         return True
-    
+
     return False
 
 def load_configuration():
     parser = argparse.ArgumentParser(
         description="Synqly Python SDK IAM Connector Example"
     )
-    
+
     parser.add_argument(
         "--use_config_file",
         dest="use_config_file",
@@ -186,7 +186,7 @@ def load_configuration():
 
     if args.use_config_file:
         config = configparser.ConfigParser()
-        config.read("./examples/iam-connector/config.ini")
+        config.read("config.ini")
 
         args.general_tests_email = config.get('general', 'tests_email', fallback=None)
         args.google_client_email = config.get('google', 'client_email', fallback=None)
@@ -203,15 +203,15 @@ def load_configuration():
         args.pingone_secret = config.get('pingone', 'secret', fallback=None)
         args.pingone_url = config.get('pingone', 'url', fallback=None)
         args.synqly_org_token = config.get('synqly', 'org_token', fallback=None)
-    
+
     # Check if given secret is a file path
     if file_or_string(args.google_secret):
         with open(args.google_secret, 'r') as f:
             args.google_secret = f.read()
-    
+
     if args.synqly_org_token == None:
         return None, "Please provide a Synqly Organization Token"
-    
+
     if args.general_tests_email == None:
         return None, "Please provide an email to be used on tests"
 
