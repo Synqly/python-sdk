@@ -4,4 +4,8 @@ from .patch_organization_response import PatchOrganizationResponse
 from .update_organization_request import UpdateOrganizationRequest
 from .update_organization_response import UpdateOrganizationResponse
 
-__all__ = ["PatchOrganizationResponse", "UpdateOrganizationRequest", "UpdateOrganizationResponse"]
+__all__ = [
+    "PatchOrganizationResponse",
+    "UpdateOrganizationRequest",
+    "UpdateOrganizationResponse",
+]

@@ -4,10 +4,16 @@ from .connector import Connector
 from .connector_or_id import ConnectorOrId
 from .filter_operation import FilterOperation
 from .filter_type import FilterType
-from .get_provider_capabilities_expand_options import GetProviderCapabilitiesExpandOptions
-from .list_connector_capabilities_expand_options import ListConnectorCapabilitiesExpandOptions
+from .get_provider_capabilities_expand_options import (
+    GetProviderCapabilitiesExpandOptions,
+)
+from .list_connector_capabilities_expand_options import (
+    ListConnectorCapabilitiesExpandOptions,
+)
 from .list_connectors_capabilities_response import ListConnectorsCapabilitiesResponse
-from .list_provider_capabilities_expand_options import ListProviderCapabilitiesExpandOptions
+from .list_provider_capabilities_expand_options import (
+    ListProviderCapabilitiesExpandOptions,
+)
 from .list_providers_capabilities_response import ListProvidersCapabilitiesResponse
 from .provider_availability import ProviderAvailability
 from .provider_capabilities import ProviderCapabilities

@@ -4,4 +4,6 @@ from ....v_1_3_0.incidentfinding.classes.types.incident_finding import (
     IncidentFinding as ocsf_v_1_3_0_incidentfinding_classes_types_incident_finding_IncidentFinding,
 )
 
-IncidentFinding = ocsf_v_1_3_0_incidentfinding_classes_types_incident_finding_IncidentFinding
+IncidentFinding = (
+    ocsf_v_1_3_0_incidentfinding_classes_types_incident_finding_IncidentFinding
+)

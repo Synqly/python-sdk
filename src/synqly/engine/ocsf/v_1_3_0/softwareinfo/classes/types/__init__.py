@@ -8,4 +8,12 @@ from .software_info import SoftwareInfo
 from .status_id import StatusId
 from .type_uid import TypeUid
 
-__all__ = ["ActivityId", "CategoryUid", "ClassUid", "SeverityId", "SoftwareInfo", "StatusId", "TypeUid"]
+__all__ = [
+    "ActivityId",
+    "CategoryUid",
+    "ClassUid",
+    "SeverityId",
+    "SoftwareInfo",
+    "StatusId",
+    "TypeUid",
+]

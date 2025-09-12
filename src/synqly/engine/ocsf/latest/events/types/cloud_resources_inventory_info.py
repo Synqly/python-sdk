@@ -4,6 +4,4 @@ from ....v_1_4_0.cloudresourcesinventoryinfo.classes.types.cloud_resources_inven
     CloudResourcesInventoryInfo as ocsf_v_1_4_0_cloudresourcesinventoryinfo_classes_types_cloud_resources_inventory_info_CloudResourcesInventoryInfo,
 )
 
-CloudResourcesInventoryInfo = (
-    ocsf_v_1_4_0_cloudresourcesinventoryinfo_classes_types_cloud_resources_inventory_info_CloudResourcesInventoryInfo
-)
+CloudResourcesInventoryInfo = ocsf_v_1_4_0_cloudresourcesinventoryinfo_classes_types_cloud_resources_inventory_info_CloudResourcesInventoryInfo

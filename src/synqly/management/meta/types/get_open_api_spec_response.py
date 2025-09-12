@@ -2,4 +2,4 @@
 
 import typing
 
-GetOpenApiSpecResponse = typing.Any
+GetOpenApiSpecResponse = typing.Optional[typing.Any]

@@ -4,4 +4,6 @@ from ....v_1_3_0.groupmanagement.classes.types.group_management import (
     GroupManagement as ocsf_v_1_3_0_groupmanagement_classes_types_group_management_GroupManagement,
 )
 
-GroupManagement = ocsf_v_1_3_0_groupmanagement_classes_types_group_management_GroupManagement
+GroupManagement = (
+    ocsf_v_1_3_0_groupmanagement_classes_types_group_management_GroupManagement
+)

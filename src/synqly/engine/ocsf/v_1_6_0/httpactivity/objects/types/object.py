@@ -2,4 +2,4 @@
 
 import typing
 
-Object = typing.Dict[str, typing.Any]
+Object = typing.Dict[str, typing.Optional[typing.Any]]

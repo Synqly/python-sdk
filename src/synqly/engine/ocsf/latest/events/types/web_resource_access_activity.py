@@ -4,6 +4,4 @@ from ....v_1_3_0.webresourceaccessactivity.classes.types.web_resource_access_act
     WebResourceAccessActivity as ocsf_v_1_3_0_webresourceaccessactivity_classes_types_web_resource_access_activity_WebResourceAccessActivity,
 )
 
-WebResourceAccessActivity = (
-    ocsf_v_1_3_0_webresourceaccessactivity_classes_types_web_resource_access_activity_WebResourceAccessActivity
-)
+WebResourceAccessActivity = ocsf_v_1_3_0_webresourceaccessactivity_classes_types_web_resource_access_activity_WebResourceAccessActivity

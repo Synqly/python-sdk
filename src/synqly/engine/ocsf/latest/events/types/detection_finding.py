@@ -4,4 +4,6 @@ from ....v_1_3_0.detectionfinding.classes.types.detection_finding import (
     DetectionFinding as ocsf_v_1_3_0_detectionfinding_classes_types_detection_finding_DetectionFinding,
 )
 
-DetectionFinding = ocsf_v_1_3_0_detectionfinding_classes_types_detection_finding_DetectionFinding
+DetectionFinding = (
+    ocsf_v_1_3_0_detectionfinding_classes_types_detection_finding_DetectionFinding
+)

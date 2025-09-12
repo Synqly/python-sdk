@@ -4,4 +4,6 @@ from ....v_1_3_0.processactivity.classes.types.process_activity import (
     ProcessActivity as ocsf_v_1_3_0_processactivity_classes_types_process_activity_ProcessActivity,
 )
 
-ProcessActivity = ocsf_v_1_3_0_processactivity_classes_types_process_activity_ProcessActivity
+ProcessActivity = (
+    ocsf_v_1_3_0_processactivity_classes_types_process_activity_ProcessActivity
+)

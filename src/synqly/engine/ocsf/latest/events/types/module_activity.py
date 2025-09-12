@@ -4,4 +4,6 @@ from ....v_1_3_0.moduleactivity.classes.types.module_activity import (
     ModuleActivity as ocsf_v_1_3_0_moduleactivity_classes_types_module_activity_ModuleActivity,
 )
 
-ModuleActivity = ocsf_v_1_3_0_moduleactivity_classes_types_module_activity_ModuleActivity
+ModuleActivity = (
+    ocsf_v_1_3_0_moduleactivity_classes_types_module_activity_ModuleActivity
+)

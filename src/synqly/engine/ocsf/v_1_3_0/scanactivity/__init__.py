@@ -16,7 +16,15 @@ from .base import (
     UrlString,
     UserName,
 )
-from .classes import ActivityId, CategoryUid, ClassUid, ScanActivity, SeverityId, StatusId, TypeUid
+from .classes import (
+    ActivityId,
+    CategoryUid,
+    ClassUid,
+    ScanActivity,
+    SeverityId,
+    StatusId,
+    TypeUid,
+)
 from .objects import (
     Account,
     AccountTypeId,

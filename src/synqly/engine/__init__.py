@@ -50,6 +50,7 @@ from .assets import (
     QueryDevicesResponse,
     QueryDevicesResponseGeneric,
 )
+from .client import AsyncSynqlyEngine, SynqlyEngine
 from .cloudsecurity import (
     QueryCloudResourceInventoryResponse,
     QueryCloudResourceInventoryResponseGeneric,
@@ -360,6 +361,7 @@ __all__ = [
     "ApplicationId",
     "Asset",
     "AsyncOperationRequestId",
+    "AsyncSynqlyEngine",
     "Attachment",
     "AttachmentId",
     "AttachmentMetadata",
@@ -599,6 +601,7 @@ __all__ = [
     "ServiceUnavailableError",
     "Status",
     "StoragePath",
+    "SynqlyEngine",
     "SynqlyEngineEnvironment",
     "ThreatEvent",
     "Ticket",

@@ -2,4 +2,11 @@
 
 from .types import ActivityId, BaseEvent, CategoryUid, ClassUid, SeverityId, StatusId
 
-__all__ = ["ActivityId", "BaseEvent", "CategoryUid", "ClassUid", "SeverityId", "StatusId"]
+__all__ = [
+    "ActivityId",
+    "BaseEvent",
+    "CategoryUid",
+    "ClassUid",
+    "SeverityId",
+    "StatusId",
+]

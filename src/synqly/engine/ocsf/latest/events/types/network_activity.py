@@ -4,4 +4,6 @@ from ....v_1_3_0.networkactivity.classes.types.network_activity import (
     NetworkActivity as ocsf_v_1_3_0_networkactivity_classes_types_network_activity_NetworkActivity,
 )
 
-NetworkActivity = ocsf_v_1_3_0_networkactivity_classes_types_network_activity_NetworkActivity
+NetworkActivity = (
+    ocsf_v_1_3_0_networkactivity_classes_types_network_activity_NetworkActivity
+)

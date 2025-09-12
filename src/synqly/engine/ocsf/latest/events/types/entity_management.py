@@ -4,4 +4,6 @@ from ....v_1_3_0.entitymanagement.classes.types.entity_management import (
     EntityManagement as ocsf_v_1_3_0_entitymanagement_classes_types_entity_management_EntityManagement,
 )
 
-EntityManagement = ocsf_v_1_3_0_entitymanagement_classes_types_entity_management_EntityManagement
+EntityManagement = (
+    ocsf_v_1_3_0_entitymanagement_classes_types_entity_management_EntityManagement
+)

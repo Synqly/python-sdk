@@ -10,7 +10,9 @@ from .group_id import GroupId
 from .query_groups_response import QueryGroupsResponse
 from .query_groups_response_generic import QueryGroupsResponseGeneric
 from .query_identity_audit_log_response import QueryIdentityAuditLogResponse
-from .query_identity_audit_log_response_generic import QueryIdentityAuditLogResponseGeneric
+from .query_identity_audit_log_response_generic import (
+    QueryIdentityAuditLogResponseGeneric,
+)
 from .query_users_response import QueryUsersResponse
 from .query_users_response_generic import QueryUsersResponseGeneric
 from .user_id import UserId

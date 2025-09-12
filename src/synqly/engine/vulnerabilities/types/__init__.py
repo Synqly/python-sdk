@@ -15,7 +15,10 @@ from .event_id import EventId
 from .get_scan_activity_response import GetScanActivityResponse
 from .get_scan_activity_response_generic import GetScanActivityResponseGeneric
 from .nucleus_finding_state import NucleusFindingState
-from .provider_specific_finding_state import ProviderSpecificFindingState, ProviderSpecificFindingState_Nucleus
+from .provider_specific_finding_state import (
+    ProviderSpecificFindingState,
+    ProviderSpecificFindingState_Nucleus,
+)
 from .query_assets_response import QueryAssetsResponse
 from .query_assets_response_generic import QueryAssetsResponseGeneric
 from .query_findings_response import QueryFindingsResponse

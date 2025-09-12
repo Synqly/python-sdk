@@ -2,8 +2,12 @@
 
 from .create_integration_token_request import CreateIntegrationTokenRequest
 from .create_integration_token_response import CreateIntegrationTokenResponse
-from .create_synqly_integrations_token_request import CreateSynqlyIntegrationsTokenRequest
-from .create_synqly_integrations_token_response import CreateSynqlyIntegrationsTokenResponse
+from .create_synqly_integrations_token_request import (
+    CreateSynqlyIntegrationsTokenRequest,
+)
+from .create_synqly_integrations_token_response import (
+    CreateSynqlyIntegrationsTokenResponse,
+)
 from .create_token_request import CreateTokenRequest
 from .create_token_response import CreateTokenResponse
 from .get_token_response import GetTokenResponse

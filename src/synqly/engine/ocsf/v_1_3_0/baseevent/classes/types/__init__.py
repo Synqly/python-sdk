@@ -7,4 +7,11 @@ from .class_uid import ClassUid
 from .severity_id import SeverityId
 from .status_id import StatusId
 
-__all__ = ["ActivityId", "BaseEvent", "CategoryUid", "ClassUid", "SeverityId", "StatusId"]
+__all__ = [
+    "ActivityId",
+    "BaseEvent",
+    "CategoryUid",
+    "ClassUid",
+    "SeverityId",
+    "StatusId",
+]

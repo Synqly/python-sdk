@@ -8,4 +8,12 @@ from .role_integrations import RoleIntegrations
 from .role_name import RoleName
 from .role_organizations import RoleOrganizations
 
-__all__ = ["AdhocRole", "Resources", "RoleAccounts", "RoleId", "RoleIntegrations", "RoleName", "RoleOrganizations"]
+__all__ = [
+    "AdhocRole",
+    "Resources",
+    "RoleAccounts",
+    "RoleId",
+    "RoleIntegrations",
+    "RoleName",
+    "RoleOrganizations",
+]

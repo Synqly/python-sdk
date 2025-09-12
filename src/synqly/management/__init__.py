@@ -97,6 +97,7 @@ from .capabilities import (
     RequestBody,
 )
 from .capabilities_base import CategoryId, ProviderId
+from .client import AsyncSynqlyManagement, SynqlyManagement
 from .common import (
     ActionId,
     BadGatewayError,
@@ -243,7 +244,11 @@ from .operation_base import (
 )
 from .operation_id_generated import OperationId
 from .operations import ListOperationsResponse
-from .organization import PatchOrganizationResponse, UpdateOrganizationRequest, UpdateOrganizationResponse
+from .organization import (
+    PatchOrganizationResponse,
+    UpdateOrganizationRequest,
+    UpdateOrganizationResponse,
+)
 from .organization_base import (
     CreateOrganizationRequest,
     CreateOrganizationResponse,
@@ -676,7 +681,15 @@ from .providers_generated import (
     ZendeskCredential_Basic,
     ZendeskCredential_BasicId,
 )
-from .role_base import AdhocRole, Resources, RoleAccounts, RoleId, RoleIntegrations, RoleName, RoleOrganizations
+from .role_base import (
+    AdhocRole,
+    Resources,
+    RoleAccounts,
+    RoleId,
+    RoleIntegrations,
+    RoleName,
+    RoleOrganizations,
+)
 from .roles import (
     BuiltinRoles,
     CreateRoleRequest,
@@ -767,6 +780,7 @@ __all__ = [
     "AssetsTaniumCloudDataset",
     "AssetsTaniumCloudMock",
     "AsyncOperationRequestId",
+    "AsyncSynqlyManagement",
     "Audit",
     "AuditActions",
     "AuditPermissions",
@@ -1293,6 +1307,7 @@ __all__ = [
     "SumoLogicCredential_Basic",
     "SumoLogicCredential_BasicId",
     "SynqlyIntegrationsTokenResponse",
+    "SynqlyManagement",
     "SynqlyManagementEnvironment",
     "TaniumCloudCredential",
     "TaniumCloudCredential_Token",
