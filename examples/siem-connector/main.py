@@ -181,7 +181,7 @@ def create_sample_event():
             },
             "version": "1.1.0",
         },
-        time=time.time(),
+        time=int(time.time()),
         # OCSF Severity_Informational
         severity_id=1,
         # OCSF Type_ScheduledJobActivity_Update

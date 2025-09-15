@@ -123,7 +123,7 @@ def sqs_provider_config(sqs_url, credential_id):
     return mgmt.ProviderConfig_SinkAwsSqs(
         type="sink_aws_sqs",
         url=sqs_url,
-        credential=mgmt.AwsS3Credential_AwsId(type="aws_id", value=credential_id),
+        credential=mgmt.AwsSqsCredential_AwsId(type="aws_id", value=credential_id),
     )
 
 
@@ -199,7 +199,7 @@ def create_sample_event():
             },
             "version": "1.0.0",
         },
-        time=time.time(),
+        time=int(time.time()),
         # OCSF Severity_Informational
         severity_id=1,
         # OCSF Type_ScheduledJobActivity_Update
