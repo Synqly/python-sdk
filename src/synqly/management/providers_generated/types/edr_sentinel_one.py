@@ -28,6 +28,11 @@ class EdrSentinelOne(UncheckedBaseModel):
     Base URL for the SentinelOne Singularity Data Lake API. This URL is required is required when querying EDR events.
     """
 
+    skip_tls_verify: typing.Optional[bool] = pydantic.Field(default=None)
+    """
+    When true, skips verification of the SentinelOne TLS certificate.
+    """
+
     url: str = pydantic.Field()
     """
     Base URL for the SentinelOne Management API.

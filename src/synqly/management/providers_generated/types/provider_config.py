@@ -471,6 +471,7 @@ class ProviderConfig_EdrSentinelone(UncheckedBaseModel):
     credential: SentinelOneCredential
     edr_events_credential: typing.Optional[SentinelOneEdrEventsCredential] = None
     edr_events_url: typing.Optional[str] = None
+    skip_tls_verify: typing.Optional[bool] = None
     url: str
 
     if IS_PYDANTIC_V2:
