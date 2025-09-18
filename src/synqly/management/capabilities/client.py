@@ -386,7 +386,7 @@ class CapabilitiesClient:
             token="YOUR_TOKEN",
         )
         client.capabilities.get_provider(
-            provider_id=ProviderConfigId.APPSEC_HCL_APP_SCAN_ON_CLOUD,
+            provider_id=ProviderConfigId.APPSEC_GIT_LAB,
             expand=GetProviderCapabilitiesExpandOptions.CONNECTOR,
         )
         """
@@ -863,7 +863,7 @@ class AsyncCapabilitiesClient:
 
         async def main() -> None:
             await client.capabilities.get_provider(
-                provider_id=ProviderConfigId.APPSEC_HCL_APP_SCAN_ON_CLOUD,
+                provider_id=ProviderConfigId.APPSEC_GIT_LAB,
                 expand=GetProviderCapabilitiesExpandOptions.CONNECTOR,
             )
 

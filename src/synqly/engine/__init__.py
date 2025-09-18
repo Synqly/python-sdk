@@ -35,6 +35,7 @@ from .appsec import (
     AppSecQueryApplicationsResponseGeneric,
     AppSecQueryFindingsResponse,
     AppSecQueryFindingsResponseGeneric,
+    AppSecSeverityFilterValue,
     ApplicationId,
     FindingId,
 )
@@ -357,6 +358,7 @@ __all__ = [
     "AppSecQueryApplicationsResponseGeneric",
     "AppSecQueryFindingsResponse",
     "AppSecQueryFindingsResponseGeneric",
+    "AppSecSeverityFilterValue",
     "Application",
     "ApplicationId",
     "Asset",

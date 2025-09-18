@@ -11,6 +11,11 @@ class ProviderConfigId(str, enum.Enum):
     List of supported providers.
     """
 
+    APPSEC_GIT_LAB = "appsec_gitlab"
+    """
+    GitLab
+    """
+
     APPSEC_HCL_APP_SCAN_ON_CLOUD = "appsec_hcl_appscan_on_cloud"
     """
     HCL AppScan on Cloud
@@ -453,6 +458,7 @@ class ProviderConfigId(str, enum.Enum):
 
     def visit(
         self,
+        appsec_git_lab: typing.Callable[[], T_Result],
         appsec_hcl_app_scan_on_cloud: typing.Callable[[], T_Result],
         appsec_open_text_core_application_security: typing.Callable[[], T_Result],
         assets_armis_centrix: typing.Callable[[], T_Result],
@@ -540,6 +546,8 @@ class ProviderConfigId(str, enum.Enum):
         all_: typing.Callable[[], T_Result],
         _unknown_member: typing.Callable[[str], T_Result],
     ) -> T_Result:
+        if self is ProviderConfigId.APPSEC_GIT_LAB:
+            return appsec_git_lab()
         if self is ProviderConfigId.APPSEC_HCL_APP_SCAN_ON_CLOUD:
             return appsec_hcl_app_scan_on_cloud()
         if self is ProviderConfigId.APPSEC_OPEN_TEXT_CORE_APPLICATION_SECURITY:

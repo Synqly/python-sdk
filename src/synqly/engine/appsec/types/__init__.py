@@ -20,6 +20,7 @@ from .app_sec_query_applications_response_generic import (
 )
 from .app_sec_query_findings_response import AppSecQueryFindingsResponse
 from .app_sec_query_findings_response_generic import AppSecQueryFindingsResponseGeneric
+from .app_sec_severity_filter_value import AppSecSeverityFilterValue
 from .application_id import ApplicationId
 from .finding_id import FindingId
 
@@ -34,6 +35,7 @@ __all__ = [
     "AppSecQueryApplicationsResponseGeneric",
     "AppSecQueryFindingsResponse",
     "AppSecQueryFindingsResponseGeneric",
+    "AppSecSeverityFilterValue",
     "ApplicationId",
     "FindingId",
 ]

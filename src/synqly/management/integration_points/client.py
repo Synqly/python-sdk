@@ -423,14 +423,14 @@ class IntegrationPointsClient:
             environments=IntegrationEnvironments(),
             mappings=[
                 MappingChainTemplate(
-                    providers=[ProviderConfigId.APPSEC_HCL_APP_SCAN_ON_CLOUD],
+                    providers=[ProviderConfigId.APPSEC_GIT_LAB],
                     mappings=["string"],
                     operation_ids=["string"],
                 )
             ],
             additional_mappings=[
                 AdditionalMappingTemplate(
-                    providers=[ProviderConfigId.APPSEC_HCL_APP_SCAN_ON_CLOUD],
+                    providers=[ProviderConfigId.APPSEC_GIT_LAB],
                     mapping_type=AdditionalMappingType.RECOMMENDED,
                     resource=ResourceId.ALERTS,
                     actions=[ActionId.QUERY],
@@ -1467,14 +1467,14 @@ class AsyncIntegrationPointsClient:
                 environments=IntegrationEnvironments(),
                 mappings=[
                     MappingChainTemplate(
-                        providers=[ProviderConfigId.APPSEC_HCL_APP_SCAN_ON_CLOUD],
+                        providers=[ProviderConfigId.APPSEC_GIT_LAB],
                         mappings=["string"],
                         operation_ids=["string"],
                     )
                 ],
                 additional_mappings=[
                     AdditionalMappingTemplate(
-                        providers=[ProviderConfigId.APPSEC_HCL_APP_SCAN_ON_CLOUD],
+                        providers=[ProviderConfigId.APPSEC_GIT_LAB],
                         mapping_type=AdditionalMappingType.RECOMMENDED,
                         resource=ResourceId.ALERTS,
                         actions=[ActionId.QUERY],

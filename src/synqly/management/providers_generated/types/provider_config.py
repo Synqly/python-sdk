@@ -3,10 +3,11 @@
 from __future__ import annotations
 from ...core.unchecked_base_model import UncheckedBaseModel
 import typing
-from .hcl_app_scan_on_cloud_credential import HclAppScanOnCloudCredential
-from .hcl_app_scan_on_cloud_url import HclAppScanOnCloudUrl
+from .git_lab_credential import GitLabCredential
 from ...core.pydantic_utilities import IS_PYDANTIC_V2
 import pydantic
+from .hcl_app_scan_on_cloud_credential import HclAppScanOnCloudCredential
+from .hcl_app_scan_on_cloud_url import HclAppScanOnCloudUrl
 from .open_text_core_application_security_credential import (
     OpenTextCoreApplicationSecurityCredential,
 )
@@ -82,6 +83,22 @@ from .vulnerabilities_tanium_cloud_dataset import VulnerabilitiesTaniumCloudData
 from .tenable_cloud_credential import TenableCloudCredential
 import typing_extensions
 from ...core.unchecked_base_model import UnionMetadata
+
+
+class ProviderConfig_AppsecGitlab(UncheckedBaseModel):
+    type: typing.Literal["appsec_gitlab"] = "appsec_gitlab"
+    credential: GitLabCredential
+    url: str
+
+    if IS_PYDANTIC_V2:
+        model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(
+            extra="allow"
+        )  # type: ignore # Pydantic v2
+    else:
+
+        class Config:
+            smart_union = True
+            extra = pydantic.Extra.allow
 
 
 class ProviderConfig_AppsecHclAppscanOnCloud(UncheckedBaseModel):
@@ -1532,6 +1549,7 @@ class ProviderConfig_VulnerabilitiesTenableCloud(UncheckedBaseModel):
 
 ProviderConfig = typing_extensions.Annotated[
     typing.Union[
+        ProviderConfig_AppsecGitlab,
         ProviderConfig_AppsecHclAppscanOnCloud,
         ProviderConfig_AppsecOpentextCoreApplicationSecurity,
         ProviderConfig_AssetsArmisCentrix,

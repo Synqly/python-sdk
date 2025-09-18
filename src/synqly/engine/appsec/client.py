@@ -467,8 +467,9 @@ class AppsecClient:
     def query_findings(
         self,
         *,
-        filter: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
+        meta: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
         limit: typing.Optional[int] = None,
+        filter: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
         cursor: typing.Optional[str] = None,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AppSecQueryFindingsResponse:
@@ -477,12 +478,15 @@ class AppsecClient:
 
         Parameters
         ----------
-        filter : typing.Optional[typing.Union[str, typing.Sequence[str]]]
-            Filter results by this query. For more information on filtering, refer to our Filtering Guide. Defaults to no filter.
-            If used more than once, the queries are ANDed together.
+        meta : typing.Optional[typing.Union[str, typing.Sequence[str]]]
+            Add metadata to the response by invoking meta functions. Documentation for meta functions is available at https://docs.synqly.com/api-reference/meta-functions. Not all meta function are available at every endpoint.
 
         limit : typing.Optional[int]
             Number of findings to return.
+
+        filter : typing.Optional[typing.Union[str, typing.Sequence[str]]]
+            Filter results by this query. For more information on filtering, refer to our Filtering Guide. Defaults to no filter.
+            If used more than once, the queries are ANDed together.
 
         cursor : typing.Optional[str]
             Start search from cursor position.
@@ -502,8 +506,9 @@ class AppsecClient:
             token="YOUR_TOKEN",
         )
         client.appsec.query_findings(
-            filter="string",
+            meta="string",
             limit=1,
+            filter="string",
             cursor="string",
         )
         """
@@ -511,8 +516,9 @@ class AppsecClient:
             "v1/app-sec/findings",
             method="GET",
             params={
-                "filter": filter,
+                "meta": meta,
                 "limit": limit,
+                "filter": filter,
                 "cursor": cursor,
             },
             request_options=request_options,
@@ -1295,8 +1301,9 @@ class AsyncAppsecClient:
     async def query_findings(
         self,
         *,
-        filter: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
+        meta: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
         limit: typing.Optional[int] = None,
+        filter: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
         cursor: typing.Optional[str] = None,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AppSecQueryFindingsResponse:
@@ -1305,12 +1312,15 @@ class AsyncAppsecClient:
 
         Parameters
         ----------
-        filter : typing.Optional[typing.Union[str, typing.Sequence[str]]]
-            Filter results by this query. For more information on filtering, refer to our Filtering Guide. Defaults to no filter.
-            If used more than once, the queries are ANDed together.
+        meta : typing.Optional[typing.Union[str, typing.Sequence[str]]]
+            Add metadata to the response by invoking meta functions. Documentation for meta functions is available at https://docs.synqly.com/api-reference/meta-functions. Not all meta function are available at every endpoint.
 
         limit : typing.Optional[int]
             Number of findings to return.
+
+        filter : typing.Optional[typing.Union[str, typing.Sequence[str]]]
+            Filter results by this query. For more information on filtering, refer to our Filtering Guide. Defaults to no filter.
+            If used more than once, the queries are ANDed together.
 
         cursor : typing.Optional[str]
             Start search from cursor position.
@@ -1335,8 +1345,9 @@ class AsyncAppsecClient:
 
         async def main() -> None:
             await client.appsec.query_findings(
-                filter="string",
+                meta="string",
                 limit=1,
+                filter="string",
                 cursor="string",
             )
 
@@ -1347,8 +1358,9 @@ class AsyncAppsecClient:
             "v1/app-sec/findings",
             method="GET",
             params={
-                "filter": filter,
+                "meta": meta,
                 "limit": limit,
+                "filter": filter,
                 "cursor": cursor,
             },
             request_options=request_options,
