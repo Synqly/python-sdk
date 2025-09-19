@@ -53,7 +53,7 @@ class Product(UncheckedBaseModel):
     The URL pointing towards the product.
     """
 
-    vendor_name: str = pydantic.Field()
+    vendor_name: typing.Optional[str] = pydantic.Field(default=None)
     """
     The name of the vendor of the product.
     """

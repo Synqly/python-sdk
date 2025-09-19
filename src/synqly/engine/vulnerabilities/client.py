@@ -1360,11 +1360,7 @@ class VulnerabilitiesClient:
                     risk_score=1,
                     subnet="string",
                     subnet_uid="string",
-                    sw_info=[
-                        Product(
-                            vendor_name="string",
-                        )
-                    ],
+                    sw_info=[Product()],
                     type="string",
                     type_id=1,
                     uid="string",
@@ -1421,9 +1417,7 @@ class VulnerabilitiesClient:
                     processed_time_dt=datetime.datetime.fromisoformat(
                         "2024-01-15 09:30:00+00:00",
                     ),
-                    product=Product(
-                        vendor_name="string",
-                    ),
+                    product=Product(),
                     profiles=["string"],
                     sequence=1,
                     tenant_uid="string",
@@ -1856,11 +1850,7 @@ class VulnerabilitiesClient:
                     risk_score=1,
                     subnet="string",
                     subnet_uid="string",
-                    sw_info=[
-                        Product(
-                            vendor_name="string",
-                        )
-                    ],
+                    sw_info=[Product()],
                     type="string",
                     type_id=1,
                     uid="string",
@@ -1917,9 +1907,7 @@ class VulnerabilitiesClient:
                     processed_time_dt=datetime.datetime.fromisoformat(
                         "2024-01-15 09:30:00+00:00",
                     ),
-                    product=Product(
-                        vendor_name="string",
-                    ),
+                    product=Product(),
                     profiles=["string"],
                     sequence=1,
                     tenant_uid="string",
@@ -2722,11 +2710,7 @@ class VulnerabilitiesClient:
                         risk_score=1,
                         subnet="string",
                         subnet_uid="string",
-                        sw_info=[
-                            Product(
-                                vendor_name="string",
-                            )
-                        ],
+                        sw_info=[Product()],
                         type="string",
                         type_id=1,
                         uid="string",
@@ -2783,9 +2767,7 @@ class VulnerabilitiesClient:
                         processed_time_dt=datetime.datetime.fromisoformat(
                             "2024-01-15 09:30:00+00:00",
                         ),
-                        product=Product(
-                            vendor_name="string",
-                        ),
+                        product=Product(),
                         profiles=["string"],
                         sequence=1,
                         tenant_uid="string",
@@ -4218,11 +4200,7 @@ class AsyncVulnerabilitiesClient:
                         risk_score=1,
                         subnet="string",
                         subnet_uid="string",
-                        sw_info=[
-                            Product(
-                                vendor_name="string",
-                            )
-                        ],
+                        sw_info=[Product()],
                         type="string",
                         type_id=1,
                         uid="string",
@@ -4279,9 +4257,7 @@ class AsyncVulnerabilitiesClient:
                         processed_time_dt=datetime.datetime.fromisoformat(
                             "2024-01-15 09:30:00+00:00",
                         ),
-                        product=Product(
-                            vendor_name="string",
-                        ),
+                        product=Product(),
                         profiles=["string"],
                         sequence=1,
                         tenant_uid="string",
@@ -4721,11 +4697,7 @@ class AsyncVulnerabilitiesClient:
                         risk_score=1,
                         subnet="string",
                         subnet_uid="string",
-                        sw_info=[
-                            Product(
-                                vendor_name="string",
-                            )
-                        ],
+                        sw_info=[Product()],
                         type="string",
                         type_id=1,
                         uid="string",
@@ -4782,9 +4754,7 @@ class AsyncVulnerabilitiesClient:
                         processed_time_dt=datetime.datetime.fromisoformat(
                             "2024-01-15 09:30:00+00:00",
                         ),
-                        product=Product(
-                            vendor_name="string",
-                        ),
+                        product=Product(),
                         profiles=["string"],
                         sequence=1,
                         tenant_uid="string",
@@ -5610,11 +5580,7 @@ class AsyncVulnerabilitiesClient:
                             risk_score=1,
                             subnet="string",
                             subnet_uid="string",
-                            sw_info=[
-                                Product(
-                                    vendor_name="string",
-                                )
-                            ],
+                            sw_info=[Product()],
                             type="string",
                             type_id=1,
                             uid="string",
@@ -5671,9 +5637,7 @@ class AsyncVulnerabilitiesClient:
                             processed_time_dt=datetime.datetime.fromisoformat(
                                 "2024-01-15 09:30:00+00:00",
                             ),
-                            product=Product(
-                                vendor_name="string",
-                            ),
+                            product=Product(),
                             profiles=["string"],
                             sequence=1,
                             tenant_uid="string",
