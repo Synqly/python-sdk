@@ -120,6 +120,105 @@ from ...ocsf.v_1_3_0.apiactivity.classes.types.status_id import (
 from ...ocsf.v_1_3_0.apiactivity.classes.types.type_uid import (
     TypeUid as ocsf_v_1_3_0_apiactivity_classes_types_type_uid_TypeUid,
 )
+from ...ocsf.v_1_5_0.applicationsecurityposturefinding.classes.types.action_id import (
+    ActionId as ocsf_v_1_5_0_applicationsecurityposturefinding_classes_types_action_id_ActionId,
+)
+from ...ocsf.v_1_5_0.applicationsecurityposturefinding.classes.types.activity_id import (
+    ActivityId as ocsf_v_1_5_0_applicationsecurityposturefinding_classes_types_activity_id_ActivityId,
+)
+from ...ocsf.v_1_5_0.applicationsecurityposturefinding.objects.types.actor import (
+    Actor as ocsf_v_1_5_0_applicationsecurityposturefinding_objects_types_actor_Actor,
+)
+from ...ocsf.v_1_5_0.applicationsecurityposturefinding.objects.types.api import (
+    Api as ocsf_v_1_5_0_applicationsecurityposturefinding_objects_types_api_Api,
+)
+from ...ocsf.v_1_5_0.applicationsecurityposturefinding.objects.types.application import (
+    Application,
+)
+from ...ocsf.v_1_5_0.applicationsecurityposturefinding.objects.types.attack import (
+    Attack as ocsf_v_1_5_0_applicationsecurityposturefinding_objects_types_attack_Attack,
+)
+from ...ocsf.v_1_5_0.applicationsecurityposturefinding.objects.types.authorization import (
+    Authorization as ocsf_v_1_5_0_applicationsecurityposturefinding_objects_types_authorization_Authorization,
+)
+from ...ocsf.v_1_5_0.applicationsecurityposturefinding.classes.types.category_uid import (
+    CategoryUid as ocsf_v_1_5_0_applicationsecurityposturefinding_classes_types_category_uid_CategoryUid,
+)
+from ...ocsf.v_1_5_0.applicationsecurityposturefinding.classes.types.class_uid import (
+    ClassUid as ocsf_v_1_5_0_applicationsecurityposturefinding_classes_types_class_uid_ClassUid,
+)
+from ...ocsf.v_1_5_0.applicationsecurityposturefinding.objects.types.cloud import (
+    Cloud as ocsf_v_1_5_0_applicationsecurityposturefinding_objects_types_cloud_Cloud,
+)
+from ...ocsf.v_1_5_0.applicationsecurityposturefinding.objects.types.compliance import (
+    Compliance as ocsf_v_1_5_0_applicationsecurityposturefinding_objects_types_compliance_Compliance,
+)
+from ...ocsf.v_1_5_0.applicationsecurityposturefinding.classes.types.confidence_id import (
+    ConfidenceId as ocsf_v_1_5_0_applicationsecurityposturefinding_classes_types_confidence_id_ConfidenceId,
+)
+from ...ocsf.v_1_5_0.applicationsecurityposturefinding.objects.types.object import (
+    Object as ocsf_v_1_5_0_applicationsecurityposturefinding_objects_types_object_Object,
+)
+from ...ocsf.v_1_5_0.applicationsecurityposturefinding.objects.types.device import (
+    Device as ocsf_v_1_5_0_applicationsecurityposturefinding_objects_types_device_Device,
+)
+from ...ocsf.v_1_5_0.applicationsecurityposturefinding.classes.types.disposition_id import (
+    DispositionId as ocsf_v_1_5_0_applicationsecurityposturefinding_classes_types_disposition_id_DispositionId,
+)
+from ...ocsf.v_1_5_0.applicationsecurityposturefinding.base.types.timestamp import (
+    Timestamp as ocsf_v_1_5_0_applicationsecurityposturefinding_base_types_timestamp_Timestamp,
+)
+from ...ocsf.v_1_5_0.applicationsecurityposturefinding.objects.types.enrichment import (
+    Enrichment as ocsf_v_1_5_0_applicationsecurityposturefinding_objects_types_enrichment_Enrichment,
+)
+from ...ocsf.v_1_5_0.applicationsecurityposturefinding.objects.types.finding_info import (
+    FindingInfo as ocsf_v_1_5_0_applicationsecurityposturefinding_objects_types_finding_info_FindingInfo,
+)
+from ...ocsf.v_1_5_0.applicationsecurityposturefinding.objects.types.firewall_rule import (
+    FirewallRule as ocsf_v_1_5_0_applicationsecurityposturefinding_objects_types_firewall_rule_FirewallRule,
+)
+from ...ocsf.v_1_5_0.applicationsecurityposturefinding.objects.types.malware import (
+    Malware as ocsf_v_1_5_0_applicationsecurityposturefinding_objects_types_malware_Malware,
+)
+from ...ocsf.v_1_5_0.applicationsecurityposturefinding.objects.types.malware_scan_info import (
+    MalwareScanInfo as ocsf_v_1_5_0_applicationsecurityposturefinding_objects_types_malware_scan_info_MalwareScanInfo,
+)
+from ...ocsf.v_1_5_0.applicationsecurityposturefinding.objects.types.metadata import (
+    Metadata as ocsf_v_1_5_0_applicationsecurityposturefinding_objects_types_metadata_Metadata,
+)
+from ...ocsf.v_1_5_0.applicationsecurityposturefinding.objects.types.observable import (
+    Observable as ocsf_v_1_5_0_applicationsecurityposturefinding_objects_types_observable_Observable,
+)
+from ...ocsf.v_1_5_0.applicationsecurityposturefinding.objects.types.osint import (
+    Osint as ocsf_v_1_5_0_applicationsecurityposturefinding_objects_types_osint_Osint,
+)
+from ...ocsf.v_1_5_0.applicationsecurityposturefinding.objects.types.policy import (
+    Policy as ocsf_v_1_5_0_applicationsecurityposturefinding_objects_types_policy_Policy,
+)
+from ...ocsf.v_1_5_0.applicationsecurityposturefinding.objects.types.remediation import (
+    Remediation as ocsf_v_1_5_0_applicationsecurityposturefinding_objects_types_remediation_Remediation,
+)
+from ...ocsf.v_1_5_0.applicationsecurityposturefinding.objects.types.resource_details import (
+    ResourceDetails as ocsf_v_1_5_0_applicationsecurityposturefinding_objects_types_resource_details_ResourceDetails,
+)
+from ...ocsf.v_1_5_0.applicationsecurityposturefinding.classes.types.risk_level_id import (
+    RiskLevelId as ocsf_v_1_5_0_applicationsecurityposturefinding_classes_types_risk_level_id_RiskLevelId,
+)
+from ...ocsf.v_1_5_0.applicationsecurityposturefinding.classes.types.severity_id import (
+    SeverityId as ocsf_v_1_5_0_applicationsecurityposturefinding_classes_types_severity_id_SeverityId,
+)
+from ...ocsf.v_1_5_0.applicationsecurityposturefinding.classes.types.status_id import (
+    StatusId as ocsf_v_1_5_0_applicationsecurityposturefinding_classes_types_status_id_StatusId,
+)
+from ...ocsf.v_1_5_0.applicationsecurityposturefinding.classes.types.type_uid import (
+    TypeUid as ocsf_v_1_5_0_applicationsecurityposturefinding_classes_types_type_uid_TypeUid,
+)
+from ...ocsf.v_1_5_0.applicationsecurityposturefinding.objects.types.vendor_attributes import (
+    VendorAttributes,
+)
+from ...ocsf.v_1_5_0.applicationsecurityposturefinding.objects.types.vulnerability import (
+    Vulnerability as ocsf_v_1_5_0_applicationsecurityposturefinding_objects_types_vulnerability_Vulnerability,
+)
 from ...ocsf.v_1_3_0.entitymanagement.classes.types.activity_id import (
     ActivityId as ocsf_v_1_3_0_entitymanagement_classes_types_activity_id_ActivityId,
 )
@@ -2221,6 +2320,157 @@ class Event_ApiActivity(UncheckedBaseModel):
     unmapped: typing.Optional[ocsf_v_1_3_0_apiactivity_objects_types_object_Object] = (
         None
     )
+
+    if IS_PYDANTIC_V2:
+        model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(
+            extra="allow"
+        )  # type: ignore # Pydantic v2
+    else:
+
+        class Config:
+            smart_union = True
+            extra = pydantic.Extra.allow
+
+
+class Event_ApplicationSecurityPostureFinding(UncheckedBaseModel):
+    class_name: typing.Literal["Application Security Posture Finding"] = (
+        "Application Security Posture Finding"
+    )
+    action: typing.Optional[str] = None
+    action_id: typing.Optional[
+        ocsf_v_1_5_0_applicationsecurityposturefinding_classes_types_action_id_ActionId
+    ] = None
+    activity_id: ocsf_v_1_5_0_applicationsecurityposturefinding_classes_types_activity_id_ActivityId
+    activity_name: typing.Optional[str] = None
+    actor: typing.Optional[
+        ocsf_v_1_5_0_applicationsecurityposturefinding_objects_types_actor_Actor
+    ] = None
+    api: typing.Optional[
+        ocsf_v_1_5_0_applicationsecurityposturefinding_objects_types_api_Api
+    ] = None
+    application: typing.Optional[Application] = None
+    attacks: typing.Optional[
+        typing.List[
+            ocsf_v_1_5_0_applicationsecurityposturefinding_objects_types_attack_Attack
+        ]
+    ] = None
+    authorizations: typing.Optional[
+        typing.List[
+            ocsf_v_1_5_0_applicationsecurityposturefinding_objects_types_authorization_Authorization
+        ]
+    ] = None
+    category_name: typing.Optional[str] = None
+    category_uid: ocsf_v_1_5_0_applicationsecurityposturefinding_classes_types_category_uid_CategoryUid
+    class_uid: (
+        ocsf_v_1_5_0_applicationsecurityposturefinding_classes_types_class_uid_ClassUid
+    )
+    cloud: typing.Optional[
+        ocsf_v_1_5_0_applicationsecurityposturefinding_objects_types_cloud_Cloud
+    ] = None
+    comment: typing.Optional[str] = None
+    compliance: typing.Optional[
+        ocsf_v_1_5_0_applicationsecurityposturefinding_objects_types_compliance_Compliance
+    ] = None
+    confidence: typing.Optional[str] = None
+    confidence_id: typing.Optional[
+        ocsf_v_1_5_0_applicationsecurityposturefinding_classes_types_confidence_id_ConfidenceId
+    ] = None
+    confidence_score: typing.Optional[int] = None
+    count: typing.Optional[int] = None
+    custom_fields: typing.Optional[
+        ocsf_v_1_5_0_applicationsecurityposturefinding_objects_types_object_Object
+    ] = None
+    device: typing.Optional[
+        ocsf_v_1_5_0_applicationsecurityposturefinding_objects_types_device_Device
+    ] = None
+    disposition: typing.Optional[str] = None
+    disposition_id: typing.Optional[
+        ocsf_v_1_5_0_applicationsecurityposturefinding_classes_types_disposition_id_DispositionId
+    ] = None
+    duration: typing.Optional[int] = None
+    end_time: typing.Optional[
+        ocsf_v_1_5_0_applicationsecurityposturefinding_base_types_timestamp_Timestamp
+    ] = None
+    end_time_dt: typing.Optional[dt.datetime] = None
+    enrichments: typing.Optional[
+        typing.List[
+            ocsf_v_1_5_0_applicationsecurityposturefinding_objects_types_enrichment_Enrichment
+        ]
+    ] = None
+    finding_info: ocsf_v_1_5_0_applicationsecurityposturefinding_objects_types_finding_info_FindingInfo
+    firewall_rule: typing.Optional[
+        ocsf_v_1_5_0_applicationsecurityposturefinding_objects_types_firewall_rule_FirewallRule
+    ] = None
+    is_alert: typing.Optional[bool] = None
+    malware: typing.Optional[
+        typing.List[
+            ocsf_v_1_5_0_applicationsecurityposturefinding_objects_types_malware_Malware
+        ]
+    ] = None
+    malware_scan_info: typing.Optional[
+        ocsf_v_1_5_0_applicationsecurityposturefinding_objects_types_malware_scan_info_MalwareScanInfo
+    ] = None
+    message: typing.Optional[str] = None
+    metadata: (
+        ocsf_v_1_5_0_applicationsecurityposturefinding_objects_types_metadata_Metadata
+    )
+    observables: typing.Optional[
+        typing.List[
+            ocsf_v_1_5_0_applicationsecurityposturefinding_objects_types_observable_Observable
+        ]
+    ] = None
+    osint: typing.Optional[
+        typing.List[
+            ocsf_v_1_5_0_applicationsecurityposturefinding_objects_types_osint_Osint
+        ]
+    ] = None
+    policy: typing.Optional[
+        ocsf_v_1_5_0_applicationsecurityposturefinding_objects_types_policy_Policy
+    ] = None
+    raw_data: typing.Optional[str] = None
+    raw_data_size: typing.Optional[int] = None
+    remediation: typing.Optional[
+        ocsf_v_1_5_0_applicationsecurityposturefinding_objects_types_remediation_Remediation
+    ] = None
+    resources: typing.Optional[
+        typing.List[
+            ocsf_v_1_5_0_applicationsecurityposturefinding_objects_types_resource_details_ResourceDetails
+        ]
+    ] = None
+    risk_details: typing.Optional[str] = None
+    risk_level: typing.Optional[str] = None
+    risk_level_id: typing.Optional[
+        ocsf_v_1_5_0_applicationsecurityposturefinding_classes_types_risk_level_id_RiskLevelId
+    ] = None
+    risk_score: typing.Optional[int] = None
+    severity: typing.Optional[str] = None
+    severity_id: ocsf_v_1_5_0_applicationsecurityposturefinding_classes_types_severity_id_SeverityId
+    start_time: typing.Optional[
+        ocsf_v_1_5_0_applicationsecurityposturefinding_base_types_timestamp_Timestamp
+    ] = None
+    start_time_dt: typing.Optional[dt.datetime] = None
+    status: typing.Optional[str] = None
+    status_code: typing.Optional[str] = None
+    status_detail: typing.Optional[str] = None
+    status_id: typing.Optional[
+        ocsf_v_1_5_0_applicationsecurityposturefinding_classes_types_status_id_StatusId
+    ] = None
+    time: ocsf_v_1_5_0_applicationsecurityposturefinding_base_types_timestamp_Timestamp
+    time_dt: typing.Optional[dt.datetime] = None
+    timezone_offset: typing.Optional[int] = None
+    type_name: typing.Optional[str] = None
+    type_uid: (
+        ocsf_v_1_5_0_applicationsecurityposturefinding_classes_types_type_uid_TypeUid
+    )
+    unmapped: typing.Optional[
+        ocsf_v_1_5_0_applicationsecurityposturefinding_objects_types_object_Object
+    ] = None
+    vendor_attributes: typing.Optional[VendorAttributes] = None
+    vulnerabilities: typing.Optional[
+        typing.List[
+            ocsf_v_1_5_0_applicationsecurityposturefinding_objects_types_vulnerability_Vulnerability
+        ]
+    ] = None
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(
@@ -5032,6 +5282,7 @@ Event = typing_extensions.Annotated[
     typing.Union[
         Event_AccountChange,
         Event_ApiActivity,
+        Event_ApplicationSecurityPostureFinding,
         Event_EntityManagement,
         Event_Authentication,
         Event_AuthorizeSession,
