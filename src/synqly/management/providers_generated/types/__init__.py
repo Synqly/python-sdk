@@ -5,6 +5,12 @@ from .appsec_hcl_app_scan_on_cloud import AppsecHclAppScanOnCloud
 from .appsec_open_text_core_application_security import (
     AppsecOpenTextCoreApplicationSecurity,
 )
+from .appsec_open_text_core_application_security_mock import (
+    AppsecOpenTextCoreApplicationSecurityMock,
+)
+from .appsec_opentext_core_application_security_dataset import (
+    AppsecOpentextCoreApplicationSecurityDataset,
+)
 from .armis_credential import (
     ArmisCredential,
     ArmisCredential_Token,
@@ -221,6 +227,7 @@ from .provider_config import (
     ProviderConfig_AppsecGitlab,
     ProviderConfig_AppsecHclAppscanOnCloud,
     ProviderConfig_AppsecOpentextCoreApplicationSecurity,
+    ProviderConfig_AppsecOpentextCoreApplicationSecurityMock,
     ProviderConfig_AssetsArmisCentrix,
     ProviderConfig_AssetsArmisCentrixMock,
     ProviderConfig_AssetsAxonius,
@@ -470,6 +477,8 @@ __all__ = [
     "AppsecGitLab",
     "AppsecHclAppScanOnCloud",
     "AppsecOpenTextCoreApplicationSecurity",
+    "AppsecOpenTextCoreApplicationSecurityMock",
+    "AppsecOpentextCoreApplicationSecurityDataset",
     "ArmisCredential",
     "ArmisCredential_Token",
     "ArmisCredential_TokenId",
@@ -626,6 +635,7 @@ __all__ = [
     "ProviderConfig_AppsecGitlab",
     "ProviderConfig_AppsecHclAppscanOnCloud",
     "ProviderConfig_AppsecOpentextCoreApplicationSecurity",
+    "ProviderConfig_AppsecOpentextCoreApplicationSecurityMock",
     "ProviderConfig_AssetsArmisCentrix",
     "ProviderConfig_AssetsArmisCentrixMock",
     "ProviderConfig_AssetsAxonius",
