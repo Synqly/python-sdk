@@ -25,6 +25,7 @@ from .assets_axonius_mock import AssetsAxoniusMock
 from .assets_crowd_strike import AssetsCrowdStrike
 from .assets_crowd_strike_dataset import AssetsCrowdStrikeDataset
 from .assets_crowd_strike_mock import AssetsCrowdStrikeMock
+from .assets_ivanti_neurons import AssetsIvantiNeurons
 from .assets_nozomi_vantage import AssetsNozomiVantage
 from .assets_nozomi_vantage_dataset import AssetsNozomiVantageDataset
 from .assets_nozomi_vantage_mock import AssetsNozomiVantageMock
@@ -167,6 +168,11 @@ from .identity_entra_id import IdentityEntraId
 from .identity_google import IdentityGoogle
 from .identity_okta import IdentityOkta
 from .identity_ping_one import IdentityPingOne
+from .ivanti_credential import (
+    IvantiCredential,
+    IvantiCredential_OAuthClient,
+    IvantiCredential_OAuthClientId,
+)
 from .jira_credential import (
     JiraCredential,
     JiraCredential_Basic,
@@ -234,6 +240,7 @@ from .provider_config import (
     ProviderConfig_AssetsAxoniusMock,
     ProviderConfig_AssetsCrowdstrike,
     ProviderConfig_AssetsCrowdstrikeMock,
+    ProviderConfig_AssetsIvantiNeurons,
     ProviderConfig_AssetsNozomiVantage,
     ProviderConfig_AssetsNozomiVantageMock,
     ProviderConfig_AssetsQualysCloud,
@@ -491,6 +498,7 @@ __all__ = [
     "AssetsCrowdStrike",
     "AssetsCrowdStrikeDataset",
     "AssetsCrowdStrikeMock",
+    "AssetsIvantiNeurons",
     "AssetsNozomiVantage",
     "AssetsNozomiVantageDataset",
     "AssetsNozomiVantageMock",
@@ -593,6 +601,9 @@ __all__ = [
     "IdentityGoogle",
     "IdentityOkta",
     "IdentityPingOne",
+    "IvantiCredential",
+    "IvantiCredential_OAuthClient",
+    "IvantiCredential_OAuthClientId",
     "JiraCredential",
     "JiraCredential_Basic",
     "JiraCredential_BasicId",
@@ -642,6 +653,7 @@ __all__ = [
     "ProviderConfig_AssetsAxoniusMock",
     "ProviderConfig_AssetsCrowdstrike",
     "ProviderConfig_AssetsCrowdstrikeMock",
+    "ProviderConfig_AssetsIvantiNeurons",
     "ProviderConfig_AssetsNozomiVantage",
     "ProviderConfig_AssetsNozomiVantageMock",
     "ProviderConfig_AssetsQualysCloud",

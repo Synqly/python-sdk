@@ -65,6 +65,11 @@ class ProviderConfigId(str, enum.Enum):
     [MOCK] CrowdStrike Falcon Spotlight
     """
 
+    ASSETS_IVANTI_NEURONS = "assets_ivanti_neurons"
+    """
+    Ivanti Neurons
+    """
+
     ASSETS_NOZOMI_VANTAGE = "assets_nozomi_vantage"
     """
     Nozomi Vantage
@@ -475,6 +480,7 @@ class ProviderConfigId(str, enum.Enum):
         assets_axonius_mock: typing.Callable[[], T_Result],
         assets_crowd_strike: typing.Callable[[], T_Result],
         assets_crowd_strike_mock: typing.Callable[[], T_Result],
+        assets_ivanti_neurons: typing.Callable[[], T_Result],
         assets_nozomi_vantage: typing.Callable[[], T_Result],
         assets_nozomi_vantage_mock: typing.Callable[[], T_Result],
         assets_qualys_cloud: typing.Callable[[], T_Result],
@@ -574,6 +580,8 @@ class ProviderConfigId(str, enum.Enum):
             return assets_crowd_strike()
         if self is ProviderConfigId.ASSETS_CROWD_STRIKE_MOCK:
             return assets_crowd_strike_mock()
+        if self is ProviderConfigId.ASSETS_IVANTI_NEURONS:
+            return assets_ivanti_neurons()
         if self is ProviderConfigId.ASSETS_NOZOMI_VANTAGE:
             return assets_nozomi_vantage()
         if self is ProviderConfigId.ASSETS_NOZOMI_VANTAGE_MOCK:
