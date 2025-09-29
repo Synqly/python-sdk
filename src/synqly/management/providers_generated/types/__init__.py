@@ -107,6 +107,8 @@ from .defender_credential import (
     DefenderCredential_OAuthClientId,
 )
 from .edr_crowd_strike import EdrCrowdStrike
+from .edr_crowd_strike_dataset import EdrCrowdStrikeDataset
+from .edr_crowd_strike_mock import EdrCrowdStrikeMock
 from .edr_defender import EdrDefender
 from .edr_malwarebytes import EdrMalwarebytes
 from .edr_sentinel_one import EdrSentinelOne
@@ -255,6 +257,7 @@ from .provider_config import (
     ProviderConfig_CloudsecurityCrowdstrike,
     ProviderConfig_CloudsecurityDefender,
     ProviderConfig_EdrCrowdstrike,
+    ProviderConfig_EdrCrowdstrikeMock,
     ProviderConfig_EdrDefender,
     ProviderConfig_EdrMalwarebytes,
     ProviderConfig_EdrSentinelone,
@@ -556,6 +559,8 @@ __all__ = [
     "DefenderCredential_OAuthClient",
     "DefenderCredential_OAuthClientId",
     "EdrCrowdStrike",
+    "EdrCrowdStrikeDataset",
+    "EdrCrowdStrikeMock",
     "EdrDefender",
     "EdrMalwarebytes",
     "EdrSentinelOne",
@@ -668,6 +673,7 @@ __all__ = [
     "ProviderConfig_CloudsecurityCrowdstrike",
     "ProviderConfig_CloudsecurityDefender",
     "ProviderConfig_EdrCrowdstrike",
+    "ProviderConfig_EdrCrowdstrikeMock",
     "ProviderConfig_EdrDefender",
     "ProviderConfig_EdrMalwarebytes",
     "ProviderConfig_EdrSentinelone",

@@ -140,6 +140,11 @@ class ProviderConfigId(str, enum.Enum):
     CrowdStrike Falcon® Insight EDR
     """
 
+    EDR_CROWD_STRIKE_MOCK = "edr_crowdstrike_mock"
+    """
+    [MOCK] CrowdStrike Falcon® Insight EDR
+    """
+
     EDR_DEFENDER = "edr_defender"
     """
     Microsoft Defender for Endpoint
@@ -495,6 +500,7 @@ class ProviderConfigId(str, enum.Enum):
         cloud_security_crowd_strike: typing.Callable[[], T_Result],
         cloud_security_defender: typing.Callable[[], T_Result],
         edr_crowd_strike: typing.Callable[[], T_Result],
+        edr_crowd_strike_mock: typing.Callable[[], T_Result],
         edr_defender: typing.Callable[[], T_Result],
         edr_malwarebytes: typing.Callable[[], T_Result],
         edr_sentinel_one: typing.Callable[[], T_Result],
@@ -610,6 +616,8 @@ class ProviderConfigId(str, enum.Enum):
             return cloud_security_defender()
         if self is ProviderConfigId.EDR_CROWD_STRIKE:
             return edr_crowd_strike()
+        if self is ProviderConfigId.EDR_CROWD_STRIKE_MOCK:
+            return edr_crowd_strike_mock()
         if self is ProviderConfigId.EDR_DEFENDER:
             return edr_defender()
         if self is ProviderConfigId.EDR_MALWAREBYTES:

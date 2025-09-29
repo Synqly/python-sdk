@@ -35,6 +35,7 @@ from .assets_tanium_cloud_dataset import AssetsTaniumCloudDataset
 from .aws_provider_credential import AwsProviderCredential
 from .aws_region import AwsRegion
 from .defender_credential import DefenderCredential
+from .edr_crowd_strike_dataset import EdrCrowdStrikeDataset
 from .malwarebytes_credential import MalwarebytesCredential
 from .sentinel_one_credential import SentinelOneCredential
 from .sentinel_one_edr_events_credential import SentinelOneEdrEventsCredential
@@ -475,6 +476,21 @@ class ProviderConfig_EdrCrowdstrike(UncheckedBaseModel):
     type: typing.Literal["edr_crowdstrike"] = "edr_crowdstrike"
     credential: CrowdStrikeCredential
     url: typing.Optional[str] = None
+
+    if IS_PYDANTIC_V2:
+        model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(
+            extra="allow"
+        )  # type: ignore # Pydantic v2
+    else:
+
+        class Config:
+            smart_union = True
+            extra = pydantic.Extra.allow
+
+
+class ProviderConfig_EdrCrowdstrikeMock(UncheckedBaseModel):
+    type: typing.Literal["edr_crowdstrike_mock"] = "edr_crowdstrike_mock"
+    dataset: EdrCrowdStrikeDataset
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(
@@ -1612,6 +1628,7 @@ ProviderConfig = typing_extensions.Annotated[
         ProviderConfig_CloudsecurityCrowdstrike,
         ProviderConfig_CloudsecurityDefender,
         ProviderConfig_EdrCrowdstrike,
+        ProviderConfig_EdrCrowdstrikeMock,
         ProviderConfig_EdrDefender,
         ProviderConfig_EdrMalwarebytes,
         ProviderConfig_EdrSentinelone,
