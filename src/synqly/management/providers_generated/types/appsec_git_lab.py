@@ -10,6 +10,8 @@ import typing
 class AppsecGitLab(UncheckedBaseModel):
     """
     Configuration for GitLab as an application security provider.
+
+    [Configuration guide](https://docs.synqly.com/guides/provider-configuration/gitlab-appsec-setup)
     """
 
     credential: GitLabCredential = pydantic.Field()
