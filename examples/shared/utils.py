@@ -1,6 +1,5 @@
 import signal
 import httpx
-from typing import Optional
 
 # Synqly Python SDK imports
 from synqly import engine
@@ -159,15 +158,15 @@ class Tenant:
 
     def __init__(
         self,
-        tenant_name: str,
-        synqly_account_id: str,
-        synqly_management_client: SynqlyManagement,
-        synqly_engine_client: Optional[SynqlyEngine],
-    ) -> None:
-        self.tenant_name: str = tenant_name
-        self.synqly_account_id: str = synqly_account_id
-        self.synqly_management_client: SynqlyManagement = synqly_management_client
-        self.synqly_engine_client: Optional[SynqlyEngine] = synqly_engine_client
+        tenant_name,
+        synqly_account_id,
+        synqly_management_client,
+        synqly_engine_client,
+    ):
+        self.tenant_name = tenant_name
+        self.synqly_account_id = synqly_account_id
+        self.synqly_management_client = synqly_management_client
+        self.synqly_engine_client = synqly_engine_client
 
 
 # Exception raised when a tenant is not found
