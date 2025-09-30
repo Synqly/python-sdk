@@ -35,6 +35,7 @@ from .assets_tanium_cloud_dataset import AssetsTaniumCloudDataset
 from .aws_provider_credential import AwsProviderCredential
 from .aws_region import AwsRegion
 from .defender_credential import DefenderCredential
+from .palo_alto_credential import PaloAltoCredential
 from .edr_crowd_strike_dataset import EdrCrowdStrikeDataset
 from .malwarebytes_credential import MalwarebytesCredential
 from .sentinel_one_credential import SentinelOneCredential
@@ -460,6 +461,22 @@ class ProviderConfig_CloudsecurityDefender(UncheckedBaseModel):
     subscription_id: str
     tenant_id: str
     url: typing.Optional[str] = None
+
+    if IS_PYDANTIC_V2:
+        model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(
+            extra="allow"
+        )  # type: ignore # Pydantic v2
+    else:
+
+        class Config:
+            smart_union = True
+            extra = pydantic.Extra.allow
+
+
+class ProviderConfig_CloudsecurityPaloalto(UncheckedBaseModel):
+    type: typing.Literal["cloudsecurity_paloalto"] = "cloudsecurity_paloalto"
+    credential: PaloAltoCredential
+    url: str
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(
@@ -1627,6 +1644,7 @@ ProviderConfig = typing_extensions.Annotated[
         ProviderConfig_CloudsecurityAws,
         ProviderConfig_CloudsecurityCrowdstrike,
         ProviderConfig_CloudsecurityDefender,
+        ProviderConfig_CloudsecurityPaloalto,
         ProviderConfig_EdrCrowdstrike,
         ProviderConfig_EdrCrowdstrikeMock,
         ProviderConfig_EdrDefender,

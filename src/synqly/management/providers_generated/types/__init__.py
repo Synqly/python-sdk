@@ -90,6 +90,7 @@ from .azure_monitor_logs_credential import (
 from .cloud_security_aws import CloudSecurityAws
 from .cloud_security_crowd_strike import CloudSecurityCrowdStrike
 from .cloud_security_defender import CloudSecurityDefender
+from .cloud_security_palo_alto import CloudSecurityPaloAlto
 from .crowd_strike_credential import (
     CrowdStrikeCredential,
     CrowdStrikeCredential_OAuthClient,
@@ -223,6 +224,11 @@ from .pager_duty_credential import (
     PagerDutyCredential_Token,
     PagerDutyCredential_TokenId,
 )
+from .palo_alto_credential import (
+    PaloAltoCredential,
+    PaloAltoCredential_Basic,
+    PaloAltoCredential_BasicId,
+)
 from .ping_one_apiurl import PingOneApiurl
 from .ping_one_auth_url import PingOneAuthUrl
 from .ping_one_credential import (
@@ -256,6 +262,7 @@ from .provider_config import (
     ProviderConfig_CloudsecurityAws,
     ProviderConfig_CloudsecurityCrowdstrike,
     ProviderConfig_CloudsecurityDefender,
+    ProviderConfig_CloudsecurityPaloalto,
     ProviderConfig_EdrCrowdstrike,
     ProviderConfig_EdrCrowdstrikeMock,
     ProviderConfig_EdrDefender,
@@ -548,6 +555,7 @@ __all__ = [
     "CloudSecurityAws",
     "CloudSecurityCrowdStrike",
     "CloudSecurityDefender",
+    "CloudSecurityPaloAlto",
     "CrowdStrikeCredential",
     "CrowdStrikeCredential_OAuthClient",
     "CrowdStrikeCredential_OAuthClientId",
@@ -641,6 +649,9 @@ __all__ = [
     "PagerDutyCredential",
     "PagerDutyCredential_Token",
     "PagerDutyCredential_TokenId",
+    "PaloAltoCredential",
+    "PaloAltoCredential_Basic",
+    "PaloAltoCredential_BasicId",
     "PingOneApiurl",
     "PingOneAuthUrl",
     "PingOneCredential",
@@ -672,6 +683,7 @@ __all__ = [
     "ProviderConfig_CloudsecurityAws",
     "ProviderConfig_CloudsecurityCrowdstrike",
     "ProviderConfig_CloudsecurityDefender",
+    "ProviderConfig_CloudsecurityPaloalto",
     "ProviderConfig_EdrCrowdstrike",
     "ProviderConfig_EdrCrowdstrikeMock",
     "ProviderConfig_EdrDefender",
