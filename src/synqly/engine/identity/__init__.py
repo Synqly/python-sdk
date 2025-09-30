@@ -2,34 +2,22 @@
 
 from .types import (
     GetGroupMembersResponse,
-    GetGroupMembersResponseGeneric,
     GetGroupResponse,
-    GetGroupResponseGeneric,
     GetUserResponse,
-    GetUserResponseGeneric,
     GroupId,
     QueryGroupsResponse,
-    QueryGroupsResponseGeneric,
     QueryIdentityAuditLogResponse,
-    QueryIdentityAuditLogResponseGeneric,
     QueryUsersResponse,
-    QueryUsersResponseGeneric,
     UserId,
 )
 
 __all__ = [
     "GetGroupMembersResponse",
-    "GetGroupMembersResponseGeneric",
     "GetGroupResponse",
-    "GetGroupResponseGeneric",
     "GetUserResponse",
-    "GetUserResponseGeneric",
     "GroupId",
     "QueryGroupsResponse",
-    "QueryGroupsResponseGeneric",
     "QueryIdentityAuditLogResponse",
-    "QueryIdentityAuditLogResponseGeneric",
     "QueryUsersResponse",
-    "QueryUsersResponseGeneric",
     "UserId",
 ]

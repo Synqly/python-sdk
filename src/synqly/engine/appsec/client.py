@@ -60,13 +60,10 @@ class AppsecClient:
             Number of applications to return.
 
         order : typing.Optional[typing.Union[str, typing.Sequence[str]]]
-            Select a field to order the results by. Defaults to `name`. To control the direction of the sorting, append
-            `[asc]` or `[desc]` to the field name. For example, `name[asc]` will sort the results by `name` in ascending order.
-            The ordering defaults to `asc` if not specified.
+            Select a field to order the results by. Defaults to `name`. To control the direction of the sorting, append `[asc]` or `[desc]` to the field name. For example, `name[asc]` will sort the results by `name` in ascending order. The ordering defaults to `asc` if not specified.
 
         filter : typing.Optional[typing.Union[str, typing.Sequence[str]]]
-            Filter results by this query. For more information on filtering, refer to our Filtering Guide. Defaults to no filter.
-            If used more than once, the queries are ANDed together.
+            Filter results by this query. For more information on filtering, refer to our Filtering Guide. Defaults to no filter. If used more than once, the queries are ANDed together.
 
         cursor : typing.Optional[str]
             Start search from cursor position.
@@ -274,13 +271,10 @@ class AppsecClient:
             Number of findings to return.
 
         order : typing.Optional[typing.Union[str, typing.Sequence[str]]]
-            Select a field to order the results by. Defaults to `name`. To control the direction of the sorting, append
-            `[asc]` or `[desc]` to the field name. For example, `name[asc]` will sort the results by `name` in ascending order.
-            The ordering defaults to `asc` if not specified.
+            Select a field to order the results by. Defaults to `name`. To control the direction of the sorting, append `[asc]` or `[desc]` to the field name. For example, `name[asc]` will sort the results by `name` in ascending order. The ordering defaults to `asc` if not specified.
 
         filter : typing.Optional[typing.Union[str, typing.Sequence[str]]]
-            Filter results by this query. For more information on filtering, refer to our Filtering Guide. Defaults to no filter.
-            If used more than once, the queries are ANDed together.
+            Filter results by this query. For more information on filtering, refer to our Filtering Guide. Defaults to no filter. If used more than once, the queries are ANDed together.
 
         cursor : typing.Optional[str]
             Start search from cursor position.
@@ -485,8 +479,7 @@ class AppsecClient:
             Number of findings to return.
 
         filter : typing.Optional[typing.Union[str, typing.Sequence[str]]]
-            Filter results by this query. For more information on filtering, refer to our Filtering Guide. Defaults to no filter.
-            If used more than once, the queries are ANDed together.
+            Filter results by this query. For more information on filtering, refer to our Filtering Guide. Defaults to no filter. If used more than once, the queries are ANDed together.
 
         cursor : typing.Optional[str]
             Start search from cursor position.
@@ -878,13 +871,10 @@ class AsyncAppsecClient:
             Number of applications to return.
 
         order : typing.Optional[typing.Union[str, typing.Sequence[str]]]
-            Select a field to order the results by. Defaults to `name`. To control the direction of the sorting, append
-            `[asc]` or `[desc]` to the field name. For example, `name[asc]` will sort the results by `name` in ascending order.
-            The ordering defaults to `asc` if not specified.
+            Select a field to order the results by. Defaults to `name`. To control the direction of the sorting, append `[asc]` or `[desc]` to the field name. For example, `name[asc]` will sort the results by `name` in ascending order. The ordering defaults to `asc` if not specified.
 
         filter : typing.Optional[typing.Union[str, typing.Sequence[str]]]
-            Filter results by this query. For more information on filtering, refer to our Filtering Guide. Defaults to no filter.
-            If used more than once, the queries are ANDed together.
+            Filter results by this query. For more information on filtering, refer to our Filtering Guide. Defaults to no filter. If used more than once, the queries are ANDed together.
 
         cursor : typing.Optional[str]
             Start search from cursor position.
@@ -1100,13 +1090,10 @@ class AsyncAppsecClient:
             Number of findings to return.
 
         order : typing.Optional[typing.Union[str, typing.Sequence[str]]]
-            Select a field to order the results by. Defaults to `name`. To control the direction of the sorting, append
-            `[asc]` or `[desc]` to the field name. For example, `name[asc]` will sort the results by `name` in ascending order.
-            The ordering defaults to `asc` if not specified.
+            Select a field to order the results by. Defaults to `name`. To control the direction of the sorting, append `[asc]` or `[desc]` to the field name. For example, `name[asc]` will sort the results by `name` in ascending order. The ordering defaults to `asc` if not specified.
 
         filter : typing.Optional[typing.Union[str, typing.Sequence[str]]]
-            Filter results by this query. For more information on filtering, refer to our Filtering Guide. Defaults to no filter.
-            If used more than once, the queries are ANDed together.
+            Filter results by this query. For more information on filtering, refer to our Filtering Guide. Defaults to no filter. If used more than once, the queries are ANDed together.
 
         cursor : typing.Optional[str]
             Start search from cursor position.
@@ -1319,8 +1306,7 @@ class AsyncAppsecClient:
             Number of findings to return.
 
         filter : typing.Optional[typing.Union[str, typing.Sequence[str]]]
-            Filter results by this query. For more information on filtering, refer to our Filtering Guide. Defaults to no filter.
-            If used more than once, the queries are ANDed together.
+            Filter results by this query. For more information on filtering, refer to our Filtering Guide. Defaults to no filter. If used more than once, the queries are ANDed together.
 
         cursor : typing.Optional[str]
             Start search from cursor position.

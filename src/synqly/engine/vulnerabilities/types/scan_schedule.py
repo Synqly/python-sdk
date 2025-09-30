@@ -25,9 +25,7 @@ class ScanSchedule(UncheckedBaseModel):
 
     days: typing.Optional[typing.List[str]] = pydantic.Field(default=None)
     """
-    Days of the week when the scan will be repeated. For example, `["monday", "friday"]`
-    means that the scan will be repeated on Monday and Friday on the schedule defined by
-    `frequency` and `repeat_interval`.
+    Days of the week when the scan will be repeated. For example, `["monday", "friday"]` means that the scan will be repeated on Monday and Friday on the schedule defined by `frequency` and `repeat_interval`.
     """
 
     if IS_PYDANTIC_V2:

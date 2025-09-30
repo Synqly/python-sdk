@@ -8,8 +8,6 @@ from .types import (
     Identity,
     KillChainPhase,
     MarkingDefinition,
-    Relationships,
-    Software,
 )
 
 __all__ = [
@@ -20,6 +18,4 @@ __all__ = [
     "Identity",
     "KillChainPhase",
     "MarkingDefinition",
-    "Relationships",
-    "Software",
 ]

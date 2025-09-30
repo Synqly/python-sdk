@@ -2,26 +2,18 @@
 
 from .types import (
     CreateDeviceRequest,
-    CreateDeviceRequestGeneric,
     CreateDeviceResponse,
-    CreateDeviceResponseGeneric,
     Device,
     GetLabelsResponse,
-    GetLabelsResponseGeneric,
     Label,
     QueryDevicesResponse,
-    QueryDevicesResponseGeneric,
 )
 
 __all__ = [
     "CreateDeviceRequest",
-    "CreateDeviceRequestGeneric",
     "CreateDeviceResponse",
-    "CreateDeviceResponseGeneric",
     "Device",
     "GetLabelsResponse",
-    "GetLabelsResponseGeneric",
     "Label",
     "QueryDevicesResponse",
-    "QueryDevicesResponseGeneric",
 ]

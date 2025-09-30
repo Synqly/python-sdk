@@ -42,8 +42,7 @@ class NotificationsClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> GetNotificationResponse:
         """
-        Returns the `Notification` object matching `{notificationId}` from the token-linked
-        `Integration`.
+        Returns the `Notification` object matching `{notificationId}` from the token-linked `Integration`.
 
         Parameters
         ----------
@@ -648,8 +647,7 @@ class AsyncNotificationsClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> GetNotificationResponse:
         """
-        Returns the `Notification` object matching `{notificationId}` from the token-linked
-        `Integration`.
+        Returns the `Notification` object matching `{notificationId}` from the token-linked `Integration`.
 
         Parameters
         ----------

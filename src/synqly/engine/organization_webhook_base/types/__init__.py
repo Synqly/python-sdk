@@ -2,6 +2,5 @@
 
 from .webhook_event import WebhookEvent
 from .webhook_filter import WebhookFilter
-from .webhook_id import WebhookId
 
-__all__ = ["WebhookEvent", "WebhookFilter", "WebhookId"]
+__all__ = ["WebhookEvent", "WebhookFilter"]

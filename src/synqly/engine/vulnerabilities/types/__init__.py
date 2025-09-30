@@ -3,32 +3,22 @@
 from .asset import Asset
 from .create_asset_device import CreateAssetDevice
 from .create_asset_request import CreateAssetRequest
-from .create_asset_request_generic import CreateAssetRequestGeneric
 from .create_asset_response import CreateAssetResponse
-from .create_asset_response_generic import CreateAssetResponseGeneric
 from .create_asset_status import CreateAssetStatus
 from .create_findings_error import CreateFindingsError
 from .create_findings_request import CreateFindingsRequest
-from .create_findings_request_generic import CreateFindingsRequestGeneric
 from .create_findings_response import CreateFindingsResponse
-from .event_id import EventId
 from .get_scan_activity_response import GetScanActivityResponse
-from .get_scan_activity_response_generic import GetScanActivityResponseGeneric
 from .get_scan_status_response import GetScanStatusResponse
-from .get_scan_status_response_generic import GetScanStatusResponseGeneric
 from .nucleus_finding_state import NucleusFindingState
 from .provider_specific_finding_state import (
     ProviderSpecificFindingState,
     ProviderSpecificFindingState_Nucleus,
 )
 from .query_assets_response import QueryAssetsResponse
-from .query_assets_response_generic import QueryAssetsResponseGeneric
 from .query_findings_response import QueryFindingsResponse
-from .query_findings_response_generic import QueryFindingsResponseGeneric
 from .query_scans_response import QueryScansResponse
-from .query_scans_response_generic import QueryScansResponseGeneric
 from .scan_configuration import ScanConfiguration
-from .scan_day_option import ScanDayOption
 from .scan_frequency_option import ScanFrequencyOption
 from .scan_schedule import ScanSchedule
 from .scan_status import ScanStatus
@@ -36,7 +26,6 @@ from .security_finding import SecurityFinding
 from .update_finding_request import UpdateFindingRequest
 from .upload_scan_request import UploadScanRequest
 from .upload_scan_response import UploadScanResponse
-from .upload_scan_response_generic import UploadScanResponseGeneric
 from .upload_scan_status import UploadScanStatus
 from .user import User
 from .vulnerability_severity_filter_value import VulnerabilitySeverityFilterValue
@@ -46,30 +35,20 @@ __all__ = [
     "Asset",
     "CreateAssetDevice",
     "CreateAssetRequest",
-    "CreateAssetRequestGeneric",
     "CreateAssetResponse",
-    "CreateAssetResponseGeneric",
     "CreateAssetStatus",
     "CreateFindingsError",
     "CreateFindingsRequest",
-    "CreateFindingsRequestGeneric",
     "CreateFindingsResponse",
-    "EventId",
     "GetScanActivityResponse",
-    "GetScanActivityResponseGeneric",
     "GetScanStatusResponse",
-    "GetScanStatusResponseGeneric",
     "NucleusFindingState",
     "ProviderSpecificFindingState",
     "ProviderSpecificFindingState_Nucleus",
     "QueryAssetsResponse",
-    "QueryAssetsResponseGeneric",
     "QueryFindingsResponse",
-    "QueryFindingsResponseGeneric",
     "QueryScansResponse",
-    "QueryScansResponseGeneric",
     "ScanConfiguration",
-    "ScanDayOption",
     "ScanFrequencyOption",
     "ScanSchedule",
     "ScanStatus",
@@ -77,7 +56,6 @@ __all__ = [
     "UpdateFindingRequest",
     "UploadScanRequest",
     "UploadScanResponse",
-    "UploadScanResponseGeneric",
     "UploadScanStatus",
     "User",
     "VulnerabilitySeverityFilterValue",

@@ -7,8 +7,6 @@ from .id import Id
 from .identity import Identity
 from .kill_chain_phase import KillChainPhase
 from .marking_definition import MarkingDefinition
-from .relationships import Relationships
-from .software import Software
 
 __all__ = [
     "CommonProperties",
@@ -18,6 +16,4 @@ __all__ = [
     "Identity",
     "KillChainPhase",
     "MarkingDefinition",
-    "Relationships",
-    "Software",
 ]

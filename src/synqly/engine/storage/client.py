@@ -414,8 +414,7 @@ class StorageClient:
         self, path: str, *, request_options: typing.Optional[RequestOptions] = None
     ) -> typing.Iterator[bytes]:
         """
-        Downloads a file from the provided `{path}` in the token-linked
-        `Integration`.
+        Downloads a file from the provided `{path}` in the token-linked `Integration`.
 
         Parameters
         ----------
@@ -1158,8 +1157,7 @@ class AsyncStorageClient:
         self, path: str, *, request_options: typing.Optional[RequestOptions] = None
     ) -> typing.AsyncIterator[bytes]:
         """
-        Downloads a file from the provided `{path}` in the token-linked
-        `Integration`.
+        Downloads a file from the provided `{path}` in the token-linked `Integration`.
 
         Parameters
         ----------

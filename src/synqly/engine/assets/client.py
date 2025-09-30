@@ -59,8 +59,7 @@ class AssetsClient:
             Start search from cursor position.
 
         filter : typing.Optional[typing.Union[str, typing.Sequence[str]]]
-            Filter results by this query. For more information on filtering, refer to the Assets Filtering Guide.
-            Defaults to no filter. If used more than once, the queries are ANDed together.
+            Filter results by this query. For more information on filtering, refer to the Assets Filtering Guide. Defaults to no filter. If used more than once, the queries are ANDed together.
 
         order : typing.Optional[str]
             Select a field to order the results by. Defaults to `time`. To control the direction of the sorting, append
@@ -805,8 +804,7 @@ class AsyncAssetsClient:
             Start search from cursor position.
 
         filter : typing.Optional[typing.Union[str, typing.Sequence[str]]]
-            Filter results by this query. For more information on filtering, refer to the Assets Filtering Guide.
-            Defaults to no filter. If used more than once, the queries are ANDed together.
+            Filter results by this query. For more information on filtering, refer to the Assets Filtering Guide. Defaults to no filter. If used more than once, the queries are ANDed together.
 
         order : typing.Optional[str]
             Select a field to order the results by. Defaults to `time`. To control the direction of the sorting, append

@@ -4,38 +4,22 @@ from .app_sec_application import AppSecApplication
 from .app_sec_get_application_finding_details_response import (
     AppSecGetApplicationFindingDetailsResponse,
 )
-from .app_sec_get_application_finding_details_response_generic import (
-    AppSecGetApplicationFindingDetailsResponseGeneric,
-)
 from .app_sec_posture_finding import AppSecPostureFinding
 from .app_sec_query_application_findings_response import (
     AppSecQueryApplicationFindingsResponse,
 )
-from .app_sec_query_application_findings_response_generic import (
-    AppSecQueryApplicationFindingsResponseGeneric,
-)
 from .app_sec_query_applications_response import AppSecQueryApplicationsResponse
-from .app_sec_query_applications_response_generic import (
-    AppSecQueryApplicationsResponseGeneric,
-)
 from .app_sec_query_findings_response import AppSecQueryFindingsResponse
-from .app_sec_query_findings_response_generic import AppSecQueryFindingsResponseGeneric
-from .app_sec_severity_filter_value import AppSecSeverityFilterValue
 from .application_id import ApplicationId
 from .finding_id import FindingId
 
 __all__ = [
     "AppSecApplication",
     "AppSecGetApplicationFindingDetailsResponse",
-    "AppSecGetApplicationFindingDetailsResponseGeneric",
     "AppSecPostureFinding",
     "AppSecQueryApplicationFindingsResponse",
-    "AppSecQueryApplicationFindingsResponseGeneric",
     "AppSecQueryApplicationsResponse",
-    "AppSecQueryApplicationsResponseGeneric",
     "AppSecQueryFindingsResponse",
-    "AppSecQueryFindingsResponseGeneric",
-    "AppSecSeverityFilterValue",
     "ApplicationId",
     "FindingId",
 ]

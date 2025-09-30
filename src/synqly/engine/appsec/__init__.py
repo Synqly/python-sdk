@@ -3,15 +3,10 @@
 from .types import (
     AppSecApplication,
     AppSecGetApplicationFindingDetailsResponse,
-    AppSecGetApplicationFindingDetailsResponseGeneric,
     AppSecPostureFinding,
     AppSecQueryApplicationFindingsResponse,
-    AppSecQueryApplicationFindingsResponseGeneric,
     AppSecQueryApplicationsResponse,
-    AppSecQueryApplicationsResponseGeneric,
     AppSecQueryFindingsResponse,
-    AppSecQueryFindingsResponseGeneric,
-    AppSecSeverityFilterValue,
     ApplicationId,
     FindingId,
 )
@@ -19,15 +14,10 @@ from .types import (
 __all__ = [
     "AppSecApplication",
     "AppSecGetApplicationFindingDetailsResponse",
-    "AppSecGetApplicationFindingDetailsResponseGeneric",
     "AppSecPostureFinding",
     "AppSecQueryApplicationFindingsResponse",
-    "AppSecQueryApplicationFindingsResponseGeneric",
     "AppSecQueryApplicationsResponse",
-    "AppSecQueryApplicationsResponseGeneric",
     "AppSecQueryFindingsResponse",
-    "AppSecQueryFindingsResponseGeneric",
-    "AppSecSeverityFilterValue",
     "ApplicationId",
     "FindingId",
 ]

@@ -1545,26 +1545,21 @@ class SiemClient:
             Number of `Account` objects to return in this page. Defaults to 100.
 
         order : typing.Optional[typing.Union[str, typing.Sequence[str]]]
-            Select a field to order the results by. Defaults to `time`. To control the direction of the sorting, append
-            `[asc]` or `[desc]` to the field name. For example, `name[desc]` will sort the results by `name` in descending order.
-            The ordering defaults to `asc` if not specified. May be used multiple times to order by multiple fields, and the
-            ordering is applied in the order the fields are specified.
+            Select a field to order the results by. Defaults to `time`. To control the direction of the sorting, append `[asc]` or `[desc]` to the field name. For example, `name[desc]` will sort the results by `name` in descending order. The ordering defaults to `asc` if not specified. May be used multiple times to order by multiple fields, and the ordering is applied in the order the fields are specified.
 
         filter : typing.Optional[typing.Union[str, typing.Sequence[str]]]
-            Filter results by this query. For more information on filtering, refer to our Filtering Guide. Defaults to no filter.
-            If used more than once, the queries are ANDed together.
+            Filter results by this query. For more information on filtering, refer to our Filtering Guide. Defaults to no filter. If used more than once, the queries are ANDed together.
 
         meta : typing.Optional[typing.Union[str, typing.Sequence[str]]]
             Add metadata to the response by invoking meta functions. Documentation for meta functions is available at https://docs.synqly.com/api-reference/meta-functions. Not all meta function are available at every endpoint.
 
         passthrough_param : typing.Optional[typing.Union[str, typing.Sequence[str]]]
             Provider-specific query to pass through to the SIEM. This is useful for advanced queries that are not
-            supported by the API. The keys and values are provider-specific. For example, to perform a specific query in
-            Rapid7 IDR, you can use the `query: "{advanced query}"` key-value pair.
+            supported by the API. The keys and values are provider-specific. For example, to perform a specific
+            query in Rapid7 IDR, you can use the `query: "{advanced query}"` key-value pair.
 
         include_raw_data : typing.Optional[bool]
-            Include the raw data from the SIEM in the response. This is useful for debugging and troubleshooting.
-            Defaults to `false`.
+            Include the raw data from the SIEM in the response. This is useful for debugging and troubleshooting. Defaults to `false`.
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -1771,21 +1766,16 @@ class SiemClient:
             Number of `Account` objects to return in this page. Defaults to 100.
 
         order : typing.Optional[typing.Union[str, typing.Sequence[str]]]
-            Select a field to order the results by. Defaults to `time`. To control the direction of the sorting, append
-            `[asc]` or `[desc]` to the field name. For example, `name[desc]` will sort the results by `name` in descending order.
-            The ordering defaults to `asc` if not specified. May be used multiple times to order by multiple fields, and the
-            ordering is applied in the order the fields are specified.
+            Select a field to order the results by. Defaults to `time`. To control the direction of the sorting, append `[asc]` or `[desc]` to the field name. For example, `name[desc]` will sort the results by `name` in descending order. The ordering defaults to `asc` if not specified. May be used multiple times to order by multiple fields, and the ordering is applied in the order the fields are specified.
 
         filter : typing.Optional[typing.Union[str, typing.Sequence[str]]]
-            Filter results by this query. For more information on filtering, refer to our Filtering Guide. Defaults to no filter.
-            If used more than once, the queries are ANDed together.
+            Filter results by this query. For more information on filtering, refer to our Filtering Guide. Defaults to no filter. If used more than once, the queries are ANDed together.
 
         meta : typing.Optional[typing.Union[str, typing.Sequence[str]]]
             Add metadata to the response by invoking meta functions. Documentation for meta functions is available at https://docs.synqly.com/api-reference/meta-functions. Not all meta function are available at every endpoint.
 
         include_raw_data : typing.Optional[bool]
-            Include the raw data from the SIEM in the response. This is useful for debugging and troubleshooting.
-            Defaults to `false`.
+            Include the raw data from the SIEM in the response. This is useful for debugging and troubleshooting. Defaults to `false`.
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -3525,26 +3515,21 @@ class AsyncSiemClient:
             Number of `Account` objects to return in this page. Defaults to 100.
 
         order : typing.Optional[typing.Union[str, typing.Sequence[str]]]
-            Select a field to order the results by. Defaults to `time`. To control the direction of the sorting, append
-            `[asc]` or `[desc]` to the field name. For example, `name[desc]` will sort the results by `name` in descending order.
-            The ordering defaults to `asc` if not specified. May be used multiple times to order by multiple fields, and the
-            ordering is applied in the order the fields are specified.
+            Select a field to order the results by. Defaults to `time`. To control the direction of the sorting, append `[asc]` or `[desc]` to the field name. For example, `name[desc]` will sort the results by `name` in descending order. The ordering defaults to `asc` if not specified. May be used multiple times to order by multiple fields, and the ordering is applied in the order the fields are specified.
 
         filter : typing.Optional[typing.Union[str, typing.Sequence[str]]]
-            Filter results by this query. For more information on filtering, refer to our Filtering Guide. Defaults to no filter.
-            If used more than once, the queries are ANDed together.
+            Filter results by this query. For more information on filtering, refer to our Filtering Guide. Defaults to no filter. If used more than once, the queries are ANDed together.
 
         meta : typing.Optional[typing.Union[str, typing.Sequence[str]]]
             Add metadata to the response by invoking meta functions. Documentation for meta functions is available at https://docs.synqly.com/api-reference/meta-functions. Not all meta function are available at every endpoint.
 
         passthrough_param : typing.Optional[typing.Union[str, typing.Sequence[str]]]
             Provider-specific query to pass through to the SIEM. This is useful for advanced queries that are not
-            supported by the API. The keys and values are provider-specific. For example, to perform a specific query in
-            Rapid7 IDR, you can use the `query: "{advanced query}"` key-value pair.
+            supported by the API. The keys and values are provider-specific. For example, to perform a specific
+            query in Rapid7 IDR, you can use the `query: "{advanced query}"` key-value pair.
 
         include_raw_data : typing.Optional[bool]
-            Include the raw data from the SIEM in the response. This is useful for debugging and troubleshooting.
-            Defaults to `false`.
+            Include the raw data from the SIEM in the response. This is useful for debugging and troubleshooting. Defaults to `false`.
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -3759,21 +3744,16 @@ class AsyncSiemClient:
             Number of `Account` objects to return in this page. Defaults to 100.
 
         order : typing.Optional[typing.Union[str, typing.Sequence[str]]]
-            Select a field to order the results by. Defaults to `time`. To control the direction of the sorting, append
-            `[asc]` or `[desc]` to the field name. For example, `name[desc]` will sort the results by `name` in descending order.
-            The ordering defaults to `asc` if not specified. May be used multiple times to order by multiple fields, and the
-            ordering is applied in the order the fields are specified.
+            Select a field to order the results by. Defaults to `time`. To control the direction of the sorting, append `[asc]` or `[desc]` to the field name. For example, `name[desc]` will sort the results by `name` in descending order. The ordering defaults to `asc` if not specified. May be used multiple times to order by multiple fields, and the ordering is applied in the order the fields are specified.
 
         filter : typing.Optional[typing.Union[str, typing.Sequence[str]]]
-            Filter results by this query. For more information on filtering, refer to our Filtering Guide. Defaults to no filter.
-            If used more than once, the queries are ANDed together.
+            Filter results by this query. For more information on filtering, refer to our Filtering Guide. Defaults to no filter. If used more than once, the queries are ANDed together.
 
         meta : typing.Optional[typing.Union[str, typing.Sequence[str]]]
             Add metadata to the response by invoking meta functions. Documentation for meta functions is available at https://docs.synqly.com/api-reference/meta-functions. Not all meta function are available at every endpoint.
 
         include_raw_data : typing.Optional[bool]
-            Include the raw data from the SIEM in the response. This is useful for debugging and troubleshooting.
-            Defaults to `false`.
+            Include the raw data from the SIEM in the response. This is useful for debugging and troubleshooting. Defaults to `false`.
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.

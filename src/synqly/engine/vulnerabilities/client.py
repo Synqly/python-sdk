@@ -69,8 +69,7 @@ class VulnerabilitiesClient:
             Start search from cursor position.
 
         filter : typing.Optional[typing.Union[str, typing.Sequence[str]]]
-            Filter results by this query. For more information on filtering, refer to the Vulnerability Filtering Guide.
-            Defaults to no filter. If used more than once, the queries are ANDed together.
+            Filter results by this query. For more information on filtering, refer to the Vulnerability Filtering Guide. Defaults to no filter. If used more than once, the queries are ANDed together.
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -3052,8 +3051,7 @@ class AsyncVulnerabilitiesClient:
             Start search from cursor position.
 
         filter : typing.Optional[typing.Union[str, typing.Sequence[str]]]
-            Filter results by this query. For more information on filtering, refer to the Vulnerability Filtering Guide.
-            Defaults to no filter. If used more than once, the queries are ANDed together.
+            Filter results by this query. For more information on filtering, refer to the Vulnerability Filtering Guide. Defaults to no filter. If used more than once, the queries are ANDed together.
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.

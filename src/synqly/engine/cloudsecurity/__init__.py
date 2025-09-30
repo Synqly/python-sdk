@@ -2,22 +2,14 @@
 
 from .types import (
     QueryCloudResourceInventoryResponse,
-    QueryCloudResourceInventoryResponseGeneric,
     QueryComplianceFindingsResponse,
-    QueryComplianceFindingsResponseGeneric,
     QueryEventsResponse,
-    QueryEventsResponseGeneric,
     QueryIomsResponse,
-    QueryIomsResponseGeneric,
 )
 
 __all__ = [
     "QueryCloudResourceInventoryResponse",
-    "QueryCloudResourceInventoryResponseGeneric",
     "QueryComplianceFindingsResponse",
-    "QueryComplianceFindingsResponseGeneric",
     "QueryEventsResponse",
-    "QueryEventsResponseGeneric",
     "QueryIomsResponse",
-    "QueryIomsResponseGeneric",
 ]

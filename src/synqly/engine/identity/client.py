@@ -62,13 +62,10 @@ class IdentityClient:
             Start search from cursor position.
 
         order : typing.Optional[typing.Union[str, typing.Sequence[str]]]
-            Select a field to order the results by. Defaults to `time`. To control the direction of the sorting, append
-            `[asc]` or `[desc]` to the field name. For example, `time[asc]` will sort the results by `time` in ascending order.
-            The ordering defaults to `asc` if not specified.
+            Select a field to order the results by. Defaults to `time`. To control the direction of the sorting, append `[asc]` or `[desc]` to the field name. For example, `time[asc]` will sort the results by `time` in ascending order. The ordering defaults to `asc` if not specified.
 
         filter : typing.Optional[typing.Union[str, typing.Sequence[str]]]
-            Filter results by this query. For more information on filtering, refer to our Filtering Guide. Defaults to no filter.
-            If used more than once, the queries are ANDed together.
+            Filter results by this query. For more information on filtering, refer to our Filtering Guide. Defaults to no filter. If used more than once, the queries are ANDed together.
 
         include_raw_data : typing.Optional[bool]
             Include the raw data from the SIEM in the response. Defaults to `false`.
@@ -278,13 +275,10 @@ class IdentityClient:
             Start search from cursor position.
 
         order : typing.Optional[typing.Union[str, typing.Sequence[str]]]
-            Select a field to order the results by. Defaults to `uid`. To control the direction of the sorting, append
-            `[asc]` or `[desc]` to the field name. For example, `email_addr[asc]` will sort the results by `email_addr` in
-            ascending order. The ordering defaults to `asc` if not specified.
+            Select a field to order the results by. Defaults to `uid`. To control the direction of the sorting, append `[asc]` or `[desc]` to the field name. For example, `email_addr[asc]` will sort the results by `email_addr` in ascending order. The ordering defaults to `asc` if not specified.
 
         filter : typing.Optional[typing.Union[str, typing.Sequence[str]]]
-            Filter results by this query. For more information on filtering, refer to our Filtering Guide. Defaults to no filter.
-            If used more than once, the queries are ANDed together.
+            Filter results by this query. For more information on filtering, refer to our Filtering Guide. Defaults to no filter. If used more than once, the queries are ANDed together.
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -678,13 +672,10 @@ class IdentityClient:
             Start search from cursor position.
 
         order : typing.Optional[typing.Union[str, typing.Sequence[str]]]
-            Select a field to order the results by. Defaults to `uid`. To control the direction of the sorting, append
-            `[asc]` or `[desc]` to the field name. For example, `email_addr[asc]` will sort the results by `email_addr` in
-            ascending order. The ordering defaults to `asc` if not specified.
+            Select a field to order the results by. Defaults to `uid`. To control the direction of the sorting, append `[asc]` or `[desc]` to the field name. For example, `email_addr[asc]` will sort the results by `email_addr` in ascending order. The ordering defaults to `asc` if not specified.
 
         filter : typing.Optional[typing.Union[str, typing.Sequence[str]]]
-            Filter results by this query. For more information on filtering, refer to our Filtering Guide. Defaults to no filter.
-            If used more than once, the queries are ANDed together.
+            Filter results by this query. For more information on filtering, refer to our Filtering Guide. Defaults to no filter. If used more than once, the queries are ANDed together.
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -1972,13 +1963,10 @@ class AsyncIdentityClient:
             Start search from cursor position.
 
         order : typing.Optional[typing.Union[str, typing.Sequence[str]]]
-            Select a field to order the results by. Defaults to `time`. To control the direction of the sorting, append
-            `[asc]` or `[desc]` to the field name. For example, `time[asc]` will sort the results by `time` in ascending order.
-            The ordering defaults to `asc` if not specified.
+            Select a field to order the results by. Defaults to `time`. To control the direction of the sorting, append `[asc]` or `[desc]` to the field name. For example, `time[asc]` will sort the results by `time` in ascending order. The ordering defaults to `asc` if not specified.
 
         filter : typing.Optional[typing.Union[str, typing.Sequence[str]]]
-            Filter results by this query. For more information on filtering, refer to our Filtering Guide. Defaults to no filter.
-            If used more than once, the queries are ANDed together.
+            Filter results by this query. For more information on filtering, refer to our Filtering Guide. Defaults to no filter. If used more than once, the queries are ANDed together.
 
         include_raw_data : typing.Optional[bool]
             Include the raw data from the SIEM in the response. Defaults to `false`.
@@ -2196,13 +2184,10 @@ class AsyncIdentityClient:
             Start search from cursor position.
 
         order : typing.Optional[typing.Union[str, typing.Sequence[str]]]
-            Select a field to order the results by. Defaults to `uid`. To control the direction of the sorting, append
-            `[asc]` or `[desc]` to the field name. For example, `email_addr[asc]` will sort the results by `email_addr` in
-            ascending order. The ordering defaults to `asc` if not specified.
+            Select a field to order the results by. Defaults to `uid`. To control the direction of the sorting, append `[asc]` or `[desc]` to the field name. For example, `email_addr[asc]` will sort the results by `email_addr` in ascending order. The ordering defaults to `asc` if not specified.
 
         filter : typing.Optional[typing.Union[str, typing.Sequence[str]]]
-            Filter results by this query. For more information on filtering, refer to our Filtering Guide. Defaults to no filter.
-            If used more than once, the queries are ANDed together.
+            Filter results by this query. For more information on filtering, refer to our Filtering Guide. Defaults to no filter. If used more than once, the queries are ANDed together.
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -2612,13 +2597,10 @@ class AsyncIdentityClient:
             Start search from cursor position.
 
         order : typing.Optional[typing.Union[str, typing.Sequence[str]]]
-            Select a field to order the results by. Defaults to `uid`. To control the direction of the sorting, append
-            `[asc]` or `[desc]` to the field name. For example, `email_addr[asc]` will sort the results by `email_addr` in
-            ascending order. The ordering defaults to `asc` if not specified.
+            Select a field to order the results by. Defaults to `uid`. To control the direction of the sorting, append `[asc]` or `[desc]` to the field name. For example, `email_addr[asc]` will sort the results by `email_addr` in ascending order. The ordering defaults to `asc` if not specified.
 
         filter : typing.Optional[typing.Union[str, typing.Sequence[str]]]
-            Filter results by this query. For more information on filtering, refer to our Filtering Guide. Defaults to no filter.
-            If used more than once, the queries are ANDed together.
+            Filter results by this query. For more information on filtering, refer to our Filtering Guide. Defaults to no filter. If used more than once, the queries are ANDed together.
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.

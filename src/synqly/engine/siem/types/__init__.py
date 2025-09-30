@@ -2,15 +2,11 @@
 
 from .evidence import Evidence
 from .get_evidence_response import GetEvidenceResponse
-from .get_evidence_response_generic import GetEvidenceResponseGeneric
 from .get_investigation_response import GetInvestigationResponse
-from .get_investigation_response_generic import GetInvestigationResponseGeneric
 from .investigation import Investigation
 from .log_provider import LogProvider
 from .patch_investigation_request import PatchInvestigationRequest
-from .query_event_status import QueryEventStatus
 from .query_investigation_response import QueryInvestigationResponse
-from .query_investigation_response_generic import QueryInvestigationResponseGeneric
 from .query_log_providers_response import QueryLogProvidersResponse
 from .query_siem_alerts_response import QuerySiemAlertsResponse
 from .query_siem_events_response import QuerySiemEventsResponse
@@ -18,15 +14,11 @@ from .query_siem_events_response import QuerySiemEventsResponse
 __all__ = [
     "Evidence",
     "GetEvidenceResponse",
-    "GetEvidenceResponseGeneric",
     "GetInvestigationResponse",
-    "GetInvestigationResponseGeneric",
     "Investigation",
     "LogProvider",
     "PatchInvestigationRequest",
-    "QueryEventStatus",
     "QueryInvestigationResponse",
-    "QueryInvestigationResponseGeneric",
     "QueryLogProvidersResponse",
     "QuerySiemAlertsResponse",
     "QuerySiemEventsResponse",
