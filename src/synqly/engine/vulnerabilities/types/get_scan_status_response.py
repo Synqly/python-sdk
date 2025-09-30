@@ -2,18 +2,13 @@
 
 from ...engine.types.api_response import ApiResponse
 from .scan_status import ScanStatus
-import typing
-from ...common.types.problem import Problem
-import pydantic
 from ...core.pydantic_utilities import IS_PYDANTIC_V2
+import typing
+import pydantic
 
 
-class UploadScanResponse(ApiResponse):
+class GetScanStatusResponse(ApiResponse):
     result: ScanStatus
-    errors: typing.Optional[Problem] = pydantic.Field(default=None)
-    """
-    Provides additional details about any errors encountered during the upload scan operation.
-    """
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(

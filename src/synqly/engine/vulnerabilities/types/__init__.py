@@ -14,6 +14,8 @@ from .create_findings_response import CreateFindingsResponse
 from .event_id import EventId
 from .get_scan_activity_response import GetScanActivityResponse
 from .get_scan_activity_response_generic import GetScanActivityResponseGeneric
+from .get_scan_status_response import GetScanStatusResponse
+from .get_scan_status_response_generic import GetScanStatusResponseGeneric
 from .nucleus_finding_state import NucleusFindingState
 from .provider_specific_finding_state import (
     ProviderSpecificFindingState,
@@ -29,10 +31,13 @@ from .scan_configuration import ScanConfiguration
 from .scan_day_option import ScanDayOption
 from .scan_frequency_option import ScanFrequencyOption
 from .scan_schedule import ScanSchedule
+from .scan_status import ScanStatus
 from .security_finding import SecurityFinding
 from .update_finding_request import UpdateFindingRequest
 from .upload_scan_request import UploadScanRequest
 from .upload_scan_response import UploadScanResponse
+from .upload_scan_response_generic import UploadScanResponseGeneric
+from .upload_scan_status import UploadScanStatus
 from .user import User
 from .vulnerability_severity_filter_value import VulnerabilitySeverityFilterValue
 from .vulnerability_state_filter_value import VulnerabilityStateFilterValue
@@ -52,6 +57,8 @@ __all__ = [
     "EventId",
     "GetScanActivityResponse",
     "GetScanActivityResponseGeneric",
+    "GetScanStatusResponse",
+    "GetScanStatusResponseGeneric",
     "NucleusFindingState",
     "ProviderSpecificFindingState",
     "ProviderSpecificFindingState_Nucleus",
@@ -65,10 +72,13 @@ __all__ = [
     "ScanDayOption",
     "ScanFrequencyOption",
     "ScanSchedule",
+    "ScanStatus",
     "SecurityFinding",
     "UpdateFindingRequest",
     "UploadScanRequest",
     "UploadScanResponse",
+    "UploadScanResponseGeneric",
+    "UploadScanStatus",
     "User",
     "VulnerabilitySeverityFilterValue",
     "VulnerabilityStateFilterValue",
