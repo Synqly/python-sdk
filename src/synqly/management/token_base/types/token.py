@@ -4,8 +4,8 @@ from ...core.unchecked_base_model import UncheckedBaseModel
 import pydantic
 import datetime as dt
 from ...permissions.types.permission import Permission
-from ...core.pydantic_utilities import IS_PYDANTIC_V2
 import typing
+from ...core.pydantic_utilities import IS_PYDANTIC_V2
 
 
 class Token(UncheckedBaseModel):
@@ -22,6 +22,13 @@ class Token(UncheckedBaseModel):
     permissions: Permission = pydantic.Field()
     """
     Permissions granted to this token.
+    """
+
+    claims: typing.Optional[typing.Dict[str, typing.Optional[typing.Any]]] = (
+        pydantic.Field(default=None)
+    )
+    """
+    Additional claims added to the token.
     """
 
     if IS_PYDANTIC_V2:

@@ -18,6 +18,11 @@ class Permissions(str, enum.Enum):
     Permission set that provides the minimum level of access necessary for MCP use. Gives read access to accounts and integrations and the ability to use any Connector API.
     """
 
+    MCP_MANAGEMENT = "mcp-management"
+    """
+    Permission set that provides the minimum level of access necessary for MCP management use. Can create and update integrations but cannot use any Connector API.
+    """
+
     _UNKNOWN = "__PERMISSIONS_UNKNOWN__"
     """
     This member is used for forward compatibility. If the value is not recognized by the enum, it will be stored here, and the raw value is accessible through `.value`.
@@ -38,6 +43,7 @@ class Permissions(str, enum.Enum):
         connect_ui: typing.Callable[[], T_Result],
         token_issuer: typing.Callable[[], T_Result],
         mcp_integrations_use_only: typing.Callable[[], T_Result],
+        mcp_management: typing.Callable[[], T_Result],
         _unknown_member: typing.Callable[[str], T_Result],
     ) -> T_Result:
         if self is Permissions.ADMINISTRATOR:
@@ -54,4 +60,6 @@ class Permissions(str, enum.Enum):
             return token_issuer()
         if self is Permissions.MCP_INTEGRATIONS_USE_ONLY:
             return mcp_integrations_use_only()
+        if self is Permissions.MCP_MANAGEMENT:
+            return mcp_management()
         return _unknown_member(self._value_)

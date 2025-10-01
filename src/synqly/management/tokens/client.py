@@ -19,6 +19,8 @@ from ..common.errors.too_many_requests_error import TooManyRequestsError
 from ..common.errors.internal_server_error import InternalServerError
 from json.decoder import JSONDecodeError
 from ..core.api_error import ApiError
+from .types.mcp_token_scope import McpTokenScope
+from .types.create_mcp_token_response import CreateMcpTokenResponse
 from ..account_base.types.account_id import AccountId
 from ..integration_base.types.integration_id import IntegrationId
 from .types.create_integration_token_response import CreateIntegrationTokenResponse
@@ -112,6 +114,160 @@ class TokensClient:
                     CreateTokenResponse,
                     construct_type(
                         type_=CreateTokenResponse,  # type: ignore
+                        object_=_response.json(),
+                    ),
+                )
+            if _response.status_code == 400:
+                raise BadRequestError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 401:
+                raise UnauthorizedError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 403:
+                raise ForbiddenError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 404:
+                raise NotFoundError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 405:
+                raise MethodNotAllowedError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 409:
+                raise ConflictError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 415:
+                raise UnsupportedMediaTypeError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 429:
+                raise TooManyRequestsError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 500:
+                raise InternalServerError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            _response_json = _response.json()
+        except JSONDecodeError:
+            raise ApiError(status_code=_response.status_code, body=_response.text)
+        raise ApiError(status_code=_response.status_code, body=_response_json)
+
+    def create_mcp_token(
+        self,
+        *,
+        scope: McpTokenScope,
+        token_ttl: typing.Optional[str] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> CreateMcpTokenResponse:
+        """
+        Create a token for MCP authentication. This token is soley for MCP authentication and cannot
+        authenticate with any other API.
+
+        Parameters
+        ----------
+        scope : McpTokenScope
+            Controls the tools that are available to the MCP server,
+            and the APIs that can be accessed by the MCP server.
+
+        token_ttl : typing.Optional[str]
+            Token time-to-live. If not provided, defaults to 1 hour. May be set to a maximum of 24 hours. Use the format "1h", "1m", "1s" for hours, minutes, and seconds respectively, e.g., "2h" for 2 hours.
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        CreateMcpTokenResponse
+
+        Examples
+        --------
+        from synqly import SynqlyManagement
+        from synqly.tokens import McpTokenScope_Management
+
+        client = SynqlyManagement(
+            token="YOUR_TOKEN",
+        )
+        client.tokens.create_mcp_token(
+            token_ttl="string",
+            scope=McpTokenScope_Management(),
+        )
+        """
+        _response = self._client_wrapper.httpx_client.request(
+            "v1/tokens/mcp",
+            method="POST",
+            json={
+                "token_ttl": token_ttl,
+                "scope": scope,
+            },
+            request_options=request_options,
+            omit=OMIT,
+        )
+        try:
+            if 200 <= _response.status_code < 300:
+                return typing.cast(
+                    CreateMcpTokenResponse,
+                    construct_type(
+                        type_=CreateMcpTokenResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -1471,6 +1627,168 @@ class AsyncTokensClient:
                     CreateTokenResponse,
                     construct_type(
                         type_=CreateTokenResponse,  # type: ignore
+                        object_=_response.json(),
+                    ),
+                )
+            if _response.status_code == 400:
+                raise BadRequestError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 401:
+                raise UnauthorizedError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 403:
+                raise ForbiddenError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 404:
+                raise NotFoundError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 405:
+                raise MethodNotAllowedError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 409:
+                raise ConflictError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 415:
+                raise UnsupportedMediaTypeError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 429:
+                raise TooManyRequestsError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 500:
+                raise InternalServerError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            _response_json = _response.json()
+        except JSONDecodeError:
+            raise ApiError(status_code=_response.status_code, body=_response.text)
+        raise ApiError(status_code=_response.status_code, body=_response_json)
+
+    async def create_mcp_token(
+        self,
+        *,
+        scope: McpTokenScope,
+        token_ttl: typing.Optional[str] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> CreateMcpTokenResponse:
+        """
+        Create a token for MCP authentication. This token is soley for MCP authentication and cannot
+        authenticate with any other API.
+
+        Parameters
+        ----------
+        scope : McpTokenScope
+            Controls the tools that are available to the MCP server,
+            and the APIs that can be accessed by the MCP server.
+
+        token_ttl : typing.Optional[str]
+            Token time-to-live. If not provided, defaults to 1 hour. May be set to a maximum of 24 hours. Use the format "1h", "1m", "1s" for hours, minutes, and seconds respectively, e.g., "2h" for 2 hours.
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        CreateMcpTokenResponse
+
+        Examples
+        --------
+        import asyncio
+
+        from synqly import AsyncSynqlyManagement
+        from synqly.tokens import McpTokenScope_Management
+
+        client = AsyncSynqlyManagement(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.tokens.create_mcp_token(
+                token_ttl="string",
+                scope=McpTokenScope_Management(),
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._client_wrapper.httpx_client.request(
+            "v1/tokens/mcp",
+            method="POST",
+            json={
+                "token_ttl": token_ttl,
+                "scope": scope,
+            },
+            request_options=request_options,
+            omit=OMIT,
+        )
+        try:
+            if 200 <= _response.status_code < 300:
+                return typing.cast(
+                    CreateMcpTokenResponse,
+                    construct_type(
+                        type_=CreateMcpTokenResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )

@@ -2,6 +2,8 @@
 
 from .create_integration_token_request import CreateIntegrationTokenRequest
 from .create_integration_token_response import CreateIntegrationTokenResponse
+from .create_mcp_token_request import CreateMcpTokenRequest
+from .create_mcp_token_response import CreateMcpTokenResponse
 from .create_synqly_integrations_token_request import (
     CreateSynqlyIntegrationsTokenRequest,
 )
@@ -12,6 +14,15 @@ from .create_token_request import CreateTokenRequest
 from .create_token_response import CreateTokenResponse
 from .get_token_response import GetTokenResponse
 from .list_tokens_response import ListTokensResponse
+from .mcp_developer_usage_scope_options import McpDeveloperUsageScopeOptions
+from .mcp_integration_usage_scope_options import McpIntegrationUsageScopeOptions
+from .mcp_management_scope_options import McpManagementScopeOptions
+from .mcp_token_scope import (
+    McpTokenScope,
+    McpTokenScope_Developer,
+    McpTokenScope_IntegrationUsage,
+    McpTokenScope_Management,
+)
 from .refresh_token import RefreshToken
 from .refresh_token_response import RefreshTokenResponse
 from .reset_token_response import ResetTokenResponse
@@ -20,12 +31,21 @@ from .synqly_integrations_token_response import SynqlyIntegrationsTokenResponse
 __all__ = [
     "CreateIntegrationTokenRequest",
     "CreateIntegrationTokenResponse",
+    "CreateMcpTokenRequest",
+    "CreateMcpTokenResponse",
     "CreateSynqlyIntegrationsTokenRequest",
     "CreateSynqlyIntegrationsTokenResponse",
     "CreateTokenRequest",
     "CreateTokenResponse",
     "GetTokenResponse",
     "ListTokensResponse",
+    "McpDeveloperUsageScopeOptions",
+    "McpIntegrationUsageScopeOptions",
+    "McpManagementScopeOptions",
+    "McpTokenScope",
+    "McpTokenScope_Developer",
+    "McpTokenScope_IntegrationUsage",
+    "McpTokenScope_Management",
     "RefreshToken",
     "RefreshTokenResponse",
     "ResetTokenResponse",
