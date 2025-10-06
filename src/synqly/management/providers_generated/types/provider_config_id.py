@@ -385,6 +385,11 @@ class ProviderConfigId(str, enum.Enum):
     PagerDuty Operations Cloud
     """
 
+    TICKETING_PAGER_DUTY_MOCK = "ticketing_pagerduty_mock"
+    """
+    [MOCK] PagerDuty Operations Cloud
+    """
+
     TICKETING_SERVICE_NOW = "ticketing_servicenow"
     """
     ServiceNow IT Service Management (ITSM)
@@ -554,6 +559,7 @@ class ProviderConfigId(str, enum.Enum):
         ticketing_jira_service_management: typing.Callable[[], T_Result],
         ticketing_mock: typing.Callable[[], T_Result],
         ticketing_pager_duty: typing.Callable[[], T_Result],
+        ticketing_pager_duty_mock: typing.Callable[[], T_Result],
         ticketing_service_now: typing.Callable[[], T_Result],
         ticketing_service_now_sir: typing.Callable[[], T_Result],
         ticketing_torq: typing.Callable[[], T_Result],
@@ -720,6 +726,8 @@ class ProviderConfigId(str, enum.Enum):
             return ticketing_mock()
         if self is ProviderConfigId.TICKETING_PAGER_DUTY:
             return ticketing_pager_duty()
+        if self is ProviderConfigId.TICKETING_PAGER_DUTY_MOCK:
+            return ticketing_pager_duty_mock()
         if self is ProviderConfigId.TICKETING_SERVICE_NOW:
             return ticketing_service_now()
         if self is ProviderConfigId.TICKETING_SERVICE_NOW_SIR:

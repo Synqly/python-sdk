@@ -312,6 +312,7 @@ from .provider_config import (
     ProviderConfig_TicketingJiraServiceManagement,
     ProviderConfig_TicketingMockTicketing,
     ProviderConfig_TicketingPagerduty,
+    ProviderConfig_TicketingPagerdutyMock,
     ProviderConfig_TicketingServicenow,
     ProviderConfig_TicketingServicenowSir,
     ProviderConfig_TicketingTorq,
@@ -456,6 +457,8 @@ from .ticketing_jira import TicketingJira
 from .ticketing_jira_service_management import TicketingJiraServiceManagement
 from .ticketing_mock import TicketingMock
 from .ticketing_pager_duty import TicketingPagerDuty
+from .ticketing_pager_duty_mock import TicketingPagerDutyMock
+from .ticketing_pagerduty_dataset import TicketingPagerdutyDataset
 from .ticketing_service_now import TicketingServiceNow
 from .ticketing_service_now_sir import TicketingServiceNowSir
 from .ticketing_torq import TicketingTorq
@@ -733,6 +736,7 @@ __all__ = [
     "ProviderConfig_TicketingJiraServiceManagement",
     "ProviderConfig_TicketingMockTicketing",
     "ProviderConfig_TicketingPagerduty",
+    "ProviderConfig_TicketingPagerdutyMock",
     "ProviderConfig_TicketingServicenow",
     "ProviderConfig_TicketingServicenowSir",
     "ProviderConfig_TicketingTorq",
@@ -839,6 +843,8 @@ __all__ = [
     "TicketingJiraServiceManagement",
     "TicketingMock",
     "TicketingPagerDuty",
+    "TicketingPagerDutyMock",
+    "TicketingPagerdutyDataset",
     "TicketingServiceNow",
     "TicketingServiceNowSir",
     "TicketingTorq",

@@ -77,6 +77,7 @@ from .autotask_secret_credential import AutotaskSecretCredential
 from .freshdesk_credential import FreshdeskCredential
 from .custom_field_mapping import CustomFieldMapping
 from .pager_duty_credential import PagerDutyCredential
+from .ticketing_pagerduty_dataset import TicketingPagerdutyDataset
 from .torq_credential import TorqCredential
 from .zendesk_credential import ZendeskCredential
 from .vulnerabilities_crowd_strike_dataset import VulnerabilitiesCrowdStrikeDataset
@@ -1359,6 +1360,21 @@ class ProviderConfig_TicketingPagerduty(UncheckedBaseModel):
             extra = pydantic.Extra.allow
 
 
+class ProviderConfig_TicketingPagerdutyMock(UncheckedBaseModel):
+    type: typing.Literal["ticketing_pagerduty_mock"] = "ticketing_pagerduty_mock"
+    dataset: TicketingPagerdutyDataset
+
+    if IS_PYDANTIC_V2:
+        model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(
+            extra="allow"
+        )  # type: ignore # Pydantic v2
+    else:
+
+        class Config:
+            smart_union = True
+            extra = pydantic.Extra.allow
+
+
 class ProviderConfig_TicketingServicenow(UncheckedBaseModel):
     type: typing.Literal["ticketing_servicenow"] = "ticketing_servicenow"
     credential: ServiceNowCredential
@@ -1694,6 +1710,7 @@ ProviderConfig = typing_extensions.Annotated[
         ProviderConfig_TicketingJiraServiceManagement,
         ProviderConfig_TicketingMockTicketing,
         ProviderConfig_TicketingPagerduty,
+        ProviderConfig_TicketingPagerdutyMock,
         ProviderConfig_TicketingServicenow,
         ProviderConfig_TicketingServicenowSir,
         ProviderConfig_TicketingTorq,
