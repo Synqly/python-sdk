@@ -2009,6 +2009,9 @@ class EdrClient:
         self,
         *,
         meta: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
+        passthrough_param: typing.Optional[
+            typing.Union[str, typing.Sequence[str]]
+        ] = None,
         filter: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
         include_raw_data: typing.Optional[bool] = None,
         limit: typing.Optional[int] = None,
@@ -2023,6 +2026,9 @@ class EdrClient:
         ----------
         meta : typing.Optional[typing.Union[str, typing.Sequence[str]]]
             Add metadata to the response by invoking meta functions. Documentation for meta functions is available at https://docs.synqly.com/api-reference/meta-functions. Not all meta function are available at every endpoint.
+
+        passthrough_param : typing.Optional[typing.Union[str, typing.Sequence[str]]]
+            Provider-specific query to pass through to the EDR. This is useful for advanced queries that require additional filtering.
 
         filter : typing.Optional[typing.Union[str, typing.Sequence[str]]]
             Filter events. Multiple filters can be provided.
@@ -2057,6 +2063,7 @@ class EdrClient:
         )
         client.edr.query_edr_events(
             meta="string",
+            passthrough_param="string",
             filter="string",
             include_raw_data=True,
             limit=1,
@@ -2069,6 +2076,7 @@ class EdrClient:
             method="GET",
             params={
                 "meta": meta,
+                "passthrough-param": passthrough_param,
                 "filter": filter,
                 "include_raw_data": include_raw_data,
                 "limit": limit,
@@ -4269,6 +4277,9 @@ class AsyncEdrClient:
         self,
         *,
         meta: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
+        passthrough_param: typing.Optional[
+            typing.Union[str, typing.Sequence[str]]
+        ] = None,
         filter: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
         include_raw_data: typing.Optional[bool] = None,
         limit: typing.Optional[int] = None,
@@ -4283,6 +4294,9 @@ class AsyncEdrClient:
         ----------
         meta : typing.Optional[typing.Union[str, typing.Sequence[str]]]
             Add metadata to the response by invoking meta functions. Documentation for meta functions is available at https://docs.synqly.com/api-reference/meta-functions. Not all meta function are available at every endpoint.
+
+        passthrough_param : typing.Optional[typing.Union[str, typing.Sequence[str]]]
+            Provider-specific query to pass through to the EDR. This is useful for advanced queries that require additional filtering.
 
         filter : typing.Optional[typing.Union[str, typing.Sequence[str]]]
             Filter events. Multiple filters can be provided.
@@ -4322,6 +4336,7 @@ class AsyncEdrClient:
         async def main() -> None:
             await client.edr.query_edr_events(
                 meta="string",
+                passthrough_param="string",
                 filter="string",
                 include_raw_data=True,
                 limit=1,
@@ -4337,6 +4352,7 @@ class AsyncEdrClient:
             method="GET",
             params={
                 "meta": meta,
+                "passthrough-param": passthrough_param,
                 "filter": filter,
                 "include_raw_data": include_raw_data,
                 "limit": limit,
