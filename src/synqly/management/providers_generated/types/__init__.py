@@ -22,6 +22,7 @@ from .assets_armis_dataset import AssetsArmisDataset
 from .assets_axonius import AssetsAxonius
 from .assets_axonius_dataset import AssetsAxoniusDataset
 from .assets_axonius_mock import AssetsAxoniusMock
+from .assets_claroty_xdome import AssetsClarotyXdome
 from .assets_crowd_strike import AssetsCrowdStrike
 from .assets_crowd_strike_dataset import AssetsCrowdStrikeDataset
 from .assets_crowd_strike_mock import AssetsCrowdStrikeMock
@@ -86,6 +87,12 @@ from .azure_monitor_logs_credential import (
     AzureMonitorLogsCredential,
     AzureMonitorLogsCredential_Token,
     AzureMonitorLogsCredential_TokenId,
+)
+from .claroty_apiurl import ClarotyApiurl
+from .claroty_credential import (
+    ClarotyCredential,
+    ClarotyCredential_Token,
+    ClarotyCredential_TokenId,
 )
 from .cloud_security_aws import CloudSecurityAws
 from .cloud_security_crowd_strike import CloudSecurityCrowdStrike
@@ -246,6 +253,7 @@ from .provider_config import (
     ProviderConfig_AssetsArmisCentrixMock,
     ProviderConfig_AssetsAxonius,
     ProviderConfig_AssetsAxoniusMock,
+    ProviderConfig_AssetsClarotyXdome,
     ProviderConfig_AssetsCrowdstrike,
     ProviderConfig_AssetsCrowdstrikeMock,
     ProviderConfig_AssetsIvantiNeurons,
@@ -508,6 +516,7 @@ __all__ = [
     "AssetsAxonius",
     "AssetsAxoniusDataset",
     "AssetsAxoniusMock",
+    "AssetsClarotyXdome",
     "AssetsCrowdStrike",
     "AssetsCrowdStrikeDataset",
     "AssetsCrowdStrikeMock",
@@ -555,6 +564,10 @@ __all__ = [
     "AzureMonitorLogsCredential",
     "AzureMonitorLogsCredential_Token",
     "AzureMonitorLogsCredential_TokenId",
+    "ClarotyApiurl",
+    "ClarotyCredential",
+    "ClarotyCredential_Token",
+    "ClarotyCredential_TokenId",
     "CloudSecurityAws",
     "CloudSecurityCrowdStrike",
     "CloudSecurityDefender",
@@ -670,6 +683,7 @@ __all__ = [
     "ProviderConfig_AssetsArmisCentrixMock",
     "ProviderConfig_AssetsAxonius",
     "ProviderConfig_AssetsAxoniusMock",
+    "ProviderConfig_AssetsClarotyXdome",
     "ProviderConfig_AssetsCrowdstrike",
     "ProviderConfig_AssetsCrowdstrikeMock",
     "ProviderConfig_AssetsIvantiNeurons",

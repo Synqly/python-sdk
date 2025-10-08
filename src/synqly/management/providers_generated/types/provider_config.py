@@ -19,6 +19,8 @@ from .armis_credential import ArmisCredential
 from .assets_armis_dataset import AssetsArmisDataset
 from .axonius_credential import AxoniusCredential
 from .assets_axonius_dataset import AssetsAxoniusDataset
+from .claroty_credential import ClarotyCredential
+from .claroty_apiurl import ClarotyApiurl
 from .crowd_strike_credential import CrowdStrikeCredential
 from .assets_crowd_strike_dataset import AssetsCrowdStrikeDataset
 from .ivanti_credential import IvantiCredential
@@ -209,6 +211,22 @@ class ProviderConfig_AssetsAxonius(UncheckedBaseModel):
 class ProviderConfig_AssetsAxoniusMock(UncheckedBaseModel):
     type: typing.Literal["assets_axonius_mock"] = "assets_axonius_mock"
     dataset: AssetsAxoniusDataset
+
+    if IS_PYDANTIC_V2:
+        model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(
+            extra="allow"
+        )  # type: ignore # Pydantic v2
+    else:
+
+        class Config:
+            smart_union = True
+            extra = pydantic.Extra.allow
+
+
+class ProviderConfig_AssetsClarotyXdome(UncheckedBaseModel):
+    type: typing.Literal["assets_claroty_xdome"] = "assets_claroty_xdome"
+    credential: ClarotyCredential
+    url: ClarotyApiurl
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(
@@ -1644,6 +1662,7 @@ ProviderConfig = typing_extensions.Annotated[
         ProviderConfig_AssetsArmisCentrixMock,
         ProviderConfig_AssetsAxonius,
         ProviderConfig_AssetsAxoniusMock,
+        ProviderConfig_AssetsClarotyXdome,
         ProviderConfig_AssetsCrowdstrike,
         ProviderConfig_AssetsCrowdstrikeMock,
         ProviderConfig_AssetsIvantiNeurons,
