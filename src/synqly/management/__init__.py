@@ -328,6 +328,7 @@ from .permissionset import (
 )
 from .permissionset_base import Permissions
 from .providers_generated import (
+    AppsecAmazonInspector,
     AppsecGitLab,
     AppsecHclAppScanOnCloud,
     AppsecOpenTextCoreApplicationSecurity,
@@ -501,6 +502,7 @@ from .providers_generated import (
     PingOneCredential_TokenId,
     ProviderConfig,
     ProviderConfigId,
+    ProviderConfig_AppsecAmazonInspector,
     ProviderConfig_AppsecGitlab,
     ProviderConfig_AppsecHclAppscanOnCloud,
     ProviderConfig_AppsecOpentextCoreApplicationSecurity,
@@ -789,6 +791,7 @@ __all__ = [
     "ApplyMappingRequest",
     "ApplyMappingResponse",
     "ApplyMappingResponseResult",
+    "AppsecAmazonInspector",
     "AppsecGitLab",
     "AppsecHclAppScanOnCloud",
     "AppsecOpenTextCoreApplicationSecurity",
@@ -1183,6 +1186,7 @@ __all__ = [
     "ProviderCapabilitiesResponse",
     "ProviderConfig",
     "ProviderConfigId",
+    "ProviderConfig_AppsecAmazonInspector",
     "ProviderConfig_AppsecGitlab",
     "ProviderConfig_AppsecHclAppscanOnCloud",
     "ProviderConfig_AppsecOpentextCoreApplicationSecurity",

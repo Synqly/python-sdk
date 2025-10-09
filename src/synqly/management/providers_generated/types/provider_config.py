@@ -3,9 +3,11 @@
 from __future__ import annotations
 from ...core.unchecked_base_model import UncheckedBaseModel
 import typing
-from .git_lab_credential import GitLabCredential
+from .aws_provider_credential import AwsProviderCredential
+from .aws_region import AwsRegion
 from ...core.pydantic_utilities import IS_PYDANTIC_V2
 import pydantic
+from .git_lab_credential import GitLabCredential
 from .hcl_app_scan_on_cloud_credential import HclAppScanOnCloudCredential
 from .hcl_app_scan_on_cloud_url import HclAppScanOnCloudUrl
 from .open_text_core_application_security_credential import (
@@ -34,8 +36,6 @@ from .sevco_credential import SevcoCredential
 from .assets_sevco_dataset import AssetsSevcoDataset
 from .tanium_cloud_credential import TaniumCloudCredential
 from .assets_tanium_cloud_dataset import AssetsTaniumCloudDataset
-from .aws_provider_credential import AwsProviderCredential
-from .aws_region import AwsRegion
 from .defender_credential import DefenderCredential
 from .palo_alto_credential import PaloAltoCredential
 from .edr_crowd_strike_dataset import EdrCrowdStrikeDataset
@@ -92,6 +92,22 @@ from .vulnerabilities_tanium_cloud_dataset import VulnerabilitiesTaniumCloudData
 from .tenable_cloud_credential import TenableCloudCredential
 import typing_extensions
 from ...core.unchecked_base_model import UnionMetadata
+
+
+class ProviderConfig_AppsecAmazonInspector(UncheckedBaseModel):
+    type: typing.Literal["appsec_amazon_inspector"] = "appsec_amazon_inspector"
+    credential: AwsProviderCredential
+    region: AwsRegion
+
+    if IS_PYDANTIC_V2:
+        model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(
+            extra="allow"
+        )  # type: ignore # Pydantic v2
+    else:
+
+        class Config:
+            smart_union = True
+            extra = pydantic.Extra.allow
 
 
 class ProviderConfig_AppsecGitlab(UncheckedBaseModel):
@@ -1654,6 +1670,7 @@ class ProviderConfig_VulnerabilitiesTenableCloud(UncheckedBaseModel):
 
 ProviderConfig = typing_extensions.Annotated[
     typing.Union[
+        ProviderConfig_AppsecAmazonInspector,
         ProviderConfig_AppsecGitlab,
         ProviderConfig_AppsecHclAppscanOnCloud,
         ProviderConfig_AppsecOpentextCoreApplicationSecurity,

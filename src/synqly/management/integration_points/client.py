@@ -423,14 +423,14 @@ class IntegrationPointsClient:
             environments=IntegrationEnvironments(),
             mappings=[
                 MappingChainTemplate(
-                    providers=[ProviderConfigId.APPSEC_GIT_LAB],
+                    providers=[ProviderConfigId.APPSEC_AMAZON_INSPECTOR],
                     mappings=["string"],
                     operation_ids=["string"],
                 )
             ],
             additional_mappings=[
                 AdditionalMappingTemplate(
-                    providers=[ProviderConfigId.APPSEC_GIT_LAB],
+                    providers=[ProviderConfigId.APPSEC_AMAZON_INSPECTOR],
                     mapping_type=AdditionalMappingType.RECOMMENDED,
                     resource=ResourceId.ALERTS,
                     actions=[ActionId.QUERY],
@@ -1467,14 +1467,14 @@ class AsyncIntegrationPointsClient:
                 environments=IntegrationEnvironments(),
                 mappings=[
                     MappingChainTemplate(
-                        providers=[ProviderConfigId.APPSEC_GIT_LAB],
+                        providers=[ProviderConfigId.APPSEC_AMAZON_INSPECTOR],
                         mappings=["string"],
                         operation_ids=["string"],
                     )
                 ],
                 additional_mappings=[
                     AdditionalMappingTemplate(
-                        providers=[ProviderConfigId.APPSEC_GIT_LAB],
+                        providers=[ProviderConfigId.APPSEC_AMAZON_INSPECTOR],
                         mapping_type=AdditionalMappingType.RECOMMENDED,
                         resource=ResourceId.ALERTS,
                         actions=[ActionId.QUERY],

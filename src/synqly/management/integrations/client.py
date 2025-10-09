@@ -629,7 +629,7 @@ class IntegrationsClient:
         from synqly.common import ActionId, ResourceId
         from synqly.integrations import BridgeSelector_Id, WebhookConfig
         from synqly.management import AdditionalMapping, MappingChain, MappingDataType
-        from synqly.providers_generated import ProviderConfig_AppsecGitlab
+        from synqly.providers_generated import ProviderConfig_AppsecAmazonInspector
 
         client = SynqlyManagement(
             token="YOUR_TOKEN",
@@ -638,7 +638,7 @@ class IntegrationsClient:
             account_id="string",
             name="string",
             fullname="string",
-            provider_config=ProviderConfig_AppsecGitlab(),
+            provider_config=ProviderConfig_AppsecAmazonInspector(),
             integration_point_id="string",
             bridge_selector=BridgeSelector_Id(value="string"),
             webhook_config=WebhookConfig(
@@ -857,7 +857,7 @@ class IntegrationsClient:
             WebhookConfig,
         )
         from synqly.management import AdditionalMapping, MappingChain, MappingDataType
-        from synqly.providers_generated import ProviderConfig_AppsecGitlab
+        from synqly.providers_generated import ProviderConfig_AppsecAmazonInspector
 
         client = SynqlyManagement(
             token="YOUR_TOKEN",
@@ -867,7 +867,7 @@ class IntegrationsClient:
             integration=CreateIntegrationRequest(
                 name="string",
                 fullname="string",
-                provider_config=ProviderConfig_AppsecGitlab(),
+                provider_config=ProviderConfig_AppsecAmazonInspector(),
                 integration_point_id="string",
                 bridge_selector=BridgeSelector_Id(value="string"),
                 webhook_config=WebhookConfig(
@@ -1144,7 +1144,7 @@ class IntegrationsClient:
         from synqly.integration_points import IntegrationEnvironments, IntegrationPoint
         from synqly.integrations import BridgeSelector_Id, WebhookConfig
         from synqly.organization_base import Environment
-        from synqly.providers_generated import ProviderConfig_AppsecGitlab
+        from synqly.providers_generated import ProviderConfig_AppsecAmazonInspector
 
         client = SynqlyManagement(
             token="YOUR_TOKEN",
@@ -1171,7 +1171,7 @@ class IntegrationsClient:
                 ),
             ),
             category=CategoryId.APPSEC,
-            provider_config=ProviderConfig_AppsecGitlab(),
+            provider_config=ProviderConfig_AppsecAmazonInspector(),
             provider_fullname="string",
             provider_type="string",
             integration_point_id="string",
@@ -2236,7 +2236,7 @@ class AsyncIntegrationsClient:
         from synqly.common import ActionId, ResourceId
         from synqly.integrations import BridgeSelector_Id, WebhookConfig
         from synqly.management import AdditionalMapping, MappingChain, MappingDataType
-        from synqly.providers_generated import ProviderConfig_AppsecGitlab
+        from synqly.providers_generated import ProviderConfig_AppsecAmazonInspector
 
         client = AsyncSynqlyManagement(
             token="YOUR_TOKEN",
@@ -2248,7 +2248,7 @@ class AsyncIntegrationsClient:
                 account_id="string",
                 name="string",
                 fullname="string",
-                provider_config=ProviderConfig_AppsecGitlab(),
+                provider_config=ProviderConfig_AppsecAmazonInspector(),
                 integration_point_id="string",
                 bridge_selector=BridgeSelector_Id(value="string"),
                 webhook_config=WebhookConfig(
@@ -2472,7 +2472,7 @@ class AsyncIntegrationsClient:
             WebhookConfig,
         )
         from synqly.management import AdditionalMapping, MappingChain, MappingDataType
-        from synqly.providers_generated import ProviderConfig_AppsecGitlab
+        from synqly.providers_generated import ProviderConfig_AppsecAmazonInspector
 
         client = AsyncSynqlyManagement(
             token="YOUR_TOKEN",
@@ -2485,7 +2485,7 @@ class AsyncIntegrationsClient:
                 integration=CreateIntegrationRequest(
                     name="string",
                     fullname="string",
-                    provider_config=ProviderConfig_AppsecGitlab(),
+                    provider_config=ProviderConfig_AppsecAmazonInspector(),
                     integration_point_id="string",
                     bridge_selector=BridgeSelector_Id(value="string"),
                     webhook_config=WebhookConfig(
@@ -2766,7 +2766,7 @@ class AsyncIntegrationsClient:
         from synqly.integration_points import IntegrationEnvironments, IntegrationPoint
         from synqly.integrations import BridgeSelector_Id, WebhookConfig
         from synqly.organization_base import Environment
-        from synqly.providers_generated import ProviderConfig_AppsecGitlab
+        from synqly.providers_generated import ProviderConfig_AppsecAmazonInspector
 
         client = AsyncSynqlyManagement(
             token="YOUR_TOKEN",
@@ -2796,7 +2796,7 @@ class AsyncIntegrationsClient:
                     ),
                 ),
                 category=CategoryId.APPSEC,
-                provider_config=ProviderConfig_AppsecGitlab(),
+                provider_config=ProviderConfig_AppsecAmazonInspector(),
                 provider_fullname="string",
                 provider_type="string",
                 integration_point_id="string",
