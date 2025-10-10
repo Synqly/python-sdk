@@ -4,9 +4,10 @@ import typing
 from ..core.client_wrapper import SyncClientWrapper
 from ..events.types.event import Event
 from ..core.request_options import RequestOptions
+from .types.create_sink_events_response import CreateSinkEventsResponse
+from ..core.unchecked_base_model import construct_type
 from ..common.errors.bad_request_error import BadRequestError
 from ..common.types.problem import Problem
-from ..core.unchecked_base_model import construct_type
 from ..common.errors.unauthorized_error import UnauthorizedError
 from ..common.errors.forbidden_error import ForbiddenError
 from ..common.errors.not_found_error import NotFoundError
@@ -37,7 +38,7 @@ class SinkClient:
         request: typing.Sequence[Event],
         location: typing.Optional[str] = None,
         request_options: typing.Optional[RequestOptions] = None,
-    ) -> None:
+    ) -> CreateSinkEventsResponse:
         """
         Writes a batch of `Event` objects to the Sink configured with the token used for authentication.
 
@@ -53,7 +54,7 @@ class SinkClient:
 
         Returns
         -------
-        None
+        CreateSinkEventsResponse
 
         Examples
         --------
@@ -388,7 +389,13 @@ class SinkClient:
         )
         try:
             if 200 <= _response.status_code < 300:
-                return
+                return typing.cast(
+                    CreateSinkEventsResponse,
+                    construct_type(
+                        type_=CreateSinkEventsResponse,  # type: ignore
+                        object_=_response.json(),
+                    ),
+                )
             if _response.status_code == 400:
                 raise BadRequestError(
                     typing.cast(
@@ -535,7 +542,7 @@ class AsyncSinkClient:
         request: typing.Sequence[Event],
         location: typing.Optional[str] = None,
         request_options: typing.Optional[RequestOptions] = None,
-    ) -> None:
+    ) -> CreateSinkEventsResponse:
         """
         Writes a batch of `Event` objects to the Sink configured with the token used for authentication.
 
@@ -551,7 +558,7 @@ class AsyncSinkClient:
 
         Returns
         -------
-        None
+        CreateSinkEventsResponse
 
         Examples
         --------
@@ -893,7 +900,13 @@ class AsyncSinkClient:
         )
         try:
             if 200 <= _response.status_code < 300:
-                return
+                return typing.cast(
+                    CreateSinkEventsResponse,
+                    construct_type(
+                        type_=CreateSinkEventsResponse,  # type: ignore
+                        object_=_response.json(),
+                    ),
+                )
             if _response.status_code == 400:
                 raise BadRequestError(
                     typing.cast(

@@ -4,6 +4,7 @@ from .api_has_status import ApiHasStatus
 from .api_query_response import ApiQueryResponse
 from .api_response import ApiResponse
 from .base_resource_request import BaseResourceRequest
+from .messages_response import MessagesResponse
 from .meta_api import MetaApi
 from .meta_api_primary_response import MetaApiPrimaryResponse
 from .meta_api_response import MetaApiResponse
@@ -19,6 +20,7 @@ __all__ = [
     "ApiQueryResponse",
     "ApiResponse",
     "BaseResourceRequest",
+    "MessagesResponse",
     "MetaApi",
     "MetaApiPrimaryResponse",
     "MetaApiResponse",

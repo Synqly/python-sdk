@@ -104,6 +104,7 @@ from .engine import (
     ApiQueryResponse,
     ApiResponse,
     BaseResourceRequest,
+    MessagesResponse,
     MetaApi,
     MetaApiPrimaryResponse,
     MetaApiResponse,
@@ -193,6 +194,7 @@ from .operations import (
 )
 from .organization_webhook_base import WebhookEvent, WebhookFilter
 from .siem import (
+    CreateSiemEventsResponse,
     Evidence,
     GetEvidenceResponse,
     GetInvestigationResponse,
@@ -204,6 +206,7 @@ from .siem import (
     QuerySiemAlertsResponse,
     QuerySiemEventsResponse,
 )
+from .sink import CreateSinkEventsResponse
 from .storage import ListStorageResponse, StoragePath
 from .ticketing import (
     Actor,
@@ -345,6 +348,8 @@ __all__ = [
     "CreateOperationRequest",
     "CreateOperationResponse",
     "CreateOperationResponseResult",
+    "CreateSiemEventsResponse",
+    "CreateSinkEventsResponse",
     "CreateTicketRequest",
     "CreateTicketResponse",
     "DeleteIocsResponse",
@@ -419,6 +424,7 @@ __all__ = [
     "ListRemoteFieldsResponse",
     "ListStorageResponse",
     "LogProvider",
+    "MessagesResponse",
     "MetaApi",
     "MetaApiPrimaryResponse",
     "MetaApiResponse",

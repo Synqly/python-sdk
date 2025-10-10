@@ -27,6 +27,7 @@ from .types.patch_investigation_request import PatchInvestigationRequest
 from .types.get_evidence_response import GetEvidenceResponse
 from .types.query_log_providers_response import QueryLogProvidersResponse
 from ..events.types.event import Event
+from .types.create_siem_events_response import CreateSiemEventsResponse
 from .types.query_siem_events_response import QuerySiemEventsResponse
 from .types.query_siem_alerts_response import QuerySiemAlertsResponse
 from ..core.client_wrapper import AsyncClientWrapper
@@ -1039,7 +1040,7 @@ class SiemClient:
         *,
         request: typing.Sequence[Event],
         request_options: typing.Optional[RequestOptions] = None,
-    ) -> None:
+    ) -> CreateSiemEventsResponse:
         """
         Writes a batch of `Event` objects to the SIEM configured with the token used for authentication.
 
@@ -1052,7 +1053,7 @@ class SiemClient:
 
         Returns
         -------
-        None
+        CreateSiemEventsResponse
 
         Examples
         --------
@@ -1383,7 +1384,13 @@ class SiemClient:
         )
         try:
             if 200 <= _response.status_code < 300:
-                return
+                return typing.cast(
+                    CreateSiemEventsResponse,
+                    construct_type(
+                        type_=CreateSiemEventsResponse,  # type: ignore
+                        object_=_response.json(),
+                    ),
+                )
             if _response.status_code == 400:
                 raise BadRequestError(
                     typing.cast(
@@ -3002,7 +3009,7 @@ class AsyncSiemClient:
         *,
         request: typing.Sequence[Event],
         request_options: typing.Optional[RequestOptions] = None,
-    ) -> None:
+    ) -> CreateSiemEventsResponse:
         """
         Writes a batch of `Event` objects to the SIEM configured with the token used for authentication.
 
@@ -3015,7 +3022,7 @@ class AsyncSiemClient:
 
         Returns
         -------
-        None
+        CreateSiemEventsResponse
 
         Examples
         --------
@@ -3353,7 +3360,13 @@ class AsyncSiemClient:
         )
         try:
             if 200 <= _response.status_code < 300:
-                return
+                return typing.cast(
+                    CreateSiemEventsResponse,
+                    construct_type(
+                        type_=CreateSiemEventsResponse,  # type: ignore
+                        object_=_response.json(),
+                    ),
+                )
             if _response.status_code == 400:
                 raise BadRequestError(
                     typing.cast(

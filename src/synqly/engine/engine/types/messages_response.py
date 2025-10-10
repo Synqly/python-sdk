@@ -2,21 +2,15 @@
 
 from ...core.unchecked_base_model import UncheckedBaseModel
 import typing
-from .messages_response import MessagesResponse
+from ...common.types.problem import Problem
 import pydantic
-from .meta_response import MetaResponse
 from ...core.pydantic_utilities import IS_PYDANTIC_V2
 
 
-class ApiResponse(UncheckedBaseModel):
-    messages: typing.Optional[MessagesResponse] = pydantic.Field(default=None)
+class MessagesResponse(UncheckedBaseModel):
+    problems: typing.Optional[typing.List[Problem]] = pydantic.Field(default=None)
     """
-    Additional messages from the service response that may be helpful to the client.
-    """
-
-    meta: typing.Optional[MetaResponse] = pydantic.Field(default=None)
-    """
-    Various metadata about the results organized by group, then type, then field.
+    Warnings or issues that occurred during processing that did not prevent the request from returning, but may indicate a problem or issue with expected processing behavior.
     """
 
     if IS_PYDANTIC_V2:
