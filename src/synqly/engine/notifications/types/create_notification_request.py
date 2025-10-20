@@ -9,7 +9,7 @@ from ...core.pydantic_utilities import IS_PYDANTIC_V2
 
 class CreateNotificationRequest(UncheckedBaseModel):
     """
-    Notification object
+    Notification object. With some providers (Slack, Teams), if only the `summary` field is populated, the message will be treated as a "passthrough notification". In such cases, the `summary` field will be used as the entire message, and no further formatting will be applied. This is useful if you need to include provider-specific formatting.
     """
 
     name: typing.Optional[str] = pydantic.Field(default=None)
