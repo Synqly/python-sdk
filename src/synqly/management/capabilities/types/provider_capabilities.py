@@ -28,6 +28,11 @@ class ProviderCapabilities(UncheckedBaseModel):
     Display name of the Provider.
     """
 
+    vendor: str = pydantic.Field()
+    """
+    Display name of the Provider vendor.
+    """
+
     description: str = pydantic.Field()
     """
     Description of the Provider.
