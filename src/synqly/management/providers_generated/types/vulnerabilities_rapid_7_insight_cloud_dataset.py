@@ -8,6 +8,7 @@ T_Result = typing.TypeVar("T_Result")
 
 class VulnerabilitiesRapid7InsightCloudDataset(str, enum.Enum):
     BASIC_VER_0 = "basic_v0"
+    BASIC_VER_0_1 = "basic_v0_1"
     _UNKNOWN = "__VULNERABILITIESRAPID7INSIGHTCLOUDDATASET_UNKNOWN__"
     """
     This member is used for forward compatibility. If the value is not recognized by the enum, it will be stored here, and the raw value is accessible through `.value`.
@@ -22,8 +23,11 @@ class VulnerabilitiesRapid7InsightCloudDataset(str, enum.Enum):
     def visit(
         self,
         basic_ver_0: typing.Callable[[], T_Result],
+        basic_ver_0_1: typing.Callable[[], T_Result],
         _unknown_member: typing.Callable[[str], T_Result],
     ) -> T_Result:
         if self is VulnerabilitiesRapid7InsightCloudDataset.BASIC_VER_0:
             return basic_ver_0()
+        if self is VulnerabilitiesRapid7InsightCloudDataset.BASIC_VER_0_1:
+            return basic_ver_0_1()
         return _unknown_member(self._value_)
