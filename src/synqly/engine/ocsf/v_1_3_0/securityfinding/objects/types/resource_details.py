@@ -4,7 +4,9 @@ from ......core.unchecked_base_model import UncheckedBaseModel
 import typing
 from .agent import Agent
 import pydantic
+from ...base.types.ip_address import IpAddress
 from .group import Group
+from ...base.types.timestamp import Timestamp
 from .user import User
 from ......core.pydantic_utilities import IS_PYDANTIC_V2
 
@@ -34,6 +36,11 @@ class ResourceDetails(UncheckedBaseModel):
     Additional data describing the resource.
     """
 
+    ip: typing.Optional[IpAddress] = pydantic.Field(default=None)
+    """
+    The IP address of the resource.
+    """
+
     group: typing.Optional[Group] = pydantic.Field(default=None)
     """
     The name of the related resource group.
@@ -44,6 +51,16 @@ class ResourceDetails(UncheckedBaseModel):
     The list of labels/tags associated to a resource.
     """
 
+    last_seen_time: typing.Optional[Timestamp] = pydantic.Field(default=None)
+    """
+    The last seen time of the resource.
+    """
+
+    mac: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    The MAC address of the resource.
+    """
+
     name: typing.Optional[str] = pydantic.Field(default=None)
     """
     The name of the resource.
@@ -52,6 +69,11 @@ class ResourceDetails(UncheckedBaseModel):
     namespace: typing.Optional[str] = pydantic.Field(default=None)
     """
     The namespace is useful when similar entities exist that you need to keep separate.
+    """
+
+    os_type: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    The type of the operating system of the resource.
     """
 
     owner: typing.Optional[User] = pydantic.Field(default=None)
