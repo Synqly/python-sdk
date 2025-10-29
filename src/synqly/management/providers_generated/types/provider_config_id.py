@@ -469,7 +469,7 @@ class ProviderConfigId(str, enum.Enum):
 
     VULNERABILITIES_TANIUM_CLOUD_MOCK = "vulnerabilities_tanium_cloud_mock"
     """
-    [MOCK] Tsanium Vulnerability Management
+    [MOCK] Tanium Vulnerability Management
     """
 
     VULNERABILITIES_TENABLE_CLOUD = "vulnerabilities_tenable_cloud"
