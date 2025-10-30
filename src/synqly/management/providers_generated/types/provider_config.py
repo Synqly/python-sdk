@@ -77,6 +77,7 @@ from .autotask_api_integration_code_credential import (
 )
 from .autotask_secret_credential import AutotaskSecretCredential
 from .freshdesk_credential import FreshdeskCredential
+from .ivanti_credential_ticketing import IvantiCredentialTicketing
 from .custom_field_mapping import CustomFieldMapping
 from .pager_duty_credential import PagerDutyCredential
 from .ticketing_pagerduty_dataset import TicketingPagerdutyDataset
@@ -1322,6 +1323,22 @@ class ProviderConfig_TicketingFreshdesk(UncheckedBaseModel):
             extra = pydantic.Extra.allow
 
 
+class ProviderConfig_TicketingIvanti(UncheckedBaseModel):
+    type: typing.Literal["ticketing_ivanti"] = "ticketing_ivanti"
+    credential: IvantiCredentialTicketing
+    url: str
+
+    if IS_PYDANTIC_V2:
+        model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(
+            extra="allow"
+        )  # type: ignore # Pydantic v2
+    else:
+
+        class Config:
+            smart_union = True
+            extra = pydantic.Extra.allow
+
+
 class ProviderConfig_TicketingJira(UncheckedBaseModel):
     type: typing.Literal["ticketing_jira"] = "ticketing_jira"
     credential: JiraCredential
@@ -1742,6 +1759,7 @@ ProviderConfig = typing_extensions.Annotated[
         ProviderConfig_StorageMockStorage,
         ProviderConfig_TicketingAutotask,
         ProviderConfig_TicketingFreshdesk,
+        ProviderConfig_TicketingIvanti,
         ProviderConfig_TicketingJira,
         ProviderConfig_TicketingJiraServiceManagement,
         ProviderConfig_TicketingMockTicketing,

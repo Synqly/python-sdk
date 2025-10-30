@@ -375,6 +375,11 @@ class ProviderConfigId(str, enum.Enum):
     Freshdesk
     """
 
+    TICKETING_IVANTI = "ticketing_ivanti"
+    """
+    Ivanti Neurons Ticketing
+    """
+
     TICKETING_JIRA = "ticketing_jira"
     """
     Atlassian Jira
@@ -567,6 +572,7 @@ class ProviderConfigId(str, enum.Enum):
         storage_mock: typing.Callable[[], T_Result],
         ticketing_autotask: typing.Callable[[], T_Result],
         ticketing_freshdesk: typing.Callable[[], T_Result],
+        ticketing_ivanti: typing.Callable[[], T_Result],
         ticketing_jira: typing.Callable[[], T_Result],
         ticketing_jira_service_management: typing.Callable[[], T_Result],
         ticketing_mock: typing.Callable[[], T_Result],
@@ -734,6 +740,8 @@ class ProviderConfigId(str, enum.Enum):
             return ticketing_autotask()
         if self is ProviderConfigId.TICKETING_FRESHDESK:
             return ticketing_freshdesk()
+        if self is ProviderConfigId.TICKETING_IVANTI:
+            return ticketing_ivanti()
         if self is ProviderConfigId.TICKETING_JIRA:
             return ticketing_jira()
         if self is ProviderConfigId.TICKETING_JIRA_SERVICE_MANAGEMENT:
