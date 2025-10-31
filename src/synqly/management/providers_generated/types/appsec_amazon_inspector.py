@@ -11,6 +11,8 @@ import typing
 class AppsecAmazonInspector(UncheckedBaseModel):
     """
     Configuration for Amazon Inspector as an application security provider.
+
+    [Configuration guide](https://docs.synqly.com/guides/provider-configuration/amazon-inspector-appsec-setup)
     """
 
     credential: AwsProviderCredential
