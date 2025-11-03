@@ -20,6 +20,7 @@ class OperationId(str, enum.Enum):
     CLOUDSECURITY_QUERY_COMPLIANCE_FINDINGS = "cloudsecurity_query_compliance_findings"
     CLOUDSECURITY_QUERY_EVENTS = "cloudsecurity_query_events"
     CLOUDSECURITY_QUERY_IOMS = "cloudsecurity_query_ioms"
+    CLOUDSECURITY_QUERY_THREATS = "cloudsecurity_query_threats"
     EDR_CREATE_IOCS = "edr_create_iocs"
     EDR_DELETE_IOCS = "edr_delete_iocs"
     EDR_GET_ENDPOINT = "edr_get_endpoint"
@@ -110,6 +111,7 @@ class OperationId(str, enum.Enum):
         cloudsecurity_query_compliance_findings: typing.Callable[[], T_Result],
         cloudsecurity_query_events: typing.Callable[[], T_Result],
         cloudsecurity_query_ioms: typing.Callable[[], T_Result],
+        cloudsecurity_query_threats: typing.Callable[[], T_Result],
         edr_create_iocs: typing.Callable[[], T_Result],
         edr_delete_iocs: typing.Callable[[], T_Result],
         edr_get_endpoint: typing.Callable[[], T_Result],
@@ -200,6 +202,8 @@ class OperationId(str, enum.Enum):
             return cloudsecurity_query_events()
         if self is OperationId.CLOUDSECURITY_QUERY_IOMS:
             return cloudsecurity_query_ioms()
+        if self is OperationId.CLOUDSECURITY_QUERY_THREATS:
+            return cloudsecurity_query_threats()
         if self is OperationId.EDR_CREATE_IOCS:
             return edr_create_iocs()
         if self is OperationId.EDR_DELETE_IOCS:
