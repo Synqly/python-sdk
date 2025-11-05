@@ -14,6 +14,7 @@ class TokensActions(str, enum.Enum):
     DELETE = "delete"
     GET = "get"
     RESET = "reset"
+    ROTATE = "rotate"
     REFRESH = "refresh"
     REMOVE_SECONDARY = "remove_secondary"
     ALL = "*"
@@ -37,6 +38,7 @@ class TokensActions(str, enum.Enum):
         delete: typing.Callable[[], T_Result],
         get: typing.Callable[[], T_Result],
         reset: typing.Callable[[], T_Result],
+        rotate: typing.Callable[[], T_Result],
         refresh: typing.Callable[[], T_Result],
         remove_secondary: typing.Callable[[], T_Result],
         all_: typing.Callable[[], T_Result],
@@ -56,6 +58,8 @@ class TokensActions(str, enum.Enum):
             return get()
         if self is TokensActions.RESET:
             return reset()
+        if self is TokensActions.ROTATE:
+            return rotate()
         if self is TokensActions.REFRESH:
             return refresh()
         if self is TokensActions.REMOVE_SECONDARY:

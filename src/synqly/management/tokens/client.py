@@ -33,6 +33,7 @@ from .types.list_tokens_response import ListTokensResponse
 from .types.get_token_response import GetTokenResponse
 from ..common.types.id import Id
 from .types.reset_token_response import ResetTokenResponse
+from .types.rotate_token_response import RotateTokenResponse
 from .types.refresh_token_response import RefreshTokenResponse
 from ..core.client_wrapper import AsyncClientWrapper
 
@@ -1169,6 +1170,153 @@ class TokensClient:
                     ResetTokenResponse,
                     construct_type(
                         type_=ResetTokenResponse,  # type: ignore
+                        object_=_response.json(),
+                    ),
+                )
+            if _response.status_code == 400:
+                raise BadRequestError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 401:
+                raise UnauthorizedError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 403:
+                raise ForbiddenError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 404:
+                raise NotFoundError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 405:
+                raise MethodNotAllowedError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 409:
+                raise ConflictError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 415:
+                raise UnsupportedMediaTypeError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 429:
+                raise TooManyRequestsError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 500:
+                raise InternalServerError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            _response_json = _response.json()
+        except JSONDecodeError:
+            raise ApiError(status_code=_response.status_code, body=_response.text)
+        raise ApiError(status_code=_response.status_code, body=_response_json)
+
+    def rotate(
+        self,
+        owner_id: Id,
+        refresh_token_id: TokenId,
+        *,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> RotateTokenResponse:
+        """
+        This API can be used to rotate an `Organization` or `Integration` `RefreshTokens`.
+        Rotate deletes the existing `Secondary` TokenPair, moves the `Primary` TokenPair to the `Secondary` TokenPair and creates a new `Primary` TokenPair for the
+        `RefreshToken` object matching `{ownerId}/{refreshTokenId}` where `ownerId` is an `organizationId` or `integrationId`.
+        An `Organization` token with `administrator` permissions can be used to perform this operation.
+
+        Parameters
+        ----------
+        owner_id : Id
+
+        refresh_token_id : TokenId
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        RotateTokenResponse
+
+        Examples
+        --------
+        from synqly import SynqlyManagement
+
+        client = SynqlyManagement(
+            token="YOUR_TOKEN",
+        )
+        client.tokens.rotate(
+            owner_id="string",
+            refresh_token_id="string",
+        )
+        """
+        _response = self._client_wrapper.httpx_client.request(
+            f"v1/tokens/{jsonable_encoder(owner_id)}/{jsonable_encoder(refresh_token_id)}/rotate",
+            method="PUT",
+            request_options=request_options,
+        )
+        try:
+            if 200 <= _response.status_code < 300:
+                return typing.cast(
+                    RotateTokenResponse,
+                    construct_type(
+                        type_=RotateTokenResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -2738,6 +2886,161 @@ class AsyncTokensClient:
                     ResetTokenResponse,
                     construct_type(
                         type_=ResetTokenResponse,  # type: ignore
+                        object_=_response.json(),
+                    ),
+                )
+            if _response.status_code == 400:
+                raise BadRequestError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 401:
+                raise UnauthorizedError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 403:
+                raise ForbiddenError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 404:
+                raise NotFoundError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 405:
+                raise MethodNotAllowedError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 409:
+                raise ConflictError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 415:
+                raise UnsupportedMediaTypeError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 429:
+                raise TooManyRequestsError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 500:
+                raise InternalServerError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            _response_json = _response.json()
+        except JSONDecodeError:
+            raise ApiError(status_code=_response.status_code, body=_response.text)
+        raise ApiError(status_code=_response.status_code, body=_response_json)
+
+    async def rotate(
+        self,
+        owner_id: Id,
+        refresh_token_id: TokenId,
+        *,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> RotateTokenResponse:
+        """
+        This API can be used to rotate an `Organization` or `Integration` `RefreshTokens`.
+        Rotate deletes the existing `Secondary` TokenPair, moves the `Primary` TokenPair to the `Secondary` TokenPair and creates a new `Primary` TokenPair for the
+        `RefreshToken` object matching `{ownerId}/{refreshTokenId}` where `ownerId` is an `organizationId` or `integrationId`.
+        An `Organization` token with `administrator` permissions can be used to perform this operation.
+
+        Parameters
+        ----------
+        owner_id : Id
+
+        refresh_token_id : TokenId
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        RotateTokenResponse
+
+        Examples
+        --------
+        import asyncio
+
+        from synqly import AsyncSynqlyManagement
+
+        client = AsyncSynqlyManagement(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.tokens.rotate(
+                owner_id="string",
+                refresh_token_id="string",
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._client_wrapper.httpx_client.request(
+            f"v1/tokens/{jsonable_encoder(owner_id)}/{jsonable_encoder(refresh_token_id)}/rotate",
+            method="PUT",
+            request_options=request_options,
+        )
+        try:
+            if 200 <= _response.status_code < 300:
+                return typing.cast(
+                    RotateTokenResponse,
+                    construct_type(
+                        type_=RotateTokenResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )

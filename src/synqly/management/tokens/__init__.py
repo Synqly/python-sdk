@@ -21,6 +21,7 @@ from .types import (
     RefreshToken,
     RefreshTokenResponse,
     ResetTokenResponse,
+    RotateTokenResponse,
     SynqlyIntegrationsTokenResponse,
 )
 
@@ -45,5 +46,6 @@ __all__ = [
     "RefreshToken",
     "RefreshTokenResponse",
     "ResetTokenResponse",
+    "RotateTokenResponse",
     "SynqlyIntegrationsTokenResponse",
 ]

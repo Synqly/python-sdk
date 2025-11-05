@@ -26,6 +26,7 @@ from .mcp_token_scope import (
 from .refresh_token import RefreshToken
 from .refresh_token_response import RefreshTokenResponse
 from .reset_token_response import ResetTokenResponse
+from .rotate_token_response import RotateTokenResponse
 from .synqly_integrations_token_response import SynqlyIntegrationsTokenResponse
 
 __all__ = [
@@ -49,5 +50,6 @@ __all__ = [
     "RefreshToken",
     "RefreshTokenResponse",
     "ResetTokenResponse",
+    "RotateTokenResponse",
     "SynqlyIntegrationsTokenResponse",
 ]

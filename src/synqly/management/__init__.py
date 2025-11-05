@@ -774,6 +774,7 @@ from .tokens import (
     RefreshToken,
     RefreshTokenResponse,
     ResetTokenResponse,
+    RotateTokenResponse,
     SynqlyIntegrationsTokenResponse,
 )
 from .usage import Usage
@@ -1320,6 +1321,7 @@ __all__ = [
     "RoleOrganizations",
     "RolesActions",
     "RolesPermissions",
+    "RotateTokenResponse",
     "SecretCredential",
     "SecretCredentialId",
     "SentinelCredential",
