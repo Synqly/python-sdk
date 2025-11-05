@@ -51,6 +51,7 @@ class TokensClient:
         resources: Resources,
         permission_set: Permissions,
         name: typing.Optional[str] = OMIT,
+        fullname: typing.Optional[str] = OMIT,
         token_ttl: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> CreateTokenResponse:
@@ -69,7 +70,10 @@ class TokensClient:
             Limit access to supplied permissions
 
         name : typing.Optional[str]
-            Unique name token. If not provided, defaults to generated newly created refresh token id.
+            Unique short name for this token (lowercase [a-z0-9_-], can be used in URLs). Also used for case insensitive duplicate name detection and default sort order. Defaults to TokenId if both name and fullname are not specified.
+
+        fullname : typing.Optional[str]
+            Human friendly display name for this Token, will auto-generate 'name' field (if 'name' is not specified). Defaults to the same value as the 'name' field if not specified.
 
         token_ttl : typing.Optional[str]
             Token time-to-live. If not provided, defaults to 24 hours. Use the format "1h", "1m", "1s" for hours, minutes, and seconds respectively, e.g., "24h" for 24 hours.
@@ -92,6 +96,7 @@ class TokensClient:
         )
         client.tokens.create_token(
             name="string",
+            fullname="string",
             resources=Resources(),
             permission_set=Permissions.ADMINISTRATOR,
             token_ttl="string",
@@ -102,6 +107,7 @@ class TokensClient:
             method="POST",
             json={
                 "name": name,
+                "fullname": fullname,
                 "resources": resources,
                 "permission_set": permission_set,
                 "token_ttl": token_ttl,
@@ -1703,6 +1709,7 @@ class AsyncTokensClient:
         resources: Resources,
         permission_set: Permissions,
         name: typing.Optional[str] = OMIT,
+        fullname: typing.Optional[str] = OMIT,
         token_ttl: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> CreateTokenResponse:
@@ -1721,7 +1728,10 @@ class AsyncTokensClient:
             Limit access to supplied permissions
 
         name : typing.Optional[str]
-            Unique name token. If not provided, defaults to generated newly created refresh token id.
+            Unique short name for this token (lowercase [a-z0-9_-], can be used in URLs). Also used for case insensitive duplicate name detection and default sort order. Defaults to TokenId if both name and fullname are not specified.
+
+        fullname : typing.Optional[str]
+            Human friendly display name for this Token, will auto-generate 'name' field (if 'name' is not specified). Defaults to the same value as the 'name' field if not specified.
 
         token_ttl : typing.Optional[str]
             Token time-to-live. If not provided, defaults to 24 hours. Use the format "1h", "1m", "1s" for hours, minutes, and seconds respectively, e.g., "24h" for 24 hours.
@@ -1749,6 +1759,7 @@ class AsyncTokensClient:
         async def main() -> None:
             await client.tokens.create_token(
                 name="string",
+                fullname="string",
                 resources=Resources(),
                 permission_set=Permissions.ADMINISTRATOR,
                 token_ttl="string",
@@ -1762,6 +1773,7 @@ class AsyncTokensClient:
             method="POST",
             json={
                 "name": name,
+                "fullname": fullname,
                 "resources": resources,
                 "permission_set": permission_set,
                 "token_ttl": token_ttl,

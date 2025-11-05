@@ -2,17 +2,23 @@
 
 from ...common.types.base import Base
 from ...token_base.types.token_id import TokenId
+import pydantic
 import typing
 from ...common.types.id import Id
-import pydantic
 from ...token_base.types.token_owner_type import TokenOwnerType
 import datetime as dt
+from ...token_base.types.token_type import TokenType
 from ...token_base.types.token_pair import TokenPair
 from ...core.pydantic_utilities import IS_PYDANTIC_V2
 
 
 class RefreshToken(Base):
     id: TokenId
+    fullname: str = pydantic.Field()
+    """
+    Human friendly display name for this account.
+    """
+
     member_id: typing.Optional[Id] = pydantic.Field(default=None)
     """
     Member Id
@@ -36,6 +42,11 @@ class RefreshToken(Base):
     token_ttl: str = pydantic.Field()
     """
     Token time-to-live
+    """
+
+    token_type: TokenType = pydantic.Field()
+    """
+    Type of token created
     """
 
     primary: TokenPair = pydantic.Field()

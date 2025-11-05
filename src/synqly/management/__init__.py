@@ -752,7 +752,7 @@ from .status import (
     TimeseriesOptions,
     TimeseriesResult,
 )
-from .token_base import Token, TokenId, TokenOwnerType, TokenPair
+from .token_base import Token, TokenId, TokenOwnerType, TokenPair, TokenType
 from .tokens import (
     CreateIntegrationTokenRequest,
     CreateIntegrationTokenResponse,
@@ -1432,6 +1432,7 @@ __all__ = [
     "TokenId",
     "TokenOwnerType",
     "TokenPair",
+    "TokenType",
     "TokensActions",
     "TokensPermissions",
     "TooManyRequestsError",

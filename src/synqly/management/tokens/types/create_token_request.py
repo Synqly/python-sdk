@@ -11,7 +11,12 @@ from ...core.pydantic_utilities import IS_PYDANTIC_V2
 class CreateTokenRequest(UncheckedBaseModel):
     name: typing.Optional[str] = pydantic.Field(default=None)
     """
-    Unique name token. If not provided, defaults to generated newly created refresh token id.
+    Unique short name for this token (lowercase [a-z0-9_-], can be used in URLs). Also used for case insensitive duplicate name detection and default sort order. Defaults to TokenId if both name and fullname are not specified.
+    """
+
+    fullname: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    Human friendly display name for this Token, will auto-generate 'name' field (if 'name' is not specified). Defaults to the same value as the 'name' field if not specified.
     """
 
     resources: Resources = pydantic.Field()

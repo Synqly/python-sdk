@@ -4,5 +4,6 @@ from .token import Token
 from .token_id import TokenId
 from .token_owner_type import TokenOwnerType
 from .token_pair import TokenPair
+from .token_type import TokenType
 
-__all__ = ["Token", "TokenId", "TokenOwnerType", "TokenPair"]
+__all__ = ["Token", "TokenId", "TokenOwnerType", "TokenPair", "TokenType"]
