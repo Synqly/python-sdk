@@ -20,8 +20,8 @@ from ..core.api_error import ApiError
 from ..member_base.types.member_id import MemberId
 from .types.get_member_response import GetMemberResponse
 from ..core.jsonable_encoder import jsonable_encoder
-from ..member_base.types.member_options import MemberOptions
 from ..role_base.types.role_name import RoleName
+from ..member_base.types.member_options import MemberOptions
 from ..member_base.types.create_member_response import CreateMemberResponse
 from ..member_base.types.state import State
 import datetime as dt
@@ -349,11 +349,11 @@ class MembersClient:
         *,
         name: str,
         secret: str,
-        options: MemberOptions,
         fullname: typing.Optional[str] = OMIT,
         nickname: typing.Optional[str] = OMIT,
         picture: typing.Optional[str] = OMIT,
         role_binding: typing.Optional[typing.Sequence[RoleName]] = OMIT,
+        options: typing.Optional[MemberOptions] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> CreateMemberResponse:
         """
@@ -367,8 +367,6 @@ class MembersClient:
         secret : str
             Member secret used to logon. Must be at least 8 characters long and fewer than 72 characters. There are no restrictions on the characters used; however, the secret must be sufficiently complex. It cannot be a common word, previously leaked password, or easily guessed sequences like `qwerty` or `12345`.
 
-        options : MemberOptions
-
         fullname : typing.Optional[str]
             User's full display name. Defaults to the same value as the 'name' field if not specified.
 
@@ -380,6 +378,8 @@ class MembersClient:
 
         role_binding : typing.Optional[typing.Sequence[RoleName]]
             Roles granted to this member. Tokens inherit this access. Defaults to `member`.
+
+        options : typing.Optional[MemberOptions]
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -1383,11 +1383,11 @@ class AsyncMembersClient:
         *,
         name: str,
         secret: str,
-        options: MemberOptions,
         fullname: typing.Optional[str] = OMIT,
         nickname: typing.Optional[str] = OMIT,
         picture: typing.Optional[str] = OMIT,
         role_binding: typing.Optional[typing.Sequence[RoleName]] = OMIT,
+        options: typing.Optional[MemberOptions] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> CreateMemberResponse:
         """
@@ -1401,8 +1401,6 @@ class AsyncMembersClient:
         secret : str
             Member secret used to logon. Must be at least 8 characters long and fewer than 72 characters. There are no restrictions on the characters used; however, the secret must be sufficiently complex. It cannot be a common word, previously leaked password, or easily guessed sequences like `qwerty` or `12345`.
 
-        options : MemberOptions
-
         fullname : typing.Optional[str]
             User's full display name. Defaults to the same value as the 'name' field if not specified.
 
@@ -1414,6 +1412,8 @@ class AsyncMembersClient:
 
         role_binding : typing.Optional[typing.Sequence[RoleName]]
             Roles granted to this member. Tokens inherit this access. Defaults to `member`.
+
+        options : typing.Optional[MemberOptions]
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.

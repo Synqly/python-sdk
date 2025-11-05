@@ -39,7 +39,7 @@ class CreateMemberRequest(UncheckedBaseModel):
     Roles granted to this member. Tokens inherit this access. Defaults to `member`.
     """
 
-    options: MemberOptions
+    options: typing.Optional[MemberOptions] = None
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(
