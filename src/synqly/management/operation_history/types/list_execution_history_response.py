@@ -2,20 +2,15 @@
 
 from ...core.unchecked_base_model import UncheckedBaseModel
 import typing
-import datetime as dt
+from .operation_execution_event import OperationExecutionEvent
 import pydantic
 from ...core.pydantic_utilities import IS_PYDANTIC_V2
 
 
-class OperationSchedule(UncheckedBaseModel):
-    run_at: typing.Optional[dt.datetime] = pydantic.Field(default=None)
+class ListExecutionHistoryResponse(UncheckedBaseModel):
+    result: typing.List[OperationExecutionEvent] = pydantic.Field()
     """
-    Run now or on the specified time.
-    """
-
-    interval: typing.Optional[str] = pydantic.Field(default=None)
-    """
-    Set the interval duration for recuring operations. (minimum 1h)
+    List of execution events
     """
 
     if IS_PYDANTIC_V2:

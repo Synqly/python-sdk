@@ -24,6 +24,7 @@ from ..capabilities_base.types.category_id import CategoryId
 from .types.integration_environments import IntegrationEnvironments
 from .types.mapping_chain_template import MappingChainTemplate
 from .types.additional_mapping_template import AdditionalMappingTemplate
+from ..operation_schedules.types.operation_schedule import OperationSchedule
 from .types.create_integration_point_response import CreateIntegrationPointResponse
 import datetime as dt
 from .types.update_integration_point_response import UpdateIntegrationPointResponse
@@ -363,6 +364,9 @@ class IntegrationPointsClient:
         additional_mappings: typing.Optional[
             typing.Sequence[AdditionalMappingTemplate]
         ] = OMIT,
+        scheduled_operations: typing.Optional[
+            typing.Sequence[OperationSchedule]
+        ] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> CreateIntegrationPointResponse:
         """
@@ -391,6 +395,11 @@ class IntegrationPointsClient:
         additional_mappings : typing.Optional[typing.Sequence[AdditionalMappingTemplate]]
             Additional data mappings for integrations added to this integration point. This allows for custom data to be mapped to the custom_fields portion of the response.
 
+        scheduled_operations : typing.Optional[typing.Sequence[OperationSchedule]]
+            A list of operations that are scheduled to run for this integration point.
+            Whenever an integration is created, these operations will automatically
+            be scheduled to run based on the schedule defined for the operation.
+
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
 
@@ -410,6 +419,11 @@ class IntegrationPointsClient:
             MappingChainTemplate,
         )
         from synqly.management import MappingDataType
+        from synqly.operation_schedules import (
+            OperationFrequency_Periodic,
+            OperationSchedule,
+            ScheduledOperationId,
+        )
         from synqly.providers_generated import ProviderConfigId
 
         client = SynqlyManagement(
@@ -440,6 +454,13 @@ class IntegrationPointsClient:
                     data_type=MappingDataType.STRING,
                 )
             ],
+            scheduled_operations=[
+                OperationSchedule(
+                    operation=ScheduledOperationId.ASSETS_QUERY_DEVICES,
+                    enabled=True,
+                    frequency=OperationFrequency_Periodic(value={"key": "value"}),
+                )
+            ],
         )
         """
         _response = self._client_wrapper.httpx_client.request(
@@ -453,6 +474,7 @@ class IntegrationPointsClient:
                 "environments": environments,
                 "mappings": mappings,
                 "additional_mappings": additional_mappings,
+                "scheduled_operations": scheduled_operations,
             },
             request_options=request_options,
             omit=OMIT,
@@ -577,6 +599,9 @@ class IntegrationPointsClient:
         additional_mappings: typing.Optional[
             typing.Sequence[AdditionalMappingTemplate]
         ] = OMIT,
+        scheduled_operations: typing.Optional[
+            typing.Sequence[OperationSchedule]
+        ] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> UpdateIntegrationPointResponse:
         """
@@ -614,6 +639,11 @@ class IntegrationPointsClient:
 
         additional_mappings : typing.Optional[typing.Sequence[AdditionalMappingTemplate]]
             Additional data mappings for integrations added to this integration point. This allows for custom data to be mapped to the custom_fields portion of the response.
+
+        scheduled_operations : typing.Optional[typing.Sequence[OperationSchedule]]
+            A list of operations that are scheduled to run for this integration point.
+            Whenever an integration is created, these operations will automatically
+            be scheduled to run based on the schedule defined for the operation.
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -658,6 +688,7 @@ class IntegrationPointsClient:
                 "environments": environments,
                 "mappings": mappings,
                 "additional_mappings": additional_mappings,
+                "scheduled_operations": scheduled_operations,
                 "name": name,
                 "created_at": created_at,
                 "updated_at": updated_at,
@@ -1402,6 +1433,9 @@ class AsyncIntegrationPointsClient:
         additional_mappings: typing.Optional[
             typing.Sequence[AdditionalMappingTemplate]
         ] = OMIT,
+        scheduled_operations: typing.Optional[
+            typing.Sequence[OperationSchedule]
+        ] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> CreateIntegrationPointResponse:
         """
@@ -1430,6 +1464,11 @@ class AsyncIntegrationPointsClient:
         additional_mappings : typing.Optional[typing.Sequence[AdditionalMappingTemplate]]
             Additional data mappings for integrations added to this integration point. This allows for custom data to be mapped to the custom_fields portion of the response.
 
+        scheduled_operations : typing.Optional[typing.Sequence[OperationSchedule]]
+            A list of operations that are scheduled to run for this integration point.
+            Whenever an integration is created, these operations will automatically
+            be scheduled to run based on the schedule defined for the operation.
+
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
 
@@ -1451,6 +1490,11 @@ class AsyncIntegrationPointsClient:
             MappingChainTemplate,
         )
         from synqly.management import MappingDataType
+        from synqly.operation_schedules import (
+            OperationFrequency_Periodic,
+            OperationSchedule,
+            ScheduledOperationId,
+        )
         from synqly.providers_generated import ProviderConfigId
 
         client = AsyncSynqlyManagement(
@@ -1484,6 +1528,13 @@ class AsyncIntegrationPointsClient:
                         data_type=MappingDataType.STRING,
                     )
                 ],
+                scheduled_operations=[
+                    OperationSchedule(
+                        operation=ScheduledOperationId.ASSETS_QUERY_DEVICES,
+                        enabled=True,
+                        frequency=OperationFrequency_Periodic(value={"key": "value"}),
+                    )
+                ],
             )
 
 
@@ -1500,6 +1551,7 @@ class AsyncIntegrationPointsClient:
                 "environments": environments,
                 "mappings": mappings,
                 "additional_mappings": additional_mappings,
+                "scheduled_operations": scheduled_operations,
             },
             request_options=request_options,
             omit=OMIT,
@@ -1624,6 +1676,9 @@ class AsyncIntegrationPointsClient:
         additional_mappings: typing.Optional[
             typing.Sequence[AdditionalMappingTemplate]
         ] = OMIT,
+        scheduled_operations: typing.Optional[
+            typing.Sequence[OperationSchedule]
+        ] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> UpdateIntegrationPointResponse:
         """
@@ -1661,6 +1716,11 @@ class AsyncIntegrationPointsClient:
 
         additional_mappings : typing.Optional[typing.Sequence[AdditionalMappingTemplate]]
             Additional data mappings for integrations added to this integration point. This allows for custom data to be mapped to the custom_fields portion of the response.
+
+        scheduled_operations : typing.Optional[typing.Sequence[OperationSchedule]]
+            A list of operations that are scheduled to run for this integration point.
+            Whenever an integration is created, these operations will automatically
+            be scheduled to run based on the schedule defined for the operation.
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -1712,6 +1772,7 @@ class AsyncIntegrationPointsClient:
                 "environments": environments,
                 "mappings": mappings,
                 "additional_mappings": additional_mappings,
+                "scheduled_operations": scheduled_operations,
                 "name": name,
                 "created_at": created_at,
                 "updated_at": updated_at,

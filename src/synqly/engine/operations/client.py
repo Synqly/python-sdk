@@ -20,7 +20,6 @@ from ..common.errors.internal_server_error import InternalServerError
 from json.decoder import JSONDecodeError
 from ..core.api_error import ApiError
 from ..operation_base.types.operation_input import OperationInput
-from ..operation_base.types.operation_schedule import OperationSchedule
 from .types.create_operation_response import CreateOperationResponse
 from ..core.client_wrapper import AsyncClientWrapper
 
@@ -177,7 +176,6 @@ class OperationsClient:
         *,
         operation: str,
         input: OperationInput,
-        schedule: typing.Optional[OperationSchedule] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> CreateOperationResponse:
         """
@@ -191,9 +189,6 @@ class OperationsClient:
         input : OperationInput
             Input parameters to the operation that will be run for this operation.
 
-        schedule : typing.Optional[OperationSchedule]
-            Run now or on the specified schedule.
-
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
 
@@ -203,21 +198,13 @@ class OperationsClient:
 
         Examples
         --------
-        import datetime
-
         from synqly import SynqlyEngine
-        from synqly.operation_base import OperationInput, OperationSchedule
+        from synqly.operation_base import OperationInput
 
         client = SynqlyEngine(
             token="YOUR_TOKEN",
         )
         client.operations.create(
-            schedule=OperationSchedule(
-                run_at=datetime.datetime.fromisoformat(
-                    "2024-01-15 09:30:00+00:00",
-                ),
-                interval="string",
-            ),
             operation="string",
             input=OperationInput(
                 filters=["string"],
@@ -229,7 +216,6 @@ class OperationsClient:
             "v1/operations",
             method="POST",
             json={
-                "schedule": schedule,
                 "operation": operation,
                 "input": input,
             },
@@ -632,7 +618,6 @@ class AsyncOperationsClient:
         *,
         operation: str,
         input: OperationInput,
-        schedule: typing.Optional[OperationSchedule] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> CreateOperationResponse:
         """
@@ -646,9 +631,6 @@ class AsyncOperationsClient:
         input : OperationInput
             Input parameters to the operation that will be run for this operation.
 
-        schedule : typing.Optional[OperationSchedule]
-            Run now or on the specified schedule.
-
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
 
@@ -659,10 +641,9 @@ class AsyncOperationsClient:
         Examples
         --------
         import asyncio
-        import datetime
 
         from synqly import AsyncSynqlyEngine
-        from synqly.operation_base import OperationInput, OperationSchedule
+        from synqly.operation_base import OperationInput
 
         client = AsyncSynqlyEngine(
             token="YOUR_TOKEN",
@@ -671,12 +652,6 @@ class AsyncOperationsClient:
 
         async def main() -> None:
             await client.operations.create(
-                schedule=OperationSchedule(
-                    run_at=datetime.datetime.fromisoformat(
-                        "2024-01-15 09:30:00+00:00",
-                    ),
-                    interval="string",
-                ),
                 operation="string",
                 input=OperationInput(
                     filters=["string"],
@@ -691,7 +666,6 @@ class AsyncOperationsClient:
             "v1/operations",
             method="POST",
             json={
-                "schedule": schedule,
                 "operation": operation,
                 "input": input,
             },

@@ -8,6 +8,7 @@ from ...capabilities_base.types.category_id import CategoryId
 from .integration_environments import IntegrationEnvironments
 from .mapping_chain_template import MappingChainTemplate
 from .additional_mapping_template import AdditionalMappingTemplate
+from ...operation_schedules.types.operation_schedule import OperationSchedule
 from ...core.pydantic_utilities import IS_PYDANTIC_V2
 
 
@@ -49,6 +50,15 @@ class IntegrationPoint(Base):
     )
     """
     Additional data mappings for integrations added to this integration point. This allows for custom data to be mapped to the custom_fields portion of the response.
+    """
+
+    scheduled_operations: typing.Optional[typing.List[OperationSchedule]] = (
+        pydantic.Field(default=None)
+    )
+    """
+    A list of operations that are scheduled to run for this integration point.
+    Whenever an integration is created, these operations will automatically
+    be scheduled to run based on the schedule defined for the operation.
     """
 
     if IS_PYDANTIC_V2:

@@ -17,6 +17,9 @@ from ..common.errors.too_many_requests_error import TooManyRequestsError
 from ..common.errors.internal_server_error import InternalServerError
 from json.decoder import JSONDecodeError
 from ..core.api_error import ApiError
+from ..operation_history.types.list_execution_history_response import (
+    ListExecutionHistoryResponse,
+)
 from ..core.client_wrapper import AsyncClientWrapper
 
 
@@ -167,6 +170,144 @@ class OperationsClient:
                 )
             if _response.status_code == 429:
                 raise TooManyRequestsError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 500:
+                raise InternalServerError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            _response_json = _response.json()
+        except JSONDecodeError:
+            raise ApiError(status_code=_response.status_code, body=_response.text)
+        raise ApiError(status_code=_response.status_code, body=_response_json)
+
+    def list_execution_history(
+        self,
+        *,
+        filter: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
+        order: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
+        limit: typing.Optional[int] = None,
+        start_after: typing.Optional[str] = None,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> ListExecutionHistoryResponse:
+        """
+        Returns the execution history for all operations.
+        History is stored for the configured retention period (default 4 weeks).
+
+        Parameters
+        ----------
+        filter : typing.Optional[typing.Union[str, typing.Sequence[str]]]
+            Filter operation execution history by this query.
+            Available filters:
+
+            - `id[eq]` - Filter by specific operation ID
+            - `integration_id[eq]` - Filter by specific integration ID
+            - `account_id[eq]` - Filter by specific account ID
+            - `execution_id[eq]` - Filter by specific execution ID
+            - `started_at[gte]` - Filter executions started at or after a specific datetime (RFC3339 format)
+            - `started_at[lte]` - Filter executions started at or before a specific datetime (RFC3339 format)
+            - `started_at[gt]` - Filter executions started after a specific datetime
+            - `started_at[lt]` - Filter executions started before a specific datetime
+            - `operation_id[eq]` - Filter by operation name (e.g., "assets_query_devices")
+              If used more than once, the queries are ANDed together.
+
+        order : typing.Optional[typing.Union[str, typing.Sequence[str]]]
+            Select a field to order the results by. Defaults to `started_at[desc]`. To control the direction of the sorting, append
+            `[asc]` or `[desc]` to the field id. For example, `started_at[asc]` will sort the results by `started_at` in ascending order.
+            The ordering defaults to `desc` if not specified. May be used multiple times to order by multiple fields, and the
+            ordering is applied in the order the fields are specified.
+
+        limit : typing.Optional[int]
+            Number of results to return (default 100, max 500)
+
+        start_after : typing.Optional[str]
+            Return execution history starting after this cursor.
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        ListExecutionHistoryResponse
+
+        Examples
+        --------
+        from synqly import SynqlyManagement
+
+        client = SynqlyManagement(
+            token="YOUR_TOKEN",
+        )
+        client.operations.list_execution_history(
+            filter="string",
+            order="string",
+            limit=1,
+            start_after="string",
+        )
+        """
+        _response = self._client_wrapper.httpx_client.request(
+            "v1/jobs/history",
+            method="GET",
+            params={
+                "filter": filter,
+                "order": order,
+                "limit": limit,
+                "start_after": start_after,
+            },
+            request_options=request_options,
+        )
+        try:
+            if 200 <= _response.status_code < 300:
+                return typing.cast(
+                    ListExecutionHistoryResponse,
+                    construct_type(
+                        type_=ListExecutionHistoryResponse,  # type: ignore
+                        object_=_response.json(),
+                    ),
+                )
+            if _response.status_code == 400:
+                raise BadRequestError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 401:
+                raise UnauthorizedError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 403:
+                raise ForbiddenError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 404:
+                raise NotFoundError(
                     typing.cast(
                         Problem,
                         construct_type(
@@ -346,6 +487,152 @@ class AsyncOperationsClient:
                 )
             if _response.status_code == 429:
                 raise TooManyRequestsError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 500:
+                raise InternalServerError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            _response_json = _response.json()
+        except JSONDecodeError:
+            raise ApiError(status_code=_response.status_code, body=_response.text)
+        raise ApiError(status_code=_response.status_code, body=_response_json)
+
+    async def list_execution_history(
+        self,
+        *,
+        filter: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
+        order: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
+        limit: typing.Optional[int] = None,
+        start_after: typing.Optional[str] = None,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> ListExecutionHistoryResponse:
+        """
+        Returns the execution history for all operations.
+        History is stored for the configured retention period (default 4 weeks).
+
+        Parameters
+        ----------
+        filter : typing.Optional[typing.Union[str, typing.Sequence[str]]]
+            Filter operation execution history by this query.
+            Available filters:
+
+            - `id[eq]` - Filter by specific operation ID
+            - `integration_id[eq]` - Filter by specific integration ID
+            - `account_id[eq]` - Filter by specific account ID
+            - `execution_id[eq]` - Filter by specific execution ID
+            - `started_at[gte]` - Filter executions started at or after a specific datetime (RFC3339 format)
+            - `started_at[lte]` - Filter executions started at or before a specific datetime (RFC3339 format)
+            - `started_at[gt]` - Filter executions started after a specific datetime
+            - `started_at[lt]` - Filter executions started before a specific datetime
+            - `operation_id[eq]` - Filter by operation name (e.g., "assets_query_devices")
+              If used more than once, the queries are ANDed together.
+
+        order : typing.Optional[typing.Union[str, typing.Sequence[str]]]
+            Select a field to order the results by. Defaults to `started_at[desc]`. To control the direction of the sorting, append
+            `[asc]` or `[desc]` to the field id. For example, `started_at[asc]` will sort the results by `started_at` in ascending order.
+            The ordering defaults to `desc` if not specified. May be used multiple times to order by multiple fields, and the
+            ordering is applied in the order the fields are specified.
+
+        limit : typing.Optional[int]
+            Number of results to return (default 100, max 500)
+
+        start_after : typing.Optional[str]
+            Return execution history starting after this cursor.
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        ListExecutionHistoryResponse
+
+        Examples
+        --------
+        import asyncio
+
+        from synqly import AsyncSynqlyManagement
+
+        client = AsyncSynqlyManagement(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.operations.list_execution_history(
+                filter="string",
+                order="string",
+                limit=1,
+                start_after="string",
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._client_wrapper.httpx_client.request(
+            "v1/jobs/history",
+            method="GET",
+            params={
+                "filter": filter,
+                "order": order,
+                "limit": limit,
+                "start_after": start_after,
+            },
+            request_options=request_options,
+        )
+        try:
+            if 200 <= _response.status_code < 300:
+                return typing.cast(
+                    ListExecutionHistoryResponse,
+                    construct_type(
+                        type_=ListExecutionHistoryResponse,  # type: ignore
+                        object_=_response.json(),
+                    ),
+                )
+            if _response.status_code == 400:
+                raise BadRequestError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 401:
+                raise UnauthorizedError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 403:
+                raise ForbiddenError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 404:
+                raise NotFoundError(
                     typing.cast(
                         Problem,
                         construct_type(

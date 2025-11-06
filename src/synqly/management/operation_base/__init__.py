@@ -5,7 +5,6 @@ from .types import (
     Operation,
     OperationError,
     OperationInput,
-    OperationSchedule,
     OperationStatus,
 )
 
@@ -14,6 +13,5 @@ __all__ = [
     "Operation",
     "OperationError",
     "OperationInput",
-    "OperationSchedule",
     "OperationStatus",
 ]

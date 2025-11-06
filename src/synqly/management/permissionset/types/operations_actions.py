@@ -8,6 +8,7 @@ T_Result = typing.TypeVar("T_Result")
 
 class OperationsActions(str, enum.Enum):
     LIST = "list"
+    LIST_HISTORY = "list_history"
     ALL = "*"
     _UNKNOWN = "__OPERATIONSACTIONS_UNKNOWN__"
     """
@@ -23,11 +24,14 @@ class OperationsActions(str, enum.Enum):
     def visit(
         self,
         list_: typing.Callable[[], T_Result],
+        list_history: typing.Callable[[], T_Result],
         all_: typing.Callable[[], T_Result],
         _unknown_member: typing.Callable[[str], T_Result],
     ) -> T_Result:
         if self is OperationsActions.LIST:
             return list_()
+        if self is OperationsActions.LIST_HISTORY:
+            return list_history()
         if self is OperationsActions.ALL:
             return all_()
         return _unknown_member(self._value_)

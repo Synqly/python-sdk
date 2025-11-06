@@ -5,10 +5,9 @@ from .async_operation_request_id import AsyncOperationRequestId
 import pydantic
 import datetime as dt
 from ...common.types.id import Id
-import typing
-from .operation_schedule import OperationSchedule
 from .operation_input import OperationInput
 from .operation_status import OperationStatus
+import typing
 from .operation_error import OperationError
 from ...core.pydantic_utilities import IS_PYDANTIC_V2
 
@@ -37,11 +36,6 @@ class Operation(UncheckedBaseModel):
     integration_id: Id = pydantic.Field()
     """
     Integration ID to use for the operation.
-    """
-
-    schedule: typing.Optional[OperationSchedule] = pydantic.Field(default=None)
-    """
-    Run now or on the specified schedule.
     """
 
     operation: str = pydantic.Field()

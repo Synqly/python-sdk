@@ -11,6 +11,7 @@ class OperationStatus(str, enum.Enum):
     PROCESSING = "PROCESSING"
     CANCELLED = "CANCELLED"
     COMPLETE = "COMPLETE"
+    DISABLED = "DISABLED"
     _UNKNOWN = "__OPERATIONSTATUS_UNKNOWN__"
     """
     This member is used for forward compatibility. If the value is not recognized by the enum, it will be stored here, and the raw value is accessible through `.value`.
@@ -28,6 +29,7 @@ class OperationStatus(str, enum.Enum):
         processing: typing.Callable[[], T_Result],
         cancelled: typing.Callable[[], T_Result],
         complete: typing.Callable[[], T_Result],
+        disabled: typing.Callable[[], T_Result],
         _unknown_member: typing.Callable[[str], T_Result],
     ) -> T_Result:
         if self is OperationStatus.SCHEDULED:
@@ -38,4 +40,6 @@ class OperationStatus(str, enum.Enum):
             return cancelled()
         if self is OperationStatus.COMPLETE:
             return complete()
+        if self is OperationStatus.DISABLED:
+            return disabled()
         return _unknown_member(self._value_)

@@ -5,11 +5,10 @@ from ...organization_webhook_base.types.webhook_filter import WebhookFilter
 import pydantic
 from ...operation_base.types.async_operation_request_id import AsyncOperationRequestId
 import datetime as dt
-import typing
-from ...operation_base.types.operation_schedule import OperationSchedule
 from ...common.types.id import Id
 from ...operation_base.types.operation_input import OperationInput
 from ...operation_base.types.operation_status import OperationStatus
+import typing
 from ...operation_base.types.operation_error import OperationError
 from ...core.pydantic_utilities import IS_PYDANTIC_V2
 
@@ -38,11 +37,6 @@ class OperationWebhookPayload(UncheckedBaseModel):
     updated_at: dt.datetime = pydantic.Field()
     """
     Last time object was updated
-    """
-
-    schedule: typing.Optional[OperationSchedule] = pydantic.Field(default=None)
-    """
-    Run now or on the specified schedule.
     """
 
     operation: str = pydantic.Field()

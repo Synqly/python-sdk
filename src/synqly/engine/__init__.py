@@ -187,7 +187,6 @@ from .operation_base import (
     Operation,
     OperationError,
     OperationInput,
-    OperationSchedule,
     OperationStatus,
 )
 from .operation_id_generated import OperationId
@@ -452,7 +451,6 @@ __all__ = [
     "OperationError",
     "OperationId",
     "OperationInput",
-    "OperationSchedule",
     "OperationStatus",
     "OperationWebhookPayload",
     "OptionValue",
