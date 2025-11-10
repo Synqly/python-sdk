@@ -17,6 +17,7 @@ from .list_provider_capabilities_expand_options import (
 from .list_providers_capabilities_response import ListProvidersCapabilitiesResponse
 from .provider_availability import ProviderAvailability
 from .provider_capabilities import ProviderCapabilities
+from .provider_capabilities_base import ProviderCapabilitiesBase
 from .provider_capabilities_response import ProviderCapabilitiesResponse
 from .provider_environment import ProviderEnvironment
 from .provider_filter import ProviderFilter
@@ -36,6 +37,7 @@ __all__ = [
     "ListProvidersCapabilitiesResponse",
     "ProviderAvailability",
     "ProviderCapabilities",
+    "ProviderCapabilitiesBase",
     "ProviderCapabilitiesResponse",
     "ProviderEnvironment",
     "ProviderFilter",
