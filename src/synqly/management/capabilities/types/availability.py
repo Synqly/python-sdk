@@ -6,7 +6,12 @@ import typing
 T_Result = typing.TypeVar("T_Result")
 
 
-class ProviderAvailability(str, enum.Enum):
+class Availability(str, enum.Enum):
+    INTERNAL = "internal"
+    """
+    Internal use only.
+    """
+
     IN_DEVELOPMENT = "in-development"
     """
     Currently in active development.
@@ -27,31 +32,34 @@ class ProviderAvailability(str, enum.Enum):
     Stable and available for production use.
     """
 
-    _UNKNOWN = "__PROVIDERAVAILABILITY_UNKNOWN__"
+    _UNKNOWN = "__AVAILABILITY_UNKNOWN__"
     """
     This member is used for forward compatibility. If the value is not recognized by the enum, it will be stored here, and the raw value is accessible through `.value`.
     """
 
     @classmethod
-    def _missing_(cls, value: typing.Any) -> "ProviderAvailability":
+    def _missing_(cls, value: typing.Any) -> "Availability":
         unknown = cls._UNKNOWN
         unknown._value_ = value
         return unknown
 
     def visit(
         self,
+        internal: typing.Callable[[], T_Result],
         in_development: typing.Callable[[], T_Result],
         pre_release: typing.Callable[[], T_Result],
         deprecated: typing.Callable[[], T_Result],
         generally_available: typing.Callable[[], T_Result],
         _unknown_member: typing.Callable[[str], T_Result],
     ) -> T_Result:
-        if self is ProviderAvailability.IN_DEVELOPMENT:
+        if self is Availability.INTERNAL:
+            return internal()
+        if self is Availability.IN_DEVELOPMENT:
             return in_development()
-        if self is ProviderAvailability.PRE_RELEASE:
+        if self is Availability.PRE_RELEASE:
             return pre_release()
-        if self is ProviderAvailability.DEPRECATED:
+        if self is Availability.DEPRECATED:
             return deprecated()
-        if self is ProviderAvailability.GENERALLY_AVAILABLE:
+        if self is Availability.GENERALLY_AVAILABLE:
             return generally_available()
         return _unknown_member(self._value_)

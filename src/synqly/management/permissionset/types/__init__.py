@@ -17,6 +17,8 @@ from .bridges_actions import BridgesActions
 from .bridges_permissions import BridgesPermissions
 from .credentials_actions import CredentialsActions
 from .credentials_permissions import CredentialsPermissions
+from .customs_actions import CustomsActions
+from .customs_permissions import CustomsPermissions
 from .get_permission_set_response import GetPermissionSetResponse
 from .integration_points_actions import IntegrationPointsActions
 from .integration_points_permissions import IntegrationPointsPermissions
@@ -68,6 +70,8 @@ __all__ = [
     "BridgesPermissions",
     "CredentialsActions",
     "CredentialsPermissions",
+    "CustomsActions",
+    "CustomsPermissions",
     "GetPermissionSetResponse",
     "IntegrationPointsActions",
     "IntegrationPointsPermissions",

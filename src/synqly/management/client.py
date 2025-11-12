@@ -10,6 +10,7 @@ from .auth.client import AuthClient
 from .bridges.client import BridgesClient
 from .capabilities.client import CapabilitiesClient
 from .credentials.client import CredentialsClient
+from .customs.client import CustomsClient
 from .integration_points.client import IntegrationPointsClient
 from .integrations.client import IntegrationsClient
 from .mappings.client import MappingsClient
@@ -30,6 +31,7 @@ from .auth.client import AsyncAuthClient
 from .bridges.client import AsyncBridgesClient
 from .capabilities.client import AsyncCapabilitiesClient
 from .credentials.client import AsyncCredentialsClient
+from .customs.client import AsyncCustomsClient
 from .integration_points.client import AsyncIntegrationPointsClient
 from .integrations.client import AsyncIntegrationsClient
 from .mappings.client import AsyncMappingsClient
@@ -113,6 +115,7 @@ class SynqlyManagement:
         self.bridges = BridgesClient(client_wrapper=self._client_wrapper)
         self.capabilities = CapabilitiesClient(client_wrapper=self._client_wrapper)
         self.credentials = CredentialsClient(client_wrapper=self._client_wrapper)
+        self.customs = CustomsClient(client_wrapper=self._client_wrapper)
         self.integration_points = IntegrationPointsClient(
             client_wrapper=self._client_wrapper
         )
@@ -200,6 +203,7 @@ class AsyncSynqlyManagement:
         self.bridges = AsyncBridgesClient(client_wrapper=self._client_wrapper)
         self.capabilities = AsyncCapabilitiesClient(client_wrapper=self._client_wrapper)
         self.credentials = AsyncCredentialsClient(client_wrapper=self._client_wrapper)
+        self.customs = AsyncCustomsClient(client_wrapper=self._client_wrapper)
         self.integration_points = AsyncIntegrationPointsClient(
             client_wrapper=self._client_wrapper
         )

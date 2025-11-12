@@ -12,6 +12,7 @@ from .auth_permissions import AuthPermissions
 from .billing_permissions import BillingPermissions
 from .bridges_permissions import BridgesPermissions
 from .credentials_permissions import CredentialsPermissions
+from .customs_permissions import CustomsPermissions
 from .integrations_permissions import IntegrationsPermissions
 from .integration_points_permissions import IntegrationPointsPermissions
 from .operations_permissions import OperationsPermissions
@@ -40,6 +41,7 @@ class ApiPermissionMap(UncheckedBaseModel):
     billing: typing.Optional[BillingPermissions] = None
     bridges: typing.Optional[BridgesPermissions] = None
     credentials: typing.Optional[CredentialsPermissions] = None
+    customs: typing.Optional[CustomsPermissions] = None
     integrations: typing.Optional[IntegrationsPermissions] = None
     integration_points: typing.Optional[IntegrationPointsPermissions] = None
     operations: typing.Optional[OperationsPermissions] = None

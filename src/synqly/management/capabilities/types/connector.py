@@ -6,6 +6,7 @@ import pydantic
 import typing
 from ...capabilities_base.types.provider_id import ProviderId
 from .provider_capabilities_base import ProviderCapabilitiesBase
+from .connector_release import ConnectorRelease
 from ...core.pydantic_utilities import IS_PYDANTIC_V2
 
 
@@ -51,6 +52,11 @@ class Connector(UncheckedBaseModel):
     connector: typing.Optional[CategoryId] = pydantic.Field(default=None)
     """
     DEPRECATED – use `id` instead.
+    """
+
+    release: typing.Optional[ConnectorRelease] = pydantic.Field(default=None)
+    """
+    Connector availability information.
     """
 
     if IS_PYDANTIC_V2:

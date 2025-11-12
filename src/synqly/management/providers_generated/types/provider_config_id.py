@@ -150,6 +150,11 @@ class ProviderConfigId(str, enum.Enum):
     Palo Alto Networks Cortex Cloud Security
     """
 
+    CUSTOM_SYNQLY = "custom_synqly"
+    """
+    Synqly Custom Provider
+    """
+
     EDR_CROWD_STRIKE = "edr_crowdstrike"
     """
     CrowdStrike Falcon® Insight EDR
@@ -527,6 +532,7 @@ class ProviderConfigId(str, enum.Enum):
         cloud_security_crowd_strike: typing.Callable[[], T_Result],
         cloud_security_defender: typing.Callable[[], T_Result],
         cloud_security_palo_alto: typing.Callable[[], T_Result],
+        custom_synqly: typing.Callable[[], T_Result],
         edr_crowd_strike: typing.Callable[[], T_Result],
         edr_crowd_strike_mock: typing.Callable[[], T_Result],
         edr_defender: typing.Callable[[], T_Result],
@@ -650,6 +656,8 @@ class ProviderConfigId(str, enum.Enum):
             return cloud_security_defender()
         if self is ProviderConfigId.CLOUD_SECURITY_PALO_ALTO:
             return cloud_security_palo_alto()
+        if self is ProviderConfigId.CUSTOM_SYNQLY:
+            return custom_synqly()
         if self is ProviderConfigId.EDR_CROWD_STRIKE:
             return edr_crowd_strike()
         if self is ProviderConfigId.EDR_CROWD_STRIKE_MOCK:

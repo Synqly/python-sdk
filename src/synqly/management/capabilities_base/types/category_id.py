@@ -14,6 +14,7 @@ class CategoryId(str, enum.Enum):
     APPSEC = "appsec"
     ASSETS = "assets"
     CLOUDSECURITY = "cloudsecurity"
+    CUSTOM = "custom"
     EDR = "edr"
     IDENTITY = "identity"
     NOTIFICATIONS = "notifications"
@@ -38,6 +39,7 @@ class CategoryId(str, enum.Enum):
         appsec: typing.Callable[[], T_Result],
         assets: typing.Callable[[], T_Result],
         cloudsecurity: typing.Callable[[], T_Result],
+        custom: typing.Callable[[], T_Result],
         edr: typing.Callable[[], T_Result],
         identity: typing.Callable[[], T_Result],
         notifications: typing.Callable[[], T_Result],
@@ -54,6 +56,8 @@ class CategoryId(str, enum.Enum):
             return assets()
         if self is CategoryId.CLOUDSECURITY:
             return cloudsecurity()
+        if self is CategoryId.CUSTOM:
+            return custom()
         if self is CategoryId.EDR:
             return edr()
         if self is CategoryId.IDENTITY:

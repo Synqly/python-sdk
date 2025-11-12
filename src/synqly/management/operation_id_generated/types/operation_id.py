@@ -21,6 +21,12 @@ class OperationId(str, enum.Enum):
     CLOUDSECURITY_QUERY_EVENTS = "cloudsecurity_query_events"
     CLOUDSECURITY_QUERY_IOMS = "cloudsecurity_query_ioms"
     CLOUDSECURITY_QUERY_THREATS = "cloudsecurity_query_threats"
+    CUSTOM_DELETE = "custom_delete"
+    CUSTOM_GET = "custom_get"
+    CUSTOM_PATCH = "custom_patch"
+    CUSTOM_POST = "custom_post"
+    CUSTOM_POST_BATCH = "custom_post_batch"
+    CUSTOM_QUERY = "custom_query"
     EDR_CREATE_IOCS = "edr_create_iocs"
     EDR_DELETE_IOCS = "edr_delete_iocs"
     EDR_GET_ENDPOINT = "edr_get_endpoint"
@@ -112,6 +118,12 @@ class OperationId(str, enum.Enum):
         cloudsecurity_query_events: typing.Callable[[], T_Result],
         cloudsecurity_query_ioms: typing.Callable[[], T_Result],
         cloudsecurity_query_threats: typing.Callable[[], T_Result],
+        custom_delete: typing.Callable[[], T_Result],
+        custom_get: typing.Callable[[], T_Result],
+        custom_patch: typing.Callable[[], T_Result],
+        custom_post: typing.Callable[[], T_Result],
+        custom_post_batch: typing.Callable[[], T_Result],
+        custom_query: typing.Callable[[], T_Result],
         edr_create_iocs: typing.Callable[[], T_Result],
         edr_delete_iocs: typing.Callable[[], T_Result],
         edr_get_endpoint: typing.Callable[[], T_Result],
@@ -204,6 +216,18 @@ class OperationId(str, enum.Enum):
             return cloudsecurity_query_ioms()
         if self is OperationId.CLOUDSECURITY_QUERY_THREATS:
             return cloudsecurity_query_threats()
+        if self is OperationId.CUSTOM_DELETE:
+            return custom_delete()
+        if self is OperationId.CUSTOM_GET:
+            return custom_get()
+        if self is OperationId.CUSTOM_PATCH:
+            return custom_patch()
+        if self is OperationId.CUSTOM_POST:
+            return custom_post()
+        if self is OperationId.CUSTOM_POST_BATCH:
+            return custom_post_batch()
+        if self is OperationId.CUSTOM_QUERY:
+            return custom_query()
         if self is OperationId.EDR_CREATE_IOCS:
             return edr_create_iocs()
         if self is OperationId.EDR_DELETE_IOCS:

@@ -3,20 +3,14 @@
 from ...core.unchecked_base_model import UncheckedBaseModel
 from .availability import Availability
 import pydantic
-import typing
-from .provider_environment import ProviderEnvironment
 from ...core.pydantic_utilities import IS_PYDANTIC_V2
+import typing
 
 
-class ProviderRelease(UncheckedBaseModel):
+class ConnectorRelease(UncheckedBaseModel):
     availability: Availability = pydantic.Field()
     """
     Availability status.
-    """
-
-    environments: typing.List[ProviderEnvironment] = pydantic.Field()
-    """
-    Environments the Provider is available to.
     """
 
     if IS_PYDANTIC_V2:
