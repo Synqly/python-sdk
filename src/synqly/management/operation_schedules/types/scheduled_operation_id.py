@@ -16,7 +16,9 @@ class ScheduledOperationId(str, enum.Enum):
     EDR_QUERY_THREATEVENTS = "edr_query_threatevents"
     IDENTITY_QUERY_AUDIT_LOG = "identity_query_audit_log"
     IDENTITY_QUERY_GROUPS = "identity_query_groups"
+    IDENTITY_QUERY_GROUPS_ENRICHED = "identity_query_groups_enriched"
     IDENTITY_QUERY_USERS = "identity_query_users"
+    IDENTITY_QUERY_USERS_ENRICHED = "identity_query_users_enriched"
     SIEM_QUERY_EVENTS = "siem_query_events"
     SIEM_QUERY_INVESTIGATIONS = "siem_query_investigations"
     VULNERABILITIES_QUERY_ASSETS = "vulnerabilities_query_assets"
@@ -47,7 +49,9 @@ class ScheduledOperationId(str, enum.Enum):
         edr_query_threatevents: typing.Callable[[], T_Result],
         identity_query_audit_log: typing.Callable[[], T_Result],
         identity_query_groups: typing.Callable[[], T_Result],
+        identity_query_groups_enriched: typing.Callable[[], T_Result],
         identity_query_users: typing.Callable[[], T_Result],
+        identity_query_users_enriched: typing.Callable[[], T_Result],
         siem_query_events: typing.Callable[[], T_Result],
         siem_query_investigations: typing.Callable[[], T_Result],
         vulnerabilities_query_assets: typing.Callable[[], T_Result],
@@ -76,8 +80,12 @@ class ScheduledOperationId(str, enum.Enum):
             return identity_query_audit_log()
         if self is ScheduledOperationId.IDENTITY_QUERY_GROUPS:
             return identity_query_groups()
+        if self is ScheduledOperationId.IDENTITY_QUERY_GROUPS_ENRICHED:
+            return identity_query_groups_enriched()
         if self is ScheduledOperationId.IDENTITY_QUERY_USERS:
             return identity_query_users()
+        if self is ScheduledOperationId.IDENTITY_QUERY_USERS_ENRICHED:
+            return identity_query_users_enriched()
         if self is ScheduledOperationId.SIEM_QUERY_EVENTS:
             return siem_query_events()
         if self is ScheduledOperationId.SIEM_QUERY_INVESTIGATIONS:
