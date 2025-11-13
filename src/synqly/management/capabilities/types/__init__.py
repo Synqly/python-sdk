@@ -17,12 +17,14 @@ from .list_provider_capabilities_expand_options import (
     ListProviderCapabilitiesExpandOptions,
 )
 from .list_providers_capabilities_response import ListProvidersCapabilitiesResponse
+from .order_direction import OrderDirection
 from .provider_capabilities import ProviderCapabilities
 from .provider_capabilities_base import ProviderCapabilitiesBase
 from .provider_capabilities_response import ProviderCapabilitiesResponse
 from .provider_environment import ProviderEnvironment
 from .provider_filter import ProviderFilter
 from .provider_operations import ProviderOperations
+from .provider_order import ProviderOrder
 from .provider_release import ProviderRelease
 from .request_body import RequestBody
 
@@ -38,12 +40,14 @@ __all__ = [
     "ListConnectorsCapabilitiesResponse",
     "ListProviderCapabilitiesExpandOptions",
     "ListProvidersCapabilitiesResponse",
+    "OrderDirection",
     "ProviderCapabilities",
     "ProviderCapabilitiesBase",
     "ProviderCapabilitiesResponse",
     "ProviderEnvironment",
     "ProviderFilter",
     "ProviderOperations",
+    "ProviderOrder",
     "ProviderRelease",
     "RequestBody",
 ]

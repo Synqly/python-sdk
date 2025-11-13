@@ -4,6 +4,7 @@ from ...core.unchecked_base_model import UncheckedBaseModel
 import pydantic
 import typing
 from .provider_filter import ProviderFilter
+from .provider_order import ProviderOrder
 from .request_body import RequestBody
 from ...core.pydantic_utilities import IS_PYDANTIC_V2
 
@@ -64,6 +65,11 @@ class ProviderOperations(UncheckedBaseModel):
     filters: typing.Optional[typing.List[ProviderFilter]] = pydantic.Field(default=None)
     """
     Filters that can be applied to this operation.
+    """
+
+    orders: typing.Optional[typing.List[ProviderOrder]] = pydantic.Field(default=None)
+    """
+    Orders that can be applied to this operation.
     """
 
     request_body: typing.Optional[RequestBody] = pydantic.Field(default=None)
