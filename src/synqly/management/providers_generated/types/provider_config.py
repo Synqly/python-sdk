@@ -1448,6 +1448,7 @@ class ProviderConfig_TicketingServicenow(UncheckedBaseModel):
     type: typing.Literal["ticketing_servicenow"] = "ticketing_servicenow"
     credential: ServiceNowCredential
     custom_field_mappings: typing.Optional[typing.List[CustomFieldMapping]] = None
+    default_issue_type: typing.Optional[str] = None
     default_project: typing.Optional[str] = None
     url: str
 
@@ -1466,6 +1467,7 @@ class ProviderConfig_TicketingServicenowSir(UncheckedBaseModel):
     type: typing.Literal["ticketing_servicenow_sir"] = "ticketing_servicenow_sir"
     credential: ServiceNowCredential
     custom_field_mappings: typing.Optional[typing.List[CustomFieldMapping]] = None
+    default_issue_type: typing.Optional[str] = None
     default_project: typing.Optional[str] = None
     url: str
 

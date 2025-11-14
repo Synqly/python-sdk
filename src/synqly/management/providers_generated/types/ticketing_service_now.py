@@ -23,6 +23,11 @@ class TicketingServiceNow(UncheckedBaseModel):
     Custom field mappings for this provider.
     """
 
+    default_issue_type: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    Default Issue Type for the integration. If provided, the issue_type field becomes optional in ticket creation requests.
+    """
+
     default_project: typing.Optional[str] = pydantic.Field(default=None)
     """
     Default Project for the integration. This maps to the custom table for tickets. This table should be derived from Incident table. Defaults to the incident table if not specified.

@@ -23,7 +23,7 @@ class BaseClientWrapper:
             "X-Fern-Language": "Python",
         }
         headers["Authorization"] = f"Bearer {self._get_token()}"
-        headers["User-Agent"] = "Synqly-Python-SDK/1.0.34"
+        headers["User-Agent"] = "Synqly-Python-SDK/1.0.35"
         return headers
 
     def _get_token(self) -> str:
