@@ -320,6 +320,11 @@ class ProviderConfigId(str, enum.Enum):
     Elasticsearch
     """
 
+    SINK_GCS = "sink_gcs"
+    """
+    Google Cloud Storage
+    """
+
     SINK_GOOGLE_SEC_OPS = "sink_google_sec_ops"
     """
     Google Security Operations (Chronicle Compatibility)
@@ -566,6 +571,7 @@ class ProviderConfigId(str, enum.Enum):
         sink_azure_monitor_logs: typing.Callable[[], T_Result],
         sink_crowdstrike_hec: typing.Callable[[], T_Result],
         sink_elasticsearch: typing.Callable[[], T_Result],
+        sink_gcs: typing.Callable[[], T_Result],
         sink_google_sec_ops: typing.Callable[[], T_Result],
         sink_google_security_operations: typing.Callable[[], T_Result],
         sink_mock: typing.Callable[[], T_Result],
@@ -724,6 +730,8 @@ class ProviderConfigId(str, enum.Enum):
             return sink_crowdstrike_hec()
         if self is ProviderConfigId.SINK_ELASTICSEARCH:
             return sink_elasticsearch()
+        if self is ProviderConfigId.SINK_GCS:
+            return sink_gcs()
         if self is ProviderConfigId.SINK_GOOGLE_SEC_OPS:
             return sink_google_sec_ops()
         if self is ProviderConfigId.SINK_GOOGLE_SECURITY_OPERATIONS:

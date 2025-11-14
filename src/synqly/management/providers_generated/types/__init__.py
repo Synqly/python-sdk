@@ -164,6 +164,11 @@ from .freshdesk_credential import (
     FreshdeskCredential_TokenId,
 )
 from .gcs_credential import GcsCredential, GcsCredential_Aws, GcsCredential_AwsId
+from .gcs_json_credential import (
+    GcsJsonCredential,
+    GcsJsonCredential_Token,
+    GcsJsonCredential_TokenId,
+)
 from .git_lab_credential import (
     GitLabCredential,
     GitLabCredential_Token,
@@ -327,6 +332,7 @@ from .provider_config import (
     ProviderConfig_SinkAzureMonitorLogs,
     ProviderConfig_SinkCrowdstrikeHec,
     ProviderConfig_SinkElasticsearch,
+    ProviderConfig_SinkGcs,
     ProviderConfig_SinkGoogleSecOps,
     ProviderConfig_SinkGoogleSecurityOperations,
     ProviderConfig_SinkMockSink,
@@ -421,6 +427,7 @@ from .sink_aws_sqs import SinkAwsSqs
 from .sink_azure_monitor_logs import SinkAzureMonitorLogs
 from .sink_crowdstrike_hec import SinkCrowdstrikeHec
 from .sink_elasticsearch import SinkElasticsearch
+from .sink_gcs import SinkGcs
 from .sink_google_sec_ops import SinkGoogleSecOps
 from .sink_google_security_operations import SinkGoogleSecurityOperations
 from .sink_mock import SinkMock
@@ -649,6 +656,9 @@ __all__ = [
     "GcsCredential",
     "GcsCredential_Aws",
     "GcsCredential_AwsId",
+    "GcsJsonCredential",
+    "GcsJsonCredential_Token",
+    "GcsJsonCredential_TokenId",
     "GitLabCredential",
     "GitLabCredential_Token",
     "GitLabCredential_TokenId",
@@ -778,6 +788,7 @@ __all__ = [
     "ProviderConfig_SinkAzureMonitorLogs",
     "ProviderConfig_SinkCrowdstrikeHec",
     "ProviderConfig_SinkElasticsearch",
+    "ProviderConfig_SinkGcs",
     "ProviderConfig_SinkGoogleSecOps",
     "ProviderConfig_SinkGoogleSecurityOperations",
     "ProviderConfig_SinkMockSink",
@@ -854,6 +865,7 @@ __all__ = [
     "SinkAzureMonitorLogs",
     "SinkCrowdstrikeHec",
     "SinkElasticsearch",
+    "SinkGcs",
     "SinkGoogleSecOps",
     "SinkGoogleSecurityOperations",
     "SinkMock",

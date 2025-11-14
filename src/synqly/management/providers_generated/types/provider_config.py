@@ -71,6 +71,7 @@ from .aws_s_3_credential import AwsS3Credential
 from .aws_security_lake_credential import AwsSecurityLakeCredential
 from .aws_sqs_credential import AwsSqsCredential
 from .azure_monitor_logs_credential import AzureMonitorLogsCredential
+from .gcs_json_credential import GcsJsonCredential
 from .azure_blob_credential import AzureBlobCredential
 from .gcs_credential import GcsCredential
 from .autotask_api_integration_code_credential import (
@@ -1133,6 +1134,23 @@ class ProviderConfig_SinkElasticsearch(UncheckedBaseModel):
             extra = pydantic.Extra.allow
 
 
+class ProviderConfig_SinkGcs(UncheckedBaseModel):
+    type: typing.Literal["sink_gcs"] = "sink_gcs"
+    bucket: str
+    credential: GcsJsonCredential
+    path: str
+
+    if IS_PYDANTIC_V2:
+        model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(
+            extra="allow"
+        )  # type: ignore # Pydantic v2
+    else:
+
+        class Config:
+            smart_union = True
+            extra = pydantic.Extra.allow
+
+
 class ProviderConfig_SinkGoogleSecOps(UncheckedBaseModel):
     type: typing.Literal["sink_google_sec_ops"] = "sink_google_sec_ops"
     credential: GoogleChronicleCredential
@@ -1772,6 +1790,7 @@ ProviderConfig = typing_extensions.Annotated[
         ProviderConfig_SinkAzureMonitorLogs,
         ProviderConfig_SinkCrowdstrikeHec,
         ProviderConfig_SinkElasticsearch,
+        ProviderConfig_SinkGcs,
         ProviderConfig_SinkGoogleSecOps,
         ProviderConfig_SinkGoogleSecurityOperations,
         ProviderConfig_SinkMockSink,
