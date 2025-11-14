@@ -23,6 +23,16 @@ class TicketingTorq(UncheckedBaseModel):
     Custom field mappings for this provider.
     """
 
+    default_creator: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    Default Creator (email) for the integration. If provided, the creator field becomes optional in ticket creation requests.
+    """
+
+    default_issue_type: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    Default Issue Type for the integration. If provided, the issue_type field becomes optional in ticket creation requests.
+    """
+
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(
             extra="allow"

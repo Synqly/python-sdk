@@ -1489,6 +1489,7 @@ class ProviderConfig_TicketingServicenowSir(UncheckedBaseModel):
     type: typing.Literal["ticketing_servicenow_sir"] = "ticketing_servicenow_sir"
     credential: ServiceNowCredential
     custom_field_mappings: typing.Optional[typing.List[CustomFieldMapping]] = None
+    default_creator: typing.Optional[str] = None
     default_issue_type: typing.Optional[str] = None
     default_project: typing.Optional[str] = None
     url: str
@@ -1508,6 +1509,8 @@ class ProviderConfig_TicketingTorq(UncheckedBaseModel):
     type: typing.Literal["ticketing_torq"] = "ticketing_torq"
     credential: TorqCredential
     custom_field_mappings: typing.Optional[typing.List[CustomFieldMapping]] = None
+    default_creator: typing.Optional[str] = None
+    default_issue_type: typing.Optional[str] = None
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(
