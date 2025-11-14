@@ -1310,6 +1310,8 @@ class ProviderConfig_StorageMockStorage(UncheckedBaseModel):
 class ProviderConfig_TicketingAutotask(UncheckedBaseModel):
     type: typing.Literal["ticketing_autotask"] = "ticketing_autotask"
     api_integration_code_credential: AutotaskApiIntegrationCodeCredential
+    default_issue_type: typing.Optional[int] = None
+    default_project: typing.Optional[int] = None
     secret_credential: AutotaskSecretCredential
     user_name: str
     zone_path: str

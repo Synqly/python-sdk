@@ -4,10 +4,10 @@ from ...core.unchecked_base_model import UncheckedBaseModel
 from .autotask_api_integration_code_credential import (
     AutotaskApiIntegrationCodeCredential,
 )
-from .autotask_secret_credential import AutotaskSecretCredential
-import pydantic
-from ...core.pydantic_utilities import IS_PYDANTIC_V2
 import typing
+import pydantic
+from .autotask_secret_credential import AutotaskSecretCredential
+from ...core.pydantic_utilities import IS_PYDANTIC_V2
 
 
 class TicketingAutotask(UncheckedBaseModel):
@@ -18,6 +18,16 @@ class TicketingAutotask(UncheckedBaseModel):
     """
 
     api_integration_code_credential: AutotaskApiIntegrationCodeCredential
+    default_issue_type: typing.Optional[int] = pydantic.Field(default=None)
+    """
+    Default Issue Type (Ticket Category) for the integration. If provided, the issue_type field becomes optional in ticket creation requests. In Autotask, this corresponds to the Ticket Category ID.
+    """
+
+    default_project: typing.Optional[int] = pydantic.Field(default=None)
+    """
+    Default Project (Company ID) for the integration. If provided, the project field becomes optional in ticket creation requests. In Autotask, this corresponds to the Company ID associated with tickets.
+    """
+
     secret_credential: AutotaskSecretCredential
     user_name: str = pydantic.Field()
     """
