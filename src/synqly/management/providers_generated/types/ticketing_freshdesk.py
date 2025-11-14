@@ -2,9 +2,9 @@
 
 from ...core.unchecked_base_model import UncheckedBaseModel
 from .freshdesk_credential import FreshdeskCredential
+import typing
 import pydantic
 from ...core.pydantic_utilities import IS_PYDANTIC_V2
-import typing
 
 
 class TicketingFreshdesk(UncheckedBaseModel):
@@ -15,6 +15,16 @@ class TicketingFreshdesk(UncheckedBaseModel):
     """
 
     credential: FreshdeskCredential
+    default_contact: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    Default contact email for ticket creation. If provided, the contact field becomes optional in ticket creation requests. If not provided, the contact field is required.
+    """
+
+    default_type: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    Default issue type for ticket creation (e.g., "Incident", "Problem", "Question"). If provided, the type field becomes optional. If not provided, the type field is required.
+    """
+
     url: str = pydantic.Field()
     """
     Base URL to your Freshdesk tenant.

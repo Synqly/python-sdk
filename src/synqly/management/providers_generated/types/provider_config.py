@@ -1330,6 +1330,8 @@ class ProviderConfig_TicketingAutotask(UncheckedBaseModel):
 class ProviderConfig_TicketingFreshdesk(UncheckedBaseModel):
     type: typing.Literal["ticketing_freshdesk"] = "ticketing_freshdesk"
     credential: FreshdeskCredential
+    default_contact: typing.Optional[str] = None
+    default_type: typing.Optional[str] = None
     url: str
 
     if IS_PYDANTIC_V2:
