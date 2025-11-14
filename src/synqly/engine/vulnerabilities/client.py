@@ -35,6 +35,7 @@ from .types.query_scans_response import QueryScansResponse
 from .types.get_scan_activity_response import GetScanActivityResponse
 from .types.upload_scan_response import UploadScanResponse
 from .types.get_scan_status_response import GetScanStatusResponse
+from ..assets.types.get_labels_response import GetLabelsResponse
 from ..core.client_wrapper import AsyncClientWrapper
 
 # this is used as the default value for optional parameters
@@ -3009,6 +3010,59 @@ class VulnerabilitiesClient:
                 )
             if _response.status_code == 504:
                 raise GatewayTimeoutError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            _response_json = _response.json()
+        except JSONDecodeError:
+            raise ApiError(status_code=_response.status_code, body=_response.text)
+        raise ApiError(status_code=_response.status_code, body=_response_json)
+
+    def get_labels(
+        self, *, request_options: typing.Optional[RequestOptions] = None
+    ) -> GetLabelsResponse:
+        """
+        Get labels from an asset inventory system
+
+        Parameters
+        ----------
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        GetLabelsResponse
+
+        Examples
+        --------
+        from synqly import SynqlyEngine
+
+        client = SynqlyEngine(
+            token="YOUR_TOKEN",
+        )
+        client.vulnerabilities.get_labels()
+        """
+        _response = self._client_wrapper.httpx_client.request(
+            "v1/vulnerabilities/labels",
+            method="GET",
+            request_options=request_options,
+        )
+        try:
+            if 200 <= _response.status_code < 300:
+                return typing.cast(
+                    GetLabelsResponse,
+                    construct_type(
+                        type_=GetLabelsResponse,  # type: ignore
+                        object_=_response.json(),
+                    ),
+                )
+            if _response.status_code == 400:
+                raise BadRequestError(
                     typing.cast(
                         Problem,
                         construct_type(
@@ -6067,6 +6121,67 @@ class AsyncVulnerabilitiesClient:
                 )
             if _response.status_code == 504:
                 raise GatewayTimeoutError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            _response_json = _response.json()
+        except JSONDecodeError:
+            raise ApiError(status_code=_response.status_code, body=_response.text)
+        raise ApiError(status_code=_response.status_code, body=_response_json)
+
+    async def get_labels(
+        self, *, request_options: typing.Optional[RequestOptions] = None
+    ) -> GetLabelsResponse:
+        """
+        Get labels from an asset inventory system
+
+        Parameters
+        ----------
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        GetLabelsResponse
+
+        Examples
+        --------
+        import asyncio
+
+        from synqly import AsyncSynqlyEngine
+
+        client = AsyncSynqlyEngine(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.vulnerabilities.get_labels()
+
+
+        asyncio.run(main())
+        """
+        _response = await self._client_wrapper.httpx_client.request(
+            "v1/vulnerabilities/labels",
+            method="GET",
+            request_options=request_options,
+        )
+        try:
+            if 200 <= _response.status_code < 300:
+                return typing.cast(
+                    GetLabelsResponse,
+                    construct_type(
+                        type_=GetLabelsResponse,  # type: ignore
+                        object_=_response.json(),
+                    ),
+                )
+            if _response.status_code == 400:
+                raise BadRequestError(
                     typing.cast(
                         Problem,
                         construct_type(
