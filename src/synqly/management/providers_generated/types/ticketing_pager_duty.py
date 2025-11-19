@@ -2,9 +2,9 @@
 
 from ...core.unchecked_base_model import UncheckedBaseModel
 from .pager_duty_credential import PagerDutyCredential
+import typing
 import pydantic
 from ...core.pydantic_utilities import IS_PYDANTIC_V2
-import typing
 
 
 class TicketingPagerDuty(UncheckedBaseModel):
@@ -15,6 +15,16 @@ class TicketingPagerDuty(UncheckedBaseModel):
     """
 
     credential: PagerDutyCredential
+    default_creator: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    Default email address for the creator field. If provided, the creator field becomes optional for ticket and comment creation. If not provided, the creator field is required.
+    """
+
+    default_project: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    Default PagerDuty service ID for ticket creation. If provided, the project field becomes optional in ticket creation requests. If not provided, the project field is required.
+    """
+
     url: str = pydantic.Field()
     """
     Base URL for the PagerDuty API.

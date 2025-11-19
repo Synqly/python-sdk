@@ -1438,6 +1438,8 @@ class ProviderConfig_TicketingMockTicketing(UncheckedBaseModel):
 class ProviderConfig_TicketingPagerduty(UncheckedBaseModel):
     type: typing.Literal["ticketing_pagerduty"] = "ticketing_pagerduty"
     credential: PagerDutyCredential
+    default_creator: typing.Optional[str] = None
+    default_project: typing.Optional[str] = None
     url: str
 
     if IS_PYDANTIC_V2:
