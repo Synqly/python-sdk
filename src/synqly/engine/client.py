@@ -11,6 +11,7 @@ from .custom.client import CustomClient
 from .edr.client import EdrClient
 from .hooks.client import HooksClient
 from .identity.client import IdentityClient
+from .incidentresponse.client import IncidentresponseClient
 from .integration_webhooks.client import IntegrationWebhooksClient
 from .notifications.client import NotificationsClient
 from .operations.client import OperationsClient
@@ -27,6 +28,7 @@ from .custom.client import AsyncCustomClient
 from .edr.client import AsyncEdrClient
 from .hooks.client import AsyncHooksClient
 from .identity.client import AsyncIdentityClient
+from .incidentresponse.client import AsyncIncidentresponseClient
 from .integration_webhooks.client import AsyncIntegrationWebhooksClient
 from .notifications.client import AsyncNotificationsClient
 from .operations.client import AsyncOperationsClient
@@ -106,6 +108,9 @@ class SynqlyEngine:
         self.edr = EdrClient(client_wrapper=self._client_wrapper)
         self.hooks = HooksClient(client_wrapper=self._client_wrapper)
         self.identity = IdentityClient(client_wrapper=self._client_wrapper)
+        self.incidentresponse = IncidentresponseClient(
+            client_wrapper=self._client_wrapper
+        )
         self.integration_webhooks = IntegrationWebhooksClient(
             client_wrapper=self._client_wrapper
         )
@@ -191,6 +196,9 @@ class AsyncSynqlyEngine:
         self.edr = AsyncEdrClient(client_wrapper=self._client_wrapper)
         self.hooks = AsyncHooksClient(client_wrapper=self._client_wrapper)
         self.identity = AsyncIdentityClient(client_wrapper=self._client_wrapper)
+        self.incidentresponse = AsyncIncidentresponseClient(
+            client_wrapper=self._client_wrapper
+        )
         self.integration_webhooks = AsyncIntegrationWebhooksClient(
             client_wrapper=self._client_wrapper
         )

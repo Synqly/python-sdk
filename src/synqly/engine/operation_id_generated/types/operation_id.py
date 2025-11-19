@@ -48,6 +48,12 @@ class OperationId(str, enum.Enum):
     IDENTITY_QUERY_AUDIT_LOG = "identity_query_audit_log"
     IDENTITY_QUERY_GROUPS = "identity_query_groups"
     IDENTITY_QUERY_USERS = "identity_query_users"
+    INCIDENTRESPONSE_QUERY_ESCALATION_POLICIES = (
+        "incidentresponse_query_escalation_policies"
+    )
+    INCIDENTRESPONSE_QUERY_ESCALATION_POLICY_USERS_ON_CALL = (
+        "incidentresponse_query_escalation_policy_users_on_call"
+    )
     NOTIFICATIONS_CLEAR_MESSAGE = "notifications_clear_message"
     NOTIFICATIONS_CREATE_MESSAGE = "notifications_create_message"
     NOTIFICATIONS_GET_MESSAGE = "notifications_get_message"
@@ -146,6 +152,10 @@ class OperationId(str, enum.Enum):
         identity_query_audit_log: typing.Callable[[], T_Result],
         identity_query_groups: typing.Callable[[], T_Result],
         identity_query_users: typing.Callable[[], T_Result],
+        incidentresponse_query_escalation_policies: typing.Callable[[], T_Result],
+        incidentresponse_query_escalation_policy_users_on_call: typing.Callable[
+            [], T_Result
+        ],
         notifications_clear_message: typing.Callable[[], T_Result],
         notifications_create_message: typing.Callable[[], T_Result],
         notifications_get_message: typing.Callable[[], T_Result],
@@ -272,6 +282,10 @@ class OperationId(str, enum.Enum):
             return identity_query_groups()
         if self is OperationId.IDENTITY_QUERY_USERS:
             return identity_query_users()
+        if self is OperationId.INCIDENTRESPONSE_QUERY_ESCALATION_POLICIES:
+            return incidentresponse_query_escalation_policies()
+        if self is OperationId.INCIDENTRESPONSE_QUERY_ESCALATION_POLICY_USERS_ON_CALL:
+            return incidentresponse_query_escalation_policy_users_on_call()
         if self is OperationId.NOTIFICATIONS_CLEAR_MESSAGE:
             return notifications_clear_message()
         if self is OperationId.NOTIFICATIONS_CREATE_MESSAGE:

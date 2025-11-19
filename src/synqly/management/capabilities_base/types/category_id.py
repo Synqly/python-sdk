@@ -17,6 +17,7 @@ class CategoryId(str, enum.Enum):
     CUSTOM = "custom"
     EDR = "edr"
     IDENTITY = "identity"
+    INCIDENTRESPONSE = "incidentresponse"
     NOTIFICATIONS = "notifications"
     SIEM = "siem"
     SINK = "sink"
@@ -42,6 +43,7 @@ class CategoryId(str, enum.Enum):
         custom: typing.Callable[[], T_Result],
         edr: typing.Callable[[], T_Result],
         identity: typing.Callable[[], T_Result],
+        incidentresponse: typing.Callable[[], T_Result],
         notifications: typing.Callable[[], T_Result],
         siem: typing.Callable[[], T_Result],
         sink: typing.Callable[[], T_Result],
@@ -62,6 +64,8 @@ class CategoryId(str, enum.Enum):
             return edr()
         if self is CategoryId.IDENTITY:
             return identity()
+        if self is CategoryId.INCIDENTRESPONSE:
+            return incidentresponse()
         if self is CategoryId.NOTIFICATIONS:
             return notifications()
         if self is CategoryId.SIEM:

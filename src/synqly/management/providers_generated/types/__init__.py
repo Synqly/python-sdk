@@ -199,6 +199,7 @@ from .identity_entra_id import IdentityEntraId
 from .identity_google import IdentityGoogle
 from .identity_okta import IdentityOkta
 from .identity_ping_one import IdentityPingOne
+from .incident_response_pager_duty import IncidentResponsePagerDuty
 from .ivanti_credential import (
     IvantiCredential,
     IvantiCredential_OAuthClient,
@@ -310,6 +311,7 @@ from .provider_config import (
     ProviderConfig_IdentityGoogle,
     ProviderConfig_IdentityOkta,
     ProviderConfig_IdentityPingone,
+    ProviderConfig_IncidentresponsePagerduty,
     ProviderConfig_NotificationsJira,
     ProviderConfig_NotificationsMockNotifications,
     ProviderConfig_NotificationsSlack,
@@ -679,6 +681,7 @@ __all__ = [
     "IdentityGoogle",
     "IdentityOkta",
     "IdentityPingOne",
+    "IncidentResponsePagerDuty",
     "IvantiCredential",
     "IvantiCredentialTicketing",
     "IvantiCredentialTicketing_Token",
@@ -766,6 +769,7 @@ __all__ = [
     "ProviderConfig_IdentityGoogle",
     "ProviderConfig_IdentityOkta",
     "ProviderConfig_IdentityPingone",
+    "ProviderConfig_IncidentresponsePagerduty",
     "ProviderConfig_NotificationsJira",
     "ProviderConfig_NotificationsMockNotifications",
     "ProviderConfig_NotificationsSlack",

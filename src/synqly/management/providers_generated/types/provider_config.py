@@ -50,6 +50,7 @@ from .okta_credential import OktaCredential
 from .ping_one_auth_url import PingOneAuthUrl
 from .ping_one_credential import PingOneCredential
 from .ping_one_apiurl import PingOneApiurl
+from .pager_duty_credential import PagerDutyCredential
 from .jira_credential import JiraCredential
 from .slack_credential import SlackCredential
 from .slack_webhook_credential import SlackWebhookCredential
@@ -81,7 +82,6 @@ from .autotask_secret_credential import AutotaskSecretCredential
 from .freshdesk_credential import FreshdeskCredential
 from .ivanti_credential_ticketing import IvantiCredentialTicketing
 from .custom_field_mapping import CustomFieldMapping
-from .pager_duty_credential import PagerDutyCredential
 from .ticketing_pagerduty_dataset import TicketingPagerdutyDataset
 from .torq_credential import TorqCredential
 from .zendesk_credential import ZendeskCredential
@@ -717,6 +717,21 @@ class ProviderConfig_IdentityPingone(UncheckedBaseModel):
     credential: PingOneCredential
     organization_id: str
     url: PingOneApiurl
+
+    if IS_PYDANTIC_V2:
+        model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(
+            extra="allow"
+        )  # type: ignore # Pydantic v2
+    else:
+
+        class Config:
+            smart_union = True
+            extra = pydantic.Extra.allow
+
+
+class ProviderConfig_IncidentresponsePagerduty(UncheckedBaseModel):
+    type: typing.Literal["incidentresponse_pagerduty"] = "incidentresponse_pagerduty"
+    credential: PagerDutyCredential
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(
@@ -1773,6 +1788,7 @@ ProviderConfig = typing_extensions.Annotated[
         ProviderConfig_IdentityGoogle,
         ProviderConfig_IdentityOkta,
         ProviderConfig_IdentityPingone,
+        ProviderConfig_IncidentresponsePagerduty,
         ProviderConfig_NotificationsJira,
         ProviderConfig_NotificationsMockNotifications,
         ProviderConfig_NotificationsSlack,

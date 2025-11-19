@@ -210,6 +210,11 @@ class ProviderConfigId(str, enum.Enum):
     PingOne Cloud Platform
     """
 
+    INCIDENT_RESPONSE_PAGER_DUTY = "incidentresponse_pagerduty"
+    """
+    PagerDuty Operations Cloud
+    """
+
     NOTIFICATIONS_JIRA = "notifications_jira"
     """
     Atlassian Jira
@@ -549,6 +554,7 @@ class ProviderConfigId(str, enum.Enum):
         identity_google: typing.Callable[[], T_Result],
         identity_okta: typing.Callable[[], T_Result],
         identity_ping_one: typing.Callable[[], T_Result],
+        incident_response_pager_duty: typing.Callable[[], T_Result],
         notifications_jira: typing.Callable[[], T_Result],
         notifications_mock: typing.Callable[[], T_Result],
         notifications_slack_webhook: typing.Callable[[], T_Result],
@@ -686,6 +692,8 @@ class ProviderConfigId(str, enum.Enum):
             return identity_okta()
         if self is ProviderConfigId.IDENTITY_PING_ONE:
             return identity_ping_one()
+        if self is ProviderConfigId.INCIDENT_RESPONSE_PAGER_DUTY:
+            return incident_response_pager_duty()
         if self is ProviderConfigId.NOTIFICATIONS_JIRA:
             return notifications_jira()
         if self is ProviderConfigId.NOTIFICATIONS_MOCK:
