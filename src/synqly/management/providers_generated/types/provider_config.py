@@ -71,9 +71,9 @@ from .sumo_logic_credential import SumoLogicCredential
 from .aws_s_3_credential import AwsS3Credential
 from .aws_security_lake_credential import AwsSecurityLakeCredential
 from .aws_sqs_credential import AwsSqsCredential
+from .azure_blob_credential import AzureBlobCredential
 from .azure_monitor_logs_credential import AzureMonitorLogsCredential
 from .gcs_json_credential import GcsJsonCredential
-from .azure_blob_credential import AzureBlobCredential
 from .gcs_credential import GcsCredential
 from .autotask_api_integration_code_credential import (
     AutotaskApiIntegrationCodeCredential,
@@ -1094,6 +1094,23 @@ class ProviderConfig_SinkAwsSqs(UncheckedBaseModel):
             extra = pydantic.Extra.allow
 
 
+class ProviderConfig_SinkAzureBlob(UncheckedBaseModel):
+    type: typing.Literal["sink_azure_blob"] = "sink_azure_blob"
+    bucket: str
+    credential: AzureBlobCredential
+    path: str
+
+    if IS_PYDANTIC_V2:
+        model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(
+            extra="allow"
+        )  # type: ignore # Pydantic v2
+    else:
+
+        class Config:
+            smart_union = True
+            extra = pydantic.Extra.allow
+
+
 class ProviderConfig_SinkAzureMonitorLogs(UncheckedBaseModel):
     type: typing.Literal["sink_azure_monitor_logs"] = "sink_azure_monitor_logs"
     client_id: str
@@ -1808,6 +1825,7 @@ ProviderConfig = typing_extensions.Annotated[
         ProviderConfig_SinkAwsS3,
         ProviderConfig_SinkAwsSecurityLake,
         ProviderConfig_SinkAwsSqs,
+        ProviderConfig_SinkAzureBlob,
         ProviderConfig_SinkAzureMonitorLogs,
         ProviderConfig_SinkCrowdstrikeHec,
         ProviderConfig_SinkElasticsearch,

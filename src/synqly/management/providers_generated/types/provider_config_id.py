@@ -310,6 +310,11 @@ class ProviderConfigId(str, enum.Enum):
     Amazon Simple Queue Service (SQS)
     """
 
+    SINK_AZURE_BLOB = "sink_azure_blob"
+    """
+    Microsoft Azure Blob Storage
+    """
+
     SINK_AZURE_MONITOR_LOGS = "sink_azure_monitor_logs"
     """
     Microsoft Azure Monitor Logs
@@ -574,6 +579,7 @@ class ProviderConfigId(str, enum.Enum):
         sink_aws_s_3: typing.Callable[[], T_Result],
         sink_aws_security_lake: typing.Callable[[], T_Result],
         sink_aws_sqs: typing.Callable[[], T_Result],
+        sink_azure_blob: typing.Callable[[], T_Result],
         sink_azure_monitor_logs: typing.Callable[[], T_Result],
         sink_crowdstrike_hec: typing.Callable[[], T_Result],
         sink_elasticsearch: typing.Callable[[], T_Result],
@@ -732,6 +738,8 @@ class ProviderConfigId(str, enum.Enum):
             return sink_aws_security_lake()
         if self is ProviderConfigId.SINK_AWS_SQS:
             return sink_aws_sqs()
+        if self is ProviderConfigId.SINK_AZURE_BLOB:
+            return sink_azure_blob()
         if self is ProviderConfigId.SINK_AZURE_MONITOR_LOGS:
             return sink_azure_monitor_logs()
         if self is ProviderConfigId.SINK_CROWDSTRIKE_HEC:

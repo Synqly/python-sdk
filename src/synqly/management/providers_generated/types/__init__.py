@@ -331,6 +331,7 @@ from .provider_config import (
     ProviderConfig_SinkAwsS3,
     ProviderConfig_SinkAwsSecurityLake,
     ProviderConfig_SinkAwsSqs,
+    ProviderConfig_SinkAzureBlob,
     ProviderConfig_SinkAzureMonitorLogs,
     ProviderConfig_SinkCrowdstrikeHec,
     ProviderConfig_SinkElasticsearch,
@@ -426,6 +427,7 @@ from .siem_sumo_logic import SiemSumoLogic
 from .sink_aws_s_3 import SinkAwsS3
 from .sink_aws_security_lake import SinkAwsSecurityLake
 from .sink_aws_sqs import SinkAwsSqs
+from .sink_azure_blob import SinkAzureBlob
 from .sink_azure_monitor_logs import SinkAzureMonitorLogs
 from .sink_crowdstrike_hec import SinkCrowdstrikeHec
 from .sink_elasticsearch import SinkElasticsearch
@@ -789,6 +791,7 @@ __all__ = [
     "ProviderConfig_SinkAwsS3",
     "ProviderConfig_SinkAwsSecurityLake",
     "ProviderConfig_SinkAwsSqs",
+    "ProviderConfig_SinkAzureBlob",
     "ProviderConfig_SinkAzureMonitorLogs",
     "ProviderConfig_SinkCrowdstrikeHec",
     "ProviderConfig_SinkElasticsearch",
@@ -866,6 +869,7 @@ __all__ = [
     "SinkAwsS3",
     "SinkAwsSecurityLake",
     "SinkAwsSqs",
+    "SinkAzureBlob",
     "SinkAzureMonitorLogs",
     "SinkCrowdstrikeHec",
     "SinkElasticsearch",
