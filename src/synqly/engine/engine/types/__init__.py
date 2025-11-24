@@ -8,6 +8,8 @@ from .messages_response import MessagesResponse
 from .meta_api import MetaApi
 from .meta_api_primary_response import MetaApiPrimaryResponse
 from .meta_api_response import MetaApiResponse
+from .meta_mapping import MetaMapping
+from .meta_mapping_chains import MetaMappingChains
 from .meta_response import MetaResponse
 from .meta_stats import MetaStats
 from .object import Object
@@ -24,6 +26,8 @@ __all__ = [
     "MetaApi",
     "MetaApiPrimaryResponse",
     "MetaApiResponse",
+    "MetaMapping",
+    "MetaMappingChains",
     "MetaResponse",
     "MetaStats",
     "Object",

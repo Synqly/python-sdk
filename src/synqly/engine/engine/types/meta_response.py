@@ -5,6 +5,7 @@ import typing
 from .meta_stats import MetaStats
 import pydantic
 from .meta_api import MetaApi
+from .meta_mapping import MetaMapping
 from ...core.pydantic_utilities import IS_PYDANTIC_V2
 
 
@@ -17,6 +18,11 @@ class MetaResponse(UncheckedBaseModel):
     api: typing.Optional[MetaApi] = pydantic.Field(default=None)
     """
     Information about backing API requests made to fulfill the response.
+    """
+
+    mapping: typing.Optional[MetaMapping] = pydantic.Field(default=None)
+    """
+    Information about mappings applied during transformation.
     """
 
     if IS_PYDANTIC_V2:
