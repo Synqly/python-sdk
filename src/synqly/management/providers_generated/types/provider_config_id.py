@@ -365,6 +365,11 @@ class ProviderConfigId(str, enum.Enum):
     Splunk Enterprise Security
     """
 
+    SINK_SUMO_LOGIC = "sink_sumo_logic"
+    """
+    Sumo Logic Sink
+    """
+
     STORAGE_AWS_S_3 = "storage_aws_s3"
     """
     Amazon S3
@@ -590,6 +595,7 @@ class ProviderConfigId(str, enum.Enum):
         sink_open_search: typing.Callable[[], T_Result],
         sink_q_radar: typing.Callable[[], T_Result],
         sink_splunk: typing.Callable[[], T_Result],
+        sink_sumo_logic: typing.Callable[[], T_Result],
         storage_aws_s_3: typing.Callable[[], T_Result],
         storage_azure_blob: typing.Callable[[], T_Result],
         storage_gcs: typing.Callable[[], T_Result],
@@ -760,6 +766,8 @@ class ProviderConfigId(str, enum.Enum):
             return sink_q_radar()
         if self is ProviderConfigId.SINK_SPLUNK:
             return sink_splunk()
+        if self is ProviderConfigId.SINK_SUMO_LOGIC:
+            return sink_sumo_logic()
         if self is ProviderConfigId.STORAGE_AWS_S_3:
             return storage_aws_s_3()
         if self is ProviderConfigId.STORAGE_AZURE_BLOB:

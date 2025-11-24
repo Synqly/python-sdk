@@ -342,6 +342,7 @@ from .provider_config import (
     ProviderConfig_SinkOpensearch,
     ProviderConfig_SinkQRadar,
     ProviderConfig_SinkSplunk,
+    ProviderConfig_SinkSumoLogic,
     ProviderConfig_StorageAwsS3,
     ProviderConfig_StorageAzureBlob,
     ProviderConfig_StorageGcs,
@@ -438,6 +439,7 @@ from .sink_mock import SinkMock
 from .sink_open_search import SinkOpenSearch
 from .sink_q_radar import SinkQRadar
 from .sink_splunk import SinkSplunk
+from .sink_sumo_logic import SinkSumoLogic
 from .slack_credential import (
     SlackCredential,
     SlackCredential_Token,
@@ -802,6 +804,7 @@ __all__ = [
     "ProviderConfig_SinkOpensearch",
     "ProviderConfig_SinkQRadar",
     "ProviderConfig_SinkSplunk",
+    "ProviderConfig_SinkSumoLogic",
     "ProviderConfig_StorageAwsS3",
     "ProviderConfig_StorageAzureBlob",
     "ProviderConfig_StorageGcs",
@@ -880,6 +883,7 @@ __all__ = [
     "SinkOpenSearch",
     "SinkQRadar",
     "SinkSplunk",
+    "SinkSumoLogic",
     "SlackCredential",
     "SlackCredential_Token",
     "SlackCredential_TokenId",

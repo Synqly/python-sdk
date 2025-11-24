@@ -1291,6 +1291,21 @@ class ProviderConfig_SinkSplunk(UncheckedBaseModel):
             extra = pydantic.Extra.allow
 
 
+class ProviderConfig_SinkSumoLogic(UncheckedBaseModel):
+    type: typing.Literal["sink_sumo_logic"] = "sink_sumo_logic"
+    collection_url: SumoLogicCollectionUrl
+
+    if IS_PYDANTIC_V2:
+        model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(
+            extra="allow"
+        )  # type: ignore # Pydantic v2
+    else:
+
+        class Config:
+            smart_union = True
+            extra = pydantic.Extra.allow
+
+
 class ProviderConfig_StorageAwsS3(UncheckedBaseModel):
     type: typing.Literal["storage_aws_s3"] = "storage_aws_s3"
     bucket: str
@@ -1836,6 +1851,7 @@ ProviderConfig = typing_extensions.Annotated[
         ProviderConfig_SinkOpensearch,
         ProviderConfig_SinkQRadar,
         ProviderConfig_SinkSplunk,
+        ProviderConfig_SinkSumoLogic,
         ProviderConfig_StorageAwsS3,
         ProviderConfig_StorageAzureBlob,
         ProviderConfig_StorageGcs,
