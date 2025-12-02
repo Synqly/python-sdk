@@ -10,6 +10,9 @@ import pydantic
 from .git_lab_credential import GitLabCredential
 from .hcl_app_scan_on_cloud_credential import HclAppScanOnCloudCredential
 from .hcl_app_scan_on_cloud_url import HclAppScanOnCloudUrl
+from .open_text_application_security_credential import (
+    OpenTextApplicationSecurityCredential,
+)
 from .open_text_core_application_security_credential import (
     OpenTextCoreApplicationSecurityCredential,
 )
@@ -134,6 +137,24 @@ class ProviderConfig_AppsecHclAppscanOnCloud(UncheckedBaseModel):
     type: typing.Literal["appsec_hcl_appscan_on_cloud"] = "appsec_hcl_appscan_on_cloud"
     credential: HclAppScanOnCloudCredential
     url: HclAppScanOnCloudUrl
+
+    if IS_PYDANTIC_V2:
+        model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(
+            extra="allow"
+        )  # type: ignore # Pydantic v2
+    else:
+
+        class Config:
+            smart_union = True
+            extra = pydantic.Extra.allow
+
+
+class ProviderConfig_AppsecOpentextApplicationSecurity(UncheckedBaseModel):
+    type: typing.Literal["appsec_opentext_application_security"] = (
+        "appsec_opentext_application_security"
+    )
+    credential: OpenTextApplicationSecurityCredential
+    url: str
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(
@@ -1800,6 +1821,7 @@ ProviderConfig = typing_extensions.Annotated[
         ProviderConfig_AppsecAmazonInspector,
         ProviderConfig_AppsecGitlab,
         ProviderConfig_AppsecHclAppscanOnCloud,
+        ProviderConfig_AppsecOpentextApplicationSecurity,
         ProviderConfig_AppsecOpentextCoreApplicationSecurity,
         ProviderConfig_AppsecOpentextCoreApplicationSecurityMock,
         ProviderConfig_AssetsArmisCentrix,

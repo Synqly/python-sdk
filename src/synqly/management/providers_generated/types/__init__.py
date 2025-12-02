@@ -3,6 +3,7 @@
 from .appsec_amazon_inspector import AppsecAmazonInspector
 from .appsec_git_lab import AppsecGitLab
 from .appsec_hcl_app_scan_on_cloud import AppsecHclAppScanOnCloud
+from .appsec_open_text_application_security import AppsecOpenTextApplicationSecurity
 from .appsec_open_text_core_application_security import (
     AppsecOpenTextCoreApplicationSecurity,
 )
@@ -253,6 +254,11 @@ from .open_search_credential import (
     OpenSearchCredential_Basic,
     OpenSearchCredential_BasicId,
 )
+from .open_text_application_security_credential import (
+    OpenTextApplicationSecurityCredential,
+    OpenTextApplicationSecurityCredential_Token,
+    OpenTextApplicationSecurityCredential_TokenId,
+)
 from .open_text_core_application_security_credential import (
     OpenTextCoreApplicationSecurityCredential,
     OpenTextCoreApplicationSecurityCredential_OAuthClient,
@@ -281,6 +287,7 @@ from .provider_config import (
     ProviderConfig_AppsecAmazonInspector,
     ProviderConfig_AppsecGitlab,
     ProviderConfig_AppsecHclAppscanOnCloud,
+    ProviderConfig_AppsecOpentextApplicationSecurity,
     ProviderConfig_AppsecOpentextCoreApplicationSecurity,
     ProviderConfig_AppsecOpentextCoreApplicationSecurityMock,
     ProviderConfig_AssetsArmisCentrix,
@@ -550,6 +557,7 @@ __all__ = [
     "AppsecAmazonInspector",
     "AppsecGitLab",
     "AppsecHclAppScanOnCloud",
+    "AppsecOpenTextApplicationSecurity",
     "AppsecOpenTextCoreApplicationSecurity",
     "AppsecOpenTextCoreApplicationSecurityMock",
     "AppsecOpentextCoreApplicationSecurityDataset",
@@ -728,6 +736,9 @@ __all__ = [
     "OpenSearchCredential",
     "OpenSearchCredential_Basic",
     "OpenSearchCredential_BasicId",
+    "OpenTextApplicationSecurityCredential",
+    "OpenTextApplicationSecurityCredential_Token",
+    "OpenTextApplicationSecurityCredential_TokenId",
     "OpenTextCoreApplicationSecurityCredential",
     "OpenTextCoreApplicationSecurityCredential_OAuthClient",
     "OpenTextCoreApplicationSecurityCredential_OAuthClientId",
@@ -748,6 +759,7 @@ __all__ = [
     "ProviderConfig_AppsecAmazonInspector",
     "ProviderConfig_AppsecGitlab",
     "ProviderConfig_AppsecHclAppscanOnCloud",
+    "ProviderConfig_AppsecOpentextApplicationSecurity",
     "ProviderConfig_AppsecOpentextCoreApplicationSecurity",
     "ProviderConfig_AppsecOpentextCoreApplicationSecurityMock",
     "ProviderConfig_AssetsArmisCentrix",

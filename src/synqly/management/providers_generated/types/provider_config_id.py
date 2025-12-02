@@ -26,6 +26,11 @@ class ProviderConfigId(str, enum.Enum):
     HCL AppScan on Cloud
     """
 
+    APPSEC_OPEN_TEXT_APPLICATION_SECURITY = "appsec_opentext_application_security"
+    """
+    OpenText Application Security
+    """
+
     APPSEC_OPEN_TEXT_CORE_APPLICATION_SECURITY = (
         "appsec_opentext_core_application_security"
     )
@@ -533,6 +538,7 @@ class ProviderConfigId(str, enum.Enum):
         appsec_amazon_inspector: typing.Callable[[], T_Result],
         appsec_git_lab: typing.Callable[[], T_Result],
         appsec_hcl_app_scan_on_cloud: typing.Callable[[], T_Result],
+        appsec_open_text_application_security: typing.Callable[[], T_Result],
         appsec_open_text_core_application_security: typing.Callable[[], T_Result],
         appsec_open_text_core_application_security_mock: typing.Callable[[], T_Result],
         assets_armis_centrix: typing.Callable[[], T_Result],
@@ -638,6 +644,8 @@ class ProviderConfigId(str, enum.Enum):
             return appsec_git_lab()
         if self is ProviderConfigId.APPSEC_HCL_APP_SCAN_ON_CLOUD:
             return appsec_hcl_app_scan_on_cloud()
+        if self is ProviderConfigId.APPSEC_OPEN_TEXT_APPLICATION_SECURITY:
+            return appsec_open_text_application_security()
         if self is ProviderConfigId.APPSEC_OPEN_TEXT_CORE_APPLICATION_SECURITY:
             return appsec_open_text_core_application_security()
         if self is ProviderConfigId.APPSEC_OPEN_TEXT_CORE_APPLICATION_SECURITY_MOCK:
