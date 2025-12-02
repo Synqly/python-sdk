@@ -50,6 +50,7 @@ from .okta_credential import OktaCredential
 from .ping_one_auth_url import PingOneAuthUrl
 from .ping_one_credential import PingOneCredential
 from .ping_one_apiurl import PingOneApiurl
+from .incident_io_credential import IncidentIoCredential
 from .pager_duty_credential import PagerDutyCredential
 from .jira_credential import JiraCredential
 from .slack_credential import SlackCredential
@@ -717,6 +718,21 @@ class ProviderConfig_IdentityPingone(UncheckedBaseModel):
     credential: PingOneCredential
     organization_id: str
     url: PingOneApiurl
+
+    if IS_PYDANTIC_V2:
+        model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(
+            extra="allow"
+        )  # type: ignore # Pydantic v2
+    else:
+
+        class Config:
+            smart_union = True
+            extra = pydantic.Extra.allow
+
+
+class ProviderConfig_IncidentresponseIncidentio(UncheckedBaseModel):
+    type: typing.Literal["incidentresponse_incidentio"] = "incidentresponse_incidentio"
+    credential: IncidentIoCredential
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(
@@ -1820,6 +1836,7 @@ ProviderConfig = typing_extensions.Annotated[
         ProviderConfig_IdentityGoogle,
         ProviderConfig_IdentityOkta,
         ProviderConfig_IdentityPingone,
+        ProviderConfig_IncidentresponseIncidentio,
         ProviderConfig_IncidentresponsePagerduty,
         ProviderConfig_NotificationsJira,
         ProviderConfig_NotificationsMockNotifications,

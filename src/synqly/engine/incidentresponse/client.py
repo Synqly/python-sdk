@@ -236,8 +236,6 @@ class IncidentresponseClient:
         escalation_policy_id: Id,
         *,
         meta: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
-        limit: typing.Optional[int] = None,
-        cursor: typing.Optional[str] = None,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> IncidentResponseQueryEscalationPolicyUsersOnCallResponse:
         """
@@ -249,12 +247,6 @@ class IncidentresponseClient:
 
         meta : typing.Optional[typing.Union[str, typing.Sequence[str]]]
             Add metadata to the response by invoking meta functions. Documentation for meta functions is available at https://docs.synqly.com/api-reference/meta-functions. Not all meta function are available at every endpoint.
-
-        limit : typing.Optional[int]
-            Number of users that are currently on call to return. Defaults to 100.
-
-        cursor : typing.Optional[str]
-            Start search from cursor position.
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -273,8 +265,6 @@ class IncidentresponseClient:
         client.incidentresponse.query_escalation_policy_users_on_call(
             escalation_policy_id="string",
             meta="string",
-            limit=1,
-            cursor="string",
         )
         """
         _response = self._client_wrapper.httpx_client.request(
@@ -282,8 +272,6 @@ class IncidentresponseClient:
             method="GET",
             params={
                 "meta": meta,
-                "limit": limit,
-                "cursor": cursor,
             },
             request_options=request_options,
         )
@@ -645,8 +633,6 @@ class AsyncIncidentresponseClient:
         escalation_policy_id: Id,
         *,
         meta: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
-        limit: typing.Optional[int] = None,
-        cursor: typing.Optional[str] = None,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> IncidentResponseQueryEscalationPolicyUsersOnCallResponse:
         """
@@ -658,12 +644,6 @@ class AsyncIncidentresponseClient:
 
         meta : typing.Optional[typing.Union[str, typing.Sequence[str]]]
             Add metadata to the response by invoking meta functions. Documentation for meta functions is available at https://docs.synqly.com/api-reference/meta-functions. Not all meta function are available at every endpoint.
-
-        limit : typing.Optional[int]
-            Number of users that are currently on call to return. Defaults to 100.
-
-        cursor : typing.Optional[str]
-            Start search from cursor position.
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -687,8 +667,6 @@ class AsyncIncidentresponseClient:
             await client.incidentresponse.query_escalation_policy_users_on_call(
                 escalation_policy_id="string",
                 meta="string",
-                limit=1,
-                cursor="string",
             )
 
 
@@ -699,8 +677,6 @@ class AsyncIncidentresponseClient:
             method="GET",
             params={
                 "meta": meta,
-                "limit": limit,
-                "cursor": cursor,
             },
             request_options=request_options,
         )
