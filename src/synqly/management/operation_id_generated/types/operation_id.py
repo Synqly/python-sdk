@@ -45,6 +45,7 @@ class OperationId(str, enum.Enum):
     IDENTITY_GET_GROUP = "identity_get_group"
     IDENTITY_GET_GROUP_MEMBERS = "identity_get_group_members"
     IDENTITY_GET_USER = "identity_get_user"
+    IDENTITY_GET_USER_PICTURE = "identity_get_user_picture"
     IDENTITY_QUERY_AUDIT_LOG = "identity_query_audit_log"
     IDENTITY_QUERY_GROUPS = "identity_query_groups"
     IDENTITY_QUERY_USERS = "identity_query_users"
@@ -149,6 +150,7 @@ class OperationId(str, enum.Enum):
         identity_get_group: typing.Callable[[], T_Result],
         identity_get_group_members: typing.Callable[[], T_Result],
         identity_get_user: typing.Callable[[], T_Result],
+        identity_get_user_picture: typing.Callable[[], T_Result],
         identity_query_audit_log: typing.Callable[[], T_Result],
         identity_query_groups: typing.Callable[[], T_Result],
         identity_query_users: typing.Callable[[], T_Result],
@@ -276,6 +278,8 @@ class OperationId(str, enum.Enum):
             return identity_get_group_members()
         if self is OperationId.IDENTITY_GET_USER:
             return identity_get_user()
+        if self is OperationId.IDENTITY_GET_USER_PICTURE:
+            return identity_get_user_picture()
         if self is OperationId.IDENTITY_QUERY_AUDIT_LOG:
             return identity_query_audit_log()
         if self is OperationId.IDENTITY_QUERY_GROUPS:
