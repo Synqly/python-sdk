@@ -29,6 +29,7 @@ from .claroty_apiurl import ClarotyApiurl
 from .crowd_strike_credential import CrowdStrikeCredential
 from .assets_crowd_strike_dataset import AssetsCrowdStrikeDataset
 from .ivanti_credential import IvantiCredential
+from .assets_ivanti_neurons_dataset import AssetsIvantiNeuronsDataset
 from .nozomi_vantage_credential import NozomiVantageCredential
 from .assets_nozomi_vantage_dataset import AssetsNozomiVantageDataset
 from .qualys_cloud_credential import QualysCloudCredential
@@ -316,6 +317,21 @@ class ProviderConfig_AssetsIvantiNeurons(UncheckedBaseModel):
     account_identifier: str
     credential: IvantiCredential
     url: str
+
+    if IS_PYDANTIC_V2:
+        model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(
+            extra="allow"
+        )  # type: ignore # Pydantic v2
+    else:
+
+        class Config:
+            smart_union = True
+            extra = pydantic.Extra.allow
+
+
+class ProviderConfig_AssetsIvantiNeuronsMock(UncheckedBaseModel):
+    type: typing.Literal["assets_ivanti_neurons_mock"] = "assets_ivanti_neurons_mock"
+    dataset: AssetsIvantiNeuronsDataset
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(
@@ -1832,6 +1848,7 @@ ProviderConfig = typing_extensions.Annotated[
         ProviderConfig_AssetsCrowdstrike,
         ProviderConfig_AssetsCrowdstrikeMock,
         ProviderConfig_AssetsIvantiNeurons,
+        ProviderConfig_AssetsIvantiNeuronsMock,
         ProviderConfig_AssetsNozomiVantage,
         ProviderConfig_AssetsNozomiVantageMock,
         ProviderConfig_AssetsQualysCloud,
