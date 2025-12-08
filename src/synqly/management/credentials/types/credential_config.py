@@ -26,6 +26,24 @@ class CredentialConfig_Aws(UncheckedBaseModel):
             extra = pydantic.Extra.allow
 
 
+class CredentialConfig_AwsRole(UncheckedBaseModel):
+    type: typing.Literal["aws_role"] = "aws_role"
+    role_arn: str
+    external_id: str
+    role_session_name: typing.Optional[str] = None
+    duration: typing.Optional[int] = None
+
+    if IS_PYDANTIC_V2:
+        model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(
+            extra="allow"
+        )  # type: ignore # Pydantic v2
+    else:
+
+        class Config:
+            smart_union = True
+            extra = pydantic.Extra.allow
+
+
 class CredentialConfig_Token(UncheckedBaseModel):
     type: typing.Literal["token"] = "token"
     secret: str
@@ -93,6 +111,7 @@ class CredentialConfig_OAuthClient(UncheckedBaseModel):
 CredentialConfig = typing_extensions.Annotated[
     typing.Union[
         CredentialConfig_Aws,
+        CredentialConfig_AwsRole,
         CredentialConfig_Token,
         CredentialConfig_Basic,
         CredentialConfig_Secret,

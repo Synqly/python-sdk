@@ -2,7 +2,7 @@
 
 from ...core.unchecked_base_model import UncheckedBaseModel
 import pydantic
-from .aws_s_3_credential import AwsS3Credential
+from .aws_provider_credential import AwsProviderCredential
 from .aws_region import AwsRegion
 from ...core.pydantic_utilities import IS_PYDANTIC_V2
 import typing
@@ -15,22 +15,22 @@ class SinkAwsS3(UncheckedBaseModel):
 
     bucket: str = pydantic.Field()
     """
-    Bucket
+    Name of the Amazon S3 bucket
     """
 
-    credential: AwsS3Credential = pydantic.Field()
+    credential: AwsProviderCredential = pydantic.Field()
     """
-    Credential
+    AWS credentials with write access to the configured S3 bucket.
     """
 
     path: str = pydantic.Field()
     """
-    Path
+    Files will be written under this path.
     """
 
     region: AwsRegion = pydantic.Field()
     """
-    AWS Region
+    AWS Region where the S3 bucket is located.
     """
 
     if IS_PYDANTIC_V2:

@@ -60,23 +60,10 @@ from .aws_provider_credential import (
     AwsProviderCredential,
     AwsProviderCredential_Aws,
     AwsProviderCredential_AwsId,
+    AwsProviderCredential_AwsRole,
+    AwsProviderCredential_AwsRoleId,
 )
 from .aws_region import AwsRegion
-from .aws_s_3_credential import (
-    AwsS3Credential,
-    AwsS3Credential_Aws,
-    AwsS3Credential_AwsId,
-)
-from .aws_security_lake_credential import (
-    AwsSecurityLakeCredential,
-    AwsSecurityLakeCredential_Aws,
-    AwsSecurityLakeCredential_AwsId,
-)
-from .aws_sqs_credential import (
-    AwsSqsCredential,
-    AwsSqsCredential_Aws,
-    AwsSqsCredential_AwsId,
-)
 from .axonius_credential import (
     AxoniusCredential,
     AxoniusCredential_Basic,
@@ -604,16 +591,9 @@ __all__ = [
     "AwsProviderCredential",
     "AwsProviderCredential_Aws",
     "AwsProviderCredential_AwsId",
+    "AwsProviderCredential_AwsRole",
+    "AwsProviderCredential_AwsRoleId",
     "AwsRegion",
-    "AwsS3Credential",
-    "AwsS3Credential_Aws",
-    "AwsS3Credential_AwsId",
-    "AwsSecurityLakeCredential",
-    "AwsSecurityLakeCredential_Aws",
-    "AwsSecurityLakeCredential_AwsId",
-    "AwsSqsCredential",
-    "AwsSqsCredential_Aws",
-    "AwsSqsCredential_AwsId",
     "AxoniusCredential",
     "AxoniusCredential_Basic",
     "AxoniusCredential_BasicId",

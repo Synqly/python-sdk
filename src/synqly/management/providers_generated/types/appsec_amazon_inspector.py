@@ -2,8 +2,8 @@
 
 from ...core.unchecked_base_model import UncheckedBaseModel
 from .aws_provider_credential import AwsProviderCredential
-from .aws_region import AwsRegion
 import pydantic
+from .aws_region import AwsRegion
 from ...core.pydantic_utilities import IS_PYDANTIC_V2
 import typing
 
@@ -15,7 +15,11 @@ class AppsecAmazonInspector(UncheckedBaseModel):
     [Configuration guide](https://docs.synqly.com/guides/provider-configuration/amazon-inspector-appsec-setup)
     """
 
-    credential: AwsProviderCredential
+    credential: AwsProviderCredential = pydantic.Field()
+    """
+    AWS credentials with access to [Amazon Inspector](https://docs.aws.amazon.com/inspector/latest/user/what-is-inspector.html).
+    """
+
     region: AwsRegion = pydantic.Field()
     """
     The [AWS region](https://docs.aws.amazon.com/global-infrastructure/latest/regions/aws-regions.html) to use for the Amazon Inspector provider.

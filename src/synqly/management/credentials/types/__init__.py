@@ -2,6 +2,8 @@
 
 from .aws_credential import AwsCredential
 from .aws_credential_id import AwsCredentialId
+from .aws_role_credential import AwsRoleCredential
+from .aws_role_credential_id import AwsRoleCredentialId
 from .basic_credential import BasicCredential
 from .basic_credential_id import BasicCredentialId
 from .create_credential_request import CreateCredentialRequest
@@ -11,6 +13,7 @@ from .credential_base import CredentialBase
 from .credential_config import (
     CredentialConfig,
     CredentialConfig_Aws,
+    CredentialConfig_AwsRole,
     CredentialConfig_Basic,
     CredentialConfig_OAuthClient,
     CredentialConfig_Secret,
@@ -38,6 +41,8 @@ from .update_credential_response import UpdateCredentialResponse
 __all__ = [
     "AwsCredential",
     "AwsCredentialId",
+    "AwsRoleCredential",
+    "AwsRoleCredentialId",
     "BasicCredential",
     "BasicCredentialId",
     "CreateCredentialRequest",
@@ -47,6 +52,7 @@ __all__ = [
     "CredentialConfig",
     "CredentialConfigNoSecret",
     "CredentialConfig_Aws",
+    "CredentialConfig_AwsRole",
     "CredentialConfig_Basic",
     "CredentialConfig_OAuthClient",
     "CredentialConfig_Secret",

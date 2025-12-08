@@ -3,6 +3,8 @@
 from .types import (
     AwsCredential,
     AwsCredentialId,
+    AwsRoleCredential,
+    AwsRoleCredentialId,
     BasicCredential,
     BasicCredentialId,
     CreateCredentialRequest,
@@ -12,6 +14,7 @@ from .types import (
     CredentialConfig,
     CredentialConfigNoSecret,
     CredentialConfig_Aws,
+    CredentialConfig_AwsRole,
     CredentialConfig_Basic,
     CredentialConfig_OAuthClient,
     CredentialConfig_Secret,
@@ -38,6 +41,8 @@ from .types import (
 __all__ = [
     "AwsCredential",
     "AwsCredentialId",
+    "AwsRoleCredential",
+    "AwsRoleCredentialId",
     "BasicCredential",
     "BasicCredentialId",
     "CreateCredentialRequest",
@@ -47,6 +52,7 @@ __all__ = [
     "CredentialConfig",
     "CredentialConfigNoSecret",
     "CredentialConfig_Aws",
+    "CredentialConfig_AwsRole",
     "CredentialConfig_Basic",
     "CredentialConfig_OAuthClient",
     "CredentialConfig_Secret",

@@ -8,6 +8,7 @@ T_Result = typing.TypeVar("T_Result")
 
 class CredentialType(str, enum.Enum):
     AWS = "aws"
+    AWS_ROLE = "aws_role"
     TOKEN = "token"
     BASIC = "basic"
     SECRET = "secret"
@@ -26,6 +27,7 @@ class CredentialType(str, enum.Enum):
     def visit(
         self,
         aws: typing.Callable[[], T_Result],
+        aws_role: typing.Callable[[], T_Result],
         token: typing.Callable[[], T_Result],
         basic: typing.Callable[[], T_Result],
         secret: typing.Callable[[], T_Result],
@@ -34,6 +36,8 @@ class CredentialType(str, enum.Enum):
     ) -> T_Result:
         if self is CredentialType.AWS:
             return aws()
+        if self is CredentialType.AWS_ROLE:
+            return aws_role()
         if self is CredentialType.TOKEN:
             return token()
         if self is CredentialType.BASIC:

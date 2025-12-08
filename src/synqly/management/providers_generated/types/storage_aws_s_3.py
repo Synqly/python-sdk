@@ -2,7 +2,7 @@
 
 from ...core.unchecked_base_model import UncheckedBaseModel
 import pydantic
-from .aws_s_3_credential import AwsS3Credential
+from .aws_provider_credential import AwsProviderCredential
 import typing
 from ...core.pydantic_utilities import IS_PYDANTIC_V2
 
@@ -19,7 +19,11 @@ class StorageAwsS3(UncheckedBaseModel):
     Name of the Amazon S3 bucket where files are stored.
     """
 
-    credential: AwsS3Credential
+    credential: AwsProviderCredential = pydantic.Field()
+    """
+    AWS credentials with write access to the configured S3 bucket.
+    """
+
     endpoint: typing.Optional[str] = pydantic.Field(default=None)
     """
     Endpoint used for connecting to Amazon S3 the external service. If not provided, the default Amazon S3 endpoint will be used.

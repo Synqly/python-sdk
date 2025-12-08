@@ -73,9 +73,6 @@ from .splunk_hec_token import SplunkHecToken
 from .splunk_search_credential import SplunkSearchCredential
 from .sumo_logic_collection_url import SumoLogicCollectionUrl
 from .sumo_logic_credential import SumoLogicCredential
-from .aws_s_3_credential import AwsS3Credential
-from .aws_security_lake_credential import AwsSecurityLakeCredential
-from .aws_sqs_credential import AwsSqsCredential
 from .azure_blob_credential import AzureBlobCredential
 from .azure_monitor_logs_credential import AzureMonitorLogsCredential
 from .gcs_json_credential import GcsJsonCredential
@@ -1098,7 +1095,7 @@ class ProviderConfig_SiemSumoLogic(UncheckedBaseModel):
 class ProviderConfig_SinkAwsS3(UncheckedBaseModel):
     type: typing.Literal["sink_aws_s3"] = "sink_aws_s3"
     bucket: str
-    credential: AwsS3Credential
+    credential: AwsProviderCredential
     path: str
     region: AwsRegion
 
@@ -1115,7 +1112,7 @@ class ProviderConfig_SinkAwsS3(UncheckedBaseModel):
 
 class ProviderConfig_SinkAwsSecurityLake(UncheckedBaseModel):
     type: typing.Literal["sink_aws_security_lake"] = "sink_aws_security_lake"
-    credential: AwsSecurityLakeCredential
+    credential: AwsProviderCredential
     region: typing.Optional[str] = None
     url: str
 
@@ -1132,7 +1129,7 @@ class ProviderConfig_SinkAwsSecurityLake(UncheckedBaseModel):
 
 class ProviderConfig_SinkAwsSqs(UncheckedBaseModel):
     type: typing.Literal["sink_aws_sqs"] = "sink_aws_sqs"
-    credential: AwsSqsCredential
+    credential: AwsProviderCredential
     region: typing.Optional[str] = None
     url: str
 
@@ -1362,7 +1359,7 @@ class ProviderConfig_SinkSumoLogic(UncheckedBaseModel):
 class ProviderConfig_StorageAwsS3(UncheckedBaseModel):
     type: typing.Literal["storage_aws_s3"] = "storage_aws_s3"
     bucket: str
-    credential: AwsS3Credential
+    credential: AwsProviderCredential
     endpoint: typing.Optional[str] = None
     region: str
 

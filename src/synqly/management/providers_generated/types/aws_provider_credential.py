@@ -6,6 +6,7 @@ import typing
 from ...core.pydantic_utilities import IS_PYDANTIC_V2
 import pydantic
 from ...credentials.types.aws_credential_id import AwsCredentialId
+from ...credentials.types.aws_role_credential_id import AwsRoleCredentialId
 import typing_extensions
 from ...core.unchecked_base_model import UnionMetadata
 
@@ -35,7 +36,38 @@ class AwsProviderCredential_AwsId(UncheckedBaseModel):
         smart_union = True
 
 
+class AwsProviderCredential_AwsRole(UncheckedBaseModel):
+    type: typing.Literal["aws_role"] = "aws_role"
+    role_arn: str
+    external_id: str
+    role_session_name: typing.Optional[str] = None
+    duration: typing.Optional[int] = None
+
+    if IS_PYDANTIC_V2:
+        model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(
+            extra="allow"
+        )  # type: ignore # Pydantic v2
+    else:
+
+        class Config:
+            smart_union = True
+            extra = pydantic.Extra.allow
+
+
+class AwsProviderCredential_AwsRoleId(UncheckedBaseModel):
+    value: AwsRoleCredentialId
+    type: typing.Literal["aws_role_id"] = "aws_role_id"
+
+    class Config:
+        smart_union = True
+
+
 AwsProviderCredential = typing_extensions.Annotated[
-    typing.Union[AwsProviderCredential_Aws, AwsProviderCredential_AwsId],
+    typing.Union[
+        AwsProviderCredential_Aws,
+        AwsProviderCredential_AwsId,
+        AwsProviderCredential_AwsRole,
+        AwsProviderCredential_AwsRoleId,
+    ],
     UnionMetadata(discriminant="type"),
 ]
