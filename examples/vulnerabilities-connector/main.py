@@ -77,7 +77,7 @@ def parse_args():
 
 def tenable_credential_config(tenable_token):
     """
-    Helper method to construct an AWS CredentialConfig object.
+    Helper method to construct a Token CredentialConfig object.
     """
     return mgmt.CredentialConfig_Token(type="token", secret=tenable_token)
 

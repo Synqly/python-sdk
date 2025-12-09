@@ -122,7 +122,7 @@ def s3_provider_config(bucket_name, bucket_region, credential_id):
         type="storage_aws_s3",
         bucket=bucket_name,
         region=bucket_region,
-        credential=mgmt.AwsS3Credential_AwsId(type="aws_id", value=credential_id),
+        credential=mgmt.AwsProviderCredential_AwsId(type="aws_id", value=credential_id),
     )
 
 

@@ -123,7 +123,7 @@ def sqs_provider_config(sqs_url, credential_id):
     return mgmt.ProviderConfig_SinkAwsSqs(
         type="sink_aws_sqs",
         url=sqs_url,
-        credential=mgmt.AwsSqsCredential_AwsId(type="aws_id", value=credential_id),
+        credential=mgmt.AwsProviderCredential_AwsId(type="aws_id", value=credential_id),
     )
 
 

@@ -102,7 +102,7 @@ def parse_args():
 
 def jira_credential_config(jira_username: str, jira_token: str):
     """
-    Helper method to construct an AWS CredentialConfig object.
+    Helper method to construct a Basic CredentialConfig object.
     """
     return mgmt.CredentialConfig_Basic(
         type="basic", username=jira_username, secret=jira_token
