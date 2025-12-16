@@ -185,6 +185,38 @@ from .hcl_app_scan_on_cloud_credential import (
     HclAppScanOnCloudCredential_OAuthClientId,
 )
 from .hcl_app_scan_on_cloud_url import HclAppScanOnCloudUrl
+from .http_receiver_auth_config import (
+    HttpReceiverAuthConfig,
+    HttpReceiverAuthConfig_BasicConfig,
+    HttpReceiverAuthConfig_OAuthClientConfig,
+    HttpReceiverAuthConfig_TokenConfig,
+)
+from .http_receiver_basic_auth_config import HttpReceiverBasicAuthConfig
+from .http_receiver_basic_credential import (
+    HttpReceiverBasicCredential,
+    HttpReceiverBasicCredential_Basic,
+    HttpReceiverBasicCredential_BasicId,
+)
+from .http_receiver_method import HttpReceiverMethod
+from .http_receiver_o_auth_config import HttpReceiverOAuthConfig
+from .http_receiver_o_auth_credential import (
+    HttpReceiverOAuthCredential,
+    HttpReceiverOAuthCredential_OAuthClient,
+    HttpReceiverOAuthCredential_OAuthClientId,
+)
+from .http_receiver_o_auth_style import HttpReceiverOAuthStyle
+from .http_receiver_signing_credential import (
+    HttpReceiverSigningCredential,
+    HttpReceiverSigningCredential_Secret,
+    HttpReceiverSigningCredential_SecretId,
+)
+from .http_receiver_token_auth_config import HttpReceiverTokenAuthConfig
+from .http_receiver_token_credential import (
+    HttpReceiverTokenCredential,
+    HttpReceiverTokenCredential_Token,
+    HttpReceiverTokenCredential_TokenId,
+)
+from .http_request_body_format import HttpRequestBodyFormat
 from .identity_entra_id import IdentityEntraId
 from .identity_google import IdentityGoogle
 from .identity_okta import IdentityOkta
@@ -342,6 +374,7 @@ from .provider_config import (
     ProviderConfig_SinkGcs,
     ProviderConfig_SinkGoogleSecOps,
     ProviderConfig_SinkGoogleSecurityOperations,
+    ProviderConfig_SinkHttp,
     ProviderConfig_SinkMockSink,
     ProviderConfig_SinkOpensearch,
     ProviderConfig_SinkQRadar,
@@ -439,6 +472,7 @@ from .sink_elasticsearch import SinkElasticsearch
 from .sink_gcs import SinkGcs
 from .sink_google_sec_ops import SinkGoogleSecOps
 from .sink_google_security_operations import SinkGoogleSecurityOperations
+from .sink_http import SinkHttp
 from .sink_mock import SinkMock
 from .sink_open_search import SinkOpenSearch
 from .sink_q_radar import SinkQRadar
@@ -681,6 +715,28 @@ __all__ = [
     "HclAppScanOnCloudCredential_OAuthClient",
     "HclAppScanOnCloudCredential_OAuthClientId",
     "HclAppScanOnCloudUrl",
+    "HttpReceiverAuthConfig",
+    "HttpReceiverAuthConfig_BasicConfig",
+    "HttpReceiverAuthConfig_OAuthClientConfig",
+    "HttpReceiverAuthConfig_TokenConfig",
+    "HttpReceiverBasicAuthConfig",
+    "HttpReceiverBasicCredential",
+    "HttpReceiverBasicCredential_Basic",
+    "HttpReceiverBasicCredential_BasicId",
+    "HttpReceiverMethod",
+    "HttpReceiverOAuthConfig",
+    "HttpReceiverOAuthCredential",
+    "HttpReceiverOAuthCredential_OAuthClient",
+    "HttpReceiverOAuthCredential_OAuthClientId",
+    "HttpReceiverOAuthStyle",
+    "HttpReceiverSigningCredential",
+    "HttpReceiverSigningCredential_Secret",
+    "HttpReceiverSigningCredential_SecretId",
+    "HttpReceiverTokenAuthConfig",
+    "HttpReceiverTokenCredential",
+    "HttpReceiverTokenCredential_Token",
+    "HttpReceiverTokenCredential_TokenId",
+    "HttpRequestBodyFormat",
     "IdentityEntraId",
     "IdentityGoogle",
     "IdentityOkta",
@@ -810,6 +866,7 @@ __all__ = [
     "ProviderConfig_SinkGcs",
     "ProviderConfig_SinkGoogleSecOps",
     "ProviderConfig_SinkGoogleSecurityOperations",
+    "ProviderConfig_SinkHttp",
     "ProviderConfig_SinkMockSink",
     "ProviderConfig_SinkOpensearch",
     "ProviderConfig_SinkQRadar",
@@ -889,6 +946,7 @@ __all__ = [
     "SinkGcs",
     "SinkGoogleSecOps",
     "SinkGoogleSecurityOperations",
+    "SinkHttp",
     "SinkMock",
     "SinkOpenSearch",
     "SinkQRadar",

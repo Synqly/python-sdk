@@ -360,6 +360,11 @@ class ProviderConfigId(str, enum.Enum):
     Google Security Operations
     """
 
+    SINK_HTTP = "sink_http"
+    """
+    Generic HTTP Receiver
+    """
+
     SINK_MOCK = "sink_mock_sink"
     """
     Synqly Test Provider
@@ -609,6 +614,7 @@ class ProviderConfigId(str, enum.Enum):
         sink_gcs: typing.Callable[[], T_Result],
         sink_google_sec_ops: typing.Callable[[], T_Result],
         sink_google_security_operations: typing.Callable[[], T_Result],
+        sink_http: typing.Callable[[], T_Result],
         sink_mock: typing.Callable[[], T_Result],
         sink_open_search: typing.Callable[[], T_Result],
         sink_q_radar: typing.Callable[[], T_Result],
@@ -782,6 +788,8 @@ class ProviderConfigId(str, enum.Enum):
             return sink_google_sec_ops()
         if self is ProviderConfigId.SINK_GOOGLE_SECURITY_OPERATIONS:
             return sink_google_security_operations()
+        if self is ProviderConfigId.SINK_HTTP:
+            return sink_http()
         if self is ProviderConfigId.SINK_MOCK:
             return sink_mock()
         if self is ProviderConfigId.SINK_OPEN_SEARCH:

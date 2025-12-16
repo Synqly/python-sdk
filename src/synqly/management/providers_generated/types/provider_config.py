@@ -76,6 +76,10 @@ from .sumo_logic_credential import SumoLogicCredential
 from .azure_blob_credential import AzureBlobCredential
 from .azure_monitor_logs_credential import AzureMonitorLogsCredential
 from .gcs_json_credential import GcsJsonCredential
+from .http_receiver_auth_config import HttpReceiverAuthConfig
+from .http_receiver_method import HttpReceiverMethod
+from .http_request_body_format import HttpRequestBodyFormat
+from .http_receiver_signing_credential import HttpReceiverSigningCredential
 from .gcs_credential import GcsCredential
 from .autotask_api_integration_code_credential import (
     AutotaskApiIntegrationCodeCredential,
@@ -1271,6 +1275,28 @@ class ProviderConfig_SinkGoogleSecurityOperations(UncheckedBaseModel):
             extra = pydantic.Extra.allow
 
 
+class ProviderConfig_SinkHttp(UncheckedBaseModel):
+    type: typing.Literal["sink_http"] = "sink_http"
+    accepted_response_codes: typing.Optional[typing.List[int]] = None
+    authorization: typing.Optional[HttpReceiverAuthConfig] = None
+    http_method: typing.Optional[HttpReceiverMethod] = None
+    request_body_format: typing.Optional[HttpRequestBodyFormat] = None
+    signing_credential: typing.Optional[HttpReceiverSigningCredential] = None
+    skip_tls_verify: typing.Optional[bool] = None
+    static_headers: typing.Optional[typing.Dict[str, str]] = None
+    url: str
+
+    if IS_PYDANTIC_V2:
+        model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(
+            extra="allow"
+        )  # type: ignore # Pydantic v2
+    else:
+
+        class Config:
+            smart_union = True
+            extra = pydantic.Extra.allow
+
+
 class ProviderConfig_SinkMockSink(UncheckedBaseModel):
     type: typing.Literal["sink_mock_sink"] = "sink_mock_sink"
     destination: typing.Optional[str] = None
@@ -1900,6 +1926,7 @@ ProviderConfig = typing_extensions.Annotated[
         ProviderConfig_SinkGcs,
         ProviderConfig_SinkGoogleSecOps,
         ProviderConfig_SinkGoogleSecurityOperations,
+        ProviderConfig_SinkHttp,
         ProviderConfig_SinkMockSink,
         ProviderConfig_SinkOpensearch,
         ProviderConfig_SinkQRadar,
