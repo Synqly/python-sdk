@@ -45,6 +45,11 @@ class ProviderConfigId(str, enum.Enum):
     [MOCK] OpenText Core Application Security
     """
 
+    APP_SEC_SNYK = "appsec_snyk"
+    """
+    Snyk
+    """
+
     ASSETS_ARMIS_CENTRIX = "assets_armis_centrix"
     """
     Armis Centrix™ for Asset Management and Security
@@ -551,6 +556,7 @@ class ProviderConfigId(str, enum.Enum):
         appsec_open_text_application_security: typing.Callable[[], T_Result],
         appsec_open_text_core_application_security: typing.Callable[[], T_Result],
         appsec_open_text_core_application_security_mock: typing.Callable[[], T_Result],
+        app_sec_snyk: typing.Callable[[], T_Result],
         assets_armis_centrix: typing.Callable[[], T_Result],
         assets_armis_centrix_mock: typing.Callable[[], T_Result],
         assets_axonius: typing.Callable[[], T_Result],
@@ -662,6 +668,8 @@ class ProviderConfigId(str, enum.Enum):
             return appsec_open_text_core_application_security()
         if self is ProviderConfigId.APPSEC_OPEN_TEXT_CORE_APPLICATION_SECURITY_MOCK:
             return appsec_open_text_core_application_security_mock()
+        if self is ProviderConfigId.APP_SEC_SNYK:
+            return app_sec_snyk()
         if self is ProviderConfigId.ASSETS_ARMIS_CENTRIX:
             return assets_armis_centrix()
         if self is ProviderConfigId.ASSETS_ARMIS_CENTRIX_MOCK:

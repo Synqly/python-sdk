@@ -20,6 +20,8 @@ from .open_text_core_application_security_url import OpenTextCoreApplicationSecu
 from .appsec_opentext_core_application_security_dataset import (
     AppsecOpentextCoreApplicationSecurityDataset,
 )
+from .snyk_credential import SnykCredential
+from .snyk_region import SnykRegion
 from .armis_credential import ArmisCredential
 from .assets_armis_dataset import AssetsArmisDataset
 from .axonius_credential import AxoniusCredential
@@ -192,6 +194,23 @@ class ProviderConfig_AppsecOpentextCoreApplicationSecurityMock(UncheckedBaseMode
         "appsec_opentext_core_application_security_mock"
     )
     dataset: AppsecOpentextCoreApplicationSecurityDataset
+
+    if IS_PYDANTIC_V2:
+        model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(
+            extra="allow"
+        )  # type: ignore # Pydantic v2
+    else:
+
+        class Config:
+            smart_union = True
+            extra = pydantic.Extra.allow
+
+
+class ProviderConfig_AppsecSnyk(UncheckedBaseModel):
+    type: typing.Literal["appsec_snyk"] = "appsec_snyk"
+    credential: SnykCredential
+    organization_id: str
+    region: SnykRegion
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(
@@ -1863,6 +1882,7 @@ ProviderConfig = typing_extensions.Annotated[
         ProviderConfig_AppsecOpentextApplicationSecurity,
         ProviderConfig_AppsecOpentextCoreApplicationSecurity,
         ProviderConfig_AppsecOpentextCoreApplicationSecurityMock,
+        ProviderConfig_AppsecSnyk,
         ProviderConfig_AssetsArmisCentrix,
         ProviderConfig_AssetsArmisCentrixMock,
         ProviderConfig_AssetsAxonius,
