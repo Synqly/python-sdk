@@ -7,6 +7,7 @@ from .aws_provider_credential import AwsProviderCredential
 from .aws_region import AwsRegion
 from ...core.pydantic_utilities import IS_PYDANTIC_V2
 import pydantic
+from .git_hub_credential import GitHubCredential
 from .git_lab_credential import GitLabCredential
 from .hcl_app_scan_on_cloud_credential import HclAppScanOnCloudCredential
 from .hcl_app_scan_on_cloud_url import HclAppScanOnCloudUrl
@@ -109,6 +110,23 @@ class ProviderConfig_AppsecAmazonInspector(UncheckedBaseModel):
     type: typing.Literal["appsec_amazon_inspector"] = "appsec_amazon_inspector"
     credential: AwsProviderCredential
     region: AwsRegion
+
+    if IS_PYDANTIC_V2:
+        model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(
+            extra="allow"
+        )  # type: ignore # Pydantic v2
+    else:
+
+        class Config:
+            smart_union = True
+            extra = pydantic.Extra.allow
+
+
+class ProviderConfig_AppsecGithub(UncheckedBaseModel):
+    type: typing.Literal["appsec_github"] = "appsec_github"
+    credential: GitHubCredential
+    organization_slug: str
+    url: str
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(
@@ -1877,6 +1895,7 @@ class ProviderConfig_VulnerabilitiesTenableCloud(UncheckedBaseModel):
 ProviderConfig = typing_extensions.Annotated[
     typing.Union[
         ProviderConfig_AppsecAmazonInspector,
+        ProviderConfig_AppsecGithub,
         ProviderConfig_AppsecGitlab,
         ProviderConfig_AppsecHclAppscanOnCloud,
         ProviderConfig_AppsecOpentextApplicationSecurity,

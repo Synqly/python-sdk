@@ -16,6 +16,11 @@ class ProviderConfigId(str, enum.Enum):
     Amazon Inspector
     """
 
+    APPSEC_GIT_HUB = "appsec_github"
+    """
+    GitHub
+    """
+
     APPSEC_GIT_LAB = "appsec_gitlab"
     """
     GitLab
@@ -551,6 +556,7 @@ class ProviderConfigId(str, enum.Enum):
     def visit(
         self,
         appsec_amazon_inspector: typing.Callable[[], T_Result],
+        appsec_git_hub: typing.Callable[[], T_Result],
         appsec_git_lab: typing.Callable[[], T_Result],
         appsec_hcl_app_scan_on_cloud: typing.Callable[[], T_Result],
         appsec_open_text_application_security: typing.Callable[[], T_Result],
@@ -658,6 +664,8 @@ class ProviderConfigId(str, enum.Enum):
     ) -> T_Result:
         if self is ProviderConfigId.APPSEC_AMAZON_INSPECTOR:
             return appsec_amazon_inspector()
+        if self is ProviderConfigId.APPSEC_GIT_HUB:
+            return appsec_git_hub()
         if self is ProviderConfigId.APPSEC_GIT_LAB:
             return appsec_git_lab()
         if self is ProviderConfigId.APPSEC_HCL_APP_SCAN_ON_CLOUD:

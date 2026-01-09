@@ -2,6 +2,7 @@
 
 from .app_sec_snyk import AppSecSnyk
 from .appsec_amazon_inspector import AppsecAmazonInspector
+from .appsec_git_hub import AppsecGitHub
 from .appsec_git_lab import AppsecGitLab
 from .appsec_hcl_app_scan_on_cloud import AppsecHclAppScanOnCloud
 from .appsec_open_text_application_security import AppsecOpenTextApplicationSecurity
@@ -160,6 +161,11 @@ from .gcs_json_credential import (
     GcsJsonCredential_Token,
     GcsJsonCredential_TokenId,
 )
+from .git_hub_credential import (
+    GitHubCredential,
+    GitHubCredential_Token,
+    GitHubCredential_TokenId,
+)
 from .git_lab_credential import (
     GitLabCredential,
     GitLabCredential_Token,
@@ -307,6 +313,7 @@ from .ping_one_credential import (
 from .provider_config import (
     ProviderConfig,
     ProviderConfig_AppsecAmazonInspector,
+    ProviderConfig_AppsecGithub,
     ProviderConfig_AppsecGitlab,
     ProviderConfig_AppsecHclAppscanOnCloud,
     ProviderConfig_AppsecOpentextApplicationSecurity,
@@ -590,6 +597,7 @@ from .zendesk_credential import (
 __all__ = [
     "AppSecSnyk",
     "AppsecAmazonInspector",
+    "AppsecGitHub",
     "AppsecGitLab",
     "AppsecHclAppScanOnCloud",
     "AppsecOpenTextApplicationSecurity",
@@ -710,6 +718,9 @@ __all__ = [
     "GcsJsonCredential",
     "GcsJsonCredential_Token",
     "GcsJsonCredential_TokenId",
+    "GitHubCredential",
+    "GitHubCredential_Token",
+    "GitHubCredential_TokenId",
     "GitLabCredential",
     "GitLabCredential_Token",
     "GitLabCredential_TokenId",
@@ -809,6 +820,7 @@ __all__ = [
     "ProviderConfig",
     "ProviderConfigId",
     "ProviderConfig_AppsecAmazonInspector",
+    "ProviderConfig_AppsecGithub",
     "ProviderConfig_AppsecGitlab",
     "ProviderConfig_AppsecHclAppscanOnCloud",
     "ProviderConfig_AppsecOpentextApplicationSecurity",
