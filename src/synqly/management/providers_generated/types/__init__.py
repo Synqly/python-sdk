@@ -396,6 +396,7 @@ from .provider_config import (
     ProviderConfig_TicketingAutotask,
     ProviderConfig_TicketingFreshdesk,
     ProviderConfig_TicketingIvanti,
+    ProviderConfig_TicketingIvantiMock,
     ProviderConfig_TicketingJira,
     ProviderConfig_TicketingJiraServiceManagement,
     ProviderConfig_TicketingMockTicketing,
@@ -554,6 +555,8 @@ from .tenable_cloud_credential import (
 from .ticketing_autotask import TicketingAutotask
 from .ticketing_freshdesk import TicketingFreshdesk
 from .ticketing_ivanti import TicketingIvanti
+from .ticketing_ivanti_dataset import TicketingIvantiDataset
+from .ticketing_ivanti_mock import TicketingIvantiMock
 from .ticketing_jira import TicketingJira
 from .ticketing_jira_service_management import TicketingJiraServiceManagement
 from .ticketing_mock import TicketingMock
@@ -903,6 +906,7 @@ __all__ = [
     "ProviderConfig_TicketingAutotask",
     "ProviderConfig_TicketingFreshdesk",
     "ProviderConfig_TicketingIvanti",
+    "ProviderConfig_TicketingIvantiMock",
     "ProviderConfig_TicketingJira",
     "ProviderConfig_TicketingJiraServiceManagement",
     "ProviderConfig_TicketingMockTicketing",
@@ -1021,6 +1025,8 @@ __all__ = [
     "TicketingAutotask",
     "TicketingFreshdesk",
     "TicketingIvanti",
+    "TicketingIvantiDataset",
+    "TicketingIvantiMock",
     "TicketingJira",
     "TicketingJiraServiceManagement",
     "TicketingMock",
