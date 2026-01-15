@@ -10,6 +10,8 @@ import typing
 class AppsecGitHub(UncheckedBaseModel):
     """
     Configuration for GitHub as an application security provider.
+
+    [Configuration guide](https://docs.synqly.com/guides/provider-configuration/github-appsec-setup)
     """
 
     credential: GitHubCredential = pydantic.Field()

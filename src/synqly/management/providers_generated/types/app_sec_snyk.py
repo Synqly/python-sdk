@@ -11,6 +11,8 @@ import typing
 class AppSecSnyk(UncheckedBaseModel):
     """
     Configuration for Snyk as an application security provider.
+
+    [Configuration guide](https://docs.synqly.com/guides/provider-configuration/snyk-appsec-setup)
     """
 
     credential: SnykCredential = pydantic.Field()
