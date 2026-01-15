@@ -989,6 +989,7 @@ class MappingsClient:
         *,
         mappings: typing.Sequence[str],
         data: typing.Dict[str, typing.Optional[typing.Any]],
+        include_raw_data: typing.Optional[bool] = None,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> ApplyMappingResponse:
         """
@@ -1001,6 +1002,9 @@ class MappingsClient:
 
         data : typing.Dict[str, typing.Optional[typing.Any]]
             JSON input data to apply the mapping chain to.
+
+        include_raw_data : typing.Optional[bool]
+            Include the raw data from the input in the response
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -1017,6 +1021,7 @@ class MappingsClient:
             token="YOUR_TOKEN",
         )
         client.mappings.apply(
+            include_raw_data=True,
             mappings=["string"],
             data={"string": {"key": "value"}},
         )
@@ -1024,6 +1029,9 @@ class MappingsClient:
         _response = self._client_wrapper.httpx_client.request(
             "v1/mappings/apply",
             method="POST",
+            params={
+                "include_raw_data": include_raw_data,
+            },
             json={
                 "mappings": mappings,
                 "data": data,
@@ -2139,6 +2147,7 @@ class AsyncMappingsClient:
         *,
         mappings: typing.Sequence[str],
         data: typing.Dict[str, typing.Optional[typing.Any]],
+        include_raw_data: typing.Optional[bool] = None,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> ApplyMappingResponse:
         """
@@ -2151,6 +2160,9 @@ class AsyncMappingsClient:
 
         data : typing.Dict[str, typing.Optional[typing.Any]]
             JSON input data to apply the mapping chain to.
+
+        include_raw_data : typing.Optional[bool]
+            Include the raw data from the input in the response
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -2172,6 +2184,7 @@ class AsyncMappingsClient:
 
         async def main() -> None:
             await client.mappings.apply(
+                include_raw_data=True,
                 mappings=["string"],
                 data={"string": {"key": "value"}},
             )
@@ -2182,6 +2195,9 @@ class AsyncMappingsClient:
         _response = await self._client_wrapper.httpx_client.request(
             "v1/mappings/apply",
             method="POST",
+            params={
+                "include_raw_data": include_raw_data,
+            },
             json={
                 "mappings": mappings,
                 "data": data,

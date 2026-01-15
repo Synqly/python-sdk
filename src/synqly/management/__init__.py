@@ -223,7 +223,7 @@ from .integrations import (
 )
 from .management import AdditionalMapping, MappingChain, MappingDataType
 from .mappings import (
-    ApplyMappingRequest,
+    ApplyMappingRequestBody,
     ApplyMappingResponse,
     ApplyMappingResponseResult,
     CreateMappingRequest,
@@ -903,7 +903,7 @@ __all__ = [
     "AlarmsPermissions",
     "ApiPermissionMap",
     "AppSecSnyk",
-    "ApplyMappingRequest",
+    "ApplyMappingRequestBody",
     "ApplyMappingResponse",
     "ApplyMappingResponseResult",
     "AppsecAmazonInspector",

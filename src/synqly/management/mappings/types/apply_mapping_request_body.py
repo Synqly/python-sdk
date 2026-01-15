@@ -6,7 +6,7 @@ import pydantic
 from ...core.pydantic_utilities import IS_PYDANTIC_V2
 
 
-class ApplyMappingRequest(UncheckedBaseModel):
+class ApplyMappingRequestBody(UncheckedBaseModel):
     mappings: typing.List[str] = pydantic.Field()
     """
     List of mappings to utilize. This can include custom mappings you have defined as well as Synqly built-in mappings.
