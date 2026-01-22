@@ -83,6 +83,7 @@ from .http_receiver_auth_config import HttpReceiverAuthConfig
 from .http_receiver_method import HttpReceiverMethod
 from .http_request_body_format import HttpRequestBodyFormat
 from .http_receiver_signing_credential import HttpReceiverSigningCredential
+from .panther_bearer_credential import PantherBearerCredential
 from .gcs_credential import GcsCredential
 from .autotask_api_integration_code_credential import (
     AutotaskApiIntegrationCodeCredential,
@@ -1368,6 +1369,22 @@ class ProviderConfig_SinkOpensearch(UncheckedBaseModel):
             extra = pydantic.Extra.allow
 
 
+class ProviderConfig_SinkPanther(UncheckedBaseModel):
+    type: typing.Literal["sink_panther"] = "sink_panther"
+    credential: PantherBearerCredential
+    url: str
+
+    if IS_PYDANTIC_V2:
+        model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(
+            extra="allow"
+        )  # type: ignore # Pydantic v2
+    else:
+
+        class Config:
+            smart_union = True
+            extra = pydantic.Extra.allow
+
+
 class ProviderConfig_SinkQRadar(UncheckedBaseModel):
     type: typing.Literal["sink_q_radar"] = "sink_q_radar"
     collection_port: int
@@ -1984,6 +2001,7 @@ ProviderConfig = typing_extensions.Annotated[
         ProviderConfig_SinkHttp,
         ProviderConfig_SinkMockSink,
         ProviderConfig_SinkOpensearch,
+        ProviderConfig_SinkPanther,
         ProviderConfig_SinkQRadar,
         ProviderConfig_SinkSplunk,
         ProviderConfig_SinkSumoLogic,

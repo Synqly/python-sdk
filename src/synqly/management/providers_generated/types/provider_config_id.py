@@ -385,6 +385,11 @@ class ProviderConfigId(str, enum.Enum):
     OpenSearch
     """
 
+    SINK_PANTHER = "sink_panther"
+    """
+    Panther SIEM
+    """
+
     SINK_Q_RADAR = "sink_q_radar"
     """
     IBM QRadar Sink
@@ -634,6 +639,7 @@ class ProviderConfigId(str, enum.Enum):
         sink_http: typing.Callable[[], T_Result],
         sink_mock: typing.Callable[[], T_Result],
         sink_open_search: typing.Callable[[], T_Result],
+        sink_panther: typing.Callable[[], T_Result],
         sink_q_radar: typing.Callable[[], T_Result],
         sink_splunk: typing.Callable[[], T_Result],
         sink_sumo_logic: typing.Callable[[], T_Result],
@@ -816,6 +822,8 @@ class ProviderConfigId(str, enum.Enum):
             return sink_mock()
         if self is ProviderConfigId.SINK_OPEN_SEARCH:
             return sink_open_search()
+        if self is ProviderConfigId.SINK_PANTHER:
+            return sink_panther()
         if self is ProviderConfigId.SINK_Q_RADAR:
             return sink_q_radar()
         if self is ProviderConfigId.SINK_SPLUNK:
