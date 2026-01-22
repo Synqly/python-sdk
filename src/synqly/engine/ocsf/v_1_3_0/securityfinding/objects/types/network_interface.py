@@ -50,6 +50,11 @@ class NetworkInterface(UncheckedBaseModel):
     The namespace is useful in merger or acquisition situations. For example, when similar entities exist that you need to keep separate.
     """
 
+    os_type: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    The type of the operating system of the resource.
+    """
+
     subnet_prefix: typing.Optional[int] = pydantic.Field(default=None)
     """
     The subnet prefix length determines the number of bits used to represent the network part of the IP address. The remaining bits are reserved for identifying individual hosts within that subnet.

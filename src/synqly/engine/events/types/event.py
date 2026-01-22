@@ -1914,6 +1914,9 @@ from ...ocsf.v_1_6_0.filehostingactivity.classes.types.severity_id import (
     SeverityId as ocsf_v_1_6_0_filehostingactivity_classes_types_severity_id_SeverityId,
 )
 from ...ocsf.v_1_6_0.filehostingactivity.classes.types.share_type_id import ShareTypeId
+from ...ocsf.v_1_6_0.filehostingactivity.objects.types.sharing import (
+    Sharing as ocsf_v_1_6_0_filehostingactivity_objects_types_sharing_Sharing,
+)
 from ...ocsf.v_1_6_0.filehostingactivity.classes.types.status_id import (
     StatusId as ocsf_v_1_6_0_filehostingactivity_classes_types_status_id_StatusId,
 )
@@ -2069,7 +2072,9 @@ from ...ocsf.v_1_3_0.cloudactivity.objects.types.osint import (
 from ...ocsf.v_1_3_0.cloudactivity.classes.types.severity_id import (
     SeverityId as ocsf_v_1_3_0_cloudactivity_classes_types_severity_id_SeverityId,
 )
-from ...ocsf.v_1_3_0.cloudactivity.objects.types.sharing import Sharing
+from ...ocsf.v_1_3_0.cloudactivity.objects.types.sharing import (
+    Sharing as ocsf_v_1_3_0_cloudactivity_objects_types_sharing_Sharing,
+)
 from ...ocsf.v_1_3_0.cloudactivity.objects.types.product import (
     Product as ocsf_v_1_3_0_cloudactivity_objects_types_product_Product,
 )
@@ -4882,6 +4887,9 @@ class Event_FileHostingActivity(UncheckedBaseModel):
     share: typing.Optional[str] = None
     share_type: typing.Optional[str] = None
     share_type_id: typing.Optional[ShareTypeId] = None
+    sharing: typing.Optional[
+        ocsf_v_1_6_0_filehostingactivity_objects_types_sharing_Sharing
+    ] = None
     src_endpoint: (
         ocsf_v_1_6_0_filehostingactivity_objects_types_network_endpoint_NetworkEndpoint
     )
@@ -5095,7 +5103,9 @@ class Event_CloudActivity(UncheckedBaseModel):
     raw_data: typing.Optional[str] = None
     severity: typing.Optional[str] = None
     severity_id: ocsf_v_1_3_0_cloudactivity_classes_types_severity_id_SeverityId
-    sharing: typing.Optional[Sharing] = None
+    sharing: typing.Optional[
+        ocsf_v_1_3_0_cloudactivity_objects_types_sharing_Sharing
+    ] = None
     src_app: typing.Optional[
         ocsf_v_1_3_0_cloudactivity_objects_types_product_Product
     ] = None

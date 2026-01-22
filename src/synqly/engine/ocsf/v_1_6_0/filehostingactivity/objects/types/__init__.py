@@ -133,6 +133,12 @@ from .script import Script
 from .script_type_id import ScriptTypeId
 from .service import Service
 from .session import Session
+from .sharing import Sharing
+from .sharing_permission import SharingPermission
+from .sharing_permission_sharing_permission_type_id import (
+    SharingPermissionSharingPermissionTypeId,
+)
+from .sharing_scope_id import SharingScopeId
 from .sso import Sso
 from .sso_auth_protocol_id import SsoAuthProtocolId
 from .sub_technique import SubTechnique
@@ -289,6 +295,10 @@ __all__ = [
     "ScriptTypeId",
     "Service",
     "Session",
+    "Sharing",
+    "SharingPermission",
+    "SharingPermissionSharingPermissionTypeId",
+    "SharingScopeId",
     "Sso",
     "SsoAuthProtocolId",
     "SubTechnique",

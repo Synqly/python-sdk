@@ -20,6 +20,7 @@ from ...objects.types.metadata import Metadata
 from ...objects.types.observable import Observable
 from ...objects.types.osint import Osint
 from .severity_id import SeverityId
+from ...objects.types.sharing import Sharing
 from .status_id import StatusId
 from .type_uid import TypeUid
 from ......core.pydantic_utilities import IS_PYDANTIC_V2
@@ -165,6 +166,11 @@ class FileHosting(UncheckedBaseModel):
     severity_id: SeverityId = pydantic.Field()
     """
     <p>The normalized identifier of the event/finding severity.</p>The normalized severity is a measurement the effort and expense required to manage and resolve an event or incident. Smaller numerical values represent lower impact events, and larger numerical values represent higher impact events.
+    """
+
+    sharing: typing.Optional[Sharing] = pydantic.Field(default=None)
+    """
+    Information about how and with whom a resource was shared, such as sharing permissions and scope.
     """
 
     src_endpoint: NetworkEndpoint = pydantic.Field()

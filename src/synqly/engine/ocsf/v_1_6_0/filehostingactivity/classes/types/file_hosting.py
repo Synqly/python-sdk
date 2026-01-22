@@ -35,6 +35,7 @@ from ...objects.types.fingerprint import Fingerprint
 from .risk_level_id import RiskLevelId
 from .severity_id import SeverityId
 from .share_type_id import ShareTypeId
+from ...objects.types.sharing import Sharing
 from .status_id import StatusId
 from .type_uid import TypeUid
 from ......core.pydantic_utilities import IS_PYDANTIC_V2
@@ -329,6 +330,11 @@ class FileHosting(UncheckedBaseModel):
     share_type_id: typing.Optional[ShareTypeId] = pydantic.Field(default=None)
     """
     The normalized identifier of the share type.
+    """
+
+    sharing: typing.Optional[Sharing] = pydantic.Field(default=None)
+    """
+    Information about how and with whom a resource was shared, such as sharing permissions and scope.
     """
 
     src_endpoint: NetworkEndpoint = pydantic.Field()

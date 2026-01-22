@@ -90,6 +90,12 @@ from .request import Request
 from .response import Response
 from .service import Service
 from .session import Session
+from .sharing import Sharing
+from .sharing_permission import SharingPermission
+from .sharing_permission_sharing_permission_type_id import (
+    SharingPermissionSharingPermissionTypeId,
+)
+from .sharing_scope_id import SharingScopeId
 from .sub_technique import SubTechnique
 from .tactic import Tactic
 from .technique import Technique
@@ -197,6 +203,10 @@ __all__ = [
     "Response",
     "Service",
     "Session",
+    "Sharing",
+    "SharingPermission",
+    "SharingPermissionSharingPermissionTypeId",
+    "SharingScopeId",
     "SubTechnique",
     "Tactic",
     "Technique",
