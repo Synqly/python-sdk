@@ -412,6 +412,7 @@ from .provider_config import (
     ProviderConfig_TicketingServicenowSir,
     ProviderConfig_TicketingTorq,
     ProviderConfig_TicketingZendesk,
+    ProviderConfig_VulnerabilitiesAmazonInspector,
     ProviderConfig_VulnerabilitiesCrowdstrike,
     ProviderConfig_VulnerabilitiesCrowdstrikeMock,
     ProviderConfig_VulnerabilitiesNucleus,
@@ -579,6 +580,7 @@ from .torq_credential import (
     TorqCredential_OAuthClient,
     TorqCredential_OAuthClientId,
 )
+from .vulnerabilities_amazon_inspector import VulnerabilitiesAmazonInspector
 from .vulnerabilities_crowd_strike import VulnerabilitiesCrowdStrike
 from .vulnerabilities_crowd_strike_dataset import VulnerabilitiesCrowdStrikeDataset
 from .vulnerabilities_crowd_strike_mock import VulnerabilitiesCrowdStrikeMock
@@ -927,6 +929,7 @@ __all__ = [
     "ProviderConfig_TicketingServicenowSir",
     "ProviderConfig_TicketingTorq",
     "ProviderConfig_TicketingZendesk",
+    "ProviderConfig_VulnerabilitiesAmazonInspector",
     "ProviderConfig_VulnerabilitiesCrowdstrike",
     "ProviderConfig_VulnerabilitiesCrowdstrikeMock",
     "ProviderConfig_VulnerabilitiesNucleus",
@@ -1052,6 +1055,7 @@ __all__ = [
     "TorqCredential",
     "TorqCredential_OAuthClient",
     "TorqCredential_OAuthClientId",
+    "VulnerabilitiesAmazonInspector",
     "VulnerabilitiesCrowdStrike",
     "VulnerabilitiesCrowdStrikeDataset",
     "VulnerabilitiesCrowdStrikeMock",
