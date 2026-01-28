@@ -2,6 +2,7 @@
 
 from .create_siem_events_response import CreateSiemEventsResponse
 from .evidence import Evidence
+from .get_alert_response import GetAlertResponse
 from .get_evidence_response import GetEvidenceResponse
 from .get_investigation_response import GetInvestigationResponse
 from .investigation import Investigation
@@ -15,6 +16,7 @@ from .query_siem_events_response import QuerySiemEventsResponse
 __all__ = [
     "CreateSiemEventsResponse",
     "Evidence",
+    "GetAlertResponse",
     "GetEvidenceResponse",
     "GetInvestigationResponse",
     "Investigation",

@@ -58,6 +58,7 @@ class OperationId(str, enum.Enum):
     NOTIFICATIONS_CLEAR_MESSAGE = "notifications_clear_message"
     NOTIFICATIONS_CREATE_MESSAGE = "notifications_create_message"
     NOTIFICATIONS_GET_MESSAGE = "notifications_get_message"
+    SIEM_GET_ALERT = "siem_get_alert"
     SIEM_GET_EVIDENCE = "siem_get_evidence"
     SIEM_GET_INVESTIGATION = "siem_get_investigation"
     SIEM_PATCH_INVESTIGATION = "siem_patch_investigation"
@@ -161,6 +162,7 @@ class OperationId(str, enum.Enum):
         notifications_clear_message: typing.Callable[[], T_Result],
         notifications_create_message: typing.Callable[[], T_Result],
         notifications_get_message: typing.Callable[[], T_Result],
+        siem_get_alert: typing.Callable[[], T_Result],
         siem_get_evidence: typing.Callable[[], T_Result],
         siem_get_investigation: typing.Callable[[], T_Result],
         siem_patch_investigation: typing.Callable[[], T_Result],
@@ -296,6 +298,8 @@ class OperationId(str, enum.Enum):
             return notifications_create_message()
         if self is OperationId.NOTIFICATIONS_GET_MESSAGE:
             return notifications_get_message()
+        if self is OperationId.SIEM_GET_ALERT:
+            return siem_get_alert()
         if self is OperationId.SIEM_GET_EVIDENCE:
             return siem_get_evidence()
         if self is OperationId.SIEM_GET_INVESTIGATION:

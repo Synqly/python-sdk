@@ -3,6 +3,7 @@
 from .types import (
     CreateSiemEventsResponse,
     Evidence,
+    GetAlertResponse,
     GetEvidenceResponse,
     GetInvestigationResponse,
     Investigation,
@@ -17,6 +18,7 @@ from .types import (
 __all__ = [
     "CreateSiemEventsResponse",
     "Evidence",
+    "GetAlertResponse",
     "GetEvidenceResponse",
     "GetInvestigationResponse",
     "Investigation",

@@ -237,6 +237,7 @@ from .organization_webhook_base import WebhookEvent, WebhookFilter
 from .siem import (
     CreateSiemEventsResponse,
     Evidence,
+    GetAlertResponse,
     GetEvidenceResponse,
     GetInvestigationResponse,
     Investigation,
@@ -436,6 +437,7 @@ __all__ = [
     "FindingId",
     "ForbiddenError",
     "GatewayTimeoutError",
+    "GetAlertResponse",
     "GetCustomResponse",
     "GetEndpointResponse",
     "GetEvidenceResponse",
