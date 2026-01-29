@@ -4,15 +4,12 @@ from ......core.unchecked_base_model import UncheckedBaseModel
 import typing
 from .agent import Agent
 import pydantic
+from .group import Group
+from ...base.types.ip_address import IpAddress
 from ...base.types.timestamp import Timestamp
 import datetime as dt
-from .group import Group
-from ...base.types.hostname import Hostname
-from ...base.types.ip_address import IpAddress
+from ...base.types.mac_address import MacAddress
 from .user import User
-from .graph import Graph
-from .key_value_object import KeyValueObject
-from ...base.types.resource_uid import ResourceUid
 from ......core.pydantic_utilities import IS_PYDANTIC_V2
 
 
@@ -23,22 +20,12 @@ class ResourceDetails(UncheckedBaseModel):
 
     agent_list: typing.Optional[typing.List[Agent]] = pydantic.Field(default=None)
     """
-    A list of <code>agent</code> objects associated with a device, endpoint, or resource.
+    A list of agent objects associated with a device, endpoint, or resource.
     """
 
     cloud_partition: typing.Optional[str] = pydantic.Field(default=None)
     """
     The canonical cloud partition name to which the region is assigned (e.g. AWS Partitions: aws, aws-cn, aws-us-gov).
-    """
-
-    created_time: typing.Optional[Timestamp] = pydantic.Field(default=None)
-    """
-    The time when the resource was created.
-    """
-
-    created_time_dt: typing.Optional[dt.datetime] = pydantic.Field(default=None)
-    """
-    The time when the resource was created.
     """
 
     criticality: typing.Optional[str] = pydantic.Field(default=None)
@@ -56,34 +43,29 @@ class ResourceDetails(UncheckedBaseModel):
     The name of the related resource group.
     """
 
-    hostname: typing.Optional[Hostname] = pydantic.Field(default=None)
-    """
-    The fully qualified name of the resource.
-    """
-
     ip: typing.Optional[IpAddress] = pydantic.Field(default=None)
     """
-    The IP address of the resource, in either IPv4 or IPv6 format.
-    """
-
-    is_backed_up: typing.Optional[bool] = pydantic.Field(default=None)
-    """
-    Indicates whether the device or resource has a backup enabled, such as an automated snapshot or a cloud backup. For example, this is indicated by the <code>cloudBackupEnabled</code> value within JAMF Pro mobile devices or the registration of an AWS ARN with the AWS Backup service.
+    The IP address associated with the resource.
     """
 
     labels: typing.Optional[typing.List[str]] = pydantic.Field(default=None)
     """
-    The list of labels associated to the resource.
+    The list of labels/tags associated to a resource.
     """
 
-    modified_time: typing.Optional[Timestamp] = pydantic.Field(default=None)
+    last_seen_time: typing.Optional[Timestamp] = pydantic.Field(default=None)
     """
-    The time when the resource was last modified.
+    The timestamp when the resource was last observed or reported.
     """
 
-    modified_time_dt: typing.Optional[dt.datetime] = pydantic.Field(default=None)
+    last_seen_time_dt: typing.Optional[dt.datetime] = pydantic.Field(default=None)
     """
-    The time when the resource was last modified.
+    The timestamp when the resource was last observed or reported.
+    """
+
+    mac: typing.Optional[MacAddress] = pydantic.Field(default=None)
+    """
+    The MAC address associated with the resource.
     """
 
     name: typing.Optional[str] = pydantic.Field(default=None)
@@ -96,6 +78,11 @@ class ResourceDetails(UncheckedBaseModel):
     The namespace is useful when similar entities exist that you need to keep separate.
     """
 
+    os_type: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    The type of operating system running on the resource.
+    """
+
     owner: typing.Optional[User] = pydantic.Field(default=None)
     """
     The identity of the service or user account that owns the resource.
@@ -106,39 +93,19 @@ class ResourceDetails(UncheckedBaseModel):
     The cloud region of the resource.
     """
 
-    resource_relationship: typing.Optional[Graph] = pydantic.Field(default=None)
-    """
-    A graph representation showing how this resource relates to and interacts with other entities in the environment. This can include parent/child relationships, dependencies, or other connections.
-    """
-
-    tags: typing.Optional[typing.List[KeyValueObject]] = pydantic.Field(default=None)
-    """
-    The list of tags; <code>{key:value}</code> pairs associated to the resource.
-    """
-
     type: typing.Optional[str] = pydantic.Field(default=None)
     """
     The resource type as defined by the event source.
     """
 
-    uid: typing.Optional[ResourceUid] = pydantic.Field(default=None)
+    uid: typing.Optional[str] = pydantic.Field(default=None)
     """
     The unique identifier of the resource.
     """
 
-    uid_alt: typing.Optional[ResourceUid] = pydantic.Field(default=None)
-    """
-    The alternative unique identifier of the resource.
-    """
-
     version: typing.Optional[str] = pydantic.Field(default=None)
     """
-    The version of the resource. For example <code>1.2.3</code>.
-    """
-
-    zone: typing.Optional[str] = pydantic.Field(default=None)
-    """
-    The specific availability zone within a cloud region where the resource is located.
+    The version of the resource. For example 1.2.3.
     """
 
     if IS_PYDANTIC_V2:

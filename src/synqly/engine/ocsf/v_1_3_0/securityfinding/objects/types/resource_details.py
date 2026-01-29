@@ -4,9 +4,11 @@ from ......core.unchecked_base_model import UncheckedBaseModel
 import typing
 from .agent import Agent
 import pydantic
-from ...base.types.ip_address import IpAddress
 from .group import Group
+from ...base.types.ip_address import IpAddress
 from ...base.types.timestamp import Timestamp
+import datetime as dt
+from ...base.types.mac_address import MacAddress
 from .user import User
 from ......core.pydantic_utilities import IS_PYDANTIC_V2
 
@@ -18,7 +20,7 @@ class ResourceDetails(UncheckedBaseModel):
 
     agent_list: typing.Optional[typing.List[Agent]] = pydantic.Field(default=None)
     """
-    A list of <code>agent</code> objects associated with a device, endpoint, or resource.
+    A list of agent objects associated with a device, endpoint, or resource.
     """
 
     cloud_partition: typing.Optional[str] = pydantic.Field(default=None)
@@ -36,14 +38,14 @@ class ResourceDetails(UncheckedBaseModel):
     Additional data describing the resource.
     """
 
-    ip: typing.Optional[IpAddress] = pydantic.Field(default=None)
-    """
-    The IP address of the resource.
-    """
-
     group: typing.Optional[Group] = pydantic.Field(default=None)
     """
     The name of the related resource group.
+    """
+
+    ip: typing.Optional[IpAddress] = pydantic.Field(default=None)
+    """
+    The IP address associated with the resource.
     """
 
     labels: typing.Optional[typing.List[str]] = pydantic.Field(default=None)
@@ -53,12 +55,17 @@ class ResourceDetails(UncheckedBaseModel):
 
     last_seen_time: typing.Optional[Timestamp] = pydantic.Field(default=None)
     """
-    The last seen time of the resource.
+    The timestamp when the resource was last observed or reported.
     """
 
-    mac: typing.Optional[str] = pydantic.Field(default=None)
+    last_seen_time_dt: typing.Optional[dt.datetime] = pydantic.Field(default=None)
     """
-    The MAC address of the resource.
+    The timestamp when the resource was last observed or reported.
+    """
+
+    mac: typing.Optional[MacAddress] = pydantic.Field(default=None)
+    """
+    The MAC address associated with the resource.
     """
 
     name: typing.Optional[str] = pydantic.Field(default=None)
@@ -73,7 +80,7 @@ class ResourceDetails(UncheckedBaseModel):
 
     os_type: typing.Optional[str] = pydantic.Field(default=None)
     """
-    The type of the operating system of the resource.
+    The type of operating system running on the resource.
     """
 
     owner: typing.Optional[User] = pydantic.Field(default=None)
@@ -98,7 +105,7 @@ class ResourceDetails(UncheckedBaseModel):
 
     version: typing.Optional[str] = pydantic.Field(default=None)
     """
-    The version of the resource. For example <code>1.2.3</code>.
+    The version of the resource. For example 1.2.3.
     """
 
     if IS_PYDANTIC_V2:
