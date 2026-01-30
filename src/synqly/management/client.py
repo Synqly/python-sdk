@@ -7,6 +7,7 @@ from .core.client_wrapper import SyncClientWrapper
 from .accounts.client import AccountsClient
 from .audit.client import AuditClient
 from .auth.client import AuthClient
+from .billing.client import BillingClient
 from .bridges.client import BridgesClient
 from .capabilities.client import CapabilitiesClient
 from .credentials.client import CredentialsClient
@@ -28,6 +29,7 @@ from .core.client_wrapper import AsyncClientWrapper
 from .accounts.client import AsyncAccountsClient
 from .audit.client import AsyncAuditClient
 from .auth.client import AsyncAuthClient
+from .billing.client import AsyncBillingClient
 from .bridges.client import AsyncBridgesClient
 from .capabilities.client import AsyncCapabilitiesClient
 from .credentials.client import AsyncCredentialsClient
@@ -112,6 +114,7 @@ class SynqlyManagement:
         self.accounts = AccountsClient(client_wrapper=self._client_wrapper)
         self.audit = AuditClient(client_wrapper=self._client_wrapper)
         self.auth = AuthClient(client_wrapper=self._client_wrapper)
+        self.billing = BillingClient(client_wrapper=self._client_wrapper)
         self.bridges = BridgesClient(client_wrapper=self._client_wrapper)
         self.capabilities = CapabilitiesClient(client_wrapper=self._client_wrapper)
         self.credentials = CredentialsClient(client_wrapper=self._client_wrapper)
@@ -200,6 +203,7 @@ class AsyncSynqlyManagement:
         self.accounts = AsyncAccountsClient(client_wrapper=self._client_wrapper)
         self.audit = AsyncAuditClient(client_wrapper=self._client_wrapper)
         self.auth = AsyncAuthClient(client_wrapper=self._client_wrapper)
+        self.billing = AsyncBillingClient(client_wrapper=self._client_wrapper)
         self.bridges = AsyncBridgesClient(client_wrapper=self._client_wrapper)
         self.capabilities = AsyncCapabilitiesClient(client_wrapper=self._client_wrapper)
         self.credentials = AsyncCredentialsClient(client_wrapper=self._client_wrapper)
