@@ -1785,6 +1785,23 @@ class ProviderConfig_VulnerabilitiesCrowdstrikeMock(UncheckedBaseModel):
             extra = pydantic.Extra.allow
 
 
+class ProviderConfig_VulnerabilitiesDefender(UncheckedBaseModel):
+    type: typing.Literal["vulnerabilities_defender"] = "vulnerabilities_defender"
+    credential: DefenderCredential
+    tenant_id: str
+    url: str
+
+    if IS_PYDANTIC_V2:
+        model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(
+            extra="allow"
+        )  # type: ignore # Pydantic v2
+    else:
+
+        class Config:
+            smart_union = True
+            extra = pydantic.Extra.allow
+
+
 class ProviderConfig_VulnerabilitiesNucleus(UncheckedBaseModel):
     type: typing.Literal["vulnerabilities_nucleus"] = "vulnerabilities_nucleus"
     credential: NucleusCredential
@@ -2043,6 +2060,7 @@ ProviderConfig = typing_extensions.Annotated[
         ProviderConfig_VulnerabilitiesAmazonInspector,
         ProviderConfig_VulnerabilitiesCrowdstrike,
         ProviderConfig_VulnerabilitiesCrowdstrikeMock,
+        ProviderConfig_VulnerabilitiesDefender,
         ProviderConfig_VulnerabilitiesNucleus,
         ProviderConfig_VulnerabilitiesQualysCloud,
         ProviderConfig_VulnerabilitiesQualysCloudMock,

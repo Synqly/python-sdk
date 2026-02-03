@@ -505,6 +505,11 @@ class ProviderConfigId(str, enum.Enum):
     [MOCK] CrowdStrike Falcon® Spotlight
     """
 
+    VULNERABILITIES_DEFENDER = "vulnerabilities_defender"
+    """
+    Microsoft Defender for Endpoint
+    """
+
     VULNERABILITIES_NUCLEUS = "vulnerabilities_nucleus"
     """
     Nucleus Vulnerability Management
@@ -668,6 +673,7 @@ class ProviderConfigId(str, enum.Enum):
         vulnerabilities_amazon_inspector: typing.Callable[[], T_Result],
         vulnerabilities_crowd_strike: typing.Callable[[], T_Result],
         vulnerabilities_crowd_strike_mock: typing.Callable[[], T_Result],
+        vulnerabilities_defender: typing.Callable[[], T_Result],
         vulnerabilities_nucleus: typing.Callable[[], T_Result],
         vulnerabilities_qualys_cloud: typing.Callable[[], T_Result],
         vulnerabilities_qualys_cloud_mock: typing.Callable[[], T_Result],
@@ -876,6 +882,8 @@ class ProviderConfigId(str, enum.Enum):
             return vulnerabilities_crowd_strike()
         if self is ProviderConfigId.VULNERABILITIES_CROWD_STRIKE_MOCK:
             return vulnerabilities_crowd_strike_mock()
+        if self is ProviderConfigId.VULNERABILITIES_DEFENDER:
+            return vulnerabilities_defender()
         if self is ProviderConfigId.VULNERABILITIES_NUCLEUS:
             return vulnerabilities_nucleus()
         if self is ProviderConfigId.VULNERABILITIES_QUALYS_CLOUD:

@@ -415,6 +415,7 @@ from .provider_config import (
     ProviderConfig_VulnerabilitiesAmazonInspector,
     ProviderConfig_VulnerabilitiesCrowdstrike,
     ProviderConfig_VulnerabilitiesCrowdstrikeMock,
+    ProviderConfig_VulnerabilitiesDefender,
     ProviderConfig_VulnerabilitiesNucleus,
     ProviderConfig_VulnerabilitiesQualysCloud,
     ProviderConfig_VulnerabilitiesQualysCloudMock,
@@ -584,6 +585,7 @@ from .vulnerabilities_amazon_inspector import VulnerabilitiesAmazonInspector
 from .vulnerabilities_crowd_strike import VulnerabilitiesCrowdStrike
 from .vulnerabilities_crowd_strike_dataset import VulnerabilitiesCrowdStrikeDataset
 from .vulnerabilities_crowd_strike_mock import VulnerabilitiesCrowdStrikeMock
+from .vulnerabilities_defender import VulnerabilitiesDefender
 from .vulnerabilities_nucleus import VulnerabilitiesNucleus
 from .vulnerabilities_qualys_cloud import VulnerabilitiesQualysCloud
 from .vulnerabilities_qualys_cloud_dataset import VulnerabilitiesQualysCloudDataset
@@ -932,6 +934,7 @@ __all__ = [
     "ProviderConfig_VulnerabilitiesAmazonInspector",
     "ProviderConfig_VulnerabilitiesCrowdstrike",
     "ProviderConfig_VulnerabilitiesCrowdstrikeMock",
+    "ProviderConfig_VulnerabilitiesDefender",
     "ProviderConfig_VulnerabilitiesNucleus",
     "ProviderConfig_VulnerabilitiesQualysCloud",
     "ProviderConfig_VulnerabilitiesQualysCloudMock",
@@ -1059,6 +1062,7 @@ __all__ = [
     "VulnerabilitiesCrowdStrike",
     "VulnerabilitiesCrowdStrikeDataset",
     "VulnerabilitiesCrowdStrikeMock",
+    "VulnerabilitiesDefender",
     "VulnerabilitiesNucleus",
     "VulnerabilitiesQualysCloud",
     "VulnerabilitiesQualysCloudDataset",
