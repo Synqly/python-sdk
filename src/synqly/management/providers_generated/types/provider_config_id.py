@@ -190,6 +190,11 @@ class ProviderConfigId(str, enum.Enum):
     Microsoft Defender for Endpoint
     """
 
+    EDR_ESET_CONNECT = "edr_eset_connect"
+    """
+    ESET Connect
+    """
+
     EDR_MALWAREBYTES = "edr_malwarebytes"
     """
     ThreatDown Endpoint Detection & Response
@@ -610,6 +615,7 @@ class ProviderConfigId(str, enum.Enum):
         edr_crowd_strike: typing.Callable[[], T_Result],
         edr_crowd_strike_mock: typing.Callable[[], T_Result],
         edr_defender: typing.Callable[[], T_Result],
+        edr_eset_connect: typing.Callable[[], T_Result],
         edr_malwarebytes: typing.Callable[[], T_Result],
         edr_sentinel_one: typing.Callable[[], T_Result],
         edr_sophos: typing.Callable[[], T_Result],
@@ -756,6 +762,8 @@ class ProviderConfigId(str, enum.Enum):
             return edr_crowd_strike_mock()
         if self is ProviderConfigId.EDR_DEFENDER:
             return edr_defender()
+        if self is ProviderConfigId.EDR_ESET_CONNECT:
+            return edr_eset_connect()
         if self is ProviderConfigId.EDR_MALWAREBYTES:
             return edr_malwarebytes()
         if self is ProviderConfigId.EDR_SENTINEL_ONE:
