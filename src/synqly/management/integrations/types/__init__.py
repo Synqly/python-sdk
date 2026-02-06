@@ -6,6 +6,7 @@ from .create_integration_response import CreateIntegrationResponse
 from .create_integration_response_result import CreateIntegrationResponseResult
 from .get_integration_response import GetIntegrationResponse
 from .integration import Integration
+from .integration_messages_response import IntegrationMessagesResponse
 from .list_account_integrations_response import ListAccountIntegrationsResponse
 from .list_integration_options import ListIntegrationOptions
 from .list_integrations_response import ListIntegrationsResponse
@@ -25,6 +26,7 @@ __all__ = [
     "CreateIntegrationResponseResult",
     "GetIntegrationResponse",
     "Integration",
+    "IntegrationMessagesResponse",
     "ListAccountIntegrationsResponse",
     "ListIntegrationOptions",
     "ListIntegrationsResponse",
