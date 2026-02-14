@@ -31,6 +31,7 @@ from .assets_claroty_xdome import AssetsClarotyXdome
 from .assets_crowd_strike import AssetsCrowdStrike
 from .assets_crowd_strike_dataset import AssetsCrowdStrikeDataset
 from .assets_crowd_strike_mock import AssetsCrowdStrikeMock
+from .assets_defender import AssetsDefender
 from .assets_ivanti_neurons import AssetsIvantiNeurons
 from .assets_ivanti_neurons_dataset import AssetsIvantiNeuronsDataset
 from .assets_ivanti_neurons_mock import AssetsIvantiNeuronsMock
@@ -339,6 +340,7 @@ from .provider_config import (
     ProviderConfig_AssetsClarotyXdome,
     ProviderConfig_AssetsCrowdstrike,
     ProviderConfig_AssetsCrowdstrikeMock,
+    ProviderConfig_AssetsDefender,
     ProviderConfig_AssetsIvantiNeurons,
     ProviderConfig_AssetsIvantiNeuronsMock,
     ProviderConfig_AssetsNozomiVantage,
@@ -640,6 +642,7 @@ __all__ = [
     "AssetsCrowdStrike",
     "AssetsCrowdStrikeDataset",
     "AssetsCrowdStrikeMock",
+    "AssetsDefender",
     "AssetsIvantiNeurons",
     "AssetsIvantiNeuronsDataset",
     "AssetsIvantiNeuronsMock",
@@ -864,6 +867,7 @@ __all__ = [
     "ProviderConfig_AssetsClarotyXdome",
     "ProviderConfig_AssetsCrowdstrike",
     "ProviderConfig_AssetsCrowdstrikeMock",
+    "ProviderConfig_AssetsDefender",
     "ProviderConfig_AssetsIvantiNeurons",
     "ProviderConfig_AssetsIvantiNeuronsMock",
     "ProviderConfig_AssetsNozomiVantage",

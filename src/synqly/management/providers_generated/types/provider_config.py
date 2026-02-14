@@ -31,6 +31,7 @@ from .claroty_credential import ClarotyCredential
 from .claroty_apiurl import ClarotyApiurl
 from .crowd_strike_credential import CrowdStrikeCredential
 from .assets_crowd_strike_dataset import AssetsCrowdStrikeDataset
+from .defender_credential import DefenderCredential
 from .ivanti_credential import IvantiCredential
 from .assets_ivanti_neurons_dataset import AssetsIvantiNeuronsDataset
 from .nozomi_vantage_credential import NozomiVantageCredential
@@ -43,7 +44,6 @@ from .sevco_credential import SevcoCredential
 from .assets_sevco_dataset import AssetsSevcoDataset
 from .tanium_cloud_credential import TaniumCloudCredential
 from .assets_tanium_cloud_dataset import AssetsTaniumCloudDataset
-from .defender_credential import DefenderCredential
 from .palo_alto_credential import PaloAltoCredential
 from .custom_endpoint import CustomEndpoint
 from .edr_crowd_strike_dataset import EdrCrowdStrikeDataset
@@ -342,6 +342,23 @@ class ProviderConfig_AssetsCrowdstrike(UncheckedBaseModel):
 class ProviderConfig_AssetsCrowdstrikeMock(UncheckedBaseModel):
     type: typing.Literal["assets_crowdstrike_mock"] = "assets_crowdstrike_mock"
     dataset: AssetsCrowdStrikeDataset
+
+    if IS_PYDANTIC_V2:
+        model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(
+            extra="allow"
+        )  # type: ignore # Pydantic v2
+    else:
+
+        class Config:
+            smart_union = True
+            extra = pydantic.Extra.allow
+
+
+class ProviderConfig_AssetsDefender(UncheckedBaseModel):
+    type: typing.Literal["assets_defender"] = "assets_defender"
+    credential: DefenderCredential
+    tenant_id: str
+    url: str
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(
@@ -1995,6 +2012,7 @@ ProviderConfig = typing_extensions.Annotated[
         ProviderConfig_AssetsClarotyXdome,
         ProviderConfig_AssetsCrowdstrike,
         ProviderConfig_AssetsCrowdstrikeMock,
+        ProviderConfig_AssetsDefender,
         ProviderConfig_AssetsIvantiNeurons,
         ProviderConfig_AssetsIvantiNeuronsMock,
         ProviderConfig_AssetsNozomiVantage,
