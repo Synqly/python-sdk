@@ -1,0 +1,15 @@
+[project]
+name = "async-example"
+version = "0.1.0"
+description = "Synqly Python SDK Async Demo Example"
+requires-python = ">=3.10"
+dependencies = [
+    "synqly>=0.4.49",
+]
+
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+py-modules = ["main", "analyze_json", "concatenate_json"]
