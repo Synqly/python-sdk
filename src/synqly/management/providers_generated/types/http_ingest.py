@@ -7,13 +7,7 @@ from ...core.pydantic_utilities import IS_PYDANTIC_V2
 import typing
 
 
-class SinkPanther(UncheckedBaseModel):
-    """
-    Configuration for Panther Sink.
-
-    [Configuration guide](https://docs.synqly.com/guides/provider-configuration/panther-sink-setup)
-    """
-
+class HttpIngest(UncheckedBaseModel):
     credential: PantherIngestionCredential = pydantic.Field()
     """
     Authenticates calls to your HTTP Ingest log source.

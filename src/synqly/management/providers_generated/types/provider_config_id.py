@@ -305,6 +305,11 @@ class ProviderConfigId(str, enum.Enum):
     OpenSearch SIEM
     """
 
+    SIEM_PANTHER = "siem_panther"
+    """
+    Panther SIEM
+    """
+
     SIEM_Q_RADAR = "siem_q_radar"
     """
     IBM QRadar SIEM
@@ -397,7 +402,7 @@ class ProviderConfigId(str, enum.Enum):
 
     SINK_PANTHER = "sink_panther"
     """
-    Panther SIEM
+    Panther Sink
     """
 
     SINK_Q_RADAR = "sink_q_radar"
@@ -643,6 +648,7 @@ class ProviderConfigId(str, enum.Enum):
         siem_google_security_operations: typing.Callable[[], T_Result],
         siem_mock: typing.Callable[[], T_Result],
         siem_open_search: typing.Callable[[], T_Result],
+        siem_panther: typing.Callable[[], T_Result],
         siem_q_radar: typing.Callable[[], T_Result],
         siem_rapid_7_insight_idr: typing.Callable[[], T_Result],
         siem_sentinel: typing.Callable[[], T_Result],
@@ -814,6 +820,8 @@ class ProviderConfigId(str, enum.Enum):
             return siem_mock()
         if self is ProviderConfigId.SIEM_OPEN_SEARCH:
             return siem_open_search()
+        if self is ProviderConfigId.SIEM_PANTHER:
+            return siem_panther()
         if self is ProviderConfigId.SIEM_Q_RADAR:
             return siem_q_radar()
         if self is ProviderConfigId.SIEM_RAPID_7_INSIGHT_IDR:

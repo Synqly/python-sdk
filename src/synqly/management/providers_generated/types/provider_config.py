@@ -71,6 +71,8 @@ from .elasticsearch_credential import ElasticsearchCredential
 from .google_chronicle_credential import GoogleChronicleCredential
 from .google_service_account_credential import GoogleServiceAccountCredential
 from .open_search_credential import OpenSearchCredential
+from .api_config import ApiConfig
+from .http_ingest import HttpIngest
 from .q_radar_credential import QRadarCredential
 from .rapid_7_insight_cloud_credential import Rapid7InsightCloudCredential
 from .sentinel_credential import SentinelCredential
@@ -85,7 +87,7 @@ from .http_receiver_auth_config import HttpReceiverAuthConfig
 from .http_receiver_method import HttpReceiverMethod
 from .http_request_body_format import HttpRequestBodyFormat
 from .http_receiver_signing_credential import HttpReceiverSigningCredential
-from .panther_bearer_credential import PantherBearerCredential
+from .panther_ingestion_credential import PantherIngestionCredential
 from .gcs_credential import GcsCredential
 from .autotask_api_integration_code_credential import (
     AutotaskApiIntegrationCodeCredential,
@@ -1069,6 +1071,22 @@ class ProviderConfig_SiemOpensearch(UncheckedBaseModel):
             extra = pydantic.Extra.allow
 
 
+class ProviderConfig_SiemPanther(UncheckedBaseModel):
+    type: typing.Literal["siem_panther"] = "siem_panther"
+    api_config: ApiConfig
+    http_ingest: typing.Optional[HttpIngest] = None
+
+    if IS_PYDANTIC_V2:
+        model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(
+            extra="allow"
+        )  # type: ignore # Pydantic v2
+    else:
+
+        class Config:
+            smart_union = True
+            extra = pydantic.Extra.allow
+
+
 class ProviderConfig_SiemQRadar(UncheckedBaseModel):
     type: typing.Literal["siem_q_radar"] = "siem_q_radar"
     collection_port: int
@@ -1406,7 +1424,7 @@ class ProviderConfig_SinkOpensearch(UncheckedBaseModel):
 
 class ProviderConfig_SinkPanther(UncheckedBaseModel):
     type: typing.Literal["sink_panther"] = "sink_panther"
-    credential: PantherBearerCredential
+    credential: PantherIngestionCredential
     url: str
 
     if IS_PYDANTIC_V2:
@@ -2055,6 +2073,7 @@ ProviderConfig = typing_extensions.Annotated[
         ProviderConfig_SiemGoogleSecurityOperations,
         ProviderConfig_SiemMockSiem,
         ProviderConfig_SiemOpensearch,
+        ProviderConfig_SiemPanther,
         ProviderConfig_SiemQRadar,
         ProviderConfig_SiemRapid7Insightidr,
         ProviderConfig_SiemSentinel,

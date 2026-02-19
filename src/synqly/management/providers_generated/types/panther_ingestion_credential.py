@@ -10,7 +10,7 @@ import typing_extensions
 from ...core.unchecked_base_model import UnionMetadata
 
 
-class PantherBearerCredential_Token(UncheckedBaseModel):
+class PantherIngestionCredential_Token(UncheckedBaseModel):
     type: typing.Literal["token"] = "token"
     secret: str
 
@@ -25,7 +25,7 @@ class PantherBearerCredential_Token(UncheckedBaseModel):
             extra = pydantic.Extra.allow
 
 
-class PantherBearerCredential_TokenId(UncheckedBaseModel):
+class PantherIngestionCredential_TokenId(UncheckedBaseModel):
     value: TokenCredentialId
     type: typing.Literal["token_id"] = "token_id"
 
@@ -33,7 +33,7 @@ class PantherBearerCredential_TokenId(UncheckedBaseModel):
         smart_union = True
 
 
-PantherBearerCredential = typing_extensions.Annotated[
-    typing.Union[PantherBearerCredential_Token, PantherBearerCredential_TokenId],
+PantherIngestionCredential = typing_extensions.Annotated[
+    typing.Union[PantherIngestionCredential_Token, PantherIngestionCredential_TokenId],
     UnionMetadata(discriminant="type"),
 ]
