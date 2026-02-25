@@ -108,6 +108,7 @@ from .vulnerabilities_rapid_7_insight_cloud_dataset import (
 )
 from .vulnerabilities_tanium_cloud_dataset import VulnerabilitiesTaniumCloudDataset
 from .tenable_cloud_credential import TenableCloudCredential
+from .tenable_sc_credential import TenableScCredential
 import typing_extensions
 from ...core.unchecked_base_model import UnionMetadata
 
@@ -2013,6 +2014,22 @@ class ProviderConfig_VulnerabilitiesTenableCloud(UncheckedBaseModel):
             extra = pydantic.Extra.allow
 
 
+class ProviderConfig_VulnerabilitiesTenableSc(UncheckedBaseModel):
+    type: typing.Literal["vulnerabilities_tenable_sc"] = "vulnerabilities_tenable_sc"
+    credential: TenableScCredential
+    url: str
+
+    if IS_PYDANTIC_V2:
+        model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(
+            extra="allow"
+        )  # type: ignore # Pydantic v2
+    else:
+
+        class Config:
+            smart_union = True
+            extra = pydantic.Extra.allow
+
+
 ProviderConfig = typing_extensions.Annotated[
     typing.Union[
         ProviderConfig_AppsecAmazonInspector,
@@ -2126,6 +2143,7 @@ ProviderConfig = typing_extensions.Annotated[
         ProviderConfig_VulnerabilitiesTaniumCloud,
         ProviderConfig_VulnerabilitiesTaniumCloudMock,
         ProviderConfig_VulnerabilitiesTenableCloud,
+        ProviderConfig_VulnerabilitiesTenableSc,
     ],
     UnionMetadata(discriminant="type"),
 ]

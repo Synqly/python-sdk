@@ -443,6 +443,7 @@ from .provider_config import (
     ProviderConfig_VulnerabilitiesTaniumCloud,
     ProviderConfig_VulnerabilitiesTaniumCloudMock,
     ProviderConfig_VulnerabilitiesTenableCloud,
+    ProviderConfig_VulnerabilitiesTenableSc,
 )
 from .provider_config_id import ProviderConfigId
 from .q_radar_credential import (
@@ -580,6 +581,11 @@ from .tenable_cloud_credential import (
     TenableCloudCredential_Token,
     TenableCloudCredential_TokenId,
 )
+from .tenable_sc_credential import (
+    TenableScCredential,
+    TenableScCredential_Token,
+    TenableScCredential_TokenId,
+)
 from .ticketing_autotask import TicketingAutotask
 from .ticketing_freshdesk import TicketingFreshdesk
 from .ticketing_ivanti import TicketingIvanti
@@ -621,6 +627,7 @@ from .vulnerabilities_tanium_cloud import VulnerabilitiesTaniumCloud
 from .vulnerabilities_tanium_cloud_dataset import VulnerabilitiesTaniumCloudDataset
 from .vulnerabilities_tanium_cloud_mock import VulnerabilitiesTaniumCloudMock
 from .vulnerabilities_tenable_cloud import VulnerabilitiesTenableCloud
+from .vulnerabilities_tenable_sc import VulnerabilitiesTenableSc
 from .zendesk_credential import (
     ZendeskCredential,
     ZendeskCredential_Basic,
@@ -977,6 +984,7 @@ __all__ = [
     "ProviderConfig_VulnerabilitiesTaniumCloud",
     "ProviderConfig_VulnerabilitiesTaniumCloudMock",
     "ProviderConfig_VulnerabilitiesTenableCloud",
+    "ProviderConfig_VulnerabilitiesTenableSc",
     "QRadarCredential",
     "QRadarCredential_Token",
     "QRadarCredential_TokenId",
@@ -1074,6 +1082,9 @@ __all__ = [
     "TenableCloudCredential",
     "TenableCloudCredential_Token",
     "TenableCloudCredential_TokenId",
+    "TenableScCredential",
+    "TenableScCredential_Token",
+    "TenableScCredential_TokenId",
     "TicketingAutotask",
     "TicketingFreshdesk",
     "TicketingIvanti",
@@ -1109,6 +1120,7 @@ __all__ = [
     "VulnerabilitiesTaniumCloudDataset",
     "VulnerabilitiesTaniumCloudMock",
     "VulnerabilitiesTenableCloud",
+    "VulnerabilitiesTenableSc",
     "ZendeskCredential",
     "ZendeskCredential_Basic",
     "ZendeskCredential_BasicId",
