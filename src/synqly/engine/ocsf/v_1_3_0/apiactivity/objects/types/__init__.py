@@ -56,6 +56,7 @@ from .keyboard_info import KeyboardInfo
 from .kill_chain_phase import KillChainPhase
 from .kill_chain_phase_phase_id import KillChainPhasePhaseId
 from .ldap_person import LdapPerson
+from .ldap_person_employment_status_id import LdapPersonEmploymentStatusId
 from .location import Location
 from .logger import Logger
 from .metadata import Metadata
@@ -163,6 +164,7 @@ __all__ = [
     "KillChainPhase",
     "KillChainPhasePhaseId",
     "LdapPerson",
+    "LdapPersonEmploymentStatusId",
     "Location",
     "Logger",
     "Metadata",

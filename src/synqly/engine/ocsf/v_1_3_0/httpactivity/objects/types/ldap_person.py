@@ -6,6 +6,7 @@ import pydantic
 from ...base.types.timestamp import Timestamp
 import datetime as dt
 from ...base.types.email_address import EmailAddress
+from .ldap_person_employment_status_id import LdapPersonEmploymentStatusId
 from .location import Location
 from .object import Object
 from ......core.pydantic_utilities import IS_PYDANTIC_V2
@@ -41,6 +42,11 @@ class LdapPerson(UncheckedBaseModel):
     The timestamp when the user was deleted. In Active Directory (AD), when a user is deleted they are moved to a temporary container and then removed after 30 days. So, this field can be populated even after a user is deleted for the next 30 days.
     """
 
+    eligible_for_rehire: typing.Optional[bool] = pydantic.Field(default=None)
+    """
+    Indicates whether the user is eligible for rehire. This typically applies to terminated or retired employees.
+    """
+
     email_addrs: typing.Optional[typing.List[EmailAddress]] = pydantic.Field(
         default=None
     )
@@ -51,6 +57,30 @@ class LdapPerson(UncheckedBaseModel):
     employee_uid: typing.Optional[str] = pydantic.Field(default=None)
     """
     The employee identifier assigned to the user by the organization.
+    """
+
+    employment_status: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    The employment status, normalized to the caption of the employment_status_id value. In the case of 'Other', it is defined by the data source.
+    """
+
+    employment_status_date: typing.Optional[Timestamp] = pydantic.Field(default=None)
+    """
+    The timestamp when the employment status was last changed.
+    """
+
+    employment_status_date_dt: typing.Optional[dt.datetime] = pydantic.Field(
+        default=None
+    )
+    """
+    The timestamp when the employment status was last changed.
+    """
+
+    employment_status_id: typing.Optional[LdapPersonEmploymentStatusId] = (
+        pydantic.Field(default=None)
+    )
+    """
+    The normalized identifier of the user's employment status.
     """
 
     given_name: typing.Optional[str] = pydantic.Field(default=None)
@@ -131,6 +161,16 @@ class LdapPerson(UncheckedBaseModel):
     office_location: typing.Optional[str] = pydantic.Field(default=None)
     """
     The primary office location associated with the user. This could be any string and isn't a specific address. For example, <code>South East Virtual</code>.
+    """
+
+    regrettable_termination: typing.Optional[bool] = pydantic.Field(default=None)
+    """
+    Indicates whether a termination is considered regrettable by the organization (i.e., loss of a valued employee). This is typically only populated for terminated employees.
+    """
+
+    reports: typing.Optional[typing.List[Object]] = pydantic.Field(default=None)
+    """
+    The user's direct reports. This is the inverse of the manager relationship, representing users who report directly to this user in the organizational hierarchy. This field only includes immediate/direct reports, not transitive reports.
     """
 
     surname: typing.Optional[str] = pydantic.Field(default=None)

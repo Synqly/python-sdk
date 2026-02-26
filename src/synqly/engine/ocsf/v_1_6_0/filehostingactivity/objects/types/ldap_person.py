@@ -6,6 +6,7 @@ import pydantic
 from ...base.types.timestamp import Timestamp
 import datetime as dt
 from ...base.types.email_address import EmailAddress
+from .ldap_person_employment_status_id import LdapPersonEmploymentStatusId
 from .location import Location
 from .object import Object
 from .key_value_object import KeyValueObject
@@ -47,6 +48,11 @@ class LdapPerson(UncheckedBaseModel):
     The display name of the LDAP person. According to RFC 2798, this is the preferred name of a person to be used when displaying entries.
     """
 
+    eligible_for_rehire: typing.Optional[bool] = pydantic.Field(default=None)
+    """
+    Indicates whether the user is eligible for rehire. This typically applies to terminated or retired employees.
+    """
+
     email_addrs: typing.Optional[typing.List[EmailAddress]] = pydantic.Field(
         default=None
     )
@@ -57,6 +63,30 @@ class LdapPerson(UncheckedBaseModel):
     employee_uid: typing.Optional[str] = pydantic.Field(default=None)
     """
     The employee identifier assigned to the user by the organization.
+    """
+
+    employment_status: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    The employment status, normalized to the caption of the employment_status_id value. In the case of 'Other', it is defined by the data source.
+    """
+
+    employment_status_date: typing.Optional[Timestamp] = pydantic.Field(default=None)
+    """
+    The timestamp when the employment status was last changed.
+    """
+
+    employment_status_date_dt: typing.Optional[dt.datetime] = pydantic.Field(
+        default=None
+    )
+    """
+    The timestamp when the employment status was last changed.
+    """
+
+    employment_status_id: typing.Optional[LdapPersonEmploymentStatusId] = (
+        pydantic.Field(default=None)
+    )
+    """
+    The normalized identifier of the user's employment status.
     """
 
     given_name: typing.Optional[str] = pydantic.Field(default=None)
@@ -142,6 +172,16 @@ class LdapPerson(UncheckedBaseModel):
     phone_number: typing.Optional[str] = pydantic.Field(default=None)
     """
     The telephone number of the user. Corresponds to the LDAP <code>Telephone-Number</code> CN.
+    """
+
+    regrettable_termination: typing.Optional[bool] = pydantic.Field(default=None)
+    """
+    Indicates whether a termination is considered regrettable by the organization (i.e., loss of a valued employee). This is typically only populated for terminated employees.
+    """
+
+    reports: typing.Optional[typing.List[Object]] = pydantic.Field(default=None)
+    """
+    The user's direct reports. This is the inverse of the manager relationship, representing users who report directly to this user in the organizational hierarchy. This field only includes immediate/direct reports, not transitive reports.
     """
 
     surname: typing.Optional[str] = pydantic.Field(default=None)
