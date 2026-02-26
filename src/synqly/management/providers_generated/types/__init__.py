@@ -91,6 +91,7 @@ from .claroty_credential import (
     ClarotyCredential_TokenId,
 )
 from .cloud_security_aws import CloudSecurityAws
+from .cloud_security_aws_event_bridge_sqs import CloudSecurityAwsEventBridgeSqs
 from .cloud_security_crowd_strike import CloudSecurityCrowdStrike
 from .cloud_security_defender import CloudSecurityDefender
 from .cloud_security_palo_alto import CloudSecurityPaloAlto
@@ -361,6 +362,7 @@ from .provider_config import (
     ProviderConfig_AssetsTaniumCloud,
     ProviderConfig_AssetsTaniumCloudMock,
     ProviderConfig_CloudsecurityAws,
+    ProviderConfig_CloudsecurityAwseventbridgesqs,
     ProviderConfig_CloudsecurityCrowdstrike,
     ProviderConfig_CloudsecurityDefender,
     ProviderConfig_CloudsecurityPaloalto,
@@ -704,6 +706,7 @@ __all__ = [
     "ClarotyCredential_Token",
     "ClarotyCredential_TokenId",
     "CloudSecurityAws",
+    "CloudSecurityAwsEventBridgeSqs",
     "CloudSecurityCrowdStrike",
     "CloudSecurityDefender",
     "CloudSecurityPaloAlto",
@@ -902,6 +905,7 @@ __all__ = [
     "ProviderConfig_AssetsTaniumCloud",
     "ProviderConfig_AssetsTaniumCloudMock",
     "ProviderConfig_CloudsecurityAws",
+    "ProviderConfig_CloudsecurityAwseventbridgesqs",
     "ProviderConfig_CloudsecurityCrowdstrike",
     "ProviderConfig_CloudsecurityDefender",
     "ProviderConfig_CloudsecurityPaloalto",

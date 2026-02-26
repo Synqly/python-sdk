@@ -577,6 +577,24 @@ class ProviderConfig_CloudsecurityAws(UncheckedBaseModel):
             extra = pydantic.Extra.allow
 
 
+class ProviderConfig_CloudsecurityAwseventbridgesqs(UncheckedBaseModel):
+    type: typing.Literal["cloudsecurity_awseventbridgesqs"] = (
+        "cloudsecurity_awseventbridgesqs"
+    )
+    credential: AwsProviderCredential
+    queue_url: str
+
+    if IS_PYDANTIC_V2:
+        model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(
+            extra="allow"
+        )  # type: ignore # Pydantic v2
+    else:
+
+        class Config:
+            smart_union = True
+            extra = pydantic.Extra.allow
+
+
 class ProviderConfig_CloudsecurityCrowdstrike(UncheckedBaseModel):
     type: typing.Literal["cloudsecurity_crowdstrike"] = "cloudsecurity_crowdstrike"
     credential: CrowdStrikeCredential
@@ -2061,6 +2079,7 @@ ProviderConfig = typing_extensions.Annotated[
         ProviderConfig_AssetsTaniumCloud,
         ProviderConfig_AssetsTaniumCloudMock,
         ProviderConfig_CloudsecurityAws,
+        ProviderConfig_CloudsecurityAwseventbridgesqs,
         ProviderConfig_CloudsecurityCrowdstrike,
         ProviderConfig_CloudsecurityDefender,
         ProviderConfig_CloudsecurityPaloalto,

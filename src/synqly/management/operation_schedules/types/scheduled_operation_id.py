@@ -27,6 +27,7 @@ class ScheduledOperationId(str, enum.Enum):
     APPSEC_QUERY_APPLICATIONS = "appsec_query_applications"
     APPSEC_QUERY_APPLICATION_FINDINGS = "appsec_query_application_findings"
     APPSEC_QUERY_FINDINGS = "appsec_query_findings"
+    CLOUDSECURITY_QUERY_COMPLIANCE_FINDINGS = "cloudsecurity_query_compliance_findings"
     _UNKNOWN = "__SCHEDULEDOPERATIONID_UNKNOWN__"
     """
     This member is used for forward compatibility. If the value is not recognized by the enum, it will be stored here, and the raw value is accessible through `.value`.
@@ -60,6 +61,7 @@ class ScheduledOperationId(str, enum.Enum):
         appsec_query_applications: typing.Callable[[], T_Result],
         appsec_query_application_findings: typing.Callable[[], T_Result],
         appsec_query_findings: typing.Callable[[], T_Result],
+        cloudsecurity_query_compliance_findings: typing.Callable[[], T_Result],
         _unknown_member: typing.Callable[[str], T_Result],
     ) -> T_Result:
         if self is ScheduledOperationId.ASSETS_QUERY_DEVICES:
@@ -102,4 +104,6 @@ class ScheduledOperationId(str, enum.Enum):
             return appsec_query_application_findings()
         if self is ScheduledOperationId.APPSEC_QUERY_FINDINGS:
             return appsec_query_findings()
+        if self is ScheduledOperationId.CLOUDSECURITY_QUERY_COMPLIANCE_FINDINGS:
+            return cloudsecurity_query_compliance_findings()
         return _unknown_member(self._value_)

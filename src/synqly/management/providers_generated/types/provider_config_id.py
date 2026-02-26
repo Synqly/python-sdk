@@ -160,6 +160,11 @@ class ProviderConfigId(str, enum.Enum):
     AWS Cloud Security
     """
 
+    CLOUD_SECURITY_AWS_EVENT_BRIDGE_SQS = "cloudsecurity_awseventbridgesqs"
+    """
+    AWS EventBridge SQS
+    """
+
     CLOUD_SECURITY_CROWD_STRIKE = "cloudsecurity_crowdstrike"
     """
     CrowdStrike Falcon® Insight EDR
@@ -624,6 +629,7 @@ class ProviderConfigId(str, enum.Enum):
         assets_tanium_cloud: typing.Callable[[], T_Result],
         assets_tanium_cloud_mock: typing.Callable[[], T_Result],
         cloud_security_aws: typing.Callable[[], T_Result],
+        cloud_security_aws_event_bridge_sqs: typing.Callable[[], T_Result],
         cloud_security_crowd_strike: typing.Callable[[], T_Result],
         cloud_security_defender: typing.Callable[[], T_Result],
         cloud_security_palo_alto: typing.Callable[[], T_Result],
@@ -768,6 +774,8 @@ class ProviderConfigId(str, enum.Enum):
             return assets_tanium_cloud_mock()
         if self is ProviderConfigId.CLOUD_SECURITY_AWS:
             return cloud_security_aws()
+        if self is ProviderConfigId.CLOUD_SECURITY_AWS_EVENT_BRIDGE_SQS:
+            return cloud_security_aws_event_bridge_sqs()
         if self is ProviderConfigId.CLOUD_SECURITY_CROWD_STRIKE:
             return cloud_security_crowd_strike()
         if self is ProviderConfigId.CLOUD_SECURITY_DEFENDER:
