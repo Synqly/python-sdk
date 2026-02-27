@@ -93,6 +93,8 @@ from .claroty_credential import (
 from .cloud_security_aws import CloudSecurityAws
 from .cloud_security_aws_event_bridge_sqs import CloudSecurityAwsEventBridgeSqs
 from .cloud_security_crowd_strike import CloudSecurityCrowdStrike
+from .cloud_security_crowd_strike_dataset import CloudSecurityCrowdStrikeDataset
+from .cloud_security_crowd_strike_mock import CloudSecurityCrowdStrikeMock
 from .cloud_security_defender import CloudSecurityDefender
 from .cloud_security_palo_alto import CloudSecurityPaloAlto
 from .crowd_strike_credential import (
@@ -365,6 +367,7 @@ from .provider_config import (
     ProviderConfig_CloudsecurityAws,
     ProviderConfig_CloudsecurityAwseventbridgesqs,
     ProviderConfig_CloudsecurityCrowdstrike,
+    ProviderConfig_CloudsecurityCrowdstrikeMock,
     ProviderConfig_CloudsecurityDefender,
     ProviderConfig_CloudsecurityPaloalto,
     ProviderConfig_CustomSynqly,
@@ -715,6 +718,8 @@ __all__ = [
     "CloudSecurityAws",
     "CloudSecurityAwsEventBridgeSqs",
     "CloudSecurityCrowdStrike",
+    "CloudSecurityCrowdStrikeDataset",
+    "CloudSecurityCrowdStrikeMock",
     "CloudSecurityDefender",
     "CloudSecurityPaloAlto",
     "CrowdStrikeCredential",
@@ -915,6 +920,7 @@ __all__ = [
     "ProviderConfig_CloudsecurityAws",
     "ProviderConfig_CloudsecurityAwseventbridgesqs",
     "ProviderConfig_CloudsecurityCrowdstrike",
+    "ProviderConfig_CloudsecurityCrowdstrikeMock",
     "ProviderConfig_CloudsecurityDefender",
     "ProviderConfig_CloudsecurityPaloalto",
     "ProviderConfig_CustomSynqly",

@@ -44,6 +44,7 @@ from .sevco_credential import SevcoCredential
 from .assets_sevco_dataset import AssetsSevcoDataset
 from .tanium_cloud_credential import TaniumCloudCredential
 from .assets_tanium_cloud_dataset import AssetsTaniumCloudDataset
+from .cloud_security_crowd_strike_dataset import CloudSecurityCrowdStrikeDataset
 from .palo_alto_credential import PaloAltoCredential
 from .custom_endpoint import CustomEndpoint
 from .edr_crowd_strike_dataset import EdrCrowdStrikeDataset
@@ -600,6 +601,23 @@ class ProviderConfig_CloudsecurityCrowdstrike(UncheckedBaseModel):
     type: typing.Literal["cloudsecurity_crowdstrike"] = "cloudsecurity_crowdstrike"
     credential: CrowdStrikeCredential
     url: typing.Optional[str] = None
+
+    if IS_PYDANTIC_V2:
+        model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(
+            extra="allow"
+        )  # type: ignore # Pydantic v2
+    else:
+
+        class Config:
+            smart_union = True
+            extra = pydantic.Extra.allow
+
+
+class ProviderConfig_CloudsecurityCrowdstrikeMock(UncheckedBaseModel):
+    type: typing.Literal["cloudsecurity_crowdstrike_mock"] = (
+        "cloudsecurity_crowdstrike_mock"
+    )
+    dataset: CloudSecurityCrowdStrikeDataset
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(
@@ -2099,6 +2117,7 @@ ProviderConfig = typing_extensions.Annotated[
         ProviderConfig_CloudsecurityAws,
         ProviderConfig_CloudsecurityAwseventbridgesqs,
         ProviderConfig_CloudsecurityCrowdstrike,
+        ProviderConfig_CloudsecurityCrowdstrikeMock,
         ProviderConfig_CloudsecurityDefender,
         ProviderConfig_CloudsecurityPaloalto,
         ProviderConfig_CustomSynqly,

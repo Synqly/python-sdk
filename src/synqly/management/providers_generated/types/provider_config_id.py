@@ -170,6 +170,11 @@ class ProviderConfigId(str, enum.Enum):
     CrowdStrike Falcon® Insight EDR
     """
 
+    CLOUD_SECURITY_CROWD_STRIKE_MOCK = "cloudsecurity_crowdstrike_mock"
+    """
+    [MOCK] CrowdStrike Falcon® Insight EDR
+    """
+
     CLOUD_SECURITY_DEFENDER = "cloudsecurity_defender"
     """
     Microsoft Defender for Cloud
@@ -636,6 +641,7 @@ class ProviderConfigId(str, enum.Enum):
         cloud_security_aws: typing.Callable[[], T_Result],
         cloud_security_aws_event_bridge_sqs: typing.Callable[[], T_Result],
         cloud_security_crowd_strike: typing.Callable[[], T_Result],
+        cloud_security_crowd_strike_mock: typing.Callable[[], T_Result],
         cloud_security_defender: typing.Callable[[], T_Result],
         cloud_security_palo_alto: typing.Callable[[], T_Result],
         custom_synqly: typing.Callable[[], T_Result],
@@ -784,6 +790,8 @@ class ProviderConfigId(str, enum.Enum):
             return cloud_security_aws_event_bridge_sqs()
         if self is ProviderConfigId.CLOUD_SECURITY_CROWD_STRIKE:
             return cloud_security_crowd_strike()
+        if self is ProviderConfigId.CLOUD_SECURITY_CROWD_STRIKE_MOCK:
+            return cloud_security_crowd_strike_mock()
         if self is ProviderConfigId.CLOUD_SECURITY_DEFENDER:
             return cloud_security_defender()
         if self is ProviderConfigId.CLOUD_SECURITY_PALO_ALTO:
