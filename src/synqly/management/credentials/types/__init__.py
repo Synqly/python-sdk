@@ -17,6 +17,7 @@ from .credential_config import (
     CredentialConfig_Basic,
     CredentialConfig_OAuthClient,
     CredentialConfig_Secret,
+    CredentialConfig_TlsCertificate,
     CredentialConfig_Token,
 )
 from .credential_config_no_secret import CredentialConfigNoSecret
@@ -33,6 +34,7 @@ from .owner_type import OwnerType
 from .patch_credential_response import PatchCredentialResponse
 from .secret_credential import SecretCredential
 from .secret_credential_id import SecretCredentialId
+from .tls_certificate_credential import TlsCertificateCredential
 from .token_credential import TokenCredential
 from .token_credential_id import TokenCredentialId
 from .update_credential_request import UpdateCredentialRequest
@@ -56,6 +58,7 @@ __all__ = [
     "CredentialConfig_Basic",
     "CredentialConfig_OAuthClient",
     "CredentialConfig_Secret",
+    "CredentialConfig_TlsCertificate",
     "CredentialConfig_Token",
     "CredentialId",
     "CredentialResponse",
@@ -70,6 +73,7 @@ __all__ = [
     "PatchCredentialResponse",
     "SecretCredential",
     "SecretCredentialId",
+    "TlsCertificateCredential",
     "TokenCredential",
     "TokenCredentialId",
     "UpdateCredentialRequest",

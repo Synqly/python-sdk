@@ -108,6 +108,22 @@ class CredentialConfig_OAuthClient(UncheckedBaseModel):
             extra = pydantic.Extra.allow
 
 
+class CredentialConfig_TlsCertificate(UncheckedBaseModel):
+    type: typing.Literal["tls_certificate"] = "tls_certificate"
+    certificate: str
+    private_key: str
+
+    if IS_PYDANTIC_V2:
+        model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(
+            extra="allow"
+        )  # type: ignore # Pydantic v2
+    else:
+
+        class Config:
+            smart_union = True
+            extra = pydantic.Extra.allow
+
+
 CredentialConfig = typing_extensions.Annotated[
     typing.Union[
         CredentialConfig_Aws,
@@ -116,6 +132,7 @@ CredentialConfig = typing_extensions.Annotated[
         CredentialConfig_Basic,
         CredentialConfig_Secret,
         CredentialConfig_OAuthClient,
+        CredentialConfig_TlsCertificate,
     ],
     UnionMetadata(discriminant="type"),
 ]
