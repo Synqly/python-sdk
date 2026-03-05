@@ -65,7 +65,12 @@ class Operation(UncheckedBaseModel):
 
     in_bytes: int = pydantic.Field()
     """
-    Number of bytes sent to sink integration
+    Total number of bytes sent to the output integration.
+    """
+
+    output_integration_id: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    ID of the integration receiving operation output.
     """
 
     if IS_PYDANTIC_V2:
