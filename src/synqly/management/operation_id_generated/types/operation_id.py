@@ -12,8 +12,10 @@ class OperationId(str, enum.Enum):
     APPSEC_QUERY_APPLICATIONS = "appsec_query_applications"
     APPSEC_QUERY_FINDINGS = "appsec_query_findings"
     ASSETS_CREATE_ASSET = "assets_create_asset"
+    ASSETS_CREATE_DEVICES = "assets_create_devices"
     ASSETS_GET_LABELS = "assets_get_labels"
     ASSETS_QUERY_DEVICES = "assets_query_devices"
+    ASSETS_UPDATE_DEVICE_PROPERTIES = "assets_update_device_properties"
     CLOUDSECURITY_QUERY_CLOUD_RESOURCE_INVENTORY = (
         "cloudsecurity_query_cloud_resource_inventory"
     )
@@ -120,8 +122,10 @@ class OperationId(str, enum.Enum):
         appsec_query_applications: typing.Callable[[], T_Result],
         appsec_query_findings: typing.Callable[[], T_Result],
         assets_create_asset: typing.Callable[[], T_Result],
+        assets_create_devices: typing.Callable[[], T_Result],
         assets_get_labels: typing.Callable[[], T_Result],
         assets_query_devices: typing.Callable[[], T_Result],
+        assets_update_device_properties: typing.Callable[[], T_Result],
         cloudsecurity_query_cloud_resource_inventory: typing.Callable[[], T_Result],
         cloudsecurity_query_compliance_findings: typing.Callable[[], T_Result],
         cloudsecurity_query_events: typing.Callable[[], T_Result],
@@ -218,10 +222,14 @@ class OperationId(str, enum.Enum):
             return appsec_query_findings()
         if self is OperationId.ASSETS_CREATE_ASSET:
             return assets_create_asset()
+        if self is OperationId.ASSETS_CREATE_DEVICES:
+            return assets_create_devices()
         if self is OperationId.ASSETS_GET_LABELS:
             return assets_get_labels()
         if self is OperationId.ASSETS_QUERY_DEVICES:
             return assets_query_devices()
+        if self is OperationId.ASSETS_UPDATE_DEVICE_PROPERTIES:
+            return assets_update_device_properties()
         if self is OperationId.CLOUDSECURITY_QUERY_CLOUD_RESOURCE_INVENTORY:
             return cloudsecurity_query_cloud_resource_inventory()
         if self is OperationId.CLOUDSECURITY_QUERY_COMPLIANCE_FINDINGS:

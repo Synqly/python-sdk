@@ -39,6 +39,8 @@ from .appsec import (
 from .assets import (
     CreateDeviceRequest,
     CreateDeviceResponse,
+    CreateDevicesRequest,
+    CreateDevicesResponse,
     Device,
     GetLabelsResponse,
     Label,
@@ -378,6 +380,8 @@ __all__ = [
     "CreateCustomResponse",
     "CreateDeviceRequest",
     "CreateDeviceResponse",
+    "CreateDevicesRequest",
+    "CreateDevicesResponse",
     "CreateFindingsError",
     "CreateFindingsRequest",
     "CreateFindingsResponse",

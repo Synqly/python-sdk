@@ -19,6 +19,8 @@ from .appsec_opentext_core_application_security_dataset import (
 )
 from .armis_credential import (
     ArmisCredential,
+    ArmisCredential_OAuthClient,
+    ArmisCredential_OAuthClientId,
     ArmisCredential_Token,
     ArmisCredential_TokenId,
 )
@@ -659,6 +661,8 @@ __all__ = [
     "AppsecOpenTextCoreApplicationSecurityMock",
     "AppsecOpentextCoreApplicationSecurityDataset",
     "ArmisCredential",
+    "ArmisCredential_OAuthClient",
+    "ArmisCredential_OAuthClientId",
     "ArmisCredential_Token",
     "ArmisCredential_TokenId",
     "AssetsArmisCentrix",

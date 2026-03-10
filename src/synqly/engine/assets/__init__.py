@@ -3,6 +3,8 @@
 from .types import (
     CreateDeviceRequest,
     CreateDeviceResponse,
+    CreateDevicesRequest,
+    CreateDevicesResponse,
     Device,
     GetLabelsResponse,
     Label,
@@ -12,6 +14,8 @@ from .types import (
 __all__ = [
     "CreateDeviceRequest",
     "CreateDeviceResponse",
+    "CreateDevicesRequest",
+    "CreateDevicesResponse",
     "Device",
     "GetLabelsResponse",
     "Label",

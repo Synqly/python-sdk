@@ -5,9 +5,36 @@ from ...core.unchecked_base_model import UncheckedBaseModel
 import typing
 from ...core.pydantic_utilities import IS_PYDANTIC_V2
 import pydantic
+from ...credentials.types.o_auth_client_credential_id import OAuthClientCredentialId
 from ...credentials.types.token_credential_id import TokenCredentialId
 import typing_extensions
 from ...core.unchecked_base_model import UnionMetadata
+
+
+class ArmisCredential_OAuthClient(UncheckedBaseModel):
+    type: typing.Literal["o_auth_client"] = "o_auth_client"
+    token_url: typing.Optional[str] = None
+    client_id: str
+    client_secret: str
+    extra: typing.Optional[typing.Dict[str, typing.Optional[typing.Any]]] = None
+
+    if IS_PYDANTIC_V2:
+        model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(
+            extra="allow"
+        )  # type: ignore # Pydantic v2
+    else:
+
+        class Config:
+            smart_union = True
+            extra = pydantic.Extra.allow
+
+
+class ArmisCredential_OAuthClientId(UncheckedBaseModel):
+    value: OAuthClientCredentialId
+    type: typing.Literal["o_auth_client_id"] = "o_auth_client_id"
+
+    class Config:
+        smart_union = True
 
 
 class ArmisCredential_Token(UncheckedBaseModel):
@@ -34,6 +61,11 @@ class ArmisCredential_TokenId(UncheckedBaseModel):
 
 
 ArmisCredential = typing_extensions.Annotated[
-    typing.Union[ArmisCredential_Token, ArmisCredential_TokenId],
+    typing.Union[
+        ArmisCredential_OAuthClient,
+        ArmisCredential_OAuthClientId,
+        ArmisCredential_Token,
+        ArmisCredential_TokenId,
+    ],
     UnionMetadata(discriminant="type"),
 ]
