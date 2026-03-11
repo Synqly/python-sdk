@@ -90,6 +90,7 @@ from .http_receiver_method import HttpReceiverMethod
 from .http_request_body_format import HttpRequestBodyFormat
 from .http_receiver_signing_credential import HttpReceiverSigningCredential
 from .panther_ingestion_credential import PantherIngestionCredential
+from .trimedx_credential import TrimedxCredential
 from .gcs_credential import GcsCredential
 from .autotask_api_integration_code_credential import (
     AutotaskApiIntegrationCodeCredential,
@@ -1545,6 +1546,24 @@ class ProviderConfig_SinkSumoLogic(UncheckedBaseModel):
             extra = pydantic.Extra.allow
 
 
+class ProviderConfig_SinkTrimedx(UncheckedBaseModel):
+    type: typing.Literal["sink_trimedx"] = "sink_trimedx"
+    credential: TrimedxCredential
+    customer_id: str
+    subscription_key: str
+    username: str
+
+    if IS_PYDANTIC_V2:
+        model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(
+            extra="allow"
+        )  # type: ignore # Pydantic v2
+    else:
+
+        class Config:
+            smart_union = True
+            extra = pydantic.Extra.allow
+
+
 class ProviderConfig_StorageAwsS3(UncheckedBaseModel):
     type: typing.Literal["storage_aws_s3"] = "storage_aws_s3"
     bucket: str
@@ -2170,6 +2189,7 @@ ProviderConfig = typing_extensions.Annotated[
         ProviderConfig_SinkQRadar,
         ProviderConfig_SinkSplunk,
         ProviderConfig_SinkSumoLogic,
+        ProviderConfig_SinkTrimedx,
         ProviderConfig_StorageAwsS3,
         ProviderConfig_StorageAzureBlob,
         ProviderConfig_StorageGcs,

@@ -435,6 +435,11 @@ class ProviderConfigId(str, enum.Enum):
     Sumo Logic Sink
     """
 
+    SINK_TRIMEDX = "sink_trimedx"
+    """
+    Trimedx Sink
+    """
+
     STORAGE_AWS_S_3 = "storage_aws_s3"
     """
     Amazon S3
@@ -694,6 +699,7 @@ class ProviderConfigId(str, enum.Enum):
         sink_q_radar: typing.Callable[[], T_Result],
         sink_splunk: typing.Callable[[], T_Result],
         sink_sumo_logic: typing.Callable[[], T_Result],
+        sink_trimedx: typing.Callable[[], T_Result],
         storage_aws_s_3: typing.Callable[[], T_Result],
         storage_azure_blob: typing.Callable[[], T_Result],
         storage_gcs: typing.Callable[[], T_Result],
@@ -896,6 +902,8 @@ class ProviderConfigId(str, enum.Enum):
             return sink_splunk()
         if self is ProviderConfigId.SINK_SUMO_LOGIC:
             return sink_sumo_logic()
+        if self is ProviderConfigId.SINK_TRIMEDX:
+            return sink_trimedx()
         if self is ProviderConfigId.STORAGE_AWS_S_3:
             return storage_aws_s_3()
         if self is ProviderConfigId.STORAGE_AZURE_BLOB:

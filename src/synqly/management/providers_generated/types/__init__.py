@@ -422,6 +422,7 @@ from .provider_config import (
     ProviderConfig_SinkQRadar,
     ProviderConfig_SinkSplunk,
     ProviderConfig_SinkSumoLogic,
+    ProviderConfig_SinkTrimedx,
     ProviderConfig_StorageAwsS3,
     ProviderConfig_StorageAzureBlob,
     ProviderConfig_StorageGcs,
@@ -526,6 +527,7 @@ from .sink_panther import SinkPanther
 from .sink_q_radar import SinkQRadar
 from .sink_splunk import SinkSplunk
 from .sink_sumo_logic import SinkSumoLogic
+from .sink_trimedx import SinkTrimedx
 from .slack_credential import (
     SlackCredential,
     SlackCredential_Token,
@@ -614,6 +616,11 @@ from .torq_credential import (
     TorqCredential,
     TorqCredential_OAuthClient,
     TorqCredential_OAuthClientId,
+)
+from .trimedx_credential import (
+    TrimedxCredential,
+    TrimedxCredential_OAuthClient,
+    TrimedxCredential_OAuthClientId,
 )
 from .vulnerabilities_amazon_inspector import VulnerabilitiesAmazonInspector
 from .vulnerabilities_crowd_strike import VulnerabilitiesCrowdStrike
@@ -977,6 +984,7 @@ __all__ = [
     "ProviderConfig_SinkQRadar",
     "ProviderConfig_SinkSplunk",
     "ProviderConfig_SinkSumoLogic",
+    "ProviderConfig_SinkTrimedx",
     "ProviderConfig_StorageAwsS3",
     "ProviderConfig_StorageAzureBlob",
     "ProviderConfig_StorageGcs",
@@ -1063,6 +1071,7 @@ __all__ = [
     "SinkQRadar",
     "SinkSplunk",
     "SinkSumoLogic",
+    "SinkTrimedx",
     "SlackCredential",
     "SlackCredential_Token",
     "SlackCredential_TokenId",
@@ -1126,6 +1135,9 @@ __all__ = [
     "TorqCredential",
     "TorqCredential_OAuthClient",
     "TorqCredential_OAuthClientId",
+    "TrimedxCredential",
+    "TrimedxCredential_OAuthClient",
+    "TrimedxCredential_OAuthClientId",
     "VulnerabilitiesAmazonInspector",
     "VulnerabilitiesCrowdStrike",
     "VulnerabilitiesCrowdStrikeDataset",

@@ -8,6 +8,9 @@ T_Result = typing.TypeVar("T_Result")
 
 class ScheduledOperationId(str, enum.Enum):
     ASSETS_QUERY_DEVICES = "assets_query_devices"
+    ASSETS_QUERY_ALERTS = "assets_query_alerts"
+    ASSETS_QUERY_UTILIZATION = "assets_query_utilization"
+    ASSETS_QUERY_VULNERABILITIES = "assets_query_vulnerabilities"
     EDR_QUERY_ALERTS = "edr_query_alerts"
     EDR_QUERY_APPLICATIONS = "edr_query_applications"
     EDR_QUERY_ENDPOINTS = "edr_query_endpoints"
@@ -42,6 +45,9 @@ class ScheduledOperationId(str, enum.Enum):
     def visit(
         self,
         assets_query_devices: typing.Callable[[], T_Result],
+        assets_query_alerts: typing.Callable[[], T_Result],
+        assets_query_utilization: typing.Callable[[], T_Result],
+        assets_query_vulnerabilities: typing.Callable[[], T_Result],
         edr_query_alerts: typing.Callable[[], T_Result],
         edr_query_applications: typing.Callable[[], T_Result],
         edr_query_endpoints: typing.Callable[[], T_Result],
@@ -66,6 +72,12 @@ class ScheduledOperationId(str, enum.Enum):
     ) -> T_Result:
         if self is ScheduledOperationId.ASSETS_QUERY_DEVICES:
             return assets_query_devices()
+        if self is ScheduledOperationId.ASSETS_QUERY_ALERTS:
+            return assets_query_alerts()
+        if self is ScheduledOperationId.ASSETS_QUERY_UTILIZATION:
+            return assets_query_utilization()
+        if self is ScheduledOperationId.ASSETS_QUERY_VULNERABILITIES:
+            return assets_query_vulnerabilities()
         if self is ScheduledOperationId.EDR_QUERY_ALERTS:
             return edr_query_alerts()
         if self is ScheduledOperationId.EDR_QUERY_APPLICATIONS:
