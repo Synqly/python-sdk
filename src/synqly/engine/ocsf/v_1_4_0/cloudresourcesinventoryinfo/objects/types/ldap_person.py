@@ -169,6 +169,16 @@ class LdapPerson(UncheckedBaseModel):
     The telephone number of the user. Corresponds to the LDAP <code>Telephone-Number</code> CN.
     """
 
+    position_start_time: typing.Optional[Timestamp] = pydantic.Field(default=None)
+    """
+    The date the user first started work in their current position. For employees who have not changed positions, this equals the hire date. For employees who have transferred or been promoted, this reflects when they entered their current role.
+    """
+
+    position_start_time_dt: typing.Optional[dt.datetime] = pydantic.Field(default=None)
+    """
+    The date the user first started work in their current position. For employees who have not changed positions, this equals the hire date. For employees who have transferred or been promoted, this reflects when they entered their current role.
+    """
+
     regrettable_termination: typing.Optional[bool] = pydantic.Field(default=None)
     """
     Indicates whether a termination is considered regrettable by the organization (i.e., loss of a valued employee). This is typically only populated for terminated employees.

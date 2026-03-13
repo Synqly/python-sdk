@@ -2,9 +2,9 @@
 
 from ...core.unchecked_base_model import UncheckedBaseModel
 from .workday_credential import WorkdayCredential
-import pydantic
 from ...core.pydantic_utilities import IS_PYDANTIC_V2
 import typing
+import pydantic
 
 
 class IdentityWorkday(UncheckedBaseModel):
@@ -15,15 +15,6 @@ class IdentityWorkday(UncheckedBaseModel):
     """
 
     credential: WorkdayCredential
-    tenant: str = pydantic.Field()
-    """
-    Workday tenant identifier.
-    """
-
-    url: str = pydantic.Field()
-    """
-    Base URL for the Workday API.
-    """
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(

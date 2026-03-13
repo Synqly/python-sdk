@@ -886,8 +886,6 @@ class ProviderConfig_IdentityPingone(UncheckedBaseModel):
 class ProviderConfig_IdentityWorkday(UncheckedBaseModel):
     type: typing.Literal["identity_workday"] = "identity_workday"
     credential: WorkdayCredential
-    tenant: str
-    url: str
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(
