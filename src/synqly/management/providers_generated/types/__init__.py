@@ -125,6 +125,11 @@ from .custom_credential import (
 from .custom_endpoint import CustomEndpoint
 from .custom_field_mapping import CustomFieldMapping
 from .custom_synqly import CustomSynqly
+from .datadog_credential import (
+    DatadogCredential,
+    DatadogCredential_Token,
+    DatadogCredential_TokenId,
+)
 from .defender_credential import (
     DefenderCredential,
     DefenderCredential_OAuthClient,
@@ -411,6 +416,7 @@ from .provider_config import (
     ProviderConfig_SinkAzureBlob,
     ProviderConfig_SinkAzureMonitorLogs,
     ProviderConfig_SinkCrowdstrikeHec,
+    ProviderConfig_SinkDatadog,
     ProviderConfig_SinkElasticsearch,
     ProviderConfig_SinkGcs,
     ProviderConfig_SinkGoogleSecOps,
@@ -516,6 +522,7 @@ from .sink_aws_sqs import SinkAwsSqs
 from .sink_azure_blob import SinkAzureBlob
 from .sink_azure_monitor_logs import SinkAzureMonitorLogs
 from .sink_crowdstrike_hec import SinkCrowdstrikeHec
+from .sink_datadog import SinkDatadog
 from .sink_elasticsearch import SinkElasticsearch
 from .sink_gcs import SinkGcs
 from .sink_google_sec_ops import SinkGoogleSecOps
@@ -753,6 +760,9 @@ __all__ = [
     "CustomEndpoint",
     "CustomFieldMapping",
     "CustomSynqly",
+    "DatadogCredential",
+    "DatadogCredential_Token",
+    "DatadogCredential_TokenId",
     "DefenderCredential",
     "DefenderCredential_OAuthClient",
     "DefenderCredential_OAuthClientId",
@@ -973,6 +983,7 @@ __all__ = [
     "ProviderConfig_SinkAzureBlob",
     "ProviderConfig_SinkAzureMonitorLogs",
     "ProviderConfig_SinkCrowdstrikeHec",
+    "ProviderConfig_SinkDatadog",
     "ProviderConfig_SinkElasticsearch",
     "ProviderConfig_SinkGcs",
     "ProviderConfig_SinkGoogleSecOps",
@@ -1060,6 +1071,7 @@ __all__ = [
     "SinkAzureBlob",
     "SinkAzureMonitorLogs",
     "SinkCrowdstrikeHec",
+    "SinkDatadog",
     "SinkElasticsearch",
     "SinkGcs",
     "SinkGoogleSecOps",

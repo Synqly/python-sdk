@@ -380,6 +380,11 @@ class ProviderConfigId(str, enum.Enum):
     CrowdStrike Falcon® Next-Gen SIEM (HEC)
     """
 
+    SINK_DATADOG = "sink_datadog"
+    """
+    Datadog
+    """
+
     SINK_ELASTICSEARCH = "sink_elasticsearch"
     """
     Elasticsearch
@@ -688,6 +693,7 @@ class ProviderConfigId(str, enum.Enum):
         sink_azure_blob: typing.Callable[[], T_Result],
         sink_azure_monitor_logs: typing.Callable[[], T_Result],
         sink_crowdstrike_hec: typing.Callable[[], T_Result],
+        sink_datadog: typing.Callable[[], T_Result],
         sink_elasticsearch: typing.Callable[[], T_Result],
         sink_gcs: typing.Callable[[], T_Result],
         sink_google_sec_ops: typing.Callable[[], T_Result],
@@ -880,6 +886,8 @@ class ProviderConfigId(str, enum.Enum):
             return sink_azure_monitor_logs()
         if self is ProviderConfigId.SINK_CROWDSTRIKE_HEC:
             return sink_crowdstrike_hec()
+        if self is ProviderConfigId.SINK_DATADOG:
+            return sink_datadog()
         if self is ProviderConfigId.SINK_ELASTICSEARCH:
             return sink_elasticsearch()
         if self is ProviderConfigId.SINK_GCS:

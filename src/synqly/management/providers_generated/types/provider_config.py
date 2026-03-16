@@ -84,6 +84,7 @@ from .sumo_logic_collection_url import SumoLogicCollectionUrl
 from .sumo_logic_credential import SumoLogicCredential
 from .azure_blob_credential import AzureBlobCredential
 from .azure_monitor_logs_credential import AzureMonitorLogsCredential
+from .datadog_credential import DatadogCredential
 from .gcs_json_credential import GcsJsonCredential
 from .http_receiver_auth_config import HttpReceiverAuthConfig
 from .http_receiver_method import HttpReceiverMethod
@@ -1347,6 +1348,22 @@ class ProviderConfig_SinkCrowdstrikeHec(UncheckedBaseModel):
             extra = pydantic.Extra.allow
 
 
+class ProviderConfig_SinkDatadog(UncheckedBaseModel):
+    type: typing.Literal["sink_datadog"] = "sink_datadog"
+    credential: DatadogCredential
+    site: typing.Optional[str] = None
+
+    if IS_PYDANTIC_V2:
+        model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(
+            extra="allow"
+        )  # type: ignore # Pydantic v2
+    else:
+
+        class Config:
+            smart_union = True
+            extra = pydantic.Extra.allow
+
+
 class ProviderConfig_SinkElasticsearch(UncheckedBaseModel):
     type: typing.Literal["sink_elasticsearch"] = "sink_elasticsearch"
     auth_options: typing.Optional[ElasticsearchAuthOptions] = None
@@ -2176,6 +2193,7 @@ ProviderConfig = typing_extensions.Annotated[
         ProviderConfig_SinkAzureBlob,
         ProviderConfig_SinkAzureMonitorLogs,
         ProviderConfig_SinkCrowdstrikeHec,
+        ProviderConfig_SinkDatadog,
         ProviderConfig_SinkElasticsearch,
         ProviderConfig_SinkGcs,
         ProviderConfig_SinkGoogleSecOps,
