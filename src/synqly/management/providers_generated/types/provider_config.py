@@ -91,6 +91,7 @@ from .http_receiver_method import HttpReceiverMethod
 from .http_request_body_format import HttpRequestBodyFormat
 from .http_receiver_signing_credential import HttpReceiverSigningCredential
 from .panther_ingestion_credential import PantherIngestionCredential
+from .swimlane_credential import SwimlaneCredential
 from .trimedx_credential import TrimedxCredential
 from .gcs_credential import GcsCredential
 from .autotask_api_integration_code_credential import (
@@ -1561,6 +1562,22 @@ class ProviderConfig_SinkSumoLogic(UncheckedBaseModel):
             extra = pydantic.Extra.allow
 
 
+class ProviderConfig_SinkSwimlane(UncheckedBaseModel):
+    type: typing.Literal["sink_swimlane"] = "sink_swimlane"
+    credential: SwimlaneCredential
+    url: str
+
+    if IS_PYDANTIC_V2:
+        model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(
+            extra="allow"
+        )  # type: ignore # Pydantic v2
+    else:
+
+        class Config:
+            smart_union = True
+            extra = pydantic.Extra.allow
+
+
 class ProviderConfig_SinkTrimedx(UncheckedBaseModel):
     type: typing.Literal["sink_trimedx"] = "sink_trimedx"
     credential: TrimedxCredential
@@ -2205,6 +2222,7 @@ ProviderConfig = typing_extensions.Annotated[
         ProviderConfig_SinkQRadar,
         ProviderConfig_SinkSplunk,
         ProviderConfig_SinkSumoLogic,
+        ProviderConfig_SinkSwimlane,
         ProviderConfig_SinkTrimedx,
         ProviderConfig_StorageAwsS3,
         ProviderConfig_StorageAzureBlob,

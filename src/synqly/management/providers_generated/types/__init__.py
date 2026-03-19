@@ -428,6 +428,7 @@ from .provider_config import (
     ProviderConfig_SinkQRadar,
     ProviderConfig_SinkSplunk,
     ProviderConfig_SinkSumoLogic,
+    ProviderConfig_SinkSwimlane,
     ProviderConfig_SinkTrimedx,
     ProviderConfig_StorageAwsS3,
     ProviderConfig_StorageAzureBlob,
@@ -534,6 +535,7 @@ from .sink_panther import SinkPanther
 from .sink_q_radar import SinkQRadar
 from .sink_splunk import SinkSplunk
 from .sink_sumo_logic import SinkSumoLogic
+from .sink_swimlane import SinkSwimlane
 from .sink_trimedx import SinkTrimedx
 from .slack_credential import (
     SlackCredential,
@@ -581,6 +583,11 @@ from .sumo_logic_credential import (
     SumoLogicCredential,
     SumoLogicCredential_Basic,
     SumoLogicCredential_BasicId,
+)
+from .swimlane_credential import (
+    SwimlaneCredential,
+    SwimlaneCredential_Token,
+    SwimlaneCredential_TokenId,
 )
 from .tanium_cloud_credential import (
     TaniumCloudCredential,
@@ -995,6 +1002,7 @@ __all__ = [
     "ProviderConfig_SinkQRadar",
     "ProviderConfig_SinkSplunk",
     "ProviderConfig_SinkSumoLogic",
+    "ProviderConfig_SinkSwimlane",
     "ProviderConfig_SinkTrimedx",
     "ProviderConfig_StorageAwsS3",
     "ProviderConfig_StorageAzureBlob",
@@ -1083,6 +1091,7 @@ __all__ = [
     "SinkQRadar",
     "SinkSplunk",
     "SinkSumoLogic",
+    "SinkSwimlane",
     "SinkTrimedx",
     "SlackCredential",
     "SlackCredential_Token",
@@ -1115,6 +1124,9 @@ __all__ = [
     "SumoLogicCredential",
     "SumoLogicCredential_Basic",
     "SumoLogicCredential_BasicId",
+    "SwimlaneCredential",
+    "SwimlaneCredential_Token",
+    "SwimlaneCredential_TokenId",
     "TaniumCloudCredential",
     "TaniumCloudCredential_Token",
     "TaniumCloudCredential_TokenId",
