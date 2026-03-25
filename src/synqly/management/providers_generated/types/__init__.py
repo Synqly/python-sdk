@@ -159,6 +159,7 @@ from .elasticsearch_shared_secret import (
     ElasticsearchSharedSecret_Secret,
     ElasticsearchSharedSecret_SecretId,
 )
+from .email_security_mimecast_cloud_gateway import EmailSecurityMimecastCloudGateway
 from .entra_id_credential import (
     EntraIdCredential,
     EntraIdCredential_OAuthClient,
@@ -276,6 +277,13 @@ from .malwarebytes_credential import (
     MalwarebytesCredential_OAuthClient,
     MalwarebytesCredential_OAuthClientId,
 )
+from .mimecast_api_gateway import MimecastApiGateway
+from .mimecast_api_gateway_region import MimecastApiGatewayRegion
+from .mimecast_cloud_gateway_credential import (
+    MimecastCloudGatewayCredential,
+    MimecastCloudGatewayCredential_OAuthClient,
+    MimecastCloudGatewayCredential_OAuthClientId,
+)
 from .notifications_jira import NotificationsJira
 from .notifications_mock import NotificationsMock
 from .notifications_slack import NotificationsSlack
@@ -386,6 +394,7 @@ from .provider_config import (
     ProviderConfig_EdrSentinelone,
     ProviderConfig_EdrSophos,
     ProviderConfig_EdrTanium,
+    ProviderConfig_EmailsecurityMimecastCloudGateway,
     ProviderConfig_IdentityEntraId,
     ProviderConfig_IdentityGoogle,
     ProviderConfig_IdentityOkta,
@@ -793,6 +802,7 @@ __all__ = [
     "ElasticsearchSharedSecret",
     "ElasticsearchSharedSecret_Secret",
     "ElasticsearchSharedSecret_SecretId",
+    "EmailSecurityMimecastCloudGateway",
     "EntraIdCredential",
     "EntraIdCredential_OAuthClient",
     "EntraIdCredential_OAuthClientId",
@@ -872,6 +882,11 @@ __all__ = [
     "MalwarebytesCredential",
     "MalwarebytesCredential_OAuthClient",
     "MalwarebytesCredential_OAuthClientId",
+    "MimecastApiGateway",
+    "MimecastApiGatewayRegion",
+    "MimecastCloudGatewayCredential",
+    "MimecastCloudGatewayCredential_OAuthClient",
+    "MimecastCloudGatewayCredential_OAuthClientId",
     "NotificationsJira",
     "NotificationsMock",
     "NotificationsSlack",
@@ -960,6 +975,7 @@ __all__ = [
     "ProviderConfig_EdrSentinelone",
     "ProviderConfig_EdrSophos",
     "ProviderConfig_EdrTanium",
+    "ProviderConfig_EmailsecurityMimecastCloudGateway",
     "ProviderConfig_IdentityEntraId",
     "ProviderConfig_IdentityGoogle",
     "ProviderConfig_IdentityOkta",

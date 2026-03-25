@@ -43,6 +43,8 @@ class OperationId(str, enum.Enum):
     EDR_QUERY_IOCS = "edr_query_iocs"
     EDR_QUERY_POSTURE_SCORE = "edr_query_posture_score"
     EDR_QUERY_THREATEVENTS = "edr_query_threatevents"
+    EMAILSECURITY_GET_THREAT_DETAILS = "emailsecurity_get_threat_details"
+    EMAILSECURITY_QUERY_THREATS = "emailsecurity_query_threats"
     IDENTITY_DISABLE_USER = "identity_disable_user"
     IDENTITY_ENABLE_USER = "identity_enable_user"
     IDENTITY_EXPIRE_ALL_USER_SESSIONS = "identity_expire_all_user_sessions"
@@ -154,6 +156,8 @@ class OperationId(str, enum.Enum):
         edr_query_iocs: typing.Callable[[], T_Result],
         edr_query_posture_score: typing.Callable[[], T_Result],
         edr_query_threatevents: typing.Callable[[], T_Result],
+        emailsecurity_get_threat_details: typing.Callable[[], T_Result],
+        emailsecurity_query_threats: typing.Callable[[], T_Result],
         identity_disable_user: typing.Callable[[], T_Result],
         identity_enable_user: typing.Callable[[], T_Result],
         identity_expire_all_user_sessions: typing.Callable[[], T_Result],
@@ -286,6 +290,10 @@ class OperationId(str, enum.Enum):
             return edr_query_posture_score()
         if self is OperationId.EDR_QUERY_THREATEVENTS:
             return edr_query_threatevents()
+        if self is OperationId.EMAILSECURITY_GET_THREAT_DETAILS:
+            return emailsecurity_get_threat_details()
+        if self is OperationId.EMAILSECURITY_QUERY_THREATS:
+            return emailsecurity_query_threats()
         if self is OperationId.IDENTITY_DISABLE_USER:
             return identity_disable_user()
         if self is OperationId.IDENTITY_ENABLE_USER:

@@ -7,6 +7,7 @@ from . import (
     common,
     custom,
     edr,
+    emailsecurity,
     engine,
     events,
     hooks,
@@ -115,6 +116,11 @@ from .edr import (
     QueryPostureScoreResponse,
     QueryThreatsResponse,
     ThreatEvent,
+)
+from .emailsecurity import (
+    EmailSecurityGetThreatDetailsResponse,
+    EmailSecurityQueryThreatsResponse,
+    EmailSecurityThreat,
 )
 from .engine import (
     ApiHasStatus,
@@ -403,6 +409,9 @@ __all__ = [
     "DeleteIocsResponse",
     "Device",
     "DownloadAttachmentResponse",
+    "EmailSecurityGetThreatDetailsResponse",
+    "EmailSecurityQueryThreatsResponse",
+    "EmailSecurityThreat",
     "EscalationPolicy",
     "EscalationPolicyRule",
     "Event",
@@ -618,6 +627,7 @@ __all__ = [
     "common",
     "custom",
     "edr",
+    "emailsecurity",
     "engine",
     "events",
     "hooks",

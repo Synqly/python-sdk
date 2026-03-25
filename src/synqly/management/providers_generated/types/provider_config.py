@@ -54,6 +54,8 @@ from .malwarebytes_credential import MalwarebytesCredential
 from .sentinel_one_credential import SentinelOneCredential
 from .sentinel_one_edr_events_credential import SentinelOneEdrEventsCredential
 from .sophos_credential import SophosCredential
+from .mimecast_api_gateway import MimecastApiGateway
+from .mimecast_cloud_gateway_credential import MimecastCloudGatewayCredential
 from .entra_id_credential import EntraIdCredential
 from .google_credential import GoogleCredential
 from .okta_credential import OktaCredential
@@ -804,6 +806,24 @@ class ProviderConfig_EdrTanium(UncheckedBaseModel):
     type: typing.Literal["edr_tanium"] = "edr_tanium"
     credential: TaniumCloudCredential
     url: str
+
+    if IS_PYDANTIC_V2:
+        model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(
+            extra="allow"
+        )  # type: ignore # Pydantic v2
+    else:
+
+        class Config:
+            smart_union = True
+            extra = pydantic.Extra.allow
+
+
+class ProviderConfig_EmailsecurityMimecastCloudGateway(UncheckedBaseModel):
+    type: typing.Literal["emailsecurity_mimecast_cloud_gateway"] = (
+        "emailsecurity_mimecast_cloud_gateway"
+    )
+    api_gateway: typing.Optional[MimecastApiGateway] = None
+    credential: MimecastCloudGatewayCredential
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(
@@ -2180,6 +2200,7 @@ ProviderConfig = typing_extensions.Annotated[
         ProviderConfig_EdrSentinelone,
         ProviderConfig_EdrSophos,
         ProviderConfig_EdrTanium,
+        ProviderConfig_EmailsecurityMimecastCloudGateway,
         ProviderConfig_IdentityEntraId,
         ProviderConfig_IdentityGoogle,
         ProviderConfig_IdentityOkta,
