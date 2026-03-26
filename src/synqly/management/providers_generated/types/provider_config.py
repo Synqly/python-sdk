@@ -1931,6 +1931,22 @@ class ProviderConfig_VulnerabilitiesAmazonInspector(UncheckedBaseModel):
             extra = pydantic.Extra.allow
 
 
+class ProviderConfig_VulnerabilitiesAxonius(UncheckedBaseModel):
+    type: typing.Literal["vulnerabilities_axonius"] = "vulnerabilities_axonius"
+    credential: AxoniusCredential
+    url: str
+
+    if IS_PYDANTIC_V2:
+        model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(
+            extra="allow"
+        )  # type: ignore # Pydantic v2
+    else:
+
+        class Config:
+            smart_union = True
+            extra = pydantic.Extra.allow
+
+
 class ProviderConfig_VulnerabilitiesCrowdstrike(UncheckedBaseModel):
     type: typing.Literal["vulnerabilities_crowdstrike"] = "vulnerabilities_crowdstrike"
     credential: CrowdStrikeCredential
@@ -2263,6 +2279,7 @@ ProviderConfig = typing_extensions.Annotated[
         ProviderConfig_TicketingTorq,
         ProviderConfig_TicketingZendesk,
         ProviderConfig_VulnerabilitiesAmazonInspector,
+        ProviderConfig_VulnerabilitiesAxonius,
         ProviderConfig_VulnerabilitiesCrowdstrike,
         ProviderConfig_VulnerabilitiesCrowdstrikeMock,
         ProviderConfig_VulnerabilitiesDefender,

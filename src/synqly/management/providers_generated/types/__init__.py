@@ -457,6 +457,7 @@ from .provider_config import (
     ProviderConfig_TicketingTorq,
     ProviderConfig_TicketingZendesk,
     ProviderConfig_VulnerabilitiesAmazonInspector,
+    ProviderConfig_VulnerabilitiesAxonius,
     ProviderConfig_VulnerabilitiesCrowdstrike,
     ProviderConfig_VulnerabilitiesCrowdstrikeMock,
     ProviderConfig_VulnerabilitiesDefender,
@@ -646,6 +647,7 @@ from .trimedx_credential import (
     TrimedxCredential_OAuthClientId,
 )
 from .vulnerabilities_amazon_inspector import VulnerabilitiesAmazonInspector
+from .vulnerabilities_axonius import VulnerabilitiesAxonius
 from .vulnerabilities_crowd_strike import VulnerabilitiesCrowdStrike
 from .vulnerabilities_crowd_strike_dataset import VulnerabilitiesCrowdStrikeDataset
 from .vulnerabilities_crowd_strike_mock import VulnerabilitiesCrowdStrikeMock
@@ -1038,6 +1040,7 @@ __all__ = [
     "ProviderConfig_TicketingTorq",
     "ProviderConfig_TicketingZendesk",
     "ProviderConfig_VulnerabilitiesAmazonInspector",
+    "ProviderConfig_VulnerabilitiesAxonius",
     "ProviderConfig_VulnerabilitiesCrowdstrike",
     "ProviderConfig_VulnerabilitiesCrowdstrikeMock",
     "ProviderConfig_VulnerabilitiesDefender",
@@ -1179,6 +1182,7 @@ __all__ = [
     "TrimedxCredential_OAuthClient",
     "TrimedxCredential_OAuthClientId",
     "VulnerabilitiesAmazonInspector",
+    "VulnerabilitiesAxonius",
     "VulnerabilitiesCrowdStrike",
     "VulnerabilitiesCrowdStrikeDataset",
     "VulnerabilitiesCrowdStrikeMock",
