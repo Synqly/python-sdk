@@ -64,6 +64,7 @@ from .kill_chain_phase import KillChainPhase
 from .kill_chain_phase_phase_id import KillChainPhasePhaseId
 from .ldap_person import LdapPerson
 from .ldap_person_employment_status_id import LdapPersonEmploymentStatusId
+from .leave_event import LeaveEvent
 from .load_balancer import LoadBalancer
 from .location import Location
 from .logger import Logger
@@ -190,6 +191,7 @@ __all__ = [
     "KillChainPhasePhaseId",
     "LdapPerson",
     "LdapPersonEmploymentStatusId",
+    "LeaveEvent",
     "LoadBalancer",
     "Location",
     "Logger",

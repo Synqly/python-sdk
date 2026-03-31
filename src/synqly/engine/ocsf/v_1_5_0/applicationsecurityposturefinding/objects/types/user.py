@@ -7,6 +7,7 @@ import pydantic
 from ...base.types.email_address import EmailAddress
 from .group import Group
 from .ldap_person import LdapPerson
+from .leave_event import LeaveEvent
 from .user_mfa_status_id import UserMfaStatusId
 from ...base.types.user_name import UserName
 from .organization import Organization
@@ -71,6 +72,13 @@ class User(UncheckedBaseModel):
     The additional LDAP attributes that describe a person.
     """
 
+    leave_events: typing.Optional[typing.List[LeaveEvent]] = pydantic.Field(
+        default=None
+    )
+    """
+    Leave of absence events associated with the person. May include current, past, and future leaves.
+    """
+
     mfa_status: typing.Optional[str] = pydantic.Field(default=None)
     """
     The multi-factor authentication status, normalized to the caption of the mfa_status_id value. In the case of 'Other', it is defined by the data source.
@@ -84,6 +92,11 @@ class User(UncheckedBaseModel):
     name: typing.Optional[UserName] = pydantic.Field(default=None)
     """
     The username. For example, <code>janedoe1</code>.
+    """
+
+    on_leave: typing.Optional[bool] = pydantic.Field(default=None)
+    """
+    True if the person is currently on a leave of absence.
     """
 
     org: typing.Optional[Organization] = pydantic.Field(default=None)
