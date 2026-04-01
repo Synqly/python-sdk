@@ -3,9 +3,10 @@
 from ...core.unchecked_base_model import UncheckedBaseModel
 from .aws_provider_credential import AwsProviderCredential
 import pydantic
+import typing
+from .cloud_security_aws_events import CloudSecurityAwsEvents
 from .aws_region import AwsRegion
 from ...core.pydantic_utilities import IS_PYDANTIC_V2
-import typing
 
 
 class CloudSecurityAws(UncheckedBaseModel):
@@ -16,6 +17,11 @@ class CloudSecurityAws(UncheckedBaseModel):
     credential: AwsProviderCredential = pydantic.Field()
     """
     AWS credentials with access to [Amazon Security Hub](https://docs.aws.amazon.com/securityhub/latest/userguide/what-are-securityhub-services.html).
+    """
+
+    events: typing.Optional[CloudSecurityAwsEvents] = pydantic.Field(default=None)
+    """
+    Optional configuration for querying security events (e.g. CloudTrail Lake). When configured, enables query_events for this integration.
     """
 
     region: AwsRegion = pydantic.Field()

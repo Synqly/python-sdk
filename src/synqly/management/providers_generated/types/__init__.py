@@ -93,7 +93,14 @@ from .claroty_credential import (
     ClarotyCredential_TokenId,
 )
 from .cloud_security_aws import CloudSecurityAws
+from .cloud_security_aws_cloud_trail_lake_events import (
+    CloudSecurityAwsCloudTrailLakeEvents,
+)
 from .cloud_security_aws_event_bridge_sqs import CloudSecurityAwsEventBridgeSqs
+from .cloud_security_aws_events import (
+    CloudSecurityAwsEvents,
+    CloudSecurityAwsEvents_CloudtrailLake,
+)
 from .cloud_security_crowd_strike import CloudSecurityCrowdStrike
 from .cloud_security_crowd_strike_dataset import CloudSecurityCrowdStrikeDataset
 from .cloud_security_crowd_strike_mock import CloudSecurityCrowdStrikeMock
@@ -752,7 +759,10 @@ __all__ = [
     "ClarotyCredential_Token",
     "ClarotyCredential_TokenId",
     "CloudSecurityAws",
+    "CloudSecurityAwsCloudTrailLakeEvents",
     "CloudSecurityAwsEventBridgeSqs",
+    "CloudSecurityAwsEvents",
+    "CloudSecurityAwsEvents_CloudtrailLake",
     "CloudSecurityCrowdStrike",
     "CloudSecurityCrowdStrikeDataset",
     "CloudSecurityCrowdStrikeMock",

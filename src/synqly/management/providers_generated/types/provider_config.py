@@ -44,6 +44,7 @@ from .sevco_credential import SevcoCredential
 from .assets_sevco_dataset import AssetsSevcoDataset
 from .tanium_cloud_credential import TaniumCloudCredential
 from .assets_tanium_cloud_dataset import AssetsTaniumCloudDataset
+from .cloud_security_aws_events import CloudSecurityAwsEvents
 from .cloud_security_crowd_strike_dataset import CloudSecurityCrowdStrikeDataset
 from .palo_alto_credential import PaloAltoCredential
 from .custom_endpoint import CustomEndpoint
@@ -571,6 +572,7 @@ class ProviderConfig_AssetsTaniumCloudMock(UncheckedBaseModel):
 class ProviderConfig_CloudsecurityAws(UncheckedBaseModel):
     type: typing.Literal["cloudsecurity_aws"] = "cloudsecurity_aws"
     credential: AwsProviderCredential
+    events: typing.Optional[CloudSecurityAwsEvents] = None
     region: AwsRegion
 
     if IS_PYDANTIC_V2:
