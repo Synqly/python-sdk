@@ -106,6 +106,7 @@ from .cloud_security_crowd_strike_dataset import CloudSecurityCrowdStrikeDataset
 from .cloud_security_crowd_strike_mock import CloudSecurityCrowdStrikeMock
 from .cloud_security_defender import CloudSecurityDefender
 from .cloud_security_palo_alto import CloudSecurityPaloAlto
+from .cloud_security_upwind import CloudSecurityUpwind
 from .crowd_strike_credential import (
     CrowdStrikeCredential,
     CrowdStrikeCredential_OAuthClient,
@@ -392,6 +393,7 @@ from .provider_config import (
     ProviderConfig_CloudsecurityCrowdstrikeMock,
     ProviderConfig_CloudsecurityDefender,
     ProviderConfig_CloudsecurityPaloalto,
+    ProviderConfig_CloudsecurityUpwind,
     ProviderConfig_CustomSynqly,
     ProviderConfig_EdrCrowdstrike,
     ProviderConfig_EdrCrowdstrikeMock,
@@ -653,6 +655,12 @@ from .trimedx_credential import (
     TrimedxCredential_OAuthClient,
     TrimedxCredential_OAuthClientId,
 )
+from .upwind_credential import (
+    UpwindCredential,
+    UpwindCredential_OAuthClient,
+    UpwindCredential_OAuthClientId,
+)
+from .upwind_region import UpwindRegion
 from .vulnerabilities_amazon_inspector import VulnerabilitiesAmazonInspector
 from .vulnerabilities_axonius import VulnerabilitiesAxonius
 from .vulnerabilities_crowd_strike import VulnerabilitiesCrowdStrike
@@ -768,6 +776,7 @@ __all__ = [
     "CloudSecurityCrowdStrikeMock",
     "CloudSecurityDefender",
     "CloudSecurityPaloAlto",
+    "CloudSecurityUpwind",
     "CrowdStrikeCredential",
     "CrowdStrikeCredential_OAuthClient",
     "CrowdStrikeCredential_OAuthClientId",
@@ -978,6 +987,7 @@ __all__ = [
     "ProviderConfig_CloudsecurityCrowdstrikeMock",
     "ProviderConfig_CloudsecurityDefender",
     "ProviderConfig_CloudsecurityPaloalto",
+    "ProviderConfig_CloudsecurityUpwind",
     "ProviderConfig_CustomSynqly",
     "ProviderConfig_EdrCrowdstrike",
     "ProviderConfig_EdrCrowdstrikeMock",
@@ -1191,6 +1201,10 @@ __all__ = [
     "TrimedxCredential",
     "TrimedxCredential_OAuthClient",
     "TrimedxCredential_OAuthClientId",
+    "UpwindCredential",
+    "UpwindCredential_OAuthClient",
+    "UpwindCredential_OAuthClientId",
+    "UpwindRegion",
     "VulnerabilitiesAmazonInspector",
     "VulnerabilitiesAxonius",
     "VulnerabilitiesCrowdStrike",
