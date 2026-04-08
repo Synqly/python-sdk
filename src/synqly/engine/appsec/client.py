@@ -653,6 +653,7 @@ class AppsecClient:
         application_id: ApplicationId,
         finding_id: FindingId,
         *,
+        meta: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AppSecGetApplicationFindingDetailsResponse:
         """
@@ -663,6 +664,9 @@ class AppsecClient:
         application_id : ApplicationId
 
         finding_id : FindingId
+
+        meta : typing.Optional[typing.Union[str, typing.Sequence[str]]]
+            Add metadata to the response by invoking meta functions. Documentation for meta functions is available at https://docs.synqly.com/api-reference/meta-functions. Not all meta function are available at every endpoint.
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -681,11 +685,15 @@ class AppsecClient:
         client.appsec.get_application_finding_details(
             application_id="string",
             finding_id="string",
+            meta="string",
         )
         """
         _response = self._client_wrapper.httpx_client.request(
             f"v1/app-sec/applications/{jsonable_encoder(application_id)}/findings/{jsonable_encoder(finding_id)}",
             method="GET",
+            params={
+                "meta": meta,
+            },
             request_options=request_options,
         )
         try:
@@ -1476,6 +1484,7 @@ class AsyncAppsecClient:
         application_id: ApplicationId,
         finding_id: FindingId,
         *,
+        meta: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AppSecGetApplicationFindingDetailsResponse:
         """
@@ -1486,6 +1495,9 @@ class AsyncAppsecClient:
         application_id : ApplicationId
 
         finding_id : FindingId
+
+        meta : typing.Optional[typing.Union[str, typing.Sequence[str]]]
+            Add metadata to the response by invoking meta functions. Documentation for meta functions is available at https://docs.synqly.com/api-reference/meta-functions. Not all meta function are available at every endpoint.
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -1509,6 +1521,7 @@ class AsyncAppsecClient:
             await client.appsec.get_application_finding_details(
                 application_id="string",
                 finding_id="string",
+                meta="string",
             )
 
 
@@ -1517,6 +1530,9 @@ class AsyncAppsecClient:
         _response = await self._client_wrapper.httpx_client.request(
             f"v1/app-sec/applications/{jsonable_encoder(application_id)}/findings/{jsonable_encoder(finding_id)}",
             method="GET",
+            params={
+                "meta": meta,
+            },
             request_options=request_options,
         )
         try:
