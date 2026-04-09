@@ -148,6 +148,7 @@ from .edr_crowd_strike_dataset import EdrCrowdStrikeDataset
 from .edr_crowd_strike_mock import EdrCrowdStrikeMock
 from .edr_defender import EdrDefender
 from .edr_eset_connect import EdrEsetConnect
+from .edr_iru import EdrIru
 from .edr_malwarebytes import EdrMalwarebytes
 from .edr_sentinel_one import EdrSentinelOne
 from .edr_sophos import EdrSophos
@@ -265,6 +266,7 @@ from .incident_io_credential import (
 )
 from .incident_response_incident_io import IncidentResponseIncidentIo
 from .incident_response_pager_duty import IncidentResponsePagerDuty
+from .iru_credential import IruCredential, IruCredential_Token, IruCredential_TokenId
 from .ivanti_credential import (
     IvantiCredential,
     IvantiCredential_OAuthClient,
@@ -399,6 +401,7 @@ from .provider_config import (
     ProviderConfig_EdrCrowdstrikeMock,
     ProviderConfig_EdrDefender,
     ProviderConfig_EdrEsetConnect,
+    ProviderConfig_EdrIru,
     ProviderConfig_EdrMalwarebytes,
     ProviderConfig_EdrSentinelone,
     ProviderConfig_EdrSophos,
@@ -808,6 +811,7 @@ __all__ = [
     "EdrCrowdStrikeMock",
     "EdrDefender",
     "EdrEsetConnect",
+    "EdrIru",
     "EdrMalwarebytes",
     "EdrSentinelOne",
     "EdrSophos",
@@ -891,6 +895,9 @@ __all__ = [
     "IncidentIoCredential_TokenId",
     "IncidentResponseIncidentIo",
     "IncidentResponsePagerDuty",
+    "IruCredential",
+    "IruCredential_Token",
+    "IruCredential_TokenId",
     "IvantiCredential",
     "IvantiCredentialTicketing",
     "IvantiCredentialTicketing_Token",
@@ -993,6 +1000,7 @@ __all__ = [
     "ProviderConfig_EdrCrowdstrikeMock",
     "ProviderConfig_EdrDefender",
     "ProviderConfig_EdrEsetConnect",
+    "ProviderConfig_EdrIru",
     "ProviderConfig_EdrMalwarebytes",
     "ProviderConfig_EdrSentinelone",
     "ProviderConfig_EdrSophos",

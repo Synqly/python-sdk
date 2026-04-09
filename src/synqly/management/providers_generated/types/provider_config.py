@@ -53,6 +53,7 @@ from .custom_endpoint import CustomEndpoint
 from .edr_crowd_strike_dataset import EdrCrowdStrikeDataset
 from .eset_credential import EsetCredential
 from .api_region import ApiRegion
+from .iru_credential import IruCredential
 from .malwarebytes_credential import MalwarebytesCredential
 from .sentinel_one_credential import SentinelOneCredential
 from .sentinel_one_edr_events_credential import SentinelOneEdrEventsCredential
@@ -759,6 +760,22 @@ class ProviderConfig_EdrEsetConnect(UncheckedBaseModel):
     type: typing.Literal["edr_eset_connect"] = "edr_eset_connect"
     credential: EsetCredential
     region: ApiRegion
+
+    if IS_PYDANTIC_V2:
+        model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(
+            extra="allow"
+        )  # type: ignore # Pydantic v2
+    else:
+
+        class Config:
+            smart_union = True
+            extra = pydantic.Extra.allow
+
+
+class ProviderConfig_EdrIru(UncheckedBaseModel):
+    type: typing.Literal["edr_iru"] = "edr_iru"
+    credential: IruCredential
+    url: str
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(
@@ -2234,6 +2251,7 @@ ProviderConfig = typing_extensions.Annotated[
         ProviderConfig_EdrCrowdstrikeMock,
         ProviderConfig_EdrDefender,
         ProviderConfig_EdrEsetConnect,
+        ProviderConfig_EdrIru,
         ProviderConfig_EdrMalwarebytes,
         ProviderConfig_EdrSentinelone,
         ProviderConfig_EdrSophos,
