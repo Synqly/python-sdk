@@ -310,6 +310,11 @@ class ProviderConfigId(str, enum.Enum):
     CrowdStrike Falcon® Next-Gen SIEM
     """
 
+    SIEM_DATADOG = "siem_datadog"
+    """
+    Datadog Cloud SIEM
+    """
+
     SIEM_ELASTICSEARCH = "siem_elasticsearch"
     """
     Elastic SIEM
@@ -397,7 +402,7 @@ class ProviderConfigId(str, enum.Enum):
 
     SINK_DATADOG = "sink_datadog"
     """
-    Datadog
+    Datadog Logs
     """
 
     SINK_ELASTICSEARCH = "sink_elasticsearch"
@@ -704,6 +709,7 @@ class ProviderConfigId(str, enum.Enum):
         notifications_slack: typing.Callable[[], T_Result],
         notifications_teams: typing.Callable[[], T_Result],
         siem_crowdstrike: typing.Callable[[], T_Result],
+        siem_datadog: typing.Callable[[], T_Result],
         siem_elasticsearch: typing.Callable[[], T_Result],
         siem_google_chronicle: typing.Callable[[], T_Result],
         siem_google_security_operations: typing.Callable[[], T_Result],
@@ -888,6 +894,8 @@ class ProviderConfigId(str, enum.Enum):
             return notifications_teams()
         if self is ProviderConfigId.SIEM_CROWDSTRIKE:
             return siem_crowdstrike()
+        if self is ProviderConfigId.SIEM_DATADOG:
+            return siem_datadog()
         if self is ProviderConfigId.SIEM_ELASTICSEARCH:
             return siem_elasticsearch()
         if self is ProviderConfigId.SIEM_GOOGLE_CHRONICLE:

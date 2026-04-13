@@ -10,7 +10,7 @@ import typing_extensions
 from ...core.unchecked_base_model import UnionMetadata
 
 
-class DatadogCredential_Token(UncheckedBaseModel):
+class DatadogApiKeyCredential_Token(UncheckedBaseModel):
     type: typing.Literal["token"] = "token"
     secret: str
 
@@ -25,7 +25,7 @@ class DatadogCredential_Token(UncheckedBaseModel):
             extra = pydantic.Extra.allow
 
 
-class DatadogCredential_TokenId(UncheckedBaseModel):
+class DatadogApiKeyCredential_TokenId(UncheckedBaseModel):
     value: TokenCredentialId
     type: typing.Literal["token_id"] = "token_id"
 
@@ -33,7 +33,7 @@ class DatadogCredential_TokenId(UncheckedBaseModel):
         smart_union = True
 
 
-DatadogCredential = typing_extensions.Annotated[
-    typing.Union[DatadogCredential_Token, DatadogCredential_TokenId],
+DatadogApiKeyCredential = typing_extensions.Annotated[
+    typing.Union[DatadogApiKeyCredential_Token, DatadogApiKeyCredential_TokenId],
     UnionMetadata(discriminant="type"),
 ]

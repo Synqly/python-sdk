@@ -74,6 +74,8 @@ from .slack_credential import SlackCredential
 from .slack_webhook_credential import SlackWebhookCredential
 from .teams_credential import TeamsCredential
 from .crowdstrike_hec_credential import CrowdstrikeHecCredential
+from .datadog_application_key_credential import DatadogApplicationKeyCredential
+from .datadog_api_key_credential import DatadogApiKeyCredential
 from .elasticsearch_auth_options import ElasticsearchAuthOptions
 from .elasticsearch_credential import ElasticsearchCredential
 from .google_chronicle_credential import GoogleChronicleCredential
@@ -90,7 +92,6 @@ from .sumo_logic_collection_url import SumoLogicCollectionUrl
 from .sumo_logic_credential import SumoLogicCredential
 from .azure_blob_credential import AzureBlobCredential
 from .azure_monitor_logs_credential import AzureMonitorLogsCredential
-from .datadog_credential import DatadogCredential
 from .gcs_json_credential import GcsJsonCredential
 from .http_receiver_auth_config import HttpReceiverAuthConfig
 from .http_receiver_method import HttpReceiverMethod
@@ -1090,6 +1091,23 @@ class ProviderConfig_SiemCrowdstrike(UncheckedBaseModel):
             extra = pydantic.Extra.allow
 
 
+class ProviderConfig_SiemDatadog(UncheckedBaseModel):
+    type: typing.Literal["siem_datadog"] = "siem_datadog"
+    application_key_credential: DatadogApplicationKeyCredential
+    credential: DatadogApiKeyCredential
+    site: typing.Optional[str] = None
+
+    if IS_PYDANTIC_V2:
+        model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(
+            extra="allow"
+        )  # type: ignore # Pydantic v2
+    else:
+
+        class Config:
+            smart_union = True
+            extra = pydantic.Extra.allow
+
+
 class ProviderConfig_SiemElasticsearch(UncheckedBaseModel):
     type: typing.Literal["siem_elasticsearch"] = "siem_elasticsearch"
     auth_options: typing.Optional[ElasticsearchAuthOptions] = None
@@ -1409,7 +1427,7 @@ class ProviderConfig_SinkCrowdstrikeHec(UncheckedBaseModel):
 
 class ProviderConfig_SinkDatadog(UncheckedBaseModel):
     type: typing.Literal["sink_datadog"] = "sink_datadog"
-    credential: DatadogCredential
+    credential: DatadogApiKeyCredential
     site: typing.Optional[str] = None
 
     if IS_PYDANTIC_V2:
@@ -2270,6 +2288,7 @@ ProviderConfig = typing_extensions.Annotated[
         ProviderConfig_NotificationsSlackWebhook,
         ProviderConfig_NotificationsTeams,
         ProviderConfig_SiemCrowdstrike,
+        ProviderConfig_SiemDatadog,
         ProviderConfig_SiemElasticsearch,
         ProviderConfig_SiemGoogleChronicle,
         ProviderConfig_SiemGoogleSecurityOperations,

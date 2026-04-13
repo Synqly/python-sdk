@@ -133,10 +133,15 @@ from .custom_credential import (
 from .custom_endpoint import CustomEndpoint
 from .custom_field_mapping import CustomFieldMapping
 from .custom_synqly import CustomSynqly
-from .datadog_credential import (
-    DatadogCredential,
-    DatadogCredential_Token,
-    DatadogCredential_TokenId,
+from .datadog_api_key_credential import (
+    DatadogApiKeyCredential,
+    DatadogApiKeyCredential_Token,
+    DatadogApiKeyCredential_TokenId,
+)
+from .datadog_application_key_credential import (
+    DatadogApplicationKeyCredential,
+    DatadogApplicationKeyCredential_Token,
+    DatadogApplicationKeyCredential_TokenId,
 )
 from .defender_credential import (
     DefenderCredential,
@@ -420,6 +425,7 @@ from .provider_config import (
     ProviderConfig_NotificationsSlackWebhook,
     ProviderConfig_NotificationsTeams,
     ProviderConfig_SiemCrowdstrike,
+    ProviderConfig_SiemDatadog,
     ProviderConfig_SiemElasticsearch,
     ProviderConfig_SiemGoogleChronicle,
     ProviderConfig_SiemGoogleSecurityOperations,
@@ -528,6 +534,7 @@ from .sevco_credential import (
     SevcoCredential_TokenId,
 )
 from .siem_crowdstrike import SiemCrowdstrike
+from .siem_datadog import SiemDatadog
 from .siem_elasticsearch import SiemElasticsearch
 from .siem_google_chronicle import SiemGoogleChronicle
 from .siem_google_security_operations import SiemGoogleSecurityOperations
@@ -800,9 +807,12 @@ __all__ = [
     "CustomEndpoint",
     "CustomFieldMapping",
     "CustomSynqly",
-    "DatadogCredential",
-    "DatadogCredential_Token",
-    "DatadogCredential_TokenId",
+    "DatadogApiKeyCredential",
+    "DatadogApiKeyCredential_Token",
+    "DatadogApiKeyCredential_TokenId",
+    "DatadogApplicationKeyCredential",
+    "DatadogApplicationKeyCredential_Token",
+    "DatadogApplicationKeyCredential_TokenId",
     "DefenderCredential",
     "DefenderCredential_OAuthClient",
     "DefenderCredential_OAuthClientId",
@@ -1019,6 +1029,7 @@ __all__ = [
     "ProviderConfig_NotificationsSlackWebhook",
     "ProviderConfig_NotificationsTeams",
     "ProviderConfig_SiemCrowdstrike",
+    "ProviderConfig_SiemDatadog",
     "ProviderConfig_SiemElasticsearch",
     "ProviderConfig_SiemGoogleChronicle",
     "ProviderConfig_SiemGoogleSecurityOperations",
@@ -1109,6 +1120,7 @@ __all__ = [
     "SevcoCredential_Token",
     "SevcoCredential_TokenId",
     "SiemCrowdstrike",
+    "SiemDatadog",
     "SiemElasticsearch",
     "SiemGoogleChronicle",
     "SiemGoogleSecurityOperations",
