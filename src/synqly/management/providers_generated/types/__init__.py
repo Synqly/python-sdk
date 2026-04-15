@@ -3,6 +3,7 @@
 from .api_config import ApiConfig
 from .api_region import ApiRegion
 from .app_sec_snyk import AppSecSnyk
+from .app_sec_tenable import AppSecTenable
 from .appsec_amazon_inspector import AppsecAmazonInspector
 from .appsec_git_hub import AppsecGitHub
 from .appsec_git_lab import AppsecGitLab
@@ -374,6 +375,7 @@ from .provider_config import (
     ProviderConfig_AppsecOpentextCoreApplicationSecurity,
     ProviderConfig_AppsecOpentextCoreApplicationSecurityMock,
     ProviderConfig_AppsecSnyk,
+    ProviderConfig_AppsecTenable,
     ProviderConfig_AssetsArmisCentrix,
     ProviderConfig_AssetsArmisCentrixMock,
     ProviderConfig_AssetsAxonius,
@@ -709,6 +711,7 @@ __all__ = [
     "ApiConfig",
     "ApiRegion",
     "AppSecSnyk",
+    "AppSecTenable",
     "AppsecAmazonInspector",
     "AppsecGitHub",
     "AppsecGitLab",
@@ -978,6 +981,7 @@ __all__ = [
     "ProviderConfig_AppsecOpentextCoreApplicationSecurity",
     "ProviderConfig_AppsecOpentextCoreApplicationSecurityMock",
     "ProviderConfig_AppsecSnyk",
+    "ProviderConfig_AppsecTenable",
     "ProviderConfig_AssetsArmisCentrix",
     "ProviderConfig_AssetsArmisCentrixMock",
     "ProviderConfig_AssetsAxonius",

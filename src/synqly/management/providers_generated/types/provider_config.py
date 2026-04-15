@@ -23,6 +23,7 @@ from .appsec_opentext_core_application_security_dataset import (
 )
 from .snyk_credential import SnykCredential
 from .snyk_region import SnykRegion
+from .tenable_cloud_credential import TenableCloudCredential
 from .armis_credential import ArmisCredential
 from .assets_armis_dataset import AssetsArmisDataset
 from .axonius_credential import AxoniusCredential
@@ -119,7 +120,6 @@ from .vulnerabilities_rapid_7_insight_cloud_dataset import (
     VulnerabilitiesRapid7InsightCloudDataset,
 )
 from .vulnerabilities_tanium_cloud_dataset import VulnerabilitiesTaniumCloudDataset
-from .tenable_cloud_credential import TenableCloudCredential
 from .tenable_sc_credential import TenableScCredential
 import typing_extensions
 from ...core.unchecked_base_model import UnionMetadata
@@ -248,6 +248,22 @@ class ProviderConfig_AppsecSnyk(UncheckedBaseModel):
     credential: SnykCredential
     organization_id: str
     region: SnykRegion
+
+    if IS_PYDANTIC_V2:
+        model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(
+            extra="allow"
+        )  # type: ignore # Pydantic v2
+    else:
+
+        class Config:
+            smart_union = True
+            extra = pydantic.Extra.allow
+
+
+class ProviderConfig_AppsecTenable(UncheckedBaseModel):
+    type: typing.Literal["appsec_tenable"] = "appsec_tenable"
+    credential: TenableCloudCredential
+    url: typing.Optional[str] = None
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(
@@ -2237,6 +2253,7 @@ ProviderConfig = typing_extensions.Annotated[
         ProviderConfig_AppsecOpentextCoreApplicationSecurity,
         ProviderConfig_AppsecOpentextCoreApplicationSecurityMock,
         ProviderConfig_AppsecSnyk,
+        ProviderConfig_AppsecTenable,
         ProviderConfig_AssetsArmisCentrix,
         ProviderConfig_AssetsArmisCentrixMock,
         ProviderConfig_AssetsAxonius,
