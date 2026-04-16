@@ -7,6 +7,7 @@ from .types import (
     Member,
     MemberId,
     MemberOptions,
+    MemberType,
     Options,
     State,
 )
@@ -18,6 +19,7 @@ __all__ = [
     "Member",
     "MemberId",
     "MemberOptions",
+    "MemberType",
     "Options",
     "State",
 ]

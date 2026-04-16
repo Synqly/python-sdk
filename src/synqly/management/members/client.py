@@ -22,6 +22,7 @@ from .types.get_member_response import GetMemberResponse
 from ..core.jsonable_encoder import jsonable_encoder
 from ..role_base.types.role_name import RoleName
 from ..member_base.types.member_options import MemberOptions
+from ..member_base.types.member_type import MemberType
 from ..member_base.types.create_member_response import CreateMemberResponse
 from ..member_base.types.state import State
 import datetime as dt
@@ -354,6 +355,7 @@ class MembersClient:
         picture: typing.Optional[str] = OMIT,
         role_binding: typing.Optional[typing.Sequence[RoleName]] = OMIT,
         options: typing.Optional[MemberOptions] = OMIT,
+        type: typing.Optional[MemberType] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> CreateMemberResponse:
         """
@@ -362,7 +364,7 @@ class MembersClient:
         Parameters
         ----------
         name : str
-            Email name to use for this Member. Also used for duplicate detection and default sort order.
+            Name for this Member. For personal accounts this must be a unique email address. For service accounts this can be any unique identifier (e.g. "ci-pipeline"). Used for duplicate detection and default sort order.
 
         secret : str
             Member secret used to logon. Must be at least 8 characters long and fewer than 72 characters. There are no restrictions on the characters used; however, the secret must be sufficiently complex. It cannot be a common word, previously leaked password, or easily guessed sequences like `qwerty` or `12345`.
@@ -381,6 +383,9 @@ class MembersClient:
 
         options : typing.Optional[MemberOptions]
 
+        type : typing.Optional[MemberType]
+            Member type. Defaults to 'personal' if not specified.
+
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
 
@@ -391,7 +396,7 @@ class MembersClient:
         Examples
         --------
         from synqly import SynqlyManagement
-        from synqly.member_base import MemberOptions, Options
+        from synqly.member_base import MemberOptions, MemberType, Options
 
         client = SynqlyManagement(
             token="YOUR_TOKEN",
@@ -408,6 +413,7 @@ class MembersClient:
                 options=[Options.DISABLED],
                 token_ttl="string",
             ),
+            type=MemberType.PERSONAL,
         )
         """
         _response = self._client_wrapper.httpx_client.request(
@@ -421,6 +427,7 @@ class MembersClient:
                 "secret": secret,
                 "role_binding": role_binding,
                 "options": options,
+                "type": type,
             },
             request_options=request_options,
             omit=OMIT,
@@ -542,6 +549,7 @@ class MembersClient:
         expires: dt.datetime,
         pin_expires: dt.datetime,
         role_binding: typing.Sequence[RoleName],
+        type: MemberType,
         name: str,
         created_at: dt.datetime,
         updated_at: dt.datetime,
@@ -577,6 +585,8 @@ class MembersClient:
         role_binding : typing.Sequence[RoleName]
             Roles granted to this member. Tokens inherit this access.
 
+        type : MemberType
+
         name : str
             Human-readable name for this resource
 
@@ -604,7 +614,7 @@ class MembersClient:
         import datetime
 
         from synqly import SynqlyManagement
-        from synqly.member_base import State
+        from synqly.member_base import MemberType, State
 
         client = SynqlyManagement(
             token="YOUR_TOKEN",
@@ -628,6 +638,7 @@ class MembersClient:
                 "2024-01-15 09:30:00+00:00",
             ),
             role_binding=["string"],
+            type=MemberType.PERSONAL,
             name="string",
             created_at=datetime.datetime.fromisoformat(
                 "2024-01-15 09:30:00+00:00",
@@ -652,6 +663,7 @@ class MembersClient:
                 "expires": expires,
                 "pin_expires": pin_expires,
                 "role_binding": role_binding,
+                "type": type,
                 "name": name,
                 "created_at": created_at,
                 "updated_at": updated_at,
@@ -1388,6 +1400,7 @@ class AsyncMembersClient:
         picture: typing.Optional[str] = OMIT,
         role_binding: typing.Optional[typing.Sequence[RoleName]] = OMIT,
         options: typing.Optional[MemberOptions] = OMIT,
+        type: typing.Optional[MemberType] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> CreateMemberResponse:
         """
@@ -1396,7 +1409,7 @@ class AsyncMembersClient:
         Parameters
         ----------
         name : str
-            Email name to use for this Member. Also used for duplicate detection and default sort order.
+            Name for this Member. For personal accounts this must be a unique email address. For service accounts this can be any unique identifier (e.g. "ci-pipeline"). Used for duplicate detection and default sort order.
 
         secret : str
             Member secret used to logon. Must be at least 8 characters long and fewer than 72 characters. There are no restrictions on the characters used; however, the secret must be sufficiently complex. It cannot be a common word, previously leaked password, or easily guessed sequences like `qwerty` or `12345`.
@@ -1415,6 +1428,9 @@ class AsyncMembersClient:
 
         options : typing.Optional[MemberOptions]
 
+        type : typing.Optional[MemberType]
+            Member type. Defaults to 'personal' if not specified.
+
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
 
@@ -1427,7 +1443,7 @@ class AsyncMembersClient:
         import asyncio
 
         from synqly import AsyncSynqlyManagement
-        from synqly.member_base import MemberOptions, Options
+        from synqly.member_base import MemberOptions, MemberType, Options
 
         client = AsyncSynqlyManagement(
             token="YOUR_TOKEN",
@@ -1447,6 +1463,7 @@ class AsyncMembersClient:
                     options=[Options.DISABLED],
                     token_ttl="string",
                 ),
+                type=MemberType.PERSONAL,
             )
 
 
@@ -1463,6 +1480,7 @@ class AsyncMembersClient:
                 "secret": secret,
                 "role_binding": role_binding,
                 "options": options,
+                "type": type,
             },
             request_options=request_options,
             omit=OMIT,
@@ -1584,6 +1602,7 @@ class AsyncMembersClient:
         expires: dt.datetime,
         pin_expires: dt.datetime,
         role_binding: typing.Sequence[RoleName],
+        type: MemberType,
         name: str,
         created_at: dt.datetime,
         updated_at: dt.datetime,
@@ -1619,6 +1638,8 @@ class AsyncMembersClient:
         role_binding : typing.Sequence[RoleName]
             Roles granted to this member. Tokens inherit this access.
 
+        type : MemberType
+
         name : str
             Human-readable name for this resource
 
@@ -1647,7 +1668,7 @@ class AsyncMembersClient:
         import datetime
 
         from synqly import AsyncSynqlyManagement
-        from synqly.member_base import State
+        from synqly.member_base import MemberType, State
 
         client = AsyncSynqlyManagement(
             token="YOUR_TOKEN",
@@ -1674,6 +1695,7 @@ class AsyncMembersClient:
                     "2024-01-15 09:30:00+00:00",
                 ),
                 role_binding=["string"],
+                type=MemberType.PERSONAL,
                 name="string",
                 created_at=datetime.datetime.fromisoformat(
                     "2024-01-15 09:30:00+00:00",
@@ -1701,6 +1723,7 @@ class AsyncMembersClient:
                 "expires": expires,
                 "pin_expires": pin_expires,
                 "role_binding": role_binding,
+                "type": type,
                 "name": name,
                 "created_at": created_at,
                 "updated_at": updated_at,

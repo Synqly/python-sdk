@@ -250,6 +250,7 @@ from .member_base import (
     Member,
     MemberId,
     MemberOptions,
+    MemberType,
     Options,
     State,
 )
@@ -1399,6 +1400,7 @@ __all__ = [
     "Member",
     "MemberId",
     "MemberOptions",
+    "MemberType",
     "MembersActions",
     "MembersPermissions",
     "MethodNotAllowedError",

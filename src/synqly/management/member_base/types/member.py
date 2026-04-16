@@ -7,6 +7,7 @@ import datetime as dt
 import pydantic
 import typing
 from ...role_base.types.role_name import RoleName
+from .member_type import MemberType
 from ...core.pydantic_utilities import IS_PYDANTIC_V2
 
 
@@ -41,6 +42,8 @@ class Member(Base):
     """
     Roles granted to this member. Tokens inherit this access.
     """
+
+    type: MemberType
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(

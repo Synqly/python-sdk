@@ -5,13 +5,14 @@ import pydantic
 import typing
 from ...role_base.types.role_name import RoleName
 from .member_options import MemberOptions
+from .member_type import MemberType
 from ...core.pydantic_utilities import IS_PYDANTIC_V2
 
 
 class CreateMemberRequest(UncheckedBaseModel):
     name: str = pydantic.Field()
     """
-    Email name to use for this Member. Also used for duplicate detection and default sort order.
+    Name for this Member. For personal accounts this must be a unique email address. For service accounts this can be any unique identifier (e.g. "ci-pipeline"). Used for duplicate detection and default sort order.
     """
 
     fullname: typing.Optional[str] = pydantic.Field(default=None)
@@ -40,6 +41,10 @@ class CreateMemberRequest(UncheckedBaseModel):
     """
 
     options: typing.Optional[MemberOptions] = None
+    type: typing.Optional[MemberType] = pydantic.Field(default=None)
+    """
+    Member type. Defaults to 'personal' if not specified.
+    """
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(

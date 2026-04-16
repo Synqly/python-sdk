@@ -353,7 +353,12 @@ class SubOrgsClient:
         Examples
         --------
         from synqly import SynqlyManagement
-        from synqly.member_base import CreateMemberRequest, MemberOptions, Options
+        from synqly.member_base import (
+            CreateMemberRequest,
+            MemberOptions,
+            MemberType,
+            Options,
+        )
 
         client = SynqlyManagement(
             token="YOUR_TOKEN",
@@ -376,6 +381,7 @@ class SubOrgsClient:
                     options=[Options.DISABLED],
                     token_ttl="string",
                 ),
+                type=MemberType.PERSONAL,
             ),
         )
         """
@@ -971,7 +977,12 @@ class AsyncSubOrgsClient:
         import asyncio
 
         from synqly import AsyncSynqlyManagement
-        from synqly.member_base import CreateMemberRequest, MemberOptions, Options
+        from synqly.member_base import (
+            CreateMemberRequest,
+            MemberOptions,
+            MemberType,
+            Options,
+        )
 
         client = AsyncSynqlyManagement(
             token="YOUR_TOKEN",
@@ -997,6 +1008,7 @@ class AsyncSubOrgsClient:
                         options=[Options.DISABLED],
                         token_ttl="string",
                     ),
+                    type=MemberType.PERSONAL,
                 ),
             )
 

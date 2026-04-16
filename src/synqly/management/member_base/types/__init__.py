@@ -6,6 +6,7 @@ from .create_member_response_result import CreateMemberResponseResult
 from .member import Member
 from .member_id import MemberId
 from .member_options import MemberOptions
+from .member_type import MemberType
 from .options import Options
 from .state import State
 
@@ -16,6 +17,7 @@ __all__ = [
     "Member",
     "MemberId",
     "MemberOptions",
+    "MemberType",
     "Options",
     "State",
 ]

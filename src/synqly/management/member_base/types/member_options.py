@@ -10,7 +10,7 @@ from ...core.pydantic_utilities import IS_PYDANTIC_V2
 class MemberOptions(UncheckedBaseModel):
     ttl: typing.Optional[str] = pydantic.Field(default=None)
     """
-    Optional member time-to-live duration. After a member expires, system requires a change password to re-enable member. Minimum 1 day, Maximum 1 year, Default 180 days.
+    Optional member time-to-live duration. After a member expires, system requires a change password to re-enable member. Minimum 1 day, Maximum 10 years. Defaults to 10 years.
     """
 
     options: typing.Optional[typing.List[Options]] = pydantic.Field(default=None)
@@ -20,7 +20,7 @@ class MemberOptions(UncheckedBaseModel):
 
     token_ttl: typing.Optional[str] = pydantic.Field(default=None)
     """
-    Optional token time-to-live duration. Tokens are created for this member with this duration as their TTL. Minimum 10 miniutes, Maximum 1 week, Defaults 1 hour.
+    Optional token time-to-live duration. Tokens are created for this member with this duration as their TTL. Minimum 1 minute. For personal accounts this is a maximum 24 hours and defaults to 1 hour. For service accounts this is a maximum 90 days and defaults to 1 hour.
     """
 
     if IS_PYDANTIC_V2:
