@@ -46,6 +46,7 @@ from .assets_sevco_dataset import AssetsSevcoDataset
 from .tanium_cloud_credential import TaniumCloudCredential
 from .assets_tanium_cloud_dataset import AssetsTaniumCloudDataset
 from .cloud_security_aws_events import CloudSecurityAwsEvents
+from .cloud_security_event_bridge_sqs_queues import CloudSecurityEventBridgeSqsQueues
 from .cloud_security_crowd_strike_dataset import CloudSecurityCrowdStrikeDataset
 from .palo_alto_credential import PaloAltoCredential
 from .upwind_credential import UpwindCredential
@@ -611,7 +612,8 @@ class ProviderConfig_CloudsecurityAwseventbridgesqs(UncheckedBaseModel):
         "cloudsecurity_awseventbridgesqs"
     )
     credential: AwsProviderCredential
-    queue_url: str
+    queue_url: typing.Optional[str] = None
+    queues: typing.Optional[CloudSecurityEventBridgeSqsQueues] = None
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(

@@ -106,6 +106,7 @@ from .cloud_security_crowd_strike import CloudSecurityCrowdStrike
 from .cloud_security_crowd_strike_dataset import CloudSecurityCrowdStrikeDataset
 from .cloud_security_crowd_strike_mock import CloudSecurityCrowdStrikeMock
 from .cloud_security_defender import CloudSecurityDefender
+from .cloud_security_event_bridge_sqs_queues import CloudSecurityEventBridgeSqsQueues
 from .cloud_security_palo_alto import CloudSecurityPaloAlto
 from .cloud_security_upwind import CloudSecurityUpwind
 from .crowd_strike_credential import (
@@ -788,6 +789,7 @@ __all__ = [
     "CloudSecurityCrowdStrikeDataset",
     "CloudSecurityCrowdStrikeMock",
     "CloudSecurityDefender",
+    "CloudSecurityEventBridgeSqsQueues",
     "CloudSecurityPaloAlto",
     "CloudSecurityUpwind",
     "CrowdStrikeCredential",

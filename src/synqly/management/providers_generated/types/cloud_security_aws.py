@@ -12,6 +12,8 @@ from ...core.pydantic_utilities import IS_PYDANTIC_V2
 class CloudSecurityAws(UncheckedBaseModel):
     """
     Configuration for the AWS Cloud Security Provider
+
+    [Configuration guide](https://docs.synqly.com/guides/provider-configuration/aws-cloudsecurity-setup)
     """
 
     credential: AwsProviderCredential = pydantic.Field()

@@ -3,13 +3,16 @@
 from ...core.unchecked_base_model import UncheckedBaseModel
 from .aws_provider_credential import AwsProviderCredential
 import pydantic
-from ...core.pydantic_utilities import IS_PYDANTIC_V2
 import typing
+from .cloud_security_event_bridge_sqs_queues import CloudSecurityEventBridgeSqsQueues
+from ...core.pydantic_utilities import IS_PYDANTIC_V2
 
 
 class CloudSecurityAwsEventBridgeSqs(UncheckedBaseModel):
     """
-    Configuration for the AWS EventBridge SQS Provider that reads security events from an SQS queue populated by EventBridge (e.g. from GuardDuty and SecurityHub).
+    Configuration for the AWS EventBridge SQS Provider that reads operation-specific SQS queues populated by EventBridge.
+
+    [Configuration guide](https://docs.synqly.com/guides/provider-configuration/aws-eventbridge-sqs-setup)
     """
 
     credential: AwsProviderCredential = pydantic.Field()
@@ -17,9 +20,16 @@ class CloudSecurityAwsEventBridgeSqs(UncheckedBaseModel):
     AWS credentials with access to the configured SQS queue.
     """
 
-    queue_url: str = pydantic.Field()
+    queue_url: typing.Optional[str] = pydantic.Field(default=None)
     """
-    URL of the SQS queue where EventBridge sends GuardDuty and SecurityHub events.
+    URL of the SQS queue for compliance findings (Security Hub compliance findings). When both queue_url and queues are present, queues takes precedence for the corresponding operation.
+    """
+
+    queues: typing.Optional[CloudSecurityEventBridgeSqsQueues] = pydantic.Field(
+        default=None
+    )
+    """
+    SQS queue URLs per operation. Each EventBridge pipeline uses a different queue. At least one of queue_url or queues.query_compliance_findings must be set for query_compliance_findings. Add more entries as you enable additional operations.
     """
 
     if IS_PYDANTIC_V2:
