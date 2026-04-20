@@ -101,6 +101,7 @@ class OperationId(str, enum.Enum):
     VULNERABILITIES_CREATE_ASSET = "vulnerabilities_create_asset"
     VULNERABILITIES_CREATE_FINDINGS = "vulnerabilities_create_findings"
     VULNERABILITIES_GET_LABELS = "vulnerabilities_get_labels"
+    VULNERABILITIES_GET_SCAN_ACTIVITIES = "vulnerabilities_get_scan_activities"
     VULNERABILITIES_GET_SCAN_ACTIVITY = "vulnerabilities_get_scan_activity"
     VULNERABILITIES_GET_SCAN_STATUS = "vulnerabilities_get_scan_status"
     VULNERABILITIES_QUERY_ASSETS = "vulnerabilities_query_assets"
@@ -212,6 +213,7 @@ class OperationId(str, enum.Enum):
         vulnerabilities_create_asset: typing.Callable[[], T_Result],
         vulnerabilities_create_findings: typing.Callable[[], T_Result],
         vulnerabilities_get_labels: typing.Callable[[], T_Result],
+        vulnerabilities_get_scan_activities: typing.Callable[[], T_Result],
         vulnerabilities_get_scan_activity: typing.Callable[[], T_Result],
         vulnerabilities_get_scan_status: typing.Callable[[], T_Result],
         vulnerabilities_query_assets: typing.Callable[[], T_Result],
@@ -398,6 +400,8 @@ class OperationId(str, enum.Enum):
             return vulnerabilities_create_findings()
         if self is OperationId.VULNERABILITIES_GET_LABELS:
             return vulnerabilities_get_labels()
+        if self is OperationId.VULNERABILITIES_GET_SCAN_ACTIVITIES:
+            return vulnerabilities_get_scan_activities()
         if self is OperationId.VULNERABILITIES_GET_SCAN_ACTIVITY:
             return vulnerabilities_get_scan_activity()
         if self is OperationId.VULNERABILITIES_GET_SCAN_STATUS:

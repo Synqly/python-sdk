@@ -8,6 +8,7 @@ from .create_asset_status import CreateAssetStatus
 from .create_findings_error import CreateFindingsError
 from .create_findings_request import CreateFindingsRequest
 from .create_findings_response import CreateFindingsResponse
+from .get_scan_activities_response import GetScanActivitiesResponse
 from .get_scan_activity_response import GetScanActivityResponse
 from .get_scan_status_response import GetScanStatusResponse
 from .nucleus_finding_state import NucleusFindingState
@@ -40,6 +41,7 @@ __all__ = [
     "CreateFindingsError",
     "CreateFindingsRequest",
     "CreateFindingsResponse",
+    "GetScanActivitiesResponse",
     "GetScanActivityResponse",
     "GetScanStatusResponse",
     "NucleusFindingState",
