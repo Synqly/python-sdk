@@ -115,6 +115,8 @@ from .ticketing_pagerduty_dataset import TicketingPagerdutyDataset
 from .torq_credential import TorqCredential
 from .zendesk_credential import ZendeskCredential
 from .vulnerabilities_crowd_strike_dataset import VulnerabilitiesCrowdStrikeDataset
+from .horizon_3_credential import Horizon3Credential
+from .horizon_3_region import Horizon3Region
 from .nucleus_credential import NucleusCredential
 from .vulnerabilities_qualys_cloud_dataset import VulnerabilitiesQualysCloudDataset
 from .vulnerabilities_rapid_7_insight_cloud_dataset import (
@@ -2071,6 +2073,22 @@ class ProviderConfig_VulnerabilitiesDefender(UncheckedBaseModel):
             extra = pydantic.Extra.allow
 
 
+class ProviderConfig_VulnerabilitiesHorizon3(UncheckedBaseModel):
+    type: typing.Literal["vulnerabilities_horizon3"] = "vulnerabilities_horizon3"
+    credential: Horizon3Credential
+    region: Horizon3Region
+
+    if IS_PYDANTIC_V2:
+        model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(
+            extra="allow"
+        )  # type: ignore # Pydantic v2
+    else:
+
+        class Config:
+            smart_union = True
+            extra = pydantic.Extra.allow
+
+
 class ProviderConfig_VulnerabilitiesNucleus(UncheckedBaseModel):
     type: typing.Literal["vulnerabilities_nucleus"] = "vulnerabilities_nucleus"
     credential: NucleusCredential
@@ -2361,6 +2379,7 @@ ProviderConfig = typing_extensions.Annotated[
         ProviderConfig_VulnerabilitiesCrowdstrike,
         ProviderConfig_VulnerabilitiesCrowdstrikeMock,
         ProviderConfig_VulnerabilitiesDefender,
+        ProviderConfig_VulnerabilitiesHorizon3,
         ProviderConfig_VulnerabilitiesNucleus,
         ProviderConfig_VulnerabilitiesQualysCloud,
         ProviderConfig_VulnerabilitiesQualysCloudMock,

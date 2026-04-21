@@ -337,6 +337,8 @@ from .vulnerabilities import (
     UploadScanResponse,
     UploadScanStatus,
     User,
+    VulnerabilitiesFinding,
+    VulnerabilitiesQueryScanFindingsResponse,
     VulnerabilitySeverityFilterValue,
     VulnerabilityStateFilterValue,
 )
@@ -619,6 +621,8 @@ __all__ = [
     "UploadScanStatus",
     "User",
     "UserId",
+    "VulnerabilitiesFinding",
+    "VulnerabilitiesQueryScanFindingsResponse",
     "VulnerabilitySeverityFilterValue",
     "VulnerabilityStateFilterValue",
     "WebhookEvent",

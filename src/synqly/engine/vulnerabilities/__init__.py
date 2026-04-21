@@ -28,6 +28,8 @@ from .types import (
     UploadScanResponse,
     UploadScanStatus,
     User,
+    VulnerabilitiesFinding,
+    VulnerabilitiesQueryScanFindingsResponse,
     VulnerabilitySeverityFilterValue,
     VulnerabilityStateFilterValue,
 )
@@ -60,6 +62,8 @@ __all__ = [
     "UploadScanResponse",
     "UploadScanStatus",
     "User",
+    "VulnerabilitiesFinding",
+    "VulnerabilitiesQueryScanFindingsResponse",
     "VulnerabilitySeverityFilterValue",
     "VulnerabilityStateFilterValue",
 ]

@@ -228,6 +228,12 @@ from .hcl_app_scan_on_cloud_credential import (
     HclAppScanOnCloudCredential_OAuthClientId,
 )
 from .hcl_app_scan_on_cloud_url import HclAppScanOnCloudUrl
+from .horizon_3_credential import (
+    Horizon3Credential,
+    Horizon3Credential_Token,
+    Horizon3Credential_TokenId,
+)
+from .horizon_3_region import Horizon3Region
 from .http_ingest import HttpIngest
 from .http_receiver_auth_config import (
     HttpReceiverAuthConfig,
@@ -482,6 +488,7 @@ from .provider_config import (
     ProviderConfig_VulnerabilitiesCrowdstrike,
     ProviderConfig_VulnerabilitiesCrowdstrikeMock,
     ProviderConfig_VulnerabilitiesDefender,
+    ProviderConfig_VulnerabilitiesHorizon3,
     ProviderConfig_VulnerabilitiesNucleus,
     ProviderConfig_VulnerabilitiesQualysCloud,
     ProviderConfig_VulnerabilitiesQualysCloudMock,
@@ -680,6 +687,7 @@ from .vulnerabilities_crowd_strike import VulnerabilitiesCrowdStrike
 from .vulnerabilities_crowd_strike_dataset import VulnerabilitiesCrowdStrikeDataset
 from .vulnerabilities_crowd_strike_mock import VulnerabilitiesCrowdStrikeMock
 from .vulnerabilities_defender import VulnerabilitiesDefender
+from .vulnerabilities_horizon_3 import VulnerabilitiesHorizon3
 from .vulnerabilities_nucleus import VulnerabilitiesNucleus
 from .vulnerabilities_qualys_cloud import VulnerabilitiesQualysCloud
 from .vulnerabilities_qualys_cloud_dataset import VulnerabilitiesQualysCloudDataset
@@ -877,6 +885,10 @@ __all__ = [
     "HclAppScanOnCloudCredential_OAuthClient",
     "HclAppScanOnCloudCredential_OAuthClientId",
     "HclAppScanOnCloudUrl",
+    "Horizon3Credential",
+    "Horizon3Credential_Token",
+    "Horizon3Credential_TokenId",
+    "Horizon3Region",
     "HttpIngest",
     "HttpReceiverAuthConfig",
     "HttpReceiverAuthConfig_BasicConfig",
@@ -1089,6 +1101,7 @@ __all__ = [
     "ProviderConfig_VulnerabilitiesCrowdstrike",
     "ProviderConfig_VulnerabilitiesCrowdstrikeMock",
     "ProviderConfig_VulnerabilitiesDefender",
+    "ProviderConfig_VulnerabilitiesHorizon3",
     "ProviderConfig_VulnerabilitiesNucleus",
     "ProviderConfig_VulnerabilitiesQualysCloud",
     "ProviderConfig_VulnerabilitiesQualysCloudMock",
@@ -1237,6 +1250,7 @@ __all__ = [
     "VulnerabilitiesCrowdStrikeDataset",
     "VulnerabilitiesCrowdStrikeMock",
     "VulnerabilitiesDefender",
+    "VulnerabilitiesHorizon3",
     "VulnerabilitiesNucleus",
     "VulnerabilitiesQualysCloud",
     "VulnerabilitiesQualysCloudDataset",

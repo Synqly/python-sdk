@@ -585,6 +585,11 @@ class ProviderConfigId(str, enum.Enum):
     Microsoft Defender for Endpoint
     """
 
+    VULNERABILITIES_HORIZON_3 = "vulnerabilities_horizon3"
+    """
+    NodeZero
+    """
+
     VULNERABILITIES_NUCLEUS = "vulnerabilities_nucleus"
     """
     Nucleus Vulnerability Management
@@ -769,6 +774,7 @@ class ProviderConfigId(str, enum.Enum):
         vulnerabilities_crowd_strike: typing.Callable[[], T_Result],
         vulnerabilities_crowd_strike_mock: typing.Callable[[], T_Result],
         vulnerabilities_defender: typing.Callable[[], T_Result],
+        vulnerabilities_horizon_3: typing.Callable[[], T_Result],
         vulnerabilities_nucleus: typing.Callable[[], T_Result],
         vulnerabilities_qualys_cloud: typing.Callable[[], T_Result],
         vulnerabilities_qualys_cloud_mock: typing.Callable[[], T_Result],
@@ -1010,6 +1016,8 @@ class ProviderConfigId(str, enum.Enum):
             return vulnerabilities_crowd_strike_mock()
         if self is ProviderConfigId.VULNERABILITIES_DEFENDER:
             return vulnerabilities_defender()
+        if self is ProviderConfigId.VULNERABILITIES_HORIZON_3:
+            return vulnerabilities_horizon_3()
         if self is ProviderConfigId.VULNERABILITIES_NUCLEUS:
             return vulnerabilities_nucleus()
         if self is ProviderConfigId.VULNERABILITIES_QUALYS_CLOUD:

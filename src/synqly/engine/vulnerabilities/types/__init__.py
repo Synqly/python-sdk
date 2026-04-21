@@ -29,6 +29,10 @@ from .upload_scan_request import UploadScanRequest
 from .upload_scan_response import UploadScanResponse
 from .upload_scan_status import UploadScanStatus
 from .user import User
+from .vulnerabilities_finding import VulnerabilitiesFinding
+from .vulnerabilities_query_scan_findings_response import (
+    VulnerabilitiesQueryScanFindingsResponse,
+)
 from .vulnerability_severity_filter_value import VulnerabilitySeverityFilterValue
 from .vulnerability_state_filter_value import VulnerabilityStateFilterValue
 
@@ -60,6 +64,8 @@ __all__ = [
     "UploadScanResponse",
     "UploadScanStatus",
     "User",
+    "VulnerabilitiesFinding",
+    "VulnerabilitiesQueryScanFindingsResponse",
     "VulnerabilitySeverityFilterValue",
     "VulnerabilityStateFilterValue",
 ]

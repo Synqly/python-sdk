@@ -37,6 +37,9 @@ from .types.get_scan_activities_response import GetScanActivitiesResponse
 from .types.upload_scan_response import UploadScanResponse
 from .types.get_scan_status_response import GetScanStatusResponse
 from ..assets.types.get_labels_response import GetLabelsResponse
+from .types.vulnerabilities_query_scan_findings_response import (
+    VulnerabilitiesQueryScanFindingsResponse,
+)
 from ..core.client_wrapper import AsyncClientWrapper
 
 # this is used as the default value for optional parameters
@@ -3242,6 +3245,213 @@ class VulnerabilitiesClient:
                 )
             if _response.status_code == 400:
                 raise BadRequestError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            _response_json = _response.json()
+        except JSONDecodeError:
+            raise ApiError(status_code=_response.status_code, body=_response.text)
+        raise ApiError(status_code=_response.status_code, body=_response_json)
+
+    def query_scan_findings(
+        self,
+        scan_id: str,
+        *,
+        meta: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
+        limit: typing.Optional[int] = None,
+        filter: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
+        cursor: typing.Optional[str] = None,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> VulnerabilitiesQueryScanFindingsResponse:
+        """
+        Query findings for a scan
+
+        Parameters
+        ----------
+        scan_id : str
+            ID of the scan to query findings for. Use the `query_scans` API to find available scan IDs.
+
+        meta : typing.Optional[typing.Union[str, typing.Sequence[str]]]
+            Add metadata to the response by invoking meta functions. Documentation for meta functions is available at https://docs.synqly.com/api-reference/meta-functions. Not all meta function are available at every endpoint.
+
+        limit : typing.Optional[int]
+            Number of findings to return. Defaults to 50 with a maximum of 5000. If a provider has a maximum limit lower than 5000, the provider's maximum limit will be used instead.
+
+        filter : typing.Optional[typing.Union[str, typing.Sequence[str]]]
+            Filter results by this query. For more information on filtering, refer to our Filtering Guide. Defaults to no filter. If used more than once, the queries are ANDed together.
+
+        cursor : typing.Optional[str]
+            Start search from cursor position.
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        VulnerabilitiesQueryScanFindingsResponse
+
+        Examples
+        --------
+        from synqly import SynqlyEngine
+
+        client = SynqlyEngine(
+            token="YOUR_TOKEN",
+        )
+        client.vulnerabilities.query_scan_findings(
+            scan_id="string",
+            meta="string",
+            limit=1,
+            filter="string",
+            cursor="string",
+        )
+        """
+        _response = self._client_wrapper.httpx_client.request(
+            f"v1/vulnerabilities/scans/{jsonable_encoder(scan_id)}/findings",
+            method="GET",
+            params={
+                "meta": meta,
+                "limit": limit,
+                "filter": filter,
+                "cursor": cursor,
+            },
+            request_options=request_options,
+        )
+        try:
+            if 200 <= _response.status_code < 300:
+                return typing.cast(
+                    VulnerabilitiesQueryScanFindingsResponse,
+                    construct_type(
+                        type_=VulnerabilitiesQueryScanFindingsResponse,  # type: ignore
+                        object_=_response.json(),
+                    ),
+                )
+            if _response.status_code == 400:
+                raise BadRequestError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 401:
+                raise UnauthorizedError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 403:
+                raise ForbiddenError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 404:
+                raise NotFoundError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 405:
+                raise MethodNotAllowedError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 409:
+                raise ConflictError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 415:
+                raise UnsupportedMediaTypeError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 429:
+                raise TooManyRequestsError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 500:
+                raise InternalServerError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 501:
+                raise NotImplementedError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 502:
+                raise BadGatewayError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 503:
+                raise ServiceUnavailableError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 504:
+                raise GatewayTimeoutError(
                     typing.cast(
                         Problem,
                         construct_type(
@@ -6547,6 +6757,221 @@ class AsyncVulnerabilitiesClient:
                 )
             if _response.status_code == 400:
                 raise BadRequestError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            _response_json = _response.json()
+        except JSONDecodeError:
+            raise ApiError(status_code=_response.status_code, body=_response.text)
+        raise ApiError(status_code=_response.status_code, body=_response_json)
+
+    async def query_scan_findings(
+        self,
+        scan_id: str,
+        *,
+        meta: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
+        limit: typing.Optional[int] = None,
+        filter: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
+        cursor: typing.Optional[str] = None,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> VulnerabilitiesQueryScanFindingsResponse:
+        """
+        Query findings for a scan
+
+        Parameters
+        ----------
+        scan_id : str
+            ID of the scan to query findings for. Use the `query_scans` API to find available scan IDs.
+
+        meta : typing.Optional[typing.Union[str, typing.Sequence[str]]]
+            Add metadata to the response by invoking meta functions. Documentation for meta functions is available at https://docs.synqly.com/api-reference/meta-functions. Not all meta function are available at every endpoint.
+
+        limit : typing.Optional[int]
+            Number of findings to return. Defaults to 50 with a maximum of 5000. If a provider has a maximum limit lower than 5000, the provider's maximum limit will be used instead.
+
+        filter : typing.Optional[typing.Union[str, typing.Sequence[str]]]
+            Filter results by this query. For more information on filtering, refer to our Filtering Guide. Defaults to no filter. If used more than once, the queries are ANDed together.
+
+        cursor : typing.Optional[str]
+            Start search from cursor position.
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        VulnerabilitiesQueryScanFindingsResponse
+
+        Examples
+        --------
+        import asyncio
+
+        from synqly import AsyncSynqlyEngine
+
+        client = AsyncSynqlyEngine(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.vulnerabilities.query_scan_findings(
+                scan_id="string",
+                meta="string",
+                limit=1,
+                filter="string",
+                cursor="string",
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._client_wrapper.httpx_client.request(
+            f"v1/vulnerabilities/scans/{jsonable_encoder(scan_id)}/findings",
+            method="GET",
+            params={
+                "meta": meta,
+                "limit": limit,
+                "filter": filter,
+                "cursor": cursor,
+            },
+            request_options=request_options,
+        )
+        try:
+            if 200 <= _response.status_code < 300:
+                return typing.cast(
+                    VulnerabilitiesQueryScanFindingsResponse,
+                    construct_type(
+                        type_=VulnerabilitiesQueryScanFindingsResponse,  # type: ignore
+                        object_=_response.json(),
+                    ),
+                )
+            if _response.status_code == 400:
+                raise BadRequestError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 401:
+                raise UnauthorizedError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 403:
+                raise ForbiddenError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 404:
+                raise NotFoundError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 405:
+                raise MethodNotAllowedError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 409:
+                raise ConflictError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 415:
+                raise UnsupportedMediaTypeError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 429:
+                raise TooManyRequestsError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 500:
+                raise InternalServerError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 501:
+                raise NotImplementedError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 502:
+                raise BadGatewayError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 503:
+                raise ServiceUnavailableError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 504:
+                raise GatewayTimeoutError(
                     typing.cast(
                         Problem,
                         construct_type(
