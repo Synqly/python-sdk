@@ -1625,7 +1625,7 @@ class VulnerabilitiesClient:
         asset: Asset,
         source_name: str,
         request_options: typing.Optional[RequestOptions] = None,
-    ) -> Asset:
+    ) -> typing.Optional[Asset]:
         """
         update an asset in a vulnerability scanning system
 
@@ -1645,7 +1645,7 @@ class VulnerabilitiesClient:
 
         Returns
         -------
-        Asset
+        typing.Optional[Asset]
 
         Examples
         --------
@@ -1967,9 +1967,9 @@ class VulnerabilitiesClient:
         try:
             if 200 <= _response.status_code < 300:
                 return typing.cast(
-                    Asset,
+                    typing.Optional[Asset],
                     construct_type(
-                        type_=Asset,  # type: ignore
+                        type_=typing.Optional[Asset],  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -5083,7 +5083,7 @@ class AsyncVulnerabilitiesClient:
         asset: Asset,
         source_name: str,
         request_options: typing.Optional[RequestOptions] = None,
-    ) -> Asset:
+    ) -> typing.Optional[Asset]:
         """
         update an asset in a vulnerability scanning system
 
@@ -5103,7 +5103,7 @@ class AsyncVulnerabilitiesClient:
 
         Returns
         -------
-        Asset
+        typing.Optional[Asset]
 
         Examples
         --------
@@ -5432,9 +5432,9 @@ class AsyncVulnerabilitiesClient:
         try:
             if 200 <= _response.status_code < 300:
                 return typing.cast(
-                    Asset,
+                    typing.Optional[Asset],
                     construct_type(
-                        type_=Asset,  # type: ignore
+                        type_=typing.Optional[Asset],  # type: ignore
                         object_=_response.json(),
                     ),
                 )
