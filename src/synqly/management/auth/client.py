@@ -20,6 +20,14 @@ from ..common.errors.internal_server_error import InternalServerError
 from json.decoder import JSONDecodeError
 from ..core.api_error import ApiError
 from ..auth_base.types.change_password_response import ChangePasswordResponse
+from .types.create_sso_configuration import CreateSsoConfiguration
+from .types.create_sso_response import CreateSsoResponse
+from .types.list_sso_response import ListSsoResponse
+from ..auth_base.types.sso_configuration_id import SsoConfigurationId
+from .types.get_sso_response import GetSsoResponse
+from .types.update_sso_configuration import UpdateSsoConfiguration
+import datetime as dt
+from .types.update_sso_response import UpdateSsoResponse
 from ..core.client_wrapper import AsyncClientWrapper
 
 # this is used as the default value for optional parameters
@@ -430,6 +438,579 @@ class AuthClient:
                 )
             if _response.status_code == 415:
                 raise UnsupportedMediaTypeError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 429:
+                raise TooManyRequestsError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 500:
+                raise InternalServerError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            _response_json = _response.json()
+        except JSONDecodeError:
+            raise ApiError(status_code=_response.status_code, body=_response.text)
+        raise ApiError(status_code=_response.status_code, body=_response_json)
+
+    def create_sso(
+        self,
+        *,
+        fullname: str,
+        config: CreateSsoConfiguration,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> CreateSsoResponse:
+        """
+        Configure an identity provider for Single Sign-On (SSO) with the organization.
+        Returns the created resource with its assigned SSO configuration ID.
+
+        Parameters
+        ----------
+        fullname : str
+            Display name for the configuration, used on authentication screens.
+            **Note:** To avoid confusion this name must be unique, however it cannot be used
+            as an identifier in API calls.
+
+        config : CreateSsoConfiguration
+            Identity provider configuration. The type discriminator determines the SSO provider type.
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        CreateSsoResponse
+
+        Examples
+        --------
+        from synqly import SynqlyManagement
+        from synqly.auth import CreateSsoConfiguration_Oidc
+
+        client = SynqlyManagement(
+            token="YOUR_TOKEN",
+        )
+        client.auth.create_sso(
+            fullname="string",
+            config=CreateSsoConfiguration_Oidc(
+                issuer_url="string",
+                client_id="string",
+                client_secret="string",
+            ),
+        )
+        """
+        _response = self._client_wrapper.httpx_client.request(
+            "v1/auth/sso",
+            method="POST",
+            json={
+                "fullname": fullname,
+                "config": config,
+            },
+            request_options=request_options,
+            omit=OMIT,
+        )
+        try:
+            if 200 <= _response.status_code < 300:
+                return typing.cast(
+                    CreateSsoResponse,
+                    construct_type(
+                        type_=CreateSsoResponse,  # type: ignore
+                        object_=_response.json(),
+                    ),
+                )
+            if _response.status_code == 400:
+                raise BadRequestError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 401:
+                raise UnauthorizedError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 403:
+                raise ForbiddenError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 409:
+                raise ConflictError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 415:
+                raise UnsupportedMediaTypeError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 429:
+                raise TooManyRequestsError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 500:
+                raise InternalServerError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            _response_json = _response.json()
+        except JSONDecodeError:
+            raise ApiError(status_code=_response.status_code, body=_response.text)
+        raise ApiError(status_code=_response.status_code, body=_response_json)
+
+    def list_sso(
+        self, *, request_options: typing.Optional[RequestOptions] = None
+    ) -> ListSsoResponse:
+        """
+        List all Single Sign-On (SSO) configurations for the organization.
+        Client secrets are not included.
+
+        Parameters
+        ----------
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        ListSsoResponse
+
+        Examples
+        --------
+        from synqly import SynqlyManagement
+
+        client = SynqlyManagement(
+            token="YOUR_TOKEN",
+        )
+        client.auth.list_sso()
+        """
+        _response = self._client_wrapper.httpx_client.request(
+            "v1/auth/sso",
+            method="GET",
+            request_options=request_options,
+        )
+        try:
+            if 200 <= _response.status_code < 300:
+                return typing.cast(
+                    ListSsoResponse,
+                    construct_type(
+                        type_=ListSsoResponse,  # type: ignore
+                        object_=_response.json(),
+                    ),
+                )
+            if _response.status_code == 401:
+                raise UnauthorizedError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 403:
+                raise ForbiddenError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 429:
+                raise TooManyRequestsError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 500:
+                raise InternalServerError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            _response_json = _response.json()
+        except JSONDecodeError:
+            raise ApiError(status_code=_response.status_code, body=_response.text)
+        raise ApiError(status_code=_response.status_code, body=_response_json)
+
+    def get_sso(
+        self,
+        sso_id: SsoConfigurationId,
+        *,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> GetSsoResponse:
+        """
+        Retrieve a specific SSO configuration. The client secret is not included.
+
+        Parameters
+        ----------
+        sso_id : SsoConfigurationId
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        GetSsoResponse
+
+        Examples
+        --------
+        from synqly import SynqlyManagement
+
+        client = SynqlyManagement(
+            token="YOUR_TOKEN",
+        )
+        client.auth.get_sso(
+            sso_id="string",
+        )
+        """
+        _response = self._client_wrapper.httpx_client.request(
+            f"v1/auth/sso/{jsonable_encoder(sso_id)}",
+            method="GET",
+            request_options=request_options,
+        )
+        try:
+            if 200 <= _response.status_code < 300:
+                return typing.cast(
+                    GetSsoResponse,
+                    construct_type(
+                        type_=GetSsoResponse,  # type: ignore
+                        object_=_response.json(),
+                    ),
+                )
+            if _response.status_code == 401:
+                raise UnauthorizedError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 403:
+                raise ForbiddenError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 404:
+                raise NotFoundError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 429:
+                raise TooManyRequestsError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 500:
+                raise InternalServerError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            _response_json = _response.json()
+        except JSONDecodeError:
+            raise ApiError(status_code=_response.status_code, body=_response.text)
+        raise ApiError(status_code=_response.status_code, body=_response_json)
+
+    def update_sso(
+        self,
+        sso_id: SsoConfigurationId,
+        *,
+        fullname: str,
+        config: UpdateSsoConfiguration,
+        updated_at: typing.Optional[dt.datetime] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> UpdateSsoResponse:
+        """
+        Update the SSO configuration by ID. This is a full replacement of the
+        configuration. The `updated_at` field is used for optimistic locking
+        to prevent concurrent updates.
+
+        Parameters
+        ----------
+        sso_id : SsoConfigurationId
+
+        fullname : str
+            Display name for the configuration, used on authentication screens.
+            **Note:** To avoid confusion this name must be unique, however it cannot be used
+            as an identifier in API calls.
+
+        config : UpdateSsoConfiguration
+            Identity provider configuration. The type discriminator determines the SSO provider type.
+
+        updated_at : typing.Optional[dt.datetime]
+            Used for optimistic locking to prevent concurrent updates.
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        UpdateSsoResponse
+
+        Examples
+        --------
+        import datetime
+
+        from synqly import SynqlyManagement
+        from synqly.auth import UpdateSsoConfiguration_Oidc
+
+        client = SynqlyManagement(
+            token="YOUR_TOKEN",
+        )
+        client.auth.update_sso(
+            sso_id="string",
+            fullname="string",
+            config=UpdateSsoConfiguration_Oidc(
+                issuer_url="string",
+                client_id="string",
+                client_secret="string",
+            ),
+            updated_at=datetime.datetime.fromisoformat(
+                "2024-01-15 09:30:00+00:00",
+            ),
+        )
+        """
+        _response = self._client_wrapper.httpx_client.request(
+            f"v1/auth/sso/{jsonable_encoder(sso_id)}",
+            method="PUT",
+            json={
+                "fullname": fullname,
+                "config": config,
+                "updated_at": updated_at,
+            },
+            request_options=request_options,
+            omit=OMIT,
+        )
+        try:
+            if 200 <= _response.status_code < 300:
+                return typing.cast(
+                    UpdateSsoResponse,
+                    construct_type(
+                        type_=UpdateSsoResponse,  # type: ignore
+                        object_=_response.json(),
+                    ),
+                )
+            if _response.status_code == 400:
+                raise BadRequestError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 401:
+                raise UnauthorizedError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 403:
+                raise ForbiddenError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 404:
+                raise NotFoundError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 415:
+                raise UnsupportedMediaTypeError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 429:
+                raise TooManyRequestsError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 500:
+                raise InternalServerError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            _response_json = _response.json()
+        except JSONDecodeError:
+            raise ApiError(status_code=_response.status_code, body=_response.text)
+        raise ApiError(status_code=_response.status_code, body=_response_json)
+
+    def delete_sso(
+        self,
+        sso_id: SsoConfigurationId,
+        *,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> None:
+        """
+        Remove a specific Single Sign-On (SSO) configuration. This may disable signing on
+        with the identity provider defined in the configuration, and can result in members
+        linked to that identity provider no longer being able to access the Organization.
+
+        Parameters
+        ----------
+        sso_id : SsoConfigurationId
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        None
+
+        Examples
+        --------
+        from synqly import SynqlyManagement
+
+        client = SynqlyManagement(
+            token="YOUR_TOKEN",
+        )
+        client.auth.delete_sso(
+            sso_id="string",
+        )
+        """
+        _response = self._client_wrapper.httpx_client.request(
+            f"v1/auth/sso/{jsonable_encoder(sso_id)}",
+            method="DELETE",
+            request_options=request_options,
+        )
+        try:
+            if 200 <= _response.status_code < 300:
+                return
+            if _response.status_code == 401:
+                raise UnauthorizedError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 403:
+                raise ForbiddenError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 404:
+                raise NotFoundError(
                     typing.cast(
                         Problem,
                         construct_type(
@@ -892,6 +1473,618 @@ class AsyncAuthClient:
                 )
             if _response.status_code == 415:
                 raise UnsupportedMediaTypeError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 429:
+                raise TooManyRequestsError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 500:
+                raise InternalServerError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            _response_json = _response.json()
+        except JSONDecodeError:
+            raise ApiError(status_code=_response.status_code, body=_response.text)
+        raise ApiError(status_code=_response.status_code, body=_response_json)
+
+    async def create_sso(
+        self,
+        *,
+        fullname: str,
+        config: CreateSsoConfiguration,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> CreateSsoResponse:
+        """
+        Configure an identity provider for Single Sign-On (SSO) with the organization.
+        Returns the created resource with its assigned SSO configuration ID.
+
+        Parameters
+        ----------
+        fullname : str
+            Display name for the configuration, used on authentication screens.
+            **Note:** To avoid confusion this name must be unique, however it cannot be used
+            as an identifier in API calls.
+
+        config : CreateSsoConfiguration
+            Identity provider configuration. The type discriminator determines the SSO provider type.
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        CreateSsoResponse
+
+        Examples
+        --------
+        import asyncio
+
+        from synqly import AsyncSynqlyManagement
+        from synqly.auth import CreateSsoConfiguration_Oidc
+
+        client = AsyncSynqlyManagement(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.auth.create_sso(
+                fullname="string",
+                config=CreateSsoConfiguration_Oidc(
+                    issuer_url="string",
+                    client_id="string",
+                    client_secret="string",
+                ),
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._client_wrapper.httpx_client.request(
+            "v1/auth/sso",
+            method="POST",
+            json={
+                "fullname": fullname,
+                "config": config,
+            },
+            request_options=request_options,
+            omit=OMIT,
+        )
+        try:
+            if 200 <= _response.status_code < 300:
+                return typing.cast(
+                    CreateSsoResponse,
+                    construct_type(
+                        type_=CreateSsoResponse,  # type: ignore
+                        object_=_response.json(),
+                    ),
+                )
+            if _response.status_code == 400:
+                raise BadRequestError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 401:
+                raise UnauthorizedError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 403:
+                raise ForbiddenError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 409:
+                raise ConflictError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 415:
+                raise UnsupportedMediaTypeError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 429:
+                raise TooManyRequestsError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 500:
+                raise InternalServerError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            _response_json = _response.json()
+        except JSONDecodeError:
+            raise ApiError(status_code=_response.status_code, body=_response.text)
+        raise ApiError(status_code=_response.status_code, body=_response_json)
+
+    async def list_sso(
+        self, *, request_options: typing.Optional[RequestOptions] = None
+    ) -> ListSsoResponse:
+        """
+        List all Single Sign-On (SSO) configurations for the organization.
+        Client secrets are not included.
+
+        Parameters
+        ----------
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        ListSsoResponse
+
+        Examples
+        --------
+        import asyncio
+
+        from synqly import AsyncSynqlyManagement
+
+        client = AsyncSynqlyManagement(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.auth.list_sso()
+
+
+        asyncio.run(main())
+        """
+        _response = await self._client_wrapper.httpx_client.request(
+            "v1/auth/sso",
+            method="GET",
+            request_options=request_options,
+        )
+        try:
+            if 200 <= _response.status_code < 300:
+                return typing.cast(
+                    ListSsoResponse,
+                    construct_type(
+                        type_=ListSsoResponse,  # type: ignore
+                        object_=_response.json(),
+                    ),
+                )
+            if _response.status_code == 401:
+                raise UnauthorizedError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 403:
+                raise ForbiddenError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 429:
+                raise TooManyRequestsError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 500:
+                raise InternalServerError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            _response_json = _response.json()
+        except JSONDecodeError:
+            raise ApiError(status_code=_response.status_code, body=_response.text)
+        raise ApiError(status_code=_response.status_code, body=_response_json)
+
+    async def get_sso(
+        self,
+        sso_id: SsoConfigurationId,
+        *,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> GetSsoResponse:
+        """
+        Retrieve a specific SSO configuration. The client secret is not included.
+
+        Parameters
+        ----------
+        sso_id : SsoConfigurationId
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        GetSsoResponse
+
+        Examples
+        --------
+        import asyncio
+
+        from synqly import AsyncSynqlyManagement
+
+        client = AsyncSynqlyManagement(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.auth.get_sso(
+                sso_id="string",
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._client_wrapper.httpx_client.request(
+            f"v1/auth/sso/{jsonable_encoder(sso_id)}",
+            method="GET",
+            request_options=request_options,
+        )
+        try:
+            if 200 <= _response.status_code < 300:
+                return typing.cast(
+                    GetSsoResponse,
+                    construct_type(
+                        type_=GetSsoResponse,  # type: ignore
+                        object_=_response.json(),
+                    ),
+                )
+            if _response.status_code == 401:
+                raise UnauthorizedError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 403:
+                raise ForbiddenError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 404:
+                raise NotFoundError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 429:
+                raise TooManyRequestsError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 500:
+                raise InternalServerError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            _response_json = _response.json()
+        except JSONDecodeError:
+            raise ApiError(status_code=_response.status_code, body=_response.text)
+        raise ApiError(status_code=_response.status_code, body=_response_json)
+
+    async def update_sso(
+        self,
+        sso_id: SsoConfigurationId,
+        *,
+        fullname: str,
+        config: UpdateSsoConfiguration,
+        updated_at: typing.Optional[dt.datetime] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> UpdateSsoResponse:
+        """
+        Update the SSO configuration by ID. This is a full replacement of the
+        configuration. The `updated_at` field is used for optimistic locking
+        to prevent concurrent updates.
+
+        Parameters
+        ----------
+        sso_id : SsoConfigurationId
+
+        fullname : str
+            Display name for the configuration, used on authentication screens.
+            **Note:** To avoid confusion this name must be unique, however it cannot be used
+            as an identifier in API calls.
+
+        config : UpdateSsoConfiguration
+            Identity provider configuration. The type discriminator determines the SSO provider type.
+
+        updated_at : typing.Optional[dt.datetime]
+            Used for optimistic locking to prevent concurrent updates.
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        UpdateSsoResponse
+
+        Examples
+        --------
+        import asyncio
+        import datetime
+
+        from synqly import AsyncSynqlyManagement
+        from synqly.auth import UpdateSsoConfiguration_Oidc
+
+        client = AsyncSynqlyManagement(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.auth.update_sso(
+                sso_id="string",
+                fullname="string",
+                config=UpdateSsoConfiguration_Oidc(
+                    issuer_url="string",
+                    client_id="string",
+                    client_secret="string",
+                ),
+                updated_at=datetime.datetime.fromisoformat(
+                    "2024-01-15 09:30:00+00:00",
+                ),
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._client_wrapper.httpx_client.request(
+            f"v1/auth/sso/{jsonable_encoder(sso_id)}",
+            method="PUT",
+            json={
+                "fullname": fullname,
+                "config": config,
+                "updated_at": updated_at,
+            },
+            request_options=request_options,
+            omit=OMIT,
+        )
+        try:
+            if 200 <= _response.status_code < 300:
+                return typing.cast(
+                    UpdateSsoResponse,
+                    construct_type(
+                        type_=UpdateSsoResponse,  # type: ignore
+                        object_=_response.json(),
+                    ),
+                )
+            if _response.status_code == 400:
+                raise BadRequestError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 401:
+                raise UnauthorizedError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 403:
+                raise ForbiddenError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 404:
+                raise NotFoundError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 415:
+                raise UnsupportedMediaTypeError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 429:
+                raise TooManyRequestsError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 500:
+                raise InternalServerError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            _response_json = _response.json()
+        except JSONDecodeError:
+            raise ApiError(status_code=_response.status_code, body=_response.text)
+        raise ApiError(status_code=_response.status_code, body=_response_json)
+
+    async def delete_sso(
+        self,
+        sso_id: SsoConfigurationId,
+        *,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> None:
+        """
+        Remove a specific Single Sign-On (SSO) configuration. This may disable signing on
+        with the identity provider defined in the configuration, and can result in members
+        linked to that identity provider no longer being able to access the Organization.
+
+        Parameters
+        ----------
+        sso_id : SsoConfigurationId
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        None
+
+        Examples
+        --------
+        import asyncio
+
+        from synqly import AsyncSynqlyManagement
+
+        client = AsyncSynqlyManagement(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.auth.delete_sso(
+                sso_id="string",
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._client_wrapper.httpx_client.request(
+            f"v1/auth/sso/{jsonable_encoder(sso_id)}",
+            method="DELETE",
+            request_options=request_options,
+        )
+        try:
+            if 200 <= _response.status_code < 300:
+                return
+            if _response.status_code == 401:
+                raise UnauthorizedError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 403:
+                raise ForbiddenError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 404:
+                raise NotFoundError(
                     typing.cast(
                         Problem,
                         construct_type(

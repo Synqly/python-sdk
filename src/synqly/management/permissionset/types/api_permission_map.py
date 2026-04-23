@@ -26,6 +26,7 @@ from .sub_orgs_permissions import SubOrgsPermissions
 from .tokens_permissions import TokensPermissions
 from .transforms_permissions import TransformsPermissions
 from .webhooks_permissions import WebhooksPermissions
+from .idp_permissions import IdpPermissions
 from ...core.pydantic_utilities import IS_PYDANTIC_V2
 
 
@@ -55,6 +56,7 @@ class ApiPermissionMap(UncheckedBaseModel):
     tokens: typing.Optional[TokensPermissions] = None
     transforms: typing.Optional[TransformsPermissions] = None
     webhooks: typing.Optional[WebhooksPermissions] = None
+    idp: typing.Optional[IdpPermissions] = None
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(

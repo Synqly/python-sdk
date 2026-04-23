@@ -3,15 +3,24 @@
 from .auth_code import AuthCode
 from .change_password_response import ChangePasswordResponse
 from .change_password_response_result import ChangePasswordResponseResult
+from .id_p_configuration import IdPConfiguration, IdPConfiguration_Oidc
 from .logon_request import LogonRequest
 from .logon_response import LogonResponse
 from .logon_response_result import LogonResponseResult
+from .oidc_configuration import OidcConfiguration
+from .sso_configuration import SsoConfiguration
+from .sso_configuration_id import SsoConfigurationId
 
 __all__ = [
     "AuthCode",
     "ChangePasswordResponse",
     "ChangePasswordResponseResult",
+    "IdPConfiguration",
+    "IdPConfiguration_Oidc",
     "LogonRequest",
     "LogonResponse",
     "LogonResponseResult",
+    "OidcConfiguration",
+    "SsoConfiguration",
+    "SsoConfigurationId",
 ]

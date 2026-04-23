@@ -4,16 +4,26 @@ from .types import (
     AuthCode,
     ChangePasswordResponse,
     ChangePasswordResponseResult,
+    IdPConfiguration,
+    IdPConfiguration_Oidc,
     LogonRequest,
     LogonResponse,
     LogonResponseResult,
+    OidcConfiguration,
+    SsoConfiguration,
+    SsoConfigurationId,
 )
 
 __all__ = [
     "AuthCode",
     "ChangePasswordResponse",
     "ChangePasswordResponseResult",
+    "IdPConfiguration",
+    "IdPConfiguration_Oidc",
     "LogonRequest",
     "LogonResponse",
     "LogonResponseResult",
+    "OidcConfiguration",
+    "SsoConfiguration",
+    "SsoConfigurationId",
 ]
