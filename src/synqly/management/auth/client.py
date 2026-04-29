@@ -25,6 +25,7 @@ from .types.create_sso_response import CreateSsoResponse
 from .types.list_sso_response import ListSsoResponse
 from ..auth_base.types.sso_configuration_id import SsoConfigurationId
 from .types.get_sso_response import GetSsoResponse
+from .types.get_sso_metadata_response import GetSsoMetadataResponse
 from .types.update_sso_configuration import UpdateSsoConfiguration
 import datetime as dt
 from .types.update_sso_response import UpdateSsoResponse
@@ -761,6 +762,91 @@ class AuthClient:
                 )
             if _response.status_code == 404:
                 raise NotFoundError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 429:
+                raise TooManyRequestsError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 500:
+                raise InternalServerError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            _response_json = _response.json()
+        except JSONDecodeError:
+            raise ApiError(status_code=_response.status_code, body=_response.text)
+        raise ApiError(status_code=_response.status_code, body=_response_json)
+
+    def get_sso_metadata(
+        self, *, request_options: typing.Optional[RequestOptions] = None
+    ) -> GetSsoMetadataResponse:
+        """
+        Returns the SP-side configuration values the user needs to enter into their
+        Identity Provider. Includes the OIDC redirect URI or SAML ACS URL and SP
+        entity ID depending on the protocols configured for the organization.
+
+        Parameters
+        ----------
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        GetSsoMetadataResponse
+
+        Examples
+        --------
+        from synqly import SynqlyManagement
+
+        client = SynqlyManagement(
+            token="YOUR_TOKEN",
+        )
+        client.auth.get_sso_metadata()
+        """
+        _response = self._client_wrapper.httpx_client.request(
+            "v1/auth/meta",
+            method="GET",
+            request_options=request_options,
+        )
+        try:
+            if 200 <= _response.status_code < 300:
+                return typing.cast(
+                    GetSsoMetadataResponse,
+                    construct_type(
+                        type_=GetSsoMetadataResponse,  # type: ignore
+                        object_=_response.json(),
+                    ),
+                )
+            if _response.status_code == 401:
+                raise UnauthorizedError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 403:
+                raise ForbiddenError(
                     typing.cast(
                         Problem,
                         construct_type(
@@ -1820,6 +1906,99 @@ class AsyncAuthClient:
                 )
             if _response.status_code == 404:
                 raise NotFoundError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 429:
+                raise TooManyRequestsError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 500:
+                raise InternalServerError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            _response_json = _response.json()
+        except JSONDecodeError:
+            raise ApiError(status_code=_response.status_code, body=_response.text)
+        raise ApiError(status_code=_response.status_code, body=_response_json)
+
+    async def get_sso_metadata(
+        self, *, request_options: typing.Optional[RequestOptions] = None
+    ) -> GetSsoMetadataResponse:
+        """
+        Returns the SP-side configuration values the user needs to enter into their
+        Identity Provider. Includes the OIDC redirect URI or SAML ACS URL and SP
+        entity ID depending on the protocols configured for the organization.
+
+        Parameters
+        ----------
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        GetSsoMetadataResponse
+
+        Examples
+        --------
+        import asyncio
+
+        from synqly import AsyncSynqlyManagement
+
+        client = AsyncSynqlyManagement(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.auth.get_sso_metadata()
+
+
+        asyncio.run(main())
+        """
+        _response = await self._client_wrapper.httpx_client.request(
+            "v1/auth/meta",
+            method="GET",
+            request_options=request_options,
+        )
+        try:
+            if 200 <= _response.status_code < 300:
+                return typing.cast(
+                    GetSsoMetadataResponse,
+                    construct_type(
+                        type_=GetSsoMetadataResponse,  # type: ignore
+                        object_=_response.json(),
+                    ),
+                )
+            if _response.status_code == 401:
+                raise UnauthorizedError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 403:
+                raise ForbiddenError(
                     typing.cast(
                         Problem,
                         construct_type(

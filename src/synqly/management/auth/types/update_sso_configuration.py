@@ -26,6 +26,27 @@ class UpdateSsoConfiguration_Oidc(UncheckedBaseModel):
             extra = pydantic.Extra.allow
 
 
+class UpdateSsoConfiguration_Saml(UncheckedBaseModel):
+    type: typing.Literal["saml"] = "saml"
+    idp_entity_id: str
+    idp_sso_url: str
+    idp_certificate: typing.Optional[str] = None
+    sp_entity_id: str
+    idp_metadata_url: typing.Optional[str] = None
+    name_id_format: typing.Optional[str] = None
+
+    if IS_PYDANTIC_V2:
+        model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(
+            extra="allow"
+        )  # type: ignore # Pydantic v2
+    else:
+
+        class Config:
+            smart_union = True
+            extra = pydantic.Extra.allow
+
+
 UpdateSsoConfiguration = typing_extensions.Annotated[
-    UpdateSsoConfiguration_Oidc, UnionMetadata(discriminant="type")
+    typing.Union[UpdateSsoConfiguration_Oidc, UpdateSsoConfiguration_Saml],
+    UnionMetadata(discriminant="type"),
 ]

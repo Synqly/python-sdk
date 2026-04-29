@@ -25,6 +25,25 @@ class IdPConfiguration_Oidc(UncheckedBaseModel):
             extra = pydantic.Extra.allow
 
 
+class IdPConfiguration_Saml(UncheckedBaseModel):
+    type: typing.Literal["saml"] = "saml"
+    idp_entity_id: str
+    idp_sso_url: str
+    sp_entity_id: str
+    name_id_format: typing.Optional[str] = None
+
+    if IS_PYDANTIC_V2:
+        model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(
+            extra="allow"
+        )  # type: ignore # Pydantic v2
+    else:
+
+        class Config:
+            smart_union = True
+            extra = pydantic.Extra.allow
+
+
 IdPConfiguration = typing_extensions.Annotated[
-    IdPConfiguration_Oidc, UnionMetadata(discriminant="type")
+    typing.Union[IdPConfiguration_Oidc, IdPConfiguration_Saml],
+    UnionMetadata(discriminant="type"),
 ]
