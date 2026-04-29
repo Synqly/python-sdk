@@ -109,6 +109,7 @@ from .cloud_security_defender import CloudSecurityDefender
 from .cloud_security_event_bridge_sqs_queues import CloudSecurityEventBridgeSqsQueues
 from .cloud_security_palo_alto import CloudSecurityPaloAlto
 from .cloud_security_upwind import CloudSecurityUpwind
+from .cloud_security_wiz import CloudSecurityWiz
 from .crowd_strike_credential import (
     CrowdStrikeCredential,
     CrowdStrikeCredential_OAuthClient,
@@ -410,6 +411,7 @@ from .provider_config import (
     ProviderConfig_CloudsecurityDefender,
     ProviderConfig_CloudsecurityPaloalto,
     ProviderConfig_CloudsecurityUpwind,
+    ProviderConfig_CloudsecurityWiz,
     ProviderConfig_CustomSynqly,
     ProviderConfig_EdrCrowdstrike,
     ProviderConfig_EdrCrowdstrikeMock,
@@ -705,6 +707,12 @@ from .vulnerabilities_tanium_cloud_dataset import VulnerabilitiesTaniumCloudData
 from .vulnerabilities_tanium_cloud_mock import VulnerabilitiesTaniumCloudMock
 from .vulnerabilities_tenable_cloud import VulnerabilitiesTenableCloud
 from .vulnerabilities_tenable_sc import VulnerabilitiesTenableSc
+from .wiz_credential import (
+    WizCredential,
+    WizCredential_OAuthClient,
+    WizCredential_OAuthClientId,
+)
+from .wiz_region import WizRegion
 from .workday_credential import (
     WorkdayCredential,
     WorkdayCredential_OAuthClient,
@@ -800,6 +808,7 @@ __all__ = [
     "CloudSecurityEventBridgeSqsQueues",
     "CloudSecurityPaloAlto",
     "CloudSecurityUpwind",
+    "CloudSecurityWiz",
     "CrowdStrikeCredential",
     "CrowdStrikeCredential_OAuthClient",
     "CrowdStrikeCredential_OAuthClientId",
@@ -1023,6 +1032,7 @@ __all__ = [
     "ProviderConfig_CloudsecurityDefender",
     "ProviderConfig_CloudsecurityPaloalto",
     "ProviderConfig_CloudsecurityUpwind",
+    "ProviderConfig_CloudsecurityWiz",
     "ProviderConfig_CustomSynqly",
     "ProviderConfig_EdrCrowdstrike",
     "ProviderConfig_EdrCrowdstrikeMock",
@@ -1264,6 +1274,10 @@ __all__ = [
     "VulnerabilitiesTaniumCloudMock",
     "VulnerabilitiesTenableCloud",
     "VulnerabilitiesTenableSc",
+    "WizCredential",
+    "WizCredential_OAuthClient",
+    "WizCredential_OAuthClientId",
+    "WizRegion",
     "WorkdayCredential",
     "WorkdayCredential_OAuthClient",
     "WorkdayCredential_OAuthClientId",

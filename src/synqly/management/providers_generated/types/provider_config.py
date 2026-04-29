@@ -51,6 +51,8 @@ from .cloud_security_crowd_strike_dataset import CloudSecurityCrowdStrikeDataset
 from .palo_alto_credential import PaloAltoCredential
 from .upwind_credential import UpwindCredential
 from .upwind_region import UpwindRegion
+from .wiz_credential import WizCredential
+from .wiz_region import WizRegion
 from .custom_endpoint import CustomEndpoint
 from .edr_crowd_strike_dataset import EdrCrowdStrikeDataset
 from .eset_credential import EsetCredential
@@ -700,6 +702,23 @@ class ProviderConfig_CloudsecurityUpwind(UncheckedBaseModel):
     credential: UpwindCredential
     organization_id: str
     region: UpwindRegion
+
+    if IS_PYDANTIC_V2:
+        model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(
+            extra="allow"
+        )  # type: ignore # Pydantic v2
+    else:
+
+        class Config:
+            smart_union = True
+            extra = pydantic.Extra.allow
+
+
+class ProviderConfig_CloudsecurityWiz(UncheckedBaseModel):
+    type: typing.Literal["cloudsecurity_wiz"] = "cloudsecurity_wiz"
+    api_endpoint_url: str
+    credential: WizCredential
+    region: WizRegion
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(
@@ -2301,6 +2320,7 @@ ProviderConfig = typing_extensions.Annotated[
         ProviderConfig_CloudsecurityDefender,
         ProviderConfig_CloudsecurityPaloalto,
         ProviderConfig_CloudsecurityUpwind,
+        ProviderConfig_CloudsecurityWiz,
         ProviderConfig_CustomSynqly,
         ProviderConfig_EdrCrowdstrike,
         ProviderConfig_EdrCrowdstrikeMock,
