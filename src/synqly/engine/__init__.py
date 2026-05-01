@@ -118,7 +118,9 @@ from .edr import (
     ThreatEvent,
 )
 from .emailsecurity import (
+    EmailSecurityEmailEvent,
     EmailSecurityGetThreatDetailsResponse,
+    EmailSecurityQueryEmailEventsResponse,
     EmailSecurityQueryThreatsResponse,
     EmailSecurityThreat,
 )
@@ -412,7 +414,9 @@ __all__ = [
     "DeleteIocsResponse",
     "Device",
     "DownloadAttachmentResponse",
+    "EmailSecurityEmailEvent",
     "EmailSecurityGetThreatDetailsResponse",
+    "EmailSecurityQueryEmailEventsResponse",
     "EmailSecurityQueryThreatsResponse",
     "EmailSecurityThreat",
     "EscalationPolicy",

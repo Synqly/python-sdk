@@ -176,6 +176,7 @@ from .elasticsearch_shared_secret import (
     ElasticsearchSharedSecret_Secret,
     ElasticsearchSharedSecret_SecretId,
 )
+from .email_security_defender_for_office import EmailSecurityDefenderForOffice
 from .email_security_mimecast_cloud_gateway import EmailSecurityMimecastCloudGateway
 from .entra_id_credential import (
     EntraIdCredential,
@@ -301,6 +302,7 @@ from .malwarebytes_credential import (
     MalwarebytesCredential_OAuthClient,
     MalwarebytesCredential_OAuthClientId,
 )
+from .microsoft_defender_region import MicrosoftDefenderRegion
 from .mimecast_api_gateway import MimecastApiGateway
 from .mimecast_api_gateway_region import MimecastApiGatewayRegion
 from .mimecast_cloud_gateway_credential import (
@@ -422,6 +424,7 @@ from .provider_config import (
     ProviderConfig_EdrSentinelone,
     ProviderConfig_EdrSophos,
     ProviderConfig_EdrTanium,
+    ProviderConfig_EmailsecurityDefenderForOffice,
     ProviderConfig_EmailsecurityMimecastCloudGateway,
     ProviderConfig_IdentityEntraId,
     ProviderConfig_IdentityGoogle,
@@ -859,6 +862,7 @@ __all__ = [
     "ElasticsearchSharedSecret",
     "ElasticsearchSharedSecret_Secret",
     "ElasticsearchSharedSecret_SecretId",
+    "EmailSecurityDefenderForOffice",
     "EmailSecurityMimecastCloudGateway",
     "EntraIdCredential",
     "EntraIdCredential_OAuthClient",
@@ -946,6 +950,7 @@ __all__ = [
     "MalwarebytesCredential",
     "MalwarebytesCredential_OAuthClient",
     "MalwarebytesCredential_OAuthClientId",
+    "MicrosoftDefenderRegion",
     "MimecastApiGateway",
     "MimecastApiGatewayRegion",
     "MimecastCloudGatewayCredential",
@@ -1043,6 +1048,7 @@ __all__ = [
     "ProviderConfig_EdrSentinelone",
     "ProviderConfig_EdrSophos",
     "ProviderConfig_EdrTanium",
+    "ProviderConfig_EmailsecurityDefenderForOffice",
     "ProviderConfig_EmailsecurityMimecastCloudGateway",
     "ProviderConfig_IdentityEntraId",
     "ProviderConfig_IdentityGoogle",
