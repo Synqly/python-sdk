@@ -10,6 +10,8 @@ import typing
 class VulnerabilitiesTenableSc(UncheckedBaseModel):
     """
     Configuration for Tenable Security Center.
+
+    [Configuration guide](https://docs.synqly.com/guides/provider-configuration/tenable-sc-vulns-setup)
     """
 
     credential: TenableScCredential
