@@ -10,6 +10,8 @@ import typing
 class TicketingZendesk(UncheckedBaseModel):
     """
     Configuration for Zendesk as a Ticketing Provider
+
+    [Configuration guide](https://docs.synqly.com/guides/provider-configuration/zendesk-ticketing-setup)
     """
 
     credential: ZendeskCredential
