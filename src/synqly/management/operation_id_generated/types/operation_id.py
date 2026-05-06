@@ -33,8 +33,10 @@ class OperationId(str, enum.Enum):
     CUSTOM_POST_BATCH = "custom_post_batch"
     CUSTOM_QUERY = "custom_query"
     EDR_CREATE_IOCS = "edr_create_iocs"
+    EDR_CREATE_THREAT_NOTE = "edr_create_threat_note"
     EDR_DELETE_IOCS = "edr_delete_iocs"
     EDR_GET_ENDPOINT = "edr_get_endpoint"
+    EDR_GET_THREAT_NOTES = "edr_get_threat_notes"
     EDR_NETWORK_QUARANTINE = "edr_network_quarantine"
     EDR_QUERY_ALERTS = "edr_query_alerts"
     EDR_QUERY_APPLICATIONS = "edr_query_applications"
@@ -155,8 +157,10 @@ class OperationId(str, enum.Enum):
         custom_post_batch: typing.Callable[[], T_Result],
         custom_query: typing.Callable[[], T_Result],
         edr_create_iocs: typing.Callable[[], T_Result],
+        edr_create_threat_note: typing.Callable[[], T_Result],
         edr_delete_iocs: typing.Callable[[], T_Result],
         edr_get_endpoint: typing.Callable[[], T_Result],
+        edr_get_threat_notes: typing.Callable[[], T_Result],
         edr_network_quarantine: typing.Callable[[], T_Result],
         edr_query_alerts: typing.Callable[[], T_Result],
         edr_query_applications: typing.Callable[[], T_Result],
@@ -286,10 +290,14 @@ class OperationId(str, enum.Enum):
             return custom_query()
         if self is OperationId.EDR_CREATE_IOCS:
             return edr_create_iocs()
+        if self is OperationId.EDR_CREATE_THREAT_NOTE:
+            return edr_create_threat_note()
         if self is OperationId.EDR_DELETE_IOCS:
             return edr_delete_iocs()
         if self is OperationId.EDR_GET_ENDPOINT:
             return edr_get_endpoint()
+        if self is OperationId.EDR_GET_THREAT_NOTES:
+            return edr_get_threat_notes()
         if self is OperationId.EDR_NETWORK_QUARANTINE:
             return edr_network_quarantine()
         if self is OperationId.EDR_QUERY_ALERTS:

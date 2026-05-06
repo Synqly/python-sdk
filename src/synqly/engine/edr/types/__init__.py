@@ -4,8 +4,11 @@ from .application import Application
 from .connection_state import ConnectionState
 from .create_iocs_request import CreateIocsRequest
 from .create_iocs_response import CreateIocsResponse
+from .create_threat_note_request import CreateThreatNoteRequest
+from .create_threat_note_response import CreateThreatNoteResponse
 from .delete_iocs_response import DeleteIocsResponse
 from .get_endpoint_response import GetEndpointResponse
+from .get_threat_notes_response import GetThreatNotesResponse
 from .network_quarantine_request import NetworkQuarantineRequest
 from .network_quarantine_response import NetworkQuarantineResponse
 from .posture_score import PostureScore
@@ -23,8 +26,11 @@ __all__ = [
     "ConnectionState",
     "CreateIocsRequest",
     "CreateIocsResponse",
+    "CreateThreatNoteRequest",
+    "CreateThreatNoteResponse",
     "DeleteIocsResponse",
     "GetEndpointResponse",
+    "GetThreatNotesResponse",
     "NetworkQuarantineRequest",
     "NetworkQuarantineResponse",
     "PostureScore",

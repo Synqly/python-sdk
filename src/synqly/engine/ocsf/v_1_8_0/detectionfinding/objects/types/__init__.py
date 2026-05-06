@@ -10,9 +10,11 @@ from .affected_package import AffectedPackage
 from .affected_package_type_id import AffectedPackageTypeId
 from .agent import Agent
 from .agent_type_id import AgentTypeId
+from .analysis_target import AnalysisTarget
 from .analytic import Analytic
 from .analytic_state_id import AnalyticStateId
 from .analytic_type_id import AnalyticTypeId
+from .anomaly import Anomaly
 from .anomaly_analysis import AnomalyAnalysis
 from .api import Api
 from .attack import Attack
@@ -20,6 +22,7 @@ from .auth_factor import AuthFactor
 from .auth_factor_factor_type_id import AuthFactorFactorTypeId
 from .authorization import Authorization
 from .autonomous_system import AutonomousSystem
+from .baseline import Baseline
 from .certificate import Certificate
 from .cis_control import CisControl
 from .container import Container
@@ -115,6 +118,7 @@ from .node import Node
 from .object import Object
 from .observable import Observable
 from .observable_type_id import ObservableTypeId
+from .observation import Observation
 from .organization import Organization
 from .os import Os
 from .os_type_id import OsTypeId
@@ -181,9 +185,11 @@ __all__ = [
     "AffectedPackageTypeId",
     "Agent",
     "AgentTypeId",
+    "AnalysisTarget",
     "Analytic",
     "AnalyticStateId",
     "AnalyticTypeId",
+    "Anomaly",
     "AnomalyAnalysis",
     "Api",
     "Attack",
@@ -191,6 +197,7 @@ __all__ = [
     "AuthFactorFactorTypeId",
     "Authorization",
     "AutonomousSystem",
+    "Baseline",
     "Certificate",
     "CisControl",
     "Container",
@@ -286,6 +293,7 @@ __all__ = [
     "Object",
     "Observable",
     "ObservableTypeId",
+    "Observation",
     "Organization",
     "Os",
     "OsTypeId",

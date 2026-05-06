@@ -35,6 +35,9 @@ from .types.create_iocs_response import CreateIocsResponse
 from .types.delete_iocs_response import DeleteIocsResponse
 from .types.query_posture_score_response import QueryPostureScoreResponse
 from .types.query_edr_events_response import QueryEdrEventsResponse
+from .types.get_threat_notes_response import GetThreatNotesResponse
+from ..ocsf.v_1_8_0.noteactivity.classes.types.note_activity import NoteActivity
+from .types.create_threat_note_response import CreateThreatNoteResponse
 from ..core.client_wrapper import AsyncClientWrapper
 
 # this is used as the default value for optional parameters
@@ -2091,6 +2094,556 @@ class EdrClient:
                     QueryEdrEventsResponse,
                     construct_type(
                         type_=QueryEdrEventsResponse,  # type: ignore
+                        object_=_response.json(),
+                    ),
+                )
+            if _response.status_code == 400:
+                raise BadRequestError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 401:
+                raise UnauthorizedError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 403:
+                raise ForbiddenError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 404:
+                raise NotFoundError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 405:
+                raise MethodNotAllowedError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 409:
+                raise ConflictError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 415:
+                raise UnsupportedMediaTypeError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 429:
+                raise TooManyRequestsError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 500:
+                raise InternalServerError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 501:
+                raise NotImplementedError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 502:
+                raise BadGatewayError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 503:
+                raise ServiceUnavailableError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 504:
+                raise GatewayTimeoutError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            _response_json = _response.json()
+        except JSONDecodeError:
+            raise ApiError(status_code=_response.status_code, body=_response.text)
+        raise ApiError(status_code=_response.status_code, body=_response_json)
+
+    def get_threat_notes(
+        self, threat_id: str, *, request_options: typing.Optional[RequestOptions] = None
+    ) -> GetThreatNotesResponse:
+        """
+        Returns a list of notes for a threat.
+
+        Parameters
+        ----------
+        threat_id : str
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        GetThreatNotesResponse
+
+        Examples
+        --------
+        from synqly import SynqlyEngine
+
+        client = SynqlyEngine(
+            token="YOUR_TOKEN",
+        )
+        client.edr.get_threat_notes(
+            threat_id="string",
+        )
+        """
+        _response = self._client_wrapper.httpx_client.request(
+            f"v1/edr/threats/{jsonable_encoder(threat_id)}/notes",
+            method="GET",
+            request_options=request_options,
+        )
+        try:
+            if 200 <= _response.status_code < 300:
+                return typing.cast(
+                    GetThreatNotesResponse,
+                    construct_type(
+                        type_=GetThreatNotesResponse,  # type: ignore
+                        object_=_response.json(),
+                    ),
+                )
+            if _response.status_code == 400:
+                raise BadRequestError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 401:
+                raise UnauthorizedError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 403:
+                raise ForbiddenError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 404:
+                raise NotFoundError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 405:
+                raise MethodNotAllowedError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 409:
+                raise ConflictError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 415:
+                raise UnsupportedMediaTypeError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 429:
+                raise TooManyRequestsError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 500:
+                raise InternalServerError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 501:
+                raise NotImplementedError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 502:
+                raise BadGatewayError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 503:
+                raise ServiceUnavailableError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 504:
+                raise GatewayTimeoutError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            _response_json = _response.json()
+        except JSONDecodeError:
+            raise ApiError(status_code=_response.status_code, body=_response.text)
+        raise ApiError(status_code=_response.status_code, body=_response_json)
+
+    def create_threat_note(
+        self,
+        threat_id: str,
+        *,
+        note: NoteActivity,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> CreateThreatNoteResponse:
+        """
+        Creates a note for a threat.
+
+        Parameters
+        ----------
+        threat_id : str
+
+        note : NoteActivity
+            The note to create.
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        CreateThreatNoteResponse
+
+        Examples
+        --------
+        import datetime
+
+        from synqly import SynqlyEngine
+        from synqly.ocsf.v_1_8_0.noteactivity.classes import NoteActivity
+        from synqly.ocsf.v_1_8_0.noteactivity.objects import (
+            Analytic,
+            Annotation,
+            Device,
+            Extension,
+            FindingInfo,
+            Fingerprint,
+            FirewallRule,
+            Graph,
+            MalwareScanInfo,
+            Metadata,
+            Policy,
+            Product,
+            Reporter,
+            Timespan,
+            User,
+            VendorAttributes,
+        )
+
+        client = SynqlyEngine(
+            token="YOUR_TOKEN",
+        )
+        client.edr.create_threat_note(
+            threat_id="string",
+            note=NoteActivity(
+                action="string",
+                action_id=1,
+                activity_id=1,
+                activity_name="string",
+                attacks=[],
+                authorizations=[],
+                category_name="string",
+                category_uid=1,
+                class_uid=1,
+                comment="string",
+                confidence="string",
+                confidence_id=1,
+                confidence_score=1,
+                count=1,
+                device=Device(
+                    type_id=1,
+                ),
+                disposition="string",
+                disposition_id=1,
+                duration=1,
+                end_time=1,
+                end_time_dt=datetime.datetime.fromisoformat(
+                    "2024-01-15 09:30:00+00:00",
+                ),
+                enrichments=[],
+                finding_info=FindingInfo(
+                    analytic=Analytic(
+                        type_id=1,
+                    ),
+                    attack_graph=Graph(
+                        nodes=[],
+                    ),
+                    attacks=[],
+                    created_time=1,
+                    created_time_dt=datetime.datetime.fromisoformat(
+                        "2024-01-15 09:30:00+00:00",
+                    ),
+                    data_sources=[],
+                    desc="string",
+                    first_seen_time=1,
+                    first_seen_time_dt=datetime.datetime.fromisoformat(
+                        "2024-01-15 09:30:00+00:00",
+                    ),
+                    kill_chain=[],
+                    last_seen_time=1,
+                    last_seen_time_dt=datetime.datetime.fromisoformat(
+                        "2024-01-15 09:30:00+00:00",
+                    ),
+                    modified_time=1,
+                    modified_time_dt=datetime.datetime.fromisoformat(
+                        "2024-01-15 09:30:00+00:00",
+                    ),
+                    product=Product(),
+                    product_uid="string",
+                    related_analytics=[],
+                    related_events=[],
+                    related_events_count=1,
+                    src_url="string",
+                    tags=[],
+                    title="string",
+                    traits=[],
+                    types=[],
+                    uid="string",
+                    uid_alt="string",
+                ),
+                firewall_rule=FirewallRule(),
+                is_alert=True,
+                malware=[],
+                malware_scan_info=MalwareScanInfo(
+                    type_id=1,
+                ),
+                message="string",
+                metadata=Metadata(
+                    correlation_uid="string",
+                    debug=[],
+                    event_code="string",
+                    extension=Extension(
+                        version="string",
+                    ),
+                    extensions=[],
+                    is_truncated=True,
+                    labels=[],
+                    log_format="string",
+                    log_level="string",
+                    log_name="string",
+                    log_provider="string",
+                    log_source="string",
+                    log_version="string",
+                    logged_time=1,
+                    logged_time_dt=datetime.datetime.fromisoformat(
+                        "2024-01-15 09:30:00+00:00",
+                    ),
+                    loggers=[],
+                    modified_time=1,
+                    modified_time_dt=datetime.datetime.fromisoformat(
+                        "2024-01-15 09:30:00+00:00",
+                    ),
+                    original_event_uid="string",
+                    original_time="string",
+                    processed_time=1,
+                    processed_time_dt=datetime.datetime.fromisoformat(
+                        "2024-01-15 09:30:00+00:00",
+                    ),
+                    product=Product(),
+                    profiles=[],
+                    reporter=Reporter(),
+                    sequence=1,
+                    source="string",
+                    tags=[],
+                    tenant_uid="string",
+                    total_queued_duration=Timespan(),
+                    transformation_info_list=[],
+                    transmit_time=1,
+                    transmit_time_dt=datetime.datetime.fromisoformat(
+                        "2024-01-15 09:30:00+00:00",
+                    ),
+                    type="string",
+                    uid="string",
+                    untruncated_size=1,
+                    version="string",
+                ),
+                note=Annotation(
+                    content="string",
+                    created_time=1,
+                    created_time_dt=datetime.datetime.fromisoformat(
+                        "2024-01-15 09:30:00+00:00",
+                    ),
+                    creator=User(),
+                    related_uids=[],
+                    uid="string",
+                ),
+                observables=[],
+                policy=Policy(),
+                raw_data="string",
+                raw_data_hash=Fingerprint(
+                    algorithm_id=1,
+                    value="string",
+                ),
+                raw_data_size=1,
+                risk_details="string",
+                risk_level="string",
+                risk_level_id=1,
+                risk_score=1,
+                severity="string",
+                severity_id=1,
+                start_time=1,
+                start_time_dt=datetime.datetime.fromisoformat(
+                    "2024-01-15 09:30:00+00:00",
+                ),
+                status="string",
+                status_code="string",
+                status_detail="string",
+                status_id=1,
+                time=1,
+                time_dt=datetime.datetime.fromisoformat(
+                    "2024-01-15 09:30:00+00:00",
+                ),
+                timezone_offset=1,
+                type_name="string",
+                type_uid=1,
+                unmapped={},
+                vendor_attributes=VendorAttributes(),
+            ),
+        )
+        """
+        _response = self._client_wrapper.httpx_client.request(
+            f"v1/edr/threats/{jsonable_encoder(threat_id)}/notes",
+            method="POST",
+            json={
+                "note": note,
+            },
+            request_options=request_options,
+            omit=OMIT,
+        )
+        try:
+            if 200 <= _response.status_code < 300:
+                return typing.cast(
+                    CreateThreatNoteResponse,
+                    construct_type(
+                        type_=CreateThreatNoteResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -4367,6 +4920,571 @@ class AsyncEdrClient:
                     QueryEdrEventsResponse,
                     construct_type(
                         type_=QueryEdrEventsResponse,  # type: ignore
+                        object_=_response.json(),
+                    ),
+                )
+            if _response.status_code == 400:
+                raise BadRequestError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 401:
+                raise UnauthorizedError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 403:
+                raise ForbiddenError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 404:
+                raise NotFoundError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 405:
+                raise MethodNotAllowedError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 409:
+                raise ConflictError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 415:
+                raise UnsupportedMediaTypeError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 429:
+                raise TooManyRequestsError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 500:
+                raise InternalServerError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 501:
+                raise NotImplementedError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 502:
+                raise BadGatewayError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 503:
+                raise ServiceUnavailableError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 504:
+                raise GatewayTimeoutError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            _response_json = _response.json()
+        except JSONDecodeError:
+            raise ApiError(status_code=_response.status_code, body=_response.text)
+        raise ApiError(status_code=_response.status_code, body=_response_json)
+
+    async def get_threat_notes(
+        self, threat_id: str, *, request_options: typing.Optional[RequestOptions] = None
+    ) -> GetThreatNotesResponse:
+        """
+        Returns a list of notes for a threat.
+
+        Parameters
+        ----------
+        threat_id : str
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        GetThreatNotesResponse
+
+        Examples
+        --------
+        import asyncio
+
+        from synqly import AsyncSynqlyEngine
+
+        client = AsyncSynqlyEngine(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.edr.get_threat_notes(
+                threat_id="string",
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._client_wrapper.httpx_client.request(
+            f"v1/edr/threats/{jsonable_encoder(threat_id)}/notes",
+            method="GET",
+            request_options=request_options,
+        )
+        try:
+            if 200 <= _response.status_code < 300:
+                return typing.cast(
+                    GetThreatNotesResponse,
+                    construct_type(
+                        type_=GetThreatNotesResponse,  # type: ignore
+                        object_=_response.json(),
+                    ),
+                )
+            if _response.status_code == 400:
+                raise BadRequestError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 401:
+                raise UnauthorizedError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 403:
+                raise ForbiddenError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 404:
+                raise NotFoundError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 405:
+                raise MethodNotAllowedError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 409:
+                raise ConflictError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 415:
+                raise UnsupportedMediaTypeError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 429:
+                raise TooManyRequestsError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 500:
+                raise InternalServerError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 501:
+                raise NotImplementedError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 502:
+                raise BadGatewayError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 503:
+                raise ServiceUnavailableError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 504:
+                raise GatewayTimeoutError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            _response_json = _response.json()
+        except JSONDecodeError:
+            raise ApiError(status_code=_response.status_code, body=_response.text)
+        raise ApiError(status_code=_response.status_code, body=_response_json)
+
+    async def create_threat_note(
+        self,
+        threat_id: str,
+        *,
+        note: NoteActivity,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> CreateThreatNoteResponse:
+        """
+        Creates a note for a threat.
+
+        Parameters
+        ----------
+        threat_id : str
+
+        note : NoteActivity
+            The note to create.
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        CreateThreatNoteResponse
+
+        Examples
+        --------
+        import asyncio
+        import datetime
+
+        from synqly import AsyncSynqlyEngine
+        from synqly.ocsf.v_1_8_0.noteactivity.classes import NoteActivity
+        from synqly.ocsf.v_1_8_0.noteactivity.objects import (
+            Analytic,
+            Annotation,
+            Device,
+            Extension,
+            FindingInfo,
+            Fingerprint,
+            FirewallRule,
+            Graph,
+            MalwareScanInfo,
+            Metadata,
+            Policy,
+            Product,
+            Reporter,
+            Timespan,
+            User,
+            VendorAttributes,
+        )
+
+        client = AsyncSynqlyEngine(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.edr.create_threat_note(
+                threat_id="string",
+                note=NoteActivity(
+                    action="string",
+                    action_id=1,
+                    activity_id=1,
+                    activity_name="string",
+                    attacks=[],
+                    authorizations=[],
+                    category_name="string",
+                    category_uid=1,
+                    class_uid=1,
+                    comment="string",
+                    confidence="string",
+                    confidence_id=1,
+                    confidence_score=1,
+                    count=1,
+                    device=Device(
+                        type_id=1,
+                    ),
+                    disposition="string",
+                    disposition_id=1,
+                    duration=1,
+                    end_time=1,
+                    end_time_dt=datetime.datetime.fromisoformat(
+                        "2024-01-15 09:30:00+00:00",
+                    ),
+                    enrichments=[],
+                    finding_info=FindingInfo(
+                        analytic=Analytic(
+                            type_id=1,
+                        ),
+                        attack_graph=Graph(
+                            nodes=[],
+                        ),
+                        attacks=[],
+                        created_time=1,
+                        created_time_dt=datetime.datetime.fromisoformat(
+                            "2024-01-15 09:30:00+00:00",
+                        ),
+                        data_sources=[],
+                        desc="string",
+                        first_seen_time=1,
+                        first_seen_time_dt=datetime.datetime.fromisoformat(
+                            "2024-01-15 09:30:00+00:00",
+                        ),
+                        kill_chain=[],
+                        last_seen_time=1,
+                        last_seen_time_dt=datetime.datetime.fromisoformat(
+                            "2024-01-15 09:30:00+00:00",
+                        ),
+                        modified_time=1,
+                        modified_time_dt=datetime.datetime.fromisoformat(
+                            "2024-01-15 09:30:00+00:00",
+                        ),
+                        product=Product(),
+                        product_uid="string",
+                        related_analytics=[],
+                        related_events=[],
+                        related_events_count=1,
+                        src_url="string",
+                        tags=[],
+                        title="string",
+                        traits=[],
+                        types=[],
+                        uid="string",
+                        uid_alt="string",
+                    ),
+                    firewall_rule=FirewallRule(),
+                    is_alert=True,
+                    malware=[],
+                    malware_scan_info=MalwareScanInfo(
+                        type_id=1,
+                    ),
+                    message="string",
+                    metadata=Metadata(
+                        correlation_uid="string",
+                        debug=[],
+                        event_code="string",
+                        extension=Extension(
+                            version="string",
+                        ),
+                        extensions=[],
+                        is_truncated=True,
+                        labels=[],
+                        log_format="string",
+                        log_level="string",
+                        log_name="string",
+                        log_provider="string",
+                        log_source="string",
+                        log_version="string",
+                        logged_time=1,
+                        logged_time_dt=datetime.datetime.fromisoformat(
+                            "2024-01-15 09:30:00+00:00",
+                        ),
+                        loggers=[],
+                        modified_time=1,
+                        modified_time_dt=datetime.datetime.fromisoformat(
+                            "2024-01-15 09:30:00+00:00",
+                        ),
+                        original_event_uid="string",
+                        original_time="string",
+                        processed_time=1,
+                        processed_time_dt=datetime.datetime.fromisoformat(
+                            "2024-01-15 09:30:00+00:00",
+                        ),
+                        product=Product(),
+                        profiles=[],
+                        reporter=Reporter(),
+                        sequence=1,
+                        source="string",
+                        tags=[],
+                        tenant_uid="string",
+                        total_queued_duration=Timespan(),
+                        transformation_info_list=[],
+                        transmit_time=1,
+                        transmit_time_dt=datetime.datetime.fromisoformat(
+                            "2024-01-15 09:30:00+00:00",
+                        ),
+                        type="string",
+                        uid="string",
+                        untruncated_size=1,
+                        version="string",
+                    ),
+                    note=Annotation(
+                        content="string",
+                        created_time=1,
+                        created_time_dt=datetime.datetime.fromisoformat(
+                            "2024-01-15 09:30:00+00:00",
+                        ),
+                        creator=User(),
+                        related_uids=[],
+                        uid="string",
+                    ),
+                    observables=[],
+                    policy=Policy(),
+                    raw_data="string",
+                    raw_data_hash=Fingerprint(
+                        algorithm_id=1,
+                        value="string",
+                    ),
+                    raw_data_size=1,
+                    risk_details="string",
+                    risk_level="string",
+                    risk_level_id=1,
+                    risk_score=1,
+                    severity="string",
+                    severity_id=1,
+                    start_time=1,
+                    start_time_dt=datetime.datetime.fromisoformat(
+                        "2024-01-15 09:30:00+00:00",
+                    ),
+                    status="string",
+                    status_code="string",
+                    status_detail="string",
+                    status_id=1,
+                    time=1,
+                    time_dt=datetime.datetime.fromisoformat(
+                        "2024-01-15 09:30:00+00:00",
+                    ),
+                    timezone_offset=1,
+                    type_name="string",
+                    type_uid=1,
+                    unmapped={},
+                    vendor_attributes=VendorAttributes(),
+                ),
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._client_wrapper.httpx_client.request(
+            f"v1/edr/threats/{jsonable_encoder(threat_id)}/notes",
+            method="POST",
+            json={
+                "note": note,
+            },
+            request_options=request_options,
+            omit=OMIT,
+        )
+        try:
+            if 200 <= _response.status_code < 300:
+                return typing.cast(
+                    CreateThreatNoteResponse,
+                    construct_type(
+                        type_=CreateThreatNoteResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )

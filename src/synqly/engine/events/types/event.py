@@ -214,7 +214,7 @@ from ...ocsf.v_1_5_0.applicationsecurityposturefinding.classes.types.type_uid im
     TypeUid as ocsf_v_1_5_0_applicationsecurityposturefinding_classes_types_type_uid_TypeUid,
 )
 from ...ocsf.v_1_5_0.applicationsecurityposturefinding.objects.types.vendor_attributes import (
-    VendorAttributes,
+    VendorAttributes as ocsf_v_1_5_0_applicationsecurityposturefinding_objects_types_vendor_attributes_VendorAttributes,
 )
 from ...ocsf.v_1_5_0.applicationsecurityposturefinding.objects.types.vulnerability import (
     Vulnerability as ocsf_v_1_5_0_applicationsecurityposturefinding_objects_types_vulnerability_Vulnerability,
@@ -2177,6 +2177,82 @@ from ...ocsf.v_1_4_0.cloudresourcesinventoryinfo.objects.types.table import Tabl
 from ...ocsf.v_1_4_0.cloudresourcesinventoryinfo.classes.types.type_uid import (
     TypeUid as ocsf_v_1_4_0_cloudresourcesinventoryinfo_classes_types_type_uid_TypeUid,
 )
+from ...ocsf.v_1_8_0.noteactivity.classes.types.action_id import (
+    ActionId as ocsf_v_1_8_0_noteactivity_classes_types_action_id_ActionId,
+)
+from ...ocsf.v_1_8_0.noteactivity.classes.types.activity_id import (
+    ActivityId as ocsf_v_1_8_0_noteactivity_classes_types_activity_id_ActivityId,
+)
+from ...ocsf.v_1_8_0.noteactivity.objects.types.attack import (
+    Attack as ocsf_v_1_8_0_noteactivity_objects_types_attack_Attack,
+)
+from ...ocsf.v_1_8_0.noteactivity.objects.types.authorization import (
+    Authorization as ocsf_v_1_8_0_noteactivity_objects_types_authorization_Authorization,
+)
+from ...ocsf.v_1_8_0.noteactivity.classes.types.category_uid import (
+    CategoryUid as ocsf_v_1_8_0_noteactivity_classes_types_category_uid_CategoryUid,
+)
+from ...ocsf.v_1_8_0.noteactivity.classes.types.class_uid import (
+    ClassUid as ocsf_v_1_8_0_noteactivity_classes_types_class_uid_ClassUid,
+)
+from ...ocsf.v_1_8_0.noteactivity.classes.types.confidence_id import (
+    ConfidenceId as ocsf_v_1_8_0_noteactivity_classes_types_confidence_id_ConfidenceId,
+)
+from ...ocsf.v_1_8_0.noteactivity.objects.types.device import (
+    Device as ocsf_v_1_8_0_noteactivity_objects_types_device_Device,
+)
+from ...ocsf.v_1_8_0.noteactivity.classes.types.disposition_id import (
+    DispositionId as ocsf_v_1_8_0_noteactivity_classes_types_disposition_id_DispositionId,
+)
+from ...ocsf.v_1_8_0.noteactivity.base.types.timestamp import (
+    Timestamp as ocsf_v_1_8_0_noteactivity_base_types_timestamp_Timestamp,
+)
+from ...ocsf.v_1_8_0.noteactivity.objects.types.enrichment import (
+    Enrichment as ocsf_v_1_8_0_noteactivity_objects_types_enrichment_Enrichment,
+)
+from ...ocsf.v_1_8_0.noteactivity.objects.types.finding_info import (
+    FindingInfo as ocsf_v_1_8_0_noteactivity_objects_types_finding_info_FindingInfo,
+)
+from ...ocsf.v_1_8_0.noteactivity.objects.types.firewall_rule import (
+    FirewallRule as ocsf_v_1_8_0_noteactivity_objects_types_firewall_rule_FirewallRule,
+)
+from ...ocsf.v_1_8_0.noteactivity.objects.types.malware import (
+    Malware as ocsf_v_1_8_0_noteactivity_objects_types_malware_Malware,
+)
+from ...ocsf.v_1_8_0.noteactivity.objects.types.malware_scan_info import (
+    MalwareScanInfo as ocsf_v_1_8_0_noteactivity_objects_types_malware_scan_info_MalwareScanInfo,
+)
+from ...ocsf.v_1_8_0.noteactivity.objects.types.metadata import (
+    Metadata as ocsf_v_1_8_0_noteactivity_objects_types_metadata_Metadata,
+)
+from ...ocsf.v_1_8_0.noteactivity.objects.types.annotation import Annotation
+from ...ocsf.v_1_8_0.noteactivity.objects.types.observable import (
+    Observable as ocsf_v_1_8_0_noteactivity_objects_types_observable_Observable,
+)
+from ...ocsf.v_1_8_0.noteactivity.objects.types.policy import (
+    Policy as ocsf_v_1_8_0_noteactivity_objects_types_policy_Policy,
+)
+from ...ocsf.v_1_8_0.noteactivity.objects.types.fingerprint import (
+    Fingerprint as ocsf_v_1_8_0_noteactivity_objects_types_fingerprint_Fingerprint,
+)
+from ...ocsf.v_1_8_0.noteactivity.classes.types.risk_level_id import (
+    RiskLevelId as ocsf_v_1_8_0_noteactivity_classes_types_risk_level_id_RiskLevelId,
+)
+from ...ocsf.v_1_8_0.noteactivity.classes.types.severity_id import (
+    SeverityId as ocsf_v_1_8_0_noteactivity_classes_types_severity_id_SeverityId,
+)
+from ...ocsf.v_1_8_0.noteactivity.classes.types.status_id import (
+    StatusId as ocsf_v_1_8_0_noteactivity_classes_types_status_id_StatusId,
+)
+from ...ocsf.v_1_8_0.noteactivity.classes.types.type_uid import (
+    TypeUid as ocsf_v_1_8_0_noteactivity_classes_types_type_uid_TypeUid,
+)
+from ...ocsf.v_1_8_0.noteactivity.objects.types.object import (
+    Object as ocsf_v_1_8_0_noteactivity_objects_types_object_Object,
+)
+from ...ocsf.v_1_8_0.noteactivity.objects.types.vendor_attributes import (
+    VendorAttributes as ocsf_v_1_8_0_noteactivity_objects_types_vendor_attributes_VendorAttributes,
+)
 import typing_extensions
 from ...core.unchecked_base_model import UnionMetadata
 
@@ -2470,7 +2546,9 @@ class Event_ApplicationSecurityPostureFinding(UncheckedBaseModel):
     unmapped: typing.Optional[
         ocsf_v_1_5_0_applicationsecurityposturefinding_objects_types_object_Object
     ] = None
-    vendor_attributes: typing.Optional[VendorAttributes] = None
+    vendor_attributes: typing.Optional[
+        ocsf_v_1_5_0_applicationsecurityposturefinding_objects_types_vendor_attributes_VendorAttributes
+    ] = None
     vulnerabilities: typing.Optional[
         typing.List[
             ocsf_v_1_5_0_applicationsecurityposturefinding_objects_types_vulnerability_Vulnerability
@@ -5288,6 +5366,111 @@ class Event_CloudResourcesInventoryInfo(UncheckedBaseModel):
             extra = pydantic.Extra.allow
 
 
+class Event_NoteActivity(UncheckedBaseModel):
+    class_name: typing.Literal["Note Activity"] = "Note Activity"
+    action: typing.Optional[str] = None
+    action_id: typing.Optional[
+        ocsf_v_1_8_0_noteactivity_classes_types_action_id_ActionId
+    ] = None
+    activity_id: ocsf_v_1_8_0_noteactivity_classes_types_activity_id_ActivityId
+    activity_name: typing.Optional[str] = None
+    attacks: typing.Optional[
+        typing.List[ocsf_v_1_8_0_noteactivity_objects_types_attack_Attack]
+    ] = None
+    authorizations: typing.Optional[
+        typing.List[ocsf_v_1_8_0_noteactivity_objects_types_authorization_Authorization]
+    ] = None
+    category_name: typing.Optional[str] = None
+    category_uid: ocsf_v_1_8_0_noteactivity_classes_types_category_uid_CategoryUid
+    class_uid: ocsf_v_1_8_0_noteactivity_classes_types_class_uid_ClassUid
+    comment: typing.Optional[str] = None
+    confidence: typing.Optional[str] = None
+    confidence_id: typing.Optional[
+        ocsf_v_1_8_0_noteactivity_classes_types_confidence_id_ConfidenceId
+    ] = None
+    confidence_score: typing.Optional[int] = None
+    count: typing.Optional[int] = None
+    device: typing.Optional[ocsf_v_1_8_0_noteactivity_objects_types_device_Device] = (
+        None
+    )
+    disposition: typing.Optional[str] = None
+    disposition_id: typing.Optional[
+        ocsf_v_1_8_0_noteactivity_classes_types_disposition_id_DispositionId
+    ] = None
+    duration: typing.Optional[int] = None
+    end_time: typing.Optional[
+        ocsf_v_1_8_0_noteactivity_base_types_timestamp_Timestamp
+    ] = None
+    end_time_dt: typing.Optional[dt.datetime] = None
+    enrichments: typing.Optional[
+        typing.List[ocsf_v_1_8_0_noteactivity_objects_types_enrichment_Enrichment]
+    ] = None
+    finding_info: ocsf_v_1_8_0_noteactivity_objects_types_finding_info_FindingInfo
+    firewall_rule: typing.Optional[
+        ocsf_v_1_8_0_noteactivity_objects_types_firewall_rule_FirewallRule
+    ] = None
+    is_alert: typing.Optional[bool] = None
+    malware: typing.Optional[
+        typing.List[ocsf_v_1_8_0_noteactivity_objects_types_malware_Malware]
+    ] = None
+    malware_scan_info: typing.Optional[
+        ocsf_v_1_8_0_noteactivity_objects_types_malware_scan_info_MalwareScanInfo
+    ] = None
+    message: typing.Optional[str] = None
+    metadata: ocsf_v_1_8_0_noteactivity_objects_types_metadata_Metadata
+    note: Annotation
+    observables: typing.Optional[
+        typing.List[ocsf_v_1_8_0_noteactivity_objects_types_observable_Observable]
+    ] = None
+    policy: typing.Optional[ocsf_v_1_8_0_noteactivity_objects_types_policy_Policy] = (
+        None
+    )
+    raw_data: typing.Optional[str] = None
+    raw_data_hash: typing.Optional[
+        ocsf_v_1_8_0_noteactivity_objects_types_fingerprint_Fingerprint
+    ] = None
+    raw_data_size: typing.Optional[int] = None
+    risk_details: typing.Optional[str] = None
+    risk_level: typing.Optional[str] = None
+    risk_level_id: typing.Optional[
+        ocsf_v_1_8_0_noteactivity_classes_types_risk_level_id_RiskLevelId
+    ] = None
+    risk_score: typing.Optional[int] = None
+    severity: typing.Optional[str] = None
+    severity_id: ocsf_v_1_8_0_noteactivity_classes_types_severity_id_SeverityId
+    start_time: typing.Optional[
+        ocsf_v_1_8_0_noteactivity_base_types_timestamp_Timestamp
+    ] = None
+    start_time_dt: typing.Optional[dt.datetime] = None
+    status: typing.Optional[str] = None
+    status_code: typing.Optional[str] = None
+    status_detail: typing.Optional[str] = None
+    status_id: typing.Optional[
+        ocsf_v_1_8_0_noteactivity_classes_types_status_id_StatusId
+    ] = None
+    time: ocsf_v_1_8_0_noteactivity_base_types_timestamp_Timestamp
+    time_dt: typing.Optional[dt.datetime] = None
+    timezone_offset: typing.Optional[int] = None
+    type_name: typing.Optional[str] = None
+    type_uid: ocsf_v_1_8_0_noteactivity_classes_types_type_uid_TypeUid
+    unmapped: typing.Optional[ocsf_v_1_8_0_noteactivity_objects_types_object_Object] = (
+        None
+    )
+    vendor_attributes: typing.Optional[
+        ocsf_v_1_8_0_noteactivity_objects_types_vendor_attributes_VendorAttributes
+    ] = None
+
+    if IS_PYDANTIC_V2:
+        model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(
+            extra="allow"
+        )  # type: ignore # Pydantic v2
+    else:
+
+        class Config:
+            smart_union = True
+            extra = pydantic.Extra.allow
+
+
 Event = typing_extensions.Annotated[
     typing.Union[
         Event_AccountChange,
@@ -5321,6 +5504,7 @@ Event = typing_extensions.Annotated[
         Event_EmailActivity,
         Event_CloudActivity,
         Event_CloudResourcesInventoryInfo,
+        Event_NoteActivity,
     ],
     UnionMetadata(discriminant="class_name"),
 ]
