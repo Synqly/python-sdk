@@ -17,6 +17,7 @@ class CategoryId(str, enum.Enum):
     CUSTOM = "custom"
     EDR = "edr"
     EMAILSECURITY = "emailsecurity"
+    ENDPOINTMANAGEMENT = "endpointmanagement"
     IDENTITY = "identity"
     INCIDENTRESPONSE = "incidentresponse"
     NOTIFICATIONS = "notifications"
@@ -44,6 +45,7 @@ class CategoryId(str, enum.Enum):
         custom: typing.Callable[[], T_Result],
         edr: typing.Callable[[], T_Result],
         emailsecurity: typing.Callable[[], T_Result],
+        endpointmanagement: typing.Callable[[], T_Result],
         identity: typing.Callable[[], T_Result],
         incidentresponse: typing.Callable[[], T_Result],
         notifications: typing.Callable[[], T_Result],
@@ -66,6 +68,8 @@ class CategoryId(str, enum.Enum):
             return edr()
         if self is CategoryId.EMAILSECURITY:
             return emailsecurity()
+        if self is CategoryId.ENDPOINTMANAGEMENT:
+            return endpointmanagement()
         if self is CategoryId.IDENTITY:
             return identity()
         if self is CategoryId.INCIDENTRESPONSE:

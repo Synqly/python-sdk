@@ -260,6 +260,11 @@ class ProviderConfigId(str, enum.Enum):
     Mimecast Cloud Gateway
     """
 
+    ENDPOINTMANAGEMENT_INTUNE = "endpointmanagement_intune"
+    """
+    Microsoft Intune
+    """
+
     IDENTITY_ENTRA_ID = "identity_entra_id"
     """
     Microsoft Entra ID
@@ -719,6 +724,7 @@ class ProviderConfigId(str, enum.Enum):
         edr_tanium: typing.Callable[[], T_Result],
         email_security_defender_for_office: typing.Callable[[], T_Result],
         email_security_mimecast_cloud_gateway: typing.Callable[[], T_Result],
+        endpointmanagement_intune: typing.Callable[[], T_Result],
         identity_entra_id: typing.Callable[[], T_Result],
         identity_google: typing.Callable[[], T_Result],
         identity_okta: typing.Callable[[], T_Result],
@@ -898,6 +904,8 @@ class ProviderConfigId(str, enum.Enum):
             return email_security_defender_for_office()
         if self is ProviderConfigId.EMAIL_SECURITY_MIMECAST_CLOUD_GATEWAY:
             return email_security_mimecast_cloud_gateway()
+        if self is ProviderConfigId.ENDPOINTMANAGEMENT_INTUNE:
+            return endpointmanagement_intune()
         if self is ProviderConfigId.IDENTITY_ENTRA_ID:
             return identity_entra_id()
         if self is ProviderConfigId.IDENTITY_GOOGLE:

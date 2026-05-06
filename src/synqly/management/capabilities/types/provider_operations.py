@@ -6,6 +6,7 @@ import typing
 from .provider_filter import ProviderFilter
 from .provider_order import ProviderOrder
 from .request_body import RequestBody
+from .provider_action_spec import ProviderActionSpec
 from ...core.pydantic_utilities import IS_PYDANTIC_V2
 
 
@@ -76,6 +77,15 @@ class ProviderOperations(UncheckedBaseModel):
     """
     This field is only available if the operation supports a request
     body. Describes the request body and its schema.
+    """
+
+    actions: typing.Optional[typing.Dict[str, ProviderActionSpec]] = pydantic.Field(
+        default=None
+    )
+    """
+    Supported actions for this operation, keyed by Synqly-unified
+    action name. Use the capabilities API to discover which actions
+    each provider supports.
     """
 
     if IS_PYDANTIC_V2:

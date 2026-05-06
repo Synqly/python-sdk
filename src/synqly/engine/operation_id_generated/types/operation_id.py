@@ -46,6 +46,12 @@ class OperationId(str, enum.Enum):
     EMAILSECURITY_GET_THREAT_DETAILS = "emailsecurity_get_threat_details"
     EMAILSECURITY_QUERY_EMAIL_EVENTS = "emailsecurity_query_email_events"
     EMAILSECURITY_QUERY_THREATS = "emailsecurity_query_threats"
+    ENDPOINTMANAGEMENT_GET_DEVICE = "endpointmanagement_get_device"
+    ENDPOINTMANAGEMENT_QUERY_COMPLIANCE_FINDINGS = (
+        "endpointmanagement_query_compliance_findings"
+    )
+    ENDPOINTMANAGEMENT_QUERY_DEVICES = "endpointmanagement_query_devices"
+    ENDPOINTMANAGEMENT_REMEDIATE_DEVICE = "endpointmanagement_remediate_device"
     IDENTITY_DISABLE_USER = "identity_disable_user"
     IDENTITY_ENABLE_USER = "identity_enable_user"
     IDENTITY_EXPIRE_ALL_USER_SESSIONS = "identity_expire_all_user_sessions"
@@ -162,6 +168,10 @@ class OperationId(str, enum.Enum):
         emailsecurity_get_threat_details: typing.Callable[[], T_Result],
         emailsecurity_query_email_events: typing.Callable[[], T_Result],
         emailsecurity_query_threats: typing.Callable[[], T_Result],
+        endpointmanagement_get_device: typing.Callable[[], T_Result],
+        endpointmanagement_query_compliance_findings: typing.Callable[[], T_Result],
+        endpointmanagement_query_devices: typing.Callable[[], T_Result],
+        endpointmanagement_remediate_device: typing.Callable[[], T_Result],
         identity_disable_user: typing.Callable[[], T_Result],
         identity_enable_user: typing.Callable[[], T_Result],
         identity_expire_all_user_sessions: typing.Callable[[], T_Result],
@@ -302,6 +312,14 @@ class OperationId(str, enum.Enum):
             return emailsecurity_query_email_events()
         if self is OperationId.EMAILSECURITY_QUERY_THREATS:
             return emailsecurity_query_threats()
+        if self is OperationId.ENDPOINTMANAGEMENT_GET_DEVICE:
+            return endpointmanagement_get_device()
+        if self is OperationId.ENDPOINTMANAGEMENT_QUERY_COMPLIANCE_FINDINGS:
+            return endpointmanagement_query_compliance_findings()
+        if self is OperationId.ENDPOINTMANAGEMENT_QUERY_DEVICES:
+            return endpointmanagement_query_devices()
+        if self is OperationId.ENDPOINTMANAGEMENT_REMEDIATE_DEVICE:
+            return endpointmanagement_remediate_device()
         if self is OperationId.IDENTITY_DISABLE_USER:
             return identity_disable_user()
         if self is OperationId.IDENTITY_ENABLE_USER:

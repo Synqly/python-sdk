@@ -18,6 +18,7 @@ from .list_provider_capabilities_expand_options import (
 )
 from .list_providers_capabilities_response import ListProvidersCapabilitiesResponse
 from .order_direction import OrderDirection
+from .provider_action_spec import ProviderActionSpec
 from .provider_capabilities import ProviderCapabilities
 from .provider_capabilities_base import ProviderCapabilitiesBase
 from .provider_capabilities_response import ProviderCapabilitiesResponse
@@ -41,6 +42,7 @@ __all__ = [
     "ListProviderCapabilitiesExpandOptions",
     "ListProvidersCapabilitiesResponse",
     "OrderDirection",
+    "ProviderActionSpec",
     "ProviderCapabilities",
     "ProviderCapabilitiesBase",
     "ProviderCapabilitiesResponse",

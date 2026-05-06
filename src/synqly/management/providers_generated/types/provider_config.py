@@ -65,6 +65,7 @@ from .sophos_credential import SophosCredential
 from .microsoft_defender_region import MicrosoftDefenderRegion
 from .mimecast_api_gateway import MimecastApiGateway
 from .mimecast_cloud_gateway_credential import MimecastCloudGatewayCredential
+from .intune_credential import IntuneCredential
 from .entra_id_credential import EntraIdCredential
 from .google_credential import GoogleCredential
 from .okta_credential import OktaCredential
@@ -922,6 +923,23 @@ class ProviderConfig_EmailsecurityMimecastCloudGateway(UncheckedBaseModel):
     )
     api_gateway: typing.Optional[MimecastApiGateway] = None
     credential: MimecastCloudGatewayCredential
+
+    if IS_PYDANTIC_V2:
+        model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(
+            extra="allow"
+        )  # type: ignore # Pydantic v2
+    else:
+
+        class Config:
+            smart_union = True
+            extra = pydantic.Extra.allow
+
+
+class ProviderConfig_EndpointmanagementIntune(UncheckedBaseModel):
+    type: typing.Literal["endpointmanagement_intune"] = "endpointmanagement_intune"
+    credential: IntuneCredential
+    tenant_id: str
+    url: typing.Optional[str] = None
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(
@@ -2353,6 +2371,7 @@ ProviderConfig = typing_extensions.Annotated[
         ProviderConfig_EdrTanium,
         ProviderConfig_EmailsecurityDefenderForOffice,
         ProviderConfig_EmailsecurityMimecastCloudGateway,
+        ProviderConfig_EndpointmanagementIntune,
         ProviderConfig_IdentityEntraId,
         ProviderConfig_IdentityGoogle,
         ProviderConfig_IdentityOkta,

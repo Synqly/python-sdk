@@ -10,6 +10,7 @@ from .cloudsecurity.client import CloudsecurityClient
 from .custom.client import CustomClient
 from .edr.client import EdrClient
 from .emailsecurity.client import EmailsecurityClient
+from .endpointmanagement.client import EndpointmanagementClient
 from .hooks.client import HooksClient
 from .identity.client import IdentityClient
 from .incidentresponse.client import IncidentresponseClient
@@ -28,6 +29,7 @@ from .cloudsecurity.client import AsyncCloudsecurityClient
 from .custom.client import AsyncCustomClient
 from .edr.client import AsyncEdrClient
 from .emailsecurity.client import AsyncEmailsecurityClient
+from .endpointmanagement.client import AsyncEndpointmanagementClient
 from .hooks.client import AsyncHooksClient
 from .identity.client import AsyncIdentityClient
 from .incidentresponse.client import AsyncIncidentresponseClient
@@ -109,6 +111,9 @@ class SynqlyEngine:
         self.custom = CustomClient(client_wrapper=self._client_wrapper)
         self.edr = EdrClient(client_wrapper=self._client_wrapper)
         self.emailsecurity = EmailsecurityClient(client_wrapper=self._client_wrapper)
+        self.endpointmanagement = EndpointmanagementClient(
+            client_wrapper=self._client_wrapper
+        )
         self.hooks = HooksClient(client_wrapper=self._client_wrapper)
         self.identity = IdentityClient(client_wrapper=self._client_wrapper)
         self.incidentresponse = IncidentresponseClient(
@@ -198,6 +203,9 @@ class AsyncSynqlyEngine:
         self.custom = AsyncCustomClient(client_wrapper=self._client_wrapper)
         self.edr = AsyncEdrClient(client_wrapper=self._client_wrapper)
         self.emailsecurity = AsyncEmailsecurityClient(
+            client_wrapper=self._client_wrapper
+        )
+        self.endpointmanagement = AsyncEndpointmanagementClient(
             client_wrapper=self._client_wrapper
         )
         self.hooks = AsyncHooksClient(client_wrapper=self._client_wrapper)

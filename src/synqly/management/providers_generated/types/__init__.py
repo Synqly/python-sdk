@@ -178,6 +178,7 @@ from .elasticsearch_shared_secret import (
 )
 from .email_security_defender_for_office import EmailSecurityDefenderForOffice
 from .email_security_mimecast_cloud_gateway import EmailSecurityMimecastCloudGateway
+from .endpointmanagement_intune import EndpointmanagementIntune
 from .entra_id_credential import (
     EntraIdCredential,
     EntraIdCredential_OAuthClient,
@@ -281,6 +282,11 @@ from .incident_io_credential import (
 )
 from .incident_response_incident_io import IncidentResponseIncidentIo
 from .incident_response_pager_duty import IncidentResponsePagerDuty
+from .intune_credential import (
+    IntuneCredential,
+    IntuneCredential_OAuthClient,
+    IntuneCredential_OAuthClientId,
+)
 from .iru_credential import IruCredential, IruCredential_Token, IruCredential_TokenId
 from .ivanti_credential import (
     IvantiCredential,
@@ -426,6 +432,7 @@ from .provider_config import (
     ProviderConfig_EdrTanium,
     ProviderConfig_EmailsecurityDefenderForOffice,
     ProviderConfig_EmailsecurityMimecastCloudGateway,
+    ProviderConfig_EndpointmanagementIntune,
     ProviderConfig_IdentityEntraId,
     ProviderConfig_IdentityGoogle,
     ProviderConfig_IdentityOkta,
@@ -864,6 +871,7 @@ __all__ = [
     "ElasticsearchSharedSecret_SecretId",
     "EmailSecurityDefenderForOffice",
     "EmailSecurityMimecastCloudGateway",
+    "EndpointmanagementIntune",
     "EntraIdCredential",
     "EntraIdCredential_OAuthClient",
     "EntraIdCredential_OAuthClientId",
@@ -935,6 +943,9 @@ __all__ = [
     "IncidentIoCredential_TokenId",
     "IncidentResponseIncidentIo",
     "IncidentResponsePagerDuty",
+    "IntuneCredential",
+    "IntuneCredential_OAuthClient",
+    "IntuneCredential_OAuthClientId",
     "IruCredential",
     "IruCredential_Token",
     "IruCredential_TokenId",
@@ -1050,6 +1061,7 @@ __all__ = [
     "ProviderConfig_EdrTanium",
     "ProviderConfig_EmailsecurityDefenderForOffice",
     "ProviderConfig_EmailsecurityMimecastCloudGateway",
+    "ProviderConfig_EndpointmanagementIntune",
     "ProviderConfig_IdentityEntraId",
     "ProviderConfig_IdentityGoogle",
     "ProviderConfig_IdentityOkta",
