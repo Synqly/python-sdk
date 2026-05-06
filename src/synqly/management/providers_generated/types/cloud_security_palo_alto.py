@@ -10,6 +10,8 @@ import typing
 class CloudSecurityPaloAlto(UncheckedBaseModel):
     """
     Configuration for Palo Alto Networks Cortex Cloud Security
+
+    [Configuration guide](https://docs.synqly.com/guides/provider-configuration/paloalto-cloudsecurity-setup)
     """
 
     credential: PaloAltoCredential

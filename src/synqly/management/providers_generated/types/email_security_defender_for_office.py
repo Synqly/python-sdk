@@ -11,6 +11,8 @@ from ...core.pydantic_utilities import IS_PYDANTIC_V2
 class EmailSecurityDefenderForOffice(UncheckedBaseModel):
     """
     Configuration for Microsoft Defender for Office 365.
+
+    [Configuration guide](https://docs.synqly.com/guides/provider-configuration/microsoft-defender-for-office-emailsecurity-setup)
     """
 
     credential: DefenderCredential

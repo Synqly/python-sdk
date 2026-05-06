@@ -11,6 +11,8 @@ import typing
 class CloudSecurityUpwind(UncheckedBaseModel):
     """
     Configuration for the Upwind Cloud Security provider.
+
+    [Configuration guide](https://docs.synqly.com/guides/provider-configuration/upwind-setup)
     """
 
     credential: UpwindCredential = pydantic.Field()

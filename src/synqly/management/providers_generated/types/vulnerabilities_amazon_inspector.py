@@ -11,6 +11,8 @@ import typing
 class VulnerabilitiesAmazonInspector(UncheckedBaseModel):
     """
     Configuration for Amazon Inspector as a vulnerabilities provider.
+
+    [Configuration guide](https://docs.synqly.com/guides/provider-configuration/amazon-inspector-vulnerabilities-setup)
     """
 
     credential: AwsProviderCredential = pydantic.Field()
