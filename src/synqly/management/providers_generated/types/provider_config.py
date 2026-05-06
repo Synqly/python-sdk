@@ -66,6 +66,7 @@ from .microsoft_defender_region import MicrosoftDefenderRegion
 from .mimecast_api_gateway import MimecastApiGateway
 from .mimecast_cloud_gateway_credential import MimecastCloudGatewayCredential
 from .intune_credential import IntuneCredential
+from .jamf_credential import JamfCredential
 from .entra_id_credential import EntraIdCredential
 from .google_credential import GoogleCredential
 from .okta_credential import OktaCredential
@@ -940,6 +941,22 @@ class ProviderConfig_EndpointmanagementIntune(UncheckedBaseModel):
     credential: IntuneCredential
     tenant_id: str
     url: typing.Optional[str] = None
+
+    if IS_PYDANTIC_V2:
+        model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(
+            extra="allow"
+        )  # type: ignore # Pydantic v2
+    else:
+
+        class Config:
+            smart_union = True
+            extra = pydantic.Extra.allow
+
+
+class ProviderConfig_EndpointmanagementJamf(UncheckedBaseModel):
+    type: typing.Literal["endpointmanagement_jamf"] = "endpointmanagement_jamf"
+    credential: JamfCredential
+    url: str
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(
@@ -2372,6 +2389,7 @@ ProviderConfig = typing_extensions.Annotated[
         ProviderConfig_EmailsecurityDefenderForOffice,
         ProviderConfig_EmailsecurityMimecastCloudGateway,
         ProviderConfig_EndpointmanagementIntune,
+        ProviderConfig_EndpointmanagementJamf,
         ProviderConfig_IdentityEntraId,
         ProviderConfig_IdentityGoogle,
         ProviderConfig_IdentityOkta,

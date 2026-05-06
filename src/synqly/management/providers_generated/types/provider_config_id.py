@@ -265,6 +265,11 @@ class ProviderConfigId(str, enum.Enum):
     Microsoft Intune
     """
 
+    ENDPOINTMANAGEMENT_JAMF = "endpointmanagement_jamf"
+    """
+    Jamf Pro
+    """
+
     IDENTITY_ENTRA_ID = "identity_entra_id"
     """
     Microsoft Entra ID
@@ -725,6 +730,7 @@ class ProviderConfigId(str, enum.Enum):
         email_security_defender_for_office: typing.Callable[[], T_Result],
         email_security_mimecast_cloud_gateway: typing.Callable[[], T_Result],
         endpointmanagement_intune: typing.Callable[[], T_Result],
+        endpointmanagement_jamf: typing.Callable[[], T_Result],
         identity_entra_id: typing.Callable[[], T_Result],
         identity_google: typing.Callable[[], T_Result],
         identity_okta: typing.Callable[[], T_Result],
@@ -906,6 +912,8 @@ class ProviderConfigId(str, enum.Enum):
             return email_security_mimecast_cloud_gateway()
         if self is ProviderConfigId.ENDPOINTMANAGEMENT_INTUNE:
             return endpointmanagement_intune()
+        if self is ProviderConfigId.ENDPOINTMANAGEMENT_JAMF:
+            return endpointmanagement_jamf()
         if self is ProviderConfigId.IDENTITY_ENTRA_ID:
             return identity_entra_id()
         if self is ProviderConfigId.IDENTITY_GOOGLE:

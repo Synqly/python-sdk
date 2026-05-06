@@ -179,6 +179,7 @@ from .elasticsearch_shared_secret import (
 from .email_security_defender_for_office import EmailSecurityDefenderForOffice
 from .email_security_mimecast_cloud_gateway import EmailSecurityMimecastCloudGateway
 from .endpointmanagement_intune import EndpointmanagementIntune
+from .endpointmanagement_jamf import EndpointmanagementJamf
 from .entra_id_credential import (
     EntraIdCredential,
     EntraIdCredential_OAuthClient,
@@ -297,6 +298,11 @@ from .ivanti_credential_ticketing import (
     IvantiCredentialTicketing,
     IvantiCredentialTicketing_Token,
     IvantiCredentialTicketing_TokenId,
+)
+from .jamf_credential import (
+    JamfCredential,
+    JamfCredential_OAuthClient,
+    JamfCredential_OAuthClientId,
 )
 from .jira_credential import (
     JiraCredential,
@@ -433,6 +439,7 @@ from .provider_config import (
     ProviderConfig_EmailsecurityDefenderForOffice,
     ProviderConfig_EmailsecurityMimecastCloudGateway,
     ProviderConfig_EndpointmanagementIntune,
+    ProviderConfig_EndpointmanagementJamf,
     ProviderConfig_IdentityEntraId,
     ProviderConfig_IdentityGoogle,
     ProviderConfig_IdentityOkta,
@@ -872,6 +879,7 @@ __all__ = [
     "EmailSecurityDefenderForOffice",
     "EmailSecurityMimecastCloudGateway",
     "EndpointmanagementIntune",
+    "EndpointmanagementJamf",
     "EntraIdCredential",
     "EntraIdCredential_OAuthClient",
     "EntraIdCredential_OAuthClientId",
@@ -955,6 +963,9 @@ __all__ = [
     "IvantiCredentialTicketing_TokenId",
     "IvantiCredential_OAuthClient",
     "IvantiCredential_OAuthClientId",
+    "JamfCredential",
+    "JamfCredential_OAuthClient",
+    "JamfCredential_OAuthClientId",
     "JiraCredential",
     "JiraCredential_Basic",
     "JiraCredential_BasicId",
@@ -1062,6 +1073,7 @@ __all__ = [
     "ProviderConfig_EmailsecurityDefenderForOffice",
     "ProviderConfig_EmailsecurityMimecastCloudGateway",
     "ProviderConfig_EndpointmanagementIntune",
+    "ProviderConfig_EndpointmanagementJamf",
     "ProviderConfig_IdentityEntraId",
     "ProviderConfig_IdentityGoogle",
     "ProviderConfig_IdentityOkta",
