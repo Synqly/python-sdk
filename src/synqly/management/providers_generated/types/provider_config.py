@@ -65,6 +65,7 @@ from .sophos_credential import SophosCredential
 from .microsoft_defender_region import MicrosoftDefenderRegion
 from .mimecast_api_gateway import MimecastApiGateway
 from .mimecast_cloud_gateway_credential import MimecastCloudGatewayCredential
+from .automox_api_key_credential import AutomoxApiKeyCredential
 from .intune_credential import IntuneCredential
 from .jamf_credential import JamfCredential
 from .entra_id_credential import EntraIdCredential
@@ -940,6 +941,23 @@ class ProviderConfig_EmailsecurityMimecastCloudGateway(UncheckedBaseModel):
     )
     api_gateway: typing.Optional[MimecastApiGateway] = None
     credential: MimecastCloudGatewayCredential
+
+    if IS_PYDANTIC_V2:
+        model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(
+            extra="allow"
+        )  # type: ignore # Pydantic v2
+    else:
+
+        class Config:
+            smart_union = True
+            extra = pydantic.Extra.allow
+
+
+class ProviderConfig_EndpointmanagementAutomox(UncheckedBaseModel):
+    type: typing.Literal["endpointmanagement_automox"] = "endpointmanagement_automox"
+    credential: AutomoxApiKeyCredential
+    org_id: str
+    url: typing.Optional[str] = None
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(
@@ -2437,6 +2455,7 @@ ProviderConfig = typing_extensions.Annotated[
         ProviderConfig_EdrTanium,
         ProviderConfig_EmailsecurityDefenderForOffice,
         ProviderConfig_EmailsecurityMimecastCloudGateway,
+        ProviderConfig_EndpointmanagementAutomox,
         ProviderConfig_EndpointmanagementIntune,
         ProviderConfig_EndpointmanagementIru,
         ProviderConfig_EndpointmanagementJamf,

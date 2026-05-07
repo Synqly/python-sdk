@@ -55,6 +55,11 @@ from .assets_sevco_mock import AssetsSevcoMock
 from .assets_tanium_cloud import AssetsTaniumCloud
 from .assets_tanium_cloud_dataset import AssetsTaniumCloudDataset
 from .assets_tanium_cloud_mock import AssetsTaniumCloudMock
+from .automox_api_key_credential import (
+    AutomoxApiKeyCredential,
+    AutomoxApiKeyCredential_Token,
+    AutomoxApiKeyCredential_TokenId,
+)
 from .autotask_api_integration_code_credential import (
     AutotaskApiIntegrationCodeCredential,
     AutotaskApiIntegrationCodeCredential_Secret,
@@ -179,6 +184,7 @@ from .elasticsearch_shared_secret import (
 )
 from .email_security_defender_for_office import EmailSecurityDefenderForOffice
 from .email_security_mimecast_cloud_gateway import EmailSecurityMimecastCloudGateway
+from .endpointmanagement_automox import EndpointmanagementAutomox
 from .endpointmanagement_intune import EndpointmanagementIntune
 from .endpointmanagement_iru import EndpointmanagementIru
 from .endpointmanagement_jamf import EndpointmanagementJamf
@@ -441,6 +447,7 @@ from .provider_config import (
     ProviderConfig_EdrTanium,
     ProviderConfig_EmailsecurityDefenderForOffice,
     ProviderConfig_EmailsecurityMimecastCloudGateway,
+    ProviderConfig_EndpointmanagementAutomox,
     ProviderConfig_EndpointmanagementIntune,
     ProviderConfig_EndpointmanagementIru,
     ProviderConfig_EndpointmanagementJamf,
@@ -795,6 +802,9 @@ __all__ = [
     "AssetsTaniumCloud",
     "AssetsTaniumCloudDataset",
     "AssetsTaniumCloudMock",
+    "AutomoxApiKeyCredential",
+    "AutomoxApiKeyCredential_Token",
+    "AutomoxApiKeyCredential_TokenId",
     "AutotaskApiIntegrationCodeCredential",
     "AutotaskApiIntegrationCodeCredential_Secret",
     "AutotaskApiIntegrationCodeCredential_SecretId",
@@ -885,6 +895,7 @@ __all__ = [
     "ElasticsearchSharedSecret_SecretId",
     "EmailSecurityDefenderForOffice",
     "EmailSecurityMimecastCloudGateway",
+    "EndpointmanagementAutomox",
     "EndpointmanagementIntune",
     "EndpointmanagementIru",
     "EndpointmanagementJamf",
@@ -1081,6 +1092,7 @@ __all__ = [
     "ProviderConfig_EdrTanium",
     "ProviderConfig_EmailsecurityDefenderForOffice",
     "ProviderConfig_EmailsecurityMimecastCloudGateway",
+    "ProviderConfig_EndpointmanagementAutomox",
     "ProviderConfig_EndpointmanagementIntune",
     "ProviderConfig_EndpointmanagementIru",
     "ProviderConfig_EndpointmanagementJamf",
