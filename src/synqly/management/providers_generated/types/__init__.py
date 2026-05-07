@@ -36,6 +36,7 @@ from .assets_crowd_strike import AssetsCrowdStrike
 from .assets_crowd_strike_dataset import AssetsCrowdStrikeDataset
 from .assets_crowd_strike_mock import AssetsCrowdStrikeMock
 from .assets_defender import AssetsDefender
+from .assets_iru import AssetsIru
 from .assets_ivanti_neurons import AssetsIvantiNeurons
 from .assets_ivanti_neurons_dataset import AssetsIvantiNeuronsDataset
 from .assets_ivanti_neurons_mock import AssetsIvantiNeuronsMock
@@ -179,6 +180,7 @@ from .elasticsearch_shared_secret import (
 from .email_security_defender_for_office import EmailSecurityDefenderForOffice
 from .email_security_mimecast_cloud_gateway import EmailSecurityMimecastCloudGateway
 from .endpointmanagement_intune import EndpointmanagementIntune
+from .endpointmanagement_iru import EndpointmanagementIru
 from .endpointmanagement_jamf import EndpointmanagementJamf
 from .entra_id_credential import (
     EntraIdCredential,
@@ -406,6 +408,7 @@ from .provider_config import (
     ProviderConfig_AssetsCrowdstrike,
     ProviderConfig_AssetsCrowdstrikeMock,
     ProviderConfig_AssetsDefender,
+    ProviderConfig_AssetsIru,
     ProviderConfig_AssetsIvantiNeurons,
     ProviderConfig_AssetsIvantiNeuronsMock,
     ProviderConfig_AssetsNozomiVantage,
@@ -439,6 +442,7 @@ from .provider_config import (
     ProviderConfig_EmailsecurityDefenderForOffice,
     ProviderConfig_EmailsecurityMimecastCloudGateway,
     ProviderConfig_EndpointmanagementIntune,
+    ProviderConfig_EndpointmanagementIru,
     ProviderConfig_EndpointmanagementJamf,
     ProviderConfig_IdentityEntraId,
     ProviderConfig_IdentityGoogle,
@@ -508,6 +512,7 @@ from .provider_config import (
     ProviderConfig_VulnerabilitiesCrowdstrikeMock,
     ProviderConfig_VulnerabilitiesDefender,
     ProviderConfig_VulnerabilitiesHorizon3,
+    ProviderConfig_VulnerabilitiesIru,
     ProviderConfig_VulnerabilitiesNucleus,
     ProviderConfig_VulnerabilitiesQualysCloud,
     ProviderConfig_VulnerabilitiesQualysCloudMock,
@@ -707,6 +712,7 @@ from .vulnerabilities_crowd_strike_dataset import VulnerabilitiesCrowdStrikeData
 from .vulnerabilities_crowd_strike_mock import VulnerabilitiesCrowdStrikeMock
 from .vulnerabilities_defender import VulnerabilitiesDefender
 from .vulnerabilities_horizon_3 import VulnerabilitiesHorizon3
+from .vulnerabilities_iru import VulnerabilitiesIru
 from .vulnerabilities_nucleus import VulnerabilitiesNucleus
 from .vulnerabilities_qualys_cloud import VulnerabilitiesQualysCloud
 from .vulnerabilities_qualys_cloud_dataset import VulnerabilitiesQualysCloudDataset
@@ -770,6 +776,7 @@ __all__ = [
     "AssetsCrowdStrikeDataset",
     "AssetsCrowdStrikeMock",
     "AssetsDefender",
+    "AssetsIru",
     "AssetsIvantiNeurons",
     "AssetsIvantiNeuronsDataset",
     "AssetsIvantiNeuronsMock",
@@ -879,6 +886,7 @@ __all__ = [
     "EmailSecurityDefenderForOffice",
     "EmailSecurityMimecastCloudGateway",
     "EndpointmanagementIntune",
+    "EndpointmanagementIru",
     "EndpointmanagementJamf",
     "EntraIdCredential",
     "EntraIdCredential_OAuthClient",
@@ -1040,6 +1048,7 @@ __all__ = [
     "ProviderConfig_AssetsCrowdstrike",
     "ProviderConfig_AssetsCrowdstrikeMock",
     "ProviderConfig_AssetsDefender",
+    "ProviderConfig_AssetsIru",
     "ProviderConfig_AssetsIvantiNeurons",
     "ProviderConfig_AssetsIvantiNeuronsMock",
     "ProviderConfig_AssetsNozomiVantage",
@@ -1073,6 +1082,7 @@ __all__ = [
     "ProviderConfig_EmailsecurityDefenderForOffice",
     "ProviderConfig_EmailsecurityMimecastCloudGateway",
     "ProviderConfig_EndpointmanagementIntune",
+    "ProviderConfig_EndpointmanagementIru",
     "ProviderConfig_EndpointmanagementJamf",
     "ProviderConfig_IdentityEntraId",
     "ProviderConfig_IdentityGoogle",
@@ -1142,6 +1152,7 @@ __all__ = [
     "ProviderConfig_VulnerabilitiesCrowdstrikeMock",
     "ProviderConfig_VulnerabilitiesDefender",
     "ProviderConfig_VulnerabilitiesHorizon3",
+    "ProviderConfig_VulnerabilitiesIru",
     "ProviderConfig_VulnerabilitiesNucleus",
     "ProviderConfig_VulnerabilitiesQualysCloud",
     "ProviderConfig_VulnerabilitiesQualysCloudMock",
@@ -1291,6 +1302,7 @@ __all__ = [
     "VulnerabilitiesCrowdStrikeMock",
     "VulnerabilitiesDefender",
     "VulnerabilitiesHorizon3",
+    "VulnerabilitiesIru",
     "VulnerabilitiesNucleus",
     "VulnerabilitiesQualysCloud",
     "VulnerabilitiesQualysCloudDataset",

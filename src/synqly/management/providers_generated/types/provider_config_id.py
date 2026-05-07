@@ -100,6 +100,11 @@ class ProviderConfigId(str, enum.Enum):
     Microsoft Defender for Endpoint
     """
 
+    ASSETS_IRU = "assets_iru"
+    """
+    Iru
+    """
+
     ASSETS_IVANTI_NEURONS = "assets_ivanti_neurons"
     """
     Ivanti Neurons
@@ -263,6 +268,11 @@ class ProviderConfigId(str, enum.Enum):
     ENDPOINTMANAGEMENT_INTUNE = "endpointmanagement_intune"
     """
     Microsoft Intune
+    """
+
+    ENDPOINTMANAGEMENT_IRU = "endpointmanagement_iru"
+    """
+    Iru
     """
 
     ENDPOINTMANAGEMENT_JAMF = "endpointmanagement_jamf"
@@ -610,6 +620,11 @@ class ProviderConfigId(str, enum.Enum):
     NodeZero
     """
 
+    VULNERABILITIES_IRU = "vulnerabilities_iru"
+    """
+    Iru
+    """
+
     VULNERABILITIES_NUCLEUS = "vulnerabilities_nucleus"
     """
     Nucleus Vulnerability Management
@@ -697,6 +712,7 @@ class ProviderConfigId(str, enum.Enum):
         assets_crowd_strike: typing.Callable[[], T_Result],
         assets_crowd_strike_mock: typing.Callable[[], T_Result],
         assets_defender: typing.Callable[[], T_Result],
+        assets_iru: typing.Callable[[], T_Result],
         assets_ivanti_neurons: typing.Callable[[], T_Result],
         assets_ivanti_neurons_mock: typing.Callable[[], T_Result],
         assets_nozomi_vantage: typing.Callable[[], T_Result],
@@ -730,6 +746,7 @@ class ProviderConfigId(str, enum.Enum):
         email_security_defender_for_office: typing.Callable[[], T_Result],
         email_security_mimecast_cloud_gateway: typing.Callable[[], T_Result],
         endpointmanagement_intune: typing.Callable[[], T_Result],
+        endpointmanagement_iru: typing.Callable[[], T_Result],
         endpointmanagement_jamf: typing.Callable[[], T_Result],
         identity_entra_id: typing.Callable[[], T_Result],
         identity_google: typing.Callable[[], T_Result],
@@ -799,6 +816,7 @@ class ProviderConfigId(str, enum.Enum):
         vulnerabilities_crowd_strike_mock: typing.Callable[[], T_Result],
         vulnerabilities_defender: typing.Callable[[], T_Result],
         vulnerabilities_horizon_3: typing.Callable[[], T_Result],
+        vulnerabilities_iru: typing.Callable[[], T_Result],
         vulnerabilities_nucleus: typing.Callable[[], T_Result],
         vulnerabilities_qualys_cloud: typing.Callable[[], T_Result],
         vulnerabilities_qualys_cloud_mock: typing.Callable[[], T_Result],
@@ -846,6 +864,8 @@ class ProviderConfigId(str, enum.Enum):
             return assets_crowd_strike_mock()
         if self is ProviderConfigId.ASSETS_DEFENDER:
             return assets_defender()
+        if self is ProviderConfigId.ASSETS_IRU:
+            return assets_iru()
         if self is ProviderConfigId.ASSETS_IVANTI_NEURONS:
             return assets_ivanti_neurons()
         if self is ProviderConfigId.ASSETS_IVANTI_NEURONS_MOCK:
@@ -912,6 +932,8 @@ class ProviderConfigId(str, enum.Enum):
             return email_security_mimecast_cloud_gateway()
         if self is ProviderConfigId.ENDPOINTMANAGEMENT_INTUNE:
             return endpointmanagement_intune()
+        if self is ProviderConfigId.ENDPOINTMANAGEMENT_IRU:
+            return endpointmanagement_iru()
         if self is ProviderConfigId.ENDPOINTMANAGEMENT_JAMF:
             return endpointmanagement_jamf()
         if self is ProviderConfigId.IDENTITY_ENTRA_ID:
@@ -1050,6 +1072,8 @@ class ProviderConfigId(str, enum.Enum):
             return vulnerabilities_defender()
         if self is ProviderConfigId.VULNERABILITIES_HORIZON_3:
             return vulnerabilities_horizon_3()
+        if self is ProviderConfigId.VULNERABILITIES_IRU:
+            return vulnerabilities_iru()
         if self is ProviderConfigId.VULNERABILITIES_NUCLEUS:
             return vulnerabilities_nucleus()
         if self is ProviderConfigId.VULNERABILITIES_QUALYS_CLOUD:
