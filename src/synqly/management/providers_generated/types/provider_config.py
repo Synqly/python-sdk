@@ -24,6 +24,8 @@ from .appsec_opentext_core_application_security_dataset import (
 from .snyk_credential import SnykCredential
 from .snyk_region import SnykRegion
 from .tenable_cloud_credential import TenableCloudCredential
+from .veracode_credential import VeracodeCredential
+from .veracode_region import VeracodeRegion
 from .armis_credential import ArmisCredential
 from .assets_armis_dataset import AssetsArmisDataset
 from .axonius_credential import AxoniusCredential
@@ -273,6 +275,22 @@ class ProviderConfig_AppsecTenable(UncheckedBaseModel):
     type: typing.Literal["appsec_tenable"] = "appsec_tenable"
     credential: TenableCloudCredential
     url: typing.Optional[str] = None
+
+    if IS_PYDANTIC_V2:
+        model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(
+            extra="allow"
+        )  # type: ignore # Pydantic v2
+    else:
+
+        class Config:
+            smart_union = True
+            extra = pydantic.Extra.allow
+
+
+class ProviderConfig_AppsecVeracode(UncheckedBaseModel):
+    type: typing.Literal["appsec_veracode"] = "appsec_veracode"
+    credential: VeracodeCredential
+    region: VeracodeRegion
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(
@@ -2414,6 +2432,7 @@ ProviderConfig = typing_extensions.Annotated[
         ProviderConfig_AppsecOpentextCoreApplicationSecurityMock,
         ProviderConfig_AppsecSnyk,
         ProviderConfig_AppsecTenable,
+        ProviderConfig_AppsecVeracode,
         ProviderConfig_AssetsArmisCentrix,
         ProviderConfig_AssetsArmisCentrixMock,
         ProviderConfig_AssetsAxonius,

@@ -60,6 +60,11 @@ class ProviderConfigId(str, enum.Enum):
     Tenable Web Application Scanner
     """
 
+    APP_SEC_VERACODE = "appsec_veracode"
+    """
+    Veracode
+    """
+
     ASSETS_ARMIS_CENTRIX = "assets_armis_centrix"
     """
     Armis Centrix™ for Asset Management and Security
@@ -709,6 +714,7 @@ class ProviderConfigId(str, enum.Enum):
         appsec_open_text_core_application_security_mock: typing.Callable[[], T_Result],
         app_sec_snyk: typing.Callable[[], T_Result],
         app_sec_tenable: typing.Callable[[], T_Result],
+        app_sec_veracode: typing.Callable[[], T_Result],
         assets_armis_centrix: typing.Callable[[], T_Result],
         assets_armis_centrix_mock: typing.Callable[[], T_Result],
         assets_axonius: typing.Callable[[], T_Result],
@@ -854,6 +860,8 @@ class ProviderConfigId(str, enum.Enum):
             return app_sec_snyk()
         if self is ProviderConfigId.APP_SEC_TENABLE:
             return app_sec_tenable()
+        if self is ProviderConfigId.APP_SEC_VERACODE:
+            return app_sec_veracode()
         if self is ProviderConfigId.ASSETS_ARMIS_CENTRIX:
             return assets_armis_centrix()
         if self is ProviderConfigId.ASSETS_ARMIS_CENTRIX_MOCK:

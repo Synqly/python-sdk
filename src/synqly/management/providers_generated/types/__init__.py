@@ -4,6 +4,7 @@ from .api_config import ApiConfig
 from .api_region import ApiRegion
 from .app_sec_snyk import AppSecSnyk
 from .app_sec_tenable import AppSecTenable
+from .app_sec_veracode import AppSecVeracode
 from .appsec_amazon_inspector import AppsecAmazonInspector
 from .appsec_git_hub import AppsecGitHub
 from .appsec_git_lab import AppsecGitLab
@@ -406,6 +407,7 @@ from .provider_config import (
     ProviderConfig_AppsecOpentextCoreApplicationSecurityMock,
     ProviderConfig_AppsecSnyk,
     ProviderConfig_AppsecTenable,
+    ProviderConfig_AppsecVeracode,
     ProviderConfig_AssetsArmisCentrix,
     ProviderConfig_AssetsArmisCentrixMock,
     ProviderConfig_AssetsAxonius,
@@ -712,6 +714,12 @@ from .upwind_credential import (
     UpwindCredential_OAuthClientId,
 )
 from .upwind_region import UpwindRegion
+from .veracode_credential import (
+    VeracodeCredential,
+    VeracodeCredential_OAuthClient,
+    VeracodeCredential_OAuthClientId,
+)
+from .veracode_region import VeracodeRegion
 from .vulnerabilities_amazon_inspector import VulnerabilitiesAmazonInspector
 from .vulnerabilities_axonius import VulnerabilitiesAxonius
 from .vulnerabilities_crowd_strike import VulnerabilitiesCrowdStrike
@@ -759,6 +767,7 @@ __all__ = [
     "ApiRegion",
     "AppSecSnyk",
     "AppSecTenable",
+    "AppSecVeracode",
     "AppsecAmazonInspector",
     "AppsecGitHub",
     "AppsecGitLab",
@@ -1051,6 +1060,7 @@ __all__ = [
     "ProviderConfig_AppsecOpentextCoreApplicationSecurityMock",
     "ProviderConfig_AppsecSnyk",
     "ProviderConfig_AppsecTenable",
+    "ProviderConfig_AppsecVeracode",
     "ProviderConfig_AssetsArmisCentrix",
     "ProviderConfig_AssetsArmisCentrixMock",
     "ProviderConfig_AssetsAxonius",
@@ -1307,6 +1317,10 @@ __all__ = [
     "UpwindCredential_OAuthClient",
     "UpwindCredential_OAuthClientId",
     "UpwindRegion",
+    "VeracodeCredential",
+    "VeracodeCredential_OAuthClient",
+    "VeracodeCredential_OAuthClientId",
+    "VeracodeRegion",
     "VulnerabilitiesAmazonInspector",
     "VulnerabilitiesAxonius",
     "VulnerabilitiesCrowdStrike",
