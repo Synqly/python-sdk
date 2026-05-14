@@ -43,6 +43,7 @@ class AssetsClient:
         cursor: typing.Optional[str] = None,
         filter: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
         order: typing.Optional[str] = None,
+        include_raw_data: typing.Optional[bool] = None,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> QueryDevicesResponse:
         """
@@ -67,6 +68,9 @@ class AssetsClient:
             `[asc]` or `[desc]` to the field name. For example, `time[asc]` will sort the results by `time` in ascending order.
             The ordering defaults to `asc` if not specified.
 
+        include_raw_data : typing.Optional[bool]
+            Include the raw data from the provider in the response. Defaults to `false`.
+
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
 
@@ -87,6 +91,7 @@ class AssetsClient:
             cursor="string",
             filter="string",
             order="string",
+            include_raw_data=True,
         )
         """
         _response = self._client_wrapper.httpx_client.request(
@@ -98,6 +103,7 @@ class AssetsClient:
                 "cursor": cursor,
                 "filter": filter,
                 "order": order,
+                "include_raw_data": include_raw_data,
             },
             request_options=request_options,
         )
@@ -1246,6 +1252,7 @@ class AsyncAssetsClient:
         cursor: typing.Optional[str] = None,
         filter: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
         order: typing.Optional[str] = None,
+        include_raw_data: typing.Optional[bool] = None,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> QueryDevicesResponse:
         """
@@ -1269,6 +1276,9 @@ class AsyncAssetsClient:
             Select a field to order the results by. Defaults to `time`. To control the direction of the sorting, append
             `[asc]` or `[desc]` to the field name. For example, `time[asc]` will sort the results by `time` in ascending order.
             The ordering defaults to `asc` if not specified.
+
+        include_raw_data : typing.Optional[bool]
+            Include the raw data from the provider in the response. Defaults to `false`.
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -1295,6 +1305,7 @@ class AsyncAssetsClient:
                 cursor="string",
                 filter="string",
                 order="string",
+                include_raw_data=True,
             )
 
 
@@ -1309,6 +1320,7 @@ class AsyncAssetsClient:
                 "cursor": cursor,
                 "filter": filter,
                 "order": order,
+                "include_raw_data": include_raw_data,
             },
             request_options=request_options,
         )

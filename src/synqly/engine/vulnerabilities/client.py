@@ -57,6 +57,7 @@ class VulnerabilitiesClient:
         limit: typing.Optional[int] = None,
         cursor: typing.Optional[str] = None,
         filter: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
+        include_raw_data: typing.Optional[bool] = None,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> QueryFindingsResponse:
         """
@@ -75,6 +76,9 @@ class VulnerabilitiesClient:
 
         filter : typing.Optional[typing.Union[str, typing.Sequence[str]]]
             Filter results by this query. For more information on filtering, refer to the Vulnerability Filtering Guide. Defaults to no filter. If used more than once, the queries are ANDed together.
+
+        include_raw_data : typing.Optional[bool]
+            Include the raw data from the provider in the response. Defaults to `false`.
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -95,6 +99,7 @@ class VulnerabilitiesClient:
             limit=1,
             cursor="string",
             filter="string",
+            include_raw_data=True,
         )
         """
         _response = self._client_wrapper.httpx_client.request(
@@ -105,6 +110,7 @@ class VulnerabilitiesClient:
                 "limit": limit,
                 "cursor": cursor,
                 "filter": filter,
+                "include_raw_data": include_raw_data,
             },
             request_options=request_options,
         )
@@ -937,6 +943,7 @@ class VulnerabilitiesClient:
         limit: typing.Optional[int] = None,
         cursor: typing.Optional[str] = None,
         filter: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
+        include_raw_data: typing.Optional[bool] = None,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> QueryAssetsResponse:
         """
@@ -957,6 +964,9 @@ class VulnerabilitiesClient:
             Filter results by this query. For more information on filtering, refer to the Vulnerability Filtering Guide.
             Defaults to no filter. If used more than once, the queries are ANDed together.
 
+        include_raw_data : typing.Optional[bool]
+            Include the raw data from the provider in the response. Defaults to `false`.
+
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
 
@@ -976,6 +986,7 @@ class VulnerabilitiesClient:
             limit=1,
             cursor="string",
             filter="string",
+            include_raw_data=True,
         )
         """
         _response = self._client_wrapper.httpx_client.request(
@@ -986,6 +997,7 @@ class VulnerabilitiesClient:
                 "limit": limit,
                 "cursor": cursor,
                 "filter": filter,
+                "include_raw_data": include_raw_data,
             },
             request_options=request_options,
         )
@@ -2305,7 +2317,11 @@ class VulnerabilitiesClient:
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
     def get_scan_activity(
-        self, scan_id: str, *, request_options: typing.Optional[RequestOptions] = None
+        self,
+        scan_id: str,
+        *,
+        include_raw_data: typing.Optional[bool] = None,
+        request_options: typing.Optional[RequestOptions] = None,
     ) -> GetScanActivityResponse:
         """
         Deprecated: use GET /scans/{scan_id}/activities instead, which returns the full execution history for a scan definition.
@@ -2314,6 +2330,9 @@ class VulnerabilitiesClient:
         ----------
         scan_id : str
             ID of the scan to get activity for (provider-specific; often scan definition or template id).
+
+        include_raw_data : typing.Optional[bool]
+            Include the raw data from the provider in the response. Defaults to `false`.
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -2331,11 +2350,15 @@ class VulnerabilitiesClient:
         )
         client.vulnerabilities.get_scan_activity(
             scan_id="string",
+            include_raw_data=True,
         )
         """
         _response = self._client_wrapper.httpx_client.request(
             f"v1/vulnerabilities/scans/{jsonable_encoder(scan_id)}/activity",
             method="GET",
+            params={
+                "include_raw_data": include_raw_data,
+            },
             request_options=request_options,
         )
         try:
@@ -2483,7 +2506,11 @@ class VulnerabilitiesClient:
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
     def get_scan_activities(
-        self, scan_id: str, *, request_options: typing.Optional[RequestOptions] = None
+        self,
+        scan_id: str,
+        *,
+        include_raw_data: typing.Optional[bool] = None,
+        request_options: typing.Optional[RequestOptions] = None,
     ) -> GetScanActivitiesResponse:
         """
         Get scan execution history for a configured scan. Returns one OCSF Scan Activity per execution (e.g. each Tenable.sc scan result for the given scan definition id).
@@ -2492,6 +2519,9 @@ class VulnerabilitiesClient:
         ----------
         scan_id : str
             ID of the scan definition whose execution history is requested.
+
+        include_raw_data : typing.Optional[bool]
+            Include the raw data from the provider in the response. Defaults to `false`.
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -2509,11 +2539,15 @@ class VulnerabilitiesClient:
         )
         client.vulnerabilities.get_scan_activities(
             scan_id="string",
+            include_raw_data=True,
         )
         """
         _response = self._client_wrapper.httpx_client.request(
             f"v1/vulnerabilities/scans/{jsonable_encoder(scan_id)}/activities",
             method="GET",
+            params={
+                "include_raw_data": include_raw_data,
+            },
             request_options=request_options,
         )
         try:
@@ -3266,6 +3300,7 @@ class VulnerabilitiesClient:
         limit: typing.Optional[int] = None,
         filter: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
         cursor: typing.Optional[str] = None,
+        include_raw_data: typing.Optional[bool] = None,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> VulnerabilitiesQueryScanFindingsResponse:
         """
@@ -3288,6 +3323,9 @@ class VulnerabilitiesClient:
         cursor : typing.Optional[str]
             Start search from cursor position.
 
+        include_raw_data : typing.Optional[bool]
+            Include the raw data from the provider in the response. Defaults to `false`.
+
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
 
@@ -3308,6 +3346,7 @@ class VulnerabilitiesClient:
             limit=1,
             filter="string",
             cursor="string",
+            include_raw_data=True,
         )
         """
         _response = self._client_wrapper.httpx_client.request(
@@ -3318,6 +3357,7 @@ class VulnerabilitiesClient:
                 "limit": limit,
                 "filter": filter,
                 "cursor": cursor,
+                "include_raw_data": include_raw_data,
             },
             request_options=request_options,
         )
@@ -3477,6 +3517,7 @@ class AsyncVulnerabilitiesClient:
         limit: typing.Optional[int] = None,
         cursor: typing.Optional[str] = None,
         filter: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
+        include_raw_data: typing.Optional[bool] = None,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> QueryFindingsResponse:
         """
@@ -3495,6 +3536,9 @@ class AsyncVulnerabilitiesClient:
 
         filter : typing.Optional[typing.Union[str, typing.Sequence[str]]]
             Filter results by this query. For more information on filtering, refer to the Vulnerability Filtering Guide. Defaults to no filter. If used more than once, the queries are ANDed together.
+
+        include_raw_data : typing.Optional[bool]
+            Include the raw data from the provider in the response. Defaults to `false`.
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -3520,6 +3564,7 @@ class AsyncVulnerabilitiesClient:
                 limit=1,
                 cursor="string",
                 filter="string",
+                include_raw_data=True,
             )
 
 
@@ -3533,6 +3578,7 @@ class AsyncVulnerabilitiesClient:
                 "limit": limit,
                 "cursor": cursor,
                 "filter": filter,
+                "include_raw_data": include_raw_data,
             },
             request_options=request_options,
         )
@@ -4380,6 +4426,7 @@ class AsyncVulnerabilitiesClient:
         limit: typing.Optional[int] = None,
         cursor: typing.Optional[str] = None,
         filter: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
+        include_raw_data: typing.Optional[bool] = None,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> QueryAssetsResponse:
         """
@@ -4399,6 +4446,9 @@ class AsyncVulnerabilitiesClient:
         filter : typing.Optional[typing.Union[str, typing.Sequence[str]]]
             Filter results by this query. For more information on filtering, refer to the Vulnerability Filtering Guide.
             Defaults to no filter. If used more than once, the queries are ANDed together.
+
+        include_raw_data : typing.Optional[bool]
+            Include the raw data from the provider in the response. Defaults to `false`.
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -4424,6 +4474,7 @@ class AsyncVulnerabilitiesClient:
                 limit=1,
                 cursor="string",
                 filter="string",
+                include_raw_data=True,
             )
 
 
@@ -4437,6 +4488,7 @@ class AsyncVulnerabilitiesClient:
                 "limit": limit,
                 "cursor": cursor,
                 "filter": filter,
+                "include_raw_data": include_raw_data,
             },
             request_options=request_options,
         )
@@ -5778,7 +5830,11 @@ class AsyncVulnerabilitiesClient:
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
     async def get_scan_activity(
-        self, scan_id: str, *, request_options: typing.Optional[RequestOptions] = None
+        self,
+        scan_id: str,
+        *,
+        include_raw_data: typing.Optional[bool] = None,
+        request_options: typing.Optional[RequestOptions] = None,
     ) -> GetScanActivityResponse:
         """
         Deprecated: use GET /scans/{scan_id}/activities instead, which returns the full execution history for a scan definition.
@@ -5787,6 +5843,9 @@ class AsyncVulnerabilitiesClient:
         ----------
         scan_id : str
             ID of the scan to get activity for (provider-specific; often scan definition or template id).
+
+        include_raw_data : typing.Optional[bool]
+            Include the raw data from the provider in the response. Defaults to `false`.
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -5809,6 +5868,7 @@ class AsyncVulnerabilitiesClient:
         async def main() -> None:
             await client.vulnerabilities.get_scan_activity(
                 scan_id="string",
+                include_raw_data=True,
             )
 
 
@@ -5817,6 +5877,9 @@ class AsyncVulnerabilitiesClient:
         _response = await self._client_wrapper.httpx_client.request(
             f"v1/vulnerabilities/scans/{jsonable_encoder(scan_id)}/activity",
             method="GET",
+            params={
+                "include_raw_data": include_raw_data,
+            },
             request_options=request_options,
         )
         try:
@@ -5964,7 +6027,11 @@ class AsyncVulnerabilitiesClient:
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
     async def get_scan_activities(
-        self, scan_id: str, *, request_options: typing.Optional[RequestOptions] = None
+        self,
+        scan_id: str,
+        *,
+        include_raw_data: typing.Optional[bool] = None,
+        request_options: typing.Optional[RequestOptions] = None,
     ) -> GetScanActivitiesResponse:
         """
         Get scan execution history for a configured scan. Returns one OCSF Scan Activity per execution (e.g. each Tenable.sc scan result for the given scan definition id).
@@ -5973,6 +6040,9 @@ class AsyncVulnerabilitiesClient:
         ----------
         scan_id : str
             ID of the scan definition whose execution history is requested.
+
+        include_raw_data : typing.Optional[bool]
+            Include the raw data from the provider in the response. Defaults to `false`.
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -5995,6 +6065,7 @@ class AsyncVulnerabilitiesClient:
         async def main() -> None:
             await client.vulnerabilities.get_scan_activities(
                 scan_id="string",
+                include_raw_data=True,
             )
 
 
@@ -6003,6 +6074,9 @@ class AsyncVulnerabilitiesClient:
         _response = await self._client_wrapper.httpx_client.request(
             f"v1/vulnerabilities/scans/{jsonable_encoder(scan_id)}/activities",
             method="GET",
+            params={
+                "include_raw_data": include_raw_data,
+            },
             request_options=request_options,
         )
         try:
@@ -6778,6 +6852,7 @@ class AsyncVulnerabilitiesClient:
         limit: typing.Optional[int] = None,
         filter: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
         cursor: typing.Optional[str] = None,
+        include_raw_data: typing.Optional[bool] = None,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> VulnerabilitiesQueryScanFindingsResponse:
         """
@@ -6799,6 +6874,9 @@ class AsyncVulnerabilitiesClient:
 
         cursor : typing.Optional[str]
             Start search from cursor position.
+
+        include_raw_data : typing.Optional[bool]
+            Include the raw data from the provider in the response. Defaults to `false`.
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -6825,6 +6903,7 @@ class AsyncVulnerabilitiesClient:
                 limit=1,
                 filter="string",
                 cursor="string",
+                include_raw_data=True,
             )
 
 
@@ -6838,6 +6917,7 @@ class AsyncVulnerabilitiesClient:
                 "limit": limit,
                 "filter": filter,
                 "cursor": cursor,
+                "include_raw_data": include_raw_data,
             },
             request_options=request_options,
         )
