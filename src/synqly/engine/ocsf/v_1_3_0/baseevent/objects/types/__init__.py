@@ -2,6 +2,8 @@
 
 from .account import Account
 from .account_type_id import AccountTypeId
+from .advisory import Advisory
+from .advisory_install_state_id import AdvisoryInstallStateId
 from .affected_code import AffectedCode
 from .affected_package import AffectedPackage
 from .affected_package_type_id import AffectedPackageTypeId
@@ -95,6 +97,8 @@ from .whois_dnssec_status_id import WhoisDnssecStatusId
 __all__ = [
     "Account",
     "AccountTypeId",
+    "Advisory",
+    "AdvisoryInstallStateId",
     "AffectedCode",
     "AffectedPackage",
     "AffectedPackageTypeId",

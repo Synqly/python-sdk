@@ -1485,6 +1485,9 @@ from ...ocsf.v_1_3_0.securityfinding.classes.types.confidence_id import (
 from ...ocsf.v_1_3_0.securityfinding.objects.types.object import (
     Object as ocsf_v_1_3_0_securityfinding_objects_types_object_Object,
 )
+from ...ocsf.v_1_3_0.securityfinding.objects.types.device import (
+    Device as ocsf_v_1_3_0_securityfinding_objects_types_device_Device,
+)
 from ...ocsf.v_1_3_0.securityfinding.base.types.timestamp import (
     Timestamp as ocsf_v_1_3_0_securityfinding_base_types_timestamp_Timestamp,
 )
@@ -4322,6 +4325,9 @@ class Event_SecurityFinding(UncheckedBaseModel):
         ocsf_v_1_3_0_securityfinding_objects_types_object_Object
     ] = None
     data_sources: typing.Optional[typing.List[str]] = None
+    device: typing.Optional[
+        ocsf_v_1_3_0_securityfinding_objects_types_device_Device
+    ] = None
     duration: typing.Optional[int] = None
     end_time: typing.Optional[
         ocsf_v_1_3_0_securityfinding_base_types_timestamp_Timestamp

@@ -3,6 +3,8 @@
 from .types import (
     Account,
     AccountTypeId,
+    Advisory,
+    AdvisoryInstallStateId,
     AffectedCode,
     AffectedPackage,
     AffectedPackageTypeId,
@@ -103,6 +105,8 @@ from .types import (
 __all__ = [
     "Account",
     "AccountTypeId",
+    "Advisory",
+    "AdvisoryInstallStateId",
     "AffectedCode",
     "AffectedPackage",
     "AffectedPackageTypeId",

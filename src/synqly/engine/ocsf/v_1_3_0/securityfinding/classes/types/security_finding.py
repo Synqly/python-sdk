@@ -14,6 +14,7 @@ from ...objects.types.cloud import Cloud
 from ...objects.types.compliance import Compliance
 from .confidence_id import ConfidenceId
 from ...objects.types.object import Object
+from ...objects.types.device import Device
 from ...base.types.timestamp import Timestamp
 import datetime as dt
 from ...objects.types.enrichment import Enrichment
@@ -123,6 +124,11 @@ class SecurityFinding(UncheckedBaseModel):
     data_sources: typing.Optional[typing.List[str]] = pydantic.Field(default=None)
     """
     A list of data sources utilized in generation of the finding.
+    """
+
+    device: typing.Optional[Device] = pydantic.Field(default=None)
+    """
+    Describes the affected device/host. It can be used in conjunction with <code>Affected Resource(s)</code>. <p> e.g. Specific details about an AWS EC2 instance, that is affected by the Finding.</p>
     """
 
     duration: typing.Optional[int] = pydantic.Field(default=None)

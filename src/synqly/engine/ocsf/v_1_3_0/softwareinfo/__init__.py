@@ -28,6 +28,8 @@ from .classes import (
 from .objects import (
     Account,
     AccountTypeId,
+    Advisory,
+    AdvisoryInstallStateId,
     AffectedCode,
     AffectedPackage,
     AffectedPackageTypeId,
@@ -123,6 +125,8 @@ __all__ = [
     "Account",
     "AccountTypeId",
     "ActivityId",
+    "Advisory",
+    "AdvisoryInstallStateId",
     "AffectedCode",
     "AffectedPackage",
     "AffectedPackageTypeId",
