@@ -98,7 +98,7 @@ class DeviceHwInfo(UncheckedBaseModel):
 
     uuid_: typing.Optional[str] = pydantic.Field(alias="uuid", default=None)
     """
-    The device manufacturer assigned universally unique hardware identifier. For SMBIOS compatible devices such as those running Linux and Windows, it is the UUID member of the System Information structure in the SMBIOS information. For macOS devices, it is the Hardware UUID (also known as IOPlatformUUID in the I/O Registry).
+    The device manufacturer assigned universally unique hardware identifier. For example: The BIOS System UUID or the Apple IOPlatformUUID.
     """
 
     vendor_name: typing.Optional[str] = pydantic.Field(default=None)

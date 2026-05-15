@@ -17,7 +17,7 @@ from ......core.pydantic_utilities import IS_PYDANTIC_V2
 
 class Advisory(UncheckedBaseModel):
     """
-    The Advisory object represents publicly disclosed cybersecurity vulnerabilities defined in a Secruity advisory. e.g. <code> Microsoft KB Article, Apple Security Advisory</code>
+    The Advisory object represents publicly disclosed cybersecurity vulnerabilities defined in a Security advisory. e.g. <code> Microsoft KB Article, Apple Security Advisory</code>
     """
 
     avg_timespan: typing.Optional[Timespan] = pydantic.Field(default=None)

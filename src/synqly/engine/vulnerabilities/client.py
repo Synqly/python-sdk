@@ -1383,6 +1383,8 @@ class VulnerabilitiesClient:
                         keyboard_info=KeyboardInfo(),
                         ram_size=1,
                         serial_number="string",
+                        uuid_="string",
+                        vendor_name="string",
                     ),
                     hypervisor="string",
                     image=Image(
@@ -1873,6 +1875,8 @@ class VulnerabilitiesClient:
                         keyboard_info=KeyboardInfo(),
                         ram_size=1,
                         serial_number="string",
+                        uuid_="string",
+                        vendor_name="string",
                     ),
                     hypervisor="string",
                     image=Image(
@@ -2933,6 +2937,8 @@ class VulnerabilitiesClient:
                             keyboard_info=KeyboardInfo(),
                             ram_size=1,
                             serial_number="string",
+                            uuid_="string",
+                            vendor_name="string",
                         ),
                         hypervisor="string",
                         image=Image(
@@ -4957,6 +4963,8 @@ class AsyncVulnerabilitiesClient:
                             keyboard_info=KeyboardInfo(),
                             ram_size=1,
                             serial_number="string",
+                            uuid_="string",
+                            vendor_name="string",
                         ),
                         hypervisor="string",
                         image=Image(
@@ -5454,6 +5462,8 @@ class AsyncVulnerabilitiesClient:
                             keyboard_info=KeyboardInfo(),
                             ram_size=1,
                             serial_number="string",
+                            uuid_="string",
+                            vendor_name="string",
                         ),
                         hypervisor="string",
                         image=Image(
@@ -6545,6 +6555,8 @@ class AsyncVulnerabilitiesClient:
                                 keyboard_info=KeyboardInfo(),
                                 ram_size=1,
                                 serial_number="string",
+                                uuid_="string",
+                                vendor_name="string",
                             ),
                             hypervisor="string",
                             image=Image(

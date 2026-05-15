@@ -252,7 +252,11 @@ class AssetsClient:
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
     def create_asset(
-        self, *, device: Device, request_options: typing.Optional[RequestOptions] = None
+        self,
+        *,
+        device: Device,
+        source_name: typing.Optional[str] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
     ) -> CreateDeviceResponse:
         """
         Creates a `Device` object in the token-linked Integration.
@@ -260,6 +264,10 @@ class AssetsClient:
         Parameters
         ----------
         device : Device
+
+        source_name : typing.Optional[str]
+            Optional connector hint (for example ServiceNow discovery_source with Identify & Reconcile).
+            Omit or leave empty when the integration does not use it; some integrations require it.
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -402,6 +410,8 @@ class AssetsClient:
                         keyboard_info=KeyboardInfo(),
                         ram_size=1,
                         serial_number="string",
+                        uuid_="string",
+                        vendor_name="string",
                     ),
                     hypervisor="string",
                     image=Image(
@@ -571,6 +581,7 @@ class AssetsClient:
                 type_uid=1,
                 unmapped={"string": {"key": "value"}},
             ),
+            source_name="string",
         )
         """
         _response = self._client_wrapper.httpx_client.request(
@@ -578,6 +589,7 @@ class AssetsClient:
             method="POST",
             json={
                 "device": device,
+                "source_name": source_name,
             },
             request_options=request_options,
             omit=OMIT,
@@ -871,6 +883,8 @@ class AssetsClient:
                             keyboard_info=KeyboardInfo(),
                             ram_size=1,
                             serial_number="string",
+                            uuid_="string",
+                            vendor_name="string",
                         ),
                         hypervisor="string",
                         image=Image(
@@ -1469,7 +1483,11 @@ class AsyncAssetsClient:
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
     async def create_asset(
-        self, *, device: Device, request_options: typing.Optional[RequestOptions] = None
+        self,
+        *,
+        device: Device,
+        source_name: typing.Optional[str] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
     ) -> CreateDeviceResponse:
         """
         Creates a `Device` object in the token-linked Integration.
@@ -1477,6 +1495,10 @@ class AsyncAssetsClient:
         Parameters
         ----------
         device : Device
+
+        source_name : typing.Optional[str]
+            Optional connector hint (for example ServiceNow discovery_source with Identify & Reconcile).
+            Omit or leave empty when the integration does not use it; some integrations require it.
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -1623,6 +1645,8 @@ class AsyncAssetsClient:
                             keyboard_info=KeyboardInfo(),
                             ram_size=1,
                             serial_number="string",
+                            uuid_="string",
+                            vendor_name="string",
                         ),
                         hypervisor="string",
                         image=Image(
@@ -1792,6 +1816,7 @@ class AsyncAssetsClient:
                     type_uid=1,
                     unmapped={"string": {"key": "value"}},
                 ),
+                source_name="string",
             )
 
 
@@ -1802,6 +1827,7 @@ class AsyncAssetsClient:
             method="POST",
             json={
                 "device": device,
+                "source_name": source_name,
             },
             request_options=request_options,
             omit=OMIT,
@@ -2099,6 +2125,8 @@ class AsyncAssetsClient:
                                 keyboard_info=KeyboardInfo(),
                                 ram_size=1,
                                 serial_number="string",
+                                uuid_="string",
+                                vendor_name="string",
                             ),
                             hypervisor="string",
                             image=Image(

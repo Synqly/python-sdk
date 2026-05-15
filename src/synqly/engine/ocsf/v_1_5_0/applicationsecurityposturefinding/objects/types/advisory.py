@@ -17,7 +17,7 @@ from ......core.pydantic_utilities import IS_PYDANTIC_V2
 
 class Advisory(UncheckedBaseModel):
     """
-    The Advisory object represents publicly disclosed cybersecurity vulnerabilities defined in a Security advisory. e.g. <code> Microsoft KB Article</code>, <code>Apple Security Advisory</code>, or a <code>GitHub Security Advisory (GHSA)</code>
+    The Advisory object represents publicly disclosed cybersecurity vulnerabilities defined in a Security advisory. e.g. <code> Microsoft KB Article, Apple Security Advisory</code>
     """
 
     avg_timespan: typing.Optional[Timespan] = pydantic.Field(default=None)
@@ -119,7 +119,7 @@ class Advisory(UncheckedBaseModel):
 
     uid: str = pydantic.Field()
     """
-    The unique identifier assigned to the advisory or disclosed vulnerability, e.g, <code>GHSA-5mrr-rgp6-x4gr</code>.
+    The unique number assigned to the disclosed vulnerability.
     """
 
     if IS_PYDANTIC_V2:

@@ -83,6 +83,16 @@ class DeviceHwInfo(UncheckedBaseModel):
     The device manufacturer serial number.
     """
 
+    uuid_: typing.Optional[str] = pydantic.Field(alias="uuid", default=None)
+    """
+    The device manufacturer assigned universally unique hardware identifier. For example: The BIOS System UUID or the Apple IOPlatformUUID.
+    """
+
+    vendor_name: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    The device manufacturer.
+    """
+
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(
             extra="allow"
