@@ -10,6 +10,8 @@ import typing
 class SinkGcs(UncheckedBaseModel):
     """
     Configuration for Google Cloud Storage as a Sink provider. Events are written directly to a GCS bucket in compressed JSON format.
+
+    [Configuration guide](https://docs.synqly.com/guides/provider-configuration/gcs-sink-setup)
     """
 
     bucket: str = pydantic.Field()

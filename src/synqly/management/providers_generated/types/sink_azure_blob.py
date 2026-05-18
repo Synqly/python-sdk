@@ -10,6 +10,8 @@ import typing
 class SinkAzureBlob(UncheckedBaseModel):
     """
     Configuration for Azure Blob Storage as a Sink provider. Events are written directly to an Azure Blob Storage container in compressed JSON format.
+
+    [Configuration guide](https://docs.synqly.com/guides/provider-configuration/azure-blob-sink-setup)
     """
 
     bucket: str = pydantic.Field()

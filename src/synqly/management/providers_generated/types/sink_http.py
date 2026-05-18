@@ -13,6 +13,8 @@ from ...core.pydantic_utilities import IS_PYDANTIC_V2
 class SinkHttp(UncheckedBaseModel):
     """
     Generic Sink provider for sending events to any HTTP endpoint. Ideal for integrating with log aggregators, SIEM platforms, custom webhooks, data lakes, and any HTTP-based event ingestion system.
+
+    [Configuration guide](https://docs.synqly.com/guides/provider-configuration/http-sink-setup)
     """
 
     accepted_response_codes: typing.Optional[typing.List[int]] = pydantic.Field(

@@ -10,6 +10,8 @@ from ...core.pydantic_utilities import IS_PYDANTIC_V2
 class SinkOpenSearch(UncheckedBaseModel):
     """
     Configuration for OpenSearch search and analytics engine. Supports both managed and self-hosted OpenSearch deployments
+
+    [Configuration guide](https://docs.synqly.com/guides/provider-configuration/opensearch-sink-setup)
     """
 
     create_index: str = pydantic.Field()

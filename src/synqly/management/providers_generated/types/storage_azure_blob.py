@@ -10,6 +10,8 @@ import typing
 class StorageAzureBlob(UncheckedBaseModel):
     """
     Configuration for Azure Blob Storage as a Storage Provider
+
+    [Configuration guide](https://docs.synqly.com/guides/provider-configuration/azure-blob-storage-setup)
     """
 
     bucket: str = pydantic.Field()

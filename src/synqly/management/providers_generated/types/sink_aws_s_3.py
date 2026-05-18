@@ -11,6 +11,8 @@ import typing
 class SinkAwsS3(UncheckedBaseModel):
     """
     Configuration for Amazon S3 as a Sink provider. Events are written directly to an AWS S3 bucket in compressed JSON format.
+
+    [Configuration guide](https://docs.synqly.com/guides/provider-configuration/aws-s3-sink-setup)
     """
 
     bucket: str = pydantic.Field()
