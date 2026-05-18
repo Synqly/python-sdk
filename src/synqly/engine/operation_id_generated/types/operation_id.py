@@ -19,6 +19,13 @@ class OperationId(str, enum.Enum):
     ASSETS_QUERY_UTILIZATION = "assets_query_utilization"
     ASSETS_QUERY_VULNERABILITIES = "assets_query_vulnerabilities"
     ASSETS_UPDATE_DEVICE_PROPERTIES = "assets_update_device_properties"
+    CHAT_QUERY_CONVERSATION_MEMBERS = "chat_query_conversation_members"
+    CHAT_QUERY_CONVERSATION_MESSAGES = "chat_query_conversation_messages"
+    CHAT_QUERY_CONVERSATIONS = "chat_query_conversations"
+    CHAT_QUERY_USER_CONVERSATION_MEMBERS = "chat_query_user_conversation_members"
+    CHAT_QUERY_USER_CONVERSATION_MESSAGES = "chat_query_user_conversation_messages"
+    CHAT_QUERY_USER_CONVERSATIONS = "chat_query_user_conversations"
+    CHAT_QUERY_USERS = "chat_query_users"
     CLOUDSECURITY_QUERY_CLOUD_RESOURCE_INVENTORY = (
         "cloudsecurity_query_cloud_resource_inventory"
     )
@@ -145,6 +152,13 @@ class OperationId(str, enum.Enum):
         assets_query_utilization: typing.Callable[[], T_Result],
         assets_query_vulnerabilities: typing.Callable[[], T_Result],
         assets_update_device_properties: typing.Callable[[], T_Result],
+        chat_query_conversation_members: typing.Callable[[], T_Result],
+        chat_query_conversation_messages: typing.Callable[[], T_Result],
+        chat_query_conversations: typing.Callable[[], T_Result],
+        chat_query_user_conversation_members: typing.Callable[[], T_Result],
+        chat_query_user_conversation_messages: typing.Callable[[], T_Result],
+        chat_query_user_conversations: typing.Callable[[], T_Result],
+        chat_query_users: typing.Callable[[], T_Result],
         cloudsecurity_query_cloud_resource_inventory: typing.Callable[[], T_Result],
         cloudsecurity_query_compliance_findings: typing.Callable[[], T_Result],
         cloudsecurity_query_events: typing.Callable[[], T_Result],
@@ -266,6 +280,20 @@ class OperationId(str, enum.Enum):
             return assets_query_vulnerabilities()
         if self is OperationId.ASSETS_UPDATE_DEVICE_PROPERTIES:
             return assets_update_device_properties()
+        if self is OperationId.CHAT_QUERY_CONVERSATION_MEMBERS:
+            return chat_query_conversation_members()
+        if self is OperationId.CHAT_QUERY_CONVERSATION_MESSAGES:
+            return chat_query_conversation_messages()
+        if self is OperationId.CHAT_QUERY_CONVERSATIONS:
+            return chat_query_conversations()
+        if self is OperationId.CHAT_QUERY_USER_CONVERSATION_MEMBERS:
+            return chat_query_user_conversation_members()
+        if self is OperationId.CHAT_QUERY_USER_CONVERSATION_MESSAGES:
+            return chat_query_user_conversation_messages()
+        if self is OperationId.CHAT_QUERY_USER_CONVERSATIONS:
+            return chat_query_user_conversations()
+        if self is OperationId.CHAT_QUERY_USERS:
+            return chat_query_users()
         if self is OperationId.CLOUDSECURITY_QUERY_CLOUD_RESOURCE_INVENTORY:
             return cloudsecurity_query_cloud_resource_inventory()
         if self is OperationId.CLOUDSECURITY_QUERY_COMPLIANCE_FINDINGS:

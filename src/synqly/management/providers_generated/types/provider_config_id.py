@@ -170,6 +170,21 @@ class ProviderConfigId(str, enum.Enum):
     [MOCK] Tanium Vulnerability Management
     """
 
+    CHAT_MICROSOFT_COPILOT = "chat_microsoft_copilot"
+    """
+    Microsoft 365 Copilot
+    """
+
+    CHAT_MICROSOFT_TEAMS = "chat_microsoft_teams"
+    """
+    Microsoft Teams
+    """
+
+    CHAT_SLACK = "chat_slack"
+    """
+    Slack
+    """
+
     CLOUD_SECURITY_AWS = "cloudsecurity_aws"
     """
     AWS Cloud Security
@@ -736,6 +751,9 @@ class ProviderConfigId(str, enum.Enum):
         assets_sevco_mock: typing.Callable[[], T_Result],
         assets_tanium_cloud: typing.Callable[[], T_Result],
         assets_tanium_cloud_mock: typing.Callable[[], T_Result],
+        chat_microsoft_copilot: typing.Callable[[], T_Result],
+        chat_microsoft_teams: typing.Callable[[], T_Result],
+        chat_slack: typing.Callable[[], T_Result],
         cloud_security_aws: typing.Callable[[], T_Result],
         cloud_security_aws_event_bridge_sqs: typing.Callable[[], T_Result],
         cloud_security_crowd_strike: typing.Callable[[], T_Result],
@@ -904,6 +922,12 @@ class ProviderConfigId(str, enum.Enum):
             return assets_tanium_cloud()
         if self is ProviderConfigId.ASSETS_TANIUM_CLOUD_MOCK:
             return assets_tanium_cloud_mock()
+        if self is ProviderConfigId.CHAT_MICROSOFT_COPILOT:
+            return chat_microsoft_copilot()
+        if self is ProviderConfigId.CHAT_MICROSOFT_TEAMS:
+            return chat_microsoft_teams()
+        if self is ProviderConfigId.CHAT_SLACK:
+            return chat_slack()
         if self is ProviderConfigId.CLOUD_SECURITY_AWS:
             return cloud_security_aws()
         if self is ProviderConfigId.CLOUD_SECURITY_AWS_EVENT_BRIDGE_SQS:

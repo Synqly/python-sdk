@@ -6,6 +6,7 @@ import httpx
 from .core.client_wrapper import SyncClientWrapper
 from .appsec.client import AppsecClient
 from .assets.client import AssetsClient
+from .chat.client import ChatClient
 from .cloudsecurity.client import CloudsecurityClient
 from .custom.client import CustomClient
 from .edr.client import EdrClient
@@ -25,6 +26,7 @@ from .vulnerabilities.client import VulnerabilitiesClient
 from .core.client_wrapper import AsyncClientWrapper
 from .appsec.client import AsyncAppsecClient
 from .assets.client import AsyncAssetsClient
+from .chat.client import AsyncChatClient
 from .cloudsecurity.client import AsyncCloudsecurityClient
 from .custom.client import AsyncCustomClient
 from .edr.client import AsyncEdrClient
@@ -107,6 +109,7 @@ class SynqlyEngine:
         )
         self.appsec = AppsecClient(client_wrapper=self._client_wrapper)
         self.assets = AssetsClient(client_wrapper=self._client_wrapper)
+        self.chat = ChatClient(client_wrapper=self._client_wrapper)
         self.cloudsecurity = CloudsecurityClient(client_wrapper=self._client_wrapper)
         self.custom = CustomClient(client_wrapper=self._client_wrapper)
         self.edr = EdrClient(client_wrapper=self._client_wrapper)
@@ -197,6 +200,7 @@ class AsyncSynqlyEngine:
         )
         self.appsec = AsyncAppsecClient(client_wrapper=self._client_wrapper)
         self.assets = AsyncAssetsClient(client_wrapper=self._client_wrapper)
+        self.chat = AsyncChatClient(client_wrapper=self._client_wrapper)
         self.cloudsecurity = AsyncCloudsecurityClient(
             client_wrapper=self._client_wrapper
         )

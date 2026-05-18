@@ -3,6 +3,7 @@
 from . import (
     appsec,
     assets,
+    chat,
     cloudsecurity,
     common,
     custom,
@@ -47,6 +48,12 @@ from .assets import (
     GetLabelsResponse,
     Label,
     QueryDevicesResponse,
+)
+from .chat import (
+    ChatQueryConversationMembersResponse,
+    ChatQueryConversationsResponse,
+    ChatQueryMessagesResponse,
+    ChatQueryUsersResponse,
 )
 from .client import AsyncSynqlyEngine, SynqlyEngine
 from .cloudsecurity import (
@@ -165,9 +172,11 @@ from .events import (
     Event_Authentication,
     Event_AuthorizeSession,
     Event_BaseEvent,
+    Event_ChatMessageActivity,
     Event_CloudActivity,
     Event_CloudResourcesInventoryInfo,
     Event_ComplianceFinding,
+    Event_ConversationActivity,
     Event_DetectionFinding,
     Event_DeviceConfigState,
     Event_DeviceInventoryInfo,
@@ -389,6 +398,10 @@ __all__ = [
     "BadRequestError",
     "Base",
     "BaseResourceRequest",
+    "ChatQueryConversationMembersResponse",
+    "ChatQueryConversationsResponse",
+    "ChatQueryMessagesResponse",
+    "ChatQueryUsersResponse",
     "Comment",
     "CommentId",
     "ComplianceFinding",
@@ -447,9 +460,11 @@ __all__ = [
     "Event_Authentication",
     "Event_AuthorizeSession",
     "Event_BaseEvent",
+    "Event_ChatMessageActivity",
     "Event_CloudActivity",
     "Event_CloudResourcesInventoryInfo",
     "Event_ComplianceFinding",
+    "Event_ConversationActivity",
     "Event_DetectionFinding",
     "Event_DeviceConfigState",
     "Event_DeviceInventoryInfo",
@@ -658,6 +673,7 @@ __all__ = [
     "WebhookFilter",
     "appsec",
     "assets",
+    "chat",
     "cloudsecurity",
     "common",
     "custom",

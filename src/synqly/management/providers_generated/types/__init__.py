@@ -94,6 +94,10 @@ from .azure_monitor_logs_credential import (
     AzureMonitorLogsCredential_Token,
     AzureMonitorLogsCredential_TokenId,
 )
+from .channel_join_behavior import ChannelJoinBehavior
+from .chat_microsoft_copilot import ChatMicrosoftCopilot
+from .chat_microsoft_teams import ChatMicrosoftTeams
+from .chat_slack import ChatSlack
 from .claroty_apiurl import ClarotyApiurl
 from .claroty_credential import (
     ClarotyCredential,
@@ -117,6 +121,11 @@ from .cloud_security_event_bridge_sqs_queues import CloudSecurityEventBridgeSqsQ
 from .cloud_security_palo_alto import CloudSecurityPaloAlto
 from .cloud_security_upwind import CloudSecurityUpwind
 from .cloud_security_wiz import CloudSecurityWiz
+from .copilot_chat_credential import (
+    CopilotChatCredential,
+    CopilotChatCredential_OAuthClient,
+    CopilotChatCredential_OAuthClientId,
+)
 from .crowd_strike_credential import (
     CrowdStrikeCredential,
     CrowdStrikeCredential_OAuthClient,
@@ -429,6 +438,9 @@ from .provider_config import (
     ProviderConfig_AssetsSevcoMock,
     ProviderConfig_AssetsTaniumCloud,
     ProviderConfig_AssetsTaniumCloudMock,
+    ProviderConfig_ChatMicrosoftCopilot,
+    ProviderConfig_ChatMicrosoftTeams,
+    ProviderConfig_ChatSlack,
     ProviderConfig_CloudsecurityAws,
     ProviderConfig_CloudsecurityAwseventbridgesqs,
     ProviderConfig_CloudsecurityCrowdstrike,
@@ -673,6 +685,11 @@ from .teams_credential import (
     TeamsCredential_WebhookUrl,
     TeamsCredential_WebhookUrlId,
 )
+from .teams_graph_chat_credential import (
+    TeamsGraphChatCredential,
+    TeamsGraphChatCredential_OAuthClient,
+    TeamsGraphChatCredential_OAuthClientId,
+)
 from .tenable_cloud_credential import (
     TenableCloudCredential,
     TenableCloudCredential_Token,
@@ -835,6 +852,10 @@ __all__ = [
     "AzureMonitorLogsCredential",
     "AzureMonitorLogsCredential_Token",
     "AzureMonitorLogsCredential_TokenId",
+    "ChannelJoinBehavior",
+    "ChatMicrosoftCopilot",
+    "ChatMicrosoftTeams",
+    "ChatSlack",
     "ClarotyApiurl",
     "ClarotyCredential",
     "ClarotyCredential_Token",
@@ -852,6 +873,9 @@ __all__ = [
     "CloudSecurityPaloAlto",
     "CloudSecurityUpwind",
     "CloudSecurityWiz",
+    "CopilotChatCredential",
+    "CopilotChatCredential_OAuthClient",
+    "CopilotChatCredential_OAuthClientId",
     "CrowdStrikeCredential",
     "CrowdStrikeCredential_OAuthClient",
     "CrowdStrikeCredential_OAuthClientId",
@@ -1082,6 +1106,9 @@ __all__ = [
     "ProviderConfig_AssetsSevcoMock",
     "ProviderConfig_AssetsTaniumCloud",
     "ProviderConfig_AssetsTaniumCloudMock",
+    "ProviderConfig_ChatMicrosoftCopilot",
+    "ProviderConfig_ChatMicrosoftTeams",
+    "ProviderConfig_ChatSlack",
     "ProviderConfig_CloudsecurityAws",
     "ProviderConfig_CloudsecurityAwseventbridgesqs",
     "ProviderConfig_CloudsecurityCrowdstrike",
@@ -1286,6 +1313,9 @@ __all__ = [
     "TeamsCredential_OAuthClientId",
     "TeamsCredential_WebhookUrl",
     "TeamsCredential_WebhookUrlId",
+    "TeamsGraphChatCredential",
+    "TeamsGraphChatCredential_OAuthClient",
+    "TeamsGraphChatCredential_OAuthClientId",
     "TenableCloudCredential",
     "TenableCloudCredential_Token",
     "TenableCloudCredential_TokenId",

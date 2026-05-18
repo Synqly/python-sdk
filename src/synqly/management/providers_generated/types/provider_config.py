@@ -48,6 +48,10 @@ from .sevco_credential import SevcoCredential
 from .assets_sevco_dataset import AssetsSevcoDataset
 from .tanium_cloud_credential import TaniumCloudCredential
 from .assets_tanium_cloud_dataset import AssetsTaniumCloudDataset
+from .copilot_chat_credential import CopilotChatCredential
+from .teams_graph_chat_credential import TeamsGraphChatCredential
+from .channel_join_behavior import ChannelJoinBehavior
+from .slack_credential import SlackCredential
 from .cloud_security_aws_events import CloudSecurityAwsEvents
 from .cloud_security_event_bridge_sqs_queues import CloudSecurityEventBridgeSqsQueues
 from .cloud_security_crowd_strike_dataset import CloudSecurityCrowdStrikeDataset
@@ -80,7 +84,6 @@ from .workday_credential import WorkdayCredential
 from .incident_io_credential import IncidentIoCredential
 from .pager_duty_credential import PagerDutyCredential
 from .jira_credential import JiraCredential
-from .slack_credential import SlackCredential
 from .slack_webhook_credential import SlackWebhookCredential
 from .teams_credential import TeamsCredential
 from .crowdstrike_hec_credential import CrowdstrikeHecCredential
@@ -620,6 +623,56 @@ class ProviderConfig_AssetsTaniumCloud(UncheckedBaseModel):
 class ProviderConfig_AssetsTaniumCloudMock(UncheckedBaseModel):
     type: typing.Literal["assets_tanium_cloud_mock"] = "assets_tanium_cloud_mock"
     dataset: AssetsTaniumCloudDataset
+
+    if IS_PYDANTIC_V2:
+        model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(
+            extra="allow"
+        )  # type: ignore # Pydantic v2
+    else:
+
+        class Config:
+            smart_union = True
+            extra = pydantic.Extra.allow
+
+
+class ProviderConfig_ChatMicrosoftCopilot(UncheckedBaseModel):
+    type: typing.Literal["chat_microsoft_copilot"] = "chat_microsoft_copilot"
+    credential: CopilotChatCredential
+    tenant_id: str
+
+    if IS_PYDANTIC_V2:
+        model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(
+            extra="allow"
+        )  # type: ignore # Pydantic v2
+    else:
+
+        class Config:
+            smart_union = True
+            extra = pydantic.Extra.allow
+
+
+class ProviderConfig_ChatMicrosoftTeams(UncheckedBaseModel):
+    type: typing.Literal["chat_microsoft_teams"] = "chat_microsoft_teams"
+    credential: TeamsGraphChatCredential
+    team_id: typing.Optional[str] = None
+    tenant_id: str
+
+    if IS_PYDANTIC_V2:
+        model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(
+            extra="allow"
+        )  # type: ignore # Pydantic v2
+    else:
+
+        class Config:
+            smart_union = True
+            extra = pydantic.Extra.allow
+
+
+class ProviderConfig_ChatSlack(UncheckedBaseModel):
+    type: typing.Literal["chat_slack"] = "chat_slack"
+    channels: typing.Optional[ChannelJoinBehavior] = None
+    credential: SlackCredential
+    url: typing.Optional[str] = None
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(
@@ -2454,6 +2507,9 @@ ProviderConfig = typing_extensions.Annotated[
         ProviderConfig_AssetsSevcoMock,
         ProviderConfig_AssetsTaniumCloud,
         ProviderConfig_AssetsTaniumCloudMock,
+        ProviderConfig_ChatMicrosoftCopilot,
+        ProviderConfig_ChatMicrosoftTeams,
+        ProviderConfig_ChatSlack,
         ProviderConfig_CloudsecurityAws,
         ProviderConfig_CloudsecurityAwseventbridgesqs,
         ProviderConfig_CloudsecurityCrowdstrike,

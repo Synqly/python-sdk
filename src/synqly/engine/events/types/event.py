@@ -2256,6 +2256,83 @@ from ...ocsf.v_1_8_0.noteactivity.objects.types.object import (
 from ...ocsf.v_1_8_0.noteactivity.objects.types.vendor_attributes import (
     VendorAttributes as ocsf_v_1_8_0_noteactivity_objects_types_vendor_attributes_VendorAttributes,
 )
+from ...ocsf.v_1_8_0.chatmessageactivity.classes.types.activity_id import (
+    ActivityId as ocsf_v_1_8_0_chatmessageactivity_classes_types_activity_id_ActivityId,
+)
+from ...ocsf.v_1_8_0.chatmessageactivity.objects.types.actor import (
+    Actor as ocsf_v_1_8_0_chatmessageactivity_objects_types_actor_Actor,
+)
+from ...ocsf.v_1_8_0.chatmessageactivity.classes.types.category_uid import (
+    CategoryUid as ocsf_v_1_8_0_chatmessageactivity_classes_types_category_uid_CategoryUid,
+)
+from ...ocsf.v_1_8_0.chatmessageactivity.objects.types.chat_message import ChatMessage
+from ...ocsf.v_1_8_0.chatmessageactivity.classes.types.class_uid import (
+    ClassUid as ocsf_v_1_8_0_chatmessageactivity_classes_types_class_uid_ClassUid,
+)
+from ...ocsf.v_1_8_0.chatmessageactivity.base.types.timestamp import (
+    Timestamp as ocsf_v_1_8_0_chatmessageactivity_base_types_timestamp_Timestamp,
+)
+from ...ocsf.v_1_8_0.chatmessageactivity.objects.types.enrichment import (
+    Enrichment as ocsf_v_1_8_0_chatmessageactivity_objects_types_enrichment_Enrichment,
+)
+from ...ocsf.v_1_8_0.chatmessageactivity.objects.types.metadata import (
+    Metadata as ocsf_v_1_8_0_chatmessageactivity_objects_types_metadata_Metadata,
+)
+from ...ocsf.v_1_8_0.chatmessageactivity.objects.types.observable import (
+    Observable as ocsf_v_1_8_0_chatmessageactivity_objects_types_observable_Observable,
+)
+from ...ocsf.v_1_8_0.chatmessageactivity.objects.types.fingerprint import (
+    Fingerprint as ocsf_v_1_8_0_chatmessageactivity_objects_types_fingerprint_Fingerprint,
+)
+from ...ocsf.v_1_8_0.chatmessageactivity.classes.types.severity_id import (
+    SeverityId as ocsf_v_1_8_0_chatmessageactivity_classes_types_severity_id_SeverityId,
+)
+from ...ocsf.v_1_8_0.chatmessageactivity.classes.types.status_id import (
+    StatusId as ocsf_v_1_8_0_chatmessageactivity_classes_types_status_id_StatusId,
+)
+from ...ocsf.v_1_8_0.chatmessageactivity.classes.types.type_uid import (
+    TypeUid as ocsf_v_1_8_0_chatmessageactivity_classes_types_type_uid_TypeUid,
+)
+from ...ocsf.v_1_8_0.chatmessageactivity.objects.types.object import (
+    Object as ocsf_v_1_8_0_chatmessageactivity_objects_types_object_Object,
+)
+from ...ocsf.v_1_8_0.conversationactivity.classes.types.activity_id import (
+    ActivityId as ocsf_v_1_8_0_conversationactivity_classes_types_activity_id_ActivityId,
+)
+from ...ocsf.v_1_8_0.conversationactivity.classes.types.category_uid import (
+    CategoryUid as ocsf_v_1_8_0_conversationactivity_classes_types_category_uid_CategoryUid,
+)
+from ...ocsf.v_1_8_0.conversationactivity.classes.types.class_uid import (
+    ClassUid as ocsf_v_1_8_0_conversationactivity_classes_types_class_uid_ClassUid,
+)
+from ...ocsf.v_1_8_0.conversationactivity.objects.types.conversation import Conversation
+from ...ocsf.v_1_8_0.conversationactivity.base.types.timestamp import (
+    Timestamp as ocsf_v_1_8_0_conversationactivity_base_types_timestamp_Timestamp,
+)
+from ...ocsf.v_1_8_0.conversationactivity.objects.types.enrichment import (
+    Enrichment as ocsf_v_1_8_0_conversationactivity_objects_types_enrichment_Enrichment,
+)
+from ...ocsf.v_1_8_0.conversationactivity.objects.types.metadata import (
+    Metadata as ocsf_v_1_8_0_conversationactivity_objects_types_metadata_Metadata,
+)
+from ...ocsf.v_1_8_0.conversationactivity.objects.types.observable import (
+    Observable as ocsf_v_1_8_0_conversationactivity_objects_types_observable_Observable,
+)
+from ...ocsf.v_1_8_0.conversationactivity.objects.types.fingerprint import (
+    Fingerprint as ocsf_v_1_8_0_conversationactivity_objects_types_fingerprint_Fingerprint,
+)
+from ...ocsf.v_1_8_0.conversationactivity.classes.types.severity_id import (
+    SeverityId as ocsf_v_1_8_0_conversationactivity_classes_types_severity_id_SeverityId,
+)
+from ...ocsf.v_1_8_0.conversationactivity.classes.types.status_id import (
+    StatusId as ocsf_v_1_8_0_conversationactivity_classes_types_status_id_StatusId,
+)
+from ...ocsf.v_1_8_0.conversationactivity.classes.types.type_uid import (
+    TypeUid as ocsf_v_1_8_0_conversationactivity_classes_types_type_uid_TypeUid,
+)
+from ...ocsf.v_1_8_0.conversationactivity.objects.types.object import (
+    Object as ocsf_v_1_8_0_conversationactivity_objects_types_object_Object,
+)
 import typing_extensions
 from ...core.unchecked_base_model import UnionMetadata
 
@@ -5477,6 +5554,139 @@ class Event_NoteActivity(UncheckedBaseModel):
             extra = pydantic.Extra.allow
 
 
+class Event_ChatMessageActivity(UncheckedBaseModel):
+    class_name: typing.Literal["Chat Message Activity"] = "Chat Message Activity"
+    activity_id: ocsf_v_1_8_0_chatmessageactivity_classes_types_activity_id_ActivityId
+    activity_name: typing.Optional[str] = None
+    actor: typing.Optional[
+        ocsf_v_1_8_0_chatmessageactivity_objects_types_actor_Actor
+    ] = None
+    category_name: typing.Optional[str] = None
+    category_uid: (
+        ocsf_v_1_8_0_chatmessageactivity_classes_types_category_uid_CategoryUid
+    )
+    chat_message: ChatMessage
+    class_uid: ocsf_v_1_8_0_chatmessageactivity_classes_types_class_uid_ClassUid
+    count: typing.Optional[int] = None
+    duration: typing.Optional[int] = None
+    end_time: typing.Optional[
+        ocsf_v_1_8_0_chatmessageactivity_base_types_timestamp_Timestamp
+    ] = None
+    end_time_dt: typing.Optional[dt.datetime] = None
+    enrichments: typing.Optional[
+        typing.List[
+            ocsf_v_1_8_0_chatmessageactivity_objects_types_enrichment_Enrichment
+        ]
+    ] = None
+    message: typing.Optional[str] = None
+    metadata: ocsf_v_1_8_0_chatmessageactivity_objects_types_metadata_Metadata
+    observables: typing.Optional[
+        typing.List[
+            ocsf_v_1_8_0_chatmessageactivity_objects_types_observable_Observable
+        ]
+    ] = None
+    raw_data: typing.Optional[str] = None
+    raw_data_hash: typing.Optional[
+        ocsf_v_1_8_0_chatmessageactivity_objects_types_fingerprint_Fingerprint
+    ] = None
+    raw_data_size: typing.Optional[int] = None
+    severity: typing.Optional[str] = None
+    severity_id: ocsf_v_1_8_0_chatmessageactivity_classes_types_severity_id_SeverityId
+    start_time: typing.Optional[
+        ocsf_v_1_8_0_chatmessageactivity_base_types_timestamp_Timestamp
+    ] = None
+    start_time_dt: typing.Optional[dt.datetime] = None
+    status: typing.Optional[str] = None
+    status_code: typing.Optional[str] = None
+    status_detail: typing.Optional[str] = None
+    status_id: typing.Optional[
+        ocsf_v_1_8_0_chatmessageactivity_classes_types_status_id_StatusId
+    ] = None
+    time: ocsf_v_1_8_0_chatmessageactivity_base_types_timestamp_Timestamp
+    time_dt: typing.Optional[dt.datetime] = None
+    timezone_offset: typing.Optional[int] = None
+    type_name: typing.Optional[str] = None
+    type_uid: ocsf_v_1_8_0_chatmessageactivity_classes_types_type_uid_TypeUid
+    unmapped: typing.Optional[
+        ocsf_v_1_8_0_chatmessageactivity_objects_types_object_Object
+    ] = None
+
+    if IS_PYDANTIC_V2:
+        model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(
+            extra="allow"
+        )  # type: ignore # Pydantic v2
+    else:
+
+        class Config:
+            smart_union = True
+            extra = pydantic.Extra.allow
+
+
+class Event_ConversationActivity(UncheckedBaseModel):
+    class_name: typing.Literal["Conversation Activity"] = "Conversation Activity"
+    activity_id: ocsf_v_1_8_0_conversationactivity_classes_types_activity_id_ActivityId
+    activity_name: typing.Optional[str] = None
+    category_name: typing.Optional[str] = None
+    category_uid: (
+        ocsf_v_1_8_0_conversationactivity_classes_types_category_uid_CategoryUid
+    )
+    class_uid: ocsf_v_1_8_0_conversationactivity_classes_types_class_uid_ClassUid
+    conversation: Conversation
+    count: typing.Optional[int] = None
+    duration: typing.Optional[int] = None
+    end_time: typing.Optional[
+        ocsf_v_1_8_0_conversationactivity_base_types_timestamp_Timestamp
+    ] = None
+    end_time_dt: typing.Optional[dt.datetime] = None
+    enrichments: typing.Optional[
+        typing.List[
+            ocsf_v_1_8_0_conversationactivity_objects_types_enrichment_Enrichment
+        ]
+    ] = None
+    message: typing.Optional[str] = None
+    metadata: ocsf_v_1_8_0_conversationactivity_objects_types_metadata_Metadata
+    observables: typing.Optional[
+        typing.List[
+            ocsf_v_1_8_0_conversationactivity_objects_types_observable_Observable
+        ]
+    ] = None
+    raw_data: typing.Optional[str] = None
+    raw_data_hash: typing.Optional[
+        ocsf_v_1_8_0_conversationactivity_objects_types_fingerprint_Fingerprint
+    ] = None
+    raw_data_size: typing.Optional[int] = None
+    severity: typing.Optional[str] = None
+    severity_id: ocsf_v_1_8_0_conversationactivity_classes_types_severity_id_SeverityId
+    start_time: typing.Optional[
+        ocsf_v_1_8_0_conversationactivity_base_types_timestamp_Timestamp
+    ] = None
+    start_time_dt: typing.Optional[dt.datetime] = None
+    status: typing.Optional[str] = None
+    status_code: typing.Optional[str] = None
+    status_detail: typing.Optional[str] = None
+    status_id: typing.Optional[
+        ocsf_v_1_8_0_conversationactivity_classes_types_status_id_StatusId
+    ] = None
+    time: ocsf_v_1_8_0_conversationactivity_base_types_timestamp_Timestamp
+    time_dt: typing.Optional[dt.datetime] = None
+    timezone_offset: typing.Optional[int] = None
+    type_name: typing.Optional[str] = None
+    type_uid: ocsf_v_1_8_0_conversationactivity_classes_types_type_uid_TypeUid
+    unmapped: typing.Optional[
+        ocsf_v_1_8_0_conversationactivity_objects_types_object_Object
+    ] = None
+
+    if IS_PYDANTIC_V2:
+        model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(
+            extra="allow"
+        )  # type: ignore # Pydantic v2
+    else:
+
+        class Config:
+            smart_union = True
+            extra = pydantic.Extra.allow
+
+
 Event = typing_extensions.Annotated[
     typing.Union[
         Event_AccountChange,
@@ -5511,6 +5721,8 @@ Event = typing_extensions.Annotated[
         Event_CloudActivity,
         Event_CloudResourcesInventoryInfo,
         Event_NoteActivity,
+        Event_ChatMessageActivity,
+        Event_ConversationActivity,
     ],
     UnionMetadata(discriminant="class_name"),
 ]
