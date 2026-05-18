@@ -56,6 +56,7 @@ class EdrClient:
         cursor: typing.Optional[str] = None,
         order: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
         filter: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
+        include_raw_data: typing.Optional[bool] = None,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> QueryEndpointsResponse:
         """
@@ -78,6 +79,9 @@ class EdrClient:
         filter : typing.Optional[typing.Union[str, typing.Sequence[str]]]
             Filter results by this query. For more information on filtering, refer to our Filtering Guide. Defaults to no filter. If used more than once, the queries are ANDed together.
 
+        include_raw_data : typing.Optional[bool]
+            Include the raw data from the EDR in the response. Defaults to `false`.
+
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
 
@@ -98,6 +102,7 @@ class EdrClient:
             cursor="string",
             order="string",
             filter="string",
+            include_raw_data=True,
         )
         """
         _response = self._client_wrapper.httpx_client.request(
@@ -109,6 +114,7 @@ class EdrClient:
                 "cursor": cursor,
                 "order": order,
                 "filter": filter,
+                "include_raw_data": include_raw_data,
             },
             request_options=request_options,
         )
@@ -441,6 +447,7 @@ class EdrClient:
         cursor: typing.Optional[str] = None,
         order: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
         filter: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
+        include_raw_data: typing.Optional[bool] = None,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> QueryApplicationsResponse:
         """
@@ -463,6 +470,9 @@ class EdrClient:
         filter : typing.Optional[typing.Union[str, typing.Sequence[str]]]
             Filter results by this query. For more information on filtering, refer to our Filtering Guide. Defaults to no filter. If used more than once, the queries are ANDed together.
 
+        include_raw_data : typing.Optional[bool]
+            Include the raw data from the EDR in the response. Defaults to `false`.
+
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
 
@@ -483,6 +493,7 @@ class EdrClient:
             cursor="string",
             order="string",
             filter="string",
+            include_raw_data=True,
         )
         """
         _response = self._client_wrapper.httpx_client.request(
@@ -494,6 +505,7 @@ class EdrClient:
                 "cursor": cursor,
                 "order": order,
                 "filter": filter,
+                "include_raw_data": include_raw_data,
             },
             request_options=request_options,
         )
@@ -2795,6 +2807,7 @@ class AsyncEdrClient:
         cursor: typing.Optional[str] = None,
         order: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
         filter: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
+        include_raw_data: typing.Optional[bool] = None,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> QueryEndpointsResponse:
         """
@@ -2816,6 +2829,9 @@ class AsyncEdrClient:
 
         filter : typing.Optional[typing.Union[str, typing.Sequence[str]]]
             Filter results by this query. For more information on filtering, refer to our Filtering Guide. Defaults to no filter. If used more than once, the queries are ANDed together.
+
+        include_raw_data : typing.Optional[bool]
+            Include the raw data from the EDR in the response. Defaults to `false`.
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -2842,6 +2858,7 @@ class AsyncEdrClient:
                 cursor="string",
                 order="string",
                 filter="string",
+                include_raw_data=True,
             )
 
 
@@ -2856,6 +2873,7 @@ class AsyncEdrClient:
                 "cursor": cursor,
                 "order": order,
                 "filter": filter,
+                "include_raw_data": include_raw_data,
             },
             request_options=request_options,
         )
@@ -3196,6 +3214,7 @@ class AsyncEdrClient:
         cursor: typing.Optional[str] = None,
         order: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
         filter: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
+        include_raw_data: typing.Optional[bool] = None,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> QueryApplicationsResponse:
         """
@@ -3217,6 +3236,9 @@ class AsyncEdrClient:
 
         filter : typing.Optional[typing.Union[str, typing.Sequence[str]]]
             Filter results by this query. For more information on filtering, refer to our Filtering Guide. Defaults to no filter. If used more than once, the queries are ANDed together.
+
+        include_raw_data : typing.Optional[bool]
+            Include the raw data from the EDR in the response. Defaults to `false`.
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -3243,6 +3265,7 @@ class AsyncEdrClient:
                 cursor="string",
                 order="string",
                 filter="string",
+                include_raw_data=True,
             )
 
 
@@ -3257,6 +3280,7 @@ class AsyncEdrClient:
                 "cursor": cursor,
                 "order": order,
                 "filter": filter,
+                "include_raw_data": include_raw_data,
             },
             request_options=request_options,
         )
