@@ -2,26 +2,16 @@
 
 from .types import (
     QueryCloudResourceInventoryResponse,
-    QueryCloudResourceInventoryResponseGeneric,
     QueryCloudSecurityThreatsResponse,
-    QueryCloudSecurityThreatsResponseGeneric,
     QueryComplianceFindingsResponse,
-    QueryComplianceFindingsResponseGeneric,
     QueryEventsResponse,
-    QueryEventsResponseGeneric,
     QueryIomsResponse,
-    QueryIomsResponseGeneric,
 )
 
 __all__ = [
     "QueryCloudResourceInventoryResponse",
-    "QueryCloudResourceInventoryResponseGeneric",
     "QueryCloudSecurityThreatsResponse",
-    "QueryCloudSecurityThreatsResponseGeneric",
     "QueryComplianceFindingsResponse",
-    "QueryComplianceFindingsResponseGeneric",
     "QueryEventsResponse",
-    "QueryEventsResponseGeneric",
     "QueryIomsResponse",
-    "QueryIomsResponseGeneric",
 ]

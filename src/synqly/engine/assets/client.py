@@ -732,6 +732,7 @@ class AssetsClient:
         self,
         *,
         devices: typing.Sequence[Device],
+        custom_properties: typing.Optional[typing.Dict[str, str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> CreateDevicesResponse:
         """
@@ -740,6 +741,8 @@ class AssetsClient:
         Parameters
         ----------
         devices : typing.Sequence[Device]
+
+        custom_properties : typing.Optional[typing.Dict[str, str]]
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -1055,6 +1058,7 @@ class AssetsClient:
                     unmapped={"string": {"key": "value"}},
                 )
             ],
+            custom_properties={"string": "string"},
         )
         """
         _response = self._client_wrapper.httpx_client.request(
@@ -1062,6 +1066,7 @@ class AssetsClient:
             method="POST",
             json={
                 "devices": devices,
+                "custom_properties": custom_properties,
             },
             request_options=request_options,
             omit=OMIT,
@@ -1970,6 +1975,7 @@ class AsyncAssetsClient:
         self,
         *,
         devices: typing.Sequence[Device],
+        custom_properties: typing.Optional[typing.Dict[str, str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> CreateDevicesResponse:
         """
@@ -1978,6 +1984,8 @@ class AsyncAssetsClient:
         Parameters
         ----------
         devices : typing.Sequence[Device]
+
+        custom_properties : typing.Optional[typing.Dict[str, str]]
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -2297,6 +2305,7 @@ class AsyncAssetsClient:
                         unmapped={"string": {"key": "value"}},
                     )
                 ],
+                custom_properties={"string": "string"},
             )
 
 
@@ -2307,6 +2316,7 @@ class AsyncAssetsClient:
             method="POST",
             json={
                 "devices": devices,
+                "custom_properties": custom_properties,
             },
             request_options=request_options,
             omit=OMIT,

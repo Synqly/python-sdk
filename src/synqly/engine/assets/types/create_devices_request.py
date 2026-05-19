@@ -9,6 +9,7 @@ import pydantic
 
 class CreateDevicesRequest(UncheckedBaseModel):
     devices: typing.List[Device]
+    custom_properties: typing.Optional[typing.Dict[str, str]] = None
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(
