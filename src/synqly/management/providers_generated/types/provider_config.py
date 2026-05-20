@@ -1107,6 +1107,22 @@ class ProviderConfig_EndpointmanagementJamf(UncheckedBaseModel):
             extra = pydantic.Extra.allow
 
 
+class ProviderConfig_IdentityAwsIam(UncheckedBaseModel):
+    type: typing.Literal["identity_aws_iam"] = "identity_aws_iam"
+    credential: AwsProviderCredential
+    region: AwsRegion
+
+    if IS_PYDANTIC_V2:
+        model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(
+            extra="allow"
+        )  # type: ignore # Pydantic v2
+    else:
+
+        class Config:
+            smart_union = True
+            extra = pydantic.Extra.allow
+
+
 class ProviderConfig_IdentityEntraId(UncheckedBaseModel):
     type: typing.Literal["identity_entra_id"] = "identity_entra_id"
     credential: EntraIdCredential
@@ -2569,6 +2585,7 @@ ProviderConfig = typing_extensions.Annotated[
         ProviderConfig_EndpointmanagementIntune,
         ProviderConfig_EndpointmanagementIru,
         ProviderConfig_EndpointmanagementJamf,
+        ProviderConfig_IdentityAwsIam,
         ProviderConfig_IdentityEntraId,
         ProviderConfig_IdentityGoogle,
         ProviderConfig_IdentityOkta,

@@ -168,6 +168,16 @@ class Databucket(UncheckedBaseModel):
     The unique identifier of the databucket.
     """
 
+    vendor_name: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    The name of the vendor.
+    """
+
+    vendor_uuid: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    The UUID of the vendor.
+    """
+
     version: typing.Optional[str] = pydantic.Field(default=None)
     """
     The version of the resource. For example 1.2.3.

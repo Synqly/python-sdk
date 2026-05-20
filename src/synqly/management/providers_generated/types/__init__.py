@@ -290,6 +290,7 @@ from .http_receiver_token_credential import (
     HttpReceiverTokenCredential_TokenId,
 )
 from .http_request_body_format import HttpRequestBodyFormat
+from .identity_aws_iam import IdentityAwsIam
 from .identity_entra_id import IdentityEntraId
 from .identity_google import IdentityGoogle
 from .identity_okta import IdentityOkta
@@ -467,6 +468,7 @@ from .provider_config import (
     ProviderConfig_EndpointmanagementIntune,
     ProviderConfig_EndpointmanagementIru,
     ProviderConfig_EndpointmanagementJamf,
+    ProviderConfig_IdentityAwsIam,
     ProviderConfig_IdentityEntraId,
     ProviderConfig_IdentityGoogle,
     ProviderConfig_IdentityOkta,
@@ -999,6 +1001,7 @@ __all__ = [
     "HttpReceiverTokenCredential_Token",
     "HttpReceiverTokenCredential_TokenId",
     "HttpRequestBodyFormat",
+    "IdentityAwsIam",
     "IdentityEntraId",
     "IdentityGoogle",
     "IdentityOkta",
@@ -1140,6 +1143,7 @@ __all__ = [
     "ProviderConfig_EndpointmanagementIntune",
     "ProviderConfig_EndpointmanagementIru",
     "ProviderConfig_EndpointmanagementJamf",
+    "ProviderConfig_IdentityAwsIam",
     "ProviderConfig_IdentityEntraId",
     "ProviderConfig_IdentityGoogle",
     "ProviderConfig_IdentityOkta",

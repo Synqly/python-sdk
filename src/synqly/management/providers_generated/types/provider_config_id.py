@@ -310,6 +310,11 @@ class ProviderConfigId(str, enum.Enum):
     Jamf Pro
     """
 
+    IDENTITY_AWS_IAM = "identity_aws_iam"
+    """
+    AWS IAM Identity
+    """
+
     IDENTITY_ENTRA_ID = "identity_entra_id"
     """
     Microsoft Entra ID
@@ -789,6 +794,7 @@ class ProviderConfigId(str, enum.Enum):
         endpointmanagement_intune: typing.Callable[[], T_Result],
         endpointmanagement_iru: typing.Callable[[], T_Result],
         endpointmanagement_jamf: typing.Callable[[], T_Result],
+        identity_aws_iam: typing.Callable[[], T_Result],
         identity_entra_id: typing.Callable[[], T_Result],
         identity_google: typing.Callable[[], T_Result],
         identity_okta: typing.Callable[[], T_Result],
@@ -990,6 +996,8 @@ class ProviderConfigId(str, enum.Enum):
             return endpointmanagement_iru()
         if self is ProviderConfigId.ENDPOINTMANAGEMENT_JAMF:
             return endpointmanagement_jamf()
+        if self is ProviderConfigId.IDENTITY_AWS_IAM:
+            return identity_aws_iam()
         if self is ProviderConfigId.IDENTITY_ENTRA_ID:
             return identity_entra_id()
         if self is ProviderConfigId.IDENTITY_GOOGLE:
