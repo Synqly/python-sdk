@@ -118,6 +118,7 @@ from .cloud_security_crowd_strike_dataset import CloudSecurityCrowdStrikeDataset
 from .cloud_security_crowd_strike_mock import CloudSecurityCrowdStrikeMock
 from .cloud_security_defender import CloudSecurityDefender
 from .cloud_security_event_bridge_sqs_queues import CloudSecurityEventBridgeSqsQueues
+from .cloud_security_google import CloudSecurityGoogle
 from .cloud_security_palo_alto import CloudSecurityPaloAlto
 from .cloud_security_upwind import CloudSecurityUpwind
 from .cloud_security_wiz import CloudSecurityWiz
@@ -446,6 +447,7 @@ from .provider_config import (
     ProviderConfig_CloudsecurityCrowdstrike,
     ProviderConfig_CloudsecurityCrowdstrikeMock,
     ProviderConfig_CloudsecurityDefender,
+    ProviderConfig_CloudsecurityGoogle,
     ProviderConfig_CloudsecurityPaloalto,
     ProviderConfig_CloudsecurityUpwind,
     ProviderConfig_CloudsecurityWiz,
@@ -873,6 +875,7 @@ __all__ = [
     "CloudSecurityCrowdStrikeMock",
     "CloudSecurityDefender",
     "CloudSecurityEventBridgeSqsQueues",
+    "CloudSecurityGoogle",
     "CloudSecurityPaloAlto",
     "CloudSecurityUpwind",
     "CloudSecurityWiz",
@@ -1117,6 +1120,7 @@ __all__ = [
     "ProviderConfig_CloudsecurityCrowdstrike",
     "ProviderConfig_CloudsecurityCrowdstrikeMock",
     "ProviderConfig_CloudsecurityDefender",
+    "ProviderConfig_CloudsecurityGoogle",
     "ProviderConfig_CloudsecurityPaloalto",
     "ProviderConfig_CloudsecurityUpwind",
     "ProviderConfig_CloudsecurityWiz",

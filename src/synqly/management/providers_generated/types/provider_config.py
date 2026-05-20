@@ -55,6 +55,7 @@ from .slack_credential import SlackCredential
 from .cloud_security_aws_events import CloudSecurityAwsEvents
 from .cloud_security_event_bridge_sqs_queues import CloudSecurityEventBridgeSqsQueues
 from .cloud_security_crowd_strike_dataset import CloudSecurityCrowdStrikeDataset
+from .google_service_account_credential import GoogleServiceAccountCredential
 from .palo_alto_credential import PaloAltoCredential
 from .upwind_credential import UpwindCredential
 from .upwind_region import UpwindRegion
@@ -92,7 +93,6 @@ from .datadog_api_key_credential import DatadogApiKeyCredential
 from .elasticsearch_auth_options import ElasticsearchAuthOptions
 from .elasticsearch_credential import ElasticsearchCredential
 from .google_chronicle_credential import GoogleChronicleCredential
-from .google_service_account_credential import GoogleServiceAccountCredential
 from .open_search_credential import OpenSearchCredential
 from .api_config import ApiConfig
 from .http_ingest import HttpIngest
@@ -761,6 +761,22 @@ class ProviderConfig_CloudsecurityDefender(UncheckedBaseModel):
     subscription_id: str
     tenant_id: str
     url: typing.Optional[str] = None
+
+    if IS_PYDANTIC_V2:
+        model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(
+            extra="allow"
+        )  # type: ignore # Pydantic v2
+    else:
+
+        class Config:
+            smart_union = True
+            extra = pydantic.Extra.allow
+
+
+class ProviderConfig_CloudsecurityGoogle(UncheckedBaseModel):
+    type: typing.Literal["cloudsecurity_google"] = "cloudsecurity_google"
+    credential: GoogleServiceAccountCredential
+    scope_path: str
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(
@@ -2533,6 +2549,7 @@ ProviderConfig = typing_extensions.Annotated[
         ProviderConfig_CloudsecurityCrowdstrike,
         ProviderConfig_CloudsecurityCrowdstrikeMock,
         ProviderConfig_CloudsecurityDefender,
+        ProviderConfig_CloudsecurityGoogle,
         ProviderConfig_CloudsecurityPaloalto,
         ProviderConfig_CloudsecurityUpwind,
         ProviderConfig_CloudsecurityWiz,
