@@ -625,6 +625,11 @@ class ProviderConfigId(str, enum.Enum):
     Axonius
     """
 
+    VULNERABILITIES_AXONIUS_MOCK = "vulnerabilities_axonius_mock"
+    """
+    [MOCK] Axonius
+    """
+
     VULNERABILITIES_CROWD_STRIKE = "vulnerabilities_crowdstrike"
     """
     CrowdStrike Falcon® Spotlight
@@ -842,6 +847,7 @@ class ProviderConfigId(str, enum.Enum):
         ticketing_zendesk: typing.Callable[[], T_Result],
         vulnerabilities_amazon_inspector: typing.Callable[[], T_Result],
         vulnerabilities_axonius: typing.Callable[[], T_Result],
+        vulnerabilities_axonius_mock: typing.Callable[[], T_Result],
         vulnerabilities_crowd_strike: typing.Callable[[], T_Result],
         vulnerabilities_crowd_strike_mock: typing.Callable[[], T_Result],
         vulnerabilities_defender: typing.Callable[[], T_Result],
@@ -1104,6 +1110,8 @@ class ProviderConfigId(str, enum.Enum):
             return vulnerabilities_amazon_inspector()
         if self is ProviderConfigId.VULNERABILITIES_AXONIUS:
             return vulnerabilities_axonius()
+        if self is ProviderConfigId.VULNERABILITIES_AXONIUS_MOCK:
+            return vulnerabilities_axonius_mock()
         if self is ProviderConfigId.VULNERABILITIES_CROWD_STRIKE:
             return vulnerabilities_crowd_strike()
         if self is ProviderConfigId.VULNERABILITIES_CROWD_STRIKE_MOCK:

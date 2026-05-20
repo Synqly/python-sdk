@@ -125,6 +125,7 @@ from .custom_field_mapping import CustomFieldMapping
 from .ticketing_pagerduty_dataset import TicketingPagerdutyDataset
 from .torq_credential import TorqCredential
 from .zendesk_credential import ZendeskCredential
+from .vulnerabilities_axonius_dataset import VulnerabilitiesAxoniusDataset
 from .vulnerabilities_crowd_strike_dataset import VulnerabilitiesCrowdStrikeDataset
 from .horizon_3_credential import Horizon3Credential
 from .horizon_3_region import Horizon3Region
@@ -2218,6 +2219,23 @@ class ProviderConfig_VulnerabilitiesAxonius(UncheckedBaseModel):
             extra = pydantic.Extra.allow
 
 
+class ProviderConfig_VulnerabilitiesAxoniusMock(UncheckedBaseModel):
+    type: typing.Literal["vulnerabilities_axonius_mock"] = (
+        "vulnerabilities_axonius_mock"
+    )
+    dataset: VulnerabilitiesAxoniusDataset
+
+    if IS_PYDANTIC_V2:
+        model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(
+            extra="allow"
+        )  # type: ignore # Pydantic v2
+    else:
+
+        class Config:
+            smart_union = True
+            extra = pydantic.Extra.allow
+
+
 class ProviderConfig_VulnerabilitiesCrowdstrike(UncheckedBaseModel):
     type: typing.Literal["vulnerabilities_crowdstrike"] = "vulnerabilities_crowdstrike"
     credential: CrowdStrikeCredential
@@ -2598,6 +2616,7 @@ ProviderConfig = typing_extensions.Annotated[
         ProviderConfig_TicketingZendesk,
         ProviderConfig_VulnerabilitiesAmazonInspector,
         ProviderConfig_VulnerabilitiesAxonius,
+        ProviderConfig_VulnerabilitiesAxoniusMock,
         ProviderConfig_VulnerabilitiesCrowdstrike,
         ProviderConfig_VulnerabilitiesCrowdstrikeMock,
         ProviderConfig_VulnerabilitiesDefender,

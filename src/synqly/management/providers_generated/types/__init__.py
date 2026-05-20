@@ -529,6 +529,7 @@ from .provider_config import (
     ProviderConfig_TicketingZendesk,
     ProviderConfig_VulnerabilitiesAmazonInspector,
     ProviderConfig_VulnerabilitiesAxonius,
+    ProviderConfig_VulnerabilitiesAxoniusMock,
     ProviderConfig_VulnerabilitiesCrowdstrike,
     ProviderConfig_VulnerabilitiesCrowdstrikeMock,
     ProviderConfig_VulnerabilitiesDefender,
@@ -739,6 +740,8 @@ from .veracode_credential import (
 from .veracode_region import VeracodeRegion
 from .vulnerabilities_amazon_inspector import VulnerabilitiesAmazonInspector
 from .vulnerabilities_axonius import VulnerabilitiesAxonius
+from .vulnerabilities_axonius_dataset import VulnerabilitiesAxoniusDataset
+from .vulnerabilities_axonius_mock import VulnerabilitiesAxoniusMock
 from .vulnerabilities_crowd_strike import VulnerabilitiesCrowdStrike
 from .vulnerabilities_crowd_strike_dataset import VulnerabilitiesCrowdStrikeDataset
 from .vulnerabilities_crowd_strike_mock import VulnerabilitiesCrowdStrikeMock
@@ -1197,6 +1200,7 @@ __all__ = [
     "ProviderConfig_TicketingZendesk",
     "ProviderConfig_VulnerabilitiesAmazonInspector",
     "ProviderConfig_VulnerabilitiesAxonius",
+    "ProviderConfig_VulnerabilitiesAxoniusMock",
     "ProviderConfig_VulnerabilitiesCrowdstrike",
     "ProviderConfig_VulnerabilitiesCrowdstrikeMock",
     "ProviderConfig_VulnerabilitiesDefender",
@@ -1353,6 +1357,8 @@ __all__ = [
     "VeracodeRegion",
     "VulnerabilitiesAmazonInspector",
     "VulnerabilitiesAxonius",
+    "VulnerabilitiesAxoniusDataset",
+    "VulnerabilitiesAxoniusMock",
     "VulnerabilitiesCrowdStrike",
     "VulnerabilitiesCrowdStrikeDataset",
     "VulnerabilitiesCrowdStrikeMock",
