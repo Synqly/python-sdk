@@ -292,6 +292,8 @@ from .http_receiver_token_credential import (
 from .http_request_body_format import HttpRequestBodyFormat
 from .identity_aws_iam import IdentityAwsIam
 from .identity_entra_id import IdentityEntraId
+from .identity_entra_id_dataset import IdentityEntraIdDataset
+from .identity_entra_id_mock import IdentityEntraIdMock
 from .identity_google import IdentityGoogle
 from .identity_okta import IdentityOkta
 from .identity_ping_one import IdentityPingOne
@@ -470,6 +472,7 @@ from .provider_config import (
     ProviderConfig_EndpointmanagementJamf,
     ProviderConfig_IdentityAwsIam,
     ProviderConfig_IdentityEntraId,
+    ProviderConfig_IdentityEntraIdMock,
     ProviderConfig_IdentityGoogle,
     ProviderConfig_IdentityOkta,
     ProviderConfig_IdentityPingone,
@@ -1003,6 +1006,8 @@ __all__ = [
     "HttpRequestBodyFormat",
     "IdentityAwsIam",
     "IdentityEntraId",
+    "IdentityEntraIdDataset",
+    "IdentityEntraIdMock",
     "IdentityGoogle",
     "IdentityOkta",
     "IdentityPingOne",
@@ -1145,6 +1150,7 @@ __all__ = [
     "ProviderConfig_EndpointmanagementJamf",
     "ProviderConfig_IdentityAwsIam",
     "ProviderConfig_IdentityEntraId",
+    "ProviderConfig_IdentityEntraIdMock",
     "ProviderConfig_IdentityGoogle",
     "ProviderConfig_IdentityOkta",
     "ProviderConfig_IdentityPingone",

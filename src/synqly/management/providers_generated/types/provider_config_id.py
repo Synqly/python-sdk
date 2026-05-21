@@ -320,6 +320,11 @@ class ProviderConfigId(str, enum.Enum):
     Microsoft Entra ID
     """
 
+    IDENTITY_ENTRA_ID_MOCK = "identity_entra_id_mock"
+    """
+    [MOCK] Microsoft Entra ID
+    """
+
     IDENTITY_GOOGLE = "identity_google"
     """
     Google Workspace
@@ -796,6 +801,7 @@ class ProviderConfigId(str, enum.Enum):
         endpointmanagement_jamf: typing.Callable[[], T_Result],
         identity_aws_iam: typing.Callable[[], T_Result],
         identity_entra_id: typing.Callable[[], T_Result],
+        identity_entra_id_mock: typing.Callable[[], T_Result],
         identity_google: typing.Callable[[], T_Result],
         identity_okta: typing.Callable[[], T_Result],
         identity_ping_one: typing.Callable[[], T_Result],
@@ -1000,6 +1006,8 @@ class ProviderConfigId(str, enum.Enum):
             return identity_aws_iam()
         if self is ProviderConfigId.IDENTITY_ENTRA_ID:
             return identity_entra_id()
+        if self is ProviderConfigId.IDENTITY_ENTRA_ID_MOCK:
+            return identity_entra_id_mock()
         if self is ProviderConfigId.IDENTITY_GOOGLE:
             return identity_google()
         if self is ProviderConfigId.IDENTITY_OKTA:

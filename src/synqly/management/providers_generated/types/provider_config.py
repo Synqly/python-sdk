@@ -76,6 +76,7 @@ from .automox_api_key_credential import AutomoxApiKeyCredential
 from .intune_credential import IntuneCredential
 from .jamf_credential import JamfCredential
 from .entra_id_credential import EntraIdCredential
+from .identity_entra_id_dataset import IdentityEntraIdDataset
 from .google_credential import GoogleCredential
 from .okta_credential import OktaCredential
 from .ping_one_auth_url import PingOneAuthUrl
@@ -1128,6 +1129,21 @@ class ProviderConfig_IdentityEntraId(UncheckedBaseModel):
     credential: EntraIdCredential
     tenant_id: str
     url: typing.Optional[str] = None
+
+    if IS_PYDANTIC_V2:
+        model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(
+            extra="allow"
+        )  # type: ignore # Pydantic v2
+    else:
+
+        class Config:
+            smart_union = True
+            extra = pydantic.Extra.allow
+
+
+class ProviderConfig_IdentityEntraIdMock(UncheckedBaseModel):
+    type: typing.Literal["identity_entra_id_mock"] = "identity_entra_id_mock"
+    dataset: IdentityEntraIdDataset
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(
@@ -2587,6 +2603,7 @@ ProviderConfig = typing_extensions.Annotated[
         ProviderConfig_EndpointmanagementJamf,
         ProviderConfig_IdentityAwsIam,
         ProviderConfig_IdentityEntraId,
+        ProviderConfig_IdentityEntraIdMock,
         ProviderConfig_IdentityGoogle,
         ProviderConfig_IdentityOkta,
         ProviderConfig_IdentityPingone,
