@@ -290,6 +290,13 @@ class ProviderConfigId(str, enum.Enum):
     Mimecast Cloud Gateway
     """
 
+    EMAIL_SECURITY_MIMECAST_CLOUD_GATEWAY_MOCK = (
+        "emailsecurity_mimecast_cloud_gateway_mock"
+    )
+    """
+    [MOCK] Mimecast Cloud Gateway
+    """
+
     ENDPOINTMANAGEMENT_AUTOMOX = "endpointmanagement_automox"
     """
     Automox
@@ -795,6 +802,7 @@ class ProviderConfigId(str, enum.Enum):
         edr_tanium: typing.Callable[[], T_Result],
         email_security_defender_for_office: typing.Callable[[], T_Result],
         email_security_mimecast_cloud_gateway: typing.Callable[[], T_Result],
+        email_security_mimecast_cloud_gateway_mock: typing.Callable[[], T_Result],
         endpointmanagement_automox: typing.Callable[[], T_Result],
         endpointmanagement_intune: typing.Callable[[], T_Result],
         endpointmanagement_iru: typing.Callable[[], T_Result],
@@ -994,6 +1002,8 @@ class ProviderConfigId(str, enum.Enum):
             return email_security_defender_for_office()
         if self is ProviderConfigId.EMAIL_SECURITY_MIMECAST_CLOUD_GATEWAY:
             return email_security_mimecast_cloud_gateway()
+        if self is ProviderConfigId.EMAIL_SECURITY_MIMECAST_CLOUD_GATEWAY_MOCK:
+            return email_security_mimecast_cloud_gateway_mock()
         if self is ProviderConfigId.ENDPOINTMANAGEMENT_AUTOMOX:
             return endpointmanagement_automox()
         if self is ProviderConfigId.ENDPOINTMANAGEMENT_INTUNE:

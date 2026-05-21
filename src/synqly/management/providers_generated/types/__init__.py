@@ -195,6 +195,12 @@ from .elasticsearch_shared_secret import (
 )
 from .email_security_defender_for_office import EmailSecurityDefenderForOffice
 from .email_security_mimecast_cloud_gateway import EmailSecurityMimecastCloudGateway
+from .email_security_mimecast_cloud_gateway_dataset import (
+    EmailSecurityMimecastCloudGatewayDataset,
+)
+from .email_security_mimecast_cloud_gateway_mock import (
+    EmailSecurityMimecastCloudGatewayMock,
+)
 from .endpointmanagement_automox import EndpointmanagementAutomox
 from .endpointmanagement_intune import EndpointmanagementIntune
 from .endpointmanagement_iru import EndpointmanagementIru
@@ -466,6 +472,7 @@ from .provider_config import (
     ProviderConfig_EdrTanium,
     ProviderConfig_EmailsecurityDefenderForOffice,
     ProviderConfig_EmailsecurityMimecastCloudGateway,
+    ProviderConfig_EmailsecurityMimecastCloudGatewayMock,
     ProviderConfig_EndpointmanagementAutomox,
     ProviderConfig_EndpointmanagementIntune,
     ProviderConfig_EndpointmanagementIru,
@@ -939,6 +946,8 @@ __all__ = [
     "ElasticsearchSharedSecret_SecretId",
     "EmailSecurityDefenderForOffice",
     "EmailSecurityMimecastCloudGateway",
+    "EmailSecurityMimecastCloudGatewayDataset",
+    "EmailSecurityMimecastCloudGatewayMock",
     "EndpointmanagementAutomox",
     "EndpointmanagementIntune",
     "EndpointmanagementIru",
@@ -1144,6 +1153,7 @@ __all__ = [
     "ProviderConfig_EdrTanium",
     "ProviderConfig_EmailsecurityDefenderForOffice",
     "ProviderConfig_EmailsecurityMimecastCloudGateway",
+    "ProviderConfig_EmailsecurityMimecastCloudGatewayMock",
     "ProviderConfig_EndpointmanagementAutomox",
     "ProviderConfig_EndpointmanagementIntune",
     "ProviderConfig_EndpointmanagementIru",

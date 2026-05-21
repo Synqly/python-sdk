@@ -72,6 +72,9 @@ from .sophos_credential import SophosCredential
 from .microsoft_defender_region import MicrosoftDefenderRegion
 from .mimecast_api_gateway import MimecastApiGateway
 from .mimecast_cloud_gateway_credential import MimecastCloudGatewayCredential
+from .email_security_mimecast_cloud_gateway_dataset import (
+    EmailSecurityMimecastCloudGatewayDataset,
+)
 from .automox_api_key_credential import AutomoxApiKeyCredential
 from .intune_credential import IntuneCredential
 from .jamf_credential import JamfCredential
@@ -1030,6 +1033,23 @@ class ProviderConfig_EmailsecurityMimecastCloudGateway(UncheckedBaseModel):
     )
     api_gateway: typing.Optional[MimecastApiGateway] = None
     credential: MimecastCloudGatewayCredential
+
+    if IS_PYDANTIC_V2:
+        model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(
+            extra="allow"
+        )  # type: ignore # Pydantic v2
+    else:
+
+        class Config:
+            smart_union = True
+            extra = pydantic.Extra.allow
+
+
+class ProviderConfig_EmailsecurityMimecastCloudGatewayMock(UncheckedBaseModel):
+    type: typing.Literal["emailsecurity_mimecast_cloud_gateway_mock"] = (
+        "emailsecurity_mimecast_cloud_gateway_mock"
+    )
+    dataset: EmailSecurityMimecastCloudGatewayDataset
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(
@@ -2597,6 +2617,7 @@ ProviderConfig = typing_extensions.Annotated[
         ProviderConfig_EdrTanium,
         ProviderConfig_EmailsecurityDefenderForOffice,
         ProviderConfig_EmailsecurityMimecastCloudGateway,
+        ProviderConfig_EmailsecurityMimecastCloudGatewayMock,
         ProviderConfig_EndpointmanagementAutomox,
         ProviderConfig_EndpointmanagementIntune,
         ProviderConfig_EndpointmanagementIru,
