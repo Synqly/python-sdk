@@ -45,6 +45,7 @@ class AppsecClient:
         limit: typing.Optional[int] = None,
         filter: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
         cursor: typing.Optional[str] = None,
+        include_raw_data: typing.Optional[bool] = None,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AppSecQueryApplicationsResponse:
         """
@@ -63,6 +64,9 @@ class AppsecClient:
 
         cursor : typing.Optional[str]
             Start search from cursor position.
+
+        include_raw_data : typing.Optional[bool]
+            Include the raw data from the provider in the response. Defaults to `false`.
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -83,6 +87,7 @@ class AppsecClient:
             limit=1,
             filter="string",
             cursor="string",
+            include_raw_data=True,
         )
         """
         _response = self._client_wrapper.httpx_client.request(
@@ -93,6 +98,7 @@ class AppsecClient:
                 "limit": limit,
                 "filter": filter,
                 "cursor": cursor,
+                "include_raw_data": include_raw_data,
             },
             request_options=request_options,
         )
@@ -248,6 +254,7 @@ class AppsecClient:
         limit: typing.Optional[int] = None,
         filter: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
         cursor: typing.Optional[str] = None,
+        include_raw_data: typing.Optional[bool] = None,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AppSecQueryApplicationFindingsResponse:
         """
@@ -269,6 +276,9 @@ class AppsecClient:
         cursor : typing.Optional[str]
             Start search from cursor position.
 
+        include_raw_data : typing.Optional[bool]
+            Include the raw data from the provider in the response. Defaults to `false`.
+
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
 
@@ -289,6 +299,7 @@ class AppsecClient:
             limit=1,
             filter="string",
             cursor="string",
+            include_raw_data=True,
         )
         """
         _response = self._client_wrapper.httpx_client.request(
@@ -299,6 +310,7 @@ class AppsecClient:
                 "limit": limit,
                 "filter": filter,
                 "cursor": cursor,
+                "include_raw_data": include_raw_data,
             },
             request_options=request_options,
         )
@@ -453,6 +465,7 @@ class AppsecClient:
         limit: typing.Optional[int] = None,
         filter: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
         cursor: typing.Optional[str] = None,
+        include_raw_data: typing.Optional[bool] = None,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AppSecQueryFindingsResponse:
         """
@@ -471,6 +484,9 @@ class AppsecClient:
 
         cursor : typing.Optional[str]
             Start search from cursor position.
+
+        include_raw_data : typing.Optional[bool]
+            Include the raw data from the provider in the response. Defaults to `false`.
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -491,6 +507,7 @@ class AppsecClient:
             limit=1,
             filter="string",
             cursor="string",
+            include_raw_data=True,
         )
         """
         _response = self._client_wrapper.httpx_client.request(
@@ -501,6 +518,7 @@ class AppsecClient:
                 "limit": limit,
                 "filter": filter,
                 "cursor": cursor,
+                "include_raw_data": include_raw_data,
             },
             request_options=request_options,
         )
@@ -654,6 +672,7 @@ class AppsecClient:
         finding_id: FindingId,
         *,
         meta: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
+        include_raw_data: typing.Optional[bool] = None,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AppSecGetApplicationFindingDetailsResponse:
         """
@@ -667,6 +686,9 @@ class AppsecClient:
 
         meta : typing.Optional[typing.Union[str, typing.Sequence[str]]]
             Add metadata to the response by invoking meta functions. Documentation for meta functions is available at https://docs.synqly.com/api-reference/meta-functions. Not all meta function are available at every endpoint.
+
+        include_raw_data : typing.Optional[bool]
+            Include the raw data from the provider in the response. Defaults to `false`.
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -686,6 +708,7 @@ class AppsecClient:
             application_id="string",
             finding_id="string",
             meta="string",
+            include_raw_data=True,
         )
         """
         _response = self._client_wrapper.httpx_client.request(
@@ -693,6 +716,7 @@ class AppsecClient:
             method="GET",
             params={
                 "meta": meta,
+                "include_raw_data": include_raw_data,
             },
             request_options=request_options,
         )
@@ -852,6 +876,7 @@ class AsyncAppsecClient:
         limit: typing.Optional[int] = None,
         filter: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
         cursor: typing.Optional[str] = None,
+        include_raw_data: typing.Optional[bool] = None,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AppSecQueryApplicationsResponse:
         """
@@ -870,6 +895,9 @@ class AsyncAppsecClient:
 
         cursor : typing.Optional[str]
             Start search from cursor position.
+
+        include_raw_data : typing.Optional[bool]
+            Include the raw data from the provider in the response. Defaults to `false`.
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -895,6 +923,7 @@ class AsyncAppsecClient:
                 limit=1,
                 filter="string",
                 cursor="string",
+                include_raw_data=True,
             )
 
 
@@ -908,6 +937,7 @@ class AsyncAppsecClient:
                 "limit": limit,
                 "filter": filter,
                 "cursor": cursor,
+                "include_raw_data": include_raw_data,
             },
             request_options=request_options,
         )
@@ -1063,6 +1093,7 @@ class AsyncAppsecClient:
         limit: typing.Optional[int] = None,
         filter: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
         cursor: typing.Optional[str] = None,
+        include_raw_data: typing.Optional[bool] = None,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AppSecQueryApplicationFindingsResponse:
         """
@@ -1083,6 +1114,9 @@ class AsyncAppsecClient:
 
         cursor : typing.Optional[str]
             Start search from cursor position.
+
+        include_raw_data : typing.Optional[bool]
+            Include the raw data from the provider in the response. Defaults to `false`.
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -1109,6 +1143,7 @@ class AsyncAppsecClient:
                 limit=1,
                 filter="string",
                 cursor="string",
+                include_raw_data=True,
             )
 
 
@@ -1122,6 +1157,7 @@ class AsyncAppsecClient:
                 "limit": limit,
                 "filter": filter,
                 "cursor": cursor,
+                "include_raw_data": include_raw_data,
             },
             request_options=request_options,
         )
@@ -1276,6 +1312,7 @@ class AsyncAppsecClient:
         limit: typing.Optional[int] = None,
         filter: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
         cursor: typing.Optional[str] = None,
+        include_raw_data: typing.Optional[bool] = None,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AppSecQueryFindingsResponse:
         """
@@ -1294,6 +1331,9 @@ class AsyncAppsecClient:
 
         cursor : typing.Optional[str]
             Start search from cursor position.
+
+        include_raw_data : typing.Optional[bool]
+            Include the raw data from the provider in the response. Defaults to `false`.
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -1319,6 +1359,7 @@ class AsyncAppsecClient:
                 limit=1,
                 filter="string",
                 cursor="string",
+                include_raw_data=True,
             )
 
 
@@ -1332,6 +1373,7 @@ class AsyncAppsecClient:
                 "limit": limit,
                 "filter": filter,
                 "cursor": cursor,
+                "include_raw_data": include_raw_data,
             },
             request_options=request_options,
         )
@@ -1485,6 +1527,7 @@ class AsyncAppsecClient:
         finding_id: FindingId,
         *,
         meta: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
+        include_raw_data: typing.Optional[bool] = None,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AppSecGetApplicationFindingDetailsResponse:
         """
@@ -1498,6 +1541,9 @@ class AsyncAppsecClient:
 
         meta : typing.Optional[typing.Union[str, typing.Sequence[str]]]
             Add metadata to the response by invoking meta functions. Documentation for meta functions is available at https://docs.synqly.com/api-reference/meta-functions. Not all meta function are available at every endpoint.
+
+        include_raw_data : typing.Optional[bool]
+            Include the raw data from the provider in the response. Defaults to `false`.
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -1522,6 +1568,7 @@ class AsyncAppsecClient:
                 application_id="string",
                 finding_id="string",
                 meta="string",
+                include_raw_data=True,
             )
 
 
@@ -1532,6 +1579,7 @@ class AsyncAppsecClient:
             method="GET",
             params={
                 "meta": meta,
+                "include_raw_data": include_raw_data,
             },
             request_options=request_options,
         )

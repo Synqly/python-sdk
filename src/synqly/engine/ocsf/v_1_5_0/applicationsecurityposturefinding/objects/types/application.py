@@ -59,6 +59,11 @@ class Application(UncheckedBaseModel):
     The identity of the service or user account that owns the application.
     """
 
+    raw_data: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    The raw event/finding data as received from the source.
+    """
+
     region: typing.Optional[str] = pydantic.Field(default=None)
     """
     The cloud region of the resource.
