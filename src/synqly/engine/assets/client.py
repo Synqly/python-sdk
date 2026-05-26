@@ -732,6 +732,7 @@ class AssetsClient:
         self,
         *,
         devices: typing.Sequence[Device],
+        source_name: str,
         custom_properties: typing.Optional[typing.Dict[str, str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> CreateDevicesResponse:
@@ -741,6 +742,9 @@ class AssetsClient:
         Parameters
         ----------
         devices : typing.Sequence[Device]
+
+        source_name : str
+            Connector hint passed to the integration (for example ServiceNow discovery_source with Identify & Reconcile).
 
         custom_properties : typing.Optional[typing.Dict[str, str]]
 
@@ -1059,6 +1063,7 @@ class AssetsClient:
                 )
             ],
             custom_properties={"string": "string"},
+            source_name="string",
         )
         """
         _response = self._client_wrapper.httpx_client.request(
@@ -1067,6 +1072,7 @@ class AssetsClient:
             json={
                 "devices": devices,
                 "custom_properties": custom_properties,
+                "source_name": source_name,
             },
             request_options=request_options,
             omit=OMIT,
@@ -1975,6 +1981,7 @@ class AsyncAssetsClient:
         self,
         *,
         devices: typing.Sequence[Device],
+        source_name: str,
         custom_properties: typing.Optional[typing.Dict[str, str]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> CreateDevicesResponse:
@@ -1984,6 +1991,9 @@ class AsyncAssetsClient:
         Parameters
         ----------
         devices : typing.Sequence[Device]
+
+        source_name : str
+            Connector hint passed to the integration (for example ServiceNow discovery_source with Identify & Reconcile).
 
         custom_properties : typing.Optional[typing.Dict[str, str]]
 
@@ -2306,6 +2316,7 @@ class AsyncAssetsClient:
                     )
                 ],
                 custom_properties={"string": "string"},
+                source_name="string",
             )
 
 
@@ -2317,6 +2328,7 @@ class AsyncAssetsClient:
             json={
                 "devices": devices,
                 "custom_properties": custom_properties,
+                "source_name": source_name,
             },
             request_options=request_options,
             omit=OMIT,

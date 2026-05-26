@@ -3,13 +3,17 @@
 from ...core.unchecked_base_model import UncheckedBaseModel
 import typing
 from .device import Device
-from ...core.pydantic_utilities import IS_PYDANTIC_V2
 import pydantic
+from ...core.pydantic_utilities import IS_PYDANTIC_V2
 
 
 class CreateDevicesRequest(UncheckedBaseModel):
     devices: typing.List[Device]
     custom_properties: typing.Optional[typing.Dict[str, str]] = None
+    source_name: str = pydantic.Field()
+    """
+    Connector hint passed to the integration (for example ServiceNow discovery_source with Identify & Reconcile).
+    """
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(
