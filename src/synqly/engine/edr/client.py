@@ -2245,7 +2245,12 @@ class EdrClient:
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
     def get_threat_notes(
-        self, threat_id: str, *, request_options: typing.Optional[RequestOptions] = None
+        self,
+        threat_id: str,
+        *,
+        limit: typing.Optional[int] = None,
+        cursor: typing.Optional[str] = None,
+        request_options: typing.Optional[RequestOptions] = None,
     ) -> GetThreatNotesResponse:
         """
         Returns a list of notes for a threat.
@@ -2253,6 +2258,12 @@ class EdrClient:
         Parameters
         ----------
         threat_id : str
+
+        limit : typing.Optional[int]
+            Maximum number of notes to return. Defaults to 100.
+
+        cursor : typing.Optional[str]
+            Cursor from a previous response to retrieve the next page of notes.
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -2270,11 +2281,17 @@ class EdrClient:
         )
         client.edr.get_threat_notes(
             threat_id="string",
+            limit=1,
+            cursor="string",
         )
         """
         _response = self._client_wrapper.httpx_client.request(
             f"v1/edr/threats/{jsonable_encoder(threat_id)}/notes",
             method="GET",
+            params={
+                "limit": limit,
+                "cursor": cursor,
+            },
             request_options=request_options,
         )
         try:
@@ -5083,7 +5100,12 @@ class AsyncEdrClient:
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
     async def get_threat_notes(
-        self, threat_id: str, *, request_options: typing.Optional[RequestOptions] = None
+        self,
+        threat_id: str,
+        *,
+        limit: typing.Optional[int] = None,
+        cursor: typing.Optional[str] = None,
+        request_options: typing.Optional[RequestOptions] = None,
     ) -> GetThreatNotesResponse:
         """
         Returns a list of notes for a threat.
@@ -5091,6 +5113,12 @@ class AsyncEdrClient:
         Parameters
         ----------
         threat_id : str
+
+        limit : typing.Optional[int]
+            Maximum number of notes to return. Defaults to 100.
+
+        cursor : typing.Optional[str]
+            Cursor from a previous response to retrieve the next page of notes.
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -5113,6 +5141,8 @@ class AsyncEdrClient:
         async def main() -> None:
             await client.edr.get_threat_notes(
                 threat_id="string",
+                limit=1,
+                cursor="string",
             )
 
 
@@ -5121,6 +5151,10 @@ class AsyncEdrClient:
         _response = await self._client_wrapper.httpx_client.request(
             f"v1/edr/threats/{jsonable_encoder(threat_id)}/notes",
             method="GET",
+            params={
+                "limit": limit,
+                "cursor": cursor,
+            },
             request_options=request_options,
         )
         try:
