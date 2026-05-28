@@ -1808,6 +1808,7 @@ class ProviderConfig_SinkHttp(UncheckedBaseModel):
     signing_credential: typing.Optional[HttpReceiverSigningCredential] = None
     skip_tls_verify: typing.Optional[bool] = None
     static_headers: typing.Optional[typing.Dict[str, str]] = None
+    timeout_seconds: typing.Optional[int] = None
     url: str
 
     if IS_PYDANTIC_V2:

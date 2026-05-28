@@ -66,6 +66,11 @@ class SinkHttp(UncheckedBaseModel):
     Additional HTTP headers to include on every request. Use for non-sensitive metadata like source system identifiers, API versioning, or custom routing headers that don't change per request.
     """
 
+    timeout_seconds: typing.Optional[int] = pydantic.Field(default=None)
+    """
+    Maximum timeout in seconds to wait for the receiving endpoint to respond. A value of `0` (default) means no explicit timeout is set.
+    """
+
     url: str = pydantic.Field()
     """
     Receiving endpoint where events will be sent.
