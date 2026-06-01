@@ -71,6 +71,8 @@ class OperationId(str, enum.Enum):
     IDENTITY_GET_USER_PICTURE = "identity_get_user_picture"
     IDENTITY_QUERY_AUDIT_LOG = "identity_query_audit_log"
     IDENTITY_QUERY_GROUPS = "identity_query_groups"
+    IDENTITY_QUERY_RISK_EVENTS = "identity_query_risk_events"
+    IDENTITY_QUERY_RISKY_USERS = "identity_query_risky_users"
     IDENTITY_QUERY_USERS = "identity_query_users"
     INCIDENTRESPONSE_QUERY_ESCALATION_POLICIES = (
         "incidentresponse_query_escalation_policies"
@@ -200,6 +202,8 @@ class OperationId(str, enum.Enum):
         identity_get_user_picture: typing.Callable[[], T_Result],
         identity_query_audit_log: typing.Callable[[], T_Result],
         identity_query_groups: typing.Callable[[], T_Result],
+        identity_query_risk_events: typing.Callable[[], T_Result],
+        identity_query_risky_users: typing.Callable[[], T_Result],
         identity_query_users: typing.Callable[[], T_Result],
         incidentresponse_query_escalation_policies: typing.Callable[[], T_Result],
         incidentresponse_query_escalation_policy_users_on_call: typing.Callable[
@@ -376,6 +380,10 @@ class OperationId(str, enum.Enum):
             return identity_query_audit_log()
         if self is OperationId.IDENTITY_QUERY_GROUPS:
             return identity_query_groups()
+        if self is OperationId.IDENTITY_QUERY_RISK_EVENTS:
+            return identity_query_risk_events()
+        if self is OperationId.IDENTITY_QUERY_RISKY_USERS:
+            return identity_query_risky_users()
         if self is OperationId.IDENTITY_QUERY_USERS:
             return identity_query_users()
         if self is OperationId.INCIDENTRESPONSE_QUERY_ESCALATION_POLICIES:

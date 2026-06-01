@@ -6,6 +6,8 @@ from .get_user_response import GetUserResponse
 from .group_id import GroupId
 from .query_groups_response import QueryGroupsResponse
 from .query_identity_audit_log_response import QueryIdentityAuditLogResponse
+from .query_identity_risk_events_response import QueryIdentityRiskEventsResponse
+from .query_identity_risky_users_response import QueryIdentityRiskyUsersResponse
 from .query_users_response import QueryUsersResponse
 from .user_id import UserId
 
@@ -16,6 +18,8 @@ __all__ = [
     "GroupId",
     "QueryGroupsResponse",
     "QueryIdentityAuditLogResponse",
+    "QueryIdentityRiskEventsResponse",
+    "QueryIdentityRiskyUsersResponse",
     "QueryUsersResponse",
     "UserId",
 ]

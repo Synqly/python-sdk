@@ -7,6 +7,8 @@ from .types import (
     GroupId,
     QueryGroupsResponse,
     QueryIdentityAuditLogResponse,
+    QueryIdentityRiskEventsResponse,
+    QueryIdentityRiskyUsersResponse,
     QueryUsersResponse,
     UserId,
 )
@@ -18,6 +20,8 @@ __all__ = [
     "GroupId",
     "QueryGroupsResponse",
     "QueryIdentityAuditLogResponse",
+    "QueryIdentityRiskEventsResponse",
+    "QueryIdentityRiskyUsersResponse",
     "QueryUsersResponse",
     "UserId",
 ]

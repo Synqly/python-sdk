@@ -203,6 +203,8 @@ from .identity import (
     GroupId,
     QueryGroupsResponse,
     QueryIdentityAuditLogResponse,
+    QueryIdentityRiskEventsResponse,
+    QueryIdentityRiskyUsersResponse,
     QueryUsersResponse,
     UserId,
 )
@@ -610,6 +612,8 @@ __all__ = [
     "QueryFindingsResponse",
     "QueryGroupsResponse",
     "QueryIdentityAuditLogResponse",
+    "QueryIdentityRiskEventsResponse",
+    "QueryIdentityRiskyUsersResponse",
     "QueryInvestigationResponse",
     "QueryIocsResponse",
     "QueryIomsResponse",
