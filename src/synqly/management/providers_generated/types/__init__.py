@@ -56,6 +56,7 @@ from .assets_sevco_mock import AssetsSevcoMock
 from .assets_tanium_cloud import AssetsTaniumCloud
 from .assets_tanium_cloud_dataset import AssetsTaniumCloudDataset
 from .assets_tanium_cloud_mock import AssetsTaniumCloudMock
+from .assets_tenable_cloud import AssetsTenableCloud
 from .automox_api_key_credential import (
     AutomoxApiKeyCredential,
     AutomoxApiKeyCredential_Token,
@@ -448,6 +449,7 @@ from .provider_config import (
     ProviderConfig_AssetsSevcoMock,
     ProviderConfig_AssetsTaniumCloud,
     ProviderConfig_AssetsTaniumCloudMock,
+    ProviderConfig_AssetsTenableCloud,
     ProviderConfig_ChatMicrosoftCopilot,
     ProviderConfig_ChatMicrosoftTeams,
     ProviderConfig_ChatSlack,
@@ -845,6 +847,7 @@ __all__ = [
     "AssetsTaniumCloud",
     "AssetsTaniumCloudDataset",
     "AssetsTaniumCloudMock",
+    "AssetsTenableCloud",
     "AutomoxApiKeyCredential",
     "AutomoxApiKeyCredential_Token",
     "AutomoxApiKeyCredential_TokenId",
@@ -1129,6 +1132,7 @@ __all__ = [
     "ProviderConfig_AssetsSevcoMock",
     "ProviderConfig_AssetsTaniumCloud",
     "ProviderConfig_AssetsTaniumCloudMock",
+    "ProviderConfig_AssetsTenableCloud",
     "ProviderConfig_ChatMicrosoftCopilot",
     "ProviderConfig_ChatMicrosoftTeams",
     "ProviderConfig_ChatSlack",
