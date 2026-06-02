@@ -15,6 +15,11 @@ class EdrDefender(UncheckedBaseModel):
     """
 
     credential: DefenderCredential
+    security_url: str = pydantic.Field()
+    """
+    Base URL for the Microsoft Defender for Endpoint API (the api.security.microsoft.com host). US Government and regional tenants use a different host.
+    """
+
     tenant_id: str = pydantic.Field()
     """
     Tenant ID for the Microsoft Defender Management Console.
@@ -22,7 +27,7 @@ class EdrDefender(UncheckedBaseModel):
 
     url: str = pydantic.Field()
     """
-    Base URL for the Microsoft Defender API.
+    Base URL for the Microsoft Defender for Endpoint API (the legacy api.securitycenter host).
     """
 
     if IS_PYDANTIC_V2:

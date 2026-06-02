@@ -910,6 +910,7 @@ class ProviderConfig_EdrCrowdstrikeMock(UncheckedBaseModel):
 class ProviderConfig_EdrDefender(UncheckedBaseModel):
     type: typing.Literal["edr_defender"] = "edr_defender"
     credential: DefenderCredential
+    security_url: str
     tenant_id: str
     url: str
 
