@@ -702,7 +702,8 @@ class AuthClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> GetSsoResponse:
         """
-        Retrieve a specific SSO configuration. The client secret is not included.
+        Retrieve a specific Single Sign-On (SSO) configuration. Client
+        secrets are not included.
 
         Parameters
         ----------
@@ -799,9 +800,9 @@ class AuthClient:
         self, *, request_options: typing.Optional[RequestOptions] = None
     ) -> GetSsoMetadataResponse:
         """
-        Returns the SP-side configuration values the user needs to enter into their
-        Identity Provider. Includes the OIDC redirect URI or SAML ACS URL and SP
-        entity ID depending on the protocols configured for the organization.
+        Returns configuration that must be used when configuring Identity
+        Providers, such as the OIDC redirect URI or SAML ACS URL and SP
+        entity ID.
 
         Parameters
         ----------
@@ -1838,7 +1839,8 @@ class AsyncAuthClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> GetSsoResponse:
         """
-        Retrieve a specific SSO configuration. The client secret is not included.
+        Retrieve a specific Single Sign-On (SSO) configuration. Client
+        secrets are not included.
 
         Parameters
         ----------
@@ -1943,9 +1945,9 @@ class AsyncAuthClient:
         self, *, request_options: typing.Optional[RequestOptions] = None
     ) -> GetSsoMetadataResponse:
         """
-        Returns the SP-side configuration values the user needs to enter into their
-        Identity Provider. Includes the OIDC redirect URI or SAML ACS URL and SP
-        entity ID depending on the protocols configured for the organization.
+        Returns configuration that must be used when configuring Identity
+        Providers, such as the OIDC redirect URI or SAML ACS URL and SP
+        entity ID.
 
         Parameters
         ----------
