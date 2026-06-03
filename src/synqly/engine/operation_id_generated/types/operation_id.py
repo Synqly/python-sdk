@@ -42,6 +42,7 @@ class OperationId(str, enum.Enum):
     EDR_CREATE_IOCS = "edr_create_iocs"
     EDR_CREATE_THREAT_NOTE = "edr_create_threat_note"
     EDR_DELETE_IOCS = "edr_delete_iocs"
+    EDR_EXECUTE_COMMAND = "edr_execute_command"
     EDR_GET_ENDPOINT = "edr_get_endpoint"
     EDR_GET_THREAT_NOTES = "edr_get_threat_notes"
     EDR_NETWORK_QUARANTINE = "edr_network_quarantine"
@@ -52,6 +53,7 @@ class OperationId(str, enum.Enum):
     EDR_QUERY_IOCS = "edr_query_iocs"
     EDR_QUERY_POSTURE_SCORE = "edr_query_posture_score"
     EDR_QUERY_THREATEVENTS = "edr_query_threatevents"
+    EDR_RETRIEVE_FILE = "edr_retrieve_file"
     EMAILSECURITY_GET_THREAT_DETAILS = "emailsecurity_get_threat_details"
     EMAILSECURITY_QUERY_EMAIL_EVENTS = "emailsecurity_query_email_events"
     EMAILSECURITY_QUERY_THREATS = "emailsecurity_query_threats"
@@ -175,6 +177,7 @@ class OperationId(str, enum.Enum):
         edr_create_iocs: typing.Callable[[], T_Result],
         edr_create_threat_note: typing.Callable[[], T_Result],
         edr_delete_iocs: typing.Callable[[], T_Result],
+        edr_execute_command: typing.Callable[[], T_Result],
         edr_get_endpoint: typing.Callable[[], T_Result],
         edr_get_threat_notes: typing.Callable[[], T_Result],
         edr_network_quarantine: typing.Callable[[], T_Result],
@@ -185,6 +188,7 @@ class OperationId(str, enum.Enum):
         edr_query_iocs: typing.Callable[[], T_Result],
         edr_query_posture_score: typing.Callable[[], T_Result],
         edr_query_threatevents: typing.Callable[[], T_Result],
+        edr_retrieve_file: typing.Callable[[], T_Result],
         emailsecurity_get_threat_details: typing.Callable[[], T_Result],
         emailsecurity_query_email_events: typing.Callable[[], T_Result],
         emailsecurity_query_threats: typing.Callable[[], T_Result],
@@ -326,6 +330,8 @@ class OperationId(str, enum.Enum):
             return edr_create_threat_note()
         if self is OperationId.EDR_DELETE_IOCS:
             return edr_delete_iocs()
+        if self is OperationId.EDR_EXECUTE_COMMAND:
+            return edr_execute_command()
         if self is OperationId.EDR_GET_ENDPOINT:
             return edr_get_endpoint()
         if self is OperationId.EDR_GET_THREAT_NOTES:
@@ -346,6 +352,8 @@ class OperationId(str, enum.Enum):
             return edr_query_posture_score()
         if self is OperationId.EDR_QUERY_THREATEVENTS:
             return edr_query_threatevents()
+        if self is OperationId.EDR_RETRIEVE_FILE:
+            return edr_retrieve_file()
         if self is OperationId.EMAILSECURITY_GET_THREAT_DETAILS:
             return emailsecurity_get_threat_details()
         if self is OperationId.EMAILSECURITY_QUERY_EMAIL_EVENTS:

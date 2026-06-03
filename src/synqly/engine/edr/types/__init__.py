@@ -7,6 +7,9 @@ from .create_iocs_response import CreateIocsResponse
 from .create_threat_note_request import CreateThreatNoteRequest
 from .create_threat_note_response import CreateThreatNoteResponse
 from .delete_iocs_response import DeleteIocsResponse
+from .execute_command_request import ExecuteCommandRequest
+from .execute_command_response import ExecuteCommandResponse
+from .execute_command_result import ExecuteCommandResult
 from .get_endpoint_response import GetEndpointResponse
 from .get_threat_notes_response import GetThreatNotesResponse
 from .network_quarantine_request import NetworkQuarantineRequest
@@ -19,6 +22,7 @@ from .query_endpoints_response import QueryEndpointsResponse
 from .query_iocs_response import QueryIocsResponse
 from .query_posture_score_response import QueryPostureScoreResponse
 from .query_threats_response import QueryThreatsResponse
+from .retrieve_file_request import RetrieveFileRequest
 from .threat_event import ThreatEvent
 
 __all__ = [
@@ -29,6 +33,9 @@ __all__ = [
     "CreateThreatNoteRequest",
     "CreateThreatNoteResponse",
     "DeleteIocsResponse",
+    "ExecuteCommandRequest",
+    "ExecuteCommandResponse",
+    "ExecuteCommandResult",
     "GetEndpointResponse",
     "GetThreatNotesResponse",
     "NetworkQuarantineRequest",
@@ -41,5 +48,6 @@ __all__ = [
     "QueryIocsResponse",
     "QueryPostureScoreResponse",
     "QueryThreatsResponse",
+    "RetrieveFileRequest",
     "ThreatEvent",
 ]

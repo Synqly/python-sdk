@@ -24,6 +24,7 @@ from ..core.api_error import ApiError
 from ..common.types.id import Id
 from .types.get_endpoint_response import GetEndpointResponse
 from ..core.jsonable_encoder import jsonable_encoder
+from .types.execute_command_response import ExecuteCommandResponse
 from .types.query_applications_response import QueryApplicationsResponse
 from .types.connection_state import ConnectionState
 from .types.network_quarantine_response import NetworkQuarantineResponse
@@ -438,6 +439,387 @@ class EdrClient:
         except JSONDecodeError:
             raise ApiError(status_code=_response.status_code, body=_response.text)
         raise ApiError(status_code=_response.status_code, body=_response_json)
+
+    def execute_command(
+        self,
+        uid: Id,
+        *,
+        command: str,
+        cursor: typing.Optional[str] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> ExecuteCommandResponse:
+        """
+        Runs a provider-backed command on the endpoint identified by `{uid}` and returns normalized stdout and stderr without exposing provider session details.
+
+        Parameters
+        ----------
+        uid : Id
+
+        command : str
+            The command string to execute on the remote endpoint.
+
+        cursor : typing.Optional[str]
+            Opaque cursor returned from a previous pending response, used to continue polling the in-flight provider command.
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        ExecuteCommandResponse
+
+        Examples
+        --------
+        from synqly import SynqlyEngine
+
+        client = SynqlyEngine(
+            token="YOUR_TOKEN",
+        )
+        client.edr.execute_command(
+            uid="string",
+            command="string",
+            cursor="string",
+        )
+        """
+        _response = self._client_wrapper.httpx_client.request(
+            f"v1/edr/endpoints/{jsonable_encoder(uid)}/actions/execute-command",
+            method="POST",
+            json={
+                "command": command,
+                "cursor": cursor,
+            },
+            request_options=request_options,
+            omit=OMIT,
+        )
+        try:
+            if 200 <= _response.status_code < 300:
+                return typing.cast(
+                    ExecuteCommandResponse,
+                    construct_type(
+                        type_=ExecuteCommandResponse,  # type: ignore
+                        object_=_response.json(),
+                    ),
+                )
+            if _response.status_code == 400:
+                raise BadRequestError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 401:
+                raise UnauthorizedError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 403:
+                raise ForbiddenError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 404:
+                raise NotFoundError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 405:
+                raise MethodNotAllowedError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 409:
+                raise ConflictError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 415:
+                raise UnsupportedMediaTypeError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 429:
+                raise TooManyRequestsError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 500:
+                raise InternalServerError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 501:
+                raise NotImplementedError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 502:
+                raise BadGatewayError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 503:
+                raise ServiceUnavailableError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 504:
+                raise GatewayTimeoutError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            _response_json = _response.json()
+        except JSONDecodeError:
+            raise ApiError(status_code=_response.status_code, body=_response.text)
+        raise ApiError(status_code=_response.status_code, body=_response_json)
+
+    def retrieve_file(
+        self,
+        uid: Id,
+        *,
+        path: str,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> typing.Iterator[bytes]:
+        """
+        Retrieves a file from the endpoint identified by `{uid}` and returns the provider artifact as a binary file response.
+
+        Parameters
+        ----------
+        uid : Id
+
+        path : str
+            The remote file path to retrieve from the endpoint.
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Yields
+        ------
+        typing.Iterator[bytes]
+
+        Examples
+        --------
+        from synqly import SynqlyEngine
+
+        client = SynqlyEngine(
+            token="YOUR_TOKEN",
+        )
+        client.edr.retrieve_file(
+            uid="string",
+            path="string",
+        )
+        """
+        with self._client_wrapper.httpx_client.stream(
+            f"v1/edr/endpoints/{jsonable_encoder(uid)}/actions/retrieve-file",
+            method="POST",
+            json={
+                "path": path,
+            },
+            request_options=request_options,
+            omit=OMIT,
+        ) as _response:
+            try:
+                if 200 <= _response.status_code < 300:
+                    for _chunk in _response.iter_bytes():
+                        yield _chunk
+                    return
+                _response.read()
+                if _response.status_code == 400:
+                    raise BadRequestError(
+                        typing.cast(
+                            Problem,
+                            construct_type(
+                                type_=Problem,  # type: ignore
+                                object_=_response.json(),
+                            ),
+                        )
+                    )
+                if _response.status_code == 401:
+                    raise UnauthorizedError(
+                        typing.cast(
+                            Problem,
+                            construct_type(
+                                type_=Problem,  # type: ignore
+                                object_=_response.json(),
+                            ),
+                        )
+                    )
+                if _response.status_code == 403:
+                    raise ForbiddenError(
+                        typing.cast(
+                            Problem,
+                            construct_type(
+                                type_=Problem,  # type: ignore
+                                object_=_response.json(),
+                            ),
+                        )
+                    )
+                if _response.status_code == 404:
+                    raise NotFoundError(
+                        typing.cast(
+                            Problem,
+                            construct_type(
+                                type_=Problem,  # type: ignore
+                                object_=_response.json(),
+                            ),
+                        )
+                    )
+                if _response.status_code == 405:
+                    raise MethodNotAllowedError(
+                        typing.cast(
+                            Problem,
+                            construct_type(
+                                type_=Problem,  # type: ignore
+                                object_=_response.json(),
+                            ),
+                        )
+                    )
+                if _response.status_code == 409:
+                    raise ConflictError(
+                        typing.cast(
+                            Problem,
+                            construct_type(
+                                type_=Problem,  # type: ignore
+                                object_=_response.json(),
+                            ),
+                        )
+                    )
+                if _response.status_code == 415:
+                    raise UnsupportedMediaTypeError(
+                        typing.cast(
+                            Problem,
+                            construct_type(
+                                type_=Problem,  # type: ignore
+                                object_=_response.json(),
+                            ),
+                        )
+                    )
+                if _response.status_code == 429:
+                    raise TooManyRequestsError(
+                        typing.cast(
+                            Problem,
+                            construct_type(
+                                type_=Problem,  # type: ignore
+                                object_=_response.json(),
+                            ),
+                        )
+                    )
+                if _response.status_code == 500:
+                    raise InternalServerError(
+                        typing.cast(
+                            Problem,
+                            construct_type(
+                                type_=Problem,  # type: ignore
+                                object_=_response.json(),
+                            ),
+                        )
+                    )
+                if _response.status_code == 501:
+                    raise NotImplementedError(
+                        typing.cast(
+                            Problem,
+                            construct_type(
+                                type_=Problem,  # type: ignore
+                                object_=_response.json(),
+                            ),
+                        )
+                    )
+                if _response.status_code == 502:
+                    raise BadGatewayError(
+                        typing.cast(
+                            Problem,
+                            construct_type(
+                                type_=Problem,  # type: ignore
+                                object_=_response.json(),
+                            ),
+                        )
+                    )
+                if _response.status_code == 503:
+                    raise ServiceUnavailableError(
+                        typing.cast(
+                            Problem,
+                            construct_type(
+                                type_=Problem,  # type: ignore
+                                object_=_response.json(),
+                            ),
+                        )
+                    )
+                if _response.status_code == 504:
+                    raise GatewayTimeoutError(
+                        typing.cast(
+                            Problem,
+                            construct_type(
+                                type_=Problem,  # type: ignore
+                                object_=_response.json(),
+                            ),
+                        )
+                    )
+                _response_json = _response.json()
+            except JSONDecodeError:
+                raise ApiError(status_code=_response.status_code, body=_response.text)
+            raise ApiError(status_code=_response.status_code, body=_response_json)
 
     def query_applications(
         self,
@@ -3222,6 +3604,403 @@ class AsyncEdrClient:
         except JSONDecodeError:
             raise ApiError(status_code=_response.status_code, body=_response.text)
         raise ApiError(status_code=_response.status_code, body=_response_json)
+
+    async def execute_command(
+        self,
+        uid: Id,
+        *,
+        command: str,
+        cursor: typing.Optional[str] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> ExecuteCommandResponse:
+        """
+        Runs a provider-backed command on the endpoint identified by `{uid}` and returns normalized stdout and stderr without exposing provider session details.
+
+        Parameters
+        ----------
+        uid : Id
+
+        command : str
+            The command string to execute on the remote endpoint.
+
+        cursor : typing.Optional[str]
+            Opaque cursor returned from a previous pending response, used to continue polling the in-flight provider command.
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        ExecuteCommandResponse
+
+        Examples
+        --------
+        import asyncio
+
+        from synqly import AsyncSynqlyEngine
+
+        client = AsyncSynqlyEngine(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.edr.execute_command(
+                uid="string",
+                command="string",
+                cursor="string",
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._client_wrapper.httpx_client.request(
+            f"v1/edr/endpoints/{jsonable_encoder(uid)}/actions/execute-command",
+            method="POST",
+            json={
+                "command": command,
+                "cursor": cursor,
+            },
+            request_options=request_options,
+            omit=OMIT,
+        )
+        try:
+            if 200 <= _response.status_code < 300:
+                return typing.cast(
+                    ExecuteCommandResponse,
+                    construct_type(
+                        type_=ExecuteCommandResponse,  # type: ignore
+                        object_=_response.json(),
+                    ),
+                )
+            if _response.status_code == 400:
+                raise BadRequestError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 401:
+                raise UnauthorizedError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 403:
+                raise ForbiddenError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 404:
+                raise NotFoundError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 405:
+                raise MethodNotAllowedError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 409:
+                raise ConflictError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 415:
+                raise UnsupportedMediaTypeError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 429:
+                raise TooManyRequestsError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 500:
+                raise InternalServerError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 501:
+                raise NotImplementedError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 502:
+                raise BadGatewayError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 503:
+                raise ServiceUnavailableError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 504:
+                raise GatewayTimeoutError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            _response_json = _response.json()
+        except JSONDecodeError:
+            raise ApiError(status_code=_response.status_code, body=_response.text)
+        raise ApiError(status_code=_response.status_code, body=_response_json)
+
+    async def retrieve_file(
+        self,
+        uid: Id,
+        *,
+        path: str,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> typing.AsyncIterator[bytes]:
+        """
+        Retrieves a file from the endpoint identified by `{uid}` and returns the provider artifact as a binary file response.
+
+        Parameters
+        ----------
+        uid : Id
+
+        path : str
+            The remote file path to retrieve from the endpoint.
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Yields
+        ------
+        typing.AsyncIterator[bytes]
+
+        Examples
+        --------
+        import asyncio
+
+        from synqly import AsyncSynqlyEngine
+
+        client = AsyncSynqlyEngine(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.edr.retrieve_file(
+                uid="string",
+                path="string",
+            )
+
+
+        asyncio.run(main())
+        """
+        async with self._client_wrapper.httpx_client.stream(
+            f"v1/edr/endpoints/{jsonable_encoder(uid)}/actions/retrieve-file",
+            method="POST",
+            json={
+                "path": path,
+            },
+            request_options=request_options,
+            omit=OMIT,
+        ) as _response:
+            try:
+                if 200 <= _response.status_code < 300:
+                    async for _chunk in _response.aiter_bytes():
+                        yield _chunk
+                    return
+                await _response.aread()
+                if _response.status_code == 400:
+                    raise BadRequestError(
+                        typing.cast(
+                            Problem,
+                            construct_type(
+                                type_=Problem,  # type: ignore
+                                object_=_response.json(),
+                            ),
+                        )
+                    )
+                if _response.status_code == 401:
+                    raise UnauthorizedError(
+                        typing.cast(
+                            Problem,
+                            construct_type(
+                                type_=Problem,  # type: ignore
+                                object_=_response.json(),
+                            ),
+                        )
+                    )
+                if _response.status_code == 403:
+                    raise ForbiddenError(
+                        typing.cast(
+                            Problem,
+                            construct_type(
+                                type_=Problem,  # type: ignore
+                                object_=_response.json(),
+                            ),
+                        )
+                    )
+                if _response.status_code == 404:
+                    raise NotFoundError(
+                        typing.cast(
+                            Problem,
+                            construct_type(
+                                type_=Problem,  # type: ignore
+                                object_=_response.json(),
+                            ),
+                        )
+                    )
+                if _response.status_code == 405:
+                    raise MethodNotAllowedError(
+                        typing.cast(
+                            Problem,
+                            construct_type(
+                                type_=Problem,  # type: ignore
+                                object_=_response.json(),
+                            ),
+                        )
+                    )
+                if _response.status_code == 409:
+                    raise ConflictError(
+                        typing.cast(
+                            Problem,
+                            construct_type(
+                                type_=Problem,  # type: ignore
+                                object_=_response.json(),
+                            ),
+                        )
+                    )
+                if _response.status_code == 415:
+                    raise UnsupportedMediaTypeError(
+                        typing.cast(
+                            Problem,
+                            construct_type(
+                                type_=Problem,  # type: ignore
+                                object_=_response.json(),
+                            ),
+                        )
+                    )
+                if _response.status_code == 429:
+                    raise TooManyRequestsError(
+                        typing.cast(
+                            Problem,
+                            construct_type(
+                                type_=Problem,  # type: ignore
+                                object_=_response.json(),
+                            ),
+                        )
+                    )
+                if _response.status_code == 500:
+                    raise InternalServerError(
+                        typing.cast(
+                            Problem,
+                            construct_type(
+                                type_=Problem,  # type: ignore
+                                object_=_response.json(),
+                            ),
+                        )
+                    )
+                if _response.status_code == 501:
+                    raise NotImplementedError(
+                        typing.cast(
+                            Problem,
+                            construct_type(
+                                type_=Problem,  # type: ignore
+                                object_=_response.json(),
+                            ),
+                        )
+                    )
+                if _response.status_code == 502:
+                    raise BadGatewayError(
+                        typing.cast(
+                            Problem,
+                            construct_type(
+                                type_=Problem,  # type: ignore
+                                object_=_response.json(),
+                            ),
+                        )
+                    )
+                if _response.status_code == 503:
+                    raise ServiceUnavailableError(
+                        typing.cast(
+                            Problem,
+                            construct_type(
+                                type_=Problem,  # type: ignore
+                                object_=_response.json(),
+                            ),
+                        )
+                    )
+                if _response.status_code == 504:
+                    raise GatewayTimeoutError(
+                        typing.cast(
+                            Problem,
+                            construct_type(
+                                type_=Problem,  # type: ignore
+                                object_=_response.json(),
+                            ),
+                        )
+                    )
+                _response_json = _response.json()
+            except JSONDecodeError:
+                raise ApiError(status_code=_response.status_code, body=_response.text)
+            raise ApiError(status_code=_response.status_code, body=_response_json)
 
     async def query_applications(
         self,

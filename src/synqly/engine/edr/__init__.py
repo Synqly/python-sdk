@@ -8,6 +8,9 @@ from .types import (
     CreateThreatNoteRequest,
     CreateThreatNoteResponse,
     DeleteIocsResponse,
+    ExecuteCommandRequest,
+    ExecuteCommandResponse,
+    ExecuteCommandResult,
     GetEndpointResponse,
     GetThreatNotesResponse,
     NetworkQuarantineRequest,
@@ -20,6 +23,7 @@ from .types import (
     QueryIocsResponse,
     QueryPostureScoreResponse,
     QueryThreatsResponse,
+    RetrieveFileRequest,
     ThreatEvent,
 )
 
@@ -31,6 +35,9 @@ __all__ = [
     "CreateThreatNoteRequest",
     "CreateThreatNoteResponse",
     "DeleteIocsResponse",
+    "ExecuteCommandRequest",
+    "ExecuteCommandResponse",
+    "ExecuteCommandResult",
     "GetEndpointResponse",
     "GetThreatNotesResponse",
     "NetworkQuarantineRequest",
@@ -43,5 +50,6 @@ __all__ = [
     "QueryIocsResponse",
     "QueryPostureScoreResponse",
     "QueryThreatsResponse",
+    "RetrieveFileRequest",
     "ThreatEvent",
 ]
