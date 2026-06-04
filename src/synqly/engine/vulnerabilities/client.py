@@ -2209,6 +2209,7 @@ class VulnerabilitiesClient:
         meta: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
         limit: typing.Optional[int] = None,
         cursor: typing.Optional[str] = None,
+        filter: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> QueryScansResponse:
         """
@@ -2224,6 +2225,10 @@ class VulnerabilitiesClient:
 
         cursor : typing.Optional[str]
             Start search from cursor position.
+
+        filter : typing.Optional[typing.Union[str, typing.Sequence[str]]]
+            Filter results by this query. For more information on filtering, refer to the Vulnerability Filtering Guide.
+            Defaults to no filter. If used more than once, the queries are ANDed together.
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -2243,6 +2248,7 @@ class VulnerabilitiesClient:
             meta="string",
             limit=1,
             cursor="string",
+            filter="string",
         )
         """
         _response = self._client_wrapper.httpx_client.request(
@@ -2252,6 +2258,7 @@ class VulnerabilitiesClient:
                 "meta": meta,
                 "limit": limit,
                 "cursor": cursor,
+                "filter": filter,
             },
             request_options=request_options,
         )
@@ -5799,6 +5806,7 @@ class AsyncVulnerabilitiesClient:
         meta: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
         limit: typing.Optional[int] = None,
         cursor: typing.Optional[str] = None,
+        filter: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> QueryScansResponse:
         """
@@ -5814,6 +5822,10 @@ class AsyncVulnerabilitiesClient:
 
         cursor : typing.Optional[str]
             Start search from cursor position.
+
+        filter : typing.Optional[typing.Union[str, typing.Sequence[str]]]
+            Filter results by this query. For more information on filtering, refer to the Vulnerability Filtering Guide.
+            Defaults to no filter. If used more than once, the queries are ANDed together.
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -5838,6 +5850,7 @@ class AsyncVulnerabilitiesClient:
                 meta="string",
                 limit=1,
                 cursor="string",
+                filter="string",
             )
 
 
@@ -5850,6 +5863,7 @@ class AsyncVulnerabilitiesClient:
                 "meta": meta,
                 "limit": limit,
                 "cursor": cursor,
+                "filter": filter,
             },
             request_options=request_options,
         )
