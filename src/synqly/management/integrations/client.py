@@ -35,6 +35,7 @@ from ..common.errors.bad_gateway_error import BadGatewayError
 from ..common.errors.service_unavailable_error import ServiceUnavailableError
 from ..common.errors.gateway_timeout_error import GatewayTimeoutError
 from .types.create_integration_request import CreateIntegrationRequest
+from .types.verify_integration_response import VerifyIntegrationResponse
 from ..token_base.types.token_id import TokenId
 from ..capabilities_base.types.category_id import CategoryId
 import datetime as dt
@@ -828,7 +829,7 @@ class IntegrationsClient:
         *,
         integration: CreateIntegrationRequest,
         request_options: typing.Optional[RequestOptions] = None,
-    ) -> None:
+    ) -> VerifyIntegrationResponse:
         """
         Verifies an ephemeral `Integration` and provider configuration and tests the authentication and provider connectivity.
         The provider config credential IDs can utilize persistent IDs or use "#/n" reference IDs;
@@ -845,7 +846,7 @@ class IntegrationsClient:
 
         Returns
         -------
-        None
+        VerifyIntegrationResponse
 
         Examples
         --------
@@ -903,7 +904,13 @@ class IntegrationsClient:
         )
         try:
             if 200 <= _response.status_code < 300:
-                return
+                return typing.cast(
+                    VerifyIntegrationResponse,
+                    construct_type(
+                        type_=VerifyIntegrationResponse,  # type: ignore
+                        object_=_response.json(),
+                    ),
+                )
             if _response.status_code == 400:
                 raise BadRequestError(
                     typing.cast(
@@ -2441,7 +2448,7 @@ class AsyncIntegrationsClient:
         *,
         integration: CreateIntegrationRequest,
         request_options: typing.Optional[RequestOptions] = None,
-    ) -> None:
+    ) -> VerifyIntegrationResponse:
         """
         Verifies an ephemeral `Integration` and provider configuration and tests the authentication and provider connectivity.
         The provider config credential IDs can utilize persistent IDs or use "#/n" reference IDs;
@@ -2458,7 +2465,7 @@ class AsyncIntegrationsClient:
 
         Returns
         -------
-        None
+        VerifyIntegrationResponse
 
         Examples
         --------
@@ -2524,7 +2531,13 @@ class AsyncIntegrationsClient:
         )
         try:
             if 200 <= _response.status_code < 300:
-                return
+                return typing.cast(
+                    VerifyIntegrationResponse,
+                    construct_type(
+                        type_=VerifyIntegrationResponse,  # type: ignore
+                        object_=_response.json(),
+                    ),
+                )
             if _response.status_code == 400:
                 raise BadRequestError(
                     typing.cast(

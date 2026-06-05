@@ -253,6 +253,7 @@ from .integrations import (
     UpdateIntegrationRequest,
     UpdateIntegrationResponse,
     VerifyIntegrationRequest,
+    VerifyIntegrationResponse,
     WebhookConfig,
     WebhookItem,
 )
@@ -2047,6 +2048,7 @@ __all__ = [
     "VeracodeCredential_OAuthClientId",
     "VeracodeRegion",
     "VerifyIntegrationRequest",
+    "VerifyIntegrationResponse",
     "VulnerabilitiesAmazonInspector",
     "VulnerabilitiesAxonius",
     "VulnerabilitiesAxoniusDataset",

@@ -2,15 +2,17 @@
 
 from ...core.unchecked_base_model import UncheckedBaseModel
 import typing
-from ...common.types.problem import Problem
+from .integration_messages_response import IntegrationMessagesResponse
 import pydantic
 from ...core.pydantic_utilities import IS_PYDANTIC_V2
 
 
-class IntegrationMessagesResponse(UncheckedBaseModel):
-    problems: typing.Optional[typing.List[Problem]] = pydantic.Field(default=None)
+class VerifyIntegrationResponse(UncheckedBaseModel):
+    messages: typing.Optional[IntegrationMessagesResponse] = pydantic.Field(
+        default=None
+    )
     """
-    Warnings or issues that occurred during integration creation or verification that did not prevent the request from returning, but may indicate a problem with the integration configuration.
+    Warnings or issues that occurred during integration verification, such as invalid provider configuration fields. Omitted when there are no warnings.
     """
 
     if IS_PYDANTIC_V2:
