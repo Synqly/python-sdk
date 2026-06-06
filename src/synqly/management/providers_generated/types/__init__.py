@@ -179,6 +179,7 @@ from .edr_malwarebytes import EdrMalwarebytes
 from .edr_sentinel_one import EdrSentinelOne
 from .edr_sophos import EdrSophos
 from .edr_tanium import EdrTanium
+from .edr_trellix import EdrTrellix
 from .elasticsearch_auth_options import ElasticsearchAuthOptions
 from .elasticsearch_credential import (
     ElasticsearchCredential,
@@ -472,6 +473,7 @@ from .provider_config import (
     ProviderConfig_EdrSentinelone,
     ProviderConfig_EdrSophos,
     ProviderConfig_EdrTanium,
+    ProviderConfig_EdrTrellix,
     ProviderConfig_EmailsecurityDefenderForOffice,
     ProviderConfig_EmailsecurityMimecastCloudGateway,
     ProviderConfig_EmailsecurityMimecastCloudGatewayMock,
@@ -737,6 +739,16 @@ from .torq_credential import (
     TorqCredential_OAuthClient,
     TorqCredential_OAuthClientId,
 )
+from .trellix_api_key_credential import (
+    TrellixApiKeyCredential,
+    TrellixApiKeyCredential_Token,
+    TrellixApiKeyCredential_TokenId,
+)
+from .trellix_credential import (
+    TrellixCredential,
+    TrellixCredential_OAuthClient,
+    TrellixCredential_OAuthClientId,
+)
 from .trimedx_credential import (
     TrimedxCredential,
     TrimedxCredential_OAuthClient,
@@ -936,6 +948,7 @@ __all__ = [
     "EdrSentinelOne",
     "EdrSophos",
     "EdrTanium",
+    "EdrTrellix",
     "ElasticsearchAuthOptions",
     "ElasticsearchCredential",
     "ElasticsearchCredential_Basic",
@@ -1155,6 +1168,7 @@ __all__ = [
     "ProviderConfig_EdrSentinelone",
     "ProviderConfig_EdrSophos",
     "ProviderConfig_EdrTanium",
+    "ProviderConfig_EdrTrellix",
     "ProviderConfig_EmailsecurityDefenderForOffice",
     "ProviderConfig_EmailsecurityMimecastCloudGateway",
     "ProviderConfig_EmailsecurityMimecastCloudGatewayMock",
@@ -1372,6 +1386,12 @@ __all__ = [
     "TorqCredential",
     "TorqCredential_OAuthClient",
     "TorqCredential_OAuthClientId",
+    "TrellixApiKeyCredential",
+    "TrellixApiKeyCredential_Token",
+    "TrellixApiKeyCredential_TokenId",
+    "TrellixCredential",
+    "TrellixCredential_OAuthClient",
+    "TrellixCredential_OAuthClientId",
     "TrimedxCredential",
     "TrimedxCredential_OAuthClient",
     "TrimedxCredential_OAuthClientId",

@@ -69,6 +69,8 @@ from .malwarebytes_credential import MalwarebytesCredential
 from .sentinel_one_credential import SentinelOneCredential
 from .sentinel_one_edr_events_credential import SentinelOneEdrEventsCredential
 from .sophos_credential import SophosCredential
+from .trellix_api_key_credential import TrellixApiKeyCredential
+from .trellix_credential import TrellixCredential
 from .microsoft_defender_region import MicrosoftDefenderRegion
 from .mimecast_api_gateway import MimecastApiGateway
 from .mimecast_cloud_gateway_credential import MimecastCloudGatewayCredential
@@ -1013,6 +1015,23 @@ class ProviderConfig_EdrTanium(UncheckedBaseModel):
     type: typing.Literal["edr_tanium"] = "edr_tanium"
     credential: TaniumCloudCredential
     url: str
+
+    if IS_PYDANTIC_V2:
+        model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(
+            extra="allow"
+        )  # type: ignore # Pydantic v2
+    else:
+
+        class Config:
+            smart_union = True
+            extra = pydantic.Extra.allow
+
+
+class ProviderConfig_EdrTrellix(UncheckedBaseModel):
+    type: typing.Literal["edr_trellix"] = "edr_trellix"
+    api_key: TrellixApiKeyCredential
+    credential: TrellixCredential
+    tenant_id: str
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(
@@ -2634,6 +2653,7 @@ ProviderConfig = typing_extensions.Annotated[
         ProviderConfig_EdrSentinelone,
         ProviderConfig_EdrSophos,
         ProviderConfig_EdrTanium,
+        ProviderConfig_EdrTrellix,
         ProviderConfig_EmailsecurityDefenderForOffice,
         ProviderConfig_EmailsecurityMimecastCloudGateway,
         ProviderConfig_EmailsecurityMimecastCloudGatewayMock,

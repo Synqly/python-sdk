@@ -285,6 +285,11 @@ class ProviderConfigId(str, enum.Enum):
     Tanium EDR
     """
 
+    EDR_TRELLIX = "edr_trellix"
+    """
+    Trellix ePolicy Orchestrator
+    """
+
     EMAIL_SECURITY_DEFENDER_FOR_OFFICE = "emailsecurity_defender_for_office"
     """
     Microsoft Defender for Office 365
@@ -806,6 +811,7 @@ class ProviderConfigId(str, enum.Enum):
         edr_sentinel_one: typing.Callable[[], T_Result],
         edr_sophos: typing.Callable[[], T_Result],
         edr_tanium: typing.Callable[[], T_Result],
+        edr_trellix: typing.Callable[[], T_Result],
         email_security_defender_for_office: typing.Callable[[], T_Result],
         email_security_mimecast_cloud_gateway: typing.Callable[[], T_Result],
         email_security_mimecast_cloud_gateway_mock: typing.Callable[[], T_Result],
@@ -1006,6 +1012,8 @@ class ProviderConfigId(str, enum.Enum):
             return edr_sophos()
         if self is ProviderConfigId.EDR_TANIUM:
             return edr_tanium()
+        if self is ProviderConfigId.EDR_TRELLIX:
+            return edr_trellix()
         if self is ProviderConfigId.EMAIL_SECURITY_DEFENDER_FOR_OFFICE:
             return email_security_defender_for_office()
         if self is ProviderConfigId.EMAIL_SECURITY_MIMECAST_CLOUD_GATEWAY:
