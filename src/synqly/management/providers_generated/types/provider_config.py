@@ -1644,6 +1644,7 @@ class ProviderConfig_SinkAwsS3(UncheckedBaseModel):
     type: typing.Literal["sink_aws_s3"] = "sink_aws_s3"
     bucket: str
     credential: AwsProviderCredential
+    endpoint: typing.Optional[str] = None
     path: str
     region: AwsRegion
 

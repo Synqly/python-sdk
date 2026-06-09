@@ -11,6 +11,13 @@ class ScheduledOperationId(str, enum.Enum):
     ASSETS_QUERY_ALERTS = "assets_query_alerts"
     ASSETS_QUERY_UTILIZATION = "assets_query_utilization"
     ASSETS_QUERY_VULNERABILITIES = "assets_query_vulnerabilities"
+    CLOUDSECURITY_QUERY_CLOUD_RESOURCE_INVENTORY = (
+        "cloudsecurity_query_cloud_resource_inventory"
+    )
+    CLOUDSECURITY_QUERY_COMPLIANCE_FINDINGS = "cloudsecurity_query_compliance_findings"
+    CLOUDSECURITY_QUERY_EVENTS = "cloudsecurity_query_events"
+    CLOUDSECURITY_QUERY_IOMS = "cloudsecurity_query_ioms"
+    CLOUDSECURITY_QUERY_THREATS = "cloudsecurity_query_threats"
     EDR_QUERY_ALERTS = "edr_query_alerts"
     EDR_QUERY_APPLICATIONS = "edr_query_applications"
     EDR_QUERY_ENDPOINTS = "edr_query_endpoints"
@@ -27,10 +34,7 @@ class ScheduledOperationId(str, enum.Enum):
     VULNERABILITIES_QUERY_ASSETS = "vulnerabilities_query_assets"
     VULNERABILITIES_QUERY_FINDINGS = "vulnerabilities_query_findings"
     VULNERABILITIES_QUERY_SCANS = "vulnerabilities_query_scans"
-    APPSEC_QUERY_APPLICATIONS = "appsec_query_applications"
-    APPSEC_QUERY_APPLICATION_FINDINGS = "appsec_query_application_findings"
     APPSEC_QUERY_FINDINGS = "appsec_query_findings"
-    CLOUDSECURITY_QUERY_COMPLIANCE_FINDINGS = "cloudsecurity_query_compliance_findings"
     _UNKNOWN = "__SCHEDULEDOPERATIONID_UNKNOWN__"
     """
     This member is used for forward compatibility. If the value is not recognized by the enum, it will be stored here, and the raw value is accessible through `.value`.
@@ -48,6 +52,11 @@ class ScheduledOperationId(str, enum.Enum):
         assets_query_alerts: typing.Callable[[], T_Result],
         assets_query_utilization: typing.Callable[[], T_Result],
         assets_query_vulnerabilities: typing.Callable[[], T_Result],
+        cloudsecurity_query_cloud_resource_inventory: typing.Callable[[], T_Result],
+        cloudsecurity_query_compliance_findings: typing.Callable[[], T_Result],
+        cloudsecurity_query_events: typing.Callable[[], T_Result],
+        cloudsecurity_query_ioms: typing.Callable[[], T_Result],
+        cloudsecurity_query_threats: typing.Callable[[], T_Result],
         edr_query_alerts: typing.Callable[[], T_Result],
         edr_query_applications: typing.Callable[[], T_Result],
         edr_query_endpoints: typing.Callable[[], T_Result],
@@ -64,10 +73,7 @@ class ScheduledOperationId(str, enum.Enum):
         vulnerabilities_query_assets: typing.Callable[[], T_Result],
         vulnerabilities_query_findings: typing.Callable[[], T_Result],
         vulnerabilities_query_scans: typing.Callable[[], T_Result],
-        appsec_query_applications: typing.Callable[[], T_Result],
-        appsec_query_application_findings: typing.Callable[[], T_Result],
         appsec_query_findings: typing.Callable[[], T_Result],
-        cloudsecurity_query_compliance_findings: typing.Callable[[], T_Result],
         _unknown_member: typing.Callable[[str], T_Result],
     ) -> T_Result:
         if self is ScheduledOperationId.ASSETS_QUERY_DEVICES:
@@ -78,6 +84,16 @@ class ScheduledOperationId(str, enum.Enum):
             return assets_query_utilization()
         if self is ScheduledOperationId.ASSETS_QUERY_VULNERABILITIES:
             return assets_query_vulnerabilities()
+        if self is ScheduledOperationId.CLOUDSECURITY_QUERY_CLOUD_RESOURCE_INVENTORY:
+            return cloudsecurity_query_cloud_resource_inventory()
+        if self is ScheduledOperationId.CLOUDSECURITY_QUERY_COMPLIANCE_FINDINGS:
+            return cloudsecurity_query_compliance_findings()
+        if self is ScheduledOperationId.CLOUDSECURITY_QUERY_EVENTS:
+            return cloudsecurity_query_events()
+        if self is ScheduledOperationId.CLOUDSECURITY_QUERY_IOMS:
+            return cloudsecurity_query_ioms()
+        if self is ScheduledOperationId.CLOUDSECURITY_QUERY_THREATS:
+            return cloudsecurity_query_threats()
         if self is ScheduledOperationId.EDR_QUERY_ALERTS:
             return edr_query_alerts()
         if self is ScheduledOperationId.EDR_QUERY_APPLICATIONS:
@@ -110,12 +126,6 @@ class ScheduledOperationId(str, enum.Enum):
             return vulnerabilities_query_findings()
         if self is ScheduledOperationId.VULNERABILITIES_QUERY_SCANS:
             return vulnerabilities_query_scans()
-        if self is ScheduledOperationId.APPSEC_QUERY_APPLICATIONS:
-            return appsec_query_applications()
-        if self is ScheduledOperationId.APPSEC_QUERY_APPLICATION_FINDINGS:
-            return appsec_query_application_findings()
         if self is ScheduledOperationId.APPSEC_QUERY_FINDINGS:
             return appsec_query_findings()
-        if self is ScheduledOperationId.CLOUDSECURITY_QUERY_COMPLIANCE_FINDINGS:
-            return cloudsecurity_query_compliance_findings()
         return _unknown_member(self._value_)

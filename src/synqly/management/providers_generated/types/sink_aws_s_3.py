@@ -3,9 +3,9 @@
 from ...core.unchecked_base_model import UncheckedBaseModel
 import pydantic
 from .aws_provider_credential import AwsProviderCredential
+import typing
 from .aws_region import AwsRegion
 from ...core.pydantic_utilities import IS_PYDANTIC_V2
-import typing
 
 
 class SinkAwsS3(UncheckedBaseModel):
@@ -23,6 +23,14 @@ class SinkAwsS3(UncheckedBaseModel):
     credential: AwsProviderCredential = pydantic.Field()
     """
     AWS credentials with write access to the configured S3 bucket.
+    """
+
+    endpoint: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    Optional custom S3 endpoint URL. If not provided, the default AWS S3
+    endpoint will be used. This is useful for testing with Minio or
+    other S3-compatible services. Not supported in combination with
+    `aws_role` credentials.
     """
 
     path: str = pydantic.Field()
