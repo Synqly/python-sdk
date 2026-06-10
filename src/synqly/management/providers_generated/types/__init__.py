@@ -26,6 +26,11 @@ from .armis_credential import (
     ArmisCredential_Token,
     ArmisCredential_TokenId,
 )
+from .ashby_credential import (
+    AshbyCredential,
+    AshbyCredential_Token,
+    AshbyCredential_TokenId,
+)
 from .assets_armis_centrix import AssetsArmisCentrix
 from .assets_armis_centrix_mock import AssetsArmisCentrixMock
 from .assets_armis_dataset import AssetsArmisDataset
@@ -298,6 +303,7 @@ from .http_receiver_token_credential import (
     HttpReceiverTokenCredential_TokenId,
 )
 from .http_request_body_format import HttpRequestBodyFormat
+from .identity_ashby import IdentityAshby
 from .identity_aws_iam import IdentityAwsIam
 from .identity_entra_id import IdentityEntraId
 from .identity_entra_id_dataset import IdentityEntraIdDataset
@@ -481,6 +487,7 @@ from .provider_config import (
     ProviderConfig_EndpointmanagementIntune,
     ProviderConfig_EndpointmanagementIru,
     ProviderConfig_EndpointmanagementJamf,
+    ProviderConfig_IdentityAshby,
     ProviderConfig_IdentityAwsIam,
     ProviderConfig_IdentityEntraId,
     ProviderConfig_IdentityEntraIdMock,
@@ -829,6 +836,9 @@ __all__ = [
     "ArmisCredential_OAuthClientId",
     "ArmisCredential_Token",
     "ArmisCredential_TokenId",
+    "AshbyCredential",
+    "AshbyCredential_Token",
+    "AshbyCredential_TokenId",
     "AssetsArmisCentrix",
     "AssetsArmisCentrixMock",
     "AssetsArmisDataset",
@@ -1029,6 +1039,7 @@ __all__ = [
     "HttpReceiverTokenCredential_Token",
     "HttpReceiverTokenCredential_TokenId",
     "HttpRequestBodyFormat",
+    "IdentityAshby",
     "IdentityAwsIam",
     "IdentityEntraId",
     "IdentityEntraIdDataset",
@@ -1176,6 +1187,7 @@ __all__ = [
     "ProviderConfig_EndpointmanagementIntune",
     "ProviderConfig_EndpointmanagementIru",
     "ProviderConfig_EndpointmanagementJamf",
+    "ProviderConfig_IdentityAshby",
     "ProviderConfig_IdentityAwsIam",
     "ProviderConfig_IdentityEntraId",
     "ProviderConfig_IdentityEntraIdMock",

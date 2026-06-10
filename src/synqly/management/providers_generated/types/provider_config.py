@@ -80,6 +80,7 @@ from .email_security_mimecast_cloud_gateway_dataset import (
 from .automox_api_key_credential import AutomoxApiKeyCredential
 from .intune_credential import IntuneCredential
 from .jamf_credential import JamfCredential
+from .ashby_credential import AshbyCredential
 from .entra_id_credential import EntraIdCredential
 from .identity_entra_id_dataset import IdentityEntraIdDataset
 from .google_credential import GoogleCredential
@@ -1152,6 +1153,21 @@ class ProviderConfig_EndpointmanagementJamf(UncheckedBaseModel):
     type: typing.Literal["endpointmanagement_jamf"] = "endpointmanagement_jamf"
     credential: JamfCredential
     url: str
+
+    if IS_PYDANTIC_V2:
+        model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(
+            extra="allow"
+        )  # type: ignore # Pydantic v2
+    else:
+
+        class Config:
+            smart_union = True
+            extra = pydantic.Extra.allow
+
+
+class ProviderConfig_IdentityAshby(UncheckedBaseModel):
+    type: typing.Literal["identity_ashby"] = "identity_ashby"
+    credential: AshbyCredential
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(
@@ -2662,6 +2678,7 @@ ProviderConfig = typing_extensions.Annotated[
         ProviderConfig_EndpointmanagementIntune,
         ProviderConfig_EndpointmanagementIru,
         ProviderConfig_EndpointmanagementJamf,
+        ProviderConfig_IdentityAshby,
         ProviderConfig_IdentityAwsIam,
         ProviderConfig_IdentityEntraId,
         ProviderConfig_IdentityEntraIdMock,
