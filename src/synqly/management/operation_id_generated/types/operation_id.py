@@ -61,6 +61,9 @@ class OperationId(str, enum.Enum):
     ENDPOINTMANAGEMENT_QUERY_COMPLIANCE_FINDINGS = (
         "endpointmanagement_query_compliance_findings"
     )
+    ENDPOINTMANAGEMENT_QUERY_DEVICE_APPLICATIONS = (
+        "endpointmanagement_query_device_applications"
+    )
     ENDPOINTMANAGEMENT_QUERY_DEVICES = "endpointmanagement_query_devices"
     ENDPOINTMANAGEMENT_REMEDIATE_DEVICE = "endpointmanagement_remediate_device"
     IDENTITY_DISABLE_USER = "identity_disable_user"
@@ -194,6 +197,7 @@ class OperationId(str, enum.Enum):
         emailsecurity_query_threats: typing.Callable[[], T_Result],
         endpointmanagement_get_device: typing.Callable[[], T_Result],
         endpointmanagement_query_compliance_findings: typing.Callable[[], T_Result],
+        endpointmanagement_query_device_applications: typing.Callable[[], T_Result],
         endpointmanagement_query_devices: typing.Callable[[], T_Result],
         endpointmanagement_remediate_device: typing.Callable[[], T_Result],
         identity_disable_user: typing.Callable[[], T_Result],
@@ -364,6 +368,8 @@ class OperationId(str, enum.Enum):
             return endpointmanagement_get_device()
         if self is OperationId.ENDPOINTMANAGEMENT_QUERY_COMPLIANCE_FINDINGS:
             return endpointmanagement_query_compliance_findings()
+        if self is OperationId.ENDPOINTMANAGEMENT_QUERY_DEVICE_APPLICATIONS:
+            return endpointmanagement_query_device_applications()
         if self is OperationId.ENDPOINTMANAGEMENT_QUERY_DEVICES:
             return endpointmanagement_query_devices()
         if self is OperationId.ENDPOINTMANAGEMENT_REMEDIATE_DEVICE:

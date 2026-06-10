@@ -3,6 +3,7 @@
 from .compliance_finding import ComplianceFinding
 from .endpoint_management_device import EndpointManagementDevice
 from .get_endpoint_management_device_response import GetEndpointManagementDeviceResponse
+from .query_device_applications_response import QueryDeviceApplicationsResponse
 from .query_device_compliance_response import QueryDeviceComplianceResponse
 from .query_endpoint_management_devices_response import (
     QueryEndpointManagementDevicesResponse,
@@ -14,6 +15,7 @@ __all__ = [
     "ComplianceFinding",
     "EndpointManagementDevice",
     "GetEndpointManagementDeviceResponse",
+    "QueryDeviceApplicationsResponse",
     "QueryDeviceComplianceResponse",
     "QueryEndpointManagementDevicesResponse",
     "RemediateDeviceResponse",
