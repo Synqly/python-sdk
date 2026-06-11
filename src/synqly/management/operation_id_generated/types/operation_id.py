@@ -13,9 +13,11 @@ class OperationId(str, enum.Enum):
     APPSEC_QUERY_FINDINGS = "appsec_query_findings"
     ASSETS_CREATE_ASSET = "assets_create_asset"
     ASSETS_CREATE_DEVICES = "assets_create_devices"
+    ASSETS_CREATE_SOFTWARE = "assets_create_software"
     ASSETS_GET_LABELS = "assets_get_labels"
     ASSETS_QUERY_ALERTS = "assets_query_alerts"
     ASSETS_QUERY_DEVICES = "assets_query_devices"
+    ASSETS_QUERY_SOFTWARE = "assets_query_software"
     ASSETS_QUERY_UTILIZATION = "assets_query_utilization"
     ASSETS_QUERY_VULNERABILITIES = "assets_query_vulnerabilities"
     ASSETS_UPDATE_DEVICE_PROPERTIES = "assets_update_device_properties"
@@ -153,9 +155,11 @@ class OperationId(str, enum.Enum):
         appsec_query_findings: typing.Callable[[], T_Result],
         assets_create_asset: typing.Callable[[], T_Result],
         assets_create_devices: typing.Callable[[], T_Result],
+        assets_create_software: typing.Callable[[], T_Result],
         assets_get_labels: typing.Callable[[], T_Result],
         assets_query_alerts: typing.Callable[[], T_Result],
         assets_query_devices: typing.Callable[[], T_Result],
+        assets_query_software: typing.Callable[[], T_Result],
         assets_query_utilization: typing.Callable[[], T_Result],
         assets_query_vulnerabilities: typing.Callable[[], T_Result],
         assets_update_device_properties: typing.Callable[[], T_Result],
@@ -280,12 +284,16 @@ class OperationId(str, enum.Enum):
             return assets_create_asset()
         if self is OperationId.ASSETS_CREATE_DEVICES:
             return assets_create_devices()
+        if self is OperationId.ASSETS_CREATE_SOFTWARE:
+            return assets_create_software()
         if self is OperationId.ASSETS_GET_LABELS:
             return assets_get_labels()
         if self is OperationId.ASSETS_QUERY_ALERTS:
             return assets_query_alerts()
         if self is OperationId.ASSETS_QUERY_DEVICES:
             return assets_query_devices()
+        if self is OperationId.ASSETS_QUERY_SOFTWARE:
+            return assets_query_software()
         if self is OperationId.ASSETS_QUERY_UTILIZATION:
             return assets_query_utilization()
         if self is OperationId.ASSETS_QUERY_VULNERABILITIES:

@@ -4,18 +4,26 @@ from .create_device_request import CreateDeviceRequest
 from .create_device_response import CreateDeviceResponse
 from .create_devices_request import CreateDevicesRequest
 from .create_devices_response import CreateDevicesResponse
+from .create_software_inventory_request import CreateSoftwareInventoryRequest
+from .create_software_inventory_response import CreateSoftwareInventoryResponse
 from .device import Device
 from .get_labels_response import GetLabelsResponse
 from .label import Label
 from .query_devices_response import QueryDevicesResponse
+from .query_software_inventory_response import QuerySoftwareInventoryResponse
+from .software_inventory import SoftwareInventory
 
 __all__ = [
     "CreateDeviceRequest",
     "CreateDeviceResponse",
     "CreateDevicesRequest",
     "CreateDevicesResponse",
+    "CreateSoftwareInventoryRequest",
+    "CreateSoftwareInventoryResponse",
     "Device",
     "GetLabelsResponse",
     "Label",
     "QueryDevicesResponse",
+    "QuerySoftwareInventoryResponse",
+    "SoftwareInventory",
 ]

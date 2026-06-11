@@ -7,6 +7,7 @@ from . import (
     detectionfinding,
     emailactivity,
     noteactivity,
+    softwareinventoryinfo,
     vulnerabilityfinding,
 )
 
@@ -17,5 +18,6 @@ __all__ = [
     "detectionfinding",
     "emailactivity",
     "noteactivity",
+    "softwareinventoryinfo",
     "vulnerabilityfinding",
 ]

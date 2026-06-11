@@ -25,6 +25,9 @@ from .types.device import Device
 from .types.create_device_response import CreateDeviceResponse
 from .types.create_devices_response import CreateDevicesResponse
 from .types.get_labels_response import GetLabelsResponse
+from .types.query_software_inventory_response import QuerySoftwareInventoryResponse
+from .types.software_inventory import SoftwareInventory
+from .types.create_software_inventory_response import CreateSoftwareInventoryResponse
 from ..core.client_wrapper import AsyncClientWrapper
 
 # this is used as the default value for optional parameters
@@ -1251,6 +1254,901 @@ class AssetsClient:
                 )
             if _response.status_code == 400:
                 raise BadRequestError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            _response_json = _response.json()
+        except JSONDecodeError:
+            raise ApiError(status_code=_response.status_code, body=_response.text)
+        raise ApiError(status_code=_response.status_code, body=_response_json)
+
+    def query_software(
+        self,
+        *,
+        meta: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
+        limit: typing.Optional[int] = None,
+        cursor: typing.Optional[str] = None,
+        filter: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
+        order: typing.Optional[str] = None,
+        include_raw_data: typing.Optional[bool] = None,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> QuerySoftwareInventoryResponse:
+        """
+        Query software inventory records from an asset management system
+
+        Parameters
+        ----------
+        meta : typing.Optional[typing.Union[str, typing.Sequence[str]]]
+            Add metadata to the response by invoking meta functions. Documentation for meta functions is available at https://docs.synqly.com/api-reference/meta-functions. Not all meta function are available at every endpoint.
+
+        limit : typing.Optional[int]
+            Number of software inventory records to return. Defaults to 50.
+
+        cursor : typing.Optional[str]
+            Start search from cursor position.
+
+        filter : typing.Optional[typing.Union[str, typing.Sequence[str]]]
+            Filter results by this query. For more information on filtering, refer to the Assets Filtering Guide. Defaults to no filter. If used more than once, the queries are ANDed together.
+
+        order : typing.Optional[str]
+            Select a field to order the results by. Defaults to `package.name`. To control the direction of the sorting, append
+            `[asc]` or `[desc]` to the field name. For example, `package.name[asc]` will sort the results by package name in ascending order.
+            The ordering defaults to `asc` if not specified.
+
+        include_raw_data : typing.Optional[bool]
+            Include the raw data from the provider in the response. Defaults to `false`.
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        QuerySoftwareInventoryResponse
+
+        Examples
+        --------
+        from synqly import SynqlyEngine
+
+        client = SynqlyEngine(
+            token="YOUR_TOKEN",
+        )
+        client.assets.query_software(
+            meta="string",
+            limit=1,
+            cursor="string",
+            filter="string",
+            order="string",
+            include_raw_data=True,
+        )
+        """
+        _response = self._client_wrapper.httpx_client.request(
+            "v1/assets/software",
+            method="GET",
+            params={
+                "meta": meta,
+                "limit": limit,
+                "cursor": cursor,
+                "filter": filter,
+                "order": order,
+                "include_raw_data": include_raw_data,
+            },
+            request_options=request_options,
+        )
+        try:
+            if 200 <= _response.status_code < 300:
+                return typing.cast(
+                    QuerySoftwareInventoryResponse,
+                    construct_type(
+                        type_=QuerySoftwareInventoryResponse,  # type: ignore
+                        object_=_response.json(),
+                    ),
+                )
+            if _response.status_code == 400:
+                raise BadRequestError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 401:
+                raise UnauthorizedError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 403:
+                raise ForbiddenError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 404:
+                raise NotFoundError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 405:
+                raise MethodNotAllowedError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 409:
+                raise ConflictError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 415:
+                raise UnsupportedMediaTypeError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 429:
+                raise TooManyRequestsError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 500:
+                raise InternalServerError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 501:
+                raise NotImplementedError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 502:
+                raise BadGatewayError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 503:
+                raise ServiceUnavailableError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 504:
+                raise GatewayTimeoutError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            _response_json = _response.json()
+        except JSONDecodeError:
+            raise ApiError(status_code=_response.status_code, body=_response.text)
+        raise ApiError(status_code=_response.status_code, body=_response_json)
+
+    def create_software(
+        self,
+        *,
+        software_inventory: SoftwareInventory,
+        source_name: typing.Optional[str] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> CreateSoftwareInventoryResponse:
+        """
+        Creates a software inventory record in the token-linked Integration.
+
+        Parameters
+        ----------
+        software_inventory : SoftwareInventory
+
+        source_name : typing.Optional[str]
+            Optional connector hint (for example ServiceNow discovery_source with Identify & Reconcile).
+            Omit or leave empty when the integration does not use it; some integrations require it.
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        CreateSoftwareInventoryResponse
+
+        Examples
+        --------
+        import datetime
+
+        from synqly import SynqlyEngine
+        from synqly.ocsf.v_1_8_0.softwareinventoryinfo.classes import SoftwareInfo
+        from synqly.ocsf.v_1_8_0.softwareinventoryinfo.objects import (
+            Actor,
+            Agent,
+            Attack,
+            Authorization,
+            Device,
+            DeviceHwInfo,
+            Display,
+            Enrichment,
+            Extension,
+            Feature,
+            Fingerprint,
+            FirewallRule,
+            Group,
+            Idp,
+            Image,
+            KeyboardInfo,
+            KeyValueObject,
+            Location,
+            Logger,
+            Malware,
+            MalwareScanInfo,
+            Metadata,
+            NetworkInterface,
+            Observable,
+            Organization,
+            Os,
+            Package,
+            Policy,
+            Process,
+            Product,
+            Reporter,
+            Sbom,
+            Session,
+            SoftwareComponent,
+            Timespan,
+            TransformationInfo,
+            User,
+        )
+
+        client = SynqlyEngine(
+            token="YOUR_TOKEN",
+        )
+        client.assets.create_software(
+            software_inventory=SoftwareInfo(
+                action="string",
+                action_id=1,
+                activity_id=1,
+                activity_name="string",
+                actor=Actor(
+                    app_name="string",
+                    app_uid="string",
+                    authorizations=[],
+                    idp=Idp(),
+                    invoked_by="string",
+                    process=Process(),
+                    session=Session(),
+                    user=User(),
+                ),
+                attacks=[Attack()],
+                authorizations=[Authorization()],
+                category_name="string",
+                category_uid=1,
+                class_uid=1,
+                confidence="string",
+                confidence_id=1,
+                confidence_score=1,
+                count=1,
+                device=Device(
+                    agent_list=[Agent()],
+                    autoscale_uid="string",
+                    boot_time=1,
+                    boot_time_dt=datetime.datetime.fromisoformat(
+                        "2024-01-15 09:30:00+00:00",
+                    ),
+                    boot_uid="string",
+                    created_time=1,
+                    created_time_dt=datetime.datetime.fromisoformat(
+                        "2024-01-15 09:30:00+00:00",
+                    ),
+                    desc="string",
+                    domain="string",
+                    eid="string",
+                    first_seen_time=1,
+                    first_seen_time_dt=datetime.datetime.fromisoformat(
+                        "2024-01-15 09:30:00+00:00",
+                    ),
+                    groups=[Group()],
+                    hostname="string",
+                    hw_info=DeviceHwInfo(
+                        bios_date="string",
+                        bios_manufacturer="string",
+                        bios_ver="string",
+                        chassis="string",
+                        cpu_architecture="string",
+                        cpu_architecture_id=1,
+                        cpu_bits=1,
+                        cpu_cores=1,
+                        cpu_count=1,
+                        cpu_speed=1,
+                        cpu_type="string",
+                        desktop_display=Display(),
+                        gpu_count=1,
+                        gpu_info_list=[],
+                        keyboard_info=KeyboardInfo(),
+                        ram_size=1,
+                        serial_number="string",
+                        uuid_="string",
+                        vendor_name="string",
+                    ),
+                    hypervisor="string",
+                    iccid="string",
+                    image=Image(
+                        labels=[],
+                        name="string",
+                        path="string",
+                        tag="string",
+                        tags=[],
+                        uid="string",
+                    ),
+                    imei="string",
+                    imei_list=["string"],
+                    instance_uid="string",
+                    interface_name="string",
+                    interface_uid="string",
+                    ip="string",
+                    is_backed_up=True,
+                    is_compliant=True,
+                    is_managed=True,
+                    is_mobile_account_active=True,
+                    is_personal=True,
+                    is_shared=True,
+                    is_supervised=True,
+                    is_trusted=True,
+                    last_seen_time=1,
+                    last_seen_time_dt=datetime.datetime.fromisoformat(
+                        "2024-01-15 09:30:00+00:00",
+                    ),
+                    location=Location(
+                        aerial_height="string",
+                        city="string",
+                        continent="string",
+                        coordinates=[],
+                        country="string",
+                        desc="string",
+                        geodetic_altitude="string",
+                        geodetic_vertical_accuracy="string",
+                        geohash="string",
+                        horizontal_accuracy="string",
+                        is_on_premises=True,
+                        isp="string",
+                        lat=1.1,
+                        long_=1.1,
+                        postal_code="string",
+                        pressure_altitude="string",
+                        provider="string",
+                        region="string",
+                    ),
+                    mac="string",
+                    mac_vendor="string",
+                    meid="string",
+                    model="string",
+                    modified_time=1,
+                    modified_time_dt=datetime.datetime.fromisoformat(
+                        "2024-01-15 09:30:00+00:00",
+                    ),
+                    name="string",
+                    network_interfaces=[NetworkInterface()],
+                    org=Organization(
+                        name="string",
+                        ou_name="string",
+                        ou_uid="string",
+                        uid="string",
+                    ),
+                    os=Os(
+                        build="string",
+                        country="string",
+                        cpe_name="string",
+                        cpu_bits=1,
+                        edition="string",
+                        kernel_release="string",
+                        lang="string",
+                        name="string",
+                        sp_name="string",
+                        sp_ver=1,
+                        type="string",
+                        type_id=1,
+                        version="string",
+                    ),
+                    os_machine_uuid="string",
+                    owner=User(),
+                    pool=Group(),
+                    region="string",
+                    risk_level="string",
+                    risk_level_id=1,
+                    risk_score=1,
+                    subnet="string",
+                    subnet_uid="string",
+                    type="string",
+                    type_id=1,
+                    udid="string",
+                    uid="string",
+                    uid_alt="string",
+                    vendor_name="string",
+                    vlan_uid="string",
+                    vpc_uid="string",
+                    zone="string",
+                ),
+                disposition="string",
+                disposition_id=1,
+                duration=1,
+                end_time=1,
+                end_time_dt=datetime.datetime.fromisoformat(
+                    "2024-01-15 09:30:00+00:00",
+                ),
+                enrichments=[
+                    Enrichment(
+                        data={"key": "value"},
+                        name="string",
+                        value="string",
+                    )
+                ],
+                firewall_rule=FirewallRule(
+                    category="string",
+                    condition="string",
+                    desc="string",
+                    duration=1,
+                    match_details=[],
+                    match_location="string",
+                    name="string",
+                    rate_limit=1,
+                    sensitivity="string",
+                    type="string",
+                    uid="string",
+                    version="string",
+                ),
+                is_alert=True,
+                malware=[
+                    Malware(
+                        classification_ids=[],
+                    )
+                ],
+                malware_scan_info=MalwareScanInfo(
+                    end_time=1,
+                    end_time_dt=datetime.datetime.fromisoformat(
+                        "2024-01-15 09:30:00+00:00",
+                    ),
+                    name="string",
+                    num_files=1,
+                    num_infected=1,
+                    num_volumes=1,
+                    size=1,
+                    start_time=1,
+                    start_time_dt=datetime.datetime.fromisoformat(
+                        "2024-01-15 09:30:00+00:00",
+                    ),
+                    type="string",
+                    type_id=1,
+                    uid="string",
+                    unique_malware_count=1,
+                ),
+                message="string",
+                metadata=Metadata(
+                    correlation_uid="string",
+                    debug=["string"],
+                    event_code="string",
+                    extension=Extension(
+                        name="string",
+                        uid="string",
+                        version="string",
+                    ),
+                    extensions=[
+                        Extension(
+                            name="string",
+                            uid="string",
+                            version="string",
+                        )
+                    ],
+                    is_truncated=True,
+                    labels=["string"],
+                    log_format="string",
+                    log_level="string",
+                    log_name="string",
+                    log_provider="string",
+                    log_source="string",
+                    log_version="string",
+                    logged_time=1,
+                    logged_time_dt=datetime.datetime.fromisoformat(
+                        "2024-01-15 09:30:00+00:00",
+                    ),
+                    loggers=[Logger()],
+                    modified_time=1,
+                    modified_time_dt=datetime.datetime.fromisoformat(
+                        "2024-01-15 09:30:00+00:00",
+                    ),
+                    original_event_uid="string",
+                    original_time="string",
+                    processed_time=1,
+                    processed_time_dt=datetime.datetime.fromisoformat(
+                        "2024-01-15 09:30:00+00:00",
+                    ),
+                    product=Product(
+                        cpe_name="string",
+                        feature=Feature(
+                            name="string",
+                            uid="string",
+                            version="string",
+                        ),
+                        lang="string",
+                        name="string",
+                        path="string",
+                        uid="string",
+                        url_string="string",
+                        vendor_name="string",
+                        version="string",
+                    ),
+                    profiles=["string"],
+                    reporter=Reporter(
+                        hostname="string",
+                        ip="string",
+                        name="string",
+                        org=Organization(
+                            name="string",
+                            ou_name="string",
+                            ou_uid="string",
+                            uid="string",
+                        ),
+                        uid="string",
+                    ),
+                    sequence=1,
+                    source="string",
+                    tags=[
+                        KeyValueObject(
+                            name="string",
+                        )
+                    ],
+                    tenant_uid="string",
+                    total_queued_duration=Timespan(
+                        duration=1,
+                        duration_days=1,
+                        duration_hours=1,
+                        duration_mins=1,
+                        duration_months=1,
+                        duration_secs=1,
+                        duration_weeks=1,
+                        duration_years=1,
+                        end_time=1,
+                        end_time_dt=datetime.datetime.fromisoformat(
+                            "2024-01-15 09:30:00+00:00",
+                        ),
+                        start_time=1,
+                        start_time_dt=datetime.datetime.fromisoformat(
+                            "2024-01-15 09:30:00+00:00",
+                        ),
+                        type="string",
+                        type_id=1,
+                    ),
+                    transformation_info_list=[TransformationInfo()],
+                    transmit_time=1,
+                    transmit_time_dt=datetime.datetime.fromisoformat(
+                        "2024-01-15 09:30:00+00:00",
+                    ),
+                    type="string",
+                    uid="string",
+                    untruncated_size=1,
+                    version="string",
+                ),
+                observables=[
+                    Observable(
+                        type_id=1,
+                    )
+                ],
+                package=Package(
+                    architecture="string",
+                    cpe_name="string",
+                    epoch=1,
+                    hash=Fingerprint(
+                        algorithm_id=1,
+                        value="string",
+                    ),
+                    license="string",
+                    license_url="string",
+                    name="string",
+                    package_manager="string",
+                    package_manager_url="string",
+                    purl="string",
+                    release="string",
+                    src_url="string",
+                    type="string",
+                    type_id=1,
+                    uid="string",
+                    vendor_name="string",
+                    version="string",
+                ),
+                policy=Policy(
+                    data={"key": "value"},
+                    desc="string",
+                    group=Group(),
+                    is_applied=True,
+                    name="string",
+                    type="string",
+                    uid="string",
+                    version="string",
+                ),
+                product=Product(
+                    cpe_name="string",
+                    feature=Feature(
+                        name="string",
+                        uid="string",
+                        version="string",
+                    ),
+                    lang="string",
+                    name="string",
+                    path="string",
+                    uid="string",
+                    url_string="string",
+                    vendor_name="string",
+                    version="string",
+                ),
+                raw_data="string",
+                raw_data_hash=Fingerprint(
+                    algorithm_id=1,
+                    value="string",
+                ),
+                raw_data_size=1,
+                risk_details="string",
+                risk_level="string",
+                risk_level_id=1,
+                risk_score=1,
+                sbom=Sbom(
+                    created_time=1,
+                    created_time_dt=datetime.datetime.fromisoformat(
+                        "2024-01-15 09:30:00+00:00",
+                    ),
+                    package=Package(
+                        architecture="string",
+                        cpe_name="string",
+                        epoch=1,
+                        hash=Fingerprint(
+                            algorithm_id=1,
+                            value="string",
+                        ),
+                        license="string",
+                        license_url="string",
+                        name="string",
+                        package_manager="string",
+                        package_manager_url="string",
+                        purl="string",
+                        release="string",
+                        src_url="string",
+                        type="string",
+                        type_id=1,
+                        uid="string",
+                        vendor_name="string",
+                        version="string",
+                    ),
+                    product=Product(
+                        cpe_name="string",
+                        feature=Feature(
+                            name="string",
+                            uid="string",
+                            version="string",
+                        ),
+                        lang="string",
+                        name="string",
+                        path="string",
+                        uid="string",
+                        url_string="string",
+                        vendor_name="string",
+                        version="string",
+                    ),
+                    software_components=[
+                        SoftwareComponent(
+                            name="string",
+                            version="string",
+                        )
+                    ],
+                    type="string",
+                    type_id=1,
+                    uid="string",
+                    version="string",
+                ),
+                severity="string",
+                severity_id=1,
+                start_time=1,
+                start_time_dt=datetime.datetime.fromisoformat(
+                    "2024-01-15 09:30:00+00:00",
+                ),
+                status="string",
+                status_code="string",
+                status_detail="string",
+                status_id=1,
+                time=1,
+                time_dt=datetime.datetime.fromisoformat(
+                    "2024-01-15 09:30:00+00:00",
+                ),
+                timezone_offset=1,
+                type_name="string",
+                type_uid=1,
+                unmapped={"string": {"key": "value"}},
+            ),
+            source_name="string",
+        )
+        """
+        _response = self._client_wrapper.httpx_client.request(
+            "v1/assets/software",
+            method="POST",
+            json={
+                "software_inventory": software_inventory,
+                "source_name": source_name,
+            },
+            request_options=request_options,
+            omit=OMIT,
+        )
+        try:
+            if 200 <= _response.status_code < 300:
+                return typing.cast(
+                    CreateSoftwareInventoryResponse,
+                    construct_type(
+                        type_=CreateSoftwareInventoryResponse,  # type: ignore
+                        object_=_response.json(),
+                    ),
+                )
+            if _response.status_code == 400:
+                raise BadRequestError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 401:
+                raise UnauthorizedError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 403:
+                raise ForbiddenError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 405:
+                raise MethodNotAllowedError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 409:
+                raise ConflictError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 415:
+                raise UnsupportedMediaTypeError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 429:
+                raise TooManyRequestsError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 500:
+                raise InternalServerError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 501:
+                raise NotImplementedError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 502:
+                raise BadGatewayError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 503:
+                raise ServiceUnavailableError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 504:
+                raise GatewayTimeoutError(
                     typing.cast(
                         Problem,
                         construct_type(
@@ -2515,6 +3413,916 @@ class AsyncAssetsClient:
                 )
             if _response.status_code == 400:
                 raise BadRequestError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            _response_json = _response.json()
+        except JSONDecodeError:
+            raise ApiError(status_code=_response.status_code, body=_response.text)
+        raise ApiError(status_code=_response.status_code, body=_response_json)
+
+    async def query_software(
+        self,
+        *,
+        meta: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
+        limit: typing.Optional[int] = None,
+        cursor: typing.Optional[str] = None,
+        filter: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
+        order: typing.Optional[str] = None,
+        include_raw_data: typing.Optional[bool] = None,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> QuerySoftwareInventoryResponse:
+        """
+        Query software inventory records from an asset management system
+
+        Parameters
+        ----------
+        meta : typing.Optional[typing.Union[str, typing.Sequence[str]]]
+            Add metadata to the response by invoking meta functions. Documentation for meta functions is available at https://docs.synqly.com/api-reference/meta-functions. Not all meta function are available at every endpoint.
+
+        limit : typing.Optional[int]
+            Number of software inventory records to return. Defaults to 50.
+
+        cursor : typing.Optional[str]
+            Start search from cursor position.
+
+        filter : typing.Optional[typing.Union[str, typing.Sequence[str]]]
+            Filter results by this query. For more information on filtering, refer to the Assets Filtering Guide. Defaults to no filter. If used more than once, the queries are ANDed together.
+
+        order : typing.Optional[str]
+            Select a field to order the results by. Defaults to `package.name`. To control the direction of the sorting, append
+            `[asc]` or `[desc]` to the field name. For example, `package.name[asc]` will sort the results by package name in ascending order.
+            The ordering defaults to `asc` if not specified.
+
+        include_raw_data : typing.Optional[bool]
+            Include the raw data from the provider in the response. Defaults to `false`.
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        QuerySoftwareInventoryResponse
+
+        Examples
+        --------
+        import asyncio
+
+        from synqly import AsyncSynqlyEngine
+
+        client = AsyncSynqlyEngine(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.assets.query_software(
+                meta="string",
+                limit=1,
+                cursor="string",
+                filter="string",
+                order="string",
+                include_raw_data=True,
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._client_wrapper.httpx_client.request(
+            "v1/assets/software",
+            method="GET",
+            params={
+                "meta": meta,
+                "limit": limit,
+                "cursor": cursor,
+                "filter": filter,
+                "order": order,
+                "include_raw_data": include_raw_data,
+            },
+            request_options=request_options,
+        )
+        try:
+            if 200 <= _response.status_code < 300:
+                return typing.cast(
+                    QuerySoftwareInventoryResponse,
+                    construct_type(
+                        type_=QuerySoftwareInventoryResponse,  # type: ignore
+                        object_=_response.json(),
+                    ),
+                )
+            if _response.status_code == 400:
+                raise BadRequestError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 401:
+                raise UnauthorizedError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 403:
+                raise ForbiddenError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 404:
+                raise NotFoundError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 405:
+                raise MethodNotAllowedError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 409:
+                raise ConflictError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 415:
+                raise UnsupportedMediaTypeError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 429:
+                raise TooManyRequestsError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 500:
+                raise InternalServerError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 501:
+                raise NotImplementedError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 502:
+                raise BadGatewayError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 503:
+                raise ServiceUnavailableError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 504:
+                raise GatewayTimeoutError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            _response_json = _response.json()
+        except JSONDecodeError:
+            raise ApiError(status_code=_response.status_code, body=_response.text)
+        raise ApiError(status_code=_response.status_code, body=_response_json)
+
+    async def create_software(
+        self,
+        *,
+        software_inventory: SoftwareInventory,
+        source_name: typing.Optional[str] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> CreateSoftwareInventoryResponse:
+        """
+        Creates a software inventory record in the token-linked Integration.
+
+        Parameters
+        ----------
+        software_inventory : SoftwareInventory
+
+        source_name : typing.Optional[str]
+            Optional connector hint (for example ServiceNow discovery_source with Identify & Reconcile).
+            Omit or leave empty when the integration does not use it; some integrations require it.
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        CreateSoftwareInventoryResponse
+
+        Examples
+        --------
+        import asyncio
+        import datetime
+
+        from synqly import AsyncSynqlyEngine
+        from synqly.ocsf.v_1_8_0.softwareinventoryinfo.classes import SoftwareInfo
+        from synqly.ocsf.v_1_8_0.softwareinventoryinfo.objects import (
+            Actor,
+            Agent,
+            Attack,
+            Authorization,
+            Device,
+            DeviceHwInfo,
+            Display,
+            Enrichment,
+            Extension,
+            Feature,
+            Fingerprint,
+            FirewallRule,
+            Group,
+            Idp,
+            Image,
+            KeyboardInfo,
+            KeyValueObject,
+            Location,
+            Logger,
+            Malware,
+            MalwareScanInfo,
+            Metadata,
+            NetworkInterface,
+            Observable,
+            Organization,
+            Os,
+            Package,
+            Policy,
+            Process,
+            Product,
+            Reporter,
+            Sbom,
+            Session,
+            SoftwareComponent,
+            Timespan,
+            TransformationInfo,
+            User,
+        )
+
+        client = AsyncSynqlyEngine(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.assets.create_software(
+                software_inventory=SoftwareInfo(
+                    action="string",
+                    action_id=1,
+                    activity_id=1,
+                    activity_name="string",
+                    actor=Actor(
+                        app_name="string",
+                        app_uid="string",
+                        authorizations=[],
+                        idp=Idp(),
+                        invoked_by="string",
+                        process=Process(),
+                        session=Session(),
+                        user=User(),
+                    ),
+                    attacks=[Attack()],
+                    authorizations=[Authorization()],
+                    category_name="string",
+                    category_uid=1,
+                    class_uid=1,
+                    confidence="string",
+                    confidence_id=1,
+                    confidence_score=1,
+                    count=1,
+                    device=Device(
+                        agent_list=[Agent()],
+                        autoscale_uid="string",
+                        boot_time=1,
+                        boot_time_dt=datetime.datetime.fromisoformat(
+                            "2024-01-15 09:30:00+00:00",
+                        ),
+                        boot_uid="string",
+                        created_time=1,
+                        created_time_dt=datetime.datetime.fromisoformat(
+                            "2024-01-15 09:30:00+00:00",
+                        ),
+                        desc="string",
+                        domain="string",
+                        eid="string",
+                        first_seen_time=1,
+                        first_seen_time_dt=datetime.datetime.fromisoformat(
+                            "2024-01-15 09:30:00+00:00",
+                        ),
+                        groups=[Group()],
+                        hostname="string",
+                        hw_info=DeviceHwInfo(
+                            bios_date="string",
+                            bios_manufacturer="string",
+                            bios_ver="string",
+                            chassis="string",
+                            cpu_architecture="string",
+                            cpu_architecture_id=1,
+                            cpu_bits=1,
+                            cpu_cores=1,
+                            cpu_count=1,
+                            cpu_speed=1,
+                            cpu_type="string",
+                            desktop_display=Display(),
+                            gpu_count=1,
+                            gpu_info_list=[],
+                            keyboard_info=KeyboardInfo(),
+                            ram_size=1,
+                            serial_number="string",
+                            uuid_="string",
+                            vendor_name="string",
+                        ),
+                        hypervisor="string",
+                        iccid="string",
+                        image=Image(
+                            labels=[],
+                            name="string",
+                            path="string",
+                            tag="string",
+                            tags=[],
+                            uid="string",
+                        ),
+                        imei="string",
+                        imei_list=["string"],
+                        instance_uid="string",
+                        interface_name="string",
+                        interface_uid="string",
+                        ip="string",
+                        is_backed_up=True,
+                        is_compliant=True,
+                        is_managed=True,
+                        is_mobile_account_active=True,
+                        is_personal=True,
+                        is_shared=True,
+                        is_supervised=True,
+                        is_trusted=True,
+                        last_seen_time=1,
+                        last_seen_time_dt=datetime.datetime.fromisoformat(
+                            "2024-01-15 09:30:00+00:00",
+                        ),
+                        location=Location(
+                            aerial_height="string",
+                            city="string",
+                            continent="string",
+                            coordinates=[],
+                            country="string",
+                            desc="string",
+                            geodetic_altitude="string",
+                            geodetic_vertical_accuracy="string",
+                            geohash="string",
+                            horizontal_accuracy="string",
+                            is_on_premises=True,
+                            isp="string",
+                            lat=1.1,
+                            long_=1.1,
+                            postal_code="string",
+                            pressure_altitude="string",
+                            provider="string",
+                            region="string",
+                        ),
+                        mac="string",
+                        mac_vendor="string",
+                        meid="string",
+                        model="string",
+                        modified_time=1,
+                        modified_time_dt=datetime.datetime.fromisoformat(
+                            "2024-01-15 09:30:00+00:00",
+                        ),
+                        name="string",
+                        network_interfaces=[NetworkInterface()],
+                        org=Organization(
+                            name="string",
+                            ou_name="string",
+                            ou_uid="string",
+                            uid="string",
+                        ),
+                        os=Os(
+                            build="string",
+                            country="string",
+                            cpe_name="string",
+                            cpu_bits=1,
+                            edition="string",
+                            kernel_release="string",
+                            lang="string",
+                            name="string",
+                            sp_name="string",
+                            sp_ver=1,
+                            type="string",
+                            type_id=1,
+                            version="string",
+                        ),
+                        os_machine_uuid="string",
+                        owner=User(),
+                        pool=Group(),
+                        region="string",
+                        risk_level="string",
+                        risk_level_id=1,
+                        risk_score=1,
+                        subnet="string",
+                        subnet_uid="string",
+                        type="string",
+                        type_id=1,
+                        udid="string",
+                        uid="string",
+                        uid_alt="string",
+                        vendor_name="string",
+                        vlan_uid="string",
+                        vpc_uid="string",
+                        zone="string",
+                    ),
+                    disposition="string",
+                    disposition_id=1,
+                    duration=1,
+                    end_time=1,
+                    end_time_dt=datetime.datetime.fromisoformat(
+                        "2024-01-15 09:30:00+00:00",
+                    ),
+                    enrichments=[
+                        Enrichment(
+                            data={"key": "value"},
+                            name="string",
+                            value="string",
+                        )
+                    ],
+                    firewall_rule=FirewallRule(
+                        category="string",
+                        condition="string",
+                        desc="string",
+                        duration=1,
+                        match_details=[],
+                        match_location="string",
+                        name="string",
+                        rate_limit=1,
+                        sensitivity="string",
+                        type="string",
+                        uid="string",
+                        version="string",
+                    ),
+                    is_alert=True,
+                    malware=[
+                        Malware(
+                            classification_ids=[],
+                        )
+                    ],
+                    malware_scan_info=MalwareScanInfo(
+                        end_time=1,
+                        end_time_dt=datetime.datetime.fromisoformat(
+                            "2024-01-15 09:30:00+00:00",
+                        ),
+                        name="string",
+                        num_files=1,
+                        num_infected=1,
+                        num_volumes=1,
+                        size=1,
+                        start_time=1,
+                        start_time_dt=datetime.datetime.fromisoformat(
+                            "2024-01-15 09:30:00+00:00",
+                        ),
+                        type="string",
+                        type_id=1,
+                        uid="string",
+                        unique_malware_count=1,
+                    ),
+                    message="string",
+                    metadata=Metadata(
+                        correlation_uid="string",
+                        debug=["string"],
+                        event_code="string",
+                        extension=Extension(
+                            name="string",
+                            uid="string",
+                            version="string",
+                        ),
+                        extensions=[
+                            Extension(
+                                name="string",
+                                uid="string",
+                                version="string",
+                            )
+                        ],
+                        is_truncated=True,
+                        labels=["string"],
+                        log_format="string",
+                        log_level="string",
+                        log_name="string",
+                        log_provider="string",
+                        log_source="string",
+                        log_version="string",
+                        logged_time=1,
+                        logged_time_dt=datetime.datetime.fromisoformat(
+                            "2024-01-15 09:30:00+00:00",
+                        ),
+                        loggers=[Logger()],
+                        modified_time=1,
+                        modified_time_dt=datetime.datetime.fromisoformat(
+                            "2024-01-15 09:30:00+00:00",
+                        ),
+                        original_event_uid="string",
+                        original_time="string",
+                        processed_time=1,
+                        processed_time_dt=datetime.datetime.fromisoformat(
+                            "2024-01-15 09:30:00+00:00",
+                        ),
+                        product=Product(
+                            cpe_name="string",
+                            feature=Feature(
+                                name="string",
+                                uid="string",
+                                version="string",
+                            ),
+                            lang="string",
+                            name="string",
+                            path="string",
+                            uid="string",
+                            url_string="string",
+                            vendor_name="string",
+                            version="string",
+                        ),
+                        profiles=["string"],
+                        reporter=Reporter(
+                            hostname="string",
+                            ip="string",
+                            name="string",
+                            org=Organization(
+                                name="string",
+                                ou_name="string",
+                                ou_uid="string",
+                                uid="string",
+                            ),
+                            uid="string",
+                        ),
+                        sequence=1,
+                        source="string",
+                        tags=[
+                            KeyValueObject(
+                                name="string",
+                            )
+                        ],
+                        tenant_uid="string",
+                        total_queued_duration=Timespan(
+                            duration=1,
+                            duration_days=1,
+                            duration_hours=1,
+                            duration_mins=1,
+                            duration_months=1,
+                            duration_secs=1,
+                            duration_weeks=1,
+                            duration_years=1,
+                            end_time=1,
+                            end_time_dt=datetime.datetime.fromisoformat(
+                                "2024-01-15 09:30:00+00:00",
+                            ),
+                            start_time=1,
+                            start_time_dt=datetime.datetime.fromisoformat(
+                                "2024-01-15 09:30:00+00:00",
+                            ),
+                            type="string",
+                            type_id=1,
+                        ),
+                        transformation_info_list=[TransformationInfo()],
+                        transmit_time=1,
+                        transmit_time_dt=datetime.datetime.fromisoformat(
+                            "2024-01-15 09:30:00+00:00",
+                        ),
+                        type="string",
+                        uid="string",
+                        untruncated_size=1,
+                        version="string",
+                    ),
+                    observables=[
+                        Observable(
+                            type_id=1,
+                        )
+                    ],
+                    package=Package(
+                        architecture="string",
+                        cpe_name="string",
+                        epoch=1,
+                        hash=Fingerprint(
+                            algorithm_id=1,
+                            value="string",
+                        ),
+                        license="string",
+                        license_url="string",
+                        name="string",
+                        package_manager="string",
+                        package_manager_url="string",
+                        purl="string",
+                        release="string",
+                        src_url="string",
+                        type="string",
+                        type_id=1,
+                        uid="string",
+                        vendor_name="string",
+                        version="string",
+                    ),
+                    policy=Policy(
+                        data={"key": "value"},
+                        desc="string",
+                        group=Group(),
+                        is_applied=True,
+                        name="string",
+                        type="string",
+                        uid="string",
+                        version="string",
+                    ),
+                    product=Product(
+                        cpe_name="string",
+                        feature=Feature(
+                            name="string",
+                            uid="string",
+                            version="string",
+                        ),
+                        lang="string",
+                        name="string",
+                        path="string",
+                        uid="string",
+                        url_string="string",
+                        vendor_name="string",
+                        version="string",
+                    ),
+                    raw_data="string",
+                    raw_data_hash=Fingerprint(
+                        algorithm_id=1,
+                        value="string",
+                    ),
+                    raw_data_size=1,
+                    risk_details="string",
+                    risk_level="string",
+                    risk_level_id=1,
+                    risk_score=1,
+                    sbom=Sbom(
+                        created_time=1,
+                        created_time_dt=datetime.datetime.fromisoformat(
+                            "2024-01-15 09:30:00+00:00",
+                        ),
+                        package=Package(
+                            architecture="string",
+                            cpe_name="string",
+                            epoch=1,
+                            hash=Fingerprint(
+                                algorithm_id=1,
+                                value="string",
+                            ),
+                            license="string",
+                            license_url="string",
+                            name="string",
+                            package_manager="string",
+                            package_manager_url="string",
+                            purl="string",
+                            release="string",
+                            src_url="string",
+                            type="string",
+                            type_id=1,
+                            uid="string",
+                            vendor_name="string",
+                            version="string",
+                        ),
+                        product=Product(
+                            cpe_name="string",
+                            feature=Feature(
+                                name="string",
+                                uid="string",
+                                version="string",
+                            ),
+                            lang="string",
+                            name="string",
+                            path="string",
+                            uid="string",
+                            url_string="string",
+                            vendor_name="string",
+                            version="string",
+                        ),
+                        software_components=[
+                            SoftwareComponent(
+                                name="string",
+                                version="string",
+                            )
+                        ],
+                        type="string",
+                        type_id=1,
+                        uid="string",
+                        version="string",
+                    ),
+                    severity="string",
+                    severity_id=1,
+                    start_time=1,
+                    start_time_dt=datetime.datetime.fromisoformat(
+                        "2024-01-15 09:30:00+00:00",
+                    ),
+                    status="string",
+                    status_code="string",
+                    status_detail="string",
+                    status_id=1,
+                    time=1,
+                    time_dt=datetime.datetime.fromisoformat(
+                        "2024-01-15 09:30:00+00:00",
+                    ),
+                    timezone_offset=1,
+                    type_name="string",
+                    type_uid=1,
+                    unmapped={"string": {"key": "value"}},
+                ),
+                source_name="string",
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._client_wrapper.httpx_client.request(
+            "v1/assets/software",
+            method="POST",
+            json={
+                "software_inventory": software_inventory,
+                "source_name": source_name,
+            },
+            request_options=request_options,
+            omit=OMIT,
+        )
+        try:
+            if 200 <= _response.status_code < 300:
+                return typing.cast(
+                    CreateSoftwareInventoryResponse,
+                    construct_type(
+                        type_=CreateSoftwareInventoryResponse,  # type: ignore
+                        object_=_response.json(),
+                    ),
+                )
+            if _response.status_code == 400:
+                raise BadRequestError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 401:
+                raise UnauthorizedError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 403:
+                raise ForbiddenError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 405:
+                raise MethodNotAllowedError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 409:
+                raise ConflictError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 415:
+                raise UnsupportedMediaTypeError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 429:
+                raise TooManyRequestsError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 500:
+                raise InternalServerError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 501:
+                raise NotImplementedError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 502:
+                raise BadGatewayError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 503:
+                raise ServiceUnavailableError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 504:
+                raise GatewayTimeoutError(
                     typing.cast(
                         Problem,
                         construct_type(

@@ -48,6 +48,7 @@ from .sevco_credential import SevcoCredential
 from .assets_sevco_dataset import AssetsSevcoDataset
 from .tanium_cloud_credential import TaniumCloudCredential
 from .assets_tanium_cloud_dataset import AssetsTaniumCloudDataset
+from .assets_tenable_cloud_dataset import AssetsTenableCloudDataset
 from .copilot_chat_credential import CopilotChatCredential
 from .teams_graph_chat_credential import TeamsGraphChatCredential
 from .channel_join_behavior import ChannelJoinBehavior
@@ -647,6 +648,21 @@ class ProviderConfig_AssetsTenableCloud(UncheckedBaseModel):
     type: typing.Literal["assets_tenable_cloud"] = "assets_tenable_cloud"
     credential: TenableCloudCredential
     url: typing.Optional[str] = None
+
+    if IS_PYDANTIC_V2:
+        model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(
+            extra="allow"
+        )  # type: ignore # Pydantic v2
+    else:
+
+        class Config:
+            smart_union = True
+            extra = pydantic.Extra.allow
+
+
+class ProviderConfig_AssetsTenableCloudMock(UncheckedBaseModel):
+    type: typing.Literal["assets_tenable_cloud_mock"] = "assets_tenable_cloud_mock"
+    dataset: AssetsTenableCloudDataset
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(
@@ -2648,6 +2664,7 @@ ProviderConfig = typing_extensions.Annotated[
         ProviderConfig_AssetsTaniumCloud,
         ProviderConfig_AssetsTaniumCloudMock,
         ProviderConfig_AssetsTenableCloud,
+        ProviderConfig_AssetsTenableCloudMock,
         ProviderConfig_ChatMicrosoftCopilot,
         ProviderConfig_ChatMicrosoftTeams,
         ProviderConfig_ChatSlack,

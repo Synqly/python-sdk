@@ -5,10 +5,14 @@ from .types import (
     CreateDeviceResponse,
     CreateDevicesRequest,
     CreateDevicesResponse,
+    CreateSoftwareInventoryRequest,
+    CreateSoftwareInventoryResponse,
     Device,
     GetLabelsResponse,
     Label,
     QueryDevicesResponse,
+    QuerySoftwareInventoryResponse,
+    SoftwareInventory,
 )
 
 __all__ = [
@@ -16,8 +20,12 @@ __all__ = [
     "CreateDeviceResponse",
     "CreateDevicesRequest",
     "CreateDevicesResponse",
+    "CreateSoftwareInventoryRequest",
+    "CreateSoftwareInventoryResponse",
     "Device",
     "GetLabelsResponse",
     "Label",
     "QueryDevicesResponse",
+    "QuerySoftwareInventoryResponse",
+    "SoftwareInventory",
 ]

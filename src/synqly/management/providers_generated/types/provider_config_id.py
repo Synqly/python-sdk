@@ -175,6 +175,11 @@ class ProviderConfigId(str, enum.Enum):
     Tenable Cloud
     """
 
+    ASSETS_TENABLE_CLOUD_MOCK = "assets_tenable_cloud_mock"
+    """
+    [MOCK] Tenable Cloud
+    """
+
     CHAT_MICROSOFT_COPILOT = "chat_microsoft_copilot"
     """
     Microsoft 365 Copilot
@@ -794,6 +799,7 @@ class ProviderConfigId(str, enum.Enum):
         assets_tanium_cloud: typing.Callable[[], T_Result],
         assets_tanium_cloud_mock: typing.Callable[[], T_Result],
         assets_tenable_cloud: typing.Callable[[], T_Result],
+        assets_tenable_cloud_mock: typing.Callable[[], T_Result],
         chat_microsoft_copilot: typing.Callable[[], T_Result],
         chat_microsoft_teams: typing.Callable[[], T_Result],
         chat_slack: typing.Callable[[], T_Result],
@@ -974,6 +980,8 @@ class ProviderConfigId(str, enum.Enum):
             return assets_tanium_cloud_mock()
         if self is ProviderConfigId.ASSETS_TENABLE_CLOUD:
             return assets_tenable_cloud()
+        if self is ProviderConfigId.ASSETS_TENABLE_CLOUD_MOCK:
+            return assets_tenable_cloud_mock()
         if self is ProviderConfigId.CHAT_MICROSOFT_COPILOT:
             return chat_microsoft_copilot()
         if self is ProviderConfigId.CHAT_MICROSOFT_TEAMS:
