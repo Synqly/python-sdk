@@ -85,6 +85,7 @@ from .ashby_credential import AshbyCredential
 from .entra_id_credential import EntraIdCredential
 from .identity_entra_id_dataset import IdentityEntraIdDataset
 from .google_credential import GoogleCredential
+from .greenhouse_credential import GreenhouseCredential
 from .okta_credential import OktaCredential
 from .ping_one_auth_url import PingOneAuthUrl
 from .ping_one_credential import PingOneCredential
@@ -1249,6 +1250,21 @@ class ProviderConfig_IdentityGoogle(UncheckedBaseModel):
     client_email: str
     credential: GoogleCredential
     delegate: str
+
+    if IS_PYDANTIC_V2:
+        model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(
+            extra="allow"
+        )  # type: ignore # Pydantic v2
+    else:
+
+        class Config:
+            smart_union = True
+            extra = pydantic.Extra.allow
+
+
+class ProviderConfig_IdentityGreenhouse(UncheckedBaseModel):
+    type: typing.Literal["identity_greenhouse"] = "identity_greenhouse"
+    credential: GreenhouseCredential
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(
@@ -2700,6 +2716,7 @@ ProviderConfig = typing_extensions.Annotated[
         ProviderConfig_IdentityEntraId,
         ProviderConfig_IdentityEntraIdMock,
         ProviderConfig_IdentityGoogle,
+        ProviderConfig_IdentityGreenhouse,
         ProviderConfig_IdentityOkta,
         ProviderConfig_IdentityPingone,
         ProviderConfig_IdentityWorkday,

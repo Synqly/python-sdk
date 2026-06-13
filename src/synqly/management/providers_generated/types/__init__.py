@@ -260,6 +260,11 @@ from .google_service_account_credential import (
     GoogleServiceAccountCredential_OAuthClient,
     GoogleServiceAccountCredential_OAuthClientId,
 )
+from .greenhouse_credential import (
+    GreenhouseCredential,
+    GreenhouseCredential_OAuthClient,
+    GreenhouseCredential_OAuthClientId,
+)
 from .hcl_app_scan_on_cloud_credential import (
     HclAppScanOnCloudCredential,
     HclAppScanOnCloudCredential_OAuthClient,
@@ -311,6 +316,7 @@ from .identity_entra_id import IdentityEntraId
 from .identity_entra_id_dataset import IdentityEntraIdDataset
 from .identity_entra_id_mock import IdentityEntraIdMock
 from .identity_google import IdentityGoogle
+from .identity_greenhouse import IdentityGreenhouse
 from .identity_okta import IdentityOkta
 from .identity_ping_one import IdentityPingOne
 from .identity_workday import IdentityWorkday
@@ -495,6 +501,7 @@ from .provider_config import (
     ProviderConfig_IdentityEntraId,
     ProviderConfig_IdentityEntraIdMock,
     ProviderConfig_IdentityGoogle,
+    ProviderConfig_IdentityGreenhouse,
     ProviderConfig_IdentityOkta,
     ProviderConfig_IdentityPingone,
     ProviderConfig_IdentityWorkday,
@@ -1013,6 +1020,9 @@ __all__ = [
     "GoogleServiceAccountCredential",
     "GoogleServiceAccountCredential_OAuthClient",
     "GoogleServiceAccountCredential_OAuthClientId",
+    "GreenhouseCredential",
+    "GreenhouseCredential_OAuthClient",
+    "GreenhouseCredential_OAuthClientId",
     "HclAppScanOnCloudCredential",
     "HclAppScanOnCloudCredential_OAuthClient",
     "HclAppScanOnCloudCredential_OAuthClientId",
@@ -1050,6 +1060,7 @@ __all__ = [
     "IdentityEntraIdDataset",
     "IdentityEntraIdMock",
     "IdentityGoogle",
+    "IdentityGreenhouse",
     "IdentityOkta",
     "IdentityPingOne",
     "IdentityWorkday",
@@ -1198,6 +1209,7 @@ __all__ = [
     "ProviderConfig_IdentityEntraId",
     "ProviderConfig_IdentityEntraIdMock",
     "ProviderConfig_IdentityGoogle",
+    "ProviderConfig_IdentityGreenhouse",
     "ProviderConfig_IdentityOkta",
     "ProviderConfig_IdentityPingone",
     "ProviderConfig_IdentityWorkday",
