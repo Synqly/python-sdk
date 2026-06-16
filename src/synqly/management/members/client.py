@@ -66,7 +66,7 @@ class MembersClient:
             ordering is applied in the order the fields are specified.
 
         filter : typing.Optional[typing.Union[str, typing.Sequence[str]]]
-            Filter results by this query. For more information on filtering, refer to our Filtering Guide. Defaults to no filter.
+            Filter results by this query. For more information on filtering, refer to our [Filtering Guide](https://docs.synqly.com/guides/getting-started/management-api-filtering). Defaults to no filter.
             If used more than once, the queries are ANDed together.
 
         request_options : typing.Optional[RequestOptions]
@@ -1095,7 +1095,7 @@ class AsyncMembersClient:
             ordering is applied in the order the fields are specified.
 
         filter : typing.Optional[typing.Union[str, typing.Sequence[str]]]
-            Filter results by this query. For more information on filtering, refer to our Filtering Guide. Defaults to no filter.
+            Filter results by this query. For more information on filtering, refer to our [Filtering Guide](https://docs.synqly.com/guides/getting-started/management-api-filtering). Defaults to no filter.
             If used more than once, the queries are ANDed together.
 
         request_options : typing.Optional[RequestOptions]

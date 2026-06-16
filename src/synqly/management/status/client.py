@@ -62,7 +62,7 @@ class StatusClient:
             ordering is applied in the order the fields are specified.
 
         filter : typing.Optional[typing.Union[str, typing.Sequence[str]]]
-            Filter results by this query. For more information on filtering, refer to our Filtering Guide. Defaults to no filter.
+            Filter results by this query. For more information on filtering, refer to our [Filtering Guide](https://docs.synqly.com/guides/getting-started/management-api-filtering). Defaults to no filter.
             If used more than once, the queries are ANDed together.
 
         expand : typing.Optional[typing.Union[ListStatusOptions, typing.Sequence[ListStatusOptions]]]
@@ -519,7 +519,7 @@ class StatusClient:
             The order defaults to created_at[asc] and can changed to descending order by specifying created_at[desc].
 
         filter : typing.Optional[typing.Union[str, typing.Sequence[str]]]
-            Filter results by this query. For more information on filtering, refer to our Filtering Guide. Defaults to no filter.
+            Filter results by this query. For more information on filtering, refer to our [Filtering Guide](https://docs.synqly.com/guides/getting-started/management-api-filtering). Defaults to no filter.
             If used more than once, the queries are ANDed together.
 
         request_options : typing.Optional[RequestOptions]
@@ -980,7 +980,7 @@ class AsyncStatusClient:
             ordering is applied in the order the fields are specified.
 
         filter : typing.Optional[typing.Union[str, typing.Sequence[str]]]
-            Filter results by this query. For more information on filtering, refer to our Filtering Guide. Defaults to no filter.
+            Filter results by this query. For more information on filtering, refer to our [Filtering Guide](https://docs.synqly.com/guides/getting-started/management-api-filtering). Defaults to no filter.
             If used more than once, the queries are ANDed together.
 
         expand : typing.Optional[typing.Union[ListStatusOptions, typing.Sequence[ListStatusOptions]]]
@@ -1461,7 +1461,7 @@ class AsyncStatusClient:
             The order defaults to created_at[asc] and can changed to descending order by specifying created_at[desc].
 
         filter : typing.Optional[typing.Union[str, typing.Sequence[str]]]
-            Filter results by this query. For more information on filtering, refer to our Filtering Guide. Defaults to no filter.
+            Filter results by this query. For more information on filtering, refer to our [Filtering Guide](https://docs.synqly.com/guides/getting-started/management-api-filtering). Defaults to no filter.
             If used more than once, the queries are ANDed together.
 
         request_options : typing.Optional[RequestOptions]

@@ -60,7 +60,7 @@ class AppsecClient:
             Number of applications to return. Defaults to 100 with a maximum of 5000. If a provider has a maximum limit lower than 5000, the provider's maximum limit will be used instead.
 
         filter : typing.Optional[typing.Union[str, typing.Sequence[str]]]
-            Filter results by this query. For more information on filtering, refer to our Filtering Guide. Defaults to no filter. If used more than once, the queries are ANDed together.
+            Filter results by this query. For more information on filtering, refer to our [Filtering Guide](https://docs.synqly.com/guides/connectors/appsec/query-filters). Defaults to no filter. If used more than once, the queries are ANDed together.
 
         cursor : typing.Optional[str]
             Start search from cursor position.
@@ -271,7 +271,7 @@ class AppsecClient:
             Number of findings to return. Defaults to 100 with a maximum of 5000. If a provider has a maximum limit lower than 5000, the provider's maximum limit will be used instead.
 
         filter : typing.Optional[typing.Union[str, typing.Sequence[str]]]
-            Filter results by this query. For more information on filtering, refer to our Filtering Guide. Defaults to no filter. If used more than once, the queries are ANDed together.
+            Filter results by this query. For more information on filtering, refer to our [Filtering Guide](https://docs.synqly.com/guides/connectors/appsec/query-filters). Defaults to no filter. If used more than once, the queries are ANDed together.
 
         cursor : typing.Optional[str]
             Start search from cursor position.
@@ -480,7 +480,7 @@ class AppsecClient:
             Number of findings to return. Defaults to 100 with a maximum of 5000. If a provider has a maximum limit lower than 5000, the provider's maximum limit will be used instead.
 
         filter : typing.Optional[typing.Union[str, typing.Sequence[str]]]
-            Filter results by this query. For more information on filtering, refer to our Filtering Guide. Defaults to no filter. If used more than once, the queries are ANDed together.
+            Filter results by this query. For more information on filtering, refer to our [Filtering Guide](https://docs.synqly.com/guides/connectors/appsec/query-filters). Defaults to no filter. If used more than once, the queries are ANDed together.
 
         cursor : typing.Optional[str]
             Start search from cursor position.
@@ -891,7 +891,7 @@ class AsyncAppsecClient:
             Number of applications to return. Defaults to 100 with a maximum of 5000. If a provider has a maximum limit lower than 5000, the provider's maximum limit will be used instead.
 
         filter : typing.Optional[typing.Union[str, typing.Sequence[str]]]
-            Filter results by this query. For more information on filtering, refer to our Filtering Guide. Defaults to no filter. If used more than once, the queries are ANDed together.
+            Filter results by this query. For more information on filtering, refer to our [Filtering Guide](https://docs.synqly.com/guides/connectors/appsec/query-filters). Defaults to no filter. If used more than once, the queries are ANDed together.
 
         cursor : typing.Optional[str]
             Start search from cursor position.
@@ -1110,7 +1110,7 @@ class AsyncAppsecClient:
             Number of findings to return. Defaults to 100 with a maximum of 5000. If a provider has a maximum limit lower than 5000, the provider's maximum limit will be used instead.
 
         filter : typing.Optional[typing.Union[str, typing.Sequence[str]]]
-            Filter results by this query. For more information on filtering, refer to our Filtering Guide. Defaults to no filter. If used more than once, the queries are ANDed together.
+            Filter results by this query. For more information on filtering, refer to our [Filtering Guide](https://docs.synqly.com/guides/connectors/appsec/query-filters). Defaults to no filter. If used more than once, the queries are ANDed together.
 
         cursor : typing.Optional[str]
             Start search from cursor position.
@@ -1327,7 +1327,7 @@ class AsyncAppsecClient:
             Number of findings to return. Defaults to 100 with a maximum of 5000. If a provider has a maximum limit lower than 5000, the provider's maximum limit will be used instead.
 
         filter : typing.Optional[typing.Union[str, typing.Sequence[str]]]
-            Filter results by this query. For more information on filtering, refer to our Filtering Guide. Defaults to no filter. If used more than once, the queries are ANDed together.
+            Filter results by this query. For more information on filtering, refer to our [Filtering Guide](https://docs.synqly.com/guides/connectors/appsec/query-filters). Defaults to no filter. If used more than once, the queries are ANDed together.
 
         cursor : typing.Optional[str]
             Start search from cursor position.

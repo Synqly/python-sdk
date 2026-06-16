@@ -75,7 +75,7 @@ class VulnerabilitiesClient:
             Start search from cursor position.
 
         filter : typing.Optional[typing.Union[str, typing.Sequence[str]]]
-            Filter results by this query. For more information on filtering, refer to the Vulnerability Filtering Guide. Defaults to no filter. If used more than once, the queries are ANDed together.
+            Filter results by this query. For more information on filtering, refer to our [Filtering Guide](https://docs.synqly.com/guides/connectors/vulnerabilities/query-filters). Defaults to no filter. If used more than once, the queries are ANDed together.
 
         include_raw_data : typing.Optional[bool]
             Include the raw data from the provider in the response. Defaults to `false`.
@@ -1040,8 +1040,7 @@ class VulnerabilitiesClient:
             Start search from cursor position.
 
         filter : typing.Optional[typing.Union[str, typing.Sequence[str]]]
-            Filter results by this query. For more information on filtering, refer to the Vulnerability Filtering Guide.
-            Defaults to no filter. If used more than once, the queries are ANDed together.
+            Filter results by this query. For more information on filtering, refer to our [Filtering Guide](https://docs.synqly.com/guides/connectors/vulnerabilities/query-filters). Defaults to no filter. If used more than once, the queries are ANDed together.
 
         include_raw_data : typing.Optional[bool]
             Include the raw data from the provider in the response. Defaults to `false`.
@@ -2227,8 +2226,7 @@ class VulnerabilitiesClient:
             Start search from cursor position.
 
         filter : typing.Optional[typing.Union[str, typing.Sequence[str]]]
-            Filter results by this query. For more information on filtering, refer to the Vulnerability Filtering Guide.
-            Defaults to no filter. If used more than once, the queries are ANDed together.
+            Filter results by this query. For more information on filtering, refer to our [Filtering Guide](https://docs.synqly.com/guides/connectors/vulnerabilities/query-filters). Defaults to no filter. If used more than once, the queries are ANDed together.
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -3410,7 +3408,7 @@ class VulnerabilitiesClient:
             Number of findings to return. Defaults to 50 with a maximum of 5000. If a provider has a maximum limit lower than 5000, the provider's maximum limit will be used instead.
 
         filter : typing.Optional[typing.Union[str, typing.Sequence[str]]]
-            Filter results by this query. For more information on filtering, refer to our Filtering Guide. Defaults to no filter. If used more than once, the queries are ANDed together.
+            Filter results by this query. For more information on filtering, refer to our [Filtering Guide](https://docs.synqly.com/guides/connectors/vulnerabilities/query-filters). Defaults to no filter. If used more than once, the queries are ANDed together.
 
         cursor : typing.Optional[str]
             Start search from cursor position.
@@ -3627,7 +3625,7 @@ class AsyncVulnerabilitiesClient:
             Start search from cursor position.
 
         filter : typing.Optional[typing.Union[str, typing.Sequence[str]]]
-            Filter results by this query. For more information on filtering, refer to the Vulnerability Filtering Guide. Defaults to no filter. If used more than once, the queries are ANDed together.
+            Filter results by this query. For more information on filtering, refer to our [Filtering Guide](https://docs.synqly.com/guides/connectors/vulnerabilities/query-filters). Defaults to no filter. If used more than once, the queries are ANDed together.
 
         include_raw_data : typing.Optional[bool]
             Include the raw data from the provider in the response. Defaults to `false`.
@@ -4615,8 +4613,7 @@ class AsyncVulnerabilitiesClient:
             Start search from cursor position.
 
         filter : typing.Optional[typing.Union[str, typing.Sequence[str]]]
-            Filter results by this query. For more information on filtering, refer to the Vulnerability Filtering Guide.
-            Defaults to no filter. If used more than once, the queries are ANDed together.
+            Filter results by this query. For more information on filtering, refer to our [Filtering Guide](https://docs.synqly.com/guides/connectors/vulnerabilities/query-filters). Defaults to no filter. If used more than once, the queries are ANDed together.
 
         include_raw_data : typing.Optional[bool]
             Include the raw data from the provider in the response. Defaults to `false`.
@@ -5824,8 +5821,7 @@ class AsyncVulnerabilitiesClient:
             Start search from cursor position.
 
         filter : typing.Optional[typing.Union[str, typing.Sequence[str]]]
-            Filter results by this query. For more information on filtering, refer to the Vulnerability Filtering Guide.
-            Defaults to no filter. If used more than once, the queries are ANDed together.
+            Filter results by this query. For more information on filtering, refer to our [Filtering Guide](https://docs.synqly.com/guides/connectors/vulnerabilities/query-filters). Defaults to no filter. If used more than once, the queries are ANDed together.
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -7054,7 +7050,7 @@ class AsyncVulnerabilitiesClient:
             Number of findings to return. Defaults to 50 with a maximum of 5000. If a provider has a maximum limit lower than 5000, the provider's maximum limit will be used instead.
 
         filter : typing.Optional[typing.Union[str, typing.Sequence[str]]]
-            Filter results by this query. For more information on filtering, refer to our Filtering Guide. Defaults to no filter. If used more than once, the queries are ANDed together.
+            Filter results by this query. For more information on filtering, refer to our [Filtering Guide](https://docs.synqly.com/guides/connectors/vulnerabilities/query-filters). Defaults to no filter. If used more than once, the queries are ANDed together.
 
         cursor : typing.Optional[str]
             Start search from cursor position.
