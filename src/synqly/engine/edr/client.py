@@ -27,6 +27,7 @@ from ..core.jsonable_encoder import jsonable_encoder
 from .types.execute_command_response import ExecuteCommandResponse
 from .types.query_applications_response import QueryApplicationsResponse
 from .types.connection_state import ConnectionState
+from .types.isolation_type import IsolationType
 from .types.network_quarantine_response import NetworkQuarantineResponse
 from .types.query_threats_response import QueryThreatsResponse
 from .types.query_alerts_response import QueryAlertsResponse
@@ -1041,6 +1042,7 @@ class EdrClient:
         state: ConnectionState,
         endpoint_ids: typing.Sequence[str],
         comment: typing.Optional[str] = OMIT,
+        isolation_type: typing.Optional[IsolationType] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> NetworkQuarantineResponse:
         """
@@ -1057,6 +1059,9 @@ class EdrClient:
         comment : typing.Optional[str]
             A comment to include with the quarantine action.
 
+        isolation_type : typing.Optional[IsolationType]
+            The isolation type for the quarantine action. Defaults to Full. Currently only Microsoft Defender honors Selective; other providers always perform full isolation and ignore this field.
+
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
 
@@ -1067,7 +1072,7 @@ class EdrClient:
         Examples
         --------
         from synqly import SynqlyEngine
-        from synqly.edr import ConnectionState
+        from synqly.edr import ConnectionState, IsolationType
 
         client = SynqlyEngine(
             token="YOUR_TOKEN",
@@ -1076,6 +1081,7 @@ class EdrClient:
             state=ConnectionState.CONNECT,
             endpoint_ids=["string"],
             comment="string",
+            isolation_type=IsolationType.FULL,
         )
         """
         _response = self._client_wrapper.httpx_client.request(
@@ -1085,6 +1091,7 @@ class EdrClient:
                 "state": state,
                 "endpoint_ids": endpoint_ids,
                 "comment": comment,
+                "isolation_type": isolation_type,
             },
             request_options=request_options,
             omit=OMIT,
@@ -4230,6 +4237,7 @@ class AsyncEdrClient:
         state: ConnectionState,
         endpoint_ids: typing.Sequence[str],
         comment: typing.Optional[str] = OMIT,
+        isolation_type: typing.Optional[IsolationType] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> NetworkQuarantineResponse:
         """
@@ -4246,6 +4254,9 @@ class AsyncEdrClient:
         comment : typing.Optional[str]
             A comment to include with the quarantine action.
 
+        isolation_type : typing.Optional[IsolationType]
+            The isolation type for the quarantine action. Defaults to Full. Currently only Microsoft Defender honors Selective; other providers always perform full isolation and ignore this field.
+
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
 
@@ -4258,7 +4269,7 @@ class AsyncEdrClient:
         import asyncio
 
         from synqly import AsyncSynqlyEngine
-        from synqly.edr import ConnectionState
+        from synqly.edr import ConnectionState, IsolationType
 
         client = AsyncSynqlyEngine(
             token="YOUR_TOKEN",
@@ -4270,6 +4281,7 @@ class AsyncEdrClient:
                 state=ConnectionState.CONNECT,
                 endpoint_ids=["string"],
                 comment="string",
+                isolation_type=IsolationType.FULL,
             )
 
 
@@ -4282,6 +4294,7 @@ class AsyncEdrClient:
                 "state": state,
                 "endpoint_ids": endpoint_ids,
                 "comment": comment,
+                "isolation_type": isolation_type,
             },
             request_options=request_options,
             omit=OMIT,

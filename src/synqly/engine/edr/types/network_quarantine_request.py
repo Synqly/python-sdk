@@ -4,6 +4,7 @@ from ...core.unchecked_base_model import UncheckedBaseModel
 from .connection_state import ConnectionState
 import pydantic
 import typing
+from .isolation_type import IsolationType
 from ...core.pydantic_utilities import IS_PYDANTIC_V2
 
 
@@ -21,6 +22,11 @@ class NetworkQuarantineRequest(UncheckedBaseModel):
     comment: typing.Optional[str] = pydantic.Field(default=None)
     """
     A comment to include with the quarantine action.
+    """
+
+    isolation_type: typing.Optional[IsolationType] = pydantic.Field(default=None)
+    """
+    The isolation type for the quarantine action. Defaults to Full. Currently only Microsoft Defender honors Selective; other providers always perform full isolation and ignore this field.
     """
 
     if IS_PYDANTIC_V2:

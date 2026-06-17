@@ -12,6 +12,7 @@ from .execute_command_response import ExecuteCommandResponse
 from .execute_command_result import ExecuteCommandResult
 from .get_endpoint_response import GetEndpointResponse
 from .get_threat_notes_response import GetThreatNotesResponse
+from .isolation_type import IsolationType
 from .network_quarantine_request import NetworkQuarantineRequest
 from .network_quarantine_response import NetworkQuarantineResponse
 from .posture_score import PostureScore
@@ -38,6 +39,7 @@ __all__ = [
     "ExecuteCommandResult",
     "GetEndpointResponse",
     "GetThreatNotesResponse",
+    "IsolationType",
     "NetworkQuarantineRequest",
     "NetworkQuarantineResponse",
     "PostureScore",
