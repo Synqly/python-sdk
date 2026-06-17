@@ -319,6 +319,8 @@ from .identity_entra_id_mock import IdentityEntraIdMock
 from .identity_google import IdentityGoogle
 from .identity_greenhouse import IdentityGreenhouse
 from .identity_okta import IdentityOkta
+from .identity_okta_dataset import IdentityOktaDataset
+from .identity_okta_mock import IdentityOktaMock
 from .identity_ping_one import IdentityPingOne
 from .identity_workday import IdentityWorkday
 from .incident_io_credential import (
@@ -505,6 +507,7 @@ from .provider_config import (
     ProviderConfig_IdentityGoogle,
     ProviderConfig_IdentityGreenhouse,
     ProviderConfig_IdentityOkta,
+    ProviderConfig_IdentityOktaMock,
     ProviderConfig_IdentityPingone,
     ProviderConfig_IdentityWorkday,
     ProviderConfig_IncidentresponseIncidentio,
@@ -1075,6 +1078,8 @@ __all__ = [
     "IdentityGoogle",
     "IdentityGreenhouse",
     "IdentityOkta",
+    "IdentityOktaDataset",
+    "IdentityOktaMock",
     "IdentityPingOne",
     "IdentityWorkday",
     "IncidentIoCredential",
@@ -1225,6 +1230,7 @@ __all__ = [
     "ProviderConfig_IdentityGoogle",
     "ProviderConfig_IdentityGreenhouse",
     "ProviderConfig_IdentityOkta",
+    "ProviderConfig_IdentityOktaMock",
     "ProviderConfig_IdentityPingone",
     "ProviderConfig_IdentityWorkday",
     "ProviderConfig_IncidentresponseIncidentio",

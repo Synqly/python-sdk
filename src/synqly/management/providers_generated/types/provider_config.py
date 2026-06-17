@@ -89,6 +89,7 @@ from .identity_entra_id_dataset import IdentityEntraIdDataset
 from .google_credential import GoogleCredential
 from .greenhouse_credential import GreenhouseCredential
 from .okta_credential import OktaCredential
+from .identity_okta_dataset import IdentityOktaDataset
 from .ping_one_auth_url import PingOneAuthUrl
 from .ping_one_credential import PingOneCredential
 from .ping_one_apiurl import PingOneApiurl
@@ -1300,6 +1301,21 @@ class ProviderConfig_IdentityOkta(UncheckedBaseModel):
     type: typing.Literal["identity_okta"] = "identity_okta"
     credential: OktaCredential
     url: str
+
+    if IS_PYDANTIC_V2:
+        model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(
+            extra="allow"
+        )  # type: ignore # Pydantic v2
+    else:
+
+        class Config:
+            smart_union = True
+            extra = pydantic.Extra.allow
+
+
+class ProviderConfig_IdentityOktaMock(UncheckedBaseModel):
+    type: typing.Literal["identity_okta_mock"] = "identity_okta_mock"
+    dataset: IdentityOktaDataset
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(
@@ -2738,6 +2754,7 @@ ProviderConfig = typing_extensions.Annotated[
         ProviderConfig_IdentityGoogle,
         ProviderConfig_IdentityGreenhouse,
         ProviderConfig_IdentityOkta,
+        ProviderConfig_IdentityOktaMock,
         ProviderConfig_IdentityPingone,
         ProviderConfig_IdentityWorkday,
         ProviderConfig_IncidentresponseIncidentio,

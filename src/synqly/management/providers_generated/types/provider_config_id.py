@@ -372,6 +372,11 @@ class ProviderConfigId(str, enum.Enum):
     Okta Identity
     """
 
+    IDENTITY_OKTA_MOCK = "identity_okta_mock"
+    """
+    [MOCK] Okta Identity
+    """
+
     IDENTITY_PING_ONE = "identity_pingone"
     """
     PingOne Cloud Platform
@@ -848,6 +853,7 @@ class ProviderConfigId(str, enum.Enum):
         identity_google: typing.Callable[[], T_Result],
         identity_greenhouse: typing.Callable[[], T_Result],
         identity_okta: typing.Callable[[], T_Result],
+        identity_okta_mock: typing.Callable[[], T_Result],
         identity_ping_one: typing.Callable[[], T_Result],
         identity_workday: typing.Callable[[], T_Result],
         incident_response_incident_io: typing.Callable[[], T_Result],
@@ -1070,6 +1076,8 @@ class ProviderConfigId(str, enum.Enum):
             return identity_greenhouse()
         if self is ProviderConfigId.IDENTITY_OKTA:
             return identity_okta()
+        if self is ProviderConfigId.IDENTITY_OKTA_MOCK:
+            return identity_okta_mock()
         if self is ProviderConfigId.IDENTITY_PING_ONE:
             return identity_ping_one()
         if self is ProviderConfigId.IDENTITY_WORKDAY:
