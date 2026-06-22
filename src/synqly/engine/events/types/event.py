@@ -127,7 +127,7 @@ from ...ocsf.v_1_8_0.applicationsecurityposturefinding.classes.types.activity_id
     ActivityId as ocsf_v_1_8_0_applicationsecurityposturefinding_classes_types_activity_id_ActivityId,
 )
 from ...ocsf.v_1_8_0.applicationsecurityposturefinding.objects.types.application import (
-    Application,
+    Application as ocsf_v_1_8_0_applicationsecurityposturefinding_objects_types_application_Application,
 )
 from ...ocsf.v_1_8_0.applicationsecurityposturefinding.objects.types.attack import (
     Attack as ocsf_v_1_8_0_applicationsecurityposturefinding_objects_types_attack_Attack,
@@ -1251,7 +1251,9 @@ from ...ocsf.v_1_3_0.networkactivity.classes.types.status_id import (
 from ...ocsf.v_1_3_0.networkactivity.classes.types.type_uid import (
     TypeUid as ocsf_v_1_3_0_networkactivity_classes_types_type_uid_TypeUid,
 )
-from ...ocsf.v_1_3_0.networkactivity.objects.types.url import Url
+from ...ocsf.v_1_3_0.networkactivity.objects.types.url import (
+    Url as ocsf_v_1_3_0_networkactivity_objects_types_url_Url,
+)
 from ...ocsf.v_1_3_0.processactivity.classes.types.action_id import (
     ActionId as ocsf_v_1_3_0_processactivity_classes_types_action_id_ActionId,
 )
@@ -2401,6 +2403,61 @@ from ...ocsf.v_1_8_0.conversationactivity.classes.types.type_uid import (
 from ...ocsf.v_1_8_0.conversationactivity.objects.types.object import (
     Object as ocsf_v_1_8_0_conversationactivity_objects_types_object_Object,
 )
+from ...ocsf.v_1_8_0.applicationinventoryinfo.classes.types.activity_id import (
+    ActivityId as ocsf_v_1_8_0_applicationinventoryinfo_classes_types_activity_id_ActivityId,
+)
+from ...ocsf.v_1_8_0.applicationinventoryinfo.objects.types.application import (
+    Application as ocsf_v_1_8_0_applicationinventoryinfo_objects_types_application_Application,
+)
+from ...ocsf.v_1_8_0.applicationinventoryinfo.classes.types.category_uid import (
+    CategoryUid as ocsf_v_1_8_0_applicationinventoryinfo_classes_types_category_uid_CategoryUid,
+)
+from ...ocsf.v_1_8_0.applicationinventoryinfo.classes.types.class_uid import (
+    ClassUid as ocsf_v_1_8_0_applicationinventoryinfo_classes_types_class_uid_ClassUid,
+)
+from ...ocsf.v_1_8_0.applicationinventoryinfo.base.types.timestamp import (
+    Timestamp as ocsf_v_1_8_0_applicationinventoryinfo_base_types_timestamp_Timestamp,
+)
+from ...ocsf.v_1_8_0.applicationinventoryinfo.objects.types.enrichment import (
+    Enrichment as ocsf_v_1_8_0_applicationinventoryinfo_objects_types_enrichment_Enrichment,
+)
+from ...ocsf.v_1_8_0.applicationinventoryinfo.objects.types.group import (
+    Group as ocsf_v_1_8_0_applicationinventoryinfo_objects_types_group_Group,
+)
+from ...ocsf.v_1_8_0.applicationinventoryinfo.base.types.hostname import Hostname
+from ...ocsf.v_1_8_0.applicationinventoryinfo.objects.types.metadata import (
+    Metadata as ocsf_v_1_8_0_applicationinventoryinfo_objects_types_metadata_Metadata,
+)
+from ...ocsf.v_1_8_0.applicationinventoryinfo.objects.types.observable import (
+    Observable as ocsf_v_1_8_0_applicationinventoryinfo_objects_types_observable_Observable,
+)
+from ...ocsf.v_1_8_0.applicationinventoryinfo.objects.types.user import (
+    User as ocsf_v_1_8_0_applicationinventoryinfo_objects_types_user_User,
+)
+from ...ocsf.v_1_8_0.applicationinventoryinfo.objects.types.fingerprint import (
+    Fingerprint as ocsf_v_1_8_0_applicationinventoryinfo_objects_types_fingerprint_Fingerprint,
+)
+from ...ocsf.v_1_8_0.applicationinventoryinfo.classes.types.risk_level_id import (
+    RiskLevelId as ocsf_v_1_8_0_applicationinventoryinfo_classes_types_risk_level_id_RiskLevelId,
+)
+from ...ocsf.v_1_8_0.applicationinventoryinfo.classes.types.severity_id import (
+    SeverityId as ocsf_v_1_8_0_applicationinventoryinfo_classes_types_severity_id_SeverityId,
+)
+from ...ocsf.v_1_8_0.applicationinventoryinfo.classes.types.status_id import (
+    StatusId as ocsf_v_1_8_0_applicationinventoryinfo_classes_types_status_id_StatusId,
+)
+from ...ocsf.v_1_8_0.applicationinventoryinfo.objects.types.key_value_object import (
+    KeyValueObject,
+)
+from ...ocsf.v_1_8_0.applicationinventoryinfo.classes.types.type_uid import (
+    TypeUid as ocsf_v_1_8_0_applicationinventoryinfo_classes_types_type_uid_TypeUid,
+)
+from ...ocsf.v_1_8_0.applicationinventoryinfo.objects.types.object import (
+    Object as ocsf_v_1_8_0_applicationinventoryinfo_objects_types_object_Object,
+)
+from ...ocsf.v_1_8_0.applicationinventoryinfo.objects.types.url import (
+    Url as ocsf_v_1_8_0_applicationinventoryinfo_objects_types_url_Url,
+)
 import typing_extensions
 from ...core.unchecked_base_model import UnionMetadata
 
@@ -2571,7 +2628,9 @@ class Event_ApplicationSecurityPostureFinding(UncheckedBaseModel):
     ] = None
     activity_id: ocsf_v_1_8_0_applicationsecurityposturefinding_classes_types_activity_id_ActivityId
     activity_name: typing.Optional[str] = None
-    application: typing.Optional[Application] = None
+    application: typing.Optional[
+        ocsf_v_1_8_0_applicationsecurityposturefinding_objects_types_application_Application
+    ] = None
     attacks: typing.Optional[
         typing.List[
             ocsf_v_1_8_0_applicationsecurityposturefinding_objects_types_attack_Attack
@@ -4136,7 +4195,7 @@ class Event_NetworkActivity(UncheckedBaseModel):
     unmapped: typing.Optional[
         ocsf_v_1_3_0_networkactivity_objects_types_object_Object
     ] = None
-    url: typing.Optional[Url] = None
+    url: typing.Optional[ocsf_v_1_3_0_networkactivity_objects_types_url_Url] = None
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(
@@ -5854,6 +5913,102 @@ class Event_ConversationActivity(UncheckedBaseModel):
             extra = pydantic.Extra.allow
 
 
+class Event_ApplicationInventoryInfo(UncheckedBaseModel):
+    class_name: typing.Literal["Application Inventory Info"] = (
+        "Application Inventory Info"
+    )
+    activity_id: (
+        ocsf_v_1_8_0_applicationinventoryinfo_classes_types_activity_id_ActivityId
+    )
+    activity_name: typing.Optional[str] = None
+    application: (
+        ocsf_v_1_8_0_applicationinventoryinfo_objects_types_application_Application
+    )
+    category_name: typing.Optional[str] = None
+    category_uid: (
+        ocsf_v_1_8_0_applicationinventoryinfo_classes_types_category_uid_CategoryUid
+    )
+    class_uid: ocsf_v_1_8_0_applicationinventoryinfo_classes_types_class_uid_ClassUid
+    count: typing.Optional[int] = None
+    criticality: typing.Optional[str] = None
+    data: typing.Optional[typing.Optional[typing.Any]] = None
+    desc: typing.Optional[str] = None
+    duration: typing.Optional[int] = None
+    end_time: typing.Optional[
+        ocsf_v_1_8_0_applicationinventoryinfo_base_types_timestamp_Timestamp
+    ] = None
+    end_time_dt: typing.Optional[dt.datetime] = None
+    enrichments: typing.Optional[
+        typing.List[
+            ocsf_v_1_8_0_applicationinventoryinfo_objects_types_enrichment_Enrichment
+        ]
+    ] = None
+    group: typing.Optional[
+        ocsf_v_1_8_0_applicationinventoryinfo_objects_types_group_Group
+    ] = None
+    hostname: typing.Optional[Hostname] = None
+    message: typing.Optional[str] = None
+    metadata: ocsf_v_1_8_0_applicationinventoryinfo_objects_types_metadata_Metadata
+    name: typing.Optional[str] = None
+    observables: typing.Optional[
+        typing.List[
+            ocsf_v_1_8_0_applicationinventoryinfo_objects_types_observable_Observable
+        ]
+    ] = None
+    owner: typing.Optional[
+        ocsf_v_1_8_0_applicationinventoryinfo_objects_types_user_User
+    ] = None
+    raw_data: typing.Optional[str] = None
+    raw_data_hash: typing.Optional[
+        ocsf_v_1_8_0_applicationinventoryinfo_objects_types_fingerprint_Fingerprint
+    ] = None
+    raw_data_size: typing.Optional[int] = None
+    risk_level: typing.Optional[str] = None
+    risk_level_id: typing.Optional[
+        ocsf_v_1_8_0_applicationinventoryinfo_classes_types_risk_level_id_RiskLevelId
+    ] = None
+    risk_score: typing.Optional[int] = None
+    severity: typing.Optional[str] = None
+    severity_id: (
+        ocsf_v_1_8_0_applicationinventoryinfo_classes_types_severity_id_SeverityId
+    )
+    start_time: typing.Optional[
+        ocsf_v_1_8_0_applicationinventoryinfo_base_types_timestamp_Timestamp
+    ] = None
+    start_time_dt: typing.Optional[dt.datetime] = None
+    status: typing.Optional[str] = None
+    status_code: typing.Optional[str] = None
+    status_detail: typing.Optional[str] = None
+    status_id: typing.Optional[
+        ocsf_v_1_8_0_applicationinventoryinfo_classes_types_status_id_StatusId
+    ] = None
+    tags: typing.Optional[typing.List[KeyValueObject]] = None
+    time: ocsf_v_1_8_0_applicationinventoryinfo_base_types_timestamp_Timestamp
+    time_dt: typing.Optional[dt.datetime] = None
+    timezone_offset: typing.Optional[int] = None
+    type: typing.Optional[str] = None
+    type_name: typing.Optional[str] = None
+    type_uid: ocsf_v_1_8_0_applicationinventoryinfo_classes_types_type_uid_TypeUid
+    uid: typing.Optional[str] = None
+    uid_alt: typing.Optional[str] = None
+    unmapped: typing.Optional[
+        ocsf_v_1_8_0_applicationinventoryinfo_objects_types_object_Object
+    ] = None
+    url: typing.Optional[
+        ocsf_v_1_8_0_applicationinventoryinfo_objects_types_url_Url
+    ] = None
+
+    if IS_PYDANTIC_V2:
+        model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(
+            extra="allow"
+        )  # type: ignore # Pydantic v2
+    else:
+
+        class Config:
+            smart_union = True
+            extra = pydantic.Extra.allow
+
+
 Event = typing_extensions.Annotated[
     typing.Union[
         Event_AccountChange,
@@ -5891,6 +6046,7 @@ Event = typing_extensions.Annotated[
         Event_SoftwareInventoryInfo,
         Event_ChatMessageActivity,
         Event_ConversationActivity,
+        Event_ApplicationInventoryInfo,
     ],
     UnionMetadata(discriminant="class_name"),
 ]

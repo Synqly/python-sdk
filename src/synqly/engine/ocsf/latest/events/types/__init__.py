@@ -2,6 +2,7 @@
 
 from .account_change import AccountChange
 from .api_activity import ApiActivity
+from .application_inventory_info import ApplicationInventoryInfo
 from .application_security_posture_finding import ApplicationSecurityPostureFinding
 from .authentication import Authentication
 from .cloud_activity import CloudActivity
@@ -28,6 +29,7 @@ from .web_resource_access_activity import WebResourceAccessActivity
 __all__ = [
     "AccountChange",
     "ApiActivity",
+    "ApplicationInventoryInfo",
     "ApplicationSecurityPostureFinding",
     "Authentication",
     "CloudActivity",
