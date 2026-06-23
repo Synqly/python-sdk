@@ -47,7 +47,7 @@ class HooksClient:
             Optional: if you can't use the HTTP Authorization Bearer, specify integration access token here.
 
         meta : typing.Optional[typing.Union[str, typing.Sequence[str]]]
-            Add metadata to the response by invoking meta functions. Documentation for meta functions is available at https://docs.synqly.com/api-reference/meta-functions. Not all meta function are available at every endpoint.
+            Add metadata to the response by invoking meta functions. Documentation for [meta functions](https://docs.synqly.com/api-reference/meta-functions) is available. Not all meta functions are available at every endpoint.
 
         request : typing.Optional[typing.Any]
 
@@ -242,7 +242,7 @@ class AsyncHooksClient:
             Optional: if you can't use the HTTP Authorization Bearer, specify integration access token here.
 
         meta : typing.Optional[typing.Union[str, typing.Sequence[str]]]
-            Add metadata to the response by invoking meta functions. Documentation for meta functions is available at https://docs.synqly.com/api-reference/meta-functions. Not all meta function are available at every endpoint.
+            Add metadata to the response by invoking meta functions. Documentation for [meta functions](https://docs.synqly.com/api-reference/meta-functions) is available. Not all meta functions are available at every endpoint.
 
         request : typing.Optional[typing.Any]
 

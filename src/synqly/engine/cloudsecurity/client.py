@@ -52,7 +52,7 @@ class CloudsecurityClient:
         Parameters
         ----------
         meta : typing.Optional[typing.Union[str, typing.Sequence[str]]]
-            Add metadata to the response by invoking meta functions. Documentation for meta functions is available at https://docs.synqly.com/api-reference/meta-functions. Not all meta function are available at every endpoint.
+            Add metadata to the response by invoking meta functions. Documentation for [meta functions](https://docs.synqly.com/api-reference/meta-functions) is available. Not all meta functions are available at every endpoint.
 
         limit : typing.Optional[int]
             Number of events to return. Defaults to 100.
@@ -181,7 +181,7 @@ class CloudsecurityClient:
         Parameters
         ----------
         meta : typing.Optional[typing.Union[str, typing.Sequence[str]]]
-            Add metadata to the response by invoking meta functions. Documentation for meta functions is available at https://docs.synqly.com/api-reference/meta-functions. Not all meta function are available at every endpoint.
+            Add metadata to the response by invoking meta functions. Documentation for [meta functions](https://docs.synqly.com/api-reference/meta-functions) is available. Not all meta functions are available at every endpoint.
 
         limit : typing.Optional[int]
             Number of cloud resources to return. Defaults to 500.
@@ -315,7 +315,7 @@ class CloudsecurityClient:
         Parameters
         ----------
         meta : typing.Optional[typing.Union[str, typing.Sequence[str]]]
-            Add metadata to the response by invoking meta functions. Documentation for meta functions is available at https://docs.synqly.com/api-reference/meta-functions. Not all meta function are available at every endpoint.
+            Add metadata to the response by invoking meta functions. Documentation for [meta functions](https://docs.synqly.com/api-reference/meta-functions) is available. Not all meta functions are available at every endpoint.
 
         limit : typing.Optional[int]
             Number of cloud resources to return. Defaults to 500.
@@ -449,7 +449,7 @@ class CloudsecurityClient:
         Parameters
         ----------
         meta : typing.Optional[typing.Union[str, typing.Sequence[str]]]
-            Add metadata to the response by invoking meta functions. Documentation for meta functions is available at https://docs.synqly.com/api-reference/meta-functions. Not all meta function are available at every endpoint.
+            Add metadata to the response by invoking meta functions. Documentation for [meta functions](https://docs.synqly.com/api-reference/meta-functions) is available. Not all meta functions are available at every endpoint.
 
         limit : typing.Optional[int]
             Number of compliance findings to return. Defaults to 50.
@@ -663,7 +663,7 @@ class CloudsecurityClient:
         Parameters
         ----------
         meta : typing.Optional[typing.Union[str, typing.Sequence[str]]]
-            Add metadata to the response by invoking meta functions. Documentation for meta functions is available at https://docs.synqly.com/api-reference/meta-functions. Not all meta function are available at every endpoint.
+            Add metadata to the response by invoking meta functions. Documentation for [meta functions](https://docs.synqly.com/api-reference/meta-functions) is available. Not all meta functions are available at every endpoint.
 
         limit : typing.Optional[int]
             Number of threats to return. Defaults to 100.
@@ -881,7 +881,7 @@ class AsyncCloudsecurityClient:
         Parameters
         ----------
         meta : typing.Optional[typing.Union[str, typing.Sequence[str]]]
-            Add metadata to the response by invoking meta functions. Documentation for meta functions is available at https://docs.synqly.com/api-reference/meta-functions. Not all meta function are available at every endpoint.
+            Add metadata to the response by invoking meta functions. Documentation for [meta functions](https://docs.synqly.com/api-reference/meta-functions) is available. Not all meta functions are available at every endpoint.
 
         limit : typing.Optional[int]
             Number of events to return. Defaults to 100.
@@ -1018,7 +1018,7 @@ class AsyncCloudsecurityClient:
         Parameters
         ----------
         meta : typing.Optional[typing.Union[str, typing.Sequence[str]]]
-            Add metadata to the response by invoking meta functions. Documentation for meta functions is available at https://docs.synqly.com/api-reference/meta-functions. Not all meta function are available at every endpoint.
+            Add metadata to the response by invoking meta functions. Documentation for [meta functions](https://docs.synqly.com/api-reference/meta-functions) is available. Not all meta functions are available at every endpoint.
 
         limit : typing.Optional[int]
             Number of cloud resources to return. Defaults to 500.
@@ -1160,7 +1160,7 @@ class AsyncCloudsecurityClient:
         Parameters
         ----------
         meta : typing.Optional[typing.Union[str, typing.Sequence[str]]]
-            Add metadata to the response by invoking meta functions. Documentation for meta functions is available at https://docs.synqly.com/api-reference/meta-functions. Not all meta function are available at every endpoint.
+            Add metadata to the response by invoking meta functions. Documentation for [meta functions](https://docs.synqly.com/api-reference/meta-functions) is available. Not all meta functions are available at every endpoint.
 
         limit : typing.Optional[int]
             Number of cloud resources to return. Defaults to 500.
@@ -1302,7 +1302,7 @@ class AsyncCloudsecurityClient:
         Parameters
         ----------
         meta : typing.Optional[typing.Union[str, typing.Sequence[str]]]
-            Add metadata to the response by invoking meta functions. Documentation for meta functions is available at https://docs.synqly.com/api-reference/meta-functions. Not all meta function are available at every endpoint.
+            Add metadata to the response by invoking meta functions. Documentation for [meta functions](https://docs.synqly.com/api-reference/meta-functions) is available. Not all meta functions are available at every endpoint.
 
         limit : typing.Optional[int]
             Number of compliance findings to return. Defaults to 50.
@@ -1524,7 +1524,7 @@ class AsyncCloudsecurityClient:
         Parameters
         ----------
         meta : typing.Optional[typing.Union[str, typing.Sequence[str]]]
-            Add metadata to the response by invoking meta functions. Documentation for meta functions is available at https://docs.synqly.com/api-reference/meta-functions. Not all meta function are available at every endpoint.
+            Add metadata to the response by invoking meta functions. Documentation for [meta functions](https://docs.synqly.com/api-reference/meta-functions) is available. Not all meta functions are available at every endpoint.
 
         limit : typing.Optional[int]
             Number of threats to return. Defaults to 100.

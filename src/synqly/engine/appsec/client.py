@@ -54,7 +54,7 @@ class AppsecClient:
         Parameters
         ----------
         meta : typing.Optional[typing.Union[str, typing.Sequence[str]]]
-            Add metadata to the response by invoking meta functions. Documentation for meta functions is available at https://docs.synqly.com/api-reference/meta-functions. Not all meta function are available at every endpoint.
+            Add metadata to the response by invoking meta functions. Documentation for [meta functions](https://docs.synqly.com/api-reference/meta-functions) is available. Not all meta functions are available at every endpoint.
 
         limit : typing.Optional[int]
             Number of applications to return. Defaults to 100 with a maximum of 5000. If a provider has a maximum limit lower than 5000, the provider's maximum limit will be used instead.
@@ -265,7 +265,7 @@ class AppsecClient:
         application_id : ApplicationId
 
         meta : typing.Optional[typing.Union[str, typing.Sequence[str]]]
-            Add metadata to the response by invoking meta functions. Documentation for meta functions is available at https://docs.synqly.com/api-reference/meta-functions. Not all meta function are available at every endpoint.
+            Add metadata to the response by invoking meta functions. Documentation for [meta functions](https://docs.synqly.com/api-reference/meta-functions) is available. Not all meta functions are available at every endpoint.
 
         limit : typing.Optional[int]
             Number of findings to return. Defaults to 100 with a maximum of 5000. If a provider has a maximum limit lower than 5000, the provider's maximum limit will be used instead.
@@ -474,7 +474,7 @@ class AppsecClient:
         Parameters
         ----------
         meta : typing.Optional[typing.Union[str, typing.Sequence[str]]]
-            Add metadata to the response by invoking meta functions. Documentation for meta functions is available at https://docs.synqly.com/api-reference/meta-functions. Not all meta function are available at every endpoint.
+            Add metadata to the response by invoking meta functions. Documentation for [meta functions](https://docs.synqly.com/api-reference/meta-functions) is available. Not all meta functions are available at every endpoint.
 
         limit : typing.Optional[int]
             Number of findings to return. Defaults to 100 with a maximum of 5000. If a provider has a maximum limit lower than 5000, the provider's maximum limit will be used instead.
@@ -685,7 +685,7 @@ class AppsecClient:
         finding_id : FindingId
 
         meta : typing.Optional[typing.Union[str, typing.Sequence[str]]]
-            Add metadata to the response by invoking meta functions. Documentation for meta functions is available at https://docs.synqly.com/api-reference/meta-functions. Not all meta function are available at every endpoint.
+            Add metadata to the response by invoking meta functions. Documentation for [meta functions](https://docs.synqly.com/api-reference/meta-functions) is available. Not all meta functions are available at every endpoint.
 
         include_raw_data : typing.Optional[bool]
             Include the raw data from the provider in the response. Defaults to `false`.
@@ -885,7 +885,7 @@ class AsyncAppsecClient:
         Parameters
         ----------
         meta : typing.Optional[typing.Union[str, typing.Sequence[str]]]
-            Add metadata to the response by invoking meta functions. Documentation for meta functions is available at https://docs.synqly.com/api-reference/meta-functions. Not all meta function are available at every endpoint.
+            Add metadata to the response by invoking meta functions. Documentation for [meta functions](https://docs.synqly.com/api-reference/meta-functions) is available. Not all meta functions are available at every endpoint.
 
         limit : typing.Optional[int]
             Number of applications to return. Defaults to 100 with a maximum of 5000. If a provider has a maximum limit lower than 5000, the provider's maximum limit will be used instead.
@@ -1104,7 +1104,7 @@ class AsyncAppsecClient:
         application_id : ApplicationId
 
         meta : typing.Optional[typing.Union[str, typing.Sequence[str]]]
-            Add metadata to the response by invoking meta functions. Documentation for meta functions is available at https://docs.synqly.com/api-reference/meta-functions. Not all meta function are available at every endpoint.
+            Add metadata to the response by invoking meta functions. Documentation for [meta functions](https://docs.synqly.com/api-reference/meta-functions) is available. Not all meta functions are available at every endpoint.
 
         limit : typing.Optional[int]
             Number of findings to return. Defaults to 100 with a maximum of 5000. If a provider has a maximum limit lower than 5000, the provider's maximum limit will be used instead.
@@ -1321,7 +1321,7 @@ class AsyncAppsecClient:
         Parameters
         ----------
         meta : typing.Optional[typing.Union[str, typing.Sequence[str]]]
-            Add metadata to the response by invoking meta functions. Documentation for meta functions is available at https://docs.synqly.com/api-reference/meta-functions. Not all meta function are available at every endpoint.
+            Add metadata to the response by invoking meta functions. Documentation for [meta functions](https://docs.synqly.com/api-reference/meta-functions) is available. Not all meta functions are available at every endpoint.
 
         limit : typing.Optional[int]
             Number of findings to return. Defaults to 100 with a maximum of 5000. If a provider has a maximum limit lower than 5000, the provider's maximum limit will be used instead.
@@ -1540,7 +1540,7 @@ class AsyncAppsecClient:
         finding_id : FindingId
 
         meta : typing.Optional[typing.Union[str, typing.Sequence[str]]]
-            Add metadata to the response by invoking meta functions. Documentation for meta functions is available at https://docs.synqly.com/api-reference/meta-functions. Not all meta function are available at every endpoint.
+            Add metadata to the response by invoking meta functions. Documentation for [meta functions](https://docs.synqly.com/api-reference/meta-functions) is available. Not all meta functions are available at every endpoint.
 
         include_raw_data : typing.Optional[bool]
             Include the raw data from the provider in the response. Defaults to `false`.

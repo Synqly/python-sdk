@@ -57,7 +57,7 @@ class EndpointmanagementClient:
         Parameters
         ----------
         meta : typing.Optional[typing.Union[str, typing.Sequence[str]]]
-            Add metadata to the response by invoking meta functions. Documentation for meta functions is available at https://docs.synqly.com/api-reference/meta-functions. Not all meta function are available at every endpoint.
+            Add metadata to the response by invoking meta functions. Documentation for [meta functions](https://docs.synqly.com/api-reference/meta-functions) is available. Not all meta functions are available at every endpoint.
 
         limit : typing.Optional[int]
             Number of devices to return. Defaults to 50.
@@ -441,7 +441,7 @@ class EndpointmanagementClient:
         Parameters
         ----------
         meta : typing.Optional[typing.Union[str, typing.Sequence[str]]]
-            Add metadata to the response by invoking meta functions. Documentation for meta functions is available at https://docs.synqly.com/api-reference/meta-functions. Not all meta function are available at every endpoint.
+            Add metadata to the response by invoking meta functions. Documentation for [meta functions](https://docs.synqly.com/api-reference/meta-functions) is available. Not all meta functions are available at every endpoint.
 
         limit : typing.Optional[int]
             Number of compliance findings to return. Defaults to 50.
@@ -868,7 +868,7 @@ class EndpointmanagementClient:
         id : Id
 
         meta : typing.Optional[typing.Union[str, typing.Sequence[str]]]
-            Add metadata to the response by invoking meta functions. Documentation for meta functions is available at https://docs.synqly.com/api-reference/meta-functions. Not all meta function are available at every endpoint.
+            Add metadata to the response by invoking meta functions. Documentation for [meta functions](https://docs.synqly.com/api-reference/meta-functions) is available. Not all meta functions are available at every endpoint.
 
         limit : typing.Optional[int]
             Number of applications to return. Defaults to 50.
@@ -1082,7 +1082,7 @@ class AsyncEndpointmanagementClient:
         Parameters
         ----------
         meta : typing.Optional[typing.Union[str, typing.Sequence[str]]]
-            Add metadata to the response by invoking meta functions. Documentation for meta functions is available at https://docs.synqly.com/api-reference/meta-functions. Not all meta function are available at every endpoint.
+            Add metadata to the response by invoking meta functions. Documentation for [meta functions](https://docs.synqly.com/api-reference/meta-functions) is available. Not all meta functions are available at every endpoint.
 
         limit : typing.Optional[int]
             Number of devices to return. Defaults to 50.
@@ -1482,7 +1482,7 @@ class AsyncEndpointmanagementClient:
         Parameters
         ----------
         meta : typing.Optional[typing.Union[str, typing.Sequence[str]]]
-            Add metadata to the response by invoking meta functions. Documentation for meta functions is available at https://docs.synqly.com/api-reference/meta-functions. Not all meta function are available at every endpoint.
+            Add metadata to the response by invoking meta functions. Documentation for [meta functions](https://docs.synqly.com/api-reference/meta-functions) is available. Not all meta functions are available at every endpoint.
 
         limit : typing.Optional[int]
             Number of compliance findings to return. Defaults to 50.
@@ -1925,7 +1925,7 @@ class AsyncEndpointmanagementClient:
         id : Id
 
         meta : typing.Optional[typing.Union[str, typing.Sequence[str]]]
-            Add metadata to the response by invoking meta functions. Documentation for meta functions is available at https://docs.synqly.com/api-reference/meta-functions. Not all meta function are available at every endpoint.
+            Add metadata to the response by invoking meta functions. Documentation for [meta functions](https://docs.synqly.com/api-reference/meta-functions) is available. Not all meta functions are available at every endpoint.
 
         limit : typing.Optional[int]
             Number of applications to return. Defaults to 50.

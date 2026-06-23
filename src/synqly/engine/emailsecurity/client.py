@@ -53,7 +53,7 @@ class EmailsecurityClient:
         Parameters
         ----------
         meta : typing.Optional[typing.Union[str, typing.Sequence[str]]]
-            Add metadata to the response by invoking meta functions. Documentation for meta functions is available at https://docs.synqly.com/api-reference/meta-functions. Not all meta function are available at every endpoint.
+            Add metadata to the response by invoking meta functions. Documentation for [meta functions](https://docs.synqly.com/api-reference/meta-functions) is available. Not all meta functions are available at every endpoint.
 
         limit : typing.Optional[int]
             Number of threats to return. Defaults to 1000 with a maximum of 5000. If a provider has a maximum limit lower than 5000, the provider's maximum limit will be used instead.
@@ -255,7 +255,7 @@ class EmailsecurityClient:
         threat_id : Id
 
         meta : typing.Optional[typing.Union[str, typing.Sequence[str]]]
-            Add metadata to the response by invoking meta functions. Documentation for meta functions is available at https://docs.synqly.com/api-reference/meta-functions. Not all meta function are available at every endpoint.
+            Add metadata to the response by invoking meta functions. Documentation for [meta functions](https://docs.synqly.com/api-reference/meta-functions) is available. Not all meta functions are available at every endpoint.
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -443,7 +443,7 @@ class EmailsecurityClient:
         Parameters
         ----------
         meta : typing.Optional[typing.Union[str, typing.Sequence[str]]]
-            Add metadata to the response by invoking meta functions. Documentation for meta functions is available at https://docs.synqly.com/api-reference/meta-functions. Not all meta function are available at every endpoint.
+            Add metadata to the response by invoking meta functions. Documentation for [meta functions](https://docs.synqly.com/api-reference/meta-functions) is available. Not all meta functions are available at every endpoint.
 
         limit : typing.Optional[int]
             Number of email events to return. Defaults to 1000 with a maximum of 5000. If a provider has a maximum limit lower than 5000, the provider's maximum limit will be used instead.
@@ -650,7 +650,7 @@ class AsyncEmailsecurityClient:
         Parameters
         ----------
         meta : typing.Optional[typing.Union[str, typing.Sequence[str]]]
-            Add metadata to the response by invoking meta functions. Documentation for meta functions is available at https://docs.synqly.com/api-reference/meta-functions. Not all meta function are available at every endpoint.
+            Add metadata to the response by invoking meta functions. Documentation for [meta functions](https://docs.synqly.com/api-reference/meta-functions) is available. Not all meta functions are available at every endpoint.
 
         limit : typing.Optional[int]
             Number of threats to return. Defaults to 1000 with a maximum of 5000. If a provider has a maximum limit lower than 5000, the provider's maximum limit will be used instead.
@@ -860,7 +860,7 @@ class AsyncEmailsecurityClient:
         threat_id : Id
 
         meta : typing.Optional[typing.Union[str, typing.Sequence[str]]]
-            Add metadata to the response by invoking meta functions. Documentation for meta functions is available at https://docs.synqly.com/api-reference/meta-functions. Not all meta function are available at every endpoint.
+            Add metadata to the response by invoking meta functions. Documentation for [meta functions](https://docs.synqly.com/api-reference/meta-functions) is available. Not all meta functions are available at every endpoint.
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -1056,7 +1056,7 @@ class AsyncEmailsecurityClient:
         Parameters
         ----------
         meta : typing.Optional[typing.Union[str, typing.Sequence[str]]]
-            Add metadata to the response by invoking meta functions. Documentation for meta functions is available at https://docs.synqly.com/api-reference/meta-functions. Not all meta function are available at every endpoint.
+            Add metadata to the response by invoking meta functions. Documentation for [meta functions](https://docs.synqly.com/api-reference/meta-functions) is available. Not all meta functions are available at every endpoint.
 
         limit : typing.Optional[int]
             Number of email events to return. Defaults to 1000 with a maximum of 5000. If a provider has a maximum limit lower than 5000, the provider's maximum limit will be used instead.
