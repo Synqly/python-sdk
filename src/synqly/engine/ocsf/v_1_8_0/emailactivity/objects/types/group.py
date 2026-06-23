@@ -3,6 +3,7 @@
 from ......core.unchecked_base_model import UncheckedBaseModel
 import typing
 import pydantic
+from ...base.types.email_address import EmailAddress
 from ......core.pydantic_utilities import IS_PYDANTIC_V2
 
 
@@ -19,6 +20,11 @@ class Group(UncheckedBaseModel):
     domain: typing.Optional[str] = pydantic.Field(default=None)
     """
     The domain where the group is defined. For example: the LDAP or Active Directory domain.
+    """
+
+    email_addr: typing.Optional[EmailAddress] = pydantic.Field(default=None)
+    """
+    The group's email address. For example, a Google Group email address.
     """
 
     name: typing.Optional[str] = pydantic.Field(default=None)
