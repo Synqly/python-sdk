@@ -2,6 +2,7 @@
 
 from .api_config import ApiConfig
 from .api_region import ApiRegion
+from .app_sec_service_now import AppSecServiceNow
 from .app_sec_snyk import AppSecSnyk
 from .app_sec_tenable import AppSecTenable
 from .app_sec_veracode import AppSecVeracode
@@ -443,6 +444,7 @@ from .provider_config import (
     ProviderConfig_AppsecOpentextApplicationSecurity,
     ProviderConfig_AppsecOpentextCoreApplicationSecurity,
     ProviderConfig_AppsecOpentextCoreApplicationSecurityMock,
+    ProviderConfig_AppsecServicenow,
     ProviderConfig_AppsecSnyk,
     ProviderConfig_AppsecTenable,
     ProviderConfig_AppsecVeracode,
@@ -845,6 +847,7 @@ from .zendesk_credential import (
 __all__ = [
     "ApiConfig",
     "ApiRegion",
+    "AppSecServiceNow",
     "AppSecSnyk",
     "AppSecTenable",
     "AppSecVeracode",
@@ -1166,6 +1169,7 @@ __all__ = [
     "ProviderConfig_AppsecOpentextApplicationSecurity",
     "ProviderConfig_AppsecOpentextCoreApplicationSecurity",
     "ProviderConfig_AppsecOpentextCoreApplicationSecurityMock",
+    "ProviderConfig_AppsecServicenow",
     "ProviderConfig_AppsecSnyk",
     "ProviderConfig_AppsecTenable",
     "ProviderConfig_AppsecVeracode",

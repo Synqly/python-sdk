@@ -3,6 +3,7 @@
 from .types import (
     ApiConfig,
     ApiRegion,
+    AppSecServiceNow,
     AppSecSnyk,
     AppSecTenable,
     AppSecVeracode,
@@ -324,6 +325,7 @@ from .types import (
     ProviderConfig_AppsecOpentextApplicationSecurity,
     ProviderConfig_AppsecOpentextCoreApplicationSecurity,
     ProviderConfig_AppsecOpentextCoreApplicationSecurityMock,
+    ProviderConfig_AppsecServicenow,
     ProviderConfig_AppsecSnyk,
     ProviderConfig_AppsecTenable,
     ProviderConfig_AppsecVeracode,
@@ -655,6 +657,7 @@ from .types import (
 __all__ = [
     "ApiConfig",
     "ApiRegion",
+    "AppSecServiceNow",
     "AppSecSnyk",
     "AppSecTenable",
     "AppSecVeracode",
@@ -976,6 +979,7 @@ __all__ = [
     "ProviderConfig_AppsecOpentextApplicationSecurity",
     "ProviderConfig_AppsecOpentextCoreApplicationSecurity",
     "ProviderConfig_AppsecOpentextCoreApplicationSecurityMock",
+    "ProviderConfig_AppsecServicenow",
     "ProviderConfig_AppsecSnyk",
     "ProviderConfig_AppsecTenable",
     "ProviderConfig_AppsecVeracode",

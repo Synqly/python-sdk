@@ -21,6 +21,7 @@ from .open_text_core_application_security_url import OpenTextCoreApplicationSecu
 from .appsec_opentext_core_application_security_dataset import (
     AppsecOpentextCoreApplicationSecurityDataset,
 )
+from .service_now_credential import ServiceNowCredential
 from .snyk_credential import SnykCredential
 from .snyk_region import SnykRegion
 from .tenable_cloud_credential import TenableCloudCredential
@@ -42,7 +43,6 @@ from .nozomi_vantage_credential import NozomiVantageCredential
 from .assets_nozomi_vantage_dataset import AssetsNozomiVantageDataset
 from .qualys_cloud_credential import QualysCloudCredential
 from .assets_qualys_cloud_dataset import AssetsQualysCloudDataset
-from .service_now_credential import ServiceNowCredential
 from .assets_service_now_dataset import AssetsServiceNowDataset
 from .sevco_credential import SevcoCredential
 from .assets_sevco_dataset import AssetsSevcoDataset
@@ -258,6 +258,22 @@ class ProviderConfig_AppsecOpentextCoreApplicationSecurityMock(UncheckedBaseMode
         "appsec_opentext_core_application_security_mock"
     )
     dataset: AppsecOpentextCoreApplicationSecurityDataset
+
+    if IS_PYDANTIC_V2:
+        model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(
+            extra="allow"
+        )  # type: ignore # Pydantic v2
+    else:
+
+        class Config:
+            smart_union = True
+            extra = pydantic.Extra.allow
+
+
+class ProviderConfig_AppsecServicenow(UncheckedBaseModel):
+    type: typing.Literal["appsec_servicenow"] = "appsec_servicenow"
+    credential: ServiceNowCredential
+    url: str
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(
@@ -2690,6 +2706,7 @@ ProviderConfig = typing_extensions.Annotated[
         ProviderConfig_AppsecOpentextApplicationSecurity,
         ProviderConfig_AppsecOpentextCoreApplicationSecurity,
         ProviderConfig_AppsecOpentextCoreApplicationSecurityMock,
+        ProviderConfig_AppsecServicenow,
         ProviderConfig_AppsecSnyk,
         ProviderConfig_AppsecTenable,
         ProviderConfig_AppsecVeracode,

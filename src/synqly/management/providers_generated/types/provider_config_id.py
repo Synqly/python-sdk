@@ -50,6 +50,11 @@ class ProviderConfigId(str, enum.Enum):
     [MOCK] OpenText Core Application Security
     """
 
+    APP_SEC_SERVICE_NOW = "appsec_servicenow"
+    """
+    ServiceNow Application Vulnerability Response
+    """
+
     APP_SEC_SNYK = "appsec_snyk"
     """
     Snyk
@@ -789,6 +794,7 @@ class ProviderConfigId(str, enum.Enum):
         appsec_open_text_application_security: typing.Callable[[], T_Result],
         appsec_open_text_core_application_security: typing.Callable[[], T_Result],
         appsec_open_text_core_application_security_mock: typing.Callable[[], T_Result],
+        app_sec_service_now: typing.Callable[[], T_Result],
         app_sec_snyk: typing.Callable[[], T_Result],
         app_sec_tenable: typing.Callable[[], T_Result],
         app_sec_veracode: typing.Callable[[], T_Result],
@@ -948,6 +954,8 @@ class ProviderConfigId(str, enum.Enum):
             return appsec_open_text_core_application_security()
         if self is ProviderConfigId.APPSEC_OPEN_TEXT_CORE_APPLICATION_SECURITY_MOCK:
             return appsec_open_text_core_application_security_mock()
+        if self is ProviderConfigId.APP_SEC_SERVICE_NOW:
+            return app_sec_service_now()
         if self is ProviderConfigId.APP_SEC_SNYK:
             return app_sec_snyk()
         if self is ProviderConfigId.APP_SEC_TENABLE:
