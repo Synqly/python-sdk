@@ -45,6 +45,7 @@ from .encryption_details import EncryptionDetails
 from .encryption_details_algorithm_id import EncryptionDetailsAlgorithmId
 from .enrichment import Enrichment
 from .epss import Epss
+from .exploit_maturity_level import ExploitMaturityLevel
 from .extension import Extension
 from .feature import Feature
 from .file import File
@@ -172,6 +173,7 @@ __all__ = [
     "EncryptionDetailsAlgorithmId",
     "Enrichment",
     "Epss",
+    "ExploitMaturityLevel",
     "Extension",
     "Feature",
     "File",

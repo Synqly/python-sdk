@@ -57,6 +57,7 @@ from .environment_variable import EnvironmentVariable
 from .epss import Epss
 from .evidences import Evidences
 from .evidences_verdict_id import EvidencesVerdictId
+from .exploit_maturity_level import ExploitMaturityLevel
 from .extension import Extension
 from .feature import Feature
 from .file import File
@@ -232,6 +233,7 @@ __all__ = [
     "Epss",
     "Evidences",
     "EvidencesVerdictId",
+    "ExploitMaturityLevel",
     "Extension",
     "Feature",
     "File",
