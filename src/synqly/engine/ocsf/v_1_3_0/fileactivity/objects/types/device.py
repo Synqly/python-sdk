@@ -305,6 +305,11 @@ class Device(UncheckedBaseModel):
     The product vendor that created the device.
     """
 
+    vendor_name: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    The vendor for the device. For example <code>Dell</code> or <code>Lenovo</code>.
+    """
+
     vlan_uid: typing.Optional[str] = pydantic.Field(default=None)
     """
     The Virtual LAN identifier.
