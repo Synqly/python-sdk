@@ -93,6 +93,7 @@ from .identity_okta_dataset import IdentityOktaDataset
 from .ping_one_auth_url import PingOneAuthUrl
 from .ping_one_credential import PingOneCredential
 from .ping_one_apiurl import PingOneApiurl
+from .identity_ping_one_dataset import IdentityPingOneDataset
 from .workday_credential import WorkdayCredential
 from .incident_io_credential import IncidentIoCredential
 from .pager_duty_credential import PagerDutyCredential
@@ -1351,6 +1352,21 @@ class ProviderConfig_IdentityPingone(UncheckedBaseModel):
     credential: PingOneCredential
     organization_id: str
     url: PingOneApiurl
+
+    if IS_PYDANTIC_V2:
+        model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(
+            extra="allow"
+        )  # type: ignore # Pydantic v2
+    else:
+
+        class Config:
+            smart_union = True
+            extra = pydantic.Extra.allow
+
+
+class ProviderConfig_IdentityPingoneMock(UncheckedBaseModel):
+    type: typing.Literal["identity_pingone_mock"] = "identity_pingone_mock"
+    dataset: IdentityPingOneDataset
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(
@@ -2773,6 +2789,7 @@ ProviderConfig = typing_extensions.Annotated[
         ProviderConfig_IdentityOkta,
         ProviderConfig_IdentityOktaMock,
         ProviderConfig_IdentityPingone,
+        ProviderConfig_IdentityPingoneMock,
         ProviderConfig_IdentityWorkday,
         ProviderConfig_IncidentresponseIncidentio,
         ProviderConfig_IncidentresponsePagerduty,

@@ -387,6 +387,11 @@ class ProviderConfigId(str, enum.Enum):
     PingOne Cloud Platform
     """
 
+    IDENTITY_PING_ONE_MOCK = "identity_pingone_mock"
+    """
+    [MOCK] PingOne Cloud Platform
+    """
+
     IDENTITY_WORKDAY = "identity_workday"
     """
     Workday Identity
@@ -861,6 +866,7 @@ class ProviderConfigId(str, enum.Enum):
         identity_okta: typing.Callable[[], T_Result],
         identity_okta_mock: typing.Callable[[], T_Result],
         identity_ping_one: typing.Callable[[], T_Result],
+        identity_ping_one_mock: typing.Callable[[], T_Result],
         identity_workday: typing.Callable[[], T_Result],
         incident_response_incident_io: typing.Callable[[], T_Result],
         incident_response_pager_duty: typing.Callable[[], T_Result],
@@ -1088,6 +1094,8 @@ class ProviderConfigId(str, enum.Enum):
             return identity_okta_mock()
         if self is ProviderConfigId.IDENTITY_PING_ONE:
             return identity_ping_one()
+        if self is ProviderConfigId.IDENTITY_PING_ONE_MOCK:
+            return identity_ping_one_mock()
         if self is ProviderConfigId.IDENTITY_WORKDAY:
             return identity_workday()
         if self is ProviderConfigId.INCIDENT_RESPONSE_INCIDENT_IO:
