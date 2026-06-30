@@ -318,6 +318,8 @@ from .identity_entra_id import IdentityEntraId
 from .identity_entra_id_dataset import IdentityEntraIdDataset
 from .identity_entra_id_mock import IdentityEntraIdMock
 from .identity_google import IdentityGoogle
+from .identity_google_dataset import IdentityGoogleDataset
+from .identity_google_mock import IdentityGoogleMock
 from .identity_greenhouse import IdentityGreenhouse
 from .identity_okta import IdentityOkta
 from .identity_okta_dataset import IdentityOktaDataset
@@ -509,6 +511,7 @@ from .provider_config import (
     ProviderConfig_IdentityEntraId,
     ProviderConfig_IdentityEntraIdMock,
     ProviderConfig_IdentityGoogle,
+    ProviderConfig_IdentityGoogleMock,
     ProviderConfig_IdentityGreenhouse,
     ProviderConfig_IdentityOkta,
     ProviderConfig_IdentityOktaMock,
@@ -1082,6 +1085,8 @@ __all__ = [
     "IdentityEntraIdDataset",
     "IdentityEntraIdMock",
     "IdentityGoogle",
+    "IdentityGoogleDataset",
+    "IdentityGoogleMock",
     "IdentityGreenhouse",
     "IdentityOkta",
     "IdentityOktaDataset",
@@ -1237,6 +1242,7 @@ __all__ = [
     "ProviderConfig_IdentityEntraId",
     "ProviderConfig_IdentityEntraIdMock",
     "ProviderConfig_IdentityGoogle",
+    "ProviderConfig_IdentityGoogleMock",
     "ProviderConfig_IdentityGreenhouse",
     "ProviderConfig_IdentityOkta",
     "ProviderConfig_IdentityOktaMock",

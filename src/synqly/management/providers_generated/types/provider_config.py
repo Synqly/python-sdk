@@ -87,6 +87,7 @@ from .ashby_credential import AshbyCredential
 from .entra_id_credential import EntraIdCredential
 from .identity_entra_id_dataset import IdentityEntraIdDataset
 from .google_credential import GoogleCredential
+from .identity_google_dataset import IdentityGoogleDataset
 from .greenhouse_credential import GreenhouseCredential
 from .okta_credential import OktaCredential
 from .identity_okta_dataset import IdentityOktaDataset
@@ -1287,6 +1288,21 @@ class ProviderConfig_IdentityGoogle(UncheckedBaseModel):
     client_email: str
     credential: GoogleCredential
     delegate: str
+
+    if IS_PYDANTIC_V2:
+        model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(
+            extra="allow"
+        )  # type: ignore # Pydantic v2
+    else:
+
+        class Config:
+            smart_union = True
+            extra = pydantic.Extra.allow
+
+
+class ProviderConfig_IdentityGoogleMock(UncheckedBaseModel):
+    type: typing.Literal["identity_google_mock"] = "identity_google_mock"
+    dataset: IdentityGoogleDataset
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(
@@ -2785,6 +2801,7 @@ ProviderConfig = typing_extensions.Annotated[
         ProviderConfig_IdentityEntraId,
         ProviderConfig_IdentityEntraIdMock,
         ProviderConfig_IdentityGoogle,
+        ProviderConfig_IdentityGoogleMock,
         ProviderConfig_IdentityGreenhouse,
         ProviderConfig_IdentityOkta,
         ProviderConfig_IdentityOktaMock,
