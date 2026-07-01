@@ -98,6 +98,11 @@ from .azure_blob_credential import (
     AzureBlobCredential_Token,
     AzureBlobCredential_TokenId,
 )
+from .azure_dev_ops_ticketing_credential import (
+    AzureDevOpsTicketingCredential,
+    AzureDevOpsTicketingCredential_Token,
+    AzureDevOpsTicketingCredential_TokenId,
+)
 from .azure_monitor_logs_credential import (
     AzureMonitorLogsCredential,
     AzureMonitorLogsCredential_Token,
@@ -563,6 +568,7 @@ from .provider_config import (
     ProviderConfig_StorageGcs,
     ProviderConfig_StorageMockStorage,
     ProviderConfig_TicketingAutotask,
+    ProviderConfig_TicketingAzureDevops,
     ProviderConfig_TicketingFreshdesk,
     ProviderConfig_TicketingIvanti,
     ProviderConfig_TicketingIvantiMock,
@@ -750,6 +756,7 @@ from .tenable_sc_credential import (
     TenableScCredential_TokenId,
 )
 from .ticketing_autotask import TicketingAutotask
+from .ticketing_azure_dev_ops import TicketingAzureDevOps
 from .ticketing_freshdesk import TicketingFreshdesk
 from .ticketing_ivanti import TicketingIvanti
 from .ticketing_ivanti_dataset import TicketingIvantiDataset
@@ -927,6 +934,9 @@ __all__ = [
     "AzureBlobCredential",
     "AzureBlobCredential_Token",
     "AzureBlobCredential_TokenId",
+    "AzureDevOpsTicketingCredential",
+    "AzureDevOpsTicketingCredential_Token",
+    "AzureDevOpsTicketingCredential_TokenId",
     "AzureMonitorLogsCredential",
     "AzureMonitorLogsCredential_Token",
     "AzureMonitorLogsCredential_TokenId",
@@ -1294,6 +1304,7 @@ __all__ = [
     "ProviderConfig_StorageGcs",
     "ProviderConfig_StorageMockStorage",
     "ProviderConfig_TicketingAutotask",
+    "ProviderConfig_TicketingAzureDevops",
     "ProviderConfig_TicketingFreshdesk",
     "ProviderConfig_TicketingIvanti",
     "ProviderConfig_TicketingIvantiMock",
@@ -1435,6 +1446,7 @@ __all__ = [
     "TenableScCredential_Token",
     "TenableScCredential_TokenId",
     "TicketingAutotask",
+    "TicketingAzureDevOps",
     "TicketingFreshdesk",
     "TicketingIvanti",
     "TicketingIvantiDataset",

@@ -132,6 +132,7 @@ from .autotask_api_integration_code_credential import (
     AutotaskApiIntegrationCodeCredential,
 )
 from .autotask_secret_credential import AutotaskSecretCredential
+from .azure_dev_ops_ticketing_credential import AzureDevOpsTicketingCredential
 from .freshdesk_credential import FreshdeskCredential
 from .ivanti_credential_ticketing import IvantiCredentialTicketing
 from .ticketing_ivanti_dataset import TicketingIvantiDataset
@@ -2211,6 +2212,25 @@ class ProviderConfig_TicketingAutotask(UncheckedBaseModel):
             extra = pydantic.Extra.allow
 
 
+class ProviderConfig_TicketingAzureDevops(UncheckedBaseModel):
+    type: typing.Literal["ticketing_azure_devops"] = "ticketing_azure_devops"
+    credential: AzureDevOpsTicketingCredential
+    default_issue_type: typing.Optional[str] = None
+    organization: str
+    project: str
+    url: str
+
+    if IS_PYDANTIC_V2:
+        model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(
+            extra="allow"
+        )  # type: ignore # Pydantic v2
+    else:
+
+        class Config:
+            smart_union = True
+            extra = pydantic.Extra.allow
+
+
 class ProviderConfig_TicketingFreshdesk(UncheckedBaseModel):
     type: typing.Literal["ticketing_freshdesk"] = "ticketing_freshdesk"
     credential: FreshdeskCredential
@@ -2853,6 +2873,7 @@ ProviderConfig = typing_extensions.Annotated[
         ProviderConfig_StorageGcs,
         ProviderConfig_StorageMockStorage,
         ProviderConfig_TicketingAutotask,
+        ProviderConfig_TicketingAzureDevops,
         ProviderConfig_TicketingFreshdesk,
         ProviderConfig_TicketingIvanti,
         ProviderConfig_TicketingIvantiMock,
