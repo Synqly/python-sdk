@@ -12,6 +12,7 @@ from .group import Group
 from ...base.types.ip_address import IpAddress
 from ...base.types.mac_address import MacAddress
 from .user import User
+from ...base.types.url_string import UrlString
 from .databucket_type_id import DatabucketTypeId
 from ......core.pydantic_utilities import IS_PYDANTIC_V2
 
@@ -151,6 +152,11 @@ class Databucket(UncheckedBaseModel):
     size: typing.Optional[int] = pydantic.Field(default=None)
     """
     The size of the databucket in bytes.
+    """
+
+    src_url: typing.Optional[UrlString] = pydantic.Field(default=None)
+    """
+    The URL of the resource in the event sources system.
     """
 
     type: typing.Optional[str] = pydantic.Field(default=None)

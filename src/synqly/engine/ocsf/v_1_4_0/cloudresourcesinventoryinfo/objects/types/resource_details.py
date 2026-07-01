@@ -10,6 +10,7 @@ from ...base.types.timestamp import Timestamp
 import datetime as dt
 from ...base.types.mac_address import MacAddress
 from .user import User
+from ...base.types.url_string import UrlString
 from ......core.pydantic_utilities import IS_PYDANTIC_V2
 
 
@@ -91,6 +92,11 @@ class ResourceDetails(UncheckedBaseModel):
     region: typing.Optional[str] = pydantic.Field(default=None)
     """
     The cloud region of the resource.
+    """
+
+    src_url: typing.Optional[UrlString] = pydantic.Field(default=None)
+    """
+    The URL of the resource in the event sources system.
     """
 
     type: typing.Optional[str] = pydantic.Field(default=None)

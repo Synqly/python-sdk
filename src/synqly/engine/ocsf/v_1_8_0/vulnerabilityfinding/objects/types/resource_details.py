@@ -12,6 +12,7 @@ from ...base.types.ip_address import IpAddress
 from .user import User
 from .graph import Graph
 from .resource_details_role_id import ResourceDetailsRoleId
+from ...base.types.url_string import UrlString
 from .key_value_object import KeyValueObject
 from ...base.types.resource_uid import ResourceUid
 from ......core.pydantic_utilities import IS_PYDANTIC_V2
@@ -125,6 +126,11 @@ class ResourceDetails(UncheckedBaseModel):
     role_id: typing.Optional[ResourceDetailsRoleId] = pydantic.Field(default=None)
     """
     The normalized identifier of the resource's role in the context of the event or finding.
+    """
+
+    src_url: typing.Optional[UrlString] = pydantic.Field(default=None)
+    """
+    The URL of the resource in the event sources system.
     """
 
     tags: typing.Optional[typing.List[KeyValueObject]] = pydantic.Field(default=None)

@@ -14,6 +14,7 @@ from .related_event import RelatedEvent
 from ...base.types.url_string import UrlString
 from .key_value_object import KeyValueObject
 from .trait import Trait
+from .object import Object
 from ......core.pydantic_utilities import IS_PYDANTIC_V2
 
 
@@ -156,6 +157,11 @@ class FindingInfo(UncheckedBaseModel):
     uid_alt: typing.Optional[str] = pydantic.Field(default=None)
     """
     The alternative unique identifier of the reported finding.
+    """
+
+    xattributes: typing.Optional[Object] = pydantic.Field(default=None)
+    """
+    An unordered collection of zero or more name/value pairs that represent a finding's extended attributes and are specific to the event source.
     """
 
     if IS_PYDANTIC_V2:

@@ -20,6 +20,7 @@ from .organization import Organization
 from .os import Os
 from .user import User
 from .device_risk_level_id import DeviceRiskLevelId
+from ...base.types.url_string import UrlString
 from ...base.types.subnet import Subnet
 from .product import Product
 from .device_type_id import DeviceTypeId
@@ -263,6 +264,11 @@ class Device(UncheckedBaseModel):
     risk_score: typing.Optional[int] = pydantic.Field(default=None)
     """
     The risk score as reported by the event source.
+    """
+
+    src_url: typing.Optional[UrlString] = pydantic.Field(default=None)
+    """
+    The URL of the device in the event sources system.
     """
 
     subnet: typing.Optional[Subnet] = pydantic.Field(default=None)
