@@ -137,6 +137,7 @@ from .freshdesk_credential import FreshdeskCredential
 from .ivanti_credential_ticketing import IvantiCredentialTicketing
 from .ticketing_ivanti_dataset import TicketingIvantiDataset
 from .custom_field_mapping import CustomFieldMapping
+from .linear_credential import LinearCredential
 from .ticketing_pagerduty_dataset import TicketingPagerdutyDataset
 from .torq_credential import TorqCredential
 from .zendesk_credential import ZendeskCredential
@@ -2320,6 +2321,23 @@ class ProviderConfig_TicketingJiraServiceManagement(UncheckedBaseModel):
             extra = pydantic.Extra.allow
 
 
+class ProviderConfig_TicketingLinear(UncheckedBaseModel):
+    type: typing.Literal["ticketing_linear"] = "ticketing_linear"
+    credential: LinearCredential
+    default_team_id: typing.Optional[str] = None
+    url: typing.Optional[str] = None
+
+    if IS_PYDANTIC_V2:
+        model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(
+            extra="allow"
+        )  # type: ignore # Pydantic v2
+    else:
+
+        class Config:
+            smart_union = True
+            extra = pydantic.Extra.allow
+
+
 class ProviderConfig_TicketingMockTicketing(UncheckedBaseModel):
     type: typing.Literal["ticketing_mock_ticketing"] = "ticketing_mock_ticketing"
     custom_field_mappings: typing.Optional[typing.List[CustomFieldMapping]] = None
@@ -2879,6 +2897,7 @@ ProviderConfig = typing_extensions.Annotated[
         ProviderConfig_TicketingIvantiMock,
         ProviderConfig_TicketingJira,
         ProviderConfig_TicketingJiraServiceManagement,
+        ProviderConfig_TicketingLinear,
         ProviderConfig_TicketingMockTicketing,
         ProviderConfig_TicketingPagerduty,
         ProviderConfig_TicketingPagerdutyMock,

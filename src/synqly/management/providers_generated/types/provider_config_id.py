@@ -657,6 +657,11 @@ class ProviderConfigId(str, enum.Enum):
     Jira Service Management
     """
 
+    TICKETING_LINEAR = "ticketing_linear"
+    """
+    Linear
+    """
+
     TICKETING_MOCK = "ticketing_mock_ticketing"
     """
     Synqly Test Provider
@@ -930,6 +935,7 @@ class ProviderConfigId(str, enum.Enum):
         ticketing_ivanti_mock: typing.Callable[[], T_Result],
         ticketing_jira: typing.Callable[[], T_Result],
         ticketing_jira_service_management: typing.Callable[[], T_Result],
+        ticketing_linear: typing.Callable[[], T_Result],
         ticketing_mock: typing.Callable[[], T_Result],
         ticketing_pager_duty: typing.Callable[[], T_Result],
         ticketing_pager_duty_mock: typing.Callable[[], T_Result],
@@ -1214,6 +1220,8 @@ class ProviderConfigId(str, enum.Enum):
             return ticketing_jira()
         if self is ProviderConfigId.TICKETING_JIRA_SERVICE_MANAGEMENT:
             return ticketing_jira_service_management()
+        if self is ProviderConfigId.TICKETING_LINEAR:
+            return ticketing_linear()
         if self is ProviderConfigId.TICKETING_MOCK:
             return ticketing_mock()
         if self is ProviderConfigId.TICKETING_PAGER_DUTY:

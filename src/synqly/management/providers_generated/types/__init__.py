@@ -366,6 +366,11 @@ from .jira_credential import (
     JiraCredential_Basic,
     JiraCredential_BasicId,
 )
+from .linear_credential import (
+    LinearCredential,
+    LinearCredential_Token,
+    LinearCredential_TokenId,
+)
 from .malwarebytes_credential import (
     MalwarebytesCredential,
     MalwarebytesCredential_OAuthClient,
@@ -574,6 +579,7 @@ from .provider_config import (
     ProviderConfig_TicketingIvantiMock,
     ProviderConfig_TicketingJira,
     ProviderConfig_TicketingJiraServiceManagement,
+    ProviderConfig_TicketingLinear,
     ProviderConfig_TicketingMockTicketing,
     ProviderConfig_TicketingPagerduty,
     ProviderConfig_TicketingPagerdutyMock,
@@ -763,6 +769,7 @@ from .ticketing_ivanti_dataset import TicketingIvantiDataset
 from .ticketing_ivanti_mock import TicketingIvantiMock
 from .ticketing_jira import TicketingJira
 from .ticketing_jira_service_management import TicketingJiraServiceManagement
+from .ticketing_linear import TicketingLinear
 from .ticketing_mock import TicketingMock
 from .ticketing_pager_duty import TicketingPagerDuty
 from .ticketing_pager_duty_mock import TicketingPagerDutyMock
@@ -1128,6 +1135,9 @@ __all__ = [
     "JiraCredential",
     "JiraCredential_Basic",
     "JiraCredential_BasicId",
+    "LinearCredential",
+    "LinearCredential_Token",
+    "LinearCredential_TokenId",
     "MalwarebytesCredential",
     "MalwarebytesCredential_OAuthClient",
     "MalwarebytesCredential_OAuthClientId",
@@ -1310,6 +1320,7 @@ __all__ = [
     "ProviderConfig_TicketingIvantiMock",
     "ProviderConfig_TicketingJira",
     "ProviderConfig_TicketingJiraServiceManagement",
+    "ProviderConfig_TicketingLinear",
     "ProviderConfig_TicketingMockTicketing",
     "ProviderConfig_TicketingPagerduty",
     "ProviderConfig_TicketingPagerdutyMock",
@@ -1453,6 +1464,7 @@ __all__ = [
     "TicketingIvantiMock",
     "TicketingJira",
     "TicketingJiraServiceManagement",
+    "TicketingLinear",
     "TicketingMock",
     "TicketingPagerDuty",
     "TicketingPagerDutyMock",
