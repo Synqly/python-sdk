@@ -210,6 +210,10 @@ from .elasticsearch_shared_secret import (
     ElasticsearchSharedSecret_SecretId,
 )
 from .email_security_defender_for_office import EmailSecurityDefenderForOffice
+from .email_security_defender_for_office_dataset import (
+    EmailSecurityDefenderForOfficeDataset,
+)
+from .email_security_defender_for_office_mock import EmailSecurityDefenderForOfficeMock
 from .email_security_mimecast_cloud_gateway import EmailSecurityMimecastCloudGateway
 from .email_security_mimecast_cloud_gateway_dataset import (
     EmailSecurityMimecastCloudGatewayDataset,
@@ -510,6 +514,7 @@ from .provider_config import (
     ProviderConfig_EdrTrellix,
     ProviderConfig_EdrTrellixEns,
     ProviderConfig_EmailsecurityDefenderForOffice,
+    ProviderConfig_EmailsecurityDefenderForOfficeMock,
     ProviderConfig_EmailsecurityMimecastCloudGateway,
     ProviderConfig_EmailsecurityMimecastCloudGatewayMock,
     ProviderConfig_EndpointmanagementAutomox,
@@ -1025,6 +1030,8 @@ __all__ = [
     "ElasticsearchSharedSecret_Secret",
     "ElasticsearchSharedSecret_SecretId",
     "EmailSecurityDefenderForOffice",
+    "EmailSecurityDefenderForOfficeDataset",
+    "EmailSecurityDefenderForOfficeMock",
     "EmailSecurityMimecastCloudGateway",
     "EmailSecurityMimecastCloudGatewayDataset",
     "EmailSecurityMimecastCloudGatewayMock",
@@ -1251,6 +1258,7 @@ __all__ = [
     "ProviderConfig_EdrTrellix",
     "ProviderConfig_EdrTrellixEns",
     "ProviderConfig_EmailsecurityDefenderForOffice",
+    "ProviderConfig_EmailsecurityDefenderForOfficeMock",
     "ProviderConfig_EmailsecurityMimecastCloudGateway",
     "ProviderConfig_EmailsecurityMimecastCloudGatewayMock",
     "ProviderConfig_EndpointmanagementAutomox",

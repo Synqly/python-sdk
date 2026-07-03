@@ -75,6 +75,9 @@ from .trellix_credential import TrellixCredential
 from .trellix_ens_api_key_credential import TrellixEnsApiKeyCredential
 from .trellix_ens_credential import TrellixEnsCredential
 from .microsoft_defender_region import MicrosoftDefenderRegion
+from .email_security_defender_for_office_dataset import (
+    EmailSecurityDefenderForOfficeDataset,
+)
 from .mimecast_api_gateway import MimecastApiGateway
 from .mimecast_cloud_gateway_credential import MimecastCloudGatewayCredential
 from .email_security_mimecast_cloud_gateway_dataset import (
@@ -1109,6 +1112,23 @@ class ProviderConfig_EmailsecurityDefenderForOffice(UncheckedBaseModel):
     credential: DefenderCredential
     region: typing.Optional[MicrosoftDefenderRegion] = None
     tenant_id: str
+
+    if IS_PYDANTIC_V2:
+        model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(
+            extra="allow"
+        )  # type: ignore # Pydantic v2
+    else:
+
+        class Config:
+            smart_union = True
+            extra = pydantic.Extra.allow
+
+
+class ProviderConfig_EmailsecurityDefenderForOfficeMock(UncheckedBaseModel):
+    type: typing.Literal["emailsecurity_defender_for_office_mock"] = (
+        "emailsecurity_defender_for_office_mock"
+    )
+    dataset: EmailSecurityDefenderForOfficeDataset
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(
@@ -2828,6 +2848,7 @@ ProviderConfig = typing_extensions.Annotated[
         ProviderConfig_EdrTrellix,
         ProviderConfig_EdrTrellixEns,
         ProviderConfig_EmailsecurityDefenderForOffice,
+        ProviderConfig_EmailsecurityDefenderForOfficeMock,
         ProviderConfig_EmailsecurityMimecastCloudGateway,
         ProviderConfig_EmailsecurityMimecastCloudGatewayMock,
         ProviderConfig_EndpointmanagementAutomox,

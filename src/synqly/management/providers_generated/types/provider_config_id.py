@@ -310,6 +310,11 @@ class ProviderConfigId(str, enum.Enum):
     Microsoft Defender for Office 365
     """
 
+    EMAIL_SECURITY_DEFENDER_FOR_OFFICE_MOCK = "emailsecurity_defender_for_office_mock"
+    """
+    [MOCK] Microsoft Defender for Office 365
+    """
+
     EMAIL_SECURITY_MIMECAST_CLOUD_GATEWAY = "emailsecurity_mimecast_cloud_gateway"
     """
     Mimecast Cloud Gateway
@@ -866,6 +871,7 @@ class ProviderConfigId(str, enum.Enum):
         edr_trellix: typing.Callable[[], T_Result],
         edr_trellix_ens: typing.Callable[[], T_Result],
         email_security_defender_for_office: typing.Callable[[], T_Result],
+        email_security_defender_for_office_mock: typing.Callable[[], T_Result],
         email_security_mimecast_cloud_gateway: typing.Callable[[], T_Result],
         email_security_mimecast_cloud_gateway_mock: typing.Callable[[], T_Result],
         endpointmanagement_automox: typing.Callable[[], T_Result],
@@ -1082,6 +1088,8 @@ class ProviderConfigId(str, enum.Enum):
             return edr_trellix_ens()
         if self is ProviderConfigId.EMAIL_SECURITY_DEFENDER_FOR_OFFICE:
             return email_security_defender_for_office()
+        if self is ProviderConfigId.EMAIL_SECURITY_DEFENDER_FOR_OFFICE_MOCK:
+            return email_security_defender_for_office_mock()
         if self is ProviderConfigId.EMAIL_SECURITY_MIMECAST_CLOUD_GATEWAY:
             return email_security_mimecast_cloud_gateway()
         if self is ProviderConfigId.EMAIL_SECURITY_MIMECAST_CLOUD_GATEWAY_MOCK:
