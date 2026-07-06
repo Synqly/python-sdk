@@ -1276,6 +1276,7 @@ class ProviderConfig_IdentityAwsIam(UncheckedBaseModel):
 class ProviderConfig_IdentityEntraId(UncheckedBaseModel):
     type: typing.Literal["identity_entra_id"] = "identity_entra_id"
     credential: EntraIdCredential
+    region: typing.Optional[MicrosoftDefenderRegion] = None
     tenant_id: str
     url: typing.Optional[str] = None
 

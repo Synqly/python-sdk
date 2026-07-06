@@ -2,8 +2,9 @@
 
 from ...core.unchecked_base_model import UncheckedBaseModel
 from .entra_id_credential import EntraIdCredential
-import pydantic
 import typing
+from .microsoft_defender_region import MicrosoftDefenderRegion
+import pydantic
 from ...core.pydantic_utilities import IS_PYDANTIC_V2
 
 
@@ -15,6 +16,11 @@ class IdentityEntraId(UncheckedBaseModel):
     """
 
     credential: EntraIdCredential
+    region: typing.Optional[MicrosoftDefenderRegion] = pydantic.Field(default=None)
+    """
+    Government cloud selector.
+    """
+
     tenant_id: str = pydantic.Field()
     """
     Azure Directory (tenant) identifier.
