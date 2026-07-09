@@ -214,6 +214,7 @@ from .email_security_defender_for_office_dataset import (
     EmailSecurityDefenderForOfficeDataset,
 )
 from .email_security_defender_for_office_mock import EmailSecurityDefenderForOfficeMock
+from .email_security_exchange_online import EmailSecurityExchangeOnline
 from .email_security_mimecast_cloud_gateway import EmailSecurityMimecastCloudGateway
 from .email_security_mimecast_cloud_gateway_dataset import (
     EmailSecurityMimecastCloudGatewayDataset,
@@ -234,6 +235,11 @@ from .eset_credential import (
     EsetCredential,
     EsetCredential_OAuthClient,
     EsetCredential_OAuthClientId,
+)
+from .exchange_online_credential import (
+    ExchangeOnlineCredential,
+    ExchangeOnlineCredential_OAuthClient,
+    ExchangeOnlineCredential_OAuthClientId,
 )
 from .freshdesk_credential import (
     FreshdeskCredential,
@@ -515,6 +521,7 @@ from .provider_config import (
     ProviderConfig_EdrTrellixEns,
     ProviderConfig_EmailsecurityDefenderForOffice,
     ProviderConfig_EmailsecurityDefenderForOfficeMock,
+    ProviderConfig_EmailsecurityExchangeOnline,
     ProviderConfig_EmailsecurityMimecastCloudGateway,
     ProviderConfig_EmailsecurityMimecastCloudGatewayMock,
     ProviderConfig_EndpointmanagementAutomox,
@@ -1032,6 +1039,7 @@ __all__ = [
     "EmailSecurityDefenderForOffice",
     "EmailSecurityDefenderForOfficeDataset",
     "EmailSecurityDefenderForOfficeMock",
+    "EmailSecurityExchangeOnline",
     "EmailSecurityMimecastCloudGateway",
     "EmailSecurityMimecastCloudGatewayDataset",
     "EmailSecurityMimecastCloudGatewayMock",
@@ -1045,6 +1053,9 @@ __all__ = [
     "EsetCredential",
     "EsetCredential_OAuthClient",
     "EsetCredential_OAuthClientId",
+    "ExchangeOnlineCredential",
+    "ExchangeOnlineCredential_OAuthClient",
+    "ExchangeOnlineCredential_OAuthClientId",
     "FreshdeskCredential",
     "FreshdeskCredential_Token",
     "FreshdeskCredential_TokenId",
@@ -1259,6 +1270,7 @@ __all__ = [
     "ProviderConfig_EdrTrellixEns",
     "ProviderConfig_EmailsecurityDefenderForOffice",
     "ProviderConfig_EmailsecurityDefenderForOfficeMock",
+    "ProviderConfig_EmailsecurityExchangeOnline",
     "ProviderConfig_EmailsecurityMimecastCloudGateway",
     "ProviderConfig_EmailsecurityMimecastCloudGatewayMock",
     "ProviderConfig_EndpointmanagementAutomox",
