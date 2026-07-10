@@ -108,6 +108,11 @@ from .azure_monitor_logs_credential import (
     AzureMonitorLogsCredential_Token,
     AzureMonitorLogsCredential_TokenId,
 )
+from .bitdefender_credential import (
+    BitdefenderCredential,
+    BitdefenderCredential_Token,
+    BitdefenderCredential_TokenId,
+)
 from .channel_join_behavior import ChannelJoinBehavior
 from .chat_microsoft_copilot import ChatMicrosoftCopilot
 from .chat_microsoft_teams import ChatMicrosoftTeams
@@ -182,6 +187,7 @@ from .defender_credential import (
     DefenderCredential_OAuthClient,
     DefenderCredential_OAuthClientId,
 )
+from .edr_bitdefender import EdrBitdefender
 from .edr_crowd_strike import EdrCrowdStrike
 from .edr_crowd_strike_dataset import EdrCrowdStrikeDataset
 from .edr_crowd_strike_mock import EdrCrowdStrikeMock
@@ -508,6 +514,7 @@ from .provider_config import (
     ProviderConfig_CloudsecurityUpwind,
     ProviderConfig_CloudsecurityWiz,
     ProviderConfig_CustomSynqly,
+    ProviderConfig_EdrBitdefender,
     ProviderConfig_EdrCrowdstrike,
     ProviderConfig_EdrCrowdstrikeMock,
     ProviderConfig_EdrDefender,
@@ -959,6 +966,9 @@ __all__ = [
     "AzureMonitorLogsCredential",
     "AzureMonitorLogsCredential_Token",
     "AzureMonitorLogsCredential_TokenId",
+    "BitdefenderCredential",
+    "BitdefenderCredential_Token",
+    "BitdefenderCredential_TokenId",
     "ChannelJoinBehavior",
     "ChatMicrosoftCopilot",
     "ChatMicrosoftTeams",
@@ -1013,6 +1023,7 @@ __all__ = [
     "DefenderCredential",
     "DefenderCredential_OAuthClient",
     "DefenderCredential_OAuthClientId",
+    "EdrBitdefender",
     "EdrCrowdStrike",
     "EdrCrowdStrikeDataset",
     "EdrCrowdStrikeMock",
@@ -1257,6 +1268,7 @@ __all__ = [
     "ProviderConfig_CloudsecurityUpwind",
     "ProviderConfig_CloudsecurityWiz",
     "ProviderConfig_CustomSynqly",
+    "ProviderConfig_EdrBitdefender",
     "ProviderConfig_EdrCrowdstrike",
     "ProviderConfig_EdrCrowdstrikeMock",
     "ProviderConfig_EdrDefender",
