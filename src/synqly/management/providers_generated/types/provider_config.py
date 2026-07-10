@@ -2307,6 +2307,23 @@ class ProviderConfig_TicketingFreshdesk(UncheckedBaseModel):
             extra = pydantic.Extra.allow
 
 
+class ProviderConfig_TicketingGithub(UncheckedBaseModel):
+    type: typing.Literal["ticketing_github"] = "ticketing_github"
+    credential: GitHubCredential
+    repository: str
+    url: typing.Optional[str] = None
+
+    if IS_PYDANTIC_V2:
+        model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(
+            extra="allow"
+        )  # type: ignore # Pydantic v2
+    else:
+
+        class Config:
+            smart_union = True
+            extra = pydantic.Extra.allow
+
+
 class ProviderConfig_TicketingIvanti(UncheckedBaseModel):
     type: typing.Literal["ticketing_ivanti"] = "ticketing_ivanti"
     credential: IvantiCredentialTicketing
@@ -2953,6 +2970,7 @@ ProviderConfig = typing_extensions.Annotated[
         ProviderConfig_TicketingAutotask,
         ProviderConfig_TicketingAzureDevops,
         ProviderConfig_TicketingFreshdesk,
+        ProviderConfig_TicketingGithub,
         ProviderConfig_TicketingIvanti,
         ProviderConfig_TicketingIvantiMock,
         ProviderConfig_TicketingJira,

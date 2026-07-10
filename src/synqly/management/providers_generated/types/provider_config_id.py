@@ -652,6 +652,11 @@ class ProviderConfigId(str, enum.Enum):
     Freshdesk
     """
 
+    TICKETING_GIT_HUB = "ticketing_github"
+    """
+    GitHub Issues
+    """
+
     TICKETING_IVANTI = "ticketing_ivanti"
     """
     Ivanti Neurons Ticketing
@@ -949,6 +954,7 @@ class ProviderConfigId(str, enum.Enum):
         ticketing_autotask: typing.Callable[[], T_Result],
         ticketing_azure_dev_ops: typing.Callable[[], T_Result],
         ticketing_freshdesk: typing.Callable[[], T_Result],
+        ticketing_git_hub: typing.Callable[[], T_Result],
         ticketing_ivanti: typing.Callable[[], T_Result],
         ticketing_ivanti_mock: typing.Callable[[], T_Result],
         ticketing_jira: typing.Callable[[], T_Result],
@@ -1236,6 +1242,8 @@ class ProviderConfigId(str, enum.Enum):
             return ticketing_azure_dev_ops()
         if self is ProviderConfigId.TICKETING_FRESHDESK:
             return ticketing_freshdesk()
+        if self is ProviderConfigId.TICKETING_GIT_HUB:
+            return ticketing_git_hub()
         if self is ProviderConfigId.TICKETING_IVANTI:
             return ticketing_ivanti()
         if self is ProviderConfigId.TICKETING_IVANTI_MOCK:

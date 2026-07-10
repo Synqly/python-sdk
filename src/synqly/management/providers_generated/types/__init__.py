@@ -594,6 +594,7 @@ from .provider_config import (
     ProviderConfig_TicketingAutotask,
     ProviderConfig_TicketingAzureDevops,
     ProviderConfig_TicketingFreshdesk,
+    ProviderConfig_TicketingGithub,
     ProviderConfig_TicketingIvanti,
     ProviderConfig_TicketingIvantiMock,
     ProviderConfig_TicketingJira,
@@ -783,6 +784,7 @@ from .tenable_sc_credential import (
 from .ticketing_autotask import TicketingAutotask
 from .ticketing_azure_dev_ops import TicketingAzureDevOps
 from .ticketing_freshdesk import TicketingFreshdesk
+from .ticketing_git_hub import TicketingGitHub
 from .ticketing_ivanti import TicketingIvanti
 from .ticketing_ivanti_dataset import TicketingIvantiDataset
 from .ticketing_ivanti_mock import TicketingIvantiMock
@@ -1348,6 +1350,7 @@ __all__ = [
     "ProviderConfig_TicketingAutotask",
     "ProviderConfig_TicketingAzureDevops",
     "ProviderConfig_TicketingFreshdesk",
+    "ProviderConfig_TicketingGithub",
     "ProviderConfig_TicketingIvanti",
     "ProviderConfig_TicketingIvantiMock",
     "ProviderConfig_TicketingJira",
@@ -1491,6 +1494,7 @@ __all__ = [
     "TicketingAutotask",
     "TicketingAzureDevOps",
     "TicketingFreshdesk",
+    "TicketingGitHub",
     "TicketingIvanti",
     "TicketingIvantiDataset",
     "TicketingIvantiMock",
