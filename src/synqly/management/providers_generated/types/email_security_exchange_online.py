@@ -10,6 +10,8 @@ import typing
 class EmailSecurityExchangeOnline(UncheckedBaseModel):
     """
     Configuration for Microsoft Exchange Online.
+
+    [Configuration guide](https://docs.synqly.com/guides/provider-configuration/exchange-online-setup)
     """
 
     credential: ExchangeOnlineCredential
