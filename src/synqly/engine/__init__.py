@@ -141,6 +141,8 @@ from .emailsecurity import (
 )
 from .endpointmanagement import (
     ComplianceFinding,
+    DeviceActionRequest,
+    DeviceActionResponse,
     EndpointManagementDevice,
     GetEndpointManagementDeviceResponse,
     QueryDeviceApplicationsResponse,
@@ -454,6 +456,8 @@ __all__ = [
     "CreateTicketResponse",
     "DeleteIocsResponse",
     "Device",
+    "DeviceActionRequest",
+    "DeviceActionResponse",
     "DownloadAttachmentResponse",
     "EmailSecurityEmailEvent",
     "EmailSecurityGetThreatDetailsResponse",

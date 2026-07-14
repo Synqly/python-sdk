@@ -60,6 +60,7 @@ class OperationId(str, enum.Enum):
     EMAILSECURITY_QUERY_EMAIL_EVENTS = "emailsecurity_query_email_events"
     EMAILSECURITY_QUERY_THREATS = "emailsecurity_query_threats"
     ENDPOINTMANAGEMENT_GET_DEVICE = "endpointmanagement_get_device"
+    ENDPOINTMANAGEMENT_LOCK_DEVICE = "endpointmanagement_lock_device"
     ENDPOINTMANAGEMENT_QUERY_COMPLIANCE_FINDINGS = (
         "endpointmanagement_query_compliance_findings"
     )
@@ -68,6 +69,9 @@ class OperationId(str, enum.Enum):
     )
     ENDPOINTMANAGEMENT_QUERY_DEVICES = "endpointmanagement_query_devices"
     ENDPOINTMANAGEMENT_REMEDIATE_DEVICE = "endpointmanagement_remediate_device"
+    ENDPOINTMANAGEMENT_RESTART_DEVICE = "endpointmanagement_restart_device"
+    ENDPOINTMANAGEMENT_UPDATE_DEVICE = "endpointmanagement_update_device"
+    ENDPOINTMANAGEMENT_WIPE_DEVICE = "endpointmanagement_wipe_device"
     IDENTITY_DISABLE_USER = "identity_disable_user"
     IDENTITY_ENABLE_USER = "identity_enable_user"
     IDENTITY_EXPIRE_ALL_USER_SESSIONS = "identity_expire_all_user_sessions"
@@ -200,10 +204,14 @@ class OperationId(str, enum.Enum):
         emailsecurity_query_email_events: typing.Callable[[], T_Result],
         emailsecurity_query_threats: typing.Callable[[], T_Result],
         endpointmanagement_get_device: typing.Callable[[], T_Result],
+        endpointmanagement_lock_device: typing.Callable[[], T_Result],
         endpointmanagement_query_compliance_findings: typing.Callable[[], T_Result],
         endpointmanagement_query_device_applications: typing.Callable[[], T_Result],
         endpointmanagement_query_devices: typing.Callable[[], T_Result],
         endpointmanagement_remediate_device: typing.Callable[[], T_Result],
+        endpointmanagement_restart_device: typing.Callable[[], T_Result],
+        endpointmanagement_update_device: typing.Callable[[], T_Result],
+        endpointmanagement_wipe_device: typing.Callable[[], T_Result],
         identity_disable_user: typing.Callable[[], T_Result],
         identity_enable_user: typing.Callable[[], T_Result],
         identity_expire_all_user_sessions: typing.Callable[[], T_Result],
@@ -374,6 +382,8 @@ class OperationId(str, enum.Enum):
             return emailsecurity_query_threats()
         if self is OperationId.ENDPOINTMANAGEMENT_GET_DEVICE:
             return endpointmanagement_get_device()
+        if self is OperationId.ENDPOINTMANAGEMENT_LOCK_DEVICE:
+            return endpointmanagement_lock_device()
         if self is OperationId.ENDPOINTMANAGEMENT_QUERY_COMPLIANCE_FINDINGS:
             return endpointmanagement_query_compliance_findings()
         if self is OperationId.ENDPOINTMANAGEMENT_QUERY_DEVICE_APPLICATIONS:
@@ -382,6 +392,12 @@ class OperationId(str, enum.Enum):
             return endpointmanagement_query_devices()
         if self is OperationId.ENDPOINTMANAGEMENT_REMEDIATE_DEVICE:
             return endpointmanagement_remediate_device()
+        if self is OperationId.ENDPOINTMANAGEMENT_RESTART_DEVICE:
+            return endpointmanagement_restart_device()
+        if self is OperationId.ENDPOINTMANAGEMENT_UPDATE_DEVICE:
+            return endpointmanagement_update_device()
+        if self is OperationId.ENDPOINTMANAGEMENT_WIPE_DEVICE:
+            return endpointmanagement_wipe_device()
         if self is OperationId.IDENTITY_DISABLE_USER:
             return identity_disable_user()
         if self is OperationId.IDENTITY_ENABLE_USER:

@@ -2,6 +2,8 @@
 
 from .types import (
     ComplianceFinding,
+    DeviceActionRequest,
+    DeviceActionResponse,
     EndpointManagementDevice,
     GetEndpointManagementDeviceResponse,
     QueryDeviceApplicationsResponse,
@@ -13,6 +15,8 @@ from .types import (
 
 __all__ = [
     "ComplianceFinding",
+    "DeviceActionRequest",
+    "DeviceActionResponse",
     "EndpointManagementDevice",
     "GetEndpointManagementDeviceResponse",
     "QueryDeviceApplicationsResponse",
