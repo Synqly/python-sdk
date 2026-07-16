@@ -26,7 +26,7 @@ class SinkAwsSqs(UncheckedBaseModel):
 
     url: str = pydantic.Field()
     """
-    URL of the SQS queue where events are sent.
+    URL of the SQS queue where events are sent. Must be a valid AWS SQS queue URL.
     """
 
     if IS_PYDANTIC_V2:
