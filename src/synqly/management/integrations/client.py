@@ -36,6 +36,7 @@ from ..common.errors.service_unavailable_error import ServiceUnavailableError
 from ..common.errors.gateway_timeout_error import GatewayTimeoutError
 from .types.create_integration_request import CreateIntegrationRequest
 from .types.verify_integration_response import VerifyIntegrationResponse
+from .types.update_integration_request import UpdateIntegrationRequest
 from ..token_base.types.token_id import TokenId
 from ..capabilities_base.types.category_id import CategoryId
 import datetime as dt
@@ -899,6 +900,259 @@ class IntegrationsClient:
             json={
                 "integration": integration,
             },
+            request_options=request_options,
+            omit=OMIT,
+        )
+        try:
+            if 200 <= _response.status_code < 300:
+                return typing.cast(
+                    VerifyIntegrationResponse,
+                    construct_type(
+                        type_=VerifyIntegrationResponse,  # type: ignore
+                        object_=_response.json(),
+                    ),
+                )
+            if _response.status_code == 400:
+                raise BadRequestError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 401:
+                raise UnauthorizedError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 403:
+                raise ForbiddenError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 404:
+                raise NotFoundError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 405:
+                raise MethodNotAllowedError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 409:
+                raise ConflictError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 415:
+                raise UnsupportedMediaTypeError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 429:
+                raise TooManyRequestsError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 500:
+                raise InternalServerError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 501:
+                raise NotImplementedError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 502:
+                raise BadGatewayError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 503:
+                raise ServiceUnavailableError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 504:
+                raise GatewayTimeoutError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            _response_json = _response.json()
+        except JSONDecodeError:
+            raise ApiError(status_code=_response.status_code, body=_response.text)
+        raise ApiError(status_code=_response.status_code, body=_response_json)
+
+    def verify_existing(
+        self,
+        account_id: AccountId,
+        integration_id: IntegrationId,
+        *,
+        request: typing.Optional[UpdateIntegrationRequest] = None,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> VerifyIntegrationResponse:
+        """
+        Verifies the `Integration` matching `{integrationId}` and tests authentication
+        and provider connectivity.
+
+        When called without a request body, the stored integration configuration is
+        verified. When a request body is provided, it uses the same shape as the
+        Update Integration API; the integration is verified as if that update were
+        applied, without persisting changes.
+
+        Parameters
+        ----------
+        account_id : AccountId
+
+        integration_id : IntegrationId
+
+        request : typing.Optional[UpdateIntegrationRequest]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        VerifyIntegrationResponse
+
+        Examples
+        --------
+        import datetime
+
+        from synqly import SynqlyManagement
+        from synqly.accounts import Account
+        from synqly.capabilities_base import CategoryId
+        from synqly.integration_points import IntegrationEnvironments, IntegrationPoint
+        from synqly.integrations import BridgeSelector_Id, Integration, WebhookConfig
+        from synqly.organization_base import Environment
+        from synqly.providers_generated import ProviderConfig_AppsecAmazonInspector
+
+        client = SynqlyManagement(
+            token="YOUR_TOKEN",
+        )
+        client.integrations.verify_existing(
+            account_id="string",
+            integration_id="string",
+            request=Integration(
+                id="string",
+                fullname="string",
+                refresh_token_id="string",
+                account_id="string",
+                account=Account(
+                    id="string",
+                    fullname="string",
+                    organization_id="string",
+                    environment=Environment.TEST,
+                    labels=["string"],
+                    name="string",
+                    created_at=datetime.datetime.fromisoformat(
+                        "2024-01-15 09:30:00+00:00",
+                    ),
+                    updated_at=datetime.datetime.fromisoformat(
+                        "2024-01-15 09:30:00+00:00",
+                    ),
+                ),
+                category=CategoryId.APPSEC,
+                provider_config=ProviderConfig_AppsecAmazonInspector(),
+                provider_fullname="string",
+                provider_type="string",
+                integration_point_id="string",
+                integration_point=IntegrationPoint(
+                    id="string",
+                    connector=CategoryId.APPSEC,
+                    environments=IntegrationEnvironments(),
+                    name="string",
+                    created_at=datetime.datetime.fromisoformat(
+                        "2024-01-15 09:30:00+00:00",
+                    ),
+                    updated_at=datetime.datetime.fromisoformat(
+                        "2024-01-15 09:30:00+00:00",
+                    ),
+                ),
+                bridge_selector=BridgeSelector_Id(value={"key": "value"}),
+                webhook_config=WebhookConfig(
+                    items=[],
+                ),
+                mappings=[],
+                additional_mappings=[],
+                name="string",
+                created_at=datetime.datetime.fromisoformat(
+                    "2024-01-15 09:30:00+00:00",
+                ),
+                updated_at=datetime.datetime.fromisoformat(
+                    "2024-01-15 09:30:00+00:00",
+                ),
+            ),
+        )
+        """
+        _response = self._client_wrapper.httpx_client.request(
+            f"v1/integrations/{jsonable_encoder(account_id)}/{jsonable_encoder(integration_id)}/verify",
+            method="POST",
+            json=request,
             request_options=request_options,
             omit=OMIT,
         )
@@ -2526,6 +2780,266 @@ class AsyncIntegrationsClient:
             json={
                 "integration": integration,
             },
+            request_options=request_options,
+            omit=OMIT,
+        )
+        try:
+            if 200 <= _response.status_code < 300:
+                return typing.cast(
+                    VerifyIntegrationResponse,
+                    construct_type(
+                        type_=VerifyIntegrationResponse,  # type: ignore
+                        object_=_response.json(),
+                    ),
+                )
+            if _response.status_code == 400:
+                raise BadRequestError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 401:
+                raise UnauthorizedError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 403:
+                raise ForbiddenError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 404:
+                raise NotFoundError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 405:
+                raise MethodNotAllowedError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 409:
+                raise ConflictError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 415:
+                raise UnsupportedMediaTypeError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 429:
+                raise TooManyRequestsError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 500:
+                raise InternalServerError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 501:
+                raise NotImplementedError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 502:
+                raise BadGatewayError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 503:
+                raise ServiceUnavailableError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            if _response.status_code == 504:
+                raise GatewayTimeoutError(
+                    typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    )
+                )
+            _response_json = _response.json()
+        except JSONDecodeError:
+            raise ApiError(status_code=_response.status_code, body=_response.text)
+        raise ApiError(status_code=_response.status_code, body=_response_json)
+
+    async def verify_existing(
+        self,
+        account_id: AccountId,
+        integration_id: IntegrationId,
+        *,
+        request: typing.Optional[UpdateIntegrationRequest] = None,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> VerifyIntegrationResponse:
+        """
+        Verifies the `Integration` matching `{integrationId}` and tests authentication
+        and provider connectivity.
+
+        When called without a request body, the stored integration configuration is
+        verified. When a request body is provided, it uses the same shape as the
+        Update Integration API; the integration is verified as if that update were
+        applied, without persisting changes.
+
+        Parameters
+        ----------
+        account_id : AccountId
+
+        integration_id : IntegrationId
+
+        request : typing.Optional[UpdateIntegrationRequest]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        VerifyIntegrationResponse
+
+        Examples
+        --------
+        import asyncio
+        import datetime
+
+        from synqly import AsyncSynqlyManagement
+        from synqly.accounts import Account
+        from synqly.capabilities_base import CategoryId
+        from synqly.integration_points import IntegrationEnvironments, IntegrationPoint
+        from synqly.integrations import BridgeSelector_Id, Integration, WebhookConfig
+        from synqly.organization_base import Environment
+        from synqly.providers_generated import ProviderConfig_AppsecAmazonInspector
+
+        client = AsyncSynqlyManagement(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.integrations.verify_existing(
+                account_id="string",
+                integration_id="string",
+                request=Integration(
+                    id="string",
+                    fullname="string",
+                    refresh_token_id="string",
+                    account_id="string",
+                    account=Account(
+                        id="string",
+                        fullname="string",
+                        organization_id="string",
+                        environment=Environment.TEST,
+                        labels=["string"],
+                        name="string",
+                        created_at=datetime.datetime.fromisoformat(
+                            "2024-01-15 09:30:00+00:00",
+                        ),
+                        updated_at=datetime.datetime.fromisoformat(
+                            "2024-01-15 09:30:00+00:00",
+                        ),
+                    ),
+                    category=CategoryId.APPSEC,
+                    provider_config=ProviderConfig_AppsecAmazonInspector(),
+                    provider_fullname="string",
+                    provider_type="string",
+                    integration_point_id="string",
+                    integration_point=IntegrationPoint(
+                        id="string",
+                        connector=CategoryId.APPSEC,
+                        environments=IntegrationEnvironments(),
+                        name="string",
+                        created_at=datetime.datetime.fromisoformat(
+                            "2024-01-15 09:30:00+00:00",
+                        ),
+                        updated_at=datetime.datetime.fromisoformat(
+                            "2024-01-15 09:30:00+00:00",
+                        ),
+                    ),
+                    bridge_selector=BridgeSelector_Id(value={"key": "value"}),
+                    webhook_config=WebhookConfig(
+                        items=[],
+                    ),
+                    mappings=[],
+                    additional_mappings=[],
+                    name="string",
+                    created_at=datetime.datetime.fromisoformat(
+                        "2024-01-15 09:30:00+00:00",
+                    ),
+                    updated_at=datetime.datetime.fromisoformat(
+                        "2024-01-15 09:30:00+00:00",
+                    ),
+                ),
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._client_wrapper.httpx_client.request(
+            f"v1/integrations/{jsonable_encoder(account_id)}/{jsonable_encoder(integration_id)}/verify",
+            method="POST",
+            json=request,
             request_options=request_options,
             omit=OMIT,
         )
