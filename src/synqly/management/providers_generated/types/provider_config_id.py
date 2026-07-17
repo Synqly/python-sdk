@@ -749,7 +749,7 @@ class ProviderConfigId(str, enum.Enum):
 
     VULNERABILITIES_HORIZON_3 = "vulnerabilities_horizon3"
     """
-    NodeZero
+    Horizon3 NodeZero
     """
 
     VULNERABILITIES_IRU = "vulnerabilities_iru"
