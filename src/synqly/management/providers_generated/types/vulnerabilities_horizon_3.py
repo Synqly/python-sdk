@@ -11,6 +11,8 @@ import typing
 class VulnerabilitiesHorizon3(UncheckedBaseModel):
     """
     Configuration for Horizon3 NodeZero as a Vulnerabilities Provider
+
+    [Configuration guide](https://docs.synqly.com/guides/provider-configuration/horizon3-nodezero-vulnerabilities-setup)
     """
 
     credential: Horizon3Credential = pydantic.Field()
