@@ -661,6 +661,8 @@ from .service_now_credential import (
     ServiceNowCredential,
     ServiceNowCredential_Basic,
     ServiceNowCredential_BasicId,
+    ServiceNowCredential_OAuthClient,
+    ServiceNowCredential_OAuthClientId,
     ServiceNowCredential_Token,
     ServiceNowCredential_TokenId,
 )
@@ -1402,6 +1404,8 @@ __all__ = [
     "ServiceNowCredential",
     "ServiceNowCredential_Basic",
     "ServiceNowCredential_BasicId",
+    "ServiceNowCredential_OAuthClient",
+    "ServiceNowCredential_OAuthClientId",
     "ServiceNowCredential_Token",
     "ServiceNowCredential_TokenId",
     "SevcoCredential",

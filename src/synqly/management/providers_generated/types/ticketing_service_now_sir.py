@@ -38,6 +38,11 @@ class TicketingServiceNowSir(UncheckedBaseModel):
     Default Project for the integration. This maps to the custom table for tickets. This table should be derived from Security Incident table. Defaults to the security incident table if not specified.
     """
 
+    oauth_scopes: typing.Optional[typing.List[str]] = pydantic.Field(default=None)
+    """
+    Optional scopes to request when authenticating with OAuth 2.0 client credentials. Leave empty when the ServiceNow Application Registry is set to `Broadly scoped` (recommended), which grants access based on the Application User's roles. Only set this when the registry is configured as `Securely scoped` and a specific Auth Scope (e.g. `sn_si`) is required.
+    """
+
     url: str = pydantic.Field()
     """
     Base URL for the ServiceNow API.

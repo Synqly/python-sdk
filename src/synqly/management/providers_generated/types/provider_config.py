@@ -282,6 +282,7 @@ class ProviderConfig_AppsecOpentextCoreApplicationSecurityMock(UncheckedBaseMode
 class ProviderConfig_AppsecServicenow(UncheckedBaseModel):
     type: typing.Literal["appsec_servicenow"] = "appsec_servicenow"
     credential: ServiceNowCredential
+    oauth_scopes: typing.Optional[typing.List[str]] = None
     url: str
 
     if IS_PYDANTIC_V2:
@@ -583,6 +584,7 @@ class ProviderConfig_AssetsQualysCloudMock(UncheckedBaseModel):
 class ProviderConfig_AssetsServicenow(UncheckedBaseModel):
     type: typing.Literal["assets_servicenow"] = "assets_servicenow"
     credential: ServiceNowCredential
+    oauth_scopes: typing.Optional[typing.List[str]] = None
     url: str
 
     if IS_PYDANTIC_V2:
@@ -2467,6 +2469,7 @@ class ProviderConfig_TicketingServicenow(UncheckedBaseModel):
     custom_field_mappings: typing.Optional[typing.List[CustomFieldMapping]] = None
     default_issue_type: typing.Optional[str] = None
     default_project: typing.Optional[str] = None
+    oauth_scopes: typing.Optional[typing.List[str]] = None
     url: str
 
     if IS_PYDANTIC_V2:
@@ -2487,6 +2490,7 @@ class ProviderConfig_TicketingServicenowSir(UncheckedBaseModel):
     default_creator: typing.Optional[str] = None
     default_issue_type: typing.Optional[str] = None
     default_project: typing.Optional[str] = None
+    oauth_scopes: typing.Optional[typing.List[str]] = None
     url: str
 
     if IS_PYDANTIC_V2:
@@ -2759,6 +2763,7 @@ class ProviderConfig_VulnerabilitiesServicenowVr(UncheckedBaseModel):
         "vulnerabilities_servicenow_vr"
     )
     credential: ServiceNowCredential
+    oauth_scopes: typing.Optional[typing.List[str]] = None
     url: str
 
     if IS_PYDANTIC_V2:
