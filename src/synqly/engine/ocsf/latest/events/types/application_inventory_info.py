@@ -4,4 +4,6 @@ from ....v_1_8_0.applicationinventoryinfo.classes.types.application_inventory_in
     ApplicationInventoryInfo as ocsf_v_1_8_0_applicationinventoryinfo_classes_types_application_inventory_info_ApplicationInventoryInfo,
 )
 
-ApplicationInventoryInfo = ocsf_v_1_8_0_applicationinventoryinfo_classes_types_application_inventory_info_ApplicationInventoryInfo
+ApplicationInventoryInfo = (
+    ocsf_v_1_8_0_applicationinventoryinfo_classes_types_application_inventory_info_ApplicationInventoryInfo
+)

@@ -2,4 +2,7 @@
 
 import typing
 
-Object = typing.Dict[str, typing.Optional[typing.Any]]
+Object = typing.Dict[str, typing.Any]
+"""
+The Object type is used to represent an object with arbitrary fields. The keys are strings and the values are any type.
+"""

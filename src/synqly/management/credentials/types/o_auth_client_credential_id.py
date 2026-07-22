@@ -3,3 +3,6 @@
 from .credential_id import CredentialId
 
 OAuthClientCredentialId = CredentialId
+"""
+Unique identifier for an OAuth Client Credential
+"""

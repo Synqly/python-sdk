@@ -3,3 +3,6 @@
 from ...ocsf.v_1_3_0.configstate.classes.types.config_state import ConfigState
 
 PostureScore = ConfigState
+"""
+The posture score of an endpoint asset.
+"""

@@ -3,3 +3,6 @@
 from ...common.types.id import Id
 
 AttachmentId = Id
+"""
+Unique identifier for an attachment
+"""

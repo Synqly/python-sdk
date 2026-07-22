@@ -3,3 +3,6 @@
 from ...common.types.id import Id
 
 SsoConfigurationId = Id
+"""
+Unique identifier for this SSO configuration
+"""

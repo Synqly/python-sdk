@@ -3,3 +3,6 @@
 from ...common.types.id import Id
 
 ApplicationId = Id
+"""
+The unique identifier of the application
+"""

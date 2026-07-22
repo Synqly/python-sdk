@@ -3,3 +3,6 @@
 from ...common.types.id import Id
 
 IntegrationWebHookId = Id
+"""
+Unique identifier for a integration webHook
+"""

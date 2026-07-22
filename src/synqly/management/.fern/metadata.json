@@ -1,0 +1,19 @@
+{
+  "cliVersion": "5.62.0",
+  "generatorName": "fernapi/fern-python-sdk",
+  "generatorVersion": "5.15.1",
+  "generatorConfig": {
+    "pydantic_config": {
+      "version": "both",
+      "extra_fields": "allow",
+      "skip_validation": true,
+      "frozen": false,
+      "enum_type": "forward_compatible_python_enums",
+      "use_pydantic_field_aliases": true
+    }
+  },
+  "originGitCommit": "ae50c8dfb02e9c54ba1c6903098fd9b842169793",
+  "originGitCommitIsDirty": true,
+  "invokedBy": "ci",
+  "ciProvider": "github"
+}

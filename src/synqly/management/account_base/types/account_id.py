@@ -3,3 +3,6 @@
 from ...common.types.id import Id
 
 AccountId = Id
+"""
+Unique identifier for this Account
+"""

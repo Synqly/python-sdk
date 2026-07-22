@@ -3,3 +3,6 @@
 from ...common.types.id import Id
 
 IntegrationPointId = Id
+"""
+Unique identifier for this IntegrationPoint
+"""

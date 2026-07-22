@@ -3,3 +3,6 @@
 from ...common.types.id import Id
 
 BridgeGroupId = Id
+"""
+Unique identifier for this Bridge Group.
+"""

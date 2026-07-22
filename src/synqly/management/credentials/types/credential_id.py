@@ -3,3 +3,6 @@
 from ...common.types.id import Id
 
 CredentialId = Id
+"""
+Unique identifier for this Credential
+"""

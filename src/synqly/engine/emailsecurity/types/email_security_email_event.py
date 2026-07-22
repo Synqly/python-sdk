@@ -3,3 +3,6 @@
 from ...ocsf.v_1_8_0.emailactivity.classes.types.email_activity import EmailActivity
 
 EmailSecurityEmailEvent = EmailActivity
+"""
+Email security connector email event object. Represented by OCSF Email Activity class (class_uid 4009) using the OCSF Synqly extension, the OCSF Security Control profile, and the OCSF Date/Time profile.
+"""

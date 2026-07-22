@@ -3,3 +3,6 @@
 from ...ocsf.v_1_3_0.softwareinfo.classes.types.software_info import SoftwareInfo
 
 Application = SoftwareInfo
+"""
+Application information represented by the extended OCSF Software Info event. The Product object describes characteristics of a software product.
+"""

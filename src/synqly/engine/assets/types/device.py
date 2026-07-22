@@ -3,3 +3,6 @@
 from ...ocsf.v_1_3_0.inventoryinfo.classes.types.inventory_info import InventoryInfo
 
 Device = InventoryInfo
+"""
+Device inventory information. Represented by OCSF Device Inventory Info class (class_uid 5001).
+"""

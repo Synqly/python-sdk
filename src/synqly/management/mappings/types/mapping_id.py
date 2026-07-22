@@ -3,3 +3,6 @@
 from ...common.types.id import Id
 
 MappingId = Id
+"""
+Unique identifier for this organization mapping
+"""

@@ -3,3 +3,6 @@
 from ...common.types.id import Id
 
 TokenId = Id
+"""
+Unique identifier for this Token
+"""

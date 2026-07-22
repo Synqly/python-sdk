@@ -3,3 +3,6 @@
 from ...common.types.id import Id
 
 RoleId = Id
+"""
+Unique identifier for this Role
+"""

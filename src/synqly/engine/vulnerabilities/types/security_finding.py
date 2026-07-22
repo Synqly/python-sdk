@@ -4,6 +4,7 @@ from ...ocsf.v_1_3_0.securityfinding.classes.types.security_finding import (
     SecurityFinding as ocsf_v_1_3_0_securityfinding_classes_types_security_finding_SecurityFinding,
 )
 
-SecurityFinding = (
-    ocsf_v_1_3_0_securityfinding_classes_types_security_finding_SecurityFinding
-)
+SecurityFinding = ocsf_v_1_3_0_securityfinding_classes_types_security_finding_SecurityFinding
+"""
+Result of a vulnerability scan. Represented by OCSF Security Finding class (class_uid 2001).
+"""

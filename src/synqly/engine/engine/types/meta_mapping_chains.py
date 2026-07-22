@@ -3,3 +3,6 @@
 import typing
 
 MetaMappingChains = typing.Dict[str, typing.List[str]]
+"""
+The list of mapping chains applied, indexed by operation ID. Each entry contains an array of mapping IDs.
+"""

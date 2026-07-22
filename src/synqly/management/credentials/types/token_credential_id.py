@@ -3,3 +3,6 @@
 from .credential_id import CredentialId
 
 TokenCredentialId = CredentialId
+"""
+Unique identifier for a Token Credential
+"""

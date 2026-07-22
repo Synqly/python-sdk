@@ -3,3 +3,6 @@
 from ...common.types.id import Id
 
 CustomId = Id
+"""
+Unique identifier for this organization custom provider.
+"""

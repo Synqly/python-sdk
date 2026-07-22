@@ -3,3 +3,6 @@
 from ...common.types.id import Id
 
 ProjectId = Id
+"""
+Unique identifier for a project
+"""

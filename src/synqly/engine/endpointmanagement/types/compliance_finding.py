@@ -4,6 +4,7 @@ from ...ocsf.v_1_3_0.compliancefinding.classes.types.compliance_finding import (
     ComplianceFinding as ocsf_v_1_3_0_compliancefinding_classes_types_compliance_finding_ComplianceFinding,
 )
 
-ComplianceFinding = (
-    ocsf_v_1_3_0_compliancefinding_classes_types_compliance_finding_ComplianceFinding
-)
+ComplianceFinding = ocsf_v_1_3_0_compliancefinding_classes_types_compliance_finding_ComplianceFinding
+"""
+Compliance finding represented by OCSF Compliance Finding class (class_uid 2003).
+"""

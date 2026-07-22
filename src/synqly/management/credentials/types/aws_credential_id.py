@@ -3,3 +3,6 @@
 from .credential_id import CredentialId
 
 AwsCredentialId = CredentialId
+"""
+Unique identifier for an AWS Credential
+"""

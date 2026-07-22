@@ -3,3 +3,6 @@
 from ...common.types.id import Id
 
 CommentId = Id
+"""
+Unique identifier for a comment
+"""

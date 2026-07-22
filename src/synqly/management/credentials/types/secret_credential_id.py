@@ -3,3 +3,6 @@
 from .credential_id import CredentialId
 
 SecretCredentialId = CredentialId
+"""
+Unique identifier for a Secret Credential
+"""

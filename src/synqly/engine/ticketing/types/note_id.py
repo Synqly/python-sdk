@@ -3,3 +3,6 @@
 from ...common.types.id import Id
 
 NoteId = Id
+"""
+Unique identifier for a note
+"""

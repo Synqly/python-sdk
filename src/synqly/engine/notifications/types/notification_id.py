@@ -3,3 +3,6 @@
 from ...common.types.id import Id
 
 NotificationId = Id
+"""
+Unique identifier for this notification
+"""

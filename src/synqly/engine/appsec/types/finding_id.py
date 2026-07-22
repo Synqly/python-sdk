@@ -3,3 +3,6 @@
 from ...common.types.id import Id
 
 FindingId = Id
+"""
+The unique identifier of the finding
+"""

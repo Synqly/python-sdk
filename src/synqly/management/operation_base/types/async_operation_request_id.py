@@ -3,3 +3,6 @@
 from ...common.types.id import Id
 
 AsyncOperationRequestId = Id
+"""
+Unique request identifier for this Asynchronous Operation.
+"""
