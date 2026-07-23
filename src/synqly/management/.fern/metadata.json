@@ -12,7 +12,7 @@
       "use_pydantic_field_aliases": true
     }
   },
-  "originGitCommit": "e0d6dd7cc1d48995f749d2a7d08ab41c78fed215",
+  "originGitCommit": "0bbb93638e3593c11b2360baae974087ec068ca2",
   "originGitCommitIsDirty": true,
   "invokedBy": "ci",
   "ciProvider": "github"
