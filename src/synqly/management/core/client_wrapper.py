@@ -39,7 +39,7 @@ class BaseClientWrapper:
             **(self.get_custom_headers() or {}),
         }
         headers["Authorization"] = f"Bearer {self._get_token()}"
-        headers["User-Agent"] = "Synqly-Python-SDK/2.0.5"
+        headers["User-Agent"] = "Synqly-Python-SDK/2.0.6"
         return headers
 
     def _get_token(self) -> str:
@@ -142,5 +142,5 @@ class AsyncClientWrapper(BaseClientWrapper):
         if self._async_token is not None:
             token = await self._async_token()
             headers["Authorization"] = f"Bearer {token}"
-        headers["User-Agent"] = "Synqly-Python-SDK/2.0.5"
+        headers["User-Agent"] = "Synqly-Python-SDK/2.0.6"
         return headers
