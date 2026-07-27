@@ -5,11 +5,16 @@ import typing
 import pydantic
 from ...core.pydantic_utilities import IS_PYDANTIC_V2
 from ...core.unchecked_base_model import UncheckedBaseModel
+from ...credentials.types.credential_response import CredentialResponse
 from .integration import Integration
 
 
 class PatchIntegrationResponse(UncheckedBaseModel):
     result: Integration
+    credentials_created: typing.Optional[typing.List[CredentialResponse]] = pydantic.Field(default=None)
+    """
+    Credentials created and attached to the integration as a result of this patch. Populated only when the request added a credential to an integration that previously had none; empty otherwise.
+    """
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow")  # type: ignore # Pydantic v2
