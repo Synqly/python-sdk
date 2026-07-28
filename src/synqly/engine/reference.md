@@ -319,6 +319,120 @@ client.appsec.query_findings()
 </dl>
 </details>
 
+<details><summary><code>client.appsec.<a href="src/synqly/appsec/client.py">create_findings</a>(...) -> AppSecCreateFindingsResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Create application security posture findings (bulk) in an application security provider.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```python
+from synqly import SynqlyEngine
+from synqly.environment import SynqlyEngineEnvironment
+from synqly.ocsf.v_1_8_0.applicationsecurityposturefinding.classes import ApplicationSecurityPostureFinding
+from synqly.ocsf.v_1_8_0.objects import FindingInfo, Metadata, Product
+
+client = SynqlyEngine(
+    token="<token>",
+    environment=SynqlyEngineEnvironment.SYNQLY,
+)
+
+client.appsec.create_findings(
+    request=[
+        ApplicationSecurityPostureFinding(
+            activity_id=1,
+            category_uid=1,
+            class_uid=1,
+            finding_info=FindingInfo(
+                uid="uid",
+            ),
+            metadata=Metadata(
+                product=Product(),
+                version="version",
+            ),
+            severity_id=1,
+            time=1,
+            type_uid=1,
+        ),
+        ApplicationSecurityPostureFinding(
+            activity_id=1,
+            category_uid=1,
+            class_uid=1,
+            finding_info=FindingInfo(
+                uid="uid",
+            ),
+            metadata=Metadata(
+                product=Product(),
+                version="version",
+            ),
+            severity_id=1,
+            time=1,
+            type_uid=1,
+        )
+    ],
+)
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `typing.List[AppSecPostureFinding]` — Application security posture findings to create.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**meta:** `typing.Optional[typing.Union[str, typing.Sequence[str]]]` — Add metadata to the response by invoking meta functions. Documentation for [meta functions](https://docs.synqly.com/api-reference/meta-functions) is available. Not all meta functions are available at every endpoint.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `typing.Optional[RequestOptions]` — Request-specific configuration.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>client.appsec.<a href="src/synqly/appsec/client.py">get_application_finding_details</a>(...) -> AppSecGetApplicationFindingDetailsResponse</code></summary>
 <dl>
 <dd>
@@ -2332,7 +2446,7 @@ client = SynqlyEngine(
 )
 
 client.custom.query(
-    operation=OperationId.APPSEC_GET_APPLICATION_FINDING_DETAILS,
+    operation=OperationId.APPSEC_CREATE_FINDINGS,
 )
 
 ```
@@ -2454,7 +2568,7 @@ client = SynqlyEngine(
 )
 
 client.custom.get(
-    operation=OperationId.APPSEC_GET_APPLICATION_FINDING_DETAILS,
+    operation=OperationId.APPSEC_CREATE_FINDINGS,
     id="id",
 )
 
@@ -2554,7 +2668,7 @@ client = SynqlyEngine(
 )
 
 client.custom.patch(
-    operation=OperationId.APPSEC_GET_APPLICATION_FINDING_DETAILS,
+    operation=OperationId.APPSEC_CREATE_FINDINGS,
     id="id",
     request=[
         PatchOperation(
@@ -2663,7 +2777,7 @@ client = SynqlyEngine(
 )
 
 client.custom.delete(
-    operation=OperationId.APPSEC_GET_APPLICATION_FINDING_DETAILS,
+    operation=OperationId.APPSEC_CREATE_FINDINGS,
     id="id",
 )
 
@@ -2754,7 +2868,7 @@ client = SynqlyEngine(
 )
 
 client.custom.post(
-    operation=OperationId.APPSEC_GET_APPLICATION_FINDING_DETAILS,
+    operation=OperationId.APPSEC_CREATE_FINDINGS,
     request={
         "string": {"key": "value"}
     },
@@ -2847,7 +2961,7 @@ client = SynqlyEngine(
 )
 
 client.custom.post_batch(
-    operation=OperationId.APPSEC_GET_APPLICATION_FINDING_DETAILS,
+    operation=OperationId.APPSEC_CREATE_FINDINGS,
     request=[
         {
             "string": {"key": "value"}

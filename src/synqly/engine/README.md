@@ -36,29 +36,46 @@ Instantiate and use the client with the following:
 
 ```python
 from synqly import SynqlyEngine
-from synqly.ocsf.v_1_3_0.inventoryinfo.classes import InventoryInfo
-from synqly.ocsf.v_1_3_0.objects import Device, Metadata, Product
+from synqly.ocsf.v_1_8_0.applicationsecurityposturefinding.classes import ApplicationSecurityPostureFinding
+from synqly.ocsf.v_1_8_0.objects import FindingInfo, Metadata, Product
 
 client = SynqlyEngine(
     token="<token>",
 )
 
-client.assets.create_asset(
-    device=InventoryInfo(
-        activity_id=1,
-        category_uid=1,
-        class_uid=1,
-        device=Device(
-            type_id=1,
+client.appsec.create_findings(
+    request=[
+        ApplicationSecurityPostureFinding(
+            activity_id=1,
+            category_uid=1,
+            class_uid=1,
+            finding_info=FindingInfo(
+                uid="uid",
+            ),
+            metadata=Metadata(
+                product=Product(),
+                version="version",
+            ),
+            severity_id=1,
+            time=1,
+            type_uid=1,
         ),
-        metadata=Metadata(
-            product=Product(),
-            version="version",
-        ),
-        severity_id=1,
-        time=1,
-        type_uid=1,
-    ),
+        ApplicationSecurityPostureFinding(
+            activity_id=1,
+            category_uid=1,
+            class_uid=1,
+            finding_info=FindingInfo(
+                uid="uid",
+            ),
+            metadata=Metadata(
+                product=Product(),
+                version="version",
+            ),
+            severity_id=1,
+            time=1,
+            type_uid=1,
+        )
+    ],
 )
 ```
 
@@ -81,8 +98,8 @@ The SDK also exports an `async` client so that you can make non-blocking calls t
 
 ```python
 import asyncio
-from synqly.ocsf.v_1_3_0.inventoryinfo.classes import InventoryInfo
-from synqly.ocsf.v_1_3_0.objects import Device, Metadata, Product
+from synqly.ocsf.v_1_8_0.applicationsecurityposturefinding.classes import ApplicationSecurityPostureFinding
+from synqly.ocsf.v_1_8_0.objects import FindingInfo, Metadata, Product
 
 from synqly import AsyncSynqlyEngine
 
@@ -92,22 +109,39 @@ client = AsyncSynqlyEngine(
 
 
 async def main() -> None:
-    await client.assets.create_asset(
-        device=InventoryInfo(
-            activity_id=1,
-            category_uid=1,
-            class_uid=1,
-            device=Device(
-                type_id=1,
+    await client.appsec.create_findings(
+        request=[
+            ApplicationSecurityPostureFinding(
+                activity_id=1,
+                category_uid=1,
+                class_uid=1,
+                finding_info=FindingInfo(
+                    uid="uid",
+                ),
+                metadata=Metadata(
+                    product=Product(),
+                    version="version",
+                ),
+                severity_id=1,
+                time=1,
+                type_uid=1,
             ),
-            metadata=Metadata(
-                product=Product(),
-                version="version",
-            ),
-            severity_id=1,
-            time=1,
-            type_uid=1,
-        ),
+            ApplicationSecurityPostureFinding(
+                activity_id=1,
+                category_uid=1,
+                class_uid=1,
+                finding_info=FindingInfo(
+                    uid="uid",
+                ),
+                metadata=Metadata(
+                    product=Product(),
+                    version="version",
+                ),
+                severity_id=1,
+                time=1,
+                type_uid=1,
+            )
+        ],
     )
 
 
@@ -123,7 +157,7 @@ will be thrown.
 from synqly.core.api_error import ApiError
 
 try:
-    client.assets.create_asset(...)
+    client.appsec.create_findings(...)
 except ApiError as e:
     print(e.status_code)
     print(e.body)
@@ -140,7 +174,7 @@ The `.with_raw_response` property returns a "raw" client that can be used to acc
 from synqly import SynqlyEngine
 
 client = SynqlyEngine(...)
-response = client.assets.with_raw_response.create_asset(...)
+response = client.appsec.with_raw_response.create_findings(...)
 print(response.headers)  # access the response headers
 print(response.status_code)  # access the response status code
 print(response.data)  # access the underlying object
@@ -171,7 +205,7 @@ Which status codes are retried depends on the `retryStatusCodes` generator confi
 Use the `max_retries` request option to configure this behavior.
 
 ```python
-client.assets.create_asset(..., request_options={
+client.appsec.create_findings(..., request_options={
     "max_retries": 1
 })
 ```
@@ -186,7 +220,7 @@ from synqly import SynqlyEngine
 client = SynqlyEngine(..., timeout=20.0)
 
 # Override timeout for a specific method
-client.assets.create_asset(..., request_options={
+client.appsec.create_findings(..., request_options={
     "timeout_in_seconds": 1
 })
 ```

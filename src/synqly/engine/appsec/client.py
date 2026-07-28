@@ -5,12 +5,17 @@ import typing
 from ..core.client_wrapper import AsyncClientWrapper, SyncClientWrapper
 from ..core.request_options import RequestOptions
 from .raw_client import AsyncRawAppsecClient, RawAppsecClient
+from .types.app_sec_create_findings_response import AppSecCreateFindingsResponse
 from .types.app_sec_get_application_finding_details_response import AppSecGetApplicationFindingDetailsResponse
+from .types.app_sec_posture_finding import AppSecPostureFinding
 from .types.app_sec_query_application_findings_response import AppSecQueryApplicationFindingsResponse
 from .types.app_sec_query_applications_response import AppSecQueryApplicationsResponse
 from .types.app_sec_query_findings_response import AppSecQueryFindingsResponse
 from .types.application_id import ApplicationId
 from .types.finding_id import FindingId
+
+# this is used as the default value for optional parameters
+OMIT = typing.cast(typing.Any, ...)
 
 
 class AppsecClient:
@@ -200,6 +205,79 @@ class AppsecClient:
             include_raw_data=include_raw_data,
             request_options=request_options,
         )
+        return _response.data
+
+    def create_findings(
+        self,
+        *,
+        request: typing.Sequence[AppSecPostureFinding],
+        meta: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> AppSecCreateFindingsResponse:
+        """
+        Create application security posture findings (bulk) in an application security provider.
+
+        Parameters
+        ----------
+        request : typing.Sequence[AppSecPostureFinding]
+
+        meta : typing.Optional[typing.Union[str, typing.Sequence[str]]]
+            Add metadata to the response by invoking meta functions. Documentation for [meta functions](https://docs.synqly.com/api-reference/meta-functions) is available. Not all meta functions are available at every endpoint.
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        AppSecCreateFindingsResponse
+
+        Examples
+        --------
+        from synqly import SynqlyEngine
+        from synqly.ocsf.v_1_8_0.applicationsecurityposturefinding.classes import (
+            ApplicationSecurityPostureFinding,
+        )
+        from synqly.ocsf.v_1_8_0.objects import FindingInfo, Metadata, Product
+
+        client = SynqlyEngine(
+            token="YOUR_TOKEN",
+        )
+        client.appsec.create_findings(
+            request=[
+                ApplicationSecurityPostureFinding(
+                    activity_id=1,
+                    category_uid=1,
+                    class_uid=1,
+                    finding_info=FindingInfo(
+                        uid="uid",
+                    ),
+                    metadata=Metadata(
+                        product=Product(),
+                        version="version",
+                    ),
+                    severity_id=1,
+                    time=1,
+                    type_uid=1,
+                ),
+                ApplicationSecurityPostureFinding(
+                    activity_id=1,
+                    category_uid=1,
+                    class_uid=1,
+                    finding_info=FindingInfo(
+                        uid="uid",
+                    ),
+                    metadata=Metadata(
+                        product=Product(),
+                        version="version",
+                    ),
+                    severity_id=1,
+                    time=1,
+                    type_uid=1,
+                ),
+            ],
+        )
+        """
+        _response = self._raw_client.create_findings(request=request, meta=meta, request_options=request_options)
         return _response.data
 
     def get_application_finding_details(
@@ -462,6 +540,87 @@ class AsyncAppsecClient:
             include_raw_data=include_raw_data,
             request_options=request_options,
         )
+        return _response.data
+
+    async def create_findings(
+        self,
+        *,
+        request: typing.Sequence[AppSecPostureFinding],
+        meta: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> AppSecCreateFindingsResponse:
+        """
+        Create application security posture findings (bulk) in an application security provider.
+
+        Parameters
+        ----------
+        request : typing.Sequence[AppSecPostureFinding]
+
+        meta : typing.Optional[typing.Union[str, typing.Sequence[str]]]
+            Add metadata to the response by invoking meta functions. Documentation for [meta functions](https://docs.synqly.com/api-reference/meta-functions) is available. Not all meta functions are available at every endpoint.
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        AppSecCreateFindingsResponse
+
+        Examples
+        --------
+        import asyncio
+
+        from synqly import AsyncSynqlyEngine
+        from synqly.ocsf.v_1_8_0.applicationsecurityposturefinding.classes import (
+            ApplicationSecurityPostureFinding,
+        )
+        from synqly.ocsf.v_1_8_0.objects import FindingInfo, Metadata, Product
+
+        client = AsyncSynqlyEngine(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.appsec.create_findings(
+                request=[
+                    ApplicationSecurityPostureFinding(
+                        activity_id=1,
+                        category_uid=1,
+                        class_uid=1,
+                        finding_info=FindingInfo(
+                            uid="uid",
+                        ),
+                        metadata=Metadata(
+                            product=Product(),
+                            version="version",
+                        ),
+                        severity_id=1,
+                        time=1,
+                        type_uid=1,
+                    ),
+                    ApplicationSecurityPostureFinding(
+                        activity_id=1,
+                        category_uid=1,
+                        class_uid=1,
+                        finding_info=FindingInfo(
+                            uid="uid",
+                        ),
+                        metadata=Metadata(
+                            product=Product(),
+                            version="version",
+                        ),
+                        severity_id=1,
+                        time=1,
+                        type_uid=1,
+                    ),
+                ],
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.create_findings(request=request, meta=meta, request_options=request_options)
         return _response.data
 
     async def get_application_finding_details(

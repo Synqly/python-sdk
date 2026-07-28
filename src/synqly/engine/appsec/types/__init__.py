@@ -7,6 +7,7 @@ from importlib import import_module
 
 if typing.TYPE_CHECKING:
     from .app_sec_application import AppSecApplication
+    from .app_sec_create_findings_response import AppSecCreateFindingsResponse
     from .app_sec_get_application_finding_details_response import AppSecGetApplicationFindingDetailsResponse
     from .app_sec_posture_finding import AppSecPostureFinding
     from .app_sec_query_application_findings_response import AppSecQueryApplicationFindingsResponse
@@ -16,6 +17,7 @@ if typing.TYPE_CHECKING:
     from .finding_id import FindingId
 _dynamic_imports: typing.Dict[str, str] = {
     "AppSecApplication": ".app_sec_application",
+    "AppSecCreateFindingsResponse": ".app_sec_create_findings_response",
     "AppSecGetApplicationFindingDetailsResponse": ".app_sec_get_application_finding_details_response",
     "AppSecPostureFinding": ".app_sec_posture_finding",
     "AppSecQueryApplicationFindingsResponse": ".app_sec_query_application_findings_response",
@@ -49,6 +51,7 @@ def __dir__():
 
 __all__ = [
     "AppSecApplication",
+    "AppSecCreateFindingsResponse",
     "AppSecGetApplicationFindingDetailsResponse",
     "AppSecPostureFinding",
     "AppSecQueryApplicationFindingsResponse",

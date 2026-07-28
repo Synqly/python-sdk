@@ -85,7 +85,7 @@ class CustomClient:
             token="YOUR_TOKEN",
         )
         client.custom.query(
-            operation=OperationId.APPSEC_GET_APPLICATION_FINDING_DETAILS,
+            operation=OperationId.APPSEC_CREATE_FINDINGS,
         )
         """
         _response = self._raw_client.query(
@@ -142,7 +142,7 @@ class CustomClient:
             token="YOUR_TOKEN",
         )
         client.custom.get(
-            operation=OperationId.APPSEC_GET_APPLICATION_FINDING_DETAILS,
+            operation=OperationId.APPSEC_CREATE_FINDINGS,
             id="id",
         )
         """
@@ -193,7 +193,7 @@ class CustomClient:
             token="YOUR_TOKEN",
         )
         client.custom.patch(
-            operation=OperationId.APPSEC_GET_APPLICATION_FINDING_DETAILS,
+            operation=OperationId.APPSEC_CREATE_FINDINGS,
             id="id",
             request=[
                 PatchOperation(
@@ -248,7 +248,7 @@ class CustomClient:
             token="YOUR_TOKEN",
         )
         client.custom.delete(
-            operation=OperationId.APPSEC_GET_APPLICATION_FINDING_DETAILS,
+            operation=OperationId.APPSEC_CREATE_FINDINGS,
             id="id",
         )
         """
@@ -292,7 +292,7 @@ class CustomClient:
             token="YOUR_TOKEN",
         )
         client.custom.post(
-            operation=OperationId.APPSEC_GET_APPLICATION_FINDING_DETAILS,
+            operation=OperationId.APPSEC_CREATE_FINDINGS,
             request={"string": {"key": "value"}},
         )
         """
@@ -336,7 +336,7 @@ class CustomClient:
             token="YOUR_TOKEN",
         )
         client.custom.post_batch(
-            operation=OperationId.APPSEC_GET_APPLICATION_FINDING_DETAILS,
+            operation=OperationId.APPSEC_CREATE_FINDINGS,
             request=[{"string": {"key": "value"}}, {"string": {"key": "value"}}],
         )
         """
@@ -418,7 +418,7 @@ class AsyncCustomClient:
 
         async def main() -> None:
             await client.custom.query(
-                operation=OperationId.APPSEC_GET_APPLICATION_FINDING_DETAILS,
+                operation=OperationId.APPSEC_CREATE_FINDINGS,
             )
 
 
@@ -483,7 +483,7 @@ class AsyncCustomClient:
 
         async def main() -> None:
             await client.custom.get(
-                operation=OperationId.APPSEC_GET_APPLICATION_FINDING_DETAILS,
+                operation=OperationId.APPSEC_CREATE_FINDINGS,
                 id="id",
             )
 
@@ -542,7 +542,7 @@ class AsyncCustomClient:
 
         async def main() -> None:
             await client.custom.patch(
-                operation=OperationId.APPSEC_GET_APPLICATION_FINDING_DETAILS,
+                operation=OperationId.APPSEC_CREATE_FINDINGS,
                 id="id",
                 request=[
                     PatchOperation(
@@ -607,7 +607,7 @@ class AsyncCustomClient:
 
         async def main() -> None:
             await client.custom.delete(
-                operation=OperationId.APPSEC_GET_APPLICATION_FINDING_DETAILS,
+                operation=OperationId.APPSEC_CREATE_FINDINGS,
                 id="id",
             )
 
@@ -659,7 +659,7 @@ class AsyncCustomClient:
 
         async def main() -> None:
             await client.custom.post(
-                operation=OperationId.APPSEC_GET_APPLICATION_FINDING_DETAILS,
+                operation=OperationId.APPSEC_CREATE_FINDINGS,
                 request={"string": {"key": "value"}},
             )
 
@@ -711,7 +711,7 @@ class AsyncCustomClient:
 
         async def main() -> None:
             await client.custom.post_batch(
-                operation=OperationId.APPSEC_GET_APPLICATION_FINDING_DETAILS,
+                operation=OperationId.APPSEC_CREATE_FINDINGS,
                 request=[{"string": {"key": "value"}}, {"string": {"key": "value"}}],
             )
 

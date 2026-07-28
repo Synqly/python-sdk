@@ -38,6 +38,7 @@ if typing.TYPE_CHECKING:
     from ._default_clients import DefaultAioHttpClient, DefaultAsyncHttpxClient
     from .appsec import (
         AppSecApplication,
+        AppSecCreateFindingsResponse,
         AppSecGetApplicationFindingDetailsResponse,
         AppSecPostureFinding,
         AppSecQueryApplicationFindingsResponse,
@@ -392,6 +393,7 @@ _dynamic_imports: typing.Dict[str, str] = {
     "ApiQueryResponse": ".engine",
     "ApiResponse": ".engine",
     "AppSecApplication": ".appsec",
+    "AppSecCreateFindingsResponse": ".appsec",
     "AppSecGetApplicationFindingDetailsResponse": ".appsec",
     "AppSecPostureFinding": ".appsec",
     "AppSecQueryApplicationFindingsResponse": ".appsec",
@@ -759,6 +761,7 @@ __all__ = [
     "ApiQueryResponse",
     "ApiResponse",
     "AppSecApplication",
+    "AppSecCreateFindingsResponse",
     "AppSecGetApplicationFindingDetailsResponse",
     "AppSecPostureFinding",
     "AppSecQueryApplicationFindingsResponse",
