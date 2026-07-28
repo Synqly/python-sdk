@@ -43,6 +43,7 @@ if typing.TYPE_CHECKING:
     from .assets_ivanti_neurons import AssetsIvantiNeurons
     from .assets_ivanti_neurons_dataset import AssetsIvantiNeuronsDataset
     from .assets_ivanti_neurons_mock import AssetsIvantiNeuronsMock
+    from .assets_jupiter_one import AssetsJupiterOne
     from .assets_nozomi_vantage import AssetsNozomiVantage
     from .assets_nozomi_vantage_dataset import AssetsNozomiVantageDataset
     from .assets_nozomi_vantage_mock import AssetsNozomiVantageMock
@@ -303,6 +304,7 @@ if typing.TYPE_CHECKING:
     )
     from .jamf_credential import JamfCredential, JamfCredential_OAuthClient, JamfCredential_OAuthClientId
     from .jira_credential import JiraCredential, JiraCredential_Basic, JiraCredential_BasicId
+    from .jupiter_one_credential import JupiterOneCredential, JupiterOneCredential_Token, JupiterOneCredential_TokenId
     from .linear_credential import LinearCredential, LinearCredential_Token, LinearCredential_TokenId
     from .malwarebytes_credential import (
         MalwarebytesCredential,
@@ -383,6 +385,7 @@ if typing.TYPE_CHECKING:
         ProviderConfig_AssetsIru,
         ProviderConfig_AssetsIvantiNeurons,
         ProviderConfig_AssetsIvantiNeuronsMock,
+        ProviderConfig_AssetsJupiterone,
         ProviderConfig_AssetsNozomiVantage,
         ProviderConfig_AssetsNozomiVantageMock,
         ProviderConfig_AssetsQualysCloud,
@@ -756,6 +759,7 @@ _dynamic_imports: typing.Dict[str, str] = {
     "AssetsIvantiNeurons": ".assets_ivanti_neurons",
     "AssetsIvantiNeuronsDataset": ".assets_ivanti_neurons_dataset",
     "AssetsIvantiNeuronsMock": ".assets_ivanti_neurons_mock",
+    "AssetsJupiterOne": ".assets_jupiter_one",
     "AssetsNozomiVantage": ".assets_nozomi_vantage",
     "AssetsNozomiVantageDataset": ".assets_nozomi_vantage_dataset",
     "AssetsNozomiVantageMock": ".assets_nozomi_vantage_mock",
@@ -999,6 +1003,9 @@ _dynamic_imports: typing.Dict[str, str] = {
     "JiraCredential": ".jira_credential",
     "JiraCredential_Basic": ".jira_credential",
     "JiraCredential_BasicId": ".jira_credential",
+    "JupiterOneCredential": ".jupiter_one_credential",
+    "JupiterOneCredential_Token": ".jupiter_one_credential",
+    "JupiterOneCredential_TokenId": ".jupiter_one_credential",
     "LinearCredential": ".linear_credential",
     "LinearCredential_Token": ".linear_credential",
     "LinearCredential_TokenId": ".linear_credential",
@@ -1081,6 +1088,7 @@ _dynamic_imports: typing.Dict[str, str] = {
     "ProviderConfig_AssetsIru": ".provider_config",
     "ProviderConfig_AssetsIvantiNeurons": ".provider_config",
     "ProviderConfig_AssetsIvantiNeuronsMock": ".provider_config",
+    "ProviderConfig_AssetsJupiterone": ".provider_config",
     "ProviderConfig_AssetsNozomiVantage": ".provider_config",
     "ProviderConfig_AssetsNozomiVantageMock": ".provider_config",
     "ProviderConfig_AssetsQualysCloud": ".provider_config",
@@ -1470,6 +1478,7 @@ __all__ = [
     "AssetsIvantiNeurons",
     "AssetsIvantiNeuronsDataset",
     "AssetsIvantiNeuronsMock",
+    "AssetsJupiterOne",
     "AssetsNozomiVantage",
     "AssetsNozomiVantageDataset",
     "AssetsNozomiVantageMock",
@@ -1713,6 +1722,9 @@ __all__ = [
     "JiraCredential",
     "JiraCredential_Basic",
     "JiraCredential_BasicId",
+    "JupiterOneCredential",
+    "JupiterOneCredential_Token",
+    "JupiterOneCredential_TokenId",
     "LinearCredential",
     "LinearCredential_Token",
     "LinearCredential_TokenId",
@@ -1795,6 +1807,7 @@ __all__ = [
     "ProviderConfig_AssetsIru",
     "ProviderConfig_AssetsIvantiNeurons",
     "ProviderConfig_AssetsIvantiNeuronsMock",
+    "ProviderConfig_AssetsJupiterone",
     "ProviderConfig_AssetsNozomiVantage",
     "ProviderConfig_AssetsNozomiVantageMock",
     "ProviderConfig_AssetsQualysCloud",

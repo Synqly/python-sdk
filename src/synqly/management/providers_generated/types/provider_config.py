@@ -84,6 +84,7 @@ from .ivanti_credential import IvantiCredential
 from .ivanti_credential_ticketing import IvantiCredentialTicketing
 from .jamf_credential import JamfCredential
 from .jira_credential import JiraCredential
+from .jupiter_one_credential import JupiterOneCredential
 from .linear_credential import LinearCredential
 from .malwarebytes_credential import MalwarebytesCredential
 from .microsoft_defender_region import MicrosoftDefenderRegion
@@ -449,6 +450,21 @@ class ProviderConfig_AssetsIvantiNeurons(UncheckedBaseModel):
 class ProviderConfig_AssetsIvantiNeuronsMock(UncheckedBaseModel):
     type: typing.Literal["assets_ivanti_neurons_mock"] = "assets_ivanti_neurons_mock"
     dataset: AssetsIvantiNeuronsDataset
+
+    if IS_PYDANTIC_V2:
+        model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow")  # type: ignore # Pydantic v2
+    else:
+
+        class Config:
+            smart_union = True
+            extra = pydantic.Extra.allow
+
+
+class ProviderConfig_AssetsJupiterone(UncheckedBaseModel):
+    type: typing.Literal["assets_jupiterone"] = "assets_jupiterone"
+    account_id: str
+    credential: JupiterOneCredential
+    url: typing.Optional[str] = None
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow")  # type: ignore # Pydantic v2
@@ -2508,6 +2524,7 @@ ProviderConfig = typing_extensions.Annotated[
         ProviderConfig_AssetsIru,
         ProviderConfig_AssetsIvantiNeurons,
         ProviderConfig_AssetsIvantiNeuronsMock,
+        ProviderConfig_AssetsJupiterone,
         ProviderConfig_AssetsNozomiVantage,
         ProviderConfig_AssetsNozomiVantageMock,
         ProviderConfig_AssetsQualysCloud,

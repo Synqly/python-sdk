@@ -122,6 +122,11 @@ class ProviderConfigId(enum.StrEnum):
     [MOCK] Ivanti Neurons
     """
 
+    ASSETS_JUPITER_ONE = "assets_jupiterone"
+    """
+    JupiterOne
+    """
+
     ASSETS_NOZOMI_VANTAGE = "assets_nozomi_vantage"
     """
     Nozomi Vantage
@@ -847,6 +852,7 @@ class ProviderConfigId(enum.StrEnum):
         assets_iru: typing.Callable[[], T_Result],
         assets_ivanti_neurons: typing.Callable[[], T_Result],
         assets_ivanti_neurons_mock: typing.Callable[[], T_Result],
+        assets_jupiter_one: typing.Callable[[], T_Result],
         assets_nozomi_vantage: typing.Callable[[], T_Result],
         assets_nozomi_vantage_mock: typing.Callable[[], T_Result],
         assets_qualys_cloud: typing.Callable[[], T_Result],
@@ -1031,6 +1037,8 @@ class ProviderConfigId(enum.StrEnum):
             return assets_ivanti_neurons()
         if self is ProviderConfigId.ASSETS_IVANTI_NEURONS_MOCK:
             return assets_ivanti_neurons_mock()
+        if self is ProviderConfigId.ASSETS_JUPITER_ONE:
+            return assets_jupiter_one()
         if self is ProviderConfigId.ASSETS_NOZOMI_VANTAGE:
             return assets_nozomi_vantage()
         if self is ProviderConfigId.ASSETS_NOZOMI_VANTAGE_MOCK:
