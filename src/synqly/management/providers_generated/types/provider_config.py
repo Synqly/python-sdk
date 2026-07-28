@@ -99,6 +99,7 @@ from .open_text_core_application_security_url import OpenTextCoreApplicationSecu
 from .pager_duty_credential import PagerDutyCredential
 from .palo_alto_credential import PaloAltoCredential
 from .panther_ingestion_credential import PantherIngestionCredential
+from .pentera_credential import PenteraCredential
 from .ping_one_apiurl import PingOneApiurl
 from .ping_one_auth_url import PingOneAuthUrl
 from .ping_one_credential import PingOneCredential
@@ -2345,6 +2346,20 @@ class ProviderConfig_VulnerabilitiesNucleus(UncheckedBaseModel):
             extra = pydantic.Extra.allow
 
 
+class ProviderConfig_VulnerabilitiesPentera(UncheckedBaseModel):
+    type: typing.Literal["vulnerabilities_pentera"] = "vulnerabilities_pentera"
+    credential: PenteraCredential
+    url: str
+
+    if IS_PYDANTIC_V2:
+        model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow")  # type: ignore # Pydantic v2
+    else:
+
+        class Config:
+            smart_union = True
+            extra = pydantic.Extra.allow
+
+
 class ProviderConfig_VulnerabilitiesQualysCloud(UncheckedBaseModel):
     type: typing.Literal["vulnerabilities_qualys_cloud"] = "vulnerabilities_qualys_cloud"
     credential: QualysCloudCredential
@@ -2620,6 +2635,7 @@ ProviderConfig = typing_extensions.Annotated[
         ProviderConfig_VulnerabilitiesHorizon3,
         ProviderConfig_VulnerabilitiesIru,
         ProviderConfig_VulnerabilitiesNucleus,
+        ProviderConfig_VulnerabilitiesPentera,
         ProviderConfig_VulnerabilitiesQualysCloud,
         ProviderConfig_VulnerabilitiesQualysCloudMock,
         ProviderConfig_VulnerabilitiesRapid7InsightCloud,

@@ -757,6 +757,11 @@ class ProviderConfigId(enum.StrEnum):
     Nucleus Vulnerability Management
     """
 
+    VULNERABILITIES_PENTERA = "vulnerabilities_pentera"
+    """
+    Pentera
+    """
+
     VULNERABILITIES_QUALYS_CLOUD = "vulnerabilities_qualys_cloud"
     """
     Qualys Vulnerability Management, Detection & Response (VMDR)
@@ -969,6 +974,7 @@ class ProviderConfigId(enum.StrEnum):
         vulnerabilities_horizon_3: typing.Callable[[], T_Result],
         vulnerabilities_iru: typing.Callable[[], T_Result],
         vulnerabilities_nucleus: typing.Callable[[], T_Result],
+        vulnerabilities_pentera: typing.Callable[[], T_Result],
         vulnerabilities_qualys_cloud: typing.Callable[[], T_Result],
         vulnerabilities_qualys_cloud_mock: typing.Callable[[], T_Result],
         vulnerabilities_rapid_7_insight_cloud: typing.Callable[[], T_Result],
@@ -1279,6 +1285,8 @@ class ProviderConfigId(enum.StrEnum):
             return vulnerabilities_iru()
         if self is ProviderConfigId.VULNERABILITIES_NUCLEUS:
             return vulnerabilities_nucleus()
+        if self is ProviderConfigId.VULNERABILITIES_PENTERA:
+            return vulnerabilities_pentera()
         if self is ProviderConfigId.VULNERABILITIES_QUALYS_CLOUD:
             return vulnerabilities_qualys_cloud()
         if self is ProviderConfigId.VULNERABILITIES_QUALYS_CLOUD_MOCK:

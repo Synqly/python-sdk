@@ -355,6 +355,7 @@ if typing.TYPE_CHECKING:
         PantherIngestionCredential_Token,
         PantherIngestionCredential_TokenId,
     )
+    from .pentera_credential import PenteraCredential, PenteraCredential_Basic, PenteraCredential_BasicId
     from .ping_one_apiurl import PingOneApiurl
     from .ping_one_auth_url import PingOneAuthUrl
     from .ping_one_credential import PingOneCredential, PingOneCredential_Token, PingOneCredential_TokenId
@@ -509,6 +510,7 @@ if typing.TYPE_CHECKING:
         ProviderConfig_VulnerabilitiesHorizon3,
         ProviderConfig_VulnerabilitiesIru,
         ProviderConfig_VulnerabilitiesNucleus,
+        ProviderConfig_VulnerabilitiesPentera,
         ProviderConfig_VulnerabilitiesQualysCloud,
         ProviderConfig_VulnerabilitiesQualysCloudMock,
         ProviderConfig_VulnerabilitiesRapid7InsightCloud,
@@ -699,6 +701,7 @@ if typing.TYPE_CHECKING:
     from .vulnerabilities_horizon_3 import VulnerabilitiesHorizon3
     from .vulnerabilities_iru import VulnerabilitiesIru
     from .vulnerabilities_nucleus import VulnerabilitiesNucleus
+    from .vulnerabilities_pentera import VulnerabilitiesPentera
     from .vulnerabilities_qualys_cloud import VulnerabilitiesQualysCloud
     from .vulnerabilities_qualys_cloud_dataset import VulnerabilitiesQualysCloudDataset
     from .vulnerabilities_qualys_cloud_mock import VulnerabilitiesQualysCloudMock
@@ -1046,6 +1049,9 @@ _dynamic_imports: typing.Dict[str, str] = {
     "PantherIngestionCredential": ".panther_ingestion_credential",
     "PantherIngestionCredential_Token": ".panther_ingestion_credential",
     "PantherIngestionCredential_TokenId": ".panther_ingestion_credential",
+    "PenteraCredential": ".pentera_credential",
+    "PenteraCredential_Basic": ".pentera_credential",
+    "PenteraCredential_BasicId": ".pentera_credential",
     "PingOneApiurl": ".ping_one_apiurl",
     "PingOneAuthUrl": ".ping_one_auth_url",
     "PingOneCredential": ".ping_one_credential",
@@ -1202,6 +1208,7 @@ _dynamic_imports: typing.Dict[str, str] = {
     "ProviderConfig_VulnerabilitiesHorizon3": ".provider_config",
     "ProviderConfig_VulnerabilitiesIru": ".provider_config",
     "ProviderConfig_VulnerabilitiesNucleus": ".provider_config",
+    "ProviderConfig_VulnerabilitiesPentera": ".provider_config",
     "ProviderConfig_VulnerabilitiesQualysCloud": ".provider_config",
     "ProviderConfig_VulnerabilitiesQualysCloudMock": ".provider_config",
     "ProviderConfig_VulnerabilitiesRapid7InsightCloud": ".provider_config",
@@ -1378,6 +1385,7 @@ _dynamic_imports: typing.Dict[str, str] = {
     "VulnerabilitiesHorizon3": ".vulnerabilities_horizon_3",
     "VulnerabilitiesIru": ".vulnerabilities_iru",
     "VulnerabilitiesNucleus": ".vulnerabilities_nucleus",
+    "VulnerabilitiesPentera": ".vulnerabilities_pentera",
     "VulnerabilitiesQualysCloud": ".vulnerabilities_qualys_cloud",
     "VulnerabilitiesQualysCloudDataset": ".vulnerabilities_qualys_cloud_dataset",
     "VulnerabilitiesQualysCloudMock": ".vulnerabilities_qualys_cloud_mock",
@@ -1755,6 +1763,9 @@ __all__ = [
     "PantherIngestionCredential",
     "PantherIngestionCredential_Token",
     "PantherIngestionCredential_TokenId",
+    "PenteraCredential",
+    "PenteraCredential_Basic",
+    "PenteraCredential_BasicId",
     "PingOneApiurl",
     "PingOneAuthUrl",
     "PingOneCredential",
@@ -1911,6 +1922,7 @@ __all__ = [
     "ProviderConfig_VulnerabilitiesHorizon3",
     "ProviderConfig_VulnerabilitiesIru",
     "ProviderConfig_VulnerabilitiesNucleus",
+    "ProviderConfig_VulnerabilitiesPentera",
     "ProviderConfig_VulnerabilitiesQualysCloud",
     "ProviderConfig_VulnerabilitiesQualysCloudMock",
     "ProviderConfig_VulnerabilitiesRapid7InsightCloud",
@@ -2087,6 +2099,7 @@ __all__ = [
     "VulnerabilitiesHorizon3",
     "VulnerabilitiesIru",
     "VulnerabilitiesNucleus",
+    "VulnerabilitiesPentera",
     "VulnerabilitiesQualysCloud",
     "VulnerabilitiesQualysCloudDataset",
     "VulnerabilitiesQualysCloudMock",
