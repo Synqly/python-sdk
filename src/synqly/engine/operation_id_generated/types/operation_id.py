@@ -45,6 +45,7 @@ class OperationId(enum.StrEnum):
     EDR_CREATE_THREAT_NOTE = "edr_create_threat_note"
     EDR_DELETE_IOCS = "edr_delete_iocs"
     EDR_EXECUTE_COMMAND = "edr_execute_command"
+    EDR_EXECUTE_REMOTE_SCRIPT = "edr_execute_remote_script"
     EDR_GET_ENDPOINT = "edr_get_endpoint"
     EDR_GET_THREAT_NOTES = "edr_get_threat_notes"
     EDR_NETWORK_QUARANTINE = "edr_network_quarantine"
@@ -182,6 +183,7 @@ class OperationId(enum.StrEnum):
         edr_create_threat_note: typing.Callable[[], T_Result],
         edr_delete_iocs: typing.Callable[[], T_Result],
         edr_execute_command: typing.Callable[[], T_Result],
+        edr_execute_remote_script: typing.Callable[[], T_Result],
         edr_get_endpoint: typing.Callable[[], T_Result],
         edr_get_threat_notes: typing.Callable[[], T_Result],
         edr_network_quarantine: typing.Callable[[], T_Result],
@@ -345,6 +347,8 @@ class OperationId(enum.StrEnum):
             return edr_delete_iocs()
         if self is OperationId.EDR_EXECUTE_COMMAND:
             return edr_execute_command()
+        if self is OperationId.EDR_EXECUTE_REMOTE_SCRIPT:
+            return edr_execute_remote_script()
         if self is OperationId.EDR_GET_ENDPOINT:
             return edr_get_endpoint()
         if self is OperationId.EDR_GET_THREAT_NOTES:

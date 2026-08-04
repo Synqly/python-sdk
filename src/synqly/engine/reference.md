@@ -3305,6 +3305,96 @@ client.edr.execute_command(
 </dl>
 </details>
 
+<details><summary><code>client.edr.<a href="src/synqly/edr/client.py">execute_remote_script</a>(...) -> ExecuteRemoteScriptResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Runs a script on the endpoint identified by `{uid}` and returns normalized stdout and stderr without exposing provider session details. Long-running executions return a pending status with a cursor to resume polling.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```python
+from synqly import SynqlyEngine
+from synqly.environment import SynqlyEngineEnvironment
+
+client = SynqlyEngine(
+    token="<token>",
+    environment=SynqlyEngineEnvironment.SYNQLY,
+)
+
+client.edr.execute_remote_script(
+    uid="uid",
+    script="script",
+)
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**uid:** `Id` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `ExecuteRemoteScriptRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**meta:** `typing.Optional[typing.Union[str, typing.Sequence[str]]]` — Add metadata to the response by invoking meta functions. Documentation for [meta functions](https://docs.synqly.com/api-reference/meta-functions) is available. Not all meta functions are available at every endpoint.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `typing.Optional[RequestOptions]` — Request-specific configuration.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>client.edr.<a href="src/synqly/edr/client.py">retrieve_file</a>(...) -> typing.Iterator[bytes]</code></summary>
 <dl>
 <dd>

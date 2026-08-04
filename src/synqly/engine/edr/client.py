@@ -13,6 +13,7 @@ from .types.create_iocs_response import CreateIocsResponse
 from .types.create_threat_note_response import CreateThreatNoteResponse
 from .types.delete_iocs_response import DeleteIocsResponse
 from .types.execute_command_response import ExecuteCommandResponse
+from .types.execute_remote_script_response import ExecuteRemoteScriptResponse
 from .types.get_endpoint_response import GetEndpointResponse
 from .types.get_threat_notes_response import GetThreatNotesResponse
 from .types.isolation_type import IsolationType
@@ -189,6 +190,59 @@ class EdrClient:
         """
         _response = self._raw_client.execute_command(
             uid, command=command, meta=meta, cursor=cursor, request_options=request_options
+        )
+        return _response.data
+
+    def execute_remote_script(
+        self,
+        uid: Id,
+        *,
+        script: str,
+        meta: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
+        args: typing.Optional[str] = OMIT,
+        cursor: typing.Optional[str] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> ExecuteRemoteScriptResponse:
+        """
+        Runs a script on the endpoint identified by `{uid}` and returns normalized stdout and stderr without exposing provider session details. Long-running executions return a pending status with a cursor to resume polling.
+
+        Parameters
+        ----------
+        uid : Id
+
+        script : str
+            The script content to run on the remote endpoint. The engine runs it via the provider's script-execution facility (for example CrowdStrike RTR `runscript`) and returns the captured stdout/stderr.
+
+        meta : typing.Optional[typing.Union[str, typing.Sequence[str]]]
+            Add metadata to the response by invoking meta functions. Documentation for [meta functions](https://docs.synqly.com/api-reference/meta-functions) is available. Not all meta functions are available at every endpoint.
+
+        args : typing.Optional[str]
+            Optional command-line arguments passed to the script.
+
+        cursor : typing.Optional[str]
+            Opaque cursor returned from a previous pending response, used to continue polling the in-flight execution.
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        ExecuteRemoteScriptResponse
+
+        Examples
+        --------
+        from synqly import SynqlyEngine
+
+        client = SynqlyEngine(
+            token="YOUR_TOKEN",
+        )
+        client.edr.execute_remote_script(
+            uid="uid",
+            script="script",
+        )
+        """
+        _response = self._raw_client.execute_remote_script(
+            uid, script=script, meta=meta, args=args, cursor=cursor, request_options=request_options
         )
         return _response.data
 
@@ -1064,6 +1118,67 @@ class AsyncEdrClient:
         """
         _response = await self._raw_client.execute_command(
             uid, command=command, meta=meta, cursor=cursor, request_options=request_options
+        )
+        return _response.data
+
+    async def execute_remote_script(
+        self,
+        uid: Id,
+        *,
+        script: str,
+        meta: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
+        args: typing.Optional[str] = OMIT,
+        cursor: typing.Optional[str] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> ExecuteRemoteScriptResponse:
+        """
+        Runs a script on the endpoint identified by `{uid}` and returns normalized stdout and stderr without exposing provider session details. Long-running executions return a pending status with a cursor to resume polling.
+
+        Parameters
+        ----------
+        uid : Id
+
+        script : str
+            The script content to run on the remote endpoint. The engine runs it via the provider's script-execution facility (for example CrowdStrike RTR `runscript`) and returns the captured stdout/stderr.
+
+        meta : typing.Optional[typing.Union[str, typing.Sequence[str]]]
+            Add metadata to the response by invoking meta functions. Documentation for [meta functions](https://docs.synqly.com/api-reference/meta-functions) is available. Not all meta functions are available at every endpoint.
+
+        args : typing.Optional[str]
+            Optional command-line arguments passed to the script.
+
+        cursor : typing.Optional[str]
+            Opaque cursor returned from a previous pending response, used to continue polling the in-flight execution.
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        ExecuteRemoteScriptResponse
+
+        Examples
+        --------
+        import asyncio
+
+        from synqly import AsyncSynqlyEngine
+
+        client = AsyncSynqlyEngine(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.edr.execute_remote_script(
+                uid="uid",
+                script="script",
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.execute_remote_script(
+            uid, script=script, meta=meta, args=args, cursor=cursor, request_options=request_options
         )
         return _response.data
 

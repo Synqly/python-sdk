@@ -16,6 +16,9 @@ if typing.TYPE_CHECKING:
     from .execute_command_request import ExecuteCommandRequest
     from .execute_command_response import ExecuteCommandResponse
     from .execute_command_result import ExecuteCommandResult
+    from .execute_remote_script_request import ExecuteRemoteScriptRequest
+    from .execute_remote_script_response import ExecuteRemoteScriptResponse
+    from .execute_remote_script_result import ExecuteRemoteScriptResult
     from .get_endpoint_response import GetEndpointResponse
     from .get_threat_notes_response import GetThreatNotesResponse
     from .isolation_type import IsolationType
@@ -42,6 +45,9 @@ _dynamic_imports: typing.Dict[str, str] = {
     "ExecuteCommandRequest": ".execute_command_request",
     "ExecuteCommandResponse": ".execute_command_response",
     "ExecuteCommandResult": ".execute_command_result",
+    "ExecuteRemoteScriptRequest": ".execute_remote_script_request",
+    "ExecuteRemoteScriptResponse": ".execute_remote_script_response",
+    "ExecuteRemoteScriptResult": ".execute_remote_script_result",
     "GetEndpointResponse": ".get_endpoint_response",
     "GetThreatNotesResponse": ".get_threat_notes_response",
     "IsolationType": ".isolation_type",
@@ -92,6 +98,9 @@ __all__ = [
     "ExecuteCommandRequest",
     "ExecuteCommandResponse",
     "ExecuteCommandResult",
+    "ExecuteRemoteScriptRequest",
+    "ExecuteRemoteScriptResponse",
+    "ExecuteRemoteScriptResult",
     "GetEndpointResponse",
     "GetThreatNotesResponse",
     "IsolationType",
