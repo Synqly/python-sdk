@@ -19,6 +19,8 @@ if typing.TYPE_CHECKING:
         QueryDevicesResponse,
         QuerySoftwareInventoryResponse,
         SoftwareInventory,
+        UpdateSoftwareInventoryRequest,
+        UpdateSoftwareInventoryResponse,
     )
 _dynamic_imports: typing.Dict[str, str] = {
     "CreateDeviceRequest": ".types",
@@ -33,6 +35,8 @@ _dynamic_imports: typing.Dict[str, str] = {
     "QueryDevicesResponse": ".types",
     "QuerySoftwareInventoryResponse": ".types",
     "SoftwareInventory": ".types",
+    "UpdateSoftwareInventoryRequest": ".types",
+    "UpdateSoftwareInventoryResponse": ".types",
 }
 
 
@@ -70,4 +74,6 @@ __all__ = [
     "QueryDevicesResponse",
     "QuerySoftwareInventoryResponse",
     "SoftwareInventory",
+    "UpdateSoftwareInventoryRequest",
+    "UpdateSoftwareInventoryResponse",
 ]

@@ -60,6 +60,8 @@ if typing.TYPE_CHECKING:
         QueryDevicesResponse,
         QuerySoftwareInventoryResponse,
         SoftwareInventory,
+        UpdateSoftwareInventoryRequest,
+        UpdateSoftwareInventoryResponse,
     )
     from .chat import (
         ChatQueryConversationMembersResponse,
@@ -692,6 +694,8 @@ _dynamic_imports: typing.Dict[str, str] = {
     "UnauthorizedError": ".common",
     "UnsupportedMediaTypeError": ".common",
     "UpdateFindingRequest": ".vulnerabilities",
+    "UpdateSoftwareInventoryRequest": ".assets",
+    "UpdateSoftwareInventoryResponse": ".assets",
     "UploadScanRequest": ".vulnerabilities",
     "UploadScanResponse": ".vulnerabilities",
     "UploadScanStatus": ".vulnerabilities",
@@ -1063,6 +1067,8 @@ __all__ = [
     "UnauthorizedError",
     "UnsupportedMediaTypeError",
     "UpdateFindingRequest",
+    "UpdateSoftwareInventoryRequest",
+    "UpdateSoftwareInventoryResponse",
     "UploadScanRequest",
     "UploadScanResponse",
     "UploadScanStatus",

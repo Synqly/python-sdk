@@ -10,7 +10,7 @@ from ...core.unchecked_base_model import UncheckedBaseModel
 from .software_inventory import SoftwareInventory
 
 
-class CreateSoftwareInventoryRequest(UncheckedBaseModel):
+class UpdateSoftwareInventoryRequest(UncheckedBaseModel):
     software_inventory: SoftwareInventory
     source_name: typing.Optional[str] = pydantic.Field(default=None)
     """
@@ -31,4 +31,4 @@ class CreateSoftwareInventoryRequest(UncheckedBaseModel):
             extra = pydantic.Extra.allow
 
 
-update_forward_refs(CreateSoftwareInventoryRequest)
+update_forward_refs(UpdateSoftwareInventoryRequest)
