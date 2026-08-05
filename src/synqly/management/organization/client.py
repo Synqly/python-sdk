@@ -9,6 +9,7 @@ from ..core.request_options import RequestOptions
 from ..organization_base.types.get_organization_response import GetOrganizationResponse
 from ..organization_base.types.organization_id import OrganizationId
 from ..organization_base.types.organization_options import OrganizationOptions
+from ..organization_base.types.organization_state import OrganizationState
 from ..organization_base.types.organization_type import OrganizationType
 from ..token_base.types.token_id import TokenId
 from .raw_client import AsyncRawOrganizationClient, RawOrganizationClient
@@ -73,6 +74,7 @@ class OrganizationClient:
         reply_to: typing.Optional[str] = OMIT,
         picture: typing.Optional[str] = OMIT,
         options: typing.Optional[OrganizationOptions] = OMIT,
+        state: typing.Optional[OrganizationState] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> UpdateOrganizationResponse:
         """
@@ -111,6 +113,9 @@ class OrganizationClient:
 
         options : typing.Optional[OrganizationOptions]
             Organization options
+
+        state : typing.Optional[OrganizationState]
+            Organization state. Omitted when the organization is enabled. Can only be changed through the private organizations API.
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -155,6 +160,7 @@ class OrganizationClient:
             reply_to=reply_to,
             picture=picture,
             options=options,
+            state=state,
             request_options=request_options,
         )
         return _response.data
@@ -263,6 +269,7 @@ class AsyncOrganizationClient:
         reply_to: typing.Optional[str] = OMIT,
         picture: typing.Optional[str] = OMIT,
         options: typing.Optional[OrganizationOptions] = OMIT,
+        state: typing.Optional[OrganizationState] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> UpdateOrganizationResponse:
         """
@@ -301,6 +308,9 @@ class AsyncOrganizationClient:
 
         options : typing.Optional[OrganizationOptions]
             Organization options
+
+        state : typing.Optional[OrganizationState]
+            Organization state. Omitted when the organization is enabled. Can only be changed through the private organizations API.
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -352,6 +362,7 @@ class AsyncOrganizationClient:
             reply_to=reply_to,
             picture=picture,
             options=options,
+            state=state,
             request_options=request_options,
         )
         return _response.data

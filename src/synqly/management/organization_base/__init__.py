@@ -16,6 +16,7 @@ if typing.TYPE_CHECKING:
         Organization,
         OrganizationId,
         OrganizationOptions,
+        OrganizationState,
         OrganizationType,
     )
 _dynamic_imports: typing.Dict[str, str] = {
@@ -28,6 +29,7 @@ _dynamic_imports: typing.Dict[str, str] = {
     "Organization": ".types",
     "OrganizationId": ".types",
     "OrganizationOptions": ".types",
+    "OrganizationState": ".types",
     "OrganizationType": ".types",
 }
 
@@ -63,5 +65,6 @@ __all__ = [
     "Organization",
     "OrganizationId",
     "OrganizationOptions",
+    "OrganizationState",
     "OrganizationType",
 ]

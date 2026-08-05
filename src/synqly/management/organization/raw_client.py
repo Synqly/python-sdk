@@ -10,6 +10,7 @@ from ..common.errors.forbidden_error import ForbiddenError
 from ..common.errors.internal_server_error import InternalServerError
 from ..common.errors.method_not_allowed_error import MethodNotAllowedError
 from ..common.errors.not_found_error import NotFoundError
+from ..common.errors.payment_required_error import PaymentRequiredError
 from ..common.errors.too_many_requests_error import TooManyRequestsError
 from ..common.errors.unauthorized_error import UnauthorizedError
 from ..common.errors.unsupported_media_type_error import UnsupportedMediaTypeError
@@ -24,6 +25,7 @@ from ..core.unchecked_base_model import construct_type
 from ..organization_base.types.get_organization_response import GetOrganizationResponse
 from ..organization_base.types.organization_id import OrganizationId
 from ..organization_base.types.organization_options import OrganizationOptions
+from ..organization_base.types.organization_state import OrganizationState
 from ..organization_base.types.organization_type import OrganizationType
 from ..token_base.types.token_id import TokenId
 from .types.patch_organization_response import PatchOrganizationResponse
@@ -79,6 +81,17 @@ class RawOrganizationClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         Problem,
@@ -188,6 +201,7 @@ class RawOrganizationClient:
         reply_to: typing.Optional[str] = OMIT,
         picture: typing.Optional[str] = OMIT,
         options: typing.Optional[OrganizationOptions] = OMIT,
+        state: typing.Optional[OrganizationState] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[UpdateOrganizationResponse]:
         """
@@ -227,6 +241,9 @@ class RawOrganizationClient:
         options : typing.Optional[OrganizationOptions]
             Organization options
 
+        state : typing.Optional[OrganizationState]
+            Organization state. Omitted when the organization is enabled. Can only be changed through the private organizations API.
+
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
 
@@ -246,6 +263,7 @@ class RawOrganizationClient:
                 "reply_to": reply_to,
                 "picture": picture,
                 "options": options,
+                "state": state,
                 "name": name,
                 "created_at": created_at,
                 "updated_at": updated_at,
@@ -276,6 +294,17 @@ class RawOrganizationClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         Problem,
@@ -418,6 +447,17 @@ class RawOrganizationClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         Problem,
@@ -570,6 +610,17 @@ class AsyncRawOrganizationClient:
                         ),
                     ),
                 )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
             if _response.status_code == 403:
                 raise ForbiddenError(
                     headers=dict(_response.headers),
@@ -670,6 +721,7 @@ class AsyncRawOrganizationClient:
         reply_to: typing.Optional[str] = OMIT,
         picture: typing.Optional[str] = OMIT,
         options: typing.Optional[OrganizationOptions] = OMIT,
+        state: typing.Optional[OrganizationState] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[UpdateOrganizationResponse]:
         """
@@ -709,6 +761,9 @@ class AsyncRawOrganizationClient:
         options : typing.Optional[OrganizationOptions]
             Organization options
 
+        state : typing.Optional[OrganizationState]
+            Organization state. Omitted when the organization is enabled. Can only be changed through the private organizations API.
+
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
 
@@ -728,6 +783,7 @@ class AsyncRawOrganizationClient:
                 "reply_to": reply_to,
                 "picture": picture,
                 "options": options,
+                "state": state,
                 "name": name,
                 "created_at": created_at,
                 "updated_at": updated_at,
@@ -758,6 +814,17 @@ class AsyncRawOrganizationClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         Problem,
@@ -900,6 +967,17 @@ class AsyncRawOrganizationClient:
                 )
             if _response.status_code == 401:
                 raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         Problem,

@@ -15,6 +15,7 @@ if typing.TYPE_CHECKING:
     from .method_not_allowed_error import MethodNotAllowedError
     from .not_found_error import NotFoundError
     from .not_implemented_error import NotImplementedError
+    from .payment_required_error import PaymentRequiredError
     from .service_unavailable_error import ServiceUnavailableError
     from .too_many_requests_error import TooManyRequestsError
     from .unauthorized_error import UnauthorizedError
@@ -29,6 +30,7 @@ _dynamic_imports: typing.Dict[str, str] = {
     "MethodNotAllowedError": ".method_not_allowed_error",
     "NotFoundError": ".not_found_error",
     "NotImplementedError": ".not_implemented_error",
+    "PaymentRequiredError": ".payment_required_error",
     "ServiceUnavailableError": ".service_unavailable_error",
     "TooManyRequestsError": ".too_many_requests_error",
     "UnauthorizedError": ".unauthorized_error",
@@ -67,6 +69,7 @@ __all__ = [
     "MethodNotAllowedError",
     "NotFoundError",
     "NotImplementedError",
+    "PaymentRequiredError",
     "ServiceUnavailableError",
     "TooManyRequestsError",
     "UnauthorizedError",

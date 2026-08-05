@@ -8,6 +8,7 @@ from ...core.pydantic_utilities import IS_PYDANTIC_V2
 from ...token_base.types.token_id import TokenId
 from .organization_id import OrganizationId
 from .organization_options import OrganizationOptions
+from .organization_state import OrganizationState
 from .organization_type import OrganizationType
 
 
@@ -46,6 +47,11 @@ class Organization(Base):
     options: typing.Optional[OrganizationOptions] = pydantic.Field(default=None)
     """
     Organization options
+    """
+
+    state: typing.Optional[OrganizationState] = pydantic.Field(default=None)
+    """
+    Organization state. Omitted when the organization is enabled. Can only be changed through the private organizations API.
     """
 
     if IS_PYDANTIC_V2:
