@@ -42,8 +42,10 @@ class OperationId(enum.StrEnum):
     CUSTOM_POST = "custom_post"
     CUSTOM_POST_BATCH = "custom_post_batch"
     CUSTOM_QUERY = "custom_query"
+    EDR_CREATE_IOA = "edr_create_ioa"
     EDR_CREATE_IOCS = "edr_create_iocs"
     EDR_CREATE_THREAT_NOTE = "edr_create_threat_note"
+    EDR_DELETE_IOA = "edr_delete_ioa"
     EDR_DELETE_IOCS = "edr_delete_iocs"
     EDR_EXECUTE_COMMAND = "edr_execute_command"
     EDR_EXECUTE_REMOTE_SCRIPT = "edr_execute_remote_script"
@@ -54,6 +56,7 @@ class OperationId(enum.StrEnum):
     EDR_QUERY_APPLICATIONS = "edr_query_applications"
     EDR_QUERY_EDR_EVENTS = "edr_query_edr_events"
     EDR_QUERY_ENDPOINTS = "edr_query_endpoints"
+    EDR_QUERY_IOA = "edr_query_ioa"
     EDR_QUERY_IOCS = "edr_query_iocs"
     EDR_QUERY_POSTURE_SCORE = "edr_query_posture_score"
     EDR_QUERY_THREATEVENTS = "edr_query_threatevents"
@@ -181,8 +184,10 @@ class OperationId(enum.StrEnum):
         custom_post: typing.Callable[[], T_Result],
         custom_post_batch: typing.Callable[[], T_Result],
         custom_query: typing.Callable[[], T_Result],
+        edr_create_ioa: typing.Callable[[], T_Result],
         edr_create_iocs: typing.Callable[[], T_Result],
         edr_create_threat_note: typing.Callable[[], T_Result],
+        edr_delete_ioa: typing.Callable[[], T_Result],
         edr_delete_iocs: typing.Callable[[], T_Result],
         edr_execute_command: typing.Callable[[], T_Result],
         edr_execute_remote_script: typing.Callable[[], T_Result],
@@ -193,6 +198,7 @@ class OperationId(enum.StrEnum):
         edr_query_applications: typing.Callable[[], T_Result],
         edr_query_edr_events: typing.Callable[[], T_Result],
         edr_query_endpoints: typing.Callable[[], T_Result],
+        edr_query_ioa: typing.Callable[[], T_Result],
         edr_query_iocs: typing.Callable[[], T_Result],
         edr_query_posture_score: typing.Callable[[], T_Result],
         edr_query_threatevents: typing.Callable[[], T_Result],
@@ -343,10 +349,14 @@ class OperationId(enum.StrEnum):
             return custom_post_batch()
         if self is OperationId.CUSTOM_QUERY:
             return custom_query()
+        if self is OperationId.EDR_CREATE_IOA:
+            return edr_create_ioa()
         if self is OperationId.EDR_CREATE_IOCS:
             return edr_create_iocs()
         if self is OperationId.EDR_CREATE_THREAT_NOTE:
             return edr_create_threat_note()
+        if self is OperationId.EDR_DELETE_IOA:
+            return edr_delete_ioa()
         if self is OperationId.EDR_DELETE_IOCS:
             return edr_delete_iocs()
         if self is OperationId.EDR_EXECUTE_COMMAND:
@@ -367,6 +377,8 @@ class OperationId(enum.StrEnum):
             return edr_query_edr_events()
         if self is OperationId.EDR_QUERY_ENDPOINTS:
             return edr_query_endpoints()
+        if self is OperationId.EDR_QUERY_IOA:
+            return edr_query_ioa()
         if self is OperationId.EDR_QUERY_IOCS:
             return edr_query_iocs()
         if self is OperationId.EDR_QUERY_POSTURE_SCORE:

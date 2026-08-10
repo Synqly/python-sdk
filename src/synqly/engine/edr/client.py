@@ -9,19 +9,23 @@ from ..ocsf.v_1_8_0.noteactivity.classes.types.note_activity import NoteActivity
 from ..stix.indicator.types.indicator import Indicator
 from .raw_client import AsyncRawEdrClient, RawEdrClient
 from .types.connection_state import ConnectionState
+from .types.create_ioa_response import CreateIoaResponse
 from .types.create_iocs_response import CreateIocsResponse
 from .types.create_threat_note_response import CreateThreatNoteResponse
+from .types.delete_ioa_response import DeleteIoaResponse
 from .types.delete_iocs_response import DeleteIocsResponse
 from .types.execute_command_response import ExecuteCommandResponse
 from .types.execute_remote_script_response import ExecuteRemoteScriptResponse
 from .types.get_endpoint_response import GetEndpointResponse
 from .types.get_threat_notes_response import GetThreatNotesResponse
+from .types.ioa import Ioa
 from .types.isolation_type import IsolationType
 from .types.network_quarantine_response import NetworkQuarantineResponse
 from .types.query_alerts_response import QueryAlertsResponse
 from .types.query_applications_response import QueryApplicationsResponse
 from .types.query_edr_events_response import QueryEdrEventsResponse
 from .types.query_endpoints_response import QueryEndpointsResponse
+from .types.query_ioa_response import QueryIoaResponse
 from .types.query_iocs_response import QueryIocsResponse
 from .types.query_posture_score_response import QueryPostureScoreResponse
 from .types.query_threats_response import QueryThreatsResponse
@@ -687,6 +691,141 @@ class EdrClient:
         client.edr.delete_iocs()
         """
         _response = self._raw_client.delete_iocs(meta=meta, ids=ids, request_options=request_options)
+        return _response.data
+
+    def query_ioa(
+        self,
+        *,
+        meta: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
+        limit: typing.Optional[int] = None,
+        cursor: typing.Optional[str] = None,
+        order: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
+        filter: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
+        include_raw_data: typing.Optional[bool] = None,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> QueryIoaResponse:
+        """
+        Returns a list of IOA rules that match the query from the token-linked EDR source.
+
+        Parameters
+        ----------
+        meta : typing.Optional[typing.Union[str, typing.Sequence[str]]]
+            Add metadata to the response by invoking meta functions. Documentation for [meta functions](https://docs.synqly.com/api-reference/meta-functions) is available. Not all meta functions are available at every endpoint.
+
+        limit : typing.Optional[int]
+            Number of IOA rules to return. Defaults to 50.
+
+        cursor : typing.Optional[str]
+            Start search from cursor position.
+
+        order : typing.Optional[typing.Union[str, typing.Sequence[str]]]
+            Select a field to order the results by. Defaults to `name`. To control the direction of the sorting, append `[asc]` or `[desc]` to the field name. For example, `name[asc]` will sort the results by `name` in ascending order. The ordering defaults to `asc` if not specified.
+
+        filter : typing.Optional[typing.Union[str, typing.Sequence[str]]]
+            Filter results by this query. For more information on filtering, refer to our [Filtering Guide](https://docs.synqly.com/guides/connectors/edr/query-filters). Defaults to no filter. If used more than once, the queries are ANDed together.
+
+        include_raw_data : typing.Optional[bool]
+            Include the raw data from the EDR in the response. Defaults to `false`.
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        QueryIoaResponse
+
+        Examples
+        --------
+        from synqly import SynqlyEngine
+
+        client = SynqlyEngine(
+            token="YOUR_TOKEN",
+        )
+        client.edr.query_ioa()
+        """
+        _response = self._raw_client.query_ioa(
+            meta=meta,
+            limit=limit,
+            cursor=cursor,
+            order=order,
+            filter=filter,
+            include_raw_data=include_raw_data,
+            request_options=request_options,
+        )
+        return _response.data
+
+    def create_ioa(self, *, ioa: Ioa, request_options: typing.Optional[RequestOptions] = None) -> CreateIoaResponse:
+        """
+        Creates an IOA rule for the token-linked EDR source.
+
+        Parameters
+        ----------
+        ioa : Ioa
+            The IOA rule to create.
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        CreateIoaResponse
+
+        Examples
+        --------
+        from synqly import SynqlyEngine
+        from synqly.edr import Ioa
+
+        client = SynqlyEngine(
+            token="YOUR_TOKEN",
+        )
+        client.edr.create_ioa(
+            ioa=Ioa(
+                name="name",
+            ),
+        )
+        """
+        _response = self._raw_client.create_ioa(ioa=ioa, request_options=request_options)
+        return _response.data
+
+    def delete_ioa(
+        self,
+        *,
+        meta: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
+        ids: typing.Optional[str] = None,
+        group_id: typing.Optional[str] = None,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> DeleteIoaResponse:
+        """
+        Deletes the IOA rules identified by the ids in the query params. Some providers scope rule ids to a rule group; for those providers `group_id` is required.
+
+        Parameters
+        ----------
+        meta : typing.Optional[typing.Union[str, typing.Sequence[str]]]
+            Add metadata to the response by invoking meta functions. Documentation for [meta functions](https://docs.synqly.com/api-reference/meta-functions) is available. Not all meta functions are available at every endpoint.
+
+        ids : typing.Optional[str]
+            Comma-separated list of IOA rule ids to delete.
+
+        group_id : typing.Optional[str]
+            The id of the provider rule group containing the rules. Required by providers that scope rule ids to a rule group (for example CrowdStrike).
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        DeleteIoaResponse
+
+        Examples
+        --------
+        from synqly import SynqlyEngine
+
+        client = SynqlyEngine(
+            token="YOUR_TOKEN",
+        )
+        client.edr.delete_ioa()
+        """
+        _response = self._raw_client.delete_ioa(meta=meta, ids=ids, group_id=group_id, request_options=request_options)
         return _response.data
 
     def query_posture_score(
@@ -1689,6 +1828,169 @@ class AsyncEdrClient:
         asyncio.run(main())
         """
         _response = await self._raw_client.delete_iocs(meta=meta, ids=ids, request_options=request_options)
+        return _response.data
+
+    async def query_ioa(
+        self,
+        *,
+        meta: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
+        limit: typing.Optional[int] = None,
+        cursor: typing.Optional[str] = None,
+        order: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
+        filter: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
+        include_raw_data: typing.Optional[bool] = None,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> QueryIoaResponse:
+        """
+        Returns a list of IOA rules that match the query from the token-linked EDR source.
+
+        Parameters
+        ----------
+        meta : typing.Optional[typing.Union[str, typing.Sequence[str]]]
+            Add metadata to the response by invoking meta functions. Documentation for [meta functions](https://docs.synqly.com/api-reference/meta-functions) is available. Not all meta functions are available at every endpoint.
+
+        limit : typing.Optional[int]
+            Number of IOA rules to return. Defaults to 50.
+
+        cursor : typing.Optional[str]
+            Start search from cursor position.
+
+        order : typing.Optional[typing.Union[str, typing.Sequence[str]]]
+            Select a field to order the results by. Defaults to `name`. To control the direction of the sorting, append `[asc]` or `[desc]` to the field name. For example, `name[asc]` will sort the results by `name` in ascending order. The ordering defaults to `asc` if not specified.
+
+        filter : typing.Optional[typing.Union[str, typing.Sequence[str]]]
+            Filter results by this query. For more information on filtering, refer to our [Filtering Guide](https://docs.synqly.com/guides/connectors/edr/query-filters). Defaults to no filter. If used more than once, the queries are ANDed together.
+
+        include_raw_data : typing.Optional[bool]
+            Include the raw data from the EDR in the response. Defaults to `false`.
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        QueryIoaResponse
+
+        Examples
+        --------
+        import asyncio
+
+        from synqly import AsyncSynqlyEngine
+
+        client = AsyncSynqlyEngine(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.edr.query_ioa()
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.query_ioa(
+            meta=meta,
+            limit=limit,
+            cursor=cursor,
+            order=order,
+            filter=filter,
+            include_raw_data=include_raw_data,
+            request_options=request_options,
+        )
+        return _response.data
+
+    async def create_ioa(
+        self, *, ioa: Ioa, request_options: typing.Optional[RequestOptions] = None
+    ) -> CreateIoaResponse:
+        """
+        Creates an IOA rule for the token-linked EDR source.
+
+        Parameters
+        ----------
+        ioa : Ioa
+            The IOA rule to create.
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        CreateIoaResponse
+
+        Examples
+        --------
+        import asyncio
+
+        from synqly import AsyncSynqlyEngine
+        from synqly.edr import Ioa
+
+        client = AsyncSynqlyEngine(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.edr.create_ioa(
+                ioa=Ioa(
+                    name="name",
+                ),
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.create_ioa(ioa=ioa, request_options=request_options)
+        return _response.data
+
+    async def delete_ioa(
+        self,
+        *,
+        meta: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
+        ids: typing.Optional[str] = None,
+        group_id: typing.Optional[str] = None,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> DeleteIoaResponse:
+        """
+        Deletes the IOA rules identified by the ids in the query params. Some providers scope rule ids to a rule group; for those providers `group_id` is required.
+
+        Parameters
+        ----------
+        meta : typing.Optional[typing.Union[str, typing.Sequence[str]]]
+            Add metadata to the response by invoking meta functions. Documentation for [meta functions](https://docs.synqly.com/api-reference/meta-functions) is available. Not all meta functions are available at every endpoint.
+
+        ids : typing.Optional[str]
+            Comma-separated list of IOA rule ids to delete.
+
+        group_id : typing.Optional[str]
+            The id of the provider rule group containing the rules. Required by providers that scope rule ids to a rule group (for example CrowdStrike).
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        DeleteIoaResponse
+
+        Examples
+        --------
+        import asyncio
+
+        from synqly import AsyncSynqlyEngine
+
+        client = AsyncSynqlyEngine(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.edr.delete_ioa()
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.delete_ioa(
+            meta=meta, ids=ids, group_id=group_id, request_options=request_options
+        )
         return _response.data
 
     async def query_posture_score(

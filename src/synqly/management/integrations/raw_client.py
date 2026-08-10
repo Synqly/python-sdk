@@ -35,6 +35,7 @@ from ..integration_points.types.integration_point import IntegrationPoint
 from ..integration_points.types.integration_point_id import IntegrationPointId
 from ..management.types.additional_mapping import AdditionalMapping
 from ..management.types.mapping_chain import MappingChain
+from ..operation_schedules.types.operation_schedule import OperationSchedule
 from ..providers_generated.types.provider_config import ProviderConfig
 from ..token_base.types.token_id import TokenId
 from .types.bridge_selector import BridgeSelector
@@ -607,6 +608,7 @@ class RawIntegrationsClient:
         webhook_config: typing.Optional[WebhookConfig] = OMIT,
         mappings: typing.Optional[typing.Sequence[MappingChain]] = OMIT,
         additional_mappings: typing.Optional[typing.Sequence[AdditionalMapping]] = OMIT,
+        scheduled_operations: typing.Optional[typing.Sequence[OperationSchedule]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[CreateIntegrationResponse]:
         """
@@ -642,6 +644,9 @@ class RawIntegrationsClient:
         additional_mappings : typing.Optional[typing.Sequence[AdditionalMapping]]
             Additional data mappings for this integration. This allows for custom data to be mapped to the custom_fields portion of the response.
 
+        scheduled_operations : typing.Optional[typing.Sequence[OperationSchedule]]
+            Scheduled operations owned by this integration. During creation, a non-empty list is used as supplied; otherwise, the integration point's current scheduled_operations template is copied onto the integration, if present. The stored list is an independent snapshot: later changes to the integration point never affect it. Clearing this field from an existing integration removes its schedules and does not restore the integration point template. The integration does not require an integration point for these schedules to run.
+
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
 
@@ -661,6 +666,7 @@ class RawIntegrationsClient:
                 "webhook_config": webhook_config,
                 "mappings": mappings,
                 "additional_mappings": additional_mappings,
+                "scheduled_operations": scheduled_operations,
             },
             request_options=request_options,
             omit=OMIT,
@@ -1280,6 +1286,7 @@ class RawIntegrationsClient:
         webhook_config: typing.Optional[WebhookConfig] = OMIT,
         mappings: typing.Optional[typing.Sequence[MappingChain]] = OMIT,
         additional_mappings: typing.Optional[typing.Sequence[AdditionalMapping]] = OMIT,
+        scheduled_operations: typing.Optional[typing.Sequence[OperationSchedule]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[UpdateIntegrationResponse]:
         """
@@ -1345,6 +1352,9 @@ class RawIntegrationsClient:
         additional_mappings : typing.Optional[typing.Sequence[AdditionalMapping]]
             Additional data mappings for this integration. This allows for custom data to be mapped to the custom_fields portion of the response.
 
+        scheduled_operations : typing.Optional[typing.Sequence[OperationSchedule]]
+            Scheduled operations owned by this integration. During creation, a non-empty list is used as supplied; otherwise, the integration point's current scheduled_operations template is copied onto the integration, if present. The stored list is an independent snapshot: later changes to the integration point never affect it. Clearing this field from an existing integration removes its schedules and does not restore the integration point template. The integration does not require an integration point for these schedules to run.
+
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
 
@@ -1371,6 +1381,7 @@ class RawIntegrationsClient:
                 "webhook_config": webhook_config,
                 "mappings": mappings,
                 "additional_mappings": additional_mappings,
+                "scheduled_operations": scheduled_operations,
                 "name": name,
                 "created_at": created_at,
                 "updated_at": updated_at,
@@ -2375,6 +2386,7 @@ class AsyncRawIntegrationsClient:
         webhook_config: typing.Optional[WebhookConfig] = OMIT,
         mappings: typing.Optional[typing.Sequence[MappingChain]] = OMIT,
         additional_mappings: typing.Optional[typing.Sequence[AdditionalMapping]] = OMIT,
+        scheduled_operations: typing.Optional[typing.Sequence[OperationSchedule]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[CreateIntegrationResponse]:
         """
@@ -2410,6 +2422,9 @@ class AsyncRawIntegrationsClient:
         additional_mappings : typing.Optional[typing.Sequence[AdditionalMapping]]
             Additional data mappings for this integration. This allows for custom data to be mapped to the custom_fields portion of the response.
 
+        scheduled_operations : typing.Optional[typing.Sequence[OperationSchedule]]
+            Scheduled operations owned by this integration. During creation, a non-empty list is used as supplied; otherwise, the integration point's current scheduled_operations template is copied onto the integration, if present. The stored list is an independent snapshot: later changes to the integration point never affect it. Clearing this field from an existing integration removes its schedules and does not restore the integration point template. The integration does not require an integration point for these schedules to run.
+
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
 
@@ -2429,6 +2444,7 @@ class AsyncRawIntegrationsClient:
                 "webhook_config": webhook_config,
                 "mappings": mappings,
                 "additional_mappings": additional_mappings,
+                "scheduled_operations": scheduled_operations,
             },
             request_options=request_options,
             omit=OMIT,
@@ -3048,6 +3064,7 @@ class AsyncRawIntegrationsClient:
         webhook_config: typing.Optional[WebhookConfig] = OMIT,
         mappings: typing.Optional[typing.Sequence[MappingChain]] = OMIT,
         additional_mappings: typing.Optional[typing.Sequence[AdditionalMapping]] = OMIT,
+        scheduled_operations: typing.Optional[typing.Sequence[OperationSchedule]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[UpdateIntegrationResponse]:
         """
@@ -3113,6 +3130,9 @@ class AsyncRawIntegrationsClient:
         additional_mappings : typing.Optional[typing.Sequence[AdditionalMapping]]
             Additional data mappings for this integration. This allows for custom data to be mapped to the custom_fields portion of the response.
 
+        scheduled_operations : typing.Optional[typing.Sequence[OperationSchedule]]
+            Scheduled operations owned by this integration. During creation, a non-empty list is used as supplied; otherwise, the integration point's current scheduled_operations template is copied onto the integration, if present. The stored list is an independent snapshot: later changes to the integration point never affect it. Clearing this field from an existing integration removes its schedules and does not restore the integration point template. The integration does not require an integration point for these schedules to run.
+
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
 
@@ -3139,6 +3159,7 @@ class AsyncRawIntegrationsClient:
                 "webhook_config": webhook_config,
                 "mappings": mappings,
                 "additional_mappings": additional_mappings,
+                "scheduled_operations": scheduled_operations,
                 "name": name,
                 "created_at": created_at,
                 "updated_at": updated_at,

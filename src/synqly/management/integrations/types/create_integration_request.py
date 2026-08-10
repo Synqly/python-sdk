@@ -8,6 +8,7 @@ from ...core.unchecked_base_model import UncheckedBaseModel
 from ...integration_points.types.integration_point_id import IntegrationPointId
 from ...management.types.additional_mapping import AdditionalMapping
 from ...management.types.mapping_chain import MappingChain
+from ...operation_schedules.types.operation_schedule import OperationSchedule
 from ...providers_generated.types.provider_config import ProviderConfig
 from .bridge_selector import BridgeSelector
 from .webhook_config import WebhookConfig
@@ -52,6 +53,11 @@ class CreateIntegrationRequest(UncheckedBaseModel):
     additional_mappings: typing.Optional[typing.List[AdditionalMapping]] = pydantic.Field(default=None)
     """
     Additional data mappings for this integration. This allows for custom data to be mapped to the custom_fields portion of the response.
+    """
+
+    scheduled_operations: typing.Optional[typing.List[OperationSchedule]] = pydantic.Field(default=None)
+    """
+    Scheduled operations owned by this integration. During creation, a non-empty list is used as supplied; otherwise, the integration point's current scheduled_operations template is copied onto the integration, if present. The stored list is an independent snapshot: later changes to the integration point never affect it. Clearing this field from an existing integration removes its schedules and does not restore the integration point template. The integration does not require an integration point for these schedules to run.
     """
 
     if IS_PYDANTIC_V2:

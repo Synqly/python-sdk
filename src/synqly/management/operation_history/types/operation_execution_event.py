@@ -65,7 +65,7 @@ class OperationExecutionEvent(UncheckedBaseModel):
 
     trigger_source: str = pydantic.Field()
     """
-    Source of trigger - "manual" for API calls, integration-point ID for scheduled
+    Source of trigger - "manual" for API calls, integration-point ID for linked scheduled operations, or integration ID for point-less scheduled operations
     """
 
     status: OperationStatus = pydantic.Field()

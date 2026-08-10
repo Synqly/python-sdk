@@ -8,10 +8,13 @@ from importlib import import_module
 if typing.TYPE_CHECKING:
     from .application import Application
     from .connection_state import ConnectionState
+    from .create_ioa_request import CreateIoaRequest
+    from .create_ioa_response import CreateIoaResponse
     from .create_iocs_request import CreateIocsRequest
     from .create_iocs_response import CreateIocsResponse
     from .create_threat_note_request import CreateThreatNoteRequest
     from .create_threat_note_response import CreateThreatNoteResponse
+    from .delete_ioa_response import DeleteIoaResponse
     from .delete_iocs_response import DeleteIocsResponse
     from .execute_command_request import ExecuteCommandRequest
     from .execute_command_response import ExecuteCommandResponse
@@ -21,6 +24,17 @@ if typing.TYPE_CHECKING:
     from .execute_remote_script_result import ExecuteRemoteScriptResult
     from .get_endpoint_response import GetEndpointResponse
     from .get_threat_notes_response import GetThreatNotesResponse
+    from .ioa import Ioa
+    from .ioa_action import IoaAction
+    from .ioa_condition import IoaCondition
+    from .ioa_condition_operator import IoaConditionOperator
+    from .ioa_expiration_mode import IoaExpirationMode
+    from .ioa_field_value import IoaFieldValue
+    from .ioa_field_value_option import IoaFieldValueOption
+    from .ioa_platform import IoaPlatform
+    from .ioa_query_type import IoaQueryType
+    from .ioa_rule_type import IoaRuleType
+    from .ioa_scope import IoaScope
     from .isolation_type import IsolationType
     from .network_quarantine_request import NetworkQuarantineRequest
     from .network_quarantine_response import NetworkQuarantineResponse
@@ -29,6 +43,7 @@ if typing.TYPE_CHECKING:
     from .query_applications_response import QueryApplicationsResponse
     from .query_edr_events_response import QueryEdrEventsResponse
     from .query_endpoints_response import QueryEndpointsResponse
+    from .query_ioa_response import QueryIoaResponse
     from .query_iocs_response import QueryIocsResponse
     from .query_posture_score_response import QueryPostureScoreResponse
     from .query_threats_response import QueryThreatsResponse
@@ -37,10 +52,13 @@ if typing.TYPE_CHECKING:
 _dynamic_imports: typing.Dict[str, str] = {
     "Application": ".application",
     "ConnectionState": ".connection_state",
+    "CreateIoaRequest": ".create_ioa_request",
+    "CreateIoaResponse": ".create_ioa_response",
     "CreateIocsRequest": ".create_iocs_request",
     "CreateIocsResponse": ".create_iocs_response",
     "CreateThreatNoteRequest": ".create_threat_note_request",
     "CreateThreatNoteResponse": ".create_threat_note_response",
+    "DeleteIoaResponse": ".delete_ioa_response",
     "DeleteIocsResponse": ".delete_iocs_response",
     "ExecuteCommandRequest": ".execute_command_request",
     "ExecuteCommandResponse": ".execute_command_response",
@@ -50,6 +68,17 @@ _dynamic_imports: typing.Dict[str, str] = {
     "ExecuteRemoteScriptResult": ".execute_remote_script_result",
     "GetEndpointResponse": ".get_endpoint_response",
     "GetThreatNotesResponse": ".get_threat_notes_response",
+    "Ioa": ".ioa",
+    "IoaAction": ".ioa_action",
+    "IoaCondition": ".ioa_condition",
+    "IoaConditionOperator": ".ioa_condition_operator",
+    "IoaExpirationMode": ".ioa_expiration_mode",
+    "IoaFieldValue": ".ioa_field_value",
+    "IoaFieldValueOption": ".ioa_field_value_option",
+    "IoaPlatform": ".ioa_platform",
+    "IoaQueryType": ".ioa_query_type",
+    "IoaRuleType": ".ioa_rule_type",
+    "IoaScope": ".ioa_scope",
     "IsolationType": ".isolation_type",
     "NetworkQuarantineRequest": ".network_quarantine_request",
     "NetworkQuarantineResponse": ".network_quarantine_response",
@@ -58,6 +87,7 @@ _dynamic_imports: typing.Dict[str, str] = {
     "QueryApplicationsResponse": ".query_applications_response",
     "QueryEdrEventsResponse": ".query_edr_events_response",
     "QueryEndpointsResponse": ".query_endpoints_response",
+    "QueryIoaResponse": ".query_ioa_response",
     "QueryIocsResponse": ".query_iocs_response",
     "QueryPostureScoreResponse": ".query_posture_score_response",
     "QueryThreatsResponse": ".query_threats_response",
@@ -90,10 +120,13 @@ def __dir__():
 __all__ = [
     "Application",
     "ConnectionState",
+    "CreateIoaRequest",
+    "CreateIoaResponse",
     "CreateIocsRequest",
     "CreateIocsResponse",
     "CreateThreatNoteRequest",
     "CreateThreatNoteResponse",
+    "DeleteIoaResponse",
     "DeleteIocsResponse",
     "ExecuteCommandRequest",
     "ExecuteCommandResponse",
@@ -103,6 +136,17 @@ __all__ = [
     "ExecuteRemoteScriptResult",
     "GetEndpointResponse",
     "GetThreatNotesResponse",
+    "Ioa",
+    "IoaAction",
+    "IoaCondition",
+    "IoaConditionOperator",
+    "IoaExpirationMode",
+    "IoaFieldValue",
+    "IoaFieldValueOption",
+    "IoaPlatform",
+    "IoaQueryType",
+    "IoaRuleType",
+    "IoaScope",
     "IsolationType",
     "NetworkQuarantineRequest",
     "NetworkQuarantineResponse",
@@ -111,6 +155,7 @@ __all__ = [
     "QueryApplicationsResponse",
     "QueryEdrEventsResponse",
     "QueryEndpointsResponse",
+    "QueryIoaResponse",
     "QueryIocsResponse",
     "QueryPostureScoreResponse",
     "QueryThreatsResponse",

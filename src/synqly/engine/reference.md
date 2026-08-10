@@ -4331,6 +4331,280 @@ client.edr.delete_iocs()
 </dl>
 </details>
 
+<details><summary><code>client.edr.<a href="src/synqly/edr/client.py">query_ioa</a>(...) -> QueryIoaResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns a list of IOA rules that match the query from the token-linked EDR source.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```python
+from synqly import SynqlyEngine
+from synqly.environment import SynqlyEngineEnvironment
+
+client = SynqlyEngine(
+    token="<token>",
+    environment=SynqlyEngineEnvironment.SYNQLY,
+)
+
+client.edr.query_ioa()
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**meta:** `typing.Optional[typing.Union[str, typing.Sequence[str]]]` — Add metadata to the response by invoking meta functions. Documentation for [meta functions](https://docs.synqly.com/api-reference/meta-functions) is available. Not all meta functions are available at every endpoint.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**limit:** `typing.Optional[int]` — Number of IOA rules to return. Defaults to 50.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**cursor:** `typing.Optional[str]` — Start search from cursor position.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**order:** `typing.Optional[typing.Union[str, typing.Sequence[str]]]` — Select a field to order the results by. Defaults to `name`. To control the direction of the sorting, append `[asc]` or `[desc]` to the field name. For example, `name[asc]` will sort the results by `name` in ascending order. The ordering defaults to `asc` if not specified.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filter:** `typing.Optional[typing.Union[str, typing.Sequence[str]]]` — Filter results by this query. For more information on filtering, refer to our [Filtering Guide](https://docs.synqly.com/guides/connectors/edr/query-filters). Defaults to no filter. If used more than once, the queries are ANDed together.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**include_raw_data:** `typing.Optional[bool]` — Include the raw data from the EDR in the response. Defaults to `false`.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `typing.Optional[RequestOptions]` — Request-specific configuration.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.edr.<a href="src/synqly/edr/client.py">create_ioa</a>(...) -> CreateIoaResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Creates an IOA rule for the token-linked EDR source.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```python
+from synqly import SynqlyEngine
+from synqly.environment import SynqlyEngineEnvironment
+from synqly.edr import Ioa
+
+client = SynqlyEngine(
+    token="<token>",
+    environment=SynqlyEngineEnvironment.SYNQLY,
+)
+
+client.edr.create_ioa(
+    ioa=Ioa(
+        name="name",
+    ),
+)
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `CreateIoaRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `typing.Optional[RequestOptions]` — Request-specific configuration.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.edr.<a href="src/synqly/edr/client.py">delete_ioa</a>(...) -> DeleteIoaResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Deletes the IOA rules identified by the ids in the query params. Some providers scope rule ids to a rule group; for those providers `group_id` is required.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```python
+from synqly import SynqlyEngine
+from synqly.environment import SynqlyEngineEnvironment
+
+client = SynqlyEngine(
+    token="<token>",
+    environment=SynqlyEngineEnvironment.SYNQLY,
+)
+
+client.edr.delete_ioa()
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**meta:** `typing.Optional[typing.Union[str, typing.Sequence[str]]]` — Add metadata to the response by invoking meta functions. Documentation for [meta functions](https://docs.synqly.com/api-reference/meta-functions) is available. Not all meta functions are available at every endpoint.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**ids:** `typing.Optional[str]` — Comma-separated list of IOA rule ids to delete.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**group_id:** `typing.Optional[str]` — The id of the provider rule group containing the rules. Required by providers that scope rule ids to a rule group (for example CrowdStrike).
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `typing.Optional[RequestOptions]` — Request-specific configuration.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>client.edr.<a href="src/synqly/edr/client.py">query_posture_score</a>(...) -> QueryPostureScoreResponse</code></summary>
 <dl>
 <dd>

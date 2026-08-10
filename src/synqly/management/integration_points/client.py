@@ -169,9 +169,11 @@ class IntegrationPointsClient:
             Additional data mappings for integrations added to this integration point. This allows for custom data to be mapped to the custom_fields portion of the response.
 
         scheduled_operations : typing.Optional[typing.Sequence[OperationSchedule]]
-            A list of operations that are scheduled to run for this integration point.
-            Whenever an integration is created, these operations will automatically
-            be scheduled to run based on the schedule defined for the operation.
+            A creation template for integration scheduled operations. When an
+            integration is created without a non-empty scheduled_operations list,
+            this list is copied onto the integration and its operations are
+            scheduled from that snapshot. Updating or clearing this template never
+            changes integrations that already exist.
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -261,9 +263,11 @@ class IntegrationPointsClient:
             Additional data mappings for integrations added to this integration point. This allows for custom data to be mapped to the custom_fields portion of the response.
 
         scheduled_operations : typing.Optional[typing.Sequence[OperationSchedule]]
-            A list of operations that are scheduled to run for this integration point.
-            Whenever an integration is created, these operations will automatically
-            be scheduled to run based on the schedule defined for the operation.
+            A creation template for integration scheduled operations. When an
+            integration is created without a non-empty scheduled_operations list,
+            this list is copied onto the integration and its operations are
+            scheduled from that snapshot. Updating or clearing this template never
+            changes integrations that already exist.
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -556,9 +560,11 @@ class AsyncIntegrationPointsClient:
             Additional data mappings for integrations added to this integration point. This allows for custom data to be mapped to the custom_fields portion of the response.
 
         scheduled_operations : typing.Optional[typing.Sequence[OperationSchedule]]
-            A list of operations that are scheduled to run for this integration point.
-            Whenever an integration is created, these operations will automatically
-            be scheduled to run based on the schedule defined for the operation.
+            A creation template for integration scheduled operations. When an
+            integration is created without a non-empty scheduled_operations list,
+            this list is copied onto the integration and its operations are
+            scheduled from that snapshot. Updating or clearing this template never
+            changes integrations that already exist.
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -656,9 +662,11 @@ class AsyncIntegrationPointsClient:
             Additional data mappings for integrations added to this integration point. This allows for custom data to be mapped to the custom_fields portion of the response.
 
         scheduled_operations : typing.Optional[typing.Sequence[OperationSchedule]]
-            A list of operations that are scheduled to run for this integration point.
-            Whenever an integration is created, these operations will automatically
-            be scheduled to run based on the schedule defined for the operation.
+            A creation template for integration scheduled operations. When an
+            integration is created without a non-empty scheduled_operations list,
+            this list is copied onto the integration and its operations are
+            scheduled from that snapshot. Updating or clearing this template never
+            changes integrations that already exist.
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
