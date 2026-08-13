@@ -57,6 +57,11 @@ class ProviderConfigId(enum.StrEnum):
     Snyk
     """
 
+    APPSEC_SONAR_QUBE_SERVER = "appsec_sonarqube_server"
+    """
+    SonarQube Server
+    """
+
     APP_SEC_TENABLE = "appsec_tenable"
     """
     Tenable Web Application Scanner
@@ -839,6 +844,7 @@ class ProviderConfigId(enum.StrEnum):
         appsec_open_text_core_application_security_mock: typing.Callable[[], T_Result],
         app_sec_service_now: typing.Callable[[], T_Result],
         app_sec_snyk: typing.Callable[[], T_Result],
+        appsec_sonar_qube_server: typing.Callable[[], T_Result],
         app_sec_tenable: typing.Callable[[], T_Result],
         app_sec_veracode: typing.Callable[[], T_Result],
         assets_armis_centrix: typing.Callable[[], T_Result],
@@ -1011,6 +1017,8 @@ class ProviderConfigId(enum.StrEnum):
             return app_sec_service_now()
         if self is ProviderConfigId.APP_SEC_SNYK:
             return app_sec_snyk()
+        if self is ProviderConfigId.APPSEC_SONAR_QUBE_SERVER:
+            return appsec_sonar_qube_server()
         if self is ProviderConfigId.APP_SEC_TENABLE:
             return app_sec_tenable()
         if self is ProviderConfigId.APP_SEC_VERACODE:

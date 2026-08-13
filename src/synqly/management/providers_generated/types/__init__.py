@@ -20,6 +20,7 @@ if typing.TYPE_CHECKING:
     from .appsec_open_text_core_application_security import AppsecOpenTextCoreApplicationSecurity
     from .appsec_open_text_core_application_security_mock import AppsecOpenTextCoreApplicationSecurityMock
     from .appsec_opentext_core_application_security_dataset import AppsecOpentextCoreApplicationSecurityDataset
+    from .appsec_sonar_qube_server import AppsecSonarQubeServer
     from .armis_credential import (
         ArmisCredential,
         ArmisCredential_OAuthClient,
@@ -372,6 +373,7 @@ if typing.TYPE_CHECKING:
         ProviderConfig_AppsecOpentextCoreApplicationSecurityMock,
         ProviderConfig_AppsecServicenow,
         ProviderConfig_AppsecSnyk,
+        ProviderConfig_AppsecSonarqubeServer,
         ProviderConfig_AppsecTenable,
         ProviderConfig_AppsecVeracode,
         ProviderConfig_AssetsArmisCentrix,
@@ -608,6 +610,7 @@ if typing.TYPE_CHECKING:
         SnykCredential_TokenId,
     )
     from .snyk_region import SnykRegion
+    from .sonar_qube_credential import SonarQubeCredential, SonarQubeCredential_Token, SonarQubeCredential_TokenId
     from .sophos_credential import SophosCredential, SophosCredential_OAuthClient, SophosCredential_OAuthClientId
     from .splunk_hec_token import SplunkHecToken, SplunkHecToken_Token, SplunkHecToken_TokenId
     from .splunk_search_credential import (
@@ -736,6 +739,7 @@ _dynamic_imports: typing.Dict[str, str] = {
     "AppsecOpenTextCoreApplicationSecurity": ".appsec_open_text_core_application_security",
     "AppsecOpenTextCoreApplicationSecurityMock": ".appsec_open_text_core_application_security_mock",
     "AppsecOpentextCoreApplicationSecurityDataset": ".appsec_opentext_core_application_security_dataset",
+    "AppsecSonarQubeServer": ".appsec_sonar_qube_server",
     "ArmisCredential": ".armis_credential",
     "ArmisCredential_OAuthClient": ".armis_credential",
     "ArmisCredential_OAuthClientId": ".armis_credential",
@@ -1075,6 +1079,7 @@ _dynamic_imports: typing.Dict[str, str] = {
     "ProviderConfig_AppsecOpentextCoreApplicationSecurityMock": ".provider_config",
     "ProviderConfig_AppsecServicenow": ".provider_config",
     "ProviderConfig_AppsecSnyk": ".provider_config",
+    "ProviderConfig_AppsecSonarqubeServer": ".provider_config",
     "ProviderConfig_AppsecTenable": ".provider_config",
     "ProviderConfig_AppsecVeracode": ".provider_config",
     "ProviderConfig_AssetsArmisCentrix": ".provider_config",
@@ -1299,6 +1304,9 @@ _dynamic_imports: typing.Dict[str, str] = {
     "SnykCredential_Token": ".snyk_credential",
     "SnykCredential_TokenId": ".snyk_credential",
     "SnykRegion": ".snyk_region",
+    "SonarQubeCredential": ".sonar_qube_credential",
+    "SonarQubeCredential_Token": ".sonar_qube_credential",
+    "SonarQubeCredential_TokenId": ".sonar_qube_credential",
     "SophosCredential": ".sophos_credential",
     "SophosCredential_OAuthClient": ".sophos_credential",
     "SophosCredential_OAuthClientId": ".sophos_credential",
@@ -1455,6 +1463,7 @@ __all__ = [
     "AppsecOpenTextCoreApplicationSecurity",
     "AppsecOpenTextCoreApplicationSecurityMock",
     "AppsecOpentextCoreApplicationSecurityDataset",
+    "AppsecSonarQubeServer",
     "ArmisCredential",
     "ArmisCredential_OAuthClient",
     "ArmisCredential_OAuthClientId",
@@ -1794,6 +1803,7 @@ __all__ = [
     "ProviderConfig_AppsecOpentextCoreApplicationSecurityMock",
     "ProviderConfig_AppsecServicenow",
     "ProviderConfig_AppsecSnyk",
+    "ProviderConfig_AppsecSonarqubeServer",
     "ProviderConfig_AppsecTenable",
     "ProviderConfig_AppsecVeracode",
     "ProviderConfig_AssetsArmisCentrix",
@@ -2018,6 +2028,9 @@ __all__ = [
     "SnykCredential_Token",
     "SnykCredential_TokenId",
     "SnykRegion",
+    "SonarQubeCredential",
+    "SonarQubeCredential_Token",
+    "SonarQubeCredential_TokenId",
     "SophosCredential",
     "SophosCredential_OAuthClient",
     "SophosCredential_OAuthClientId",

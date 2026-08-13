@@ -116,6 +116,7 @@ from .slack_credential import SlackCredential
 from .slack_webhook_credential import SlackWebhookCredential
 from .snyk_credential import SnykCredential
 from .snyk_region import SnykRegion
+from .sonar_qube_credential import SonarQubeCredential
 from .sophos_credential import SophosCredential
 from .splunk_hec_token import SplunkHecToken
 from .splunk_search_credential import SplunkSearchCredential
@@ -270,6 +271,20 @@ class ProviderConfig_AppsecSnyk(UncheckedBaseModel):
     credential: SnykCredential
     organization_id: str
     region: SnykRegion
+
+    if IS_PYDANTIC_V2:
+        model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow")  # type: ignore # Pydantic v2
+    else:
+
+        class Config:
+            smart_union = True
+            extra = pydantic.Extra.allow
+
+
+class ProviderConfig_AppsecSonarqubeServer(UncheckedBaseModel):
+    type: typing.Literal["appsec_sonarqube_server"] = "appsec_sonarqube_server"
+    credential: SonarQubeCredential
+    url: str
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow")  # type: ignore # Pydantic v2
@@ -2511,6 +2526,7 @@ ProviderConfig = typing_extensions.Annotated[
         ProviderConfig_AppsecOpentextCoreApplicationSecurityMock,
         ProviderConfig_AppsecServicenow,
         ProviderConfig_AppsecSnyk,
+        ProviderConfig_AppsecSonarqubeServer,
         ProviderConfig_AppsecTenable,
         ProviderConfig_AppsecVeracode,
         ProviderConfig_AssetsArmisCentrix,
