@@ -752,6 +752,11 @@ class ProviderConfigId(enum.StrEnum):
     Microsoft Defender for Endpoint
     """
 
+    VULNERABILITIES_DEFENDER_EASM = "vulnerabilities_defender_easm"
+    """
+    Microsoft Defender External Attack Surface Management
+    """
+
     VULNERABILITIES_HORIZON_3 = "vulnerabilities_horizon3"
     """
     Horizon3 NodeZero
@@ -983,6 +988,7 @@ class ProviderConfigId(enum.StrEnum):
         vulnerabilities_crowd_strike: typing.Callable[[], T_Result],
         vulnerabilities_crowd_strike_mock: typing.Callable[[], T_Result],
         vulnerabilities_defender: typing.Callable[[], T_Result],
+        vulnerabilities_defender_easm: typing.Callable[[], T_Result],
         vulnerabilities_horizon_3: typing.Callable[[], T_Result],
         vulnerabilities_iru: typing.Callable[[], T_Result],
         vulnerabilities_nucleus: typing.Callable[[], T_Result],
@@ -1295,6 +1301,8 @@ class ProviderConfigId(enum.StrEnum):
             return vulnerabilities_crowd_strike_mock()
         if self is ProviderConfigId.VULNERABILITIES_DEFENDER:
             return vulnerabilities_defender()
+        if self is ProviderConfigId.VULNERABILITIES_DEFENDER_EASM:
+            return vulnerabilities_defender_easm()
         if self is ProviderConfigId.VULNERABILITIES_HORIZON_3:
             return vulnerabilities_horizon_3()
         if self is ProviderConfigId.VULNERABILITIES_IRU:

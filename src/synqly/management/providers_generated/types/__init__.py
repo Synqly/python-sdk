@@ -168,6 +168,11 @@ if typing.TYPE_CHECKING:
         DefenderCredential_OAuthClient,
         DefenderCredential_OAuthClientId,
     )
+    from .defender_easm_credential import (
+        DefenderEasmCredential,
+        DefenderEasmCredential_OAuthClient,
+        DefenderEasmCredential_OAuthClientId,
+    )
     from .edr_bitdefender import EdrBitdefender
     from .edr_crowd_strike import EdrCrowdStrike
     from .edr_crowd_strike_dataset import EdrCrowdStrikeDataset
@@ -512,6 +517,7 @@ if typing.TYPE_CHECKING:
         ProviderConfig_VulnerabilitiesCrowdstrike,
         ProviderConfig_VulnerabilitiesCrowdstrikeMock,
         ProviderConfig_VulnerabilitiesDefender,
+        ProviderConfig_VulnerabilitiesDefenderEasm,
         ProviderConfig_VulnerabilitiesHorizon3,
         ProviderConfig_VulnerabilitiesIru,
         ProviderConfig_VulnerabilitiesNucleus,
@@ -704,6 +710,7 @@ if typing.TYPE_CHECKING:
     from .vulnerabilities_crowd_strike_dataset import VulnerabilitiesCrowdStrikeDataset
     from .vulnerabilities_crowd_strike_mock import VulnerabilitiesCrowdStrikeMock
     from .vulnerabilities_defender import VulnerabilitiesDefender
+    from .vulnerabilities_defender_easm import VulnerabilitiesDefenderEasm
     from .vulnerabilities_horizon_3 import VulnerabilitiesHorizon3
     from .vulnerabilities_iru import VulnerabilitiesIru
     from .vulnerabilities_nucleus import VulnerabilitiesNucleus
@@ -866,6 +873,9 @@ _dynamic_imports: typing.Dict[str, str] = {
     "DefenderCredential": ".defender_credential",
     "DefenderCredential_OAuthClient": ".defender_credential",
     "DefenderCredential_OAuthClientId": ".defender_credential",
+    "DefenderEasmCredential": ".defender_easm_credential",
+    "DefenderEasmCredential_OAuthClient": ".defender_easm_credential",
+    "DefenderEasmCredential_OAuthClientId": ".defender_easm_credential",
     "EdrBitdefender": ".edr_bitdefender",
     "EdrCrowdStrike": ".edr_crowd_strike",
     "EdrCrowdStrikeDataset": ".edr_crowd_strike_dataset",
@@ -1218,6 +1228,7 @@ _dynamic_imports: typing.Dict[str, str] = {
     "ProviderConfig_VulnerabilitiesCrowdstrike": ".provider_config",
     "ProviderConfig_VulnerabilitiesCrowdstrikeMock": ".provider_config",
     "ProviderConfig_VulnerabilitiesDefender": ".provider_config",
+    "ProviderConfig_VulnerabilitiesDefenderEasm": ".provider_config",
     "ProviderConfig_VulnerabilitiesHorizon3": ".provider_config",
     "ProviderConfig_VulnerabilitiesIru": ".provider_config",
     "ProviderConfig_VulnerabilitiesNucleus": ".provider_config",
@@ -1398,6 +1409,7 @@ _dynamic_imports: typing.Dict[str, str] = {
     "VulnerabilitiesCrowdStrikeDataset": ".vulnerabilities_crowd_strike_dataset",
     "VulnerabilitiesCrowdStrikeMock": ".vulnerabilities_crowd_strike_mock",
     "VulnerabilitiesDefender": ".vulnerabilities_defender",
+    "VulnerabilitiesDefenderEasm": ".vulnerabilities_defender_easm",
     "VulnerabilitiesHorizon3": ".vulnerabilities_horizon_3",
     "VulnerabilitiesIru": ".vulnerabilities_iru",
     "VulnerabilitiesNucleus": ".vulnerabilities_nucleus",
@@ -1590,6 +1602,9 @@ __all__ = [
     "DefenderCredential",
     "DefenderCredential_OAuthClient",
     "DefenderCredential_OAuthClientId",
+    "DefenderEasmCredential",
+    "DefenderEasmCredential_OAuthClient",
+    "DefenderEasmCredential_OAuthClientId",
     "EdrBitdefender",
     "EdrCrowdStrike",
     "EdrCrowdStrikeDataset",
@@ -1942,6 +1957,7 @@ __all__ = [
     "ProviderConfig_VulnerabilitiesCrowdstrike",
     "ProviderConfig_VulnerabilitiesCrowdstrikeMock",
     "ProviderConfig_VulnerabilitiesDefender",
+    "ProviderConfig_VulnerabilitiesDefenderEasm",
     "ProviderConfig_VulnerabilitiesHorizon3",
     "ProviderConfig_VulnerabilitiesIru",
     "ProviderConfig_VulnerabilitiesNucleus",
@@ -2122,6 +2138,7 @@ __all__ = [
     "VulnerabilitiesCrowdStrikeDataset",
     "VulnerabilitiesCrowdStrikeMock",
     "VulnerabilitiesDefender",
+    "VulnerabilitiesDefenderEasm",
     "VulnerabilitiesHorizon3",
     "VulnerabilitiesIru",
     "VulnerabilitiesNucleus",
