@@ -147,7 +147,6 @@ from .vulnerabilities_qualys_cloud_dataset import VulnerabilitiesQualysCloudData
 from .vulnerabilities_rapid_7_insight_cloud_dataset import VulnerabilitiesRapid7InsightCloudDataset
 from .vulnerabilities_tanium_cloud_dataset import VulnerabilitiesTaniumCloudDataset
 from .wiz_credential import WizCredential
-from .wiz_region import WizRegion
 from .workday_credential import WorkdayCredential
 from .zendesk_credential import ZendeskCredential
 
@@ -818,7 +817,6 @@ class ProviderConfig_CloudsecurityWiz(UncheckedBaseModel):
     type: typing.Literal["cloudsecurity_wiz"] = "cloudsecurity_wiz"
     api_endpoint_url: str
     credential: WizCredential
-    region: WizRegion
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow")  # type: ignore # Pydantic v2
@@ -2534,6 +2532,20 @@ class ProviderConfig_VulnerabilitiesTenableSc(UncheckedBaseModel):
             extra = pydantic.Extra.allow
 
 
+class ProviderConfig_VulnerabilitiesWiz(UncheckedBaseModel):
+    type: typing.Literal["vulnerabilities_wiz"] = "vulnerabilities_wiz"
+    api_endpoint_url: str
+    credential: WizCredential
+
+    if IS_PYDANTIC_V2:
+        model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow")  # type: ignore # Pydantic v2
+    else:
+
+        class Config:
+            smart_union = True
+            extra = pydantic.Extra.allow
+
+
 ProviderConfig = typing_extensions.Annotated[
     typing.Union[
         ProviderConfig_AppsecAmazonInspector,
@@ -2698,6 +2710,7 @@ ProviderConfig = typing_extensions.Annotated[
         ProviderConfig_VulnerabilitiesTaniumCloudMock,
         ProviderConfig_VulnerabilitiesTenableCloud,
         ProviderConfig_VulnerabilitiesTenableSc,
+        ProviderConfig_VulnerabilitiesWiz,
     ],
     UnionMetadata(discriminant="type"),
 ]

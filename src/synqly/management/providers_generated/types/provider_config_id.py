@@ -822,6 +822,11 @@ class ProviderConfigId(enum.StrEnum):
     Tenable Security Center
     """
 
+    VULNERABILITIES_WIZ = "vulnerabilities_wiz"
+    """
+    Wiz
+    """
+
     ALL = "*"
     """
     Any provider config type.
@@ -1002,6 +1007,7 @@ class ProviderConfigId(enum.StrEnum):
         vulnerabilities_tanium_cloud_mock: typing.Callable[[], T_Result],
         vulnerabilities_tenable_cloud: typing.Callable[[], T_Result],
         vulnerabilities_tenable_sc: typing.Callable[[], T_Result],
+        vulnerabilities_wiz: typing.Callable[[], T_Result],
         all_: typing.Callable[[], T_Result],
         _unknown_member: typing.Callable[[str], T_Result],
     ) -> T_Result:
@@ -1329,6 +1335,8 @@ class ProviderConfigId(enum.StrEnum):
             return vulnerabilities_tenable_cloud()
         if self is ProviderConfigId.VULNERABILITIES_TENABLE_SC:
             return vulnerabilities_tenable_sc()
+        if self is ProviderConfigId.VULNERABILITIES_WIZ:
+            return vulnerabilities_wiz()
         if self is ProviderConfigId.ALL:
             return all_()
         return _unknown_member(self._value_)

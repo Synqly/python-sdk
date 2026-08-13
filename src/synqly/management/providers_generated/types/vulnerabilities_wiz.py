@@ -8,14 +8,14 @@ from ...core.unchecked_base_model import UncheckedBaseModel
 from .wiz_credential import WizCredential
 
 
-class CloudSecurityWiz(UncheckedBaseModel):
+class VulnerabilitiesWiz(UncheckedBaseModel):
     """
-    Configuration for the Wiz Cloud Security Provider
+    Configuration for the Wiz Vulnerabilities Provider
     """
 
     api_endpoint_url: str = pydantic.Field()
     """
-    Wiz GraphQL API endpoint URL. Copy this from the Wiz tenant's **API Endpoint URL** field (for example https://api.us17.app.wiz.io/graphql). The OAuth token endpoint is inferred from the environment in this URL (app.wiz.io, app.wiz.us, or gov.wiz.io).
+    Wiz GraphQL API endpoint URL.
     """
 
     credential: WizCredential

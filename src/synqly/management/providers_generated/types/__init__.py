@@ -531,6 +531,7 @@ if typing.TYPE_CHECKING:
         ProviderConfig_VulnerabilitiesTaniumCloudMock,
         ProviderConfig_VulnerabilitiesTenableCloud,
         ProviderConfig_VulnerabilitiesTenableSc,
+        ProviderConfig_VulnerabilitiesWiz,
     )
     from .provider_config_id import ProviderConfigId
     from .q_radar_credential import QRadarCredential, QRadarCredential_Token, QRadarCredential_TokenId
@@ -727,8 +728,8 @@ if typing.TYPE_CHECKING:
     from .vulnerabilities_tanium_cloud_mock import VulnerabilitiesTaniumCloudMock
     from .vulnerabilities_tenable_cloud import VulnerabilitiesTenableCloud
     from .vulnerabilities_tenable_sc import VulnerabilitiesTenableSc
+    from .vulnerabilities_wiz import VulnerabilitiesWiz
     from .wiz_credential import WizCredential, WizCredential_OAuthClient, WizCredential_OAuthClientId
-    from .wiz_region import WizRegion
     from .workday_credential import WorkdayCredential, WorkdayCredential_OAuthClient, WorkdayCredential_OAuthClientId
     from .zendesk_credential import ZendeskCredential, ZendeskCredential_Basic, ZendeskCredential_BasicId
 _dynamic_imports: typing.Dict[str, str] = {
@@ -1242,6 +1243,7 @@ _dynamic_imports: typing.Dict[str, str] = {
     "ProviderConfig_VulnerabilitiesTaniumCloudMock": ".provider_config",
     "ProviderConfig_VulnerabilitiesTenableCloud": ".provider_config",
     "ProviderConfig_VulnerabilitiesTenableSc": ".provider_config",
+    "ProviderConfig_VulnerabilitiesWiz": ".provider_config",
     "QRadarCredential": ".q_radar_credential",
     "QRadarCredential_Token": ".q_radar_credential",
     "QRadarCredential_TokenId": ".q_radar_credential",
@@ -1426,10 +1428,10 @@ _dynamic_imports: typing.Dict[str, str] = {
     "VulnerabilitiesTaniumCloudMock": ".vulnerabilities_tanium_cloud_mock",
     "VulnerabilitiesTenableCloud": ".vulnerabilities_tenable_cloud",
     "VulnerabilitiesTenableSc": ".vulnerabilities_tenable_sc",
+    "VulnerabilitiesWiz": ".vulnerabilities_wiz",
     "WizCredential": ".wiz_credential",
     "WizCredential_OAuthClient": ".wiz_credential",
     "WizCredential_OAuthClientId": ".wiz_credential",
-    "WizRegion": ".wiz_region",
     "WorkdayCredential": ".workday_credential",
     "WorkdayCredential_OAuthClient": ".workday_credential",
     "WorkdayCredential_OAuthClientId": ".workday_credential",
@@ -1971,6 +1973,7 @@ __all__ = [
     "ProviderConfig_VulnerabilitiesTaniumCloudMock",
     "ProviderConfig_VulnerabilitiesTenableCloud",
     "ProviderConfig_VulnerabilitiesTenableSc",
+    "ProviderConfig_VulnerabilitiesWiz",
     "QRadarCredential",
     "QRadarCredential_Token",
     "QRadarCredential_TokenId",
@@ -2155,10 +2158,10 @@ __all__ = [
     "VulnerabilitiesTaniumCloudMock",
     "VulnerabilitiesTenableCloud",
     "VulnerabilitiesTenableSc",
+    "VulnerabilitiesWiz",
     "WizCredential",
     "WizCredential_OAuthClient",
     "WizCredential_OAuthClientId",
-    "WizRegion",
     "WorkdayCredential",
     "WorkdayCredential_OAuthClient",
     "WorkdayCredential_OAuthClientId",
