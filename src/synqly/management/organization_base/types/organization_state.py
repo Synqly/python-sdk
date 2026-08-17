@@ -9,11 +9,13 @@ T_Result = typing.TypeVar("T_Result")
 
 class OrganizationState(enum.StrEnum):
     """
-    Organization state. When `disabled`, all management and engine API requests for the organization return HTTP 402. An organization with no state set is enabled.
+    Organization state. When `disabled`, all management and engine API requests for the organization return HTTP 402. An organization with no state set is enabled. `pov` (sales-run proof-of-value evaluation) and `plg` (self-signup) carry an `end_date`; a `plg` organization behaves like `disabled` after its `end_date` passes (end-of-day UTC), while `pov` never blocks automatically.
     """
 
     ENABLED = "enabled"
     DISABLED = "disabled"
+    POV = "pov"
+    PLG = "plg"
     _UNKNOWN = "__ORGANIZATIONSTATE_UNKNOWN__"
     """
     This member is used for forward compatibility. If the value is not recognized by the enum, it will be stored here, and the raw value is accessible through `.value`.
@@ -29,10 +31,16 @@ class OrganizationState(enum.StrEnum):
         self,
         enabled: typing.Callable[[], T_Result],
         disabled: typing.Callable[[], T_Result],
+        pov: typing.Callable[[], T_Result],
+        plg: typing.Callable[[], T_Result],
         _unknown_member: typing.Callable[[str], T_Result],
     ) -> T_Result:
         if self is OrganizationState.ENABLED:
             return enabled()
         if self is OrganizationState.DISABLED:
             return disabled()
+        if self is OrganizationState.POV:
+            return pov()
+        if self is OrganizationState.PLG:
+            return plg()
         return _unknown_member(self._value_)

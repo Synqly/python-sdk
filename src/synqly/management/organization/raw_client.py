@@ -202,6 +202,7 @@ class RawOrganizationClient:
         picture: typing.Optional[str] = OMIT,
         options: typing.Optional[OrganizationOptions] = OMIT,
         state: typing.Optional[OrganizationState] = OMIT,
+        end_date: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[UpdateOrganizationResponse]:
         """
@@ -244,6 +245,9 @@ class RawOrganizationClient:
         state : typing.Optional[OrganizationState]
             Organization state. Omitted when the organization is enabled. Can only be changed through the private organizations API.
 
+        end_date : typing.Optional[str]
+            Evaluation end date (YYYY-MM-DD, end-of-day UTC) for `pov`/`plg` organizations. Omitted otherwise. Set together with `state` through the private organizations API.
+
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
 
@@ -264,6 +268,7 @@ class RawOrganizationClient:
                 "picture": picture,
                 "options": options,
                 "state": state,
+                "end_date": end_date,
                 "name": name,
                 "created_at": created_at,
                 "updated_at": updated_at,
@@ -722,6 +727,7 @@ class AsyncRawOrganizationClient:
         picture: typing.Optional[str] = OMIT,
         options: typing.Optional[OrganizationOptions] = OMIT,
         state: typing.Optional[OrganizationState] = OMIT,
+        end_date: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[UpdateOrganizationResponse]:
         """
@@ -764,6 +770,9 @@ class AsyncRawOrganizationClient:
         state : typing.Optional[OrganizationState]
             Organization state. Omitted when the organization is enabled. Can only be changed through the private organizations API.
 
+        end_date : typing.Optional[str]
+            Evaluation end date (YYYY-MM-DD, end-of-day UTC) for `pov`/`plg` organizations. Omitted otherwise. Set together with `state` through the private organizations API.
+
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
 
@@ -784,6 +793,7 @@ class AsyncRawOrganizationClient:
                 "picture": picture,
                 "options": options,
                 "state": state,
+                "end_date": end_date,
                 "name": name,
                 "created_at": created_at,
                 "updated_at": updated_at,

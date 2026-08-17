@@ -75,6 +75,7 @@ class OrganizationClient:
         picture: typing.Optional[str] = OMIT,
         options: typing.Optional[OrganizationOptions] = OMIT,
         state: typing.Optional[OrganizationState] = OMIT,
+        end_date: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> UpdateOrganizationResponse:
         """
@@ -116,6 +117,9 @@ class OrganizationClient:
 
         state : typing.Optional[OrganizationState]
             Organization state. Omitted when the organization is enabled. Can only be changed through the private organizations API.
+
+        end_date : typing.Optional[str]
+            Evaluation end date (YYYY-MM-DD, end-of-day UTC) for `pov`/`plg` organizations. Omitted otherwise. Set together with `state` through the private organizations API.
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -161,6 +165,7 @@ class OrganizationClient:
             picture=picture,
             options=options,
             state=state,
+            end_date=end_date,
             request_options=request_options,
         )
         return _response.data
@@ -270,6 +275,7 @@ class AsyncOrganizationClient:
         picture: typing.Optional[str] = OMIT,
         options: typing.Optional[OrganizationOptions] = OMIT,
         state: typing.Optional[OrganizationState] = OMIT,
+        end_date: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> UpdateOrganizationResponse:
         """
@@ -311,6 +317,9 @@ class AsyncOrganizationClient:
 
         state : typing.Optional[OrganizationState]
             Organization state. Omitted when the organization is enabled. Can only be changed through the private organizations API.
+
+        end_date : typing.Optional[str]
+            Evaluation end date (YYYY-MM-DD, end-of-day UTC) for `pov`/`plg` organizations. Omitted otherwise. Set together with `state` through the private organizations API.
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -363,6 +372,7 @@ class AsyncOrganizationClient:
             picture=picture,
             options=options,
             state=state,
+            end_date=end_date,
             request_options=request_options,
         )
         return _response.data

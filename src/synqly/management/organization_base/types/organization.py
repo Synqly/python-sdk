@@ -54,6 +54,11 @@ class Organization(Base):
     Organization state. Omitted when the organization is enabled. Can only be changed through the private organizations API.
     """
 
+    end_date: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    Evaluation end date (YYYY-MM-DD, end-of-day UTC) for `pov`/`plg` organizations. Omitted otherwise. Set together with `state` through the private organizations API.
+    """
+
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow")  # type: ignore # Pydantic v2
     else:
