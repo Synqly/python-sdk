@@ -33,6 +33,7 @@ from .azure_blob_credential import AzureBlobCredential
 from .azure_dev_ops_ticketing_credential import AzureDevOpsTicketingCredential
 from .azure_monitor_logs_credential import AzureMonitorLogsCredential
 from .bitdefender_credential import BitdefenderCredential
+from .bmc_helix_credential import BmcHelixCredential
 from .channel_join_behavior import ChannelJoinBehavior
 from .claroty_apiurl import ClarotyApiurl
 from .claroty_credential import ClarotyCredential
@@ -2033,6 +2034,21 @@ class ProviderConfig_TicketingAzureDevops(UncheckedBaseModel):
             extra = pydantic.Extra.allow
 
 
+class ProviderConfig_TicketingBmchelix(UncheckedBaseModel):
+    type: typing.Literal["ticketing_bmchelix"] = "ticketing_bmchelix"
+    credential: BmcHelixCredential
+    insecure_skip_verify: typing.Optional[bool] = None
+    url: str
+
+    if IS_PYDANTIC_V2:
+        model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow")  # type: ignore # Pydantic v2
+    else:
+
+        class Config:
+            smart_union = True
+            extra = pydantic.Extra.allow
+
+
 class ProviderConfig_TicketingFreshdesk(UncheckedBaseModel):
     type: typing.Literal["ticketing_freshdesk"] = "ticketing_freshdesk"
     credential: FreshdeskCredential
@@ -2676,6 +2692,7 @@ ProviderConfig = typing_extensions.Annotated[
         ProviderConfig_StorageMockStorage,
         ProviderConfig_TicketingAutotask,
         ProviderConfig_TicketingAzureDevops,
+        ProviderConfig_TicketingBmchelix,
         ProviderConfig_TicketingFreshdesk,
         ProviderConfig_TicketingGithub,
         ProviderConfig_TicketingIvanti,

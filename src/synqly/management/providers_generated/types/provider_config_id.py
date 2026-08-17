@@ -652,6 +652,11 @@ class ProviderConfigId(enum.StrEnum):
     Azure DevOps Boards
     """
 
+    TICKETING_BMCHELIX = "ticketing_bmchelix"
+    """
+    BMC Helix ITSM
+    """
+
     TICKETING_FRESHDESK = "ticketing_freshdesk"
     """
     Freshdesk
@@ -973,6 +978,7 @@ class ProviderConfigId(enum.StrEnum):
         storage_mock: typing.Callable[[], T_Result],
         ticketing_autotask: typing.Callable[[], T_Result],
         ticketing_azure_dev_ops: typing.Callable[[], T_Result],
+        ticketing_bmchelix: typing.Callable[[], T_Result],
         ticketing_freshdesk: typing.Callable[[], T_Result],
         ticketing_git_hub: typing.Callable[[], T_Result],
         ticketing_ivanti: typing.Callable[[], T_Result],
@@ -1267,6 +1273,8 @@ class ProviderConfigId(enum.StrEnum):
             return ticketing_autotask()
         if self is ProviderConfigId.TICKETING_AZURE_DEV_OPS:
             return ticketing_azure_dev_ops()
+        if self is ProviderConfigId.TICKETING_BMCHELIX:
+            return ticketing_bmchelix()
         if self is ProviderConfigId.TICKETING_FRESHDESK:
             return ticketing_freshdesk()
         if self is ProviderConfigId.TICKETING_GIT_HUB:

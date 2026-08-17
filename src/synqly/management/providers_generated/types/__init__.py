@@ -103,6 +103,7 @@ if typing.TYPE_CHECKING:
         BitdefenderCredential_Token,
         BitdefenderCredential_TokenId,
     )
+    from .bmc_helix_credential import BmcHelixCredential, BmcHelixCredential_Basic, BmcHelixCredential_BasicId
     from .channel_join_behavior import ChannelJoinBehavior
     from .chat_microsoft_copilot import ChatMicrosoftCopilot
     from .chat_microsoft_teams import ChatMicrosoftTeams
@@ -497,6 +498,7 @@ if typing.TYPE_CHECKING:
         ProviderConfig_StorageMockStorage,
         ProviderConfig_TicketingAutotask,
         ProviderConfig_TicketingAzureDevops,
+        ProviderConfig_TicketingBmchelix,
         ProviderConfig_TicketingFreshdesk,
         ProviderConfig_TicketingGithub,
         ProviderConfig_TicketingIvanti,
@@ -661,6 +663,7 @@ if typing.TYPE_CHECKING:
     from .tenable_sc_credential import TenableScCredential, TenableScCredential_Token, TenableScCredential_TokenId
     from .ticketing_autotask import TicketingAutotask
     from .ticketing_azure_dev_ops import TicketingAzureDevOps
+    from .ticketing_bmchelix import TicketingBmchelix
     from .ticketing_freshdesk import TicketingFreshdesk
     from .ticketing_git_hub import TicketingGitHub
     from .ticketing_ivanti import TicketingIvanti
@@ -820,6 +823,9 @@ _dynamic_imports: typing.Dict[str, str] = {
     "BitdefenderCredential": ".bitdefender_credential",
     "BitdefenderCredential_Token": ".bitdefender_credential",
     "BitdefenderCredential_TokenId": ".bitdefender_credential",
+    "BmcHelixCredential": ".bmc_helix_credential",
+    "BmcHelixCredential_Basic": ".bmc_helix_credential",
+    "BmcHelixCredential_BasicId": ".bmc_helix_credential",
     "ChannelJoinBehavior": ".channel_join_behavior",
     "ChatMicrosoftCopilot": ".chat_microsoft_copilot",
     "ChatMicrosoftTeams": ".chat_microsoft_teams",
@@ -1209,6 +1215,7 @@ _dynamic_imports: typing.Dict[str, str] = {
     "ProviderConfig_StorageMockStorage": ".provider_config",
     "ProviderConfig_TicketingAutotask": ".provider_config",
     "ProviderConfig_TicketingAzureDevops": ".provider_config",
+    "ProviderConfig_TicketingBmchelix": ".provider_config",
     "ProviderConfig_TicketingFreshdesk": ".provider_config",
     "ProviderConfig_TicketingGithub": ".provider_config",
     "ProviderConfig_TicketingIvanti": ".provider_config",
@@ -1361,6 +1368,7 @@ _dynamic_imports: typing.Dict[str, str] = {
     "TenableScCredential_TokenId": ".tenable_sc_credential",
     "TicketingAutotask": ".ticketing_autotask",
     "TicketingAzureDevOps": ".ticketing_azure_dev_ops",
+    "TicketingBmchelix": ".ticketing_bmchelix",
     "TicketingFreshdesk": ".ticketing_freshdesk",
     "TicketingGitHub": ".ticketing_git_hub",
     "TicketingIvanti": ".ticketing_ivanti",
@@ -1550,6 +1558,9 @@ __all__ = [
     "BitdefenderCredential",
     "BitdefenderCredential_Token",
     "BitdefenderCredential_TokenId",
+    "BmcHelixCredential",
+    "BmcHelixCredential_Basic",
+    "BmcHelixCredential_BasicId",
     "ChannelJoinBehavior",
     "ChatMicrosoftCopilot",
     "ChatMicrosoftTeams",
@@ -1939,6 +1950,7 @@ __all__ = [
     "ProviderConfig_StorageMockStorage",
     "ProviderConfig_TicketingAutotask",
     "ProviderConfig_TicketingAzureDevops",
+    "ProviderConfig_TicketingBmchelix",
     "ProviderConfig_TicketingFreshdesk",
     "ProviderConfig_TicketingGithub",
     "ProviderConfig_TicketingIvanti",
@@ -2091,6 +2103,7 @@ __all__ = [
     "TenableScCredential_TokenId",
     "TicketingAutotask",
     "TicketingAzureDevOps",
+    "TicketingBmchelix",
     "TicketingFreshdesk",
     "TicketingGitHub",
     "TicketingIvanti",
