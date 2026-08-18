@@ -11,8 +11,10 @@ if typing.TYPE_CHECKING:
     from .app_sec_get_application_finding_details_response import AppSecGetApplicationFindingDetailsResponse
     from .app_sec_posture_finding import AppSecPostureFinding
     from .app_sec_query_application_findings_response import AppSecQueryApplicationFindingsResponse
+    from .app_sec_query_application_scans_response import AppSecQueryApplicationScansResponse
     from .app_sec_query_applications_response import AppSecQueryApplicationsResponse
     from .app_sec_query_findings_response import AppSecQueryFindingsResponse
+    from .app_sec_scan_activity import AppSecScanActivity
     from .application_id import ApplicationId
     from .finding_id import FindingId
 _dynamic_imports: typing.Dict[str, str] = {
@@ -21,8 +23,10 @@ _dynamic_imports: typing.Dict[str, str] = {
     "AppSecGetApplicationFindingDetailsResponse": ".app_sec_get_application_finding_details_response",
     "AppSecPostureFinding": ".app_sec_posture_finding",
     "AppSecQueryApplicationFindingsResponse": ".app_sec_query_application_findings_response",
+    "AppSecQueryApplicationScansResponse": ".app_sec_query_application_scans_response",
     "AppSecQueryApplicationsResponse": ".app_sec_query_applications_response",
     "AppSecQueryFindingsResponse": ".app_sec_query_findings_response",
+    "AppSecScanActivity": ".app_sec_scan_activity",
     "ApplicationId": ".application_id",
     "FindingId": ".finding_id",
 }
@@ -55,8 +59,10 @@ __all__ = [
     "AppSecGetApplicationFindingDetailsResponse",
     "AppSecPostureFinding",
     "AppSecQueryApplicationFindingsResponse",
+    "AppSecQueryApplicationScansResponse",
     "AppSecQueryApplicationsResponse",
     "AppSecQueryFindingsResponse",
+    "AppSecScanActivity",
     "ApplicationId",
     "FindingId",
 ]

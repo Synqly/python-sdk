@@ -12,8 +12,10 @@ if typing.TYPE_CHECKING:
         AppSecGetApplicationFindingDetailsResponse,
         AppSecPostureFinding,
         AppSecQueryApplicationFindingsResponse,
+        AppSecQueryApplicationScansResponse,
         AppSecQueryApplicationsResponse,
         AppSecQueryFindingsResponse,
+        AppSecScanActivity,
         ApplicationId,
         FindingId,
     )
@@ -23,8 +25,10 @@ _dynamic_imports: typing.Dict[str, str] = {
     "AppSecGetApplicationFindingDetailsResponse": ".types",
     "AppSecPostureFinding": ".types",
     "AppSecQueryApplicationFindingsResponse": ".types",
+    "AppSecQueryApplicationScansResponse": ".types",
     "AppSecQueryApplicationsResponse": ".types",
     "AppSecQueryFindingsResponse": ".types",
+    "AppSecScanActivity": ".types",
     "ApplicationId": ".types",
     "FindingId": ".types",
 }
@@ -57,8 +61,10 @@ __all__ = [
     "AppSecGetApplicationFindingDetailsResponse",
     "AppSecPostureFinding",
     "AppSecQueryApplicationFindingsResponse",
+    "AppSecQueryApplicationScansResponse",
     "AppSecQueryApplicationsResponse",
     "AppSecQueryFindingsResponse",
+    "AppSecScanActivity",
     "ApplicationId",
     "FindingId",
 ]

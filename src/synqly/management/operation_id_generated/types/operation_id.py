@@ -11,6 +11,7 @@ class OperationId(enum.StrEnum):
     APPSEC_CREATE_FINDINGS = "appsec_create_findings"
     APPSEC_GET_APPLICATION_FINDING_DETAILS = "appsec_get_application_finding_details"
     APPSEC_QUERY_APPLICATION_FINDINGS = "appsec_query_application_findings"
+    APPSEC_QUERY_APPLICATION_SCANS = "appsec_query_application_scans"
     APPSEC_QUERY_APPLICATIONS = "appsec_query_applications"
     APPSEC_QUERY_FINDINGS = "appsec_query_findings"
     ASSETS_CREATE_ASSET = "assets_create_asset"
@@ -153,6 +154,7 @@ class OperationId(enum.StrEnum):
         appsec_create_findings: typing.Callable[[], T_Result],
         appsec_get_application_finding_details: typing.Callable[[], T_Result],
         appsec_query_application_findings: typing.Callable[[], T_Result],
+        appsec_query_application_scans: typing.Callable[[], T_Result],
         appsec_query_applications: typing.Callable[[], T_Result],
         appsec_query_findings: typing.Callable[[], T_Result],
         assets_create_asset: typing.Callable[[], T_Result],
@@ -287,6 +289,8 @@ class OperationId(enum.StrEnum):
             return appsec_get_application_finding_details()
         if self is OperationId.APPSEC_QUERY_APPLICATION_FINDINGS:
             return appsec_query_application_findings()
+        if self is OperationId.APPSEC_QUERY_APPLICATION_SCANS:
+            return appsec_query_application_scans()
         if self is OperationId.APPSEC_QUERY_APPLICATIONS:
             return appsec_query_applications()
         if self is OperationId.APPSEC_QUERY_FINDINGS:

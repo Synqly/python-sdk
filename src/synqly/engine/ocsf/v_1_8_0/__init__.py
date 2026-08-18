@@ -16,6 +16,7 @@ if typing.TYPE_CHECKING:
         emailactivity,
         noteactivity,
         objects,
+        scanactivity,
         softwareinventoryinfo,
         vulnerabilityfinding,
     )
@@ -643,6 +644,7 @@ _dynamic_imports: typing.Dict[str, str] = {
     "emailactivity": ".emailactivity",
     "noteactivity": ".noteactivity",
     "objects": ".objects",
+    "scanactivity": ".scanactivity",
     "softwareinventoryinfo": ".softwareinventoryinfo",
     "vulnerabilityfinding": ".vulnerabilityfinding",
 }
@@ -984,6 +986,7 @@ __all__ = [
     "emailactivity",
     "noteactivity",
     "objects",
+    "scanactivity",
     "softwareinventoryinfo",
     "vulnerabilityfinding",
 ]

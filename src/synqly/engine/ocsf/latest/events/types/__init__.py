@@ -27,6 +27,7 @@ if typing.TYPE_CHECKING:
     from .module_activity import ModuleActivity
     from .network_activity import NetworkActivity
     from .process_activity import ProcessActivity
+    from .scan_activity import ScanActivity
     from .scheduled_job_activity import ScheduledJobActivity
     from .security_finding import SecurityFinding
     from .vulnerability_finding import VulnerabilityFinding
@@ -53,6 +54,7 @@ _dynamic_imports: typing.Dict[str, str] = {
     "ModuleActivity": ".module_activity",
     "NetworkActivity": ".network_activity",
     "ProcessActivity": ".process_activity",
+    "ScanActivity": ".scan_activity",
     "ScheduledJobActivity": ".scheduled_job_activity",
     "SecurityFinding": ".security_finding",
     "VulnerabilityFinding": ".vulnerability_finding",
@@ -103,6 +105,7 @@ __all__ = [
     "ModuleActivity",
     "NetworkActivity",
     "ProcessActivity",
+    "ScanActivity",
     "ScheduledJobActivity",
     "SecurityFinding",
     "VulnerabilityFinding",

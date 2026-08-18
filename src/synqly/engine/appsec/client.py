@@ -9,6 +9,7 @@ from .types.app_sec_create_findings_response import AppSecCreateFindingsResponse
 from .types.app_sec_get_application_finding_details_response import AppSecGetApplicationFindingDetailsResponse
 from .types.app_sec_posture_finding import AppSecPostureFinding
 from .types.app_sec_query_application_findings_response import AppSecQueryApplicationFindingsResponse
+from .types.app_sec_query_application_scans_response import AppSecQueryApplicationScansResponse
 from .types.app_sec_query_applications_response import AppSecQueryApplicationsResponse
 from .types.app_sec_query_findings_response import AppSecQueryFindingsResponse
 from .types.application_id import ApplicationId
@@ -325,6 +326,63 @@ class AppsecClient:
         """
         _response = self._raw_client.get_application_finding_details(
             application_id, finding_id, meta=meta, include_raw_data=include_raw_data, request_options=request_options
+        )
+        return _response.data
+
+    def query_application_scans(
+        self,
+        application_id: ApplicationId,
+        *,
+        meta: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
+        limit: typing.Optional[int] = None,
+        cursor: typing.Optional[str] = None,
+        include_raw_data: typing.Optional[bool] = None,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> AppSecQueryApplicationScansResponse:
+        """
+        Returns a list of scan activity records for the application matching `{applicationId}` from the token-linked application security integration.
+
+        Parameters
+        ----------
+        application_id : ApplicationId
+
+        meta : typing.Optional[typing.Union[str, typing.Sequence[str]]]
+            Add metadata to the response by invoking meta functions. Documentation for [meta functions](https://docs.synqly.com/api-reference/meta-functions) is available. Not all meta functions are available at every endpoint.
+
+        limit : typing.Optional[int]
+            Number of scan records to return. Defaults to 100 with a maximum of 5000. If a provider has a maximum limit lower than 5000, the provider's maximum limit will be used instead.
+
+        cursor : typing.Optional[str]
+            Start search from cursor position.
+
+        include_raw_data : typing.Optional[bool]
+            Include the raw data from the provider in the response. Defaults to `false`.
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        AppSecQueryApplicationScansResponse
+
+        Examples
+        --------
+        from synqly import SynqlyEngine
+
+        client = SynqlyEngine(
+            token="YOUR_TOKEN",
+        )
+        client.appsec.query_application_scans(
+            application_id="applicationId",
+        )
+        """
+        _response = self._raw_client.query_application_scans(
+            application_id,
+            meta=meta,
+            limit=limit,
+            cursor=cursor,
+            include_raw_data=include_raw_data,
+            request_options=request_options,
         )
         return _response.data
 
@@ -676,5 +734,70 @@ class AsyncAppsecClient:
         """
         _response = await self._raw_client.get_application_finding_details(
             application_id, finding_id, meta=meta, include_raw_data=include_raw_data, request_options=request_options
+        )
+        return _response.data
+
+    async def query_application_scans(
+        self,
+        application_id: ApplicationId,
+        *,
+        meta: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
+        limit: typing.Optional[int] = None,
+        cursor: typing.Optional[str] = None,
+        include_raw_data: typing.Optional[bool] = None,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> AppSecQueryApplicationScansResponse:
+        """
+        Returns a list of scan activity records for the application matching `{applicationId}` from the token-linked application security integration.
+
+        Parameters
+        ----------
+        application_id : ApplicationId
+
+        meta : typing.Optional[typing.Union[str, typing.Sequence[str]]]
+            Add metadata to the response by invoking meta functions. Documentation for [meta functions](https://docs.synqly.com/api-reference/meta-functions) is available. Not all meta functions are available at every endpoint.
+
+        limit : typing.Optional[int]
+            Number of scan records to return. Defaults to 100 with a maximum of 5000. If a provider has a maximum limit lower than 5000, the provider's maximum limit will be used instead.
+
+        cursor : typing.Optional[str]
+            Start search from cursor position.
+
+        include_raw_data : typing.Optional[bool]
+            Include the raw data from the provider in the response. Defaults to `false`.
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        AppSecQueryApplicationScansResponse
+
+        Examples
+        --------
+        import asyncio
+
+        from synqly import AsyncSynqlyEngine
+
+        client = AsyncSynqlyEngine(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.appsec.query_application_scans(
+                application_id="applicationId",
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.query_application_scans(
+            application_id,
+            meta=meta,
+            limit=limit,
+            cursor=cursor,
+            include_raw_data=include_raw_data,
+            request_options=request_options,
         )
         return _response.data
