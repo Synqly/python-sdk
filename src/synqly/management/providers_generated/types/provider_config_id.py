@@ -432,6 +432,21 @@ class ProviderConfigId(enum.StrEnum):
     PagerDuty Operations Cloud
     """
 
+    NETWORK_SECURITY_AWS = "networksecurity_aws"
+    """
+    AWS Network Security
+    """
+
+    NETWORK_SECURITY_AZURE = "networksecurity_azure"
+    """
+    Microsoft Azure Network Security
+    """
+
+    NETWORK_SECURITY_GOOGLE = "networksecurity_google"
+    """
+    Google Network Security
+    """
+
     NOTIFICATIONS_JIRA = "notifications_jira"
     """
     Atlassian Jira
@@ -934,6 +949,9 @@ class ProviderConfigId(enum.StrEnum):
         identity_workday: typing.Callable[[], T_Result],
         incident_response_incident_io: typing.Callable[[], T_Result],
         incident_response_pager_duty: typing.Callable[[], T_Result],
+        network_security_aws: typing.Callable[[], T_Result],
+        network_security_azure: typing.Callable[[], T_Result],
+        network_security_google: typing.Callable[[], T_Result],
         notifications_jira: typing.Callable[[], T_Result],
         notifications_mock: typing.Callable[[], T_Result],
         notifications_slack_webhook: typing.Callable[[], T_Result],
@@ -1185,6 +1203,12 @@ class ProviderConfigId(enum.StrEnum):
             return incident_response_incident_io()
         if self is ProviderConfigId.INCIDENT_RESPONSE_PAGER_DUTY:
             return incident_response_pager_duty()
+        if self is ProviderConfigId.NETWORK_SECURITY_AWS:
+            return network_security_aws()
+        if self is ProviderConfigId.NETWORK_SECURITY_AZURE:
+            return network_security_azure()
+        if self is ProviderConfigId.NETWORK_SECURITY_GOOGLE:
+            return network_security_google()
         if self is ProviderConfigId.NOTIFICATIONS_JIRA:
             return notifications_jira()
         if self is ProviderConfigId.NOTIFICATIONS_MOCK:

@@ -30,8 +30,10 @@ from .aws_provider_credential import AwsProviderCredential
 from .aws_region import AwsRegion
 from .axonius_credential import AxoniusCredential
 from .azure_blob_credential import AzureBlobCredential
+from .azure_cloud import AzureCloud
 from .azure_dev_ops_ticketing_credential import AzureDevOpsTicketingCredential
 from .azure_monitor_logs_credential import AzureMonitorLogsCredential
+from .azure_network_security_credential import AzureNetworkSecurityCredential
 from .bitdefender_credential import BitdefenderCredential
 from .bmc_helix_credential import BmcHelixCredential
 from .channel_join_behavior import ChannelJoinBehavior
@@ -1328,6 +1330,55 @@ class ProviderConfig_IncidentresponseIncidentio(UncheckedBaseModel):
 class ProviderConfig_IncidentresponsePagerduty(UncheckedBaseModel):
     type: typing.Literal["incidentresponse_pagerduty"] = "incidentresponse_pagerduty"
     credential: PagerDutyCredential
+
+    if IS_PYDANTIC_V2:
+        model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow")  # type: ignore # Pydantic v2
+    else:
+
+        class Config:
+            smart_union = True
+            extra = pydantic.Extra.allow
+
+
+class ProviderConfig_NetworksecurityAws(UncheckedBaseModel):
+    type: typing.Literal["networksecurity_aws"] = "networksecurity_aws"
+    credential: AwsProviderCredential
+    region: AwsRegion
+    traffic_log_configuration_ids: typing.Optional[typing.List[str]] = None
+
+    if IS_PYDANTIC_V2:
+        model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow")  # type: ignore # Pydantic v2
+    else:
+
+        class Config:
+            smart_union = True
+            extra = pydantic.Extra.allow
+
+
+class ProviderConfig_NetworksecurityAzure(UncheckedBaseModel):
+    type: typing.Literal["networksecurity_azure"] = "networksecurity_azure"
+    azure_cloud: typing.Optional[AzureCloud] = None
+    credential: AzureNetworkSecurityCredential
+    network_watcher_name: str
+    resource_group: str
+    subscription_id: str
+    tenant_id: str
+    traffic_log_configuration_ids: typing.Optional[typing.List[str]] = None
+
+    if IS_PYDANTIC_V2:
+        model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow")  # type: ignore # Pydantic v2
+    else:
+
+        class Config:
+            smart_union = True
+            extra = pydantic.Extra.allow
+
+
+class ProviderConfig_NetworksecurityGoogle(UncheckedBaseModel):
+    type: typing.Literal["networksecurity_google"] = "networksecurity_google"
+    credential: GoogleServiceAccountCredential
+    project_id: str
+    traffic_log_configuration_ids: typing.Optional[typing.List[str]] = None
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow")  # type: ignore # Pydantic v2
@@ -2648,6 +2699,9 @@ ProviderConfig = typing_extensions.Annotated[
         ProviderConfig_IdentityWorkday,
         ProviderConfig_IncidentresponseIncidentio,
         ProviderConfig_IncidentresponsePagerduty,
+        ProviderConfig_NetworksecurityAws,
+        ProviderConfig_NetworksecurityAzure,
+        ProviderConfig_NetworksecurityGoogle,
         ProviderConfig_NotificationsJira,
         ProviderConfig_NotificationsMockNotifications,
         ProviderConfig_NotificationsSlack,

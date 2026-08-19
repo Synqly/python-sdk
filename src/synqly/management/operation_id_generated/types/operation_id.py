@@ -89,6 +89,8 @@ class OperationId(enum.StrEnum):
     IDENTITY_QUERY_USERS = "identity_query_users"
     INCIDENTRESPONSE_QUERY_ESCALATION_POLICIES = "incidentresponse_query_escalation_policies"
     INCIDENTRESPONSE_QUERY_ESCALATION_POLICY_USERS_ON_CALL = "incidentresponse_query_escalation_policy_users_on_call"
+    NETWORKSECURITY_QUERY_TRAFFIC_EVENTS = "networksecurity_query_traffic_events"
+    NETWORKSECURITY_QUERY_TRAFFIC_LOG_CONFIGURATIONS = "networksecurity_query_traffic_log_configurations"
     NOTIFICATIONS_CLEAR_MESSAGE = "notifications_clear_message"
     NOTIFICATIONS_CREATE_MESSAGE = "notifications_create_message"
     NOTIFICATIONS_GET_MESSAGE = "notifications_get_message"
@@ -232,6 +234,8 @@ class OperationId(enum.StrEnum):
         identity_query_users: typing.Callable[[], T_Result],
         incidentresponse_query_escalation_policies: typing.Callable[[], T_Result],
         incidentresponse_query_escalation_policy_users_on_call: typing.Callable[[], T_Result],
+        networksecurity_query_traffic_events: typing.Callable[[], T_Result],
+        networksecurity_query_traffic_log_configurations: typing.Callable[[], T_Result],
         notifications_clear_message: typing.Callable[[], T_Result],
         notifications_create_message: typing.Callable[[], T_Result],
         notifications_get_message: typing.Callable[[], T_Result],
@@ -445,6 +449,10 @@ class OperationId(enum.StrEnum):
             return incidentresponse_query_escalation_policies()
         if self is OperationId.INCIDENTRESPONSE_QUERY_ESCALATION_POLICY_USERS_ON_CALL:
             return incidentresponse_query_escalation_policy_users_on_call()
+        if self is OperationId.NETWORKSECURITY_QUERY_TRAFFIC_EVENTS:
+            return networksecurity_query_traffic_events()
+        if self is OperationId.NETWORKSECURITY_QUERY_TRAFFIC_LOG_CONFIGURATIONS:
+            return networksecurity_query_traffic_log_configurations()
         if self is OperationId.NOTIFICATIONS_CLEAR_MESSAGE:
             return notifications_clear_message()
         if self is OperationId.NOTIFICATIONS_CREATE_MESSAGE:

@@ -88,6 +88,7 @@ if typing.TYPE_CHECKING:
     from .aws_region import AwsRegion
     from .axonius_credential import AxoniusCredential, AxoniusCredential_Basic, AxoniusCredential_BasicId
     from .azure_blob_credential import AzureBlobCredential, AzureBlobCredential_Token, AzureBlobCredential_TokenId
+    from .azure_cloud import AzureCloud
     from .azure_dev_ops_ticketing_credential import (
         AzureDevOpsTicketingCredential,
         AzureDevOpsTicketingCredential_Token,
@@ -97,6 +98,11 @@ if typing.TYPE_CHECKING:
         AzureMonitorLogsCredential,
         AzureMonitorLogsCredential_Token,
         AzureMonitorLogsCredential_TokenId,
+    )
+    from .azure_network_security_credential import (
+        AzureNetworkSecurityCredential,
+        AzureNetworkSecurityCredential_OAuthClient,
+        AzureNetworkSecurityCredential_OAuthClientId,
     )
     from .bitdefender_credential import (
         BitdefenderCredential,
@@ -326,6 +332,9 @@ if typing.TYPE_CHECKING:
         MimecastCloudGatewayCredential_OAuthClient,
         MimecastCloudGatewayCredential_OAuthClientId,
     )
+    from .network_security_aws import NetworkSecurityAws
+    from .network_security_azure import NetworkSecurityAzure
+    from .network_security_google import NetworkSecurityGoogle
     from .notifications_jira import NotificationsJira
     from .notifications_mock import NotificationsMock
     from .notifications_slack import NotificationsSlack
@@ -454,6 +463,9 @@ if typing.TYPE_CHECKING:
         ProviderConfig_IdentityWorkday,
         ProviderConfig_IncidentresponseIncidentio,
         ProviderConfig_IncidentresponsePagerduty,
+        ProviderConfig_NetworksecurityAws,
+        ProviderConfig_NetworksecurityAzure,
+        ProviderConfig_NetworksecurityGoogle,
         ProviderConfig_NotificationsJira,
         ProviderConfig_NotificationsMockNotifications,
         ProviderConfig_NotificationsSlack,
@@ -814,12 +826,16 @@ _dynamic_imports: typing.Dict[str, str] = {
     "AzureBlobCredential": ".azure_blob_credential",
     "AzureBlobCredential_Token": ".azure_blob_credential",
     "AzureBlobCredential_TokenId": ".azure_blob_credential",
+    "AzureCloud": ".azure_cloud",
     "AzureDevOpsTicketingCredential": ".azure_dev_ops_ticketing_credential",
     "AzureDevOpsTicketingCredential_Token": ".azure_dev_ops_ticketing_credential",
     "AzureDevOpsTicketingCredential_TokenId": ".azure_dev_ops_ticketing_credential",
     "AzureMonitorLogsCredential": ".azure_monitor_logs_credential",
     "AzureMonitorLogsCredential_Token": ".azure_monitor_logs_credential",
     "AzureMonitorLogsCredential_TokenId": ".azure_monitor_logs_credential",
+    "AzureNetworkSecurityCredential": ".azure_network_security_credential",
+    "AzureNetworkSecurityCredential_OAuthClient": ".azure_network_security_credential",
+    "AzureNetworkSecurityCredential_OAuthClientId": ".azure_network_security_credential",
     "BitdefenderCredential": ".bitdefender_credential",
     "BitdefenderCredential_Token": ".bitdefender_credential",
     "BitdefenderCredential_TokenId": ".bitdefender_credential",
@@ -1039,6 +1055,9 @@ _dynamic_imports: typing.Dict[str, str] = {
     "MimecastCloudGatewayCredential": ".mimecast_cloud_gateway_credential",
     "MimecastCloudGatewayCredential_OAuthClient": ".mimecast_cloud_gateway_credential",
     "MimecastCloudGatewayCredential_OAuthClientId": ".mimecast_cloud_gateway_credential",
+    "NetworkSecurityAws": ".network_security_aws",
+    "NetworkSecurityAzure": ".network_security_azure",
+    "NetworkSecurityGoogle": ".network_security_google",
     "NotificationsJira": ".notifications_jira",
     "NotificationsMock": ".notifications_mock",
     "NotificationsSlack": ".notifications_slack",
@@ -1171,6 +1190,9 @@ _dynamic_imports: typing.Dict[str, str] = {
     "ProviderConfig_IdentityWorkday": ".provider_config",
     "ProviderConfig_IncidentresponseIncidentio": ".provider_config",
     "ProviderConfig_IncidentresponsePagerduty": ".provider_config",
+    "ProviderConfig_NetworksecurityAws": ".provider_config",
+    "ProviderConfig_NetworksecurityAzure": ".provider_config",
+    "ProviderConfig_NetworksecurityGoogle": ".provider_config",
     "ProviderConfig_NotificationsJira": ".provider_config",
     "ProviderConfig_NotificationsMockNotifications": ".provider_config",
     "ProviderConfig_NotificationsSlack": ".provider_config",
@@ -1549,12 +1571,16 @@ __all__ = [
     "AzureBlobCredential",
     "AzureBlobCredential_Token",
     "AzureBlobCredential_TokenId",
+    "AzureCloud",
     "AzureDevOpsTicketingCredential",
     "AzureDevOpsTicketingCredential_Token",
     "AzureDevOpsTicketingCredential_TokenId",
     "AzureMonitorLogsCredential",
     "AzureMonitorLogsCredential_Token",
     "AzureMonitorLogsCredential_TokenId",
+    "AzureNetworkSecurityCredential",
+    "AzureNetworkSecurityCredential_OAuthClient",
+    "AzureNetworkSecurityCredential_OAuthClientId",
     "BitdefenderCredential",
     "BitdefenderCredential_Token",
     "BitdefenderCredential_TokenId",
@@ -1774,6 +1800,9 @@ __all__ = [
     "MimecastCloudGatewayCredential",
     "MimecastCloudGatewayCredential_OAuthClient",
     "MimecastCloudGatewayCredential_OAuthClientId",
+    "NetworkSecurityAws",
+    "NetworkSecurityAzure",
+    "NetworkSecurityGoogle",
     "NotificationsJira",
     "NotificationsMock",
     "NotificationsSlack",
@@ -1906,6 +1935,9 @@ __all__ = [
     "ProviderConfig_IdentityWorkday",
     "ProviderConfig_IncidentresponseIncidentio",
     "ProviderConfig_IncidentresponsePagerduty",
+    "ProviderConfig_NetworksecurityAws",
+    "ProviderConfig_NetworksecurityAzure",
+    "ProviderConfig_NetworksecurityGoogle",
     "ProviderConfig_NotificationsJira",
     "ProviderConfig_NotificationsMockNotifications",
     "ProviderConfig_NotificationsSlack",

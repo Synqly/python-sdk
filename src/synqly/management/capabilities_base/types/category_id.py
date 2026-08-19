@@ -22,6 +22,7 @@ class CategoryId(enum.StrEnum):
     ENDPOINTMANAGEMENT = "endpointmanagement"
     IDENTITY = "identity"
     INCIDENTRESPONSE = "incidentresponse"
+    NETWORKSECURITY = "networksecurity"
     NOTIFICATIONS = "notifications"
     SIEM = "siem"
     SINK = "sink"
@@ -51,6 +52,7 @@ class CategoryId(enum.StrEnum):
         endpointmanagement: typing.Callable[[], T_Result],
         identity: typing.Callable[[], T_Result],
         incidentresponse: typing.Callable[[], T_Result],
+        networksecurity: typing.Callable[[], T_Result],
         notifications: typing.Callable[[], T_Result],
         siem: typing.Callable[[], T_Result],
         sink: typing.Callable[[], T_Result],
@@ -79,6 +81,8 @@ class CategoryId(enum.StrEnum):
             return identity()
         if self is CategoryId.INCIDENTRESPONSE:
             return incidentresponse()
+        if self is CategoryId.NETWORKSECURITY:
+            return networksecurity()
         if self is CategoryId.NOTIFICATIONS:
             return notifications()
         if self is CategoryId.SIEM:

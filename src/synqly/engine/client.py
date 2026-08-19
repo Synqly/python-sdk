@@ -22,6 +22,7 @@ if typing.TYPE_CHECKING:
     from .identity.client import AsyncIdentityClient, IdentityClient
     from .incidentresponse.client import AsyncIncidentresponseClient, IncidentresponseClient
     from .integration_webhooks.client import AsyncIntegrationWebhooksClient, IntegrationWebhooksClient
+    from .networksecurity.client import AsyncNetworksecurityClient, NetworksecurityClient
     from .notifications.client import AsyncNotificationsClient, NotificationsClient
     from .operations.client import AsyncOperationsClient, OperationsClient
     from .siem.client import AsyncSiemClient, SiemClient
@@ -129,6 +130,7 @@ class SynqlyEngine:
         self._identity: typing.Optional[IdentityClient] = None
         self._incidentresponse: typing.Optional[IncidentresponseClient] = None
         self._integration_webhooks: typing.Optional[IntegrationWebhooksClient] = None
+        self._networksecurity: typing.Optional[NetworksecurityClient] = None
         self._notifications: typing.Optional[NotificationsClient] = None
         self._operations: typing.Optional[OperationsClient] = None
         self._siem: typing.Optional[SiemClient] = None
@@ -232,6 +234,14 @@ class SynqlyEngine:
 
             self._integration_webhooks = IntegrationWebhooksClient(client_wrapper=self._client_wrapper)
         return self._integration_webhooks
+
+    @property
+    def networksecurity(self):
+        if self._networksecurity is None:
+            from .networksecurity.client import NetworksecurityClient  # noqa: E402
+
+            self._networksecurity = NetworksecurityClient(client_wrapper=self._client_wrapper)
+        return self._networksecurity
 
     @property
     def notifications(self):
@@ -409,6 +419,7 @@ class AsyncSynqlyEngine:
         self._identity: typing.Optional[AsyncIdentityClient] = None
         self._incidentresponse: typing.Optional[AsyncIncidentresponseClient] = None
         self._integration_webhooks: typing.Optional[AsyncIntegrationWebhooksClient] = None
+        self._networksecurity: typing.Optional[AsyncNetworksecurityClient] = None
         self._notifications: typing.Optional[AsyncNotificationsClient] = None
         self._operations: typing.Optional[AsyncOperationsClient] = None
         self._siem: typing.Optional[AsyncSiemClient] = None
@@ -512,6 +523,14 @@ class AsyncSynqlyEngine:
 
             self._integration_webhooks = AsyncIntegrationWebhooksClient(client_wrapper=self._client_wrapper)
         return self._integration_webhooks
+
+    @property
+    def networksecurity(self):
+        if self._networksecurity is None:
+            from .networksecurity.client import AsyncNetworksecurityClient  # noqa: E402
+
+            self._networksecurity = AsyncNetworksecurityClient(client_wrapper=self._client_wrapper)
+        return self._networksecurity
 
     @property
     def notifications(self):
