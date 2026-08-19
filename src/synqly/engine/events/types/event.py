@@ -252,6 +252,31 @@ from ...ocsf.v_1_3_0.entitymanagement.classes.types.status_id import (
 from ...ocsf.v_1_3_0.entitymanagement.classes.types.type_uid import (
     TypeUid as ocsf_v_1_3_0_entitymanagement_classes_types_type_uid_TypeUid,
 )
+from ...ocsf.v_1_3_0.eventlogactivity.classes.types.action_id import (
+    ActionId as ocsf_v_1_3_0_eventlogactivity_classes_types_action_id_ActionId,
+)
+from ...ocsf.v_1_3_0.eventlogactivity.classes.types.activity_id import (
+    ActivityId as ocsf_v_1_3_0_eventlogactivity_classes_types_activity_id_ActivityId,
+)
+from ...ocsf.v_1_3_0.eventlogactivity.classes.types.category_uid import (
+    CategoryUid as ocsf_v_1_3_0_eventlogactivity_classes_types_category_uid_CategoryUid,
+)
+from ...ocsf.v_1_3_0.eventlogactivity.classes.types.class_uid import (
+    ClassUid as ocsf_v_1_3_0_eventlogactivity_classes_types_class_uid_ClassUid,
+)
+from ...ocsf.v_1_3_0.eventlogactivity.classes.types.disposition_id import (
+    DispositionId as ocsf_v_1_3_0_eventlogactivity_classes_types_disposition_id_DispositionId,
+)
+from ...ocsf.v_1_3_0.eventlogactivity.classes.types.log_type_id import LogTypeId
+from ...ocsf.v_1_3_0.eventlogactivity.classes.types.severity_id import (
+    SeverityId as ocsf_v_1_3_0_eventlogactivity_classes_types_severity_id_SeverityId,
+)
+from ...ocsf.v_1_3_0.eventlogactivity.classes.types.status_id import (
+    StatusId as ocsf_v_1_3_0_eventlogactivity_classes_types_status_id_StatusId,
+)
+from ...ocsf.v_1_3_0.eventlogactivity.classes.types.type_uid import (
+    TypeUid as ocsf_v_1_3_0_eventlogactivity_classes_types_type_uid_TypeUid,
+)
 from ...ocsf.v_1_3_0.fileactivity.classes.types.action_id import (
     ActionId as ocsf_v_1_3_0_fileactivity_classes_types_action_id_ActionId,
 )
@@ -3205,6 +3230,67 @@ class Event_ApplicationInventoryInfo(UncheckedBaseModel):
             extra = pydantic.Extra.allow
 
 
+class Event_EventLogActivity(UncheckedBaseModel):
+    class_name: typing.Literal["Event Log Activity"] = "Event Log Activity"
+    action: typing.Optional[str] = None
+    action_id: typing.Optional[ocsf_v_1_3_0_eventlogactivity_classes_types_action_id_ActionId] = None
+    activity_id: ocsf_v_1_3_0_eventlogactivity_classes_types_activity_id_ActivityId
+    activity_name: typing.Optional[str] = None
+    actor: typing.Optional[ocsf_v_1_3_0_objects_types_actor_Actor] = None
+    api: typing.Optional[ocsf_v_1_3_0_objects_types_api_Api] = None
+    attacks: typing.Optional[typing.List[ocsf_v_1_3_0_objects_types_attack_Attack]] = None
+    authorizations: typing.Optional[typing.List[ocsf_v_1_3_0_objects_types_authorization_Authorization]] = None
+    category_name: typing.Optional[str] = None
+    category_uid: ocsf_v_1_3_0_eventlogactivity_classes_types_category_uid_CategoryUid
+    class_uid: ocsf_v_1_3_0_eventlogactivity_classes_types_class_uid_ClassUid
+    cloud: typing.Optional[ocsf_v_1_3_0_objects_types_cloud_Cloud] = None
+    count: typing.Optional[int] = None
+    custom_fields: typing.Optional[ocsf_v_1_3_0_objects_types_object_Object] = None
+    device: typing.Optional[ocsf_v_1_3_0_objects_types_device_Device] = None
+    disposition: typing.Optional[str] = None
+    disposition_id: typing.Optional[ocsf_v_1_3_0_eventlogactivity_classes_types_disposition_id_DispositionId] = None
+    dst_endpoint: typing.Optional[ocsf_v_1_3_0_objects_types_network_endpoint_NetworkEndpoint] = None
+    duration: typing.Optional[int] = None
+    end_time: typing.Optional[ocsf_v_1_3_0_base_types_timestamp_Timestamp] = None
+    end_time_dt: typing.Optional[dt.datetime] = None
+    enrichments: typing.Optional[typing.List[ocsf_v_1_3_0_objects_types_enrichment_Enrichment]] = None
+    file: typing.Optional[ocsf_v_1_3_0_objects_types_file_File] = None
+    firewall_rule: typing.Optional[ocsf_v_1_3_0_objects_types_firewall_rule_FirewallRule] = None
+    log_name: typing.Optional[str] = None
+    log_provider: typing.Optional[str] = None
+    log_type: typing.Optional[str] = None
+    log_type_id: typing.Optional[LogTypeId] = None
+    malware: typing.Optional[typing.List[ocsf_v_1_3_0_objects_types_malware_Malware]] = None
+    message: typing.Optional[str] = None
+    metadata: ocsf_v_1_3_0_objects_types_metadata_Metadata
+    observables: typing.Optional[typing.List[ocsf_v_1_3_0_objects_types_observable_Observable]] = None
+    osint: typing.Optional[typing.List[ocsf_v_1_3_0_objects_types_osint_Osint]] = None
+    raw_data: typing.Optional[str] = None
+    severity: typing.Optional[str] = None
+    severity_id: ocsf_v_1_3_0_eventlogactivity_classes_types_severity_id_SeverityId
+    src_endpoint: typing.Optional[ocsf_v_1_3_0_objects_types_network_endpoint_NetworkEndpoint] = None
+    start_time: typing.Optional[ocsf_v_1_3_0_base_types_timestamp_Timestamp] = None
+    start_time_dt: typing.Optional[dt.datetime] = None
+    status: typing.Optional[str] = None
+    status_code: typing.Optional[str] = None
+    status_detail: typing.Optional[str] = None
+    status_id: typing.Optional[ocsf_v_1_3_0_eventlogactivity_classes_types_status_id_StatusId] = None
+    time: ocsf_v_1_3_0_base_types_timestamp_Timestamp
+    time_dt: typing.Optional[dt.datetime] = None
+    timezone_offset: typing.Optional[int] = None
+    type_name: typing.Optional[str] = None
+    type_uid: ocsf_v_1_3_0_eventlogactivity_classes_types_type_uid_TypeUid
+    unmapped: typing.Optional[ocsf_v_1_3_0_objects_types_object_Object] = None
+
+    if IS_PYDANTIC_V2:
+        model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow")  # type: ignore # Pydantic v2
+    else:
+
+        class Config:
+            smart_union = True
+            extra = pydantic.Extra.allow
+
+
 Event = typing_extensions.Annotated[
     typing.Union[
         Event_AccountChange,
@@ -3243,6 +3329,7 @@ Event = typing_extensions.Annotated[
         Event_ChatMessageActivity,
         Event_ConversationActivity,
         Event_ApplicationInventoryInfo,
+        Event_EventLogActivity,
     ],
     UnionMetadata(discriminant="class_name"),
 ]

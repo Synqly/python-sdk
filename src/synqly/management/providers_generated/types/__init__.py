@@ -293,6 +293,7 @@ if typing.TYPE_CHECKING:
     from .identity_entra_id import IdentityEntraId
     from .identity_entra_id_dataset import IdentityEntraIdDataset
     from .identity_entra_id_mock import IdentityEntraIdMock
+    from .identity_git_hub import IdentityGitHub
     from .identity_google import IdentityGoogle
     from .identity_google_dataset import IdentityGoogleDataset
     from .identity_google_mock import IdentityGoogleMock
@@ -453,6 +454,7 @@ if typing.TYPE_CHECKING:
         ProviderConfig_IdentityAwsIam,
         ProviderConfig_IdentityEntraId,
         ProviderConfig_IdentityEntraIdMock,
+        ProviderConfig_IdentityGithub,
         ProviderConfig_IdentityGoogle,
         ProviderConfig_IdentityGoogleMock,
         ProviderConfig_IdentityGreenhouse,
@@ -1006,6 +1008,7 @@ _dynamic_imports: typing.Dict[str, str] = {
     "IdentityEntraId": ".identity_entra_id",
     "IdentityEntraIdDataset": ".identity_entra_id_dataset",
     "IdentityEntraIdMock": ".identity_entra_id_mock",
+    "IdentityGitHub": ".identity_git_hub",
     "IdentityGoogle": ".identity_google",
     "IdentityGoogleDataset": ".identity_google_dataset",
     "IdentityGoogleMock": ".identity_google_mock",
@@ -1180,6 +1183,7 @@ _dynamic_imports: typing.Dict[str, str] = {
     "ProviderConfig_IdentityAwsIam": ".provider_config",
     "ProviderConfig_IdentityEntraId": ".provider_config",
     "ProviderConfig_IdentityEntraIdMock": ".provider_config",
+    "ProviderConfig_IdentityGithub": ".provider_config",
     "ProviderConfig_IdentityGoogle": ".provider_config",
     "ProviderConfig_IdentityGoogleMock": ".provider_config",
     "ProviderConfig_IdentityGreenhouse": ".provider_config",
@@ -1751,6 +1755,7 @@ __all__ = [
     "IdentityEntraId",
     "IdentityEntraIdDataset",
     "IdentityEntraIdMock",
+    "IdentityGitHub",
     "IdentityGoogle",
     "IdentityGoogleDataset",
     "IdentityGoogleMock",
@@ -1925,6 +1930,7 @@ __all__ = [
     "ProviderConfig_IdentityAwsIam",
     "ProviderConfig_IdentityEntraId",
     "ProviderConfig_IdentityEntraIdMock",
+    "ProviderConfig_IdentityGithub",
     "ProviderConfig_IdentityGoogle",
     "ProviderConfig_IdentityGoogleMock",
     "ProviderConfig_IdentityGreenhouse",

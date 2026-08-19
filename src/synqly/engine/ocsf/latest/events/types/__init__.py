@@ -18,6 +18,7 @@ if typing.TYPE_CHECKING:
     from .dns_activity import DnsActivity
     from .email_activity import EmailActivity
     from .entity_management import EntityManagement
+    from .event_log_activity import EventLogActivity
     from .file_activity import FileActivity
     from .file_hosting_activity import FileHostingActivity
     from .group_management import GroupManagement
@@ -45,6 +46,7 @@ _dynamic_imports: typing.Dict[str, str] = {
     "DnsActivity": ".dns_activity",
     "EmailActivity": ".email_activity",
     "EntityManagement": ".entity_management",
+    "EventLogActivity": ".event_log_activity",
     "FileActivity": ".file_activity",
     "FileHostingActivity": ".file_hosting_activity",
     "GroupManagement": ".group_management",
@@ -96,6 +98,7 @@ __all__ = [
     "DnsActivity",
     "EmailActivity",
     "EntityManagement",
+    "EventLogActivity",
     "FileActivity",
     "FileHostingActivity",
     "GroupManagement",

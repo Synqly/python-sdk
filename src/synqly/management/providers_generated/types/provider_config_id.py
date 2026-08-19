@@ -382,6 +382,11 @@ class ProviderConfigId(enum.StrEnum):
     [MOCK] Microsoft Entra ID
     """
 
+    IDENTITY_GIT_HUB = "identity_github"
+    """
+    GitHub Identity
+    """
+
     IDENTITY_GOOGLE = "identity_google"
     """
     Google Workspace
@@ -939,6 +944,7 @@ class ProviderConfigId(enum.StrEnum):
         identity_aws_iam: typing.Callable[[], T_Result],
         identity_entra_id: typing.Callable[[], T_Result],
         identity_entra_id_mock: typing.Callable[[], T_Result],
+        identity_git_hub: typing.Callable[[], T_Result],
         identity_google: typing.Callable[[], T_Result],
         identity_google_mock: typing.Callable[[], T_Result],
         identity_greenhouse: typing.Callable[[], T_Result],
@@ -1183,6 +1189,8 @@ class ProviderConfigId(enum.StrEnum):
             return identity_entra_id()
         if self is ProviderConfigId.IDENTITY_ENTRA_ID_MOCK:
             return identity_entra_id_mock()
+        if self is ProviderConfigId.IDENTITY_GIT_HUB:
+            return identity_git_hub()
         if self is ProviderConfigId.IDENTITY_GOOGLE:
             return identity_google()
         if self is ProviderConfigId.IDENTITY_GOOGLE_MOCK:

@@ -1203,6 +1203,21 @@ class ProviderConfig_IdentityEntraIdMock(UncheckedBaseModel):
             extra = pydantic.Extra.allow
 
 
+class ProviderConfig_IdentityGithub(UncheckedBaseModel):
+    type: typing.Literal["identity_github"] = "identity_github"
+    credential: GitHubCredential
+    organization_slug: str
+    url: typing.Optional[str] = None
+
+    if IS_PYDANTIC_V2:
+        model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow")  # type: ignore # Pydantic v2
+    else:
+
+        class Config:
+            smart_union = True
+            extra = pydantic.Extra.allow
+
+
 class ProviderConfig_IdentityGoogle(UncheckedBaseModel):
     type: typing.Literal["identity_google"] = "identity_google"
     client_email: str
@@ -2689,6 +2704,7 @@ ProviderConfig = typing_extensions.Annotated[
         ProviderConfig_IdentityAwsIam,
         ProviderConfig_IdentityEntraId,
         ProviderConfig_IdentityEntraIdMock,
+        ProviderConfig_IdentityGithub,
         ProviderConfig_IdentityGoogle,
         ProviderConfig_IdentityGoogleMock,
         ProviderConfig_IdentityGreenhouse,
