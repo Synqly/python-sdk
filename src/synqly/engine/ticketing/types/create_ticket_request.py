@@ -66,6 +66,11 @@ class CreateTicketRequest(BaseResourceRequest):
     The ticket's type.
     """
 
+    parent: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    Provider specific ID of the parent ticket.
+    """
+
     tags: typing.Optional[typing.List[str]] = pydantic.Field(default=None)
     """
     Associate tags with Ticket

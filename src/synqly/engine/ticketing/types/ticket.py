@@ -76,6 +76,11 @@ class Ticket(Base):
     The ticket's type.
     """
 
+    parent: typing.Optional[TicketId] = pydantic.Field(default=None)
+    """
+    Provider specific ID of the parent ticket.
+    """
+
     tags: typing.Optional[typing.List[str]] = pydantic.Field(default=None)
     """
     Associate tags with Ticket

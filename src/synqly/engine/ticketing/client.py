@@ -231,6 +231,7 @@ class TicketingClient:
         status: typing.Optional[Status] = OMIT,
         project: typing.Optional[str] = OMIT,
         issue_type: typing.Optional[str] = OMIT,
+        parent: typing.Optional[str] = OMIT,
         tags: typing.Optional[typing.Sequence[str]] = OMIT,
         custom_fields: typing.Optional[typing.Dict[str, typing.Any]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
@@ -279,6 +280,9 @@ class TicketingClient:
         issue_type : typing.Optional[str]
             The ticket's type.
 
+        parent : typing.Optional[str]
+            Provider specific ID of the parent ticket.
+
         tags : typing.Optional[typing.Sequence[str]]
             Associate tags with Ticket
 
@@ -317,6 +321,7 @@ class TicketingClient:
             status=status,
             project=project,
             issue_type=issue_type,
+            parent=parent,
             tags=tags,
             custom_fields=custom_fields,
             request_options=request_options,
@@ -1184,6 +1189,7 @@ class AsyncTicketingClient:
         status: typing.Optional[Status] = OMIT,
         project: typing.Optional[str] = OMIT,
         issue_type: typing.Optional[str] = OMIT,
+        parent: typing.Optional[str] = OMIT,
         tags: typing.Optional[typing.Sequence[str]] = OMIT,
         custom_fields: typing.Optional[typing.Dict[str, typing.Any]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
@@ -1232,6 +1238,9 @@ class AsyncTicketingClient:
         issue_type : typing.Optional[str]
             The ticket's type.
 
+        parent : typing.Optional[str]
+            Provider specific ID of the parent ticket.
+
         tags : typing.Optional[typing.Sequence[str]]
             Associate tags with Ticket
 
@@ -1278,6 +1287,7 @@ class AsyncTicketingClient:
             status=status,
             project=project,
             issue_type=issue_type,
+            parent=parent,
             tags=tags,
             custom_fields=custom_fields,
             request_options=request_options,
