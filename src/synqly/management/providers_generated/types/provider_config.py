@@ -151,6 +151,8 @@ from .vulnerabilities_rapid_7_insight_cloud_dataset import VulnerabilitiesRapid7
 from .vulnerabilities_tanium_cloud_dataset import VulnerabilitiesTaniumCloudDataset
 from .wiz_credential import WizCredential
 from .workday_credential import WorkdayCredential
+from .xurrent_credential import XurrentCredential
+from .xurrent_region import XurrentRegion
 from .zendesk_credential import ZendeskCredential
 
 
@@ -2318,6 +2320,22 @@ class ProviderConfig_TicketingTorq(UncheckedBaseModel):
             extra = pydantic.Extra.allow
 
 
+class ProviderConfig_TicketingXurrent(UncheckedBaseModel):
+    type: typing.Literal["ticketing_xurrent"] = "ticketing_xurrent"
+    account: str
+    credential: XurrentCredential
+    region: XurrentRegion
+    service_instance_id: typing.Optional[str] = None
+
+    if IS_PYDANTIC_V2:
+        model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow")  # type: ignore # Pydantic v2
+    else:
+
+        class Config:
+            smart_union = True
+            extra = pydantic.Extra.allow
+
+
 class ProviderConfig_TicketingZendesk(UncheckedBaseModel):
     type: typing.Literal["ticketing_zendesk"] = "ticketing_zendesk"
     credential: ZendeskCredential
@@ -2776,6 +2794,7 @@ ProviderConfig = typing_extensions.Annotated[
         ProviderConfig_TicketingServicenow,
         ProviderConfig_TicketingServicenowSir,
         ProviderConfig_TicketingTorq,
+        ProviderConfig_TicketingXurrent,
         ProviderConfig_TicketingZendesk,
         ProviderConfig_VulnerabilitiesAmazonInspector,
         ProviderConfig_VulnerabilitiesAxonius,

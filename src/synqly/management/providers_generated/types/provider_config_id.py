@@ -742,6 +742,11 @@ class ProviderConfigId(enum.StrEnum):
     Torq
     """
 
+    TICKETING_XURRENT = "ticketing_xurrent"
+    """
+    Xurrent
+    """
+
     TICKETING_ZENDESK = "ticketing_zendesk"
     """
     Zendesk
@@ -1016,6 +1021,7 @@ class ProviderConfigId(enum.StrEnum):
         ticketing_service_now: typing.Callable[[], T_Result],
         ticketing_service_now_sir: typing.Callable[[], T_Result],
         ticketing_torq: typing.Callable[[], T_Result],
+        ticketing_xurrent: typing.Callable[[], T_Result],
         ticketing_zendesk: typing.Callable[[], T_Result],
         vulnerabilities_amazon_inspector: typing.Callable[[], T_Result],
         vulnerabilities_axonius: typing.Callable[[], T_Result],
@@ -1333,6 +1339,8 @@ class ProviderConfigId(enum.StrEnum):
             return ticketing_service_now_sir()
         if self is ProviderConfigId.TICKETING_TORQ:
             return ticketing_torq()
+        if self is ProviderConfigId.TICKETING_XURRENT:
+            return ticketing_xurrent()
         if self is ProviderConfigId.TICKETING_ZENDESK:
             return ticketing_zendesk()
         if self is ProviderConfigId.VULNERABILITIES_AMAZON_INSPECTOR:

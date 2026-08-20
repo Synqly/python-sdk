@@ -526,6 +526,7 @@ if typing.TYPE_CHECKING:
         ProviderConfig_TicketingServicenow,
         ProviderConfig_TicketingServicenowSir,
         ProviderConfig_TicketingTorq,
+        ProviderConfig_TicketingXurrent,
         ProviderConfig_TicketingZendesk,
         ProviderConfig_VulnerabilitiesAmazonInspector,
         ProviderConfig_VulnerabilitiesAxonius,
@@ -693,6 +694,7 @@ if typing.TYPE_CHECKING:
     from .ticketing_service_now import TicketingServiceNow
     from .ticketing_service_now_sir import TicketingServiceNowSir
     from .ticketing_torq import TicketingTorq
+    from .ticketing_xurrent import TicketingXurrent
     from .ticketing_zendesk import TicketingZendesk
     from .torq_credential import TorqCredential, TorqCredential_OAuthClient, TorqCredential_OAuthClientId
     from .trellix_api_key_credential import (
@@ -748,6 +750,8 @@ if typing.TYPE_CHECKING:
     from .vulnerabilities_wiz import VulnerabilitiesWiz
     from .wiz_credential import WizCredential, WizCredential_OAuthClient, WizCredential_OAuthClientId
     from .workday_credential import WorkdayCredential, WorkdayCredential_OAuthClient, WorkdayCredential_OAuthClientId
+    from .xurrent_credential import XurrentCredential, XurrentCredential_Token, XurrentCredential_TokenId
+    from .xurrent_region import XurrentRegion
     from .zendesk_credential import ZendeskCredential, ZendeskCredential_Basic, ZendeskCredential_BasicId
 _dynamic_imports: typing.Dict[str, str] = {
     "ApiConfig": ".api_config",
@@ -1255,6 +1259,7 @@ _dynamic_imports: typing.Dict[str, str] = {
     "ProviderConfig_TicketingServicenow": ".provider_config",
     "ProviderConfig_TicketingServicenowSir": ".provider_config",
     "ProviderConfig_TicketingTorq": ".provider_config",
+    "ProviderConfig_TicketingXurrent": ".provider_config",
     "ProviderConfig_TicketingZendesk": ".provider_config",
     "ProviderConfig_VulnerabilitiesAmazonInspector": ".provider_config",
     "ProviderConfig_VulnerabilitiesAxonius": ".provider_config",
@@ -1410,6 +1415,7 @@ _dynamic_imports: typing.Dict[str, str] = {
     "TicketingServiceNow": ".ticketing_service_now",
     "TicketingServiceNowSir": ".ticketing_service_now_sir",
     "TicketingTorq": ".ticketing_torq",
+    "TicketingXurrent": ".ticketing_xurrent",
     "TicketingZendesk": ".ticketing_zendesk",
     "TorqCredential": ".torq_credential",
     "TorqCredential_OAuthClient": ".torq_credential",
@@ -1469,6 +1475,10 @@ _dynamic_imports: typing.Dict[str, str] = {
     "WorkdayCredential": ".workday_credential",
     "WorkdayCredential_OAuthClient": ".workday_credential",
     "WorkdayCredential_OAuthClientId": ".workday_credential",
+    "XurrentCredential": ".xurrent_credential",
+    "XurrentCredential_Token": ".xurrent_credential",
+    "XurrentCredential_TokenId": ".xurrent_credential",
+    "XurrentRegion": ".xurrent_region",
     "ZendeskCredential": ".zendesk_credential",
     "ZendeskCredential_Basic": ".zendesk_credential",
     "ZendeskCredential_BasicId": ".zendesk_credential",
@@ -2002,6 +2012,7 @@ __all__ = [
     "ProviderConfig_TicketingServicenow",
     "ProviderConfig_TicketingServicenowSir",
     "ProviderConfig_TicketingTorq",
+    "ProviderConfig_TicketingXurrent",
     "ProviderConfig_TicketingZendesk",
     "ProviderConfig_VulnerabilitiesAmazonInspector",
     "ProviderConfig_VulnerabilitiesAxonius",
@@ -2157,6 +2168,7 @@ __all__ = [
     "TicketingServiceNow",
     "TicketingServiceNowSir",
     "TicketingTorq",
+    "TicketingXurrent",
     "TicketingZendesk",
     "TorqCredential",
     "TorqCredential_OAuthClient",
@@ -2216,6 +2228,10 @@ __all__ = [
     "WorkdayCredential",
     "WorkdayCredential_OAuthClient",
     "WorkdayCredential_OAuthClientId",
+    "XurrentCredential",
+    "XurrentCredential_Token",
+    "XurrentCredential_TokenId",
+    "XurrentRegion",
     "ZendeskCredential",
     "ZendeskCredential_Basic",
     "ZendeskCredential_BasicId",
