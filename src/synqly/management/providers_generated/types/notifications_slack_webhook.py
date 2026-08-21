@@ -11,7 +11,9 @@ from .slack_webhook_credential import SlackWebhookCredential
 class NotificationsSlackWebhook(UncheckedBaseModel):
     """
     Configuration for the Slack Notification Provider using Incoming Webhooks.
-    Incoming Webhooks are a way to post messages from apps into Slack. The can not be used for any other actions, such as reading or deleting messages.
+    Incoming Webhooks are a way to post messages from apps into Slack. They cannot be used for any other actions, such as reading or deleting messages.
+
+    [Configuration guide](https://docs.synqly.com/guides/provider-configuration/slack-webhook-notification-setup)
     """
 
     webhook_url: SlackWebhookCredential
