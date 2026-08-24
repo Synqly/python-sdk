@@ -42,8 +42,8 @@ class OperationSchedule(UncheckedBaseModel):
     Accepts:
       - RFC 3339 datetime: "2024-01-01T00:00:00Z"
       - Relative duration: "7d" (7 days ago), "24h" (24 hours ago), "30m" (30 minutes ago)
-    The resolved starting point may be at most 1 year in the past,
-    whichever form is used; deeper backfills are rejected.
+      - `"max"`: the maximum one-year backfill window, resolved relative to operation creation
+    The resolved starting point may be at most 1 year in the past; deeper backfills are rejected.
     If not specified, starts from the operation's creation time.
     """
 

@@ -23,6 +23,10 @@ class ScheduledOperationId(enum.StrEnum):
     EDR_QUERY_IOCS = "edr_query_iocs"
     EDR_QUERY_POSTURE_SCORE = "edr_query_posture_score"
     EDR_QUERY_THREATEVENTS = "edr_query_threatevents"
+    EMAILSECURITY_QUERY_THREATS = "emailsecurity_query_threats"
+    EMAILSECURITY_QUERY_EMAIL_EVENTS = "emailsecurity_query_email_events"
+    ENDPOINTMANAGEMENT_QUERY_DEVICES = "endpointmanagement_query_devices"
+    ENDPOINTMANAGEMENT_QUERY_COMPLIANCE_FINDINGS = "endpointmanagement_query_compliance_findings"
     IDENTITY_QUERY_AUDIT_LOG = "identity_query_audit_log"
     IDENTITY_QUERY_GROUPS = "identity_query_groups"
     IDENTITY_QUERY_GROUPS_ENRICHED = "identity_query_groups_enriched"
@@ -62,6 +66,10 @@ class ScheduledOperationId(enum.StrEnum):
         edr_query_iocs: typing.Callable[[], T_Result],
         edr_query_posture_score: typing.Callable[[], T_Result],
         edr_query_threatevents: typing.Callable[[], T_Result],
+        emailsecurity_query_threats: typing.Callable[[], T_Result],
+        emailsecurity_query_email_events: typing.Callable[[], T_Result],
+        endpointmanagement_query_devices: typing.Callable[[], T_Result],
+        endpointmanagement_query_compliance_findings: typing.Callable[[], T_Result],
         identity_query_audit_log: typing.Callable[[], T_Result],
         identity_query_groups: typing.Callable[[], T_Result],
         identity_query_groups_enriched: typing.Callable[[], T_Result],
@@ -105,6 +113,14 @@ class ScheduledOperationId(enum.StrEnum):
             return edr_query_posture_score()
         if self is ScheduledOperationId.EDR_QUERY_THREATEVENTS:
             return edr_query_threatevents()
+        if self is ScheduledOperationId.EMAILSECURITY_QUERY_THREATS:
+            return emailsecurity_query_threats()
+        if self is ScheduledOperationId.EMAILSECURITY_QUERY_EMAIL_EVENTS:
+            return emailsecurity_query_email_events()
+        if self is ScheduledOperationId.ENDPOINTMANAGEMENT_QUERY_DEVICES:
+            return endpointmanagement_query_devices()
+        if self is ScheduledOperationId.ENDPOINTMANAGEMENT_QUERY_COMPLIANCE_FINDINGS:
+            return endpointmanagement_query_compliance_findings()
         if self is ScheduledOperationId.IDENTITY_QUERY_AUDIT_LOG:
             return identity_query_audit_log()
         if self is ScheduledOperationId.IDENTITY_QUERY_GROUPS:

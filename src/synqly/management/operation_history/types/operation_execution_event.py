@@ -103,6 +103,11 @@ class OperationExecutionEvent(UncheckedBaseModel):
     Cursor value at execution completion
     """
 
+    cursor_advanced_to: typing.Optional[dt.datetime] = pydantic.Field(default=None)
+    """
+    Maximum data timestamp persisted by this execution; omitted when this execution did not advance the incremental cursor
+    """
+
     error: typing.Optional[str] = pydantic.Field(default=None)
     """
     Error message if execution failed

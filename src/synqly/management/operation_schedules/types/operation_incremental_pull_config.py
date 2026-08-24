@@ -23,7 +23,10 @@ class OperationIncrementalPullConfig(UncheckedBaseModel):
     Custom field to use for time-based filtering in incremental mode.
     Overrides the operation's default time filter field.
     Examples: "modified_time" or "finding.last_seen_time".
-    The filter will use this field with "[gt]" (greater than) operator.
+    The comparison operator is operation-specific: "[gt]" (greater than)
+    by default, or "[gte]" (greater than or equal) for operations whose
+    providers only accept inclusive range bounds — in which case the
+    boundary record is re-fetched on each run.
     First run will use `initial_backfill_start_time` as the filter value, and
     subsequent runs use the last execution time.
     """
