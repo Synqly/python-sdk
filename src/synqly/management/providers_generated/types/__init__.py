@@ -219,6 +219,7 @@ if typing.TYPE_CHECKING:
     from .endpointmanagement_intune import EndpointmanagementIntune
     from .endpointmanagement_iru import EndpointmanagementIru
     from .endpointmanagement_jamf import EndpointmanagementJamf
+    from .endpointmanagement_ninjaone import EndpointmanagementNinjaone
     from .entra_id_credential import EntraIdCredential, EntraIdCredential_OAuthClient, EntraIdCredential_OAuthClientId
     from .eset_credential import EsetCredential, EsetCredential_OAuthClient, EsetCredential_OAuthClientId
     from .exchange_online_credential import (
@@ -336,6 +337,12 @@ if typing.TYPE_CHECKING:
     from .network_security_aws import NetworkSecurityAws
     from .network_security_azure import NetworkSecurityAzure
     from .network_security_google import NetworkSecurityGoogle
+    from .ninja_one_credential import (
+        NinjaOneCredential,
+        NinjaOneCredential_OAuthClient,
+        NinjaOneCredential_OAuthClientId,
+    )
+    from .ninja_one_region import NinjaOneRegion
     from .notifications_jira import NotificationsJira
     from .notifications_mock import NotificationsMock
     from .notifications_slack import NotificationsSlack
@@ -450,6 +457,7 @@ if typing.TYPE_CHECKING:
         ProviderConfig_EndpointmanagementIntune,
         ProviderConfig_EndpointmanagementIru,
         ProviderConfig_EndpointmanagementJamf,
+        ProviderConfig_EndpointmanagementNinjaone,
         ProviderConfig_IdentityAshby,
         ProviderConfig_IdentityAwsIam,
         ProviderConfig_IdentityEntraId,
@@ -940,6 +948,7 @@ _dynamic_imports: typing.Dict[str, str] = {
     "EndpointmanagementIntune": ".endpointmanagement_intune",
     "EndpointmanagementIru": ".endpointmanagement_iru",
     "EndpointmanagementJamf": ".endpointmanagement_jamf",
+    "EndpointmanagementNinjaone": ".endpointmanagement_ninjaone",
     "EntraIdCredential": ".entra_id_credential",
     "EntraIdCredential_OAuthClient": ".entra_id_credential",
     "EntraIdCredential_OAuthClientId": ".entra_id_credential",
@@ -1065,6 +1074,10 @@ _dynamic_imports: typing.Dict[str, str] = {
     "NetworkSecurityAws": ".network_security_aws",
     "NetworkSecurityAzure": ".network_security_azure",
     "NetworkSecurityGoogle": ".network_security_google",
+    "NinjaOneCredential": ".ninja_one_credential",
+    "NinjaOneCredential_OAuthClient": ".ninja_one_credential",
+    "NinjaOneCredential_OAuthClientId": ".ninja_one_credential",
+    "NinjaOneRegion": ".ninja_one_region",
     "NotificationsJira": ".notifications_jira",
     "NotificationsMock": ".notifications_mock",
     "NotificationsSlack": ".notifications_slack",
@@ -1183,6 +1196,7 @@ _dynamic_imports: typing.Dict[str, str] = {
     "ProviderConfig_EndpointmanagementIntune": ".provider_config",
     "ProviderConfig_EndpointmanagementIru": ".provider_config",
     "ProviderConfig_EndpointmanagementJamf": ".provider_config",
+    "ProviderConfig_EndpointmanagementNinjaone": ".provider_config",
     "ProviderConfig_IdentityAshby": ".provider_config",
     "ProviderConfig_IdentityAwsIam": ".provider_config",
     "ProviderConfig_IdentityEntraId": ".provider_config",
@@ -1693,6 +1707,7 @@ __all__ = [
     "EndpointmanagementIntune",
     "EndpointmanagementIru",
     "EndpointmanagementJamf",
+    "EndpointmanagementNinjaone",
     "EntraIdCredential",
     "EntraIdCredential_OAuthClient",
     "EntraIdCredential_OAuthClientId",
@@ -1818,6 +1833,10 @@ __all__ = [
     "NetworkSecurityAws",
     "NetworkSecurityAzure",
     "NetworkSecurityGoogle",
+    "NinjaOneCredential",
+    "NinjaOneCredential_OAuthClient",
+    "NinjaOneCredential_OAuthClientId",
+    "NinjaOneRegion",
     "NotificationsJira",
     "NotificationsMock",
     "NotificationsSlack",
@@ -1936,6 +1955,7 @@ __all__ = [
     "ProviderConfig_EndpointmanagementIntune",
     "ProviderConfig_EndpointmanagementIru",
     "ProviderConfig_EndpointmanagementJamf",
+    "ProviderConfig_EndpointmanagementNinjaone",
     "ProviderConfig_IdentityAshby",
     "ProviderConfig_IdentityAwsIam",
     "ProviderConfig_IdentityEntraId",

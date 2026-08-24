@@ -362,6 +362,11 @@ class ProviderConfigId(enum.StrEnum):
     Jamf Pro
     """
 
+    ENDPOINTMANAGEMENT_NINJAONE = "endpointmanagement_ninjaone"
+    """
+    NinjaOne
+    """
+
     IDENTITY_ASHBY = "identity_ashby"
     """
     Ashby Identity
@@ -945,6 +950,7 @@ class ProviderConfigId(enum.StrEnum):
         endpointmanagement_intune: typing.Callable[[], T_Result],
         endpointmanagement_iru: typing.Callable[[], T_Result],
         endpointmanagement_jamf: typing.Callable[[], T_Result],
+        endpointmanagement_ninjaone: typing.Callable[[], T_Result],
         identity_ashby: typing.Callable[[], T_Result],
         identity_aws_iam: typing.Callable[[], T_Result],
         identity_entra_id: typing.Callable[[], T_Result],
@@ -1187,6 +1193,8 @@ class ProviderConfigId(enum.StrEnum):
             return endpointmanagement_iru()
         if self is ProviderConfigId.ENDPOINTMANAGEMENT_JAMF:
             return endpointmanagement_jamf()
+        if self is ProviderConfigId.ENDPOINTMANAGEMENT_NINJAONE:
+            return endpointmanagement_ninjaone()
         if self is ProviderConfigId.IDENTITY_ASHBY:
             return identity_ashby()
         if self is ProviderConfigId.IDENTITY_AWS_IAM:

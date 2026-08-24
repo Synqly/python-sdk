@@ -94,6 +94,8 @@ from .malwarebytes_credential import MalwarebytesCredential
 from .microsoft_defender_region import MicrosoftDefenderRegion
 from .mimecast_api_gateway import MimecastApiGateway
 from .mimecast_cloud_gateway_credential import MimecastCloudGatewayCredential
+from .ninja_one_credential import NinjaOneCredential
+from .ninja_one_region import NinjaOneRegion
 from .nozomi_vantage_credential import NozomiVantageCredential
 from .nucleus_credential import NucleusCredential
 from .okta_credential import OktaCredential
@@ -1139,6 +1141,21 @@ class ProviderConfig_EndpointmanagementJamf(UncheckedBaseModel):
     type: typing.Literal["endpointmanagement_jamf"] = "endpointmanagement_jamf"
     credential: JamfCredential
     url: str
+
+    if IS_PYDANTIC_V2:
+        model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow")  # type: ignore # Pydantic v2
+    else:
+
+        class Config:
+            smart_union = True
+            extra = pydantic.Extra.allow
+
+
+class ProviderConfig_EndpointmanagementNinjaone(UncheckedBaseModel):
+    type: typing.Literal["endpointmanagement_ninjaone"] = "endpointmanagement_ninjaone"
+    credential: NinjaOneCredential
+    region: NinjaOneRegion
+    url: typing.Optional[str] = None
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow")  # type: ignore # Pydantic v2
@@ -2718,6 +2735,7 @@ ProviderConfig = typing_extensions.Annotated[
         ProviderConfig_EndpointmanagementIntune,
         ProviderConfig_EndpointmanagementIru,
         ProviderConfig_EndpointmanagementJamf,
+        ProviderConfig_EndpointmanagementNinjaone,
         ProviderConfig_IdentityAshby,
         ProviderConfig_IdentityAwsIam,
         ProviderConfig_IdentityEntraId,
