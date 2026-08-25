@@ -7,6 +7,26 @@ from synqly import management as mgmt
 from synqly.management.client import SynqlyManagement
 from synqly.engine.client import SynqlyEngine
 
+# Passing a custom httpx_client without a timeout leaves the httpx default of 5s,
+# which a slow integration create can exceed. 65s sits just past management's 60s
+# WriteTimeout (services/management/service/ports/routerNet.go): beyond that the
+# server can no longer write a response, so waiting longer buys nothing, while
+# waiting less would report an ambiguous client timeout instead of the real error.
+MANAGEMENT_CLIENT_TIMEOUT_SECONDS = 65
+
+
+def new_management_client(synqly_org_token):
+    transport = httpx.HTTPTransport(retries=3)
+    httpx_client = httpx.Client(
+        transport=transport,
+        timeout=MANAGEMENT_CLIENT_TIMEOUT_SECONDS,
+    )
+    return SynqlyManagement(
+        token=synqly_org_token,
+        httpx_client=httpx_client,
+        timeout=MANAGEMENT_CLIENT_TIMEOUT_SECONDS,
+    )
+
 
 # This class is an example of a multi-tenant application, meant
 # to represent your application or product. It contains a pool of tenants, each
@@ -69,12 +89,7 @@ class App:
         allowing us to make calls to the Synqly Management API. The Management
         API is used to create Synqly Accounts and Integrations.
         """
-        # (Optional) configure a custom httpx_client so that all errors are retried
-        transport = httpx.HTTPTransport(retries=3)
-        management_client = SynqlyManagement(
-            token=synqly_org_token,
-            httpx_client=httpx.Client(transport=transport),
-        )
+        management_client = new_management_client(synqly_org_token)
 
         """
         Each tenant needs an associated Account in Synqly, so we create that now.

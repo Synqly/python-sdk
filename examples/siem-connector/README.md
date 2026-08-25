@@ -20,6 +20,7 @@ The `siem-connector` example will:
 - Python 3
 - A Splunk account -- [sign up for a free trial](https://www.splunk.com/en_us/download.html)
 - A Splunk HTTP Event Collector (HEC) endpoint and API token -- [create a new HEC token](https://docs.splunk.com/Documentation/Splunk/8.1.3/Data/UsetheHTTPEventCollector#Create_an_Event_Collector_token)
+- A Splunk Search Service (REST API) endpoint and token, used for read/query operations
 
 ## Setup and Run
 
@@ -42,11 +43,13 @@ All commands are run from the root of this SDK repository.
     ```bash
     export SPLUNK_URL=https://<your-org>.splunkcloud.com:8088/services/collector/event
     export SPLUNK_TOKEN=<your-splunk-token>
+    export SPLUNK_SEARCH_URL=https://<your-org>.splunkcloud.com:8089
+    export SPLUNK_SEARCH_TOKEN=<your-splunk-search-token>
     ```
 
 4. Run the example
     ```bash
-    python3 examples/siem-connector/main.py --synqly-org-token $SYNQLY_API_TOKEN --splunk-url $SPLUNK_URL --splunk-token $SPLUNK_TOKEN
+    python3 examples/siem-connector/main.py --synqly-org-token $SYNQLY_API_TOKEN --splunk-url $SPLUNK_URL --splunk-token $SPLUNK_TOKEN --splunk-search-url $SPLUNK_SEARCH_URL --splunk-search-token $SPLUNK_SEARCH_TOKEN
     ```
 
 

@@ -1,7 +1,6 @@
 import sys
 import time
 import argparse
-import httpx
 from pathlib import Path
 
 # Add the root directory to the system path so that we can import common
@@ -15,7 +14,6 @@ from shared import utils
 # Synqly Python SDK imports
 from synqly import engine
 from synqly import management as mgmt
-from synqly.management.client import SynqlyManagement
 
 TENANT_ABC_NAME = "Tenant ABC"
 TENANT_XYZ_NAME = "Tenant XYZ"
@@ -24,11 +22,7 @@ def clean_example(app: utils.App, synqly_org_token: str):
     if app != None and len(app.tenants) > 0:
         app._cleanup_handler()
     elif synqly_org_token != None:
-        transport = httpx.HTTPTransport(retries=3)
-        management_client = SynqlyManagement(
-            token=synqly_org_token,
-            httpx_client=httpx.Client(transport=transport),
-        )
+        management_client = utils.new_management_client(synqly_org_token)
 
         available_accounts = management_client.accounts.list()
 
@@ -70,6 +64,22 @@ def parse_args():
         help="Splunk HTTP Event Collector (HEC) token. For more information, see https://docs.splunk.com/Documentation/Splunk/9.1.2/Data/UsetheHTTPEventCollector.",
     )
     parser.add_argument(
+        "--splunk-search-url",
+        dest="splunk_search_url",
+        type=str,
+        required=True,
+        default="",
+        help="URL of the Splunk Search Service REST API, example: 'http://splunk-e2e.synqly.com:8089'",
+    )
+    parser.add_argument(
+        "--splunk-search-token",
+        dest="splunk_search_token",
+        type=str,
+        required=True,
+        default="",
+        help="Splunk Search Service token for read/query operations.",
+    )
+    parser.add_argument(
         "--duration-seconds",
         dest="duration_seconds",
         type=int,
@@ -94,13 +104,13 @@ def mock_provider_config():
     )
 
 
-def splunk_provider_config(splunk_url, credential_id):
+def splunk_provider_config(splunk_url, splunk_search_url, splunk_search_token, credential_id):
     return mgmt.ProviderConfig_SiemSplunk(
         type="siem_splunk",
         search_service_credential=mgmt.SplunkSearchCredential_Token(
-            type="token", secret="abc"
+            type="token", secret=splunk_search_token
         ),
-        search_service_url=splunk_url,
+        search_service_url=splunk_search_url,
         hec_credential=mgmt.SplunkHecToken_TokenId(
             type="token_id", value=credential_id
         ),
@@ -195,6 +205,8 @@ def main():
     synqly_org_token = args.synqly_org_token
     splunk_url = args.splunk_url
     splunk_hec_token = args.splunk_hec_token
+    splunk_search_url = args.splunk_search_url
+    splunk_search_token = args.splunk_search_token
     duration_seconds = args.duration_seconds
 
     # Initialize an empty application to store tenants
@@ -244,7 +256,9 @@ def main():
     try:
         app.configure_integration(
             TENANT_XYZ_NAME,
-            splunk_provider_config(splunk_url, xyz_credential_id),
+            splunk_provider_config(
+                splunk_url, splunk_search_url, splunk_search_token, xyz_credential_id
+            ),
         )
     except Exception as e:
         print("Error configuring provider integration for {}: {}".format(TENANT_XYZ_NAME, str(e)))
