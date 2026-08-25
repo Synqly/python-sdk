@@ -12,7 +12,7 @@ class EndpointmanagementJamf(UncheckedBaseModel):
     """
     Configuration for Jamf Pro.
 
-    [Configuration guide](https://docs.synqly.com/guides/provider-configuration/jamf-endpointmanagement-setup)
+    [Configuration guide](https://docs.synqly.com/guides/provider-configuration/jamf-endpointmgmt-setup)
     """
 
     credential: JamfCredential

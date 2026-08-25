@@ -12,7 +12,7 @@ class EndpointmanagementIru(UncheckedBaseModel):
     """
     Configuration for Iru.
 
-    [Configuration guide](https://docs.synqly.com/guides/provider-configuration/iru-endpointmanagement-setup)
+    [Configuration guide](https://docs.synqly.com/guides/provider-configuration/iru-endpointmgmt-setup)
     """
 
     credential: IruCredential

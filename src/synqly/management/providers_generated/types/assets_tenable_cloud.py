@@ -12,7 +12,7 @@ class AssetsTenableCloud(UncheckedBaseModel):
     """
     Configuration for Tenable Cloud.
 
-    [Configuration guide](https://docs.synqly.com/guides/provider-configuration/tenable-setup)
+    [Configuration guide](https://docs.synqly.com/guides/provider-configuration/tenable-asset-setup)
     """
 
     credential: TenableCloudCredential

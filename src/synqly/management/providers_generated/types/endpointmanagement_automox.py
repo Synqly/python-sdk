@@ -12,7 +12,7 @@ class EndpointmanagementAutomox(UncheckedBaseModel):
     """
     Configuration for Automox.
 
-    [Configuration guide](https://docs.synqly.com/guides/provider-configuration/automox-endpointmanagement-setup)
+    [Configuration guide](https://docs.synqly.com/guides/provider-configuration/automox-endpointmgmt-setup)
     """
 
     credential: AutomoxApiKeyCredential

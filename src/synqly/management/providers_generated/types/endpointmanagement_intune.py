@@ -12,7 +12,7 @@ class EndpointmanagementIntune(UncheckedBaseModel):
     """
     Configuration for Microsoft Intune.
 
-    [Configuration guide](https://docs.synqly.com/guides/provider-configuration/intune-endpointmanagement-setup)
+    [Configuration guide](https://docs.synqly.com/guides/provider-configuration/intune-endpointmgmt-setup)
     """
 
     credential: IntuneCredential

@@ -13,7 +13,7 @@ class EmailSecurityMimecastCloudGateway(UncheckedBaseModel):
     """
     Configuration for Mimecast Cloud Gateway as an email security provider.
 
-    [Configuration guide](https://docs.synqly.com/guides/provider-configuration/mimecast-cloud-gateway-setup)
+    [Configuration guide](https://docs.synqly.com/guides/provider-configuration/mimecast-cloud-gateway-emailsecurity-setup)
     """
 
     api_gateway: typing.Optional[MimecastApiGateway] = pydantic.Field(default=None)
