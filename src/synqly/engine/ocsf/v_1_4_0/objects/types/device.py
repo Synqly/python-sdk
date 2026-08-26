@@ -195,7 +195,7 @@ class Device(UncheckedBaseModel):
 
     model: typing.Optional[str] = pydantic.Field(default=None)
     """
-    The model of the device. For example <code>ThinkPad X1 Carbon</code>.
+    The model of the device. For example <code>MacBook Pro</code> or <code>t3a.medium</code>.
     """
 
     modified_time: typing.Optional[Timestamp] = pydantic.Field(default=None)

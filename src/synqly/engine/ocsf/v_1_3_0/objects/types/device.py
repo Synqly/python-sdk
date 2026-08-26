@@ -188,6 +188,11 @@ class Device(UncheckedBaseModel):
     A list of MAC addresses available on the device
     """
 
+    model: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    The model of the device. For example <code>MacBook Pro</code> or <code>t3a.medium</code>.
+    """
+
     modified_time: typing.Optional[Timestamp] = pydantic.Field(default=None)
     """
     The time when the device was last known to have been modified.
