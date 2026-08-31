@@ -935,7 +935,12 @@ class RawEdrClient:
 
     @contextlib.contextmanager
     def retrieve_file(
-        self, uid: Id, *, path: str, request_options: typing.Optional[RequestOptions] = None
+        self,
+        uid: Id,
+        *,
+        path: str,
+        password: typing.Optional[str] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
     ) -> typing.Iterator[HttpResponse[typing.Iterator[bytes]]]:
         """
         Retrieves a file from the endpoint identified by `{uid}` and returns the provider artifact as a binary file response.
@@ -946,6 +951,9 @@ class RawEdrClient:
 
         path : str
             The remote file path to retrieve from the endpoint.
+
+        password : typing.Optional[str]
+            Password used to protect the returned file archive. Required by providers that encrypt the retrieved archive (e.g. SentinelOne, which requires 10+ characters with mixed case, a digit, and a symbol); ignored by providers that do not (e.g. CrowdStrike).
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration. You can pass in configuration such as `chunk_size`, and more to customize the request and response.
@@ -959,6 +967,7 @@ class RawEdrClient:
             method="POST",
             json={
                 "path": path,
+                "password": password,
             },
             request_options=request_options,
             omit=OMIT,
@@ -4935,7 +4944,12 @@ class AsyncRawEdrClient:
 
     @contextlib.asynccontextmanager
     async def retrieve_file(
-        self, uid: Id, *, path: str, request_options: typing.Optional[RequestOptions] = None
+        self,
+        uid: Id,
+        *,
+        path: str,
+        password: typing.Optional[str] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
     ) -> typing.AsyncIterator[AsyncHttpResponse[typing.AsyncIterator[bytes]]]:
         """
         Retrieves a file from the endpoint identified by `{uid}` and returns the provider artifact as a binary file response.
@@ -4946,6 +4960,9 @@ class AsyncRawEdrClient:
 
         path : str
             The remote file path to retrieve from the endpoint.
+
+        password : typing.Optional[str]
+            Password used to protect the returned file archive. Required by providers that encrypt the retrieved archive (e.g. SentinelOne, which requires 10+ characters with mixed case, a digit, and a symbol); ignored by providers that do not (e.g. CrowdStrike).
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration. You can pass in configuration such as `chunk_size`, and more to customize the request and response.
@@ -4959,6 +4976,7 @@ class AsyncRawEdrClient:
             method="POST",
             json={
                 "path": path,
+                "password": password,
             },
             request_options=request_options,
             omit=OMIT,

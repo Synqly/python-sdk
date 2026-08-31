@@ -13,6 +13,11 @@ class RetrieveFileRequest(UncheckedBaseModel):
     The remote file path to retrieve from the endpoint.
     """
 
+    password: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    Password used to protect the returned file archive. Required by providers that encrypt the retrieved archive (e.g. SentinelOne, which requires 10+ characters with mixed case, a digit, and a symbol); ignored by providers that do not (e.g. CrowdStrike).
+    """
+
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow")  # type: ignore # Pydantic v2
     else:
