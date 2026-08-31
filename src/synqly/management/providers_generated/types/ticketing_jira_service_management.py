@@ -34,7 +34,7 @@ class TicketingJiraServiceManagement(UncheckedBaseModel):
 
     url: str = pydantic.Field()
     """
-    Base URL for the Jira Service Management API.
+    Base URL for the Jira tenant.
     """
 
     if IS_PYDANTIC_V2:

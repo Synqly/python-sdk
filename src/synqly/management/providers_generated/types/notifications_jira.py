@@ -18,7 +18,7 @@ class NotificationsJira(UncheckedBaseModel):
     credential: JiraCredential
     url: str = pydantic.Field()
     """
-    Base URL for the Jira API.
+    Base URL for the Jira tenant.
     """
 
     if IS_PYDANTIC_V2:

@@ -318,7 +318,13 @@ if typing.TYPE_CHECKING:
         IvantiCredentialTicketing_TokenId,
     )
     from .jamf_credential import JamfCredential, JamfCredential_OAuthClient, JamfCredential_OAuthClientId
-    from .jira_credential import JiraCredential, JiraCredential_Basic, JiraCredential_BasicId
+    from .jira_credential import (
+        JiraCredential,
+        JiraCredential_Basic,
+        JiraCredential_BasicId,
+        JiraCredential_ServiceAccount,
+        JiraCredential_ServiceAccountId,
+    )
     from .jupiter_one_credential import JupiterOneCredential, JupiterOneCredential_Token, JupiterOneCredential_TokenId
     from .linear_credential import LinearCredential, LinearCredential_Token, LinearCredential_TokenId
     from .malwarebytes_credential import (
@@ -1056,6 +1062,8 @@ _dynamic_imports: typing.Dict[str, str] = {
     "JiraCredential": ".jira_credential",
     "JiraCredential_Basic": ".jira_credential",
     "JiraCredential_BasicId": ".jira_credential",
+    "JiraCredential_ServiceAccount": ".jira_credential",
+    "JiraCredential_ServiceAccountId": ".jira_credential",
     "JupiterOneCredential": ".jupiter_one_credential",
     "JupiterOneCredential_Token": ".jupiter_one_credential",
     "JupiterOneCredential_TokenId": ".jupiter_one_credential",
@@ -1815,6 +1823,8 @@ __all__ = [
     "JiraCredential",
     "JiraCredential_Basic",
     "JiraCredential_BasicId",
+    "JiraCredential_ServiceAccount",
+    "JiraCredential_ServiceAccountId",
     "JupiterOneCredential",
     "JupiterOneCredential_Token",
     "JupiterOneCredential_TokenId",

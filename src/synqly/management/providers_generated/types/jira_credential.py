@@ -35,6 +35,33 @@ class JiraCredential_BasicId(UncheckedBaseModel):
             smart_union = True
 
 
+class JiraCredential_ServiceAccount(UncheckedBaseModel):
+    type: typing.Literal["service_account"] = "service_account"
+    username: str
+    secret: str
+
+    if IS_PYDANTIC_V2:
+        model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow")  # type: ignore # Pydantic v2
+    else:
+
+        class Config:
+            smart_union = True
+            extra = pydantic.Extra.allow
+
+
+class JiraCredential_ServiceAccountId(UncheckedBaseModel):
+    value: BasicCredentialId
+    type: typing.Literal["service_account_id"] = "service_account_id"
+
+    if not IS_PYDANTIC_V2:
+
+        class Config:
+            smart_union = True
+
+
 JiraCredential = typing_extensions.Annotated[
-    typing.Union[JiraCredential_Basic, JiraCredential_BasicId], UnionMetadata(discriminant="type")
+    typing.Union[
+        JiraCredential_Basic, JiraCredential_BasicId, JiraCredential_ServiceAccount, JiraCredential_ServiceAccountId
+    ],
+    UnionMetadata(discriminant="type"),
 ]
