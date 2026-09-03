@@ -118,6 +118,7 @@ from .sentinel_one_credential import SentinelOneCredential
 from .sentinel_one_edr_events_credential import SentinelOneEdrEventsCredential
 from .service_now_credential import ServiceNowCredential
 from .sevco_credential import SevcoCredential
+from .sink_aws_sqs_events_per_message import SinkAwsSqsEventsPerMessage
 from .slack_credential import SlackCredential
 from .slack_webhook_credential import SlackWebhookCredential
 from .snyk_credential import SnykCredential
@@ -1749,6 +1750,7 @@ class ProviderConfig_SinkAwsSecurityLake(UncheckedBaseModel):
 class ProviderConfig_SinkAwsSqs(UncheckedBaseModel):
     type: typing.Literal["sink_aws_sqs"] = "sink_aws_sqs"
     credential: AwsProviderCredential
+    events_per_message: typing.Optional[SinkAwsSqsEventsPerMessage] = None
     region: typing.Optional[str] = None
     url: str
 

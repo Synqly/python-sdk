@@ -25,6 +25,12 @@ class OperationSchedule(UncheckedBaseModel):
     """
     How often the operation should execute (e.g., every 4 hours).
     The minimum interval is 5 minutes.
+    Operations that run as full snapshots — because the operation has no
+    time filter, the provider does not support the operation's time
+    filter, or `incremental_config.mode` is `full_snapshot` — have a
+    minimum interval of 12 hours: every run re-fetches the complete data
+    set. A shorter frequency is automatically raised to `12h` and the
+    change is reported in the response `messages`.
     If an execution takes longer than the interval, the next execution
     will start immediately after the previous one completes.
     """

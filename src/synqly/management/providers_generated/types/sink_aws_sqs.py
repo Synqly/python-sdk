@@ -6,6 +6,7 @@ import pydantic
 from ...core.pydantic_utilities import IS_PYDANTIC_V2
 from ...core.unchecked_base_model import UncheckedBaseModel
 from .aws_provider_credential import AwsProviderCredential
+from .sink_aws_sqs_events_per_message import SinkAwsSqsEventsPerMessage
 
 
 class SinkAwsSqs(UncheckedBaseModel):
@@ -18,6 +19,11 @@ class SinkAwsSqs(UncheckedBaseModel):
     credential: AwsProviderCredential = pydantic.Field()
     """
     AWS credentials with write access to the configured SQS queue.
+    """
+
+    events_per_message: typing.Optional[SinkAwsSqsEventsPerMessage] = pydantic.Field(default=None)
+    """
+    How events are packed into SQS messages. Defaults to `page_of_events`.
     """
 
     region: typing.Optional[str] = pydantic.Field(default=None)

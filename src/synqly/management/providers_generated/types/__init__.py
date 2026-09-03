@@ -618,6 +618,7 @@ if typing.TYPE_CHECKING:
     from .sink_aws_s_3 import SinkAwsS3
     from .sink_aws_security_lake import SinkAwsSecurityLake
     from .sink_aws_sqs import SinkAwsSqs
+    from .sink_aws_sqs_events_per_message import SinkAwsSqsEventsPerMessage
     from .sink_azure_blob import SinkAzureBlob
     from .sink_azure_monitor_logs import SinkAzureMonitorLogs
     from .sink_crowdstrike_hec import SinkCrowdstrikeHec
@@ -1351,6 +1352,7 @@ _dynamic_imports: typing.Dict[str, str] = {
     "SinkAwsS3": ".sink_aws_s_3",
     "SinkAwsSecurityLake": ".sink_aws_security_lake",
     "SinkAwsSqs": ".sink_aws_sqs",
+    "SinkAwsSqsEventsPerMessage": ".sink_aws_sqs_events_per_message",
     "SinkAzureBlob": ".sink_azure_blob",
     "SinkAzureMonitorLogs": ".sink_azure_monitor_logs",
     "SinkCrowdstrikeHec": ".sink_crowdstrike_hec",
@@ -2114,6 +2116,7 @@ __all__ = [
     "SinkAwsS3",
     "SinkAwsSecurityLake",
     "SinkAwsSqs",
+    "SinkAwsSqsEventsPerMessage",
     "SinkAzureBlob",
     "SinkAzureMonitorLogs",
     "SinkCrowdstrikeHec",
