@@ -678,6 +678,8 @@ class VulnerabilitiesClient:
         self,
         *,
         meta: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
+        limit: typing.Optional[int] = None,
+        cursor: typing.Optional[str] = None,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> GetLabelsResponse:
         """
@@ -687,6 +689,12 @@ class VulnerabilitiesClient:
         ----------
         meta : typing.Optional[typing.Union[str, typing.Sequence[str]]]
             Add metadata to the response by invoking meta functions. Documentation for [meta functions](https://docs.synqly.com/api-reference/meta-functions) is available. Not all meta functions are available at every endpoint.
+
+        limit : typing.Optional[int]
+            Number of labels to return. Defaults to 50.
+
+        cursor : typing.Optional[str]
+            Start search from cursor position.
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -704,7 +712,7 @@ class VulnerabilitiesClient:
         )
         client.vulnerabilities.get_labels()
         """
-        _response = self._raw_client.get_labels(meta=meta, request_options=request_options)
+        _response = self._raw_client.get_labels(meta=meta, limit=limit, cursor=cursor, request_options=request_options)
         return _response.data
 
     def query_scan_findings(
@@ -1512,6 +1520,8 @@ class AsyncVulnerabilitiesClient:
         self,
         *,
         meta: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
+        limit: typing.Optional[int] = None,
+        cursor: typing.Optional[str] = None,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> GetLabelsResponse:
         """
@@ -1521,6 +1531,12 @@ class AsyncVulnerabilitiesClient:
         ----------
         meta : typing.Optional[typing.Union[str, typing.Sequence[str]]]
             Add metadata to the response by invoking meta functions. Documentation for [meta functions](https://docs.synqly.com/api-reference/meta-functions) is available. Not all meta functions are available at every endpoint.
+
+        limit : typing.Optional[int]
+            Number of labels to return. Defaults to 50.
+
+        cursor : typing.Optional[str]
+            Start search from cursor position.
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -1546,7 +1562,9 @@ class AsyncVulnerabilitiesClient:
 
         asyncio.run(main())
         """
-        _response = await self._raw_client.get_labels(meta=meta, request_options=request_options)
+        _response = await self._raw_client.get_labels(
+            meta=meta, limit=limit, cursor=cursor, request_options=request_options
+        )
         return _response.data
 
     async def query_scan_findings(

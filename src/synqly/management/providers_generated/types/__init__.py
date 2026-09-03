@@ -557,6 +557,7 @@ if typing.TYPE_CHECKING:
         ProviderConfig_VulnerabilitiesQualysCloudMock,
         ProviderConfig_VulnerabilitiesRapid7InsightCloud,
         ProviderConfig_VulnerabilitiesRapid7InsightCloudMock,
+        ProviderConfig_VulnerabilitiesServicenowUsem,
         ProviderConfig_VulnerabilitiesServicenowVr,
         ProviderConfig_VulnerabilitiesTaniumCloud,
         ProviderConfig_VulnerabilitiesTaniumCloudMock,
@@ -756,6 +757,7 @@ if typing.TYPE_CHECKING:
     from .vulnerabilities_rapid_7_insight_cloud_dataset import VulnerabilitiesRapid7InsightCloudDataset
     from .vulnerabilities_rapid_7_insight_cloud_mock import VulnerabilitiesRapid7InsightCloudMock
     from .vulnerabilities_service_now import VulnerabilitiesServiceNow
+    from .vulnerabilities_service_now_usem import VulnerabilitiesServiceNowUsem
     from .vulnerabilities_tanium_cloud import VulnerabilitiesTaniumCloud
     from .vulnerabilities_tanium_cloud_dataset import VulnerabilitiesTaniumCloudDataset
     from .vulnerabilities_tanium_cloud_mock import VulnerabilitiesTaniumCloudMock
@@ -1298,6 +1300,7 @@ _dynamic_imports: typing.Dict[str, str] = {
     "ProviderConfig_VulnerabilitiesQualysCloudMock": ".provider_config",
     "ProviderConfig_VulnerabilitiesRapid7InsightCloud": ".provider_config",
     "ProviderConfig_VulnerabilitiesRapid7InsightCloudMock": ".provider_config",
+    "ProviderConfig_VulnerabilitiesServicenowUsem": ".provider_config",
     "ProviderConfig_VulnerabilitiesServicenowVr": ".provider_config",
     "ProviderConfig_VulnerabilitiesTaniumCloud": ".provider_config",
     "ProviderConfig_VulnerabilitiesTaniumCloudMock": ".provider_config",
@@ -1485,6 +1488,7 @@ _dynamic_imports: typing.Dict[str, str] = {
     "VulnerabilitiesRapid7InsightCloudDataset": ".vulnerabilities_rapid_7_insight_cloud_dataset",
     "VulnerabilitiesRapid7InsightCloudMock": ".vulnerabilities_rapid_7_insight_cloud_mock",
     "VulnerabilitiesServiceNow": ".vulnerabilities_service_now",
+    "VulnerabilitiesServiceNowUsem": ".vulnerabilities_service_now_usem",
     "VulnerabilitiesTaniumCloud": ".vulnerabilities_tanium_cloud",
     "VulnerabilitiesTaniumCloudDataset": ".vulnerabilities_tanium_cloud_dataset",
     "VulnerabilitiesTaniumCloudMock": ".vulnerabilities_tanium_cloud_mock",
@@ -2059,6 +2063,7 @@ __all__ = [
     "ProviderConfig_VulnerabilitiesQualysCloudMock",
     "ProviderConfig_VulnerabilitiesRapid7InsightCloud",
     "ProviderConfig_VulnerabilitiesRapid7InsightCloudMock",
+    "ProviderConfig_VulnerabilitiesServicenowUsem",
     "ProviderConfig_VulnerabilitiesServicenowVr",
     "ProviderConfig_VulnerabilitiesTaniumCloud",
     "ProviderConfig_VulnerabilitiesTaniumCloudMock",
@@ -2246,6 +2251,7 @@ __all__ = [
     "VulnerabilitiesRapid7InsightCloudDataset",
     "VulnerabilitiesRapid7InsightCloudMock",
     "VulnerabilitiesServiceNow",
+    "VulnerabilitiesServiceNowUsem",
     "VulnerabilitiesTaniumCloud",
     "VulnerabilitiesTaniumCloudDataset",
     "VulnerabilitiesTaniumCloudMock",

@@ -2284,6 +2284,8 @@ class RawVulnerabilitiesClient:
         self,
         *,
         meta: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
+        limit: typing.Optional[int] = None,
+        cursor: typing.Optional[str] = None,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[GetLabelsResponse]:
         """
@@ -2293,6 +2295,12 @@ class RawVulnerabilitiesClient:
         ----------
         meta : typing.Optional[typing.Union[str, typing.Sequence[str]]]
             Add metadata to the response by invoking meta functions. Documentation for [meta functions](https://docs.synqly.com/api-reference/meta-functions) is available. Not all meta functions are available at every endpoint.
+
+        limit : typing.Optional[int]
+            Number of labels to return. Defaults to 50.
+
+        cursor : typing.Optional[str]
+            Start search from cursor position.
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -2306,6 +2314,8 @@ class RawVulnerabilitiesClient:
             method="GET",
             params={
                 "meta": meta,
+                "limit": limit,
+                "cursor": cursor,
             },
             request_options=request_options,
         )
@@ -4802,6 +4812,8 @@ class AsyncRawVulnerabilitiesClient:
         self,
         *,
         meta: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
+        limit: typing.Optional[int] = None,
+        cursor: typing.Optional[str] = None,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[GetLabelsResponse]:
         """
@@ -4811,6 +4823,12 @@ class AsyncRawVulnerabilitiesClient:
         ----------
         meta : typing.Optional[typing.Union[str, typing.Sequence[str]]]
             Add metadata to the response by invoking meta functions. Documentation for [meta functions](https://docs.synqly.com/api-reference/meta-functions) is available. Not all meta functions are available at every endpoint.
+
+        limit : typing.Optional[int]
+            Number of labels to return. Defaults to 50.
+
+        cursor : typing.Optional[str]
+            Start search from cursor position.
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -4824,6 +4842,8 @@ class AsyncRawVulnerabilitiesClient:
             method="GET",
             params={
                 "meta": meta,
+                "limit": limit,
+                "cursor": cursor,
             },
             request_options=request_options,
         )

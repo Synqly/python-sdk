@@ -837,6 +837,11 @@ class ProviderConfigId(enum.StrEnum):
     ServiceNow Vulnerability Response
     """
 
+    VULNERABILITIES_SERVICE_NOW_USEM = "vulnerabilities_servicenow_usem"
+    """
+    ServiceNow USEM
+    """
+
     VULNERABILITIES_TANIUM_CLOUD = "vulnerabilities_tanium_cloud"
     """
     Tanium Vulnerability Management
@@ -1045,6 +1050,7 @@ class ProviderConfigId(enum.StrEnum):
         vulnerabilities_rapid_7_insight_cloud: typing.Callable[[], T_Result],
         vulnerabilities_rapid_7_insight_cloud_mock: typing.Callable[[], T_Result],
         vulnerabilities_service_now: typing.Callable[[], T_Result],
+        vulnerabilities_service_now_usem: typing.Callable[[], T_Result],
         vulnerabilities_tanium_cloud: typing.Callable[[], T_Result],
         vulnerabilities_tanium_cloud_mock: typing.Callable[[], T_Result],
         vulnerabilities_tenable_cloud: typing.Callable[[], T_Result],
@@ -1383,6 +1389,8 @@ class ProviderConfigId(enum.StrEnum):
             return vulnerabilities_rapid_7_insight_cloud_mock()
         if self is ProviderConfigId.VULNERABILITIES_SERVICE_NOW:
             return vulnerabilities_service_now()
+        if self is ProviderConfigId.VULNERABILITIES_SERVICE_NOW_USEM:
+            return vulnerabilities_service_now_usem()
         if self is ProviderConfigId.VULNERABILITIES_TANIUM_CLOUD:
             return vulnerabilities_tanium_cloud()
         if self is ProviderConfigId.VULNERABILITIES_TANIUM_CLOUD_MOCK:

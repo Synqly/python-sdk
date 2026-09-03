@@ -12690,6 +12690,22 @@ client.vulnerabilities.get_labels()
 <dl>
 <dd>
 
+**limit:** `typing.Optional[int]` — Number of labels to return. Defaults to 50.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**cursor:** `typing.Optional[str]` — Start search from cursor position.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
 **request_options:** `typing.Optional[RequestOptions]` — Request-specific configuration.
     
 </dd>

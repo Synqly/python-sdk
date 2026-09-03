@@ -2579,6 +2579,20 @@ class ProviderConfig_VulnerabilitiesRapid7InsightCloudMock(UncheckedBaseModel):
             extra = pydantic.Extra.allow
 
 
+class ProviderConfig_VulnerabilitiesServicenowUsem(UncheckedBaseModel):
+    type: typing.Literal["vulnerabilities_servicenow_usem"] = "vulnerabilities_servicenow_usem"
+    credential: ServiceNowCredential
+    url: str
+
+    if IS_PYDANTIC_V2:
+        model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow")  # type: ignore # Pydantic v2
+    else:
+
+        class Config:
+            smart_union = True
+            extra = pydantic.Extra.allow
+
+
 class ProviderConfig_VulnerabilitiesServicenowVr(UncheckedBaseModel):
     type: typing.Literal["vulnerabilities_servicenow_vr"] = "vulnerabilities_servicenow_vr"
     credential: ServiceNowCredential
@@ -2829,6 +2843,7 @@ ProviderConfig = typing_extensions.Annotated[
         ProviderConfig_VulnerabilitiesQualysCloudMock,
         ProviderConfig_VulnerabilitiesRapid7InsightCloud,
         ProviderConfig_VulnerabilitiesRapid7InsightCloudMock,
+        ProviderConfig_VulnerabilitiesServicenowUsem,
         ProviderConfig_VulnerabilitiesServicenowVr,
         ProviderConfig_VulnerabilitiesTaniumCloud,
         ProviderConfig_VulnerabilitiesTaniumCloudMock,
