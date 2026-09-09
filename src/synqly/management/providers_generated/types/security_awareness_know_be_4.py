@@ -12,6 +12,8 @@ from .know_be_4_region import KnowBe4Region
 class SecurityAwarenessKnowBe4(UncheckedBaseModel):
     """
     Configuration for KnowBe4 Security Awareness Training (KSAT) as a security awareness provider.
+
+    [Configuration guide](https://docs.synqly.com/guides/provider-configuration/knowbe4-securityawareness-setup)
     """
 
     credential: KnowBe4Credential = pydantic.Field()
