@@ -94,6 +94,12 @@ class OperationId(enum.StrEnum):
     NOTIFICATIONS_CLEAR_MESSAGE = "notifications_clear_message"
     NOTIFICATIONS_CREATE_MESSAGE = "notifications_create_message"
     NOTIFICATIONS_GET_MESSAGE = "notifications_get_message"
+    SECURITYAWARENESS_GET_PHISHING_SIMULATION_DETAILS = "securityawareness_get_phishing_simulation_details"
+    SECURITYAWARENESS_GET_TRAINING_CAMPAIGN_DETAILS = "securityawareness_get_training_campaign_details"
+    SECURITYAWARENESS_GET_USER_DETAILS = "securityawareness_get_user_details"
+    SECURITYAWARENESS_QUERY_PHISHING_SIMULATIONS = "securityawareness_query_phishing_simulations"
+    SECURITYAWARENESS_QUERY_TRAINING_CAMPAIGNS = "securityawareness_query_training_campaigns"
+    SECURITYAWARENESS_QUERY_USERS = "securityawareness_query_users"
     SIEM_GET_ALERT = "siem_get_alert"
     SIEM_GET_EVIDENCE = "siem_get_evidence"
     SIEM_GET_INVESTIGATION = "siem_get_investigation"
@@ -239,6 +245,12 @@ class OperationId(enum.StrEnum):
         notifications_clear_message: typing.Callable[[], T_Result],
         notifications_create_message: typing.Callable[[], T_Result],
         notifications_get_message: typing.Callable[[], T_Result],
+        securityawareness_get_phishing_simulation_details: typing.Callable[[], T_Result],
+        securityawareness_get_training_campaign_details: typing.Callable[[], T_Result],
+        securityawareness_get_user_details: typing.Callable[[], T_Result],
+        securityawareness_query_phishing_simulations: typing.Callable[[], T_Result],
+        securityawareness_query_training_campaigns: typing.Callable[[], T_Result],
+        securityawareness_query_users: typing.Callable[[], T_Result],
         siem_get_alert: typing.Callable[[], T_Result],
         siem_get_evidence: typing.Callable[[], T_Result],
         siem_get_investigation: typing.Callable[[], T_Result],
@@ -459,6 +471,18 @@ class OperationId(enum.StrEnum):
             return notifications_create_message()
         if self is OperationId.NOTIFICATIONS_GET_MESSAGE:
             return notifications_get_message()
+        if self is OperationId.SECURITYAWARENESS_GET_PHISHING_SIMULATION_DETAILS:
+            return securityawareness_get_phishing_simulation_details()
+        if self is OperationId.SECURITYAWARENESS_GET_TRAINING_CAMPAIGN_DETAILS:
+            return securityawareness_get_training_campaign_details()
+        if self is OperationId.SECURITYAWARENESS_GET_USER_DETAILS:
+            return securityawareness_get_user_details()
+        if self is OperationId.SECURITYAWARENESS_QUERY_PHISHING_SIMULATIONS:
+            return securityawareness_query_phishing_simulations()
+        if self is OperationId.SECURITYAWARENESS_QUERY_TRAINING_CAMPAIGNS:
+            return securityawareness_query_training_campaigns()
+        if self is OperationId.SECURITYAWARENESS_QUERY_USERS:
+            return securityawareness_query_users()
         if self is OperationId.SIEM_GET_ALERT:
             return siem_get_alert()
         if self is OperationId.SIEM_GET_EVIDENCE:

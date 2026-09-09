@@ -482,6 +482,11 @@ class ProviderConfigId(enum.StrEnum):
     Microsoft Teams
     """
 
+    SECURITY_AWARENESS_KNOW_BE_4 = "securityawareness_knowbe4"
+    """
+    KnowBe4 Security Awareness Training (KSAT)
+    """
+
     SIEM_CROWDSTRIKE = "siem_crowdstrike"
     """
     CrowdStrike Falcon® Next-Gen SIEM
@@ -979,6 +984,7 @@ class ProviderConfigId(enum.StrEnum):
         notifications_slack_webhook: typing.Callable[[], T_Result],
         notifications_slack: typing.Callable[[], T_Result],
         notifications_teams: typing.Callable[[], T_Result],
+        security_awareness_know_be_4: typing.Callable[[], T_Result],
         siem_crowdstrike: typing.Callable[[], T_Result],
         siem_datadog: typing.Callable[[], T_Result],
         siem_elasticsearch: typing.Callable[[], T_Result],
@@ -1247,6 +1253,8 @@ class ProviderConfigId(enum.StrEnum):
             return notifications_slack()
         if self is ProviderConfigId.NOTIFICATIONS_TEAMS:
             return notifications_teams()
+        if self is ProviderConfigId.SECURITY_AWARENESS_KNOW_BE_4:
+            return security_awareness_know_be_4()
         if self is ProviderConfigId.SIEM_CROWDSTRIKE:
             return siem_crowdstrike()
         if self is ProviderConfigId.SIEM_DATADOG:

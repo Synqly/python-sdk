@@ -27,10 +27,13 @@ if typing.TYPE_CHECKING:
     from .inventory_info import InventoryInfo
     from .module_activity import ModuleActivity
     from .network_activity import NetworkActivity
+    from .phishing_simulation_inventory_info import PhishingSimulationInventoryInfo
     from .process_activity import ProcessActivity
     from .scan_activity import ScanActivity
     from .scheduled_job_activity import ScheduledJobActivity
     from .security_finding import SecurityFinding
+    from .training_campaign_inventory_info import TrainingCampaignInventoryInfo
+    from .user_inventory_info import UserInventoryInfo
     from .vulnerability_finding import VulnerabilityFinding
     from .web_resource_access_activity import WebResourceAccessActivity
 _dynamic_imports: typing.Dict[str, str] = {
@@ -55,10 +58,13 @@ _dynamic_imports: typing.Dict[str, str] = {
     "InventoryInfo": ".inventory_info",
     "ModuleActivity": ".module_activity",
     "NetworkActivity": ".network_activity",
+    "PhishingSimulationInventoryInfo": ".phishing_simulation_inventory_info",
     "ProcessActivity": ".process_activity",
     "ScanActivity": ".scan_activity",
     "ScheduledJobActivity": ".scheduled_job_activity",
     "SecurityFinding": ".security_finding",
+    "TrainingCampaignInventoryInfo": ".training_campaign_inventory_info",
+    "UserInventoryInfo": ".user_inventory_info",
     "VulnerabilityFinding": ".vulnerability_finding",
     "WebResourceAccessActivity": ".web_resource_access_activity",
 }
@@ -107,10 +113,13 @@ __all__ = [
     "InventoryInfo",
     "ModuleActivity",
     "NetworkActivity",
+    "PhishingSimulationInventoryInfo",
     "ProcessActivity",
     "ScanActivity",
     "ScheduledJobActivity",
     "SecurityFinding",
+    "TrainingCampaignInventoryInfo",
+    "UserInventoryInfo",
     "VulnerabilityFinding",
     "WebResourceAccessActivity",
 ]

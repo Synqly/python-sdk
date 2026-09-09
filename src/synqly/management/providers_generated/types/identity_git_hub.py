@@ -11,6 +11,8 @@ from .git_hub_credential import GitHubCredential
 class IdentityGitHub(UncheckedBaseModel):
     """
     Configuration for GitHub as an identity provider.
+
+    [Configuration guide](https://docs.synqly.com/guides/provider-configuration/github-identity-setup)
     """
 
     credential: GitHubCredential = pydantic.Field()

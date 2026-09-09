@@ -326,6 +326,8 @@ if typing.TYPE_CHECKING:
         JiraCredential_ServiceAccountId,
     )
     from .jupiter_one_credential import JupiterOneCredential, JupiterOneCredential_Token, JupiterOneCredential_TokenId
+    from .know_be_4_credential import KnowBe4Credential, KnowBe4Credential_Token, KnowBe4Credential_TokenId
+    from .know_be_4_region import KnowBe4Region
     from .linear_credential import LinearCredential, LinearCredential_Token, LinearCredential_TokenId
     from .malwarebytes_credential import (
         MalwarebytesCredential,
@@ -487,6 +489,7 @@ if typing.TYPE_CHECKING:
         ProviderConfig_NotificationsSlack,
         ProviderConfig_NotificationsSlackWebhook,
         ProviderConfig_NotificationsTeams,
+        ProviderConfig_SecurityawarenessKnowbe4,
         ProviderConfig_SiemCrowdstrike,
         ProviderConfig_SiemDatadog,
         ProviderConfig_SiemElasticsearch,
@@ -577,6 +580,7 @@ if typing.TYPE_CHECKING:
         Rapid7InsightCloudCredential_Token,
         Rapid7InsightCloudCredential_TokenId,
     )
+    from .security_awareness_know_be_4 import SecurityAwarenessKnowBe4
     from .sentinel_credential import (
         SentinelCredential,
         SentinelCredential_OAuthClient,
@@ -1070,6 +1074,10 @@ _dynamic_imports: typing.Dict[str, str] = {
     "JupiterOneCredential": ".jupiter_one_credential",
     "JupiterOneCredential_Token": ".jupiter_one_credential",
     "JupiterOneCredential_TokenId": ".jupiter_one_credential",
+    "KnowBe4Credential": ".know_be_4_credential",
+    "KnowBe4Credential_Token": ".know_be_4_credential",
+    "KnowBe4Credential_TokenId": ".know_be_4_credential",
+    "KnowBe4Region": ".know_be_4_region",
     "LinearCredential": ".linear_credential",
     "LinearCredential_Token": ".linear_credential",
     "LinearCredential_TokenId": ".linear_credential",
@@ -1231,6 +1239,7 @@ _dynamic_imports: typing.Dict[str, str] = {
     "ProviderConfig_NotificationsSlack": ".provider_config",
     "ProviderConfig_NotificationsSlackWebhook": ".provider_config",
     "ProviderConfig_NotificationsTeams": ".provider_config",
+    "ProviderConfig_SecurityawarenessKnowbe4": ".provider_config",
     "ProviderConfig_SiemCrowdstrike": ".provider_config",
     "ProviderConfig_SiemDatadog": ".provider_config",
     "ProviderConfig_SiemElasticsearch": ".provider_config",
@@ -1317,6 +1326,7 @@ _dynamic_imports: typing.Dict[str, str] = {
     "Rapid7InsightCloudCredential": ".rapid_7_insight_cloud_credential",
     "Rapid7InsightCloudCredential_Token": ".rapid_7_insight_cloud_credential",
     "Rapid7InsightCloudCredential_TokenId": ".rapid_7_insight_cloud_credential",
+    "SecurityAwarenessKnowBe4": ".security_awareness_know_be_4",
     "SentinelCredential": ".sentinel_credential",
     "SentinelCredential_OAuthClient": ".sentinel_credential",
     "SentinelCredential_OAuthClientId": ".sentinel_credential",
@@ -1834,6 +1844,10 @@ __all__ = [
     "JupiterOneCredential",
     "JupiterOneCredential_Token",
     "JupiterOneCredential_TokenId",
+    "KnowBe4Credential",
+    "KnowBe4Credential_Token",
+    "KnowBe4Credential_TokenId",
+    "KnowBe4Region",
     "LinearCredential",
     "LinearCredential_Token",
     "LinearCredential_TokenId",
@@ -1995,6 +2009,7 @@ __all__ = [
     "ProviderConfig_NotificationsSlack",
     "ProviderConfig_NotificationsSlackWebhook",
     "ProviderConfig_NotificationsTeams",
+    "ProviderConfig_SecurityawarenessKnowbe4",
     "ProviderConfig_SiemCrowdstrike",
     "ProviderConfig_SiemDatadog",
     "ProviderConfig_SiemElasticsearch",
@@ -2081,6 +2096,7 @@ __all__ = [
     "Rapid7InsightCloudCredential",
     "Rapid7InsightCloudCredential_Token",
     "Rapid7InsightCloudCredential_TokenId",
+    "SecurityAwarenessKnowBe4",
     "SentinelCredential",
     "SentinelCredential_OAuthClient",
     "SentinelCredential_OAuthClientId",

@@ -10,6 +10,7 @@ from .....core.unchecked_base_model import UncheckedBaseModel
 from ...base.types.email_address import EmailAddress
 from ...base.types.user_name import UserName
 from .account import Account
+from .enrollment import Enrollment
 from .group import Group
 from .organization import Organization
 from .programmatic_credential import ProgrammaticCredential
@@ -45,6 +46,11 @@ class User(UncheckedBaseModel):
     email_addr: typing.Optional[EmailAddress] = pydantic.Field(default=None)
     """
     The user's primary email address.
+    """
+
+    enrollments: typing.Optional[typing.List[Enrollment]] = pydantic.Field(default=None)
+    """
+    The list of security awareness training enrollments for the user.
     """
 
     forward_addr: typing.Optional[EmailAddress] = pydantic.Field(default=None)

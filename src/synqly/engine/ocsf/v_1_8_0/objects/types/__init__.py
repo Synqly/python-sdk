@@ -105,6 +105,8 @@ if typing.TYPE_CHECKING:
     from .endpoint_connection import EndpointConnection
     from .endpoint_type_id import EndpointTypeId
     from .enrichment import Enrichment
+    from .enrollment import Enrollment
+    from .enrollment_state_id import EnrollmentStateId
     from .entity import Entity
     from .environment_variable import EnvironmentVariable
     from .epss import Epss
@@ -209,6 +211,11 @@ if typing.TYPE_CHECKING:
     from .peripheral_device import PeripheralDevice
     from .peripheral_device_type_id import PeripheralDeviceTypeId
     from .permission_analysis_result import PermissionAnalysisResult
+    from .phishing_program import PhishingProgram
+    from .phishing_program_state_id import PhishingProgramStateId
+    from .phishing_simulation import PhishingSimulation
+    from .phishing_simulation_state_id import PhishingSimulationStateId
+    from .phishing_simulation_type_id import PhishingSimulationTypeId
     from .policy import Policy
     from .port_info import PortInfo
     from .privilege_attack_info import PrivilegeAttackInfo
@@ -279,6 +286,8 @@ if typing.TYPE_CHECKING:
     from .token import Token
     from .token_type_id import TokenTypeId
     from .trace import Trace
+    from .training_campaign import TrainingCampaign
+    from .training_campaign_state_id import TrainingCampaignStateId
     from .trait import Trait
     from .transformation_info import TransformationInfo
     from .unmanned_aerial_system import UnmannedAerialSystem
@@ -397,6 +406,8 @@ _dynamic_imports: typing.Dict[str, str] = {
     "EndpointConnection": ".endpoint_connection",
     "EndpointTypeId": ".endpoint_type_id",
     "Enrichment": ".enrichment",
+    "Enrollment": ".enrollment",
+    "EnrollmentStateId": ".enrollment_state_id",
     "Entity": ".entity",
     "EnvironmentVariable": ".environment_variable",
     "Epss": ".epss",
@@ -501,6 +512,11 @@ _dynamic_imports: typing.Dict[str, str] = {
     "PeripheralDevice": ".peripheral_device",
     "PeripheralDeviceTypeId": ".peripheral_device_type_id",
     "PermissionAnalysisResult": ".permission_analysis_result",
+    "PhishingProgram": ".phishing_program",
+    "PhishingProgramStateId": ".phishing_program_state_id",
+    "PhishingSimulation": ".phishing_simulation",
+    "PhishingSimulationStateId": ".phishing_simulation_state_id",
+    "PhishingSimulationTypeId": ".phishing_simulation_type_id",
     "Policy": ".policy",
     "PortInfo": ".port_info",
     "PrivilegeAttackInfo": ".privilege_attack_info",
@@ -571,6 +587,8 @@ _dynamic_imports: typing.Dict[str, str] = {
     "Token": ".token",
     "TokenTypeId": ".token_type_id",
     "Trace": ".trace",
+    "TrainingCampaign": ".training_campaign",
+    "TrainingCampaignStateId": ".training_campaign_state_id",
     "Trait": ".trait",
     "TransformationInfo": ".transformation_info",
     "UnmannedAerialSystem": ".unmanned_aerial_system",
@@ -713,6 +731,8 @@ __all__ = [
     "EndpointConnection",
     "EndpointTypeId",
     "Enrichment",
+    "Enrollment",
+    "EnrollmentStateId",
     "Entity",
     "EnvironmentVariable",
     "Epss",
@@ -817,6 +837,11 @@ __all__ = [
     "PeripheralDevice",
     "PeripheralDeviceTypeId",
     "PermissionAnalysisResult",
+    "PhishingProgram",
+    "PhishingProgramStateId",
+    "PhishingSimulation",
+    "PhishingSimulationStateId",
+    "PhishingSimulationTypeId",
     "Policy",
     "PortInfo",
     "PrivilegeAttackInfo",
@@ -887,6 +912,8 @@ __all__ = [
     "Token",
     "TokenTypeId",
     "Trace",
+    "TrainingCampaign",
+    "TrainingCampaignStateId",
     "Trait",
     "TransformationInfo",
     "UnmannedAerialSystem",

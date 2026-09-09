@@ -8500,6 +8500,583 @@ client.operations.cancel(
 </dl>
 </details>
 
+## Securityawareness
+<details><summary><code>client.securityawareness.<a href="src/synqly/securityawareness/client.py">query_training_campaigns</a>(...) -> SecurityAwarenessQueryTrainingCampaignsResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns a list of training campaigns matching the query from the token-linked security awareness integration.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```python
+from synqly import SynqlyEngine
+from synqly.environment import SynqlyEngineEnvironment
+
+client = SynqlyEngine(
+    token="<token>",
+    environment=SynqlyEngineEnvironment.SYNQLY,
+)
+
+client.securityawareness.query_training_campaigns()
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**meta:** `typing.Optional[typing.Union[str, typing.Sequence[str]]]` — Add metadata to the response by invoking meta functions. Documentation for [meta functions](https://docs.synqly.com/api-reference/meta-functions) is available. Not all meta functions are available at every endpoint.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**limit:** `typing.Optional[int]` — Number of training campaigns to return. Defaults to 100 with a maximum of 1000. If a provider has a maximum limit lower than 1000, the provider's maximum limit will be used instead.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filter:** `typing.Optional[typing.Union[str, typing.Sequence[str]]]` — Filter results by this query. For more information on filtering, refer to our [Filtering Guide](https://docs.synqly.com/guides/connectors/security-awareness/query-filters). Defaults to no filter. If used more than once, the queries are ANDed together.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**cursor:** `typing.Optional[str]` — Start search from cursor position.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**include_raw_data:** `typing.Optional[bool]` — Include the raw data from the provider in the response. Defaults to `false`.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `typing.Optional[RequestOptions]` — Request-specific configuration.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.securityawareness.<a href="src/synqly/securityawareness/client.py">query_phishing_simulations</a>(...) -> SecurityAwarenessQueryPhishingSimulationsResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns a list of phishing simulations matching the query from the token-linked security awareness integration.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```python
+from synqly import SynqlyEngine
+from synqly.environment import SynqlyEngineEnvironment
+
+client = SynqlyEngine(
+    token="<token>",
+    environment=SynqlyEngineEnvironment.SYNQLY,
+)
+
+client.securityawareness.query_phishing_simulations()
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**meta:** `typing.Optional[typing.Union[str, typing.Sequence[str]]]` — Add metadata to the response by invoking meta functions. Documentation for [meta functions](https://docs.synqly.com/api-reference/meta-functions) is available. Not all meta functions are available at every endpoint.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**limit:** `typing.Optional[int]` — Number of phishing simulations to return. Defaults to 100 with a maximum of 1000. If a provider has a maximum limit lower than 1000, the provider's maximum limit will be used instead.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filter:** `typing.Optional[typing.Union[str, typing.Sequence[str]]]` — Filter results by this query. For more information on filtering, refer to our [Filtering Guide](https://docs.synqly.com/guides/connectors/security-awareness/query-filters). Defaults to no filter. If used more than once, the queries are ANDed together.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**cursor:** `typing.Optional[str]` — Start search from cursor position.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**include_raw_data:** `typing.Optional[bool]` — Include the raw data from the provider in the response. Defaults to `false`.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `typing.Optional[RequestOptions]` — Request-specific configuration.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.securityawareness.<a href="src/synqly/securityawareness/client.py">query_users</a>(...) -> SecurityAwarenessQueryUsersResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns a list of users matching the query from the token-linked security awareness integration.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```python
+from synqly import SynqlyEngine
+from synqly.environment import SynqlyEngineEnvironment
+
+client = SynqlyEngine(
+    token="<token>",
+    environment=SynqlyEngineEnvironment.SYNQLY,
+)
+
+client.securityawareness.query_users()
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**meta:** `typing.Optional[typing.Union[str, typing.Sequence[str]]]` — Add metadata to the response by invoking meta functions. Documentation for [meta functions](https://docs.synqly.com/api-reference/meta-functions) is available. Not all meta functions are available at every endpoint.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**limit:** `typing.Optional[int]` — Number of users to return. Defaults to 100 with a maximum of 1000. If a provider has a maximum limit lower than 1000, the provider's maximum limit will be used instead.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filter:** `typing.Optional[typing.Union[str, typing.Sequence[str]]]` — Filter results by this query. For more information on filtering, refer to our [Filtering Guide](https://docs.synqly.com/guides/connectors/security-awareness/query-filters). Defaults to no filter. If used more than once, the queries are ANDed together.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**cursor:** `typing.Optional[str]` — Start search from cursor position.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**include_raw_data:** `typing.Optional[bool]` — Include the raw data from the provider in the response. Defaults to `false`.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `typing.Optional[RequestOptions]` — Request-specific configuration.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.securityawareness.<a href="src/synqly/securityawareness/client.py">get_training_campaign_details</a>(...) -> SecurityAwarenessGetTrainingCampaignDetailsResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns the details of the training campaign matching `{trainingCampaignId}` from the token-linked security awareness integration.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```python
+from synqly import SynqlyEngine
+from synqly.environment import SynqlyEngineEnvironment
+
+client = SynqlyEngine(
+    token="<token>",
+    environment=SynqlyEngineEnvironment.SYNQLY,
+)
+
+client.securityawareness.get_training_campaign_details(
+    training_campaign_id="trainingCampaignId",
+)
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**training_campaign_id:** `Id` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**meta:** `typing.Optional[typing.Union[str, typing.Sequence[str]]]` — Add metadata to the response by invoking meta functions. Documentation for [meta functions](https://docs.synqly.com/api-reference/meta-functions) is available. Not all meta functions are available at every endpoint.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**include_raw_data:** `typing.Optional[bool]` — Include the raw data from the provider in the response. Defaults to `false`.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `typing.Optional[RequestOptions]` — Request-specific configuration.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.securityawareness.<a href="src/synqly/securityawareness/client.py">get_phishing_simulation_details</a>(...) -> SecurityAwarenessGetPhishingSimulationDetailsResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns the details of the phishing simulation matching `{phishingSimulationId}` from the token-linked security awareness integration.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```python
+from synqly import SynqlyEngine
+from synqly.environment import SynqlyEngineEnvironment
+
+client = SynqlyEngine(
+    token="<token>",
+    environment=SynqlyEngineEnvironment.SYNQLY,
+)
+
+client.securityawareness.get_phishing_simulation_details(
+    phishing_simulation_id="phishingSimulationId",
+)
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**phishing_simulation_id:** `Id` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**meta:** `typing.Optional[typing.Union[str, typing.Sequence[str]]]` — Add metadata to the response by invoking meta functions. Documentation for [meta functions](https://docs.synqly.com/api-reference/meta-functions) is available. Not all meta functions are available at every endpoint.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**include_raw_data:** `typing.Optional[bool]` — Include the raw data from the provider in the response. Defaults to `false`.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `typing.Optional[RequestOptions]` — Request-specific configuration.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.securityawareness.<a href="src/synqly/securityawareness/client.py">get_user_details</a>(...) -> SecurityAwarenessGetUserDetailsResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns the details of the user matching `{userId}` from the token-linked security awareness integration.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```python
+from synqly import SynqlyEngine
+from synqly.environment import SynqlyEngineEnvironment
+
+client = SynqlyEngine(
+    token="<token>",
+    environment=SynqlyEngineEnvironment.SYNQLY,
+)
+
+client.securityawareness.get_user_details(
+    user_id="userId",
+)
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**user_id:** `Id` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**meta:** `typing.Optional[typing.Union[str, typing.Sequence[str]]]` — Add metadata to the response by invoking meta functions. Documentation for [meta functions](https://docs.synqly.com/api-reference/meta-functions) is available. Not all meta functions are available at every endpoint.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**include_raw_data:** `typing.Optional[bool]` — Include the raw data from the provider in the response. Defaults to `false`.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `typing.Optional[RequestOptions]` — Request-specific configuration.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 ## Siem
 <details><summary><code>client.siem.<a href="src/synqly/siem/client.py">query_investigations</a>(...) -> QueryInvestigationResponse</code></summary>
 <dl>

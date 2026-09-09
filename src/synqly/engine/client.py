@@ -25,6 +25,7 @@ if typing.TYPE_CHECKING:
     from .networksecurity.client import AsyncNetworksecurityClient, NetworksecurityClient
     from .notifications.client import AsyncNotificationsClient, NotificationsClient
     from .operations.client import AsyncOperationsClient, OperationsClient
+    from .securityawareness.client import AsyncSecurityawarenessClient, SecurityawarenessClient
     from .siem.client import AsyncSiemClient, SiemClient
     from .sink.client import AsyncSinkClient, SinkClient
     from .storage.client import AsyncStorageClient, StorageClient
@@ -133,6 +134,7 @@ class SynqlyEngine:
         self._networksecurity: typing.Optional[NetworksecurityClient] = None
         self._notifications: typing.Optional[NotificationsClient] = None
         self._operations: typing.Optional[OperationsClient] = None
+        self._securityawareness: typing.Optional[SecurityawarenessClient] = None
         self._siem: typing.Optional[SiemClient] = None
         self._sink: typing.Optional[SinkClient] = None
         self._storage: typing.Optional[StorageClient] = None
@@ -258,6 +260,14 @@ class SynqlyEngine:
 
             self._operations = OperationsClient(client_wrapper=self._client_wrapper)
         return self._operations
+
+    @property
+    def securityawareness(self):
+        if self._securityawareness is None:
+            from .securityawareness.client import SecurityawarenessClient  # noqa: E402
+
+            self._securityawareness = SecurityawarenessClient(client_wrapper=self._client_wrapper)
+        return self._securityawareness
 
     @property
     def siem(self):
@@ -422,6 +432,7 @@ class AsyncSynqlyEngine:
         self._networksecurity: typing.Optional[AsyncNetworksecurityClient] = None
         self._notifications: typing.Optional[AsyncNotificationsClient] = None
         self._operations: typing.Optional[AsyncOperationsClient] = None
+        self._securityawareness: typing.Optional[AsyncSecurityawarenessClient] = None
         self._siem: typing.Optional[AsyncSiemClient] = None
         self._sink: typing.Optional[AsyncSinkClient] = None
         self._storage: typing.Optional[AsyncStorageClient] = None
@@ -547,6 +558,14 @@ class AsyncSynqlyEngine:
 
             self._operations = AsyncOperationsClient(client_wrapper=self._client_wrapper)
         return self._operations
+
+    @property
+    def securityawareness(self):
+        if self._securityawareness is None:
+            from .securityawareness.client import AsyncSecurityawarenessClient  # noqa: E402
+
+            self._securityawareness = AsyncSecurityawarenessClient(client_wrapper=self._client_wrapper)
+        return self._securityawareness
 
     @property
     def siem(self):

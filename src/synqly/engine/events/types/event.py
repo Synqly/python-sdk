@@ -1015,6 +1015,8 @@ from ...ocsf.v_1_8_0.objects.types.metadata import Metadata as ocsf_v_1_8_0_obje
 from ...ocsf.v_1_8_0.objects.types.object import Object as ocsf_v_1_8_0_objects_types_object_Object
 from ...ocsf.v_1_8_0.objects.types.observable import Observable as ocsf_v_1_8_0_objects_types_observable_Observable
 from ...ocsf.v_1_8_0.objects.types.package import Package
+from ...ocsf.v_1_8_0.objects.types.phishing_program import PhishingProgram
+from ...ocsf.v_1_8_0.objects.types.phishing_simulation import PhishingSimulation
 from ...ocsf.v_1_8_0.objects.types.policy import Policy as ocsf_v_1_8_0_objects_types_policy_Policy
 from ...ocsf.v_1_8_0.objects.types.product import Product as ocsf_v_1_8_0_objects_types_product_Product
 from ...ocsf.v_1_8_0.objects.types.remediation import Remediation as ocsf_v_1_8_0_objects_types_remediation_Remediation
@@ -1022,10 +1024,29 @@ from ...ocsf.v_1_8_0.objects.types.resource_details import (
     ResourceDetails as ocsf_v_1_8_0_objects_types_resource_details_ResourceDetails,
 )
 from ...ocsf.v_1_8_0.objects.types.sbom import Sbom
+from ...ocsf.v_1_8_0.objects.types.training_campaign import TrainingCampaign
 from ...ocsf.v_1_8_0.objects.types.url import Url as ocsf_v_1_8_0_objects_types_url_Url
 from ...ocsf.v_1_8_0.objects.types.vendor_attributes import VendorAttributes
 from ...ocsf.v_1_8_0.objects.types.vulnerability import (
     Vulnerability as ocsf_v_1_8_0_objects_types_vulnerability_Vulnerability,
+)
+from ...ocsf.v_1_8_0.phishingsimulationinventoryinfo.classes.types.activity_id import (
+    ActivityId as ocsf_v_1_8_0_phishingsimulationinventoryinfo_classes_types_activity_id_ActivityId,
+)
+from ...ocsf.v_1_8_0.phishingsimulationinventoryinfo.classes.types.category_uid import (
+    CategoryUid as ocsf_v_1_8_0_phishingsimulationinventoryinfo_classes_types_category_uid_CategoryUid,
+)
+from ...ocsf.v_1_8_0.phishingsimulationinventoryinfo.classes.types.class_uid import (
+    ClassUid as ocsf_v_1_8_0_phishingsimulationinventoryinfo_classes_types_class_uid_ClassUid,
+)
+from ...ocsf.v_1_8_0.phishingsimulationinventoryinfo.classes.types.severity_id import (
+    SeverityId as ocsf_v_1_8_0_phishingsimulationinventoryinfo_classes_types_severity_id_SeverityId,
+)
+from ...ocsf.v_1_8_0.phishingsimulationinventoryinfo.classes.types.status_id import (
+    StatusId as ocsf_v_1_8_0_phishingsimulationinventoryinfo_classes_types_status_id_StatusId,
+)
+from ...ocsf.v_1_8_0.phishingsimulationinventoryinfo.classes.types.type_uid import (
+    TypeUid as ocsf_v_1_8_0_phishingsimulationinventoryinfo_classes_types_type_uid_TypeUid,
 )
 from ...ocsf.v_1_8_0.softwareinventoryinfo.classes.types.action_id import (
     ActionId as ocsf_v_1_8_0_softwareinventoryinfo_classes_types_action_id_ActionId,
@@ -1056,6 +1077,42 @@ from ...ocsf.v_1_8_0.softwareinventoryinfo.classes.types.status_id import (
 )
 from ...ocsf.v_1_8_0.softwareinventoryinfo.classes.types.type_uid import (
     TypeUid as ocsf_v_1_8_0_softwareinventoryinfo_classes_types_type_uid_TypeUid,
+)
+from ...ocsf.v_1_8_0.trainingcampaigninventoryinfo.classes.types.activity_id import (
+    ActivityId as ocsf_v_1_8_0_trainingcampaigninventoryinfo_classes_types_activity_id_ActivityId,
+)
+from ...ocsf.v_1_8_0.trainingcampaigninventoryinfo.classes.types.category_uid import (
+    CategoryUid as ocsf_v_1_8_0_trainingcampaigninventoryinfo_classes_types_category_uid_CategoryUid,
+)
+from ...ocsf.v_1_8_0.trainingcampaigninventoryinfo.classes.types.class_uid import (
+    ClassUid as ocsf_v_1_8_0_trainingcampaigninventoryinfo_classes_types_class_uid_ClassUid,
+)
+from ...ocsf.v_1_8_0.trainingcampaigninventoryinfo.classes.types.severity_id import (
+    SeverityId as ocsf_v_1_8_0_trainingcampaigninventoryinfo_classes_types_severity_id_SeverityId,
+)
+from ...ocsf.v_1_8_0.trainingcampaigninventoryinfo.classes.types.status_id import (
+    StatusId as ocsf_v_1_8_0_trainingcampaigninventoryinfo_classes_types_status_id_StatusId,
+)
+from ...ocsf.v_1_8_0.trainingcampaigninventoryinfo.classes.types.type_uid import (
+    TypeUid as ocsf_v_1_8_0_trainingcampaigninventoryinfo_classes_types_type_uid_TypeUid,
+)
+from ...ocsf.v_1_8_0.userinventory.classes.types.activity_id import (
+    ActivityId as ocsf_v_1_8_0_userinventory_classes_types_activity_id_ActivityId,
+)
+from ...ocsf.v_1_8_0.userinventory.classes.types.category_uid import (
+    CategoryUid as ocsf_v_1_8_0_userinventory_classes_types_category_uid_CategoryUid,
+)
+from ...ocsf.v_1_8_0.userinventory.classes.types.class_uid import (
+    ClassUid as ocsf_v_1_8_0_userinventory_classes_types_class_uid_ClassUid,
+)
+from ...ocsf.v_1_8_0.userinventory.classes.types.severity_id import (
+    SeverityId as ocsf_v_1_8_0_userinventory_classes_types_severity_id_SeverityId,
+)
+from ...ocsf.v_1_8_0.userinventory.classes.types.status_id import (
+    StatusId as ocsf_v_1_8_0_userinventory_classes_types_status_id_StatusId,
+)
+from ...ocsf.v_1_8_0.userinventory.classes.types.type_uid import (
+    TypeUid as ocsf_v_1_8_0_userinventory_classes_types_type_uid_TypeUid,
 )
 
 
@@ -3291,6 +3348,137 @@ class Event_EventLogActivity(UncheckedBaseModel):
             extra = pydantic.Extra.allow
 
 
+class Event_TrainingCampaignInventoryInfo(UncheckedBaseModel):
+    class_name: typing.Literal["Training Campaign Inventory Info"] = "Training Campaign Inventory Info"
+    activity_id: ocsf_v_1_8_0_trainingcampaigninventoryinfo_classes_types_activity_id_ActivityId
+    activity_name: typing.Optional[str] = None
+    category_name: typing.Optional[str] = None
+    category_uid: ocsf_v_1_8_0_trainingcampaigninventoryinfo_classes_types_category_uid_CategoryUid
+    class_uid: ocsf_v_1_8_0_trainingcampaigninventoryinfo_classes_types_class_uid_ClassUid
+    count: typing.Optional[int] = None
+    duration: typing.Optional[int] = None
+    end_time: typing.Optional[ocsf_v_1_8_0_base_types_timestamp_Timestamp] = None
+    end_time_dt: typing.Optional[dt.datetime] = None
+    enrichments: typing.Optional[typing.List[ocsf_v_1_8_0_objects_types_enrichment_Enrichment]] = None
+    message: typing.Optional[str] = None
+    metadata: ocsf_v_1_8_0_objects_types_metadata_Metadata
+    observables: typing.Optional[typing.List[ocsf_v_1_8_0_objects_types_observable_Observable]] = None
+    raw_data: typing.Optional[str] = None
+    raw_data_hash: typing.Optional[ocsf_v_1_8_0_objects_types_fingerprint_Fingerprint] = None
+    raw_data_size: typing.Optional[int] = None
+    severity: typing.Optional[str] = None
+    severity_id: ocsf_v_1_8_0_trainingcampaigninventoryinfo_classes_types_severity_id_SeverityId
+    start_time: typing.Optional[ocsf_v_1_8_0_base_types_timestamp_Timestamp] = None
+    start_time_dt: typing.Optional[dt.datetime] = None
+    status: typing.Optional[str] = None
+    status_code: typing.Optional[str] = None
+    status_detail: typing.Optional[str] = None
+    status_id: typing.Optional[ocsf_v_1_8_0_trainingcampaigninventoryinfo_classes_types_status_id_StatusId] = None
+    time: ocsf_v_1_8_0_base_types_timestamp_Timestamp
+    time_dt: typing.Optional[dt.datetime] = None
+    timezone_offset: typing.Optional[int] = None
+    training_campaign: TrainingCampaign
+    type_name: typing.Optional[str] = None
+    type_uid: ocsf_v_1_8_0_trainingcampaigninventoryinfo_classes_types_type_uid_TypeUid
+    unmapped: typing.Optional[ocsf_v_1_8_0_objects_types_object_Object] = None
+
+    if IS_PYDANTIC_V2:
+        model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow")  # type: ignore # Pydantic v2
+    else:
+
+        class Config:
+            smart_union = True
+            extra = pydantic.Extra.allow
+
+
+class Event_PhishingSimulationInventoryInfo(UncheckedBaseModel):
+    class_name: typing.Literal["Phishing Simulation Inventory Info"] = "Phishing Simulation Inventory Info"
+    activity_id: ocsf_v_1_8_0_phishingsimulationinventoryinfo_classes_types_activity_id_ActivityId
+    activity_name: typing.Optional[str] = None
+    category_name: typing.Optional[str] = None
+    category_uid: ocsf_v_1_8_0_phishingsimulationinventoryinfo_classes_types_category_uid_CategoryUid
+    class_uid: ocsf_v_1_8_0_phishingsimulationinventoryinfo_classes_types_class_uid_ClassUid
+    count: typing.Optional[int] = None
+    duration: typing.Optional[int] = None
+    end_time: typing.Optional[ocsf_v_1_8_0_base_types_timestamp_Timestamp] = None
+    end_time_dt: typing.Optional[dt.datetime] = None
+    enrichments: typing.Optional[typing.List[ocsf_v_1_8_0_objects_types_enrichment_Enrichment]] = None
+    message: typing.Optional[str] = None
+    metadata: ocsf_v_1_8_0_objects_types_metadata_Metadata
+    observables: typing.Optional[typing.List[ocsf_v_1_8_0_objects_types_observable_Observable]] = None
+    phishing_program: typing.Optional[PhishingProgram] = None
+    phishing_simulation: PhishingSimulation
+    raw_data: typing.Optional[str] = None
+    raw_data_hash: typing.Optional[ocsf_v_1_8_0_objects_types_fingerprint_Fingerprint] = None
+    raw_data_size: typing.Optional[int] = None
+    severity: typing.Optional[str] = None
+    severity_id: ocsf_v_1_8_0_phishingsimulationinventoryinfo_classes_types_severity_id_SeverityId
+    start_time: typing.Optional[ocsf_v_1_8_0_base_types_timestamp_Timestamp] = None
+    start_time_dt: typing.Optional[dt.datetime] = None
+    status: typing.Optional[str] = None
+    status_code: typing.Optional[str] = None
+    status_detail: typing.Optional[str] = None
+    status_id: typing.Optional[ocsf_v_1_8_0_phishingsimulationinventoryinfo_classes_types_status_id_StatusId] = None
+    time: ocsf_v_1_8_0_base_types_timestamp_Timestamp
+    time_dt: typing.Optional[dt.datetime] = None
+    timezone_offset: typing.Optional[int] = None
+    type_name: typing.Optional[str] = None
+    type_uid: ocsf_v_1_8_0_phishingsimulationinventoryinfo_classes_types_type_uid_TypeUid
+    unmapped: typing.Optional[ocsf_v_1_8_0_objects_types_object_Object] = None
+
+    if IS_PYDANTIC_V2:
+        model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow")  # type: ignore # Pydantic v2
+    else:
+
+        class Config:
+            smart_union = True
+            extra = pydantic.Extra.allow
+
+
+class Event_UserInventoryInfo(UncheckedBaseModel):
+    class_name: typing.Literal["User Inventory Info"] = "User Inventory Info"
+    activity_id: ocsf_v_1_8_0_userinventory_classes_types_activity_id_ActivityId
+    activity_name: typing.Optional[str] = None
+    actor: typing.Optional[ocsf_v_1_8_0_objects_types_actor_Actor] = None
+    category_name: typing.Optional[str] = None
+    category_uid: ocsf_v_1_8_0_userinventory_classes_types_category_uid_CategoryUid
+    class_uid: ocsf_v_1_8_0_userinventory_classes_types_class_uid_ClassUid
+    count: typing.Optional[int] = None
+    duration: typing.Optional[int] = None
+    end_time: typing.Optional[ocsf_v_1_8_0_base_types_timestamp_Timestamp] = None
+    end_time_dt: typing.Optional[dt.datetime] = None
+    enrichments: typing.Optional[typing.List[ocsf_v_1_8_0_objects_types_enrichment_Enrichment]] = None
+    message: typing.Optional[str] = None
+    metadata: ocsf_v_1_8_0_objects_types_metadata_Metadata
+    observables: typing.Optional[typing.List[ocsf_v_1_8_0_objects_types_observable_Observable]] = None
+    raw_data: typing.Optional[str] = None
+    raw_data_hash: typing.Optional[ocsf_v_1_8_0_objects_types_fingerprint_Fingerprint] = None
+    raw_data_size: typing.Optional[int] = None
+    severity: typing.Optional[str] = None
+    severity_id: ocsf_v_1_8_0_userinventory_classes_types_severity_id_SeverityId
+    start_time: typing.Optional[ocsf_v_1_8_0_base_types_timestamp_Timestamp] = None
+    start_time_dt: typing.Optional[dt.datetime] = None
+    status: typing.Optional[str] = None
+    status_code: typing.Optional[str] = None
+    status_detail: typing.Optional[str] = None
+    status_id: typing.Optional[ocsf_v_1_8_0_userinventory_classes_types_status_id_StatusId] = None
+    time: ocsf_v_1_8_0_base_types_timestamp_Timestamp
+    time_dt: typing.Optional[dt.datetime] = None
+    timezone_offset: typing.Optional[int] = None
+    type_name: typing.Optional[str] = None
+    type_uid: ocsf_v_1_8_0_userinventory_classes_types_type_uid_TypeUid
+    unmapped: typing.Optional[ocsf_v_1_8_0_objects_types_object_Object] = None
+    user: "ocsf_v_1_8_0_objects_types_user_User"
+
+    if IS_PYDANTIC_V2:
+        model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow")  # type: ignore # Pydantic v2
+    else:
+
+        class Config:
+            smart_union = True
+            extra = pydantic.Extra.allow
+
+
 Event = typing_extensions.Annotated[
     typing.Union[
         Event_AccountChange,
@@ -3330,6 +3518,9 @@ Event = typing_extensions.Annotated[
         Event_ConversationActivity,
         Event_ApplicationInventoryInfo,
         Event_EventLogActivity,
+        Event_TrainingCampaignInventoryInfo,
+        Event_PhishingSimulationInventoryInfo,
+        Event_UserInventoryInfo,
     ],
     UnionMetadata(discriminant="class_name"),
 ]
@@ -3342,3 +3533,6 @@ update_forward_refs(Event_SoftwareInventoryInfo)
 update_forward_refs(Event_ChatMessageActivity)
 update_forward_refs(Event_ConversationActivity)
 update_forward_refs(Event_ApplicationInventoryInfo, LdapPerson=LdapPerson, User=ocsf_v_1_8_0_objects_types_user_User)
+update_forward_refs(Event_TrainingCampaignInventoryInfo)
+update_forward_refs(Event_PhishingSimulationInventoryInfo)
+update_forward_refs(Event_UserInventoryInfo, LdapPerson=LdapPerson, User=ocsf_v_1_8_0_objects_types_user_User)

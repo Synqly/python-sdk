@@ -89,6 +89,8 @@ from .ivanti_credential_ticketing import IvantiCredentialTicketing
 from .jamf_credential import JamfCredential
 from .jira_credential import JiraCredential
 from .jupiter_one_credential import JupiterOneCredential
+from .know_be_4_credential import KnowBe4Credential
+from .know_be_4_region import KnowBe4Region
 from .linear_credential import LinearCredential
 from .malwarebytes_credential import MalwarebytesCredential
 from .microsoft_defender_region import MicrosoftDefenderRegion
@@ -1496,6 +1498,20 @@ class ProviderConfig_NotificationsTeams(UncheckedBaseModel):
             extra = pydantic.Extra.allow
 
 
+class ProviderConfig_SecurityawarenessKnowbe4(UncheckedBaseModel):
+    type: typing.Literal["securityawareness_knowbe4"] = "securityawareness_knowbe4"
+    credential: KnowBe4Credential
+    region: KnowBe4Region
+
+    if IS_PYDANTIC_V2:
+        model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow")  # type: ignore # Pydantic v2
+    else:
+
+        class Config:
+            smart_union = True
+            extra = pydantic.Extra.allow
+
+
 class ProviderConfig_SiemCrowdstrike(UncheckedBaseModel):
     type: typing.Literal["siem_crowdstrike"] = "siem_crowdstrike"
     credential: CrowdStrikeCredential
@@ -2775,6 +2791,7 @@ ProviderConfig = typing_extensions.Annotated[
         ProviderConfig_NotificationsSlack,
         ProviderConfig_NotificationsSlackWebhook,
         ProviderConfig_NotificationsTeams,
+        ProviderConfig_SecurityawarenessKnowbe4,
         ProviderConfig_SiemCrowdstrike,
         ProviderConfig_SiemDatadog,
         ProviderConfig_SiemElasticsearch,
