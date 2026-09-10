@@ -291,6 +291,9 @@ if typing.TYPE_CHECKING:
     from .http_request_body_format import HttpRequestBodyFormat
     from .identity_ashby import IdentityAshby
     from .identity_aws_iam import IdentityAwsIam
+    from .identity_crowd_strike import IdentityCrowdStrike
+    from .identity_crowd_strike_dataset import IdentityCrowdStrikeDataset
+    from .identity_crowd_strike_mock import IdentityCrowdStrikeMock
     from .identity_entra_id import IdentityEntraId
     from .identity_entra_id_dataset import IdentityEntraIdDataset
     from .identity_entra_id_mock import IdentityEntraIdMock
@@ -468,6 +471,8 @@ if typing.TYPE_CHECKING:
         ProviderConfig_EndpointmanagementNinjaone,
         ProviderConfig_IdentityAshby,
         ProviderConfig_IdentityAwsIam,
+        ProviderConfig_IdentityCrowdstrike,
+        ProviderConfig_IdentityCrowdstrikeMock,
         ProviderConfig_IdentityEntraId,
         ProviderConfig_IdentityEntraIdMock,
         ProviderConfig_IdentityGithub,
@@ -1031,6 +1036,9 @@ _dynamic_imports: typing.Dict[str, str] = {
     "HttpRequestBodyFormat": ".http_request_body_format",
     "IdentityAshby": ".identity_ashby",
     "IdentityAwsIam": ".identity_aws_iam",
+    "IdentityCrowdStrike": ".identity_crowd_strike",
+    "IdentityCrowdStrikeDataset": ".identity_crowd_strike_dataset",
+    "IdentityCrowdStrikeMock": ".identity_crowd_strike_mock",
     "IdentityEntraId": ".identity_entra_id",
     "IdentityEntraIdDataset": ".identity_entra_id_dataset",
     "IdentityEntraIdMock": ".identity_entra_id_mock",
@@ -1218,6 +1226,8 @@ _dynamic_imports: typing.Dict[str, str] = {
     "ProviderConfig_EndpointmanagementNinjaone": ".provider_config",
     "ProviderConfig_IdentityAshby": ".provider_config",
     "ProviderConfig_IdentityAwsIam": ".provider_config",
+    "ProviderConfig_IdentityCrowdstrike": ".provider_config",
+    "ProviderConfig_IdentityCrowdstrikeMock": ".provider_config",
     "ProviderConfig_IdentityEntraId": ".provider_config",
     "ProviderConfig_IdentityEntraIdMock": ".provider_config",
     "ProviderConfig_IdentityGithub": ".provider_config",
@@ -1801,6 +1811,9 @@ __all__ = [
     "HttpRequestBodyFormat",
     "IdentityAshby",
     "IdentityAwsIam",
+    "IdentityCrowdStrike",
+    "IdentityCrowdStrikeDataset",
+    "IdentityCrowdStrikeMock",
     "IdentityEntraId",
     "IdentityEntraIdDataset",
     "IdentityEntraIdMock",
@@ -1988,6 +2001,8 @@ __all__ = [
     "ProviderConfig_EndpointmanagementNinjaone",
     "ProviderConfig_IdentityAshby",
     "ProviderConfig_IdentityAwsIam",
+    "ProviderConfig_IdentityCrowdstrike",
+    "ProviderConfig_IdentityCrowdstrikeMock",
     "ProviderConfig_IdentityEntraId",
     "ProviderConfig_IdentityEntraIdMock",
     "ProviderConfig_IdentityGithub",

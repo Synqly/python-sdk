@@ -77,6 +77,7 @@ from .http_receiver_auth_config import HttpReceiverAuthConfig
 from .http_receiver_method import HttpReceiverMethod
 from .http_receiver_signing_credential import HttpReceiverSigningCredential
 from .http_request_body_format import HttpRequestBodyFormat
+from .identity_crowd_strike_dataset import IdentityCrowdStrikeDataset
 from .identity_entra_id_dataset import IdentityEntraIdDataset
 from .identity_google_dataset import IdentityGoogleDataset
 from .identity_okta_dataset import IdentityOktaDataset
@@ -1186,6 +1187,33 @@ class ProviderConfig_IdentityAwsIam(UncheckedBaseModel):
     type: typing.Literal["identity_aws_iam"] = "identity_aws_iam"
     credential: AwsProviderCredential
     region: AwsRegion
+
+    if IS_PYDANTIC_V2:
+        model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow")  # type: ignore # Pydantic v2
+    else:
+
+        class Config:
+            smart_union = True
+            extra = pydantic.Extra.allow
+
+
+class ProviderConfig_IdentityCrowdstrike(UncheckedBaseModel):
+    type: typing.Literal["identity_crowdstrike"] = "identity_crowdstrike"
+    credential: CrowdStrikeCredential
+    url: typing.Optional[str] = None
+
+    if IS_PYDANTIC_V2:
+        model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow")  # type: ignore # Pydantic v2
+    else:
+
+        class Config:
+            smart_union = True
+            extra = pydantic.Extra.allow
+
+
+class ProviderConfig_IdentityCrowdstrikeMock(UncheckedBaseModel):
+    type: typing.Literal["identity_crowdstrike_mock"] = "identity_crowdstrike_mock"
+    dataset: IdentityCrowdStrikeDataset
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow")  # type: ignore # Pydantic v2
@@ -2770,6 +2798,8 @@ ProviderConfig = typing_extensions.Annotated[
         ProviderConfig_EndpointmanagementNinjaone,
         ProviderConfig_IdentityAshby,
         ProviderConfig_IdentityAwsIam,
+        ProviderConfig_IdentityCrowdstrike,
+        ProviderConfig_IdentityCrowdstrikeMock,
         ProviderConfig_IdentityEntraId,
         ProviderConfig_IdentityEntraIdMock,
         ProviderConfig_IdentityGithub,

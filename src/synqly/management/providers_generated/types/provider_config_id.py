@@ -377,6 +377,16 @@ class ProviderConfigId(enum.StrEnum):
     AWS IAM Identity
     """
 
+    IDENTITY_CROWD_STRIKE = "identity_crowdstrike"
+    """
+    CrowdStrike Falcon Identity Protection
+    """
+
+    IDENTITY_CROWD_STRIKE_MOCK = "identity_crowdstrike_mock"
+    """
+    [MOCK] CrowdStrike Falcon Identity Protection
+    """
+
     IDENTITY_ENTRA_ID = "identity_entra_id"
     """
     Microsoft Entra ID
@@ -963,6 +973,8 @@ class ProviderConfigId(enum.StrEnum):
         endpointmanagement_ninjaone: typing.Callable[[], T_Result],
         identity_ashby: typing.Callable[[], T_Result],
         identity_aws_iam: typing.Callable[[], T_Result],
+        identity_crowd_strike: typing.Callable[[], T_Result],
+        identity_crowd_strike_mock: typing.Callable[[], T_Result],
         identity_entra_id: typing.Callable[[], T_Result],
         identity_entra_id_mock: typing.Callable[[], T_Result],
         identity_git_hub: typing.Callable[[], T_Result],
@@ -1211,6 +1223,10 @@ class ProviderConfigId(enum.StrEnum):
             return identity_ashby()
         if self is ProviderConfigId.IDENTITY_AWS_IAM:
             return identity_aws_iam()
+        if self is ProviderConfigId.IDENTITY_CROWD_STRIKE:
+            return identity_crowd_strike()
+        if self is ProviderConfigId.IDENTITY_CROWD_STRIKE_MOCK:
+            return identity_crowd_strike_mock()
         if self is ProviderConfigId.IDENTITY_ENTRA_ID:
             return identity_entra_id()
         if self is ProviderConfigId.IDENTITY_ENTRA_ID_MOCK:
