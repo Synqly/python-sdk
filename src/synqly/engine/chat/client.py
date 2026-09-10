@@ -33,6 +33,7 @@ class ChatClient:
         limit: typing.Optional[int] = None,
         filter: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
         cursor: typing.Optional[str] = None,
+        include_raw_data: typing.Optional[bool] = None,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> ChatQueryUsersResponse:
         """
@@ -44,13 +45,16 @@ class ChatClient:
             Add metadata to the response by invoking meta functions. Documentation for [meta functions](https://docs.synqly.com/api-reference/meta-functions) is available. Not all meta functions are available at every endpoint.
 
         limit : typing.Optional[int]
-            Number of users to return. Defaults to 100.
+            Number of users to return. Defaults to 100 with a maximum of 1000. If a provider has a maximum limit lower than 1000, the provider's maximum limit will be used instead.
 
         filter : typing.Optional[typing.Union[str, typing.Sequence[str]]]
             Filter results by this query. For more information on filtering, refer to our [Filtering Guide](https://docs.synqly.com/guides/connectors/chat/query-filters). Defaults to no filter. If used more than once, the queries are ANDed together.
 
         cursor : typing.Optional[str]
             Start search from cursor position.
+
+        include_raw_data : typing.Optional[bool]
+            Include the raw data from the chat provider in the response. Defaults to `false`.
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -69,7 +73,12 @@ class ChatClient:
         client.chat.query_users()
         """
         _response = self._raw_client.query_users(
-            meta=meta, limit=limit, filter=filter, cursor=cursor, request_options=request_options
+            meta=meta,
+            limit=limit,
+            filter=filter,
+            cursor=cursor,
+            include_raw_data=include_raw_data,
+            request_options=request_options,
         )
         return _response.data
 
@@ -81,6 +90,7 @@ class ChatClient:
         limit: typing.Optional[int] = None,
         filter: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
         cursor: typing.Optional[str] = None,
+        include_raw_data: typing.Optional[bool] = None,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> ChatQueryConversationsResponse:
         """
@@ -94,13 +104,16 @@ class ChatClient:
             Add metadata to the response by invoking meta functions.
 
         limit : typing.Optional[int]
-            Number of conversations to return. Defaults to 100.
+            Number of conversations to return. Defaults to 100 with a maximum of 1000. If a provider has a maximum limit lower than 1000, the provider's maximum limit will be used instead.
 
         filter : typing.Optional[typing.Union[str, typing.Sequence[str]]]
             Filter results by this query. Defaults to no filter. If used more than once, the queries are ANDed together.
 
         cursor : typing.Optional[str]
             Start search from cursor position.
+
+        include_raw_data : typing.Optional[bool]
+            Include the raw data from the chat provider in the response. Defaults to `false`.
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -121,7 +134,13 @@ class ChatClient:
         )
         """
         _response = self._raw_client.query_user_conversations(
-            user_id, meta=meta, limit=limit, filter=filter, cursor=cursor, request_options=request_options
+            user_id,
+            meta=meta,
+            limit=limit,
+            filter=filter,
+            cursor=cursor,
+            include_raw_data=include_raw_data,
+            request_options=request_options,
         )
         return _response.data
 
@@ -133,6 +152,7 @@ class ChatClient:
         meta: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
         limit: typing.Optional[int] = None,
         cursor: typing.Optional[str] = None,
+        include_raw_data: typing.Optional[bool] = None,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> ChatQueryConversationMembersResponse:
         """
@@ -148,10 +168,13 @@ class ChatClient:
             Add metadata to the response by invoking meta functions.
 
         limit : typing.Optional[int]
-            Number of members to return. Defaults to 100.
+            Number of members to return. Defaults to 100 with a maximum of 1000. If a provider has a maximum limit lower than 1000, the provider's maximum limit will be used instead.
 
         cursor : typing.Optional[str]
             Start search from cursor position.
+
+        include_raw_data : typing.Optional[bool]
+            Include the raw data from the chat provider in the response. Defaults to `false`.
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -173,7 +196,13 @@ class ChatClient:
         )
         """
         _response = self._raw_client.query_user_conversation_members(
-            user_id, conversation_id, meta=meta, limit=limit, cursor=cursor, request_options=request_options
+            user_id,
+            conversation_id,
+            meta=meta,
+            limit=limit,
+            cursor=cursor,
+            include_raw_data=include_raw_data,
+            request_options=request_options,
         )
         return _response.data
 
@@ -186,6 +215,7 @@ class ChatClient:
         limit: typing.Optional[int] = None,
         filter: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
         cursor: typing.Optional[str] = None,
+        include_raw_data: typing.Optional[bool] = None,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> ChatQueryMessagesResponse:
         """
@@ -201,13 +231,16 @@ class ChatClient:
             Add metadata to the response by invoking meta functions.
 
         limit : typing.Optional[int]
-            Number of messages to return. Defaults to 100.
+            Number of messages to return. Defaults to 100 with a maximum of 1000. If a provider has a maximum limit lower than 1000, the provider's maximum limit will be used instead.
 
         filter : typing.Optional[typing.Union[str, typing.Sequence[str]]]
             Filter results by this query. Supported filter fields vary by provider. Defaults to no filter. If used more than once, the queries are ANDed together.
 
         cursor : typing.Optional[str]
             Start search from cursor position.
+
+        include_raw_data : typing.Optional[bool]
+            Include the raw data from the chat provider in the response. Defaults to `false`.
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -235,6 +268,7 @@ class ChatClient:
             limit=limit,
             filter=filter,
             cursor=cursor,
+            include_raw_data=include_raw_data,
             request_options=request_options,
         )
         return _response.data
@@ -246,6 +280,7 @@ class ChatClient:
         limit: typing.Optional[int] = None,
         filter: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
         cursor: typing.Optional[str] = None,
+        include_raw_data: typing.Optional[bool] = None,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> ChatQueryConversationsResponse:
         """
@@ -257,13 +292,16 @@ class ChatClient:
             Add metadata to the response by invoking meta functions.
 
         limit : typing.Optional[int]
-            Number of conversations to return. Defaults to 100.
+            Number of conversations to return. Defaults to 100 with a maximum of 1000. If a provider has a maximum limit lower than 1000, the provider's maximum limit will be used instead.
 
         filter : typing.Optional[typing.Union[str, typing.Sequence[str]]]
             Filter results by this query. Defaults to no filter. If used more than once, the queries are ANDed together.
 
         cursor : typing.Optional[str]
             Start search from cursor position.
+
+        include_raw_data : typing.Optional[bool]
+            Include the raw data from the chat provider in the response. Defaults to `false`.
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -282,7 +320,12 @@ class ChatClient:
         client.chat.query_conversations()
         """
         _response = self._raw_client.query_conversations(
-            meta=meta, limit=limit, filter=filter, cursor=cursor, request_options=request_options
+            meta=meta,
+            limit=limit,
+            filter=filter,
+            cursor=cursor,
+            include_raw_data=include_raw_data,
+            request_options=request_options,
         )
         return _response.data
 
@@ -293,6 +336,7 @@ class ChatClient:
         meta: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
         limit: typing.Optional[int] = None,
         cursor: typing.Optional[str] = None,
+        include_raw_data: typing.Optional[bool] = None,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> ChatQueryConversationMembersResponse:
         """
@@ -306,10 +350,13 @@ class ChatClient:
             Add metadata to the response by invoking meta functions.
 
         limit : typing.Optional[int]
-            Number of members to return. Defaults to 100.
+            Number of members to return. Defaults to 100 with a maximum of 1000. If a provider has a maximum limit lower than 1000, the provider's maximum limit will be used instead.
 
         cursor : typing.Optional[str]
             Start search from cursor position.
+
+        include_raw_data : typing.Optional[bool]
+            Include the raw data from the chat provider in the response. Defaults to `false`.
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -330,7 +377,68 @@ class ChatClient:
         )
         """
         _response = self._raw_client.query_conversation_members(
-            conversation_id, meta=meta, limit=limit, cursor=cursor, request_options=request_options
+            conversation_id,
+            meta=meta,
+            limit=limit,
+            cursor=cursor,
+            include_raw_data=include_raw_data,
+            request_options=request_options,
+        )
+        return _response.data
+
+    def query_messages(
+        self,
+        *,
+        meta: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
+        limit: typing.Optional[int] = None,
+        filter: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
+        cursor: typing.Optional[str] = None,
+        include_raw_data: typing.Optional[bool] = None,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> ChatQueryMessagesResponse:
+        """
+        Returns all messages across every conversation in the connected workspace or tenant.
+
+        Parameters
+        ----------
+        meta : typing.Optional[typing.Union[str, typing.Sequence[str]]]
+            Add metadata to the response by invoking meta functions.
+
+        limit : typing.Optional[int]
+            Number of messages to return per page. Defaults to 100 with a maximum of 1000. If a provider has a maximum limit lower than 1000, the provider's maximum limit will be used instead.
+
+        filter : typing.Optional[typing.Union[str, typing.Sequence[str]]]
+            Filter results by this query. Only an optional time window (`time[gte]`/`time[lte]`) is supported, and only for providers whose message APIs support time filtering. Defaults to no filter. If used more than once, the queries are ANDed together.
+
+        cursor : typing.Optional[str]
+            Start search from cursor position.
+
+        include_raw_data : typing.Optional[bool]
+            Include the raw data from the chat provider in the response. Defaults to `false`.
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        ChatQueryMessagesResponse
+
+        Examples
+        --------
+        from synqly import SynqlyEngine
+
+        client = SynqlyEngine(
+            token="YOUR_TOKEN",
+        )
+        client.chat.query_messages()
+        """
+        _response = self._raw_client.query_messages(
+            meta=meta,
+            limit=limit,
+            filter=filter,
+            cursor=cursor,
+            include_raw_data=include_raw_data,
+            request_options=request_options,
         )
         return _response.data
 
@@ -342,6 +450,7 @@ class ChatClient:
         limit: typing.Optional[int] = None,
         filter: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
         cursor: typing.Optional[str] = None,
+        include_raw_data: typing.Optional[bool] = None,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> ChatQueryMessagesResponse:
         """
@@ -355,13 +464,16 @@ class ChatClient:
             Add metadata to the response by invoking meta functions.
 
         limit : typing.Optional[int]
-            Number of messages to return. Defaults to 100.
+            Number of messages to return. Defaults to 100 with a maximum of 1000. If a provider has a maximum limit lower than 1000, the provider's maximum limit will be used instead.
 
         filter : typing.Optional[typing.Union[str, typing.Sequence[str]]]
             Filter results by this query. Supported filter fields vary by provider. Defaults to no filter. If used more than once, the queries are ANDed together.
 
         cursor : typing.Optional[str]
             Start search from cursor position.
+
+        include_raw_data : typing.Optional[bool]
+            Include the raw data from the chat provider in the response. Defaults to `false`.
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -382,7 +494,13 @@ class ChatClient:
         )
         """
         _response = self._raw_client.query_conversation_messages(
-            conversation_id, meta=meta, limit=limit, filter=filter, cursor=cursor, request_options=request_options
+            conversation_id,
+            meta=meta,
+            limit=limit,
+            filter=filter,
+            cursor=cursor,
+            include_raw_data=include_raw_data,
+            request_options=request_options,
         )
         return _response.data
 
@@ -409,6 +527,7 @@ class AsyncChatClient:
         limit: typing.Optional[int] = None,
         filter: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
         cursor: typing.Optional[str] = None,
+        include_raw_data: typing.Optional[bool] = None,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> ChatQueryUsersResponse:
         """
@@ -420,13 +539,16 @@ class AsyncChatClient:
             Add metadata to the response by invoking meta functions. Documentation for [meta functions](https://docs.synqly.com/api-reference/meta-functions) is available. Not all meta functions are available at every endpoint.
 
         limit : typing.Optional[int]
-            Number of users to return. Defaults to 100.
+            Number of users to return. Defaults to 100 with a maximum of 1000. If a provider has a maximum limit lower than 1000, the provider's maximum limit will be used instead.
 
         filter : typing.Optional[typing.Union[str, typing.Sequence[str]]]
             Filter results by this query. For more information on filtering, refer to our [Filtering Guide](https://docs.synqly.com/guides/connectors/chat/query-filters). Defaults to no filter. If used more than once, the queries are ANDed together.
 
         cursor : typing.Optional[str]
             Start search from cursor position.
+
+        include_raw_data : typing.Optional[bool]
+            Include the raw data from the chat provider in the response. Defaults to `false`.
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -453,7 +575,12 @@ class AsyncChatClient:
         asyncio.run(main())
         """
         _response = await self._raw_client.query_users(
-            meta=meta, limit=limit, filter=filter, cursor=cursor, request_options=request_options
+            meta=meta,
+            limit=limit,
+            filter=filter,
+            cursor=cursor,
+            include_raw_data=include_raw_data,
+            request_options=request_options,
         )
         return _response.data
 
@@ -465,6 +592,7 @@ class AsyncChatClient:
         limit: typing.Optional[int] = None,
         filter: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
         cursor: typing.Optional[str] = None,
+        include_raw_data: typing.Optional[bool] = None,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> ChatQueryConversationsResponse:
         """
@@ -478,13 +606,16 @@ class AsyncChatClient:
             Add metadata to the response by invoking meta functions.
 
         limit : typing.Optional[int]
-            Number of conversations to return. Defaults to 100.
+            Number of conversations to return. Defaults to 100 with a maximum of 1000. If a provider has a maximum limit lower than 1000, the provider's maximum limit will be used instead.
 
         filter : typing.Optional[typing.Union[str, typing.Sequence[str]]]
             Filter results by this query. Defaults to no filter. If used more than once, the queries are ANDed together.
 
         cursor : typing.Optional[str]
             Start search from cursor position.
+
+        include_raw_data : typing.Optional[bool]
+            Include the raw data from the chat provider in the response. Defaults to `false`.
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -513,7 +644,13 @@ class AsyncChatClient:
         asyncio.run(main())
         """
         _response = await self._raw_client.query_user_conversations(
-            user_id, meta=meta, limit=limit, filter=filter, cursor=cursor, request_options=request_options
+            user_id,
+            meta=meta,
+            limit=limit,
+            filter=filter,
+            cursor=cursor,
+            include_raw_data=include_raw_data,
+            request_options=request_options,
         )
         return _response.data
 
@@ -525,6 +662,7 @@ class AsyncChatClient:
         meta: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
         limit: typing.Optional[int] = None,
         cursor: typing.Optional[str] = None,
+        include_raw_data: typing.Optional[bool] = None,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> ChatQueryConversationMembersResponse:
         """
@@ -540,10 +678,13 @@ class AsyncChatClient:
             Add metadata to the response by invoking meta functions.
 
         limit : typing.Optional[int]
-            Number of members to return. Defaults to 100.
+            Number of members to return. Defaults to 100 with a maximum of 1000. If a provider has a maximum limit lower than 1000, the provider's maximum limit will be used instead.
 
         cursor : typing.Optional[str]
             Start search from cursor position.
+
+        include_raw_data : typing.Optional[bool]
+            Include the raw data from the chat provider in the response. Defaults to `false`.
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -573,7 +714,13 @@ class AsyncChatClient:
         asyncio.run(main())
         """
         _response = await self._raw_client.query_user_conversation_members(
-            user_id, conversation_id, meta=meta, limit=limit, cursor=cursor, request_options=request_options
+            user_id,
+            conversation_id,
+            meta=meta,
+            limit=limit,
+            cursor=cursor,
+            include_raw_data=include_raw_data,
+            request_options=request_options,
         )
         return _response.data
 
@@ -586,6 +733,7 @@ class AsyncChatClient:
         limit: typing.Optional[int] = None,
         filter: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
         cursor: typing.Optional[str] = None,
+        include_raw_data: typing.Optional[bool] = None,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> ChatQueryMessagesResponse:
         """
@@ -601,13 +749,16 @@ class AsyncChatClient:
             Add metadata to the response by invoking meta functions.
 
         limit : typing.Optional[int]
-            Number of messages to return. Defaults to 100.
+            Number of messages to return. Defaults to 100 with a maximum of 1000. If a provider has a maximum limit lower than 1000, the provider's maximum limit will be used instead.
 
         filter : typing.Optional[typing.Union[str, typing.Sequence[str]]]
             Filter results by this query. Supported filter fields vary by provider. Defaults to no filter. If used more than once, the queries are ANDed together.
 
         cursor : typing.Optional[str]
             Start search from cursor position.
+
+        include_raw_data : typing.Optional[bool]
+            Include the raw data from the chat provider in the response. Defaults to `false`.
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -643,6 +794,7 @@ class AsyncChatClient:
             limit=limit,
             filter=filter,
             cursor=cursor,
+            include_raw_data=include_raw_data,
             request_options=request_options,
         )
         return _response.data
@@ -654,6 +806,7 @@ class AsyncChatClient:
         limit: typing.Optional[int] = None,
         filter: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
         cursor: typing.Optional[str] = None,
+        include_raw_data: typing.Optional[bool] = None,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> ChatQueryConversationsResponse:
         """
@@ -665,13 +818,16 @@ class AsyncChatClient:
             Add metadata to the response by invoking meta functions.
 
         limit : typing.Optional[int]
-            Number of conversations to return. Defaults to 100.
+            Number of conversations to return. Defaults to 100 with a maximum of 1000. If a provider has a maximum limit lower than 1000, the provider's maximum limit will be used instead.
 
         filter : typing.Optional[typing.Union[str, typing.Sequence[str]]]
             Filter results by this query. Defaults to no filter. If used more than once, the queries are ANDed together.
 
         cursor : typing.Optional[str]
             Start search from cursor position.
+
+        include_raw_data : typing.Optional[bool]
+            Include the raw data from the chat provider in the response. Defaults to `false`.
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -698,7 +854,12 @@ class AsyncChatClient:
         asyncio.run(main())
         """
         _response = await self._raw_client.query_conversations(
-            meta=meta, limit=limit, filter=filter, cursor=cursor, request_options=request_options
+            meta=meta,
+            limit=limit,
+            filter=filter,
+            cursor=cursor,
+            include_raw_data=include_raw_data,
+            request_options=request_options,
         )
         return _response.data
 
@@ -709,6 +870,7 @@ class AsyncChatClient:
         meta: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
         limit: typing.Optional[int] = None,
         cursor: typing.Optional[str] = None,
+        include_raw_data: typing.Optional[bool] = None,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> ChatQueryConversationMembersResponse:
         """
@@ -722,10 +884,13 @@ class AsyncChatClient:
             Add metadata to the response by invoking meta functions.
 
         limit : typing.Optional[int]
-            Number of members to return. Defaults to 100.
+            Number of members to return. Defaults to 100 with a maximum of 1000. If a provider has a maximum limit lower than 1000, the provider's maximum limit will be used instead.
 
         cursor : typing.Optional[str]
             Start search from cursor position.
+
+        include_raw_data : typing.Optional[bool]
+            Include the raw data from the chat provider in the response. Defaults to `false`.
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -754,7 +919,76 @@ class AsyncChatClient:
         asyncio.run(main())
         """
         _response = await self._raw_client.query_conversation_members(
-            conversation_id, meta=meta, limit=limit, cursor=cursor, request_options=request_options
+            conversation_id,
+            meta=meta,
+            limit=limit,
+            cursor=cursor,
+            include_raw_data=include_raw_data,
+            request_options=request_options,
+        )
+        return _response.data
+
+    async def query_messages(
+        self,
+        *,
+        meta: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
+        limit: typing.Optional[int] = None,
+        filter: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
+        cursor: typing.Optional[str] = None,
+        include_raw_data: typing.Optional[bool] = None,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> ChatQueryMessagesResponse:
+        """
+        Returns all messages across every conversation in the connected workspace or tenant.
+
+        Parameters
+        ----------
+        meta : typing.Optional[typing.Union[str, typing.Sequence[str]]]
+            Add metadata to the response by invoking meta functions.
+
+        limit : typing.Optional[int]
+            Number of messages to return per page. Defaults to 100 with a maximum of 1000. If a provider has a maximum limit lower than 1000, the provider's maximum limit will be used instead.
+
+        filter : typing.Optional[typing.Union[str, typing.Sequence[str]]]
+            Filter results by this query. Only an optional time window (`time[gte]`/`time[lte]`) is supported, and only for providers whose message APIs support time filtering. Defaults to no filter. If used more than once, the queries are ANDed together.
+
+        cursor : typing.Optional[str]
+            Start search from cursor position.
+
+        include_raw_data : typing.Optional[bool]
+            Include the raw data from the chat provider in the response. Defaults to `false`.
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        ChatQueryMessagesResponse
+
+        Examples
+        --------
+        import asyncio
+
+        from synqly import AsyncSynqlyEngine
+
+        client = AsyncSynqlyEngine(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.chat.query_messages()
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.query_messages(
+            meta=meta,
+            limit=limit,
+            filter=filter,
+            cursor=cursor,
+            include_raw_data=include_raw_data,
+            request_options=request_options,
         )
         return _response.data
 
@@ -766,6 +1000,7 @@ class AsyncChatClient:
         limit: typing.Optional[int] = None,
         filter: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
         cursor: typing.Optional[str] = None,
+        include_raw_data: typing.Optional[bool] = None,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> ChatQueryMessagesResponse:
         """
@@ -779,13 +1014,16 @@ class AsyncChatClient:
             Add metadata to the response by invoking meta functions.
 
         limit : typing.Optional[int]
-            Number of messages to return. Defaults to 100.
+            Number of messages to return. Defaults to 100 with a maximum of 1000. If a provider has a maximum limit lower than 1000, the provider's maximum limit will be used instead.
 
         filter : typing.Optional[typing.Union[str, typing.Sequence[str]]]
             Filter results by this query. Supported filter fields vary by provider. Defaults to no filter. If used more than once, the queries are ANDed together.
 
         cursor : typing.Optional[str]
             Start search from cursor position.
+
+        include_raw_data : typing.Optional[bool]
+            Include the raw data from the chat provider in the response. Defaults to `false`.
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -814,6 +1052,12 @@ class AsyncChatClient:
         asyncio.run(main())
         """
         _response = await self._raw_client.query_conversation_messages(
-            conversation_id, meta=meta, limit=limit, filter=filter, cursor=cursor, request_options=request_options
+            conversation_id,
+            meta=meta,
+            limit=limit,
+            filter=filter,
+            cursor=cursor,
+            include_raw_data=include_raw_data,
+            request_options=request_options,
         )
         return _response.data

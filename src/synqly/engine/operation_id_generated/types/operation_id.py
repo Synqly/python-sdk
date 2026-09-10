@@ -28,6 +28,7 @@ class OperationId(enum.StrEnum):
     CHAT_QUERY_CONVERSATION_MEMBERS = "chat_query_conversation_members"
     CHAT_QUERY_CONVERSATION_MESSAGES = "chat_query_conversation_messages"
     CHAT_QUERY_CONVERSATIONS = "chat_query_conversations"
+    CHAT_QUERY_MESSAGES = "chat_query_messages"
     CHAT_QUERY_USER_CONVERSATION_MEMBERS = "chat_query_user_conversation_members"
     CHAT_QUERY_USER_CONVERSATION_MESSAGES = "chat_query_user_conversation_messages"
     CHAT_QUERY_USER_CONVERSATIONS = "chat_query_user_conversations"
@@ -179,6 +180,7 @@ class OperationId(enum.StrEnum):
         chat_query_conversation_members: typing.Callable[[], T_Result],
         chat_query_conversation_messages: typing.Callable[[], T_Result],
         chat_query_conversations: typing.Callable[[], T_Result],
+        chat_query_messages: typing.Callable[[], T_Result],
         chat_query_user_conversation_members: typing.Callable[[], T_Result],
         chat_query_user_conversation_messages: typing.Callable[[], T_Result],
         chat_query_user_conversations: typing.Callable[[], T_Result],
@@ -339,6 +341,8 @@ class OperationId(enum.StrEnum):
             return chat_query_conversation_messages()
         if self is OperationId.CHAT_QUERY_CONVERSATIONS:
             return chat_query_conversations()
+        if self is OperationId.CHAT_QUERY_MESSAGES:
+            return chat_query_messages()
         if self is OperationId.CHAT_QUERY_USER_CONVERSATION_MEMBERS:
             return chat_query_user_conversation_members()
         if self is OperationId.CHAT_QUERY_USER_CONVERSATION_MESSAGES:

@@ -1452,7 +1452,7 @@ client.chat.query_users()
 <dl>
 <dd>
 
-**limit:** `typing.Optional[int]` — Number of users to return. Defaults to 100.
+**limit:** `typing.Optional[int]` — Number of users to return. Defaults to 100 with a maximum of 1000. If a provider has a maximum limit lower than 1000, the provider's maximum limit will be used instead.
     
 </dd>
 </dl>
@@ -1469,6 +1469,14 @@ client.chat.query_users()
 <dd>
 
 **cursor:** `typing.Optional[str]` — Start search from cursor position.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**include_raw_data:** `typing.Optional[bool]` — Include the raw data from the chat provider in the response. Defaults to `false`.
     
 </dd>
 </dl>
@@ -1557,7 +1565,7 @@ client.chat.query_user_conversations(
 <dl>
 <dd>
 
-**limit:** `typing.Optional[int]` — Number of conversations to return. Defaults to 100.
+**limit:** `typing.Optional[int]` — Number of conversations to return. Defaults to 100 with a maximum of 1000. If a provider has a maximum limit lower than 1000, the provider's maximum limit will be used instead.
     
 </dd>
 </dl>
@@ -1574,6 +1582,14 @@ client.chat.query_user_conversations(
 <dd>
 
 **cursor:** `typing.Optional[str]` — Start search from cursor position.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**include_raw_data:** `typing.Optional[bool]` — Include the raw data from the chat provider in the response. Defaults to `false`.
     
 </dd>
 </dl>
@@ -1671,7 +1687,7 @@ client.chat.query_user_conversation_members(
 <dl>
 <dd>
 
-**limit:** `typing.Optional[int]` — Number of members to return. Defaults to 100.
+**limit:** `typing.Optional[int]` — Number of members to return. Defaults to 100 with a maximum of 1000. If a provider has a maximum limit lower than 1000, the provider's maximum limit will be used instead.
     
 </dd>
 </dl>
@@ -1680,6 +1696,14 @@ client.chat.query_user_conversation_members(
 <dd>
 
 **cursor:** `typing.Optional[str]` — Start search from cursor position.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**include_raw_data:** `typing.Optional[bool]` — Include the raw data from the chat provider in the response. Defaults to `false`.
     
 </dd>
 </dl>
@@ -1777,7 +1801,7 @@ client.chat.query_user_conversation_messages(
 <dl>
 <dd>
 
-**limit:** `typing.Optional[int]` — Number of messages to return. Defaults to 100.
+**limit:** `typing.Optional[int]` — Number of messages to return. Defaults to 100 with a maximum of 1000. If a provider has a maximum limit lower than 1000, the provider's maximum limit will be used instead.
     
 </dd>
 </dl>
@@ -1794,6 +1818,14 @@ client.chat.query_user_conversation_messages(
 <dd>
 
 **cursor:** `typing.Optional[str]` — Start search from cursor position.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**include_raw_data:** `typing.Optional[bool]` — Include the raw data from the chat provider in the response. Defaults to `false`.
     
 </dd>
 </dl>
@@ -1872,7 +1904,7 @@ client.chat.query_conversations()
 <dl>
 <dd>
 
-**limit:** `typing.Optional[int]` — Number of conversations to return. Defaults to 100.
+**limit:** `typing.Optional[int]` — Number of conversations to return. Defaults to 100 with a maximum of 1000. If a provider has a maximum limit lower than 1000, the provider's maximum limit will be used instead.
     
 </dd>
 </dl>
@@ -1889,6 +1921,14 @@ client.chat.query_conversations()
 <dd>
 
 **cursor:** `typing.Optional[str]` — Start search from cursor position.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**include_raw_data:** `typing.Optional[bool]` — Include the raw data from the chat provider in the response. Defaults to `false`.
     
 </dd>
 </dl>
@@ -1977,7 +2017,7 @@ client.chat.query_conversation_members(
 <dl>
 <dd>
 
-**limit:** `typing.Optional[int]` — Number of members to return. Defaults to 100.
+**limit:** `typing.Optional[int]` — Number of members to return. Defaults to 100 with a maximum of 1000. If a provider has a maximum limit lower than 1000, the provider's maximum limit will be used instead.
     
 </dd>
 </dl>
@@ -1986,6 +2026,117 @@ client.chat.query_conversation_members(
 <dd>
 
 **cursor:** `typing.Optional[str]` — Start search from cursor position.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**include_raw_data:** `typing.Optional[bool]` — Include the raw data from the chat provider in the response. Defaults to `false`.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `typing.Optional[RequestOptions]` — Request-specific configuration.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.chat.<a href="src/synqly/chat/client.py">query_messages</a>(...) -> ChatQueryMessagesResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns all messages across every conversation in the connected workspace or tenant.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```python
+from synqly import SynqlyEngine
+from synqly.environment import SynqlyEngineEnvironment
+
+client = SynqlyEngine(
+    token="<token>",
+    environment=SynqlyEngineEnvironment.SYNQLY,
+)
+
+client.chat.query_messages()
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**meta:** `typing.Optional[typing.Union[str, typing.Sequence[str]]]` — Add metadata to the response by invoking meta functions.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**limit:** `typing.Optional[int]` — Number of messages to return per page. Defaults to 100 with a maximum of 1000. If a provider has a maximum limit lower than 1000, the provider's maximum limit will be used instead.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**filter:** `typing.Optional[typing.Union[str, typing.Sequence[str]]]` — Filter results by this query. Only an optional time window (`time[gte]`/`time[lte]`) is supported, and only for providers whose message APIs support time filtering. Defaults to no filter. If used more than once, the queries are ANDed together.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**cursor:** `typing.Optional[str]` — Start search from cursor position.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**include_raw_data:** `typing.Optional[bool]` — Include the raw data from the chat provider in the response. Defaults to `false`.
     
 </dd>
 </dl>
@@ -2074,7 +2225,7 @@ client.chat.query_conversation_messages(
 <dl>
 <dd>
 
-**limit:** `typing.Optional[int]` — Number of messages to return. Defaults to 100.
+**limit:** `typing.Optional[int]` — Number of messages to return. Defaults to 100 with a maximum of 1000. If a provider has a maximum limit lower than 1000, the provider's maximum limit will be used instead.
     
 </dd>
 </dl>
@@ -2091,6 +2242,14 @@ client.chat.query_conversation_messages(
 <dd>
 
 **cursor:** `typing.Optional[str]` — Start search from cursor position.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**include_raw_data:** `typing.Optional[bool]` — Include the raw data from the chat provider in the response. Defaults to `false`.
     
 </dd>
 </dl>

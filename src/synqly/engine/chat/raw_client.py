@@ -41,6 +41,7 @@ class RawChatClient:
         limit: typing.Optional[int] = None,
         filter: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
         cursor: typing.Optional[str] = None,
+        include_raw_data: typing.Optional[bool] = None,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[ChatQueryUsersResponse]:
         """
@@ -52,13 +53,16 @@ class RawChatClient:
             Add metadata to the response by invoking meta functions. Documentation for [meta functions](https://docs.synqly.com/api-reference/meta-functions) is available. Not all meta functions are available at every endpoint.
 
         limit : typing.Optional[int]
-            Number of users to return. Defaults to 100.
+            Number of users to return. Defaults to 100 with a maximum of 1000. If a provider has a maximum limit lower than 1000, the provider's maximum limit will be used instead.
 
         filter : typing.Optional[typing.Union[str, typing.Sequence[str]]]
             Filter results by this query. For more information on filtering, refer to our [Filtering Guide](https://docs.synqly.com/guides/connectors/chat/query-filters). Defaults to no filter. If used more than once, the queries are ANDed together.
 
         cursor : typing.Optional[str]
             Start search from cursor position.
+
+        include_raw_data : typing.Optional[bool]
+            Include the raw data from the chat provider in the response. Defaults to `false`.
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -75,6 +79,7 @@ class RawChatClient:
                 "limit": limit,
                 "filter": filter,
                 "cursor": cursor,
+                "include_raw_data": include_raw_data,
             },
             request_options=request_options,
         )
@@ -237,6 +242,7 @@ class RawChatClient:
         limit: typing.Optional[int] = None,
         filter: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
         cursor: typing.Optional[str] = None,
+        include_raw_data: typing.Optional[bool] = None,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[ChatQueryConversationsResponse]:
         """
@@ -250,13 +256,16 @@ class RawChatClient:
             Add metadata to the response by invoking meta functions.
 
         limit : typing.Optional[int]
-            Number of conversations to return. Defaults to 100.
+            Number of conversations to return. Defaults to 100 with a maximum of 1000. If a provider has a maximum limit lower than 1000, the provider's maximum limit will be used instead.
 
         filter : typing.Optional[typing.Union[str, typing.Sequence[str]]]
             Filter results by this query. Defaults to no filter. If used more than once, the queries are ANDed together.
 
         cursor : typing.Optional[str]
             Start search from cursor position.
+
+        include_raw_data : typing.Optional[bool]
+            Include the raw data from the chat provider in the response. Defaults to `false`.
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -273,6 +282,7 @@ class RawChatClient:
                 "limit": limit,
                 "filter": filter,
                 "cursor": cursor,
+                "include_raw_data": include_raw_data,
             },
             request_options=request_options,
         )
@@ -435,6 +445,7 @@ class RawChatClient:
         meta: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
         limit: typing.Optional[int] = None,
         cursor: typing.Optional[str] = None,
+        include_raw_data: typing.Optional[bool] = None,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[ChatQueryConversationMembersResponse]:
         """
@@ -450,10 +461,13 @@ class RawChatClient:
             Add metadata to the response by invoking meta functions.
 
         limit : typing.Optional[int]
-            Number of members to return. Defaults to 100.
+            Number of members to return. Defaults to 100 with a maximum of 1000. If a provider has a maximum limit lower than 1000, the provider's maximum limit will be used instead.
 
         cursor : typing.Optional[str]
             Start search from cursor position.
+
+        include_raw_data : typing.Optional[bool]
+            Include the raw data from the chat provider in the response. Defaults to `false`.
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -469,6 +483,7 @@ class RawChatClient:
                 "meta": meta,
                 "limit": limit,
                 "cursor": cursor,
+                "include_raw_data": include_raw_data,
             },
             request_options=request_options,
         )
@@ -632,6 +647,7 @@ class RawChatClient:
         limit: typing.Optional[int] = None,
         filter: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
         cursor: typing.Optional[str] = None,
+        include_raw_data: typing.Optional[bool] = None,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[ChatQueryMessagesResponse]:
         """
@@ -647,13 +663,16 @@ class RawChatClient:
             Add metadata to the response by invoking meta functions.
 
         limit : typing.Optional[int]
-            Number of messages to return. Defaults to 100.
+            Number of messages to return. Defaults to 100 with a maximum of 1000. If a provider has a maximum limit lower than 1000, the provider's maximum limit will be used instead.
 
         filter : typing.Optional[typing.Union[str, typing.Sequence[str]]]
             Filter results by this query. Supported filter fields vary by provider. Defaults to no filter. If used more than once, the queries are ANDed together.
 
         cursor : typing.Optional[str]
             Start search from cursor position.
+
+        include_raw_data : typing.Optional[bool]
+            Include the raw data from the chat provider in the response. Defaults to `false`.
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -670,6 +689,7 @@ class RawChatClient:
                 "limit": limit,
                 "filter": filter,
                 "cursor": cursor,
+                "include_raw_data": include_raw_data,
             },
             request_options=request_options,
         )
@@ -831,6 +851,7 @@ class RawChatClient:
         limit: typing.Optional[int] = None,
         filter: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
         cursor: typing.Optional[str] = None,
+        include_raw_data: typing.Optional[bool] = None,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[ChatQueryConversationsResponse]:
         """
@@ -842,13 +863,16 @@ class RawChatClient:
             Add metadata to the response by invoking meta functions.
 
         limit : typing.Optional[int]
-            Number of conversations to return. Defaults to 100.
+            Number of conversations to return. Defaults to 100 with a maximum of 1000. If a provider has a maximum limit lower than 1000, the provider's maximum limit will be used instead.
 
         filter : typing.Optional[typing.Union[str, typing.Sequence[str]]]
             Filter results by this query. Defaults to no filter. If used more than once, the queries are ANDed together.
 
         cursor : typing.Optional[str]
             Start search from cursor position.
+
+        include_raw_data : typing.Optional[bool]
+            Include the raw data from the chat provider in the response. Defaults to `false`.
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -865,6 +889,7 @@ class RawChatClient:
                 "limit": limit,
                 "filter": filter,
                 "cursor": cursor,
+                "include_raw_data": include_raw_data,
             },
             request_options=request_options,
         )
@@ -1026,6 +1051,7 @@ class RawChatClient:
         meta: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
         limit: typing.Optional[int] = None,
         cursor: typing.Optional[str] = None,
+        include_raw_data: typing.Optional[bool] = None,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[ChatQueryConversationMembersResponse]:
         """
@@ -1039,10 +1065,13 @@ class RawChatClient:
             Add metadata to the response by invoking meta functions.
 
         limit : typing.Optional[int]
-            Number of members to return. Defaults to 100.
+            Number of members to return. Defaults to 100 with a maximum of 1000. If a provider has a maximum limit lower than 1000, the provider's maximum limit will be used instead.
 
         cursor : typing.Optional[str]
             Start search from cursor position.
+
+        include_raw_data : typing.Optional[bool]
+            Include the raw data from the chat provider in the response. Defaults to `false`.
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -1058,6 +1087,7 @@ class RawChatClient:
                 "meta": meta,
                 "limit": limit,
                 "cursor": cursor,
+                "include_raw_data": include_raw_data,
             },
             request_options=request_options,
         )
@@ -1212,6 +1242,195 @@ class RawChatClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
+    def query_messages(
+        self,
+        *,
+        meta: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
+        limit: typing.Optional[int] = None,
+        filter: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
+        cursor: typing.Optional[str] = None,
+        include_raw_data: typing.Optional[bool] = None,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> HttpResponse[ChatQueryMessagesResponse]:
+        """
+        Returns all messages across every conversation in the connected workspace or tenant.
+
+        Parameters
+        ----------
+        meta : typing.Optional[typing.Union[str, typing.Sequence[str]]]
+            Add metadata to the response by invoking meta functions.
+
+        limit : typing.Optional[int]
+            Number of messages to return per page. Defaults to 100 with a maximum of 1000. If a provider has a maximum limit lower than 1000, the provider's maximum limit will be used instead.
+
+        filter : typing.Optional[typing.Union[str, typing.Sequence[str]]]
+            Filter results by this query. Only an optional time window (`time[gte]`/`time[lte]`) is supported, and only for providers whose message APIs support time filtering. Defaults to no filter. If used more than once, the queries are ANDed together.
+
+        cursor : typing.Optional[str]
+            Start search from cursor position.
+
+        include_raw_data : typing.Optional[bool]
+            Include the raw data from the chat provider in the response. Defaults to `false`.
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        HttpResponse[ChatQueryMessagesResponse]
+        """
+        _response = self._client_wrapper.httpx_client.request(
+            "v1/chat/messages",
+            method="GET",
+            params={
+                "meta": meta,
+                "limit": limit,
+                "filter": filter,
+                "cursor": cursor,
+                "include_raw_data": include_raw_data,
+            },
+            request_options=request_options,
+        )
+        try:
+            if 200 <= _response.status_code < 300:
+                _data = typing.cast(
+                    ChatQueryMessagesResponse,
+                    construct_type(
+                        type_=ChatQueryMessagesResponse,  # type: ignore
+                        object_=_response.json(),
+                    ),
+                )
+                return HttpResponse(response=_response, data=_data)
+            if _response.status_code == 400:
+                raise BadRequestError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 401:
+                raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 403:
+                raise ForbiddenError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 404:
+                raise NotFoundError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 405:
+                raise MethodNotAllowedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 429:
+                raise TooManyRequestsError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 500:
+                raise InternalServerError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 501:
+                raise NotImplementedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 502:
+                raise BadGatewayError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 503:
+                raise ServiceUnavailableError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 504:
+                raise GatewayTimeoutError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            _response_json = _response.json()
+        except JSONDecodeError:
+            raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response.text)
+        except ValidationError as e:
+            raise ParsingError(
+                status_code=_response.status_code, headers=dict(_response.headers), body=_response.json(), cause=e
+            )
+        raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
+
     def query_conversation_messages(
         self,
         conversation_id: str,
@@ -1220,6 +1439,7 @@ class RawChatClient:
         limit: typing.Optional[int] = None,
         filter: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
         cursor: typing.Optional[str] = None,
+        include_raw_data: typing.Optional[bool] = None,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[ChatQueryMessagesResponse]:
         """
@@ -1233,13 +1453,16 @@ class RawChatClient:
             Add metadata to the response by invoking meta functions.
 
         limit : typing.Optional[int]
-            Number of messages to return. Defaults to 100.
+            Number of messages to return. Defaults to 100 with a maximum of 1000. If a provider has a maximum limit lower than 1000, the provider's maximum limit will be used instead.
 
         filter : typing.Optional[typing.Union[str, typing.Sequence[str]]]
             Filter results by this query. Supported filter fields vary by provider. Defaults to no filter. If used more than once, the queries are ANDed together.
 
         cursor : typing.Optional[str]
             Start search from cursor position.
+
+        include_raw_data : typing.Optional[bool]
+            Include the raw data from the chat provider in the response. Defaults to `false`.
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -1256,6 +1479,7 @@ class RawChatClient:
                 "limit": limit,
                 "filter": filter,
                 "cursor": cursor,
+                "include_raw_data": include_raw_data,
             },
             request_options=request_options,
         )
@@ -1422,6 +1646,7 @@ class AsyncRawChatClient:
         limit: typing.Optional[int] = None,
         filter: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
         cursor: typing.Optional[str] = None,
+        include_raw_data: typing.Optional[bool] = None,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[ChatQueryUsersResponse]:
         """
@@ -1433,13 +1658,16 @@ class AsyncRawChatClient:
             Add metadata to the response by invoking meta functions. Documentation for [meta functions](https://docs.synqly.com/api-reference/meta-functions) is available. Not all meta functions are available at every endpoint.
 
         limit : typing.Optional[int]
-            Number of users to return. Defaults to 100.
+            Number of users to return. Defaults to 100 with a maximum of 1000. If a provider has a maximum limit lower than 1000, the provider's maximum limit will be used instead.
 
         filter : typing.Optional[typing.Union[str, typing.Sequence[str]]]
             Filter results by this query. For more information on filtering, refer to our [Filtering Guide](https://docs.synqly.com/guides/connectors/chat/query-filters). Defaults to no filter. If used more than once, the queries are ANDed together.
 
         cursor : typing.Optional[str]
             Start search from cursor position.
+
+        include_raw_data : typing.Optional[bool]
+            Include the raw data from the chat provider in the response. Defaults to `false`.
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -1456,6 +1684,7 @@ class AsyncRawChatClient:
                 "limit": limit,
                 "filter": filter,
                 "cursor": cursor,
+                "include_raw_data": include_raw_data,
             },
             request_options=request_options,
         )
@@ -1618,6 +1847,7 @@ class AsyncRawChatClient:
         limit: typing.Optional[int] = None,
         filter: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
         cursor: typing.Optional[str] = None,
+        include_raw_data: typing.Optional[bool] = None,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[ChatQueryConversationsResponse]:
         """
@@ -1631,13 +1861,16 @@ class AsyncRawChatClient:
             Add metadata to the response by invoking meta functions.
 
         limit : typing.Optional[int]
-            Number of conversations to return. Defaults to 100.
+            Number of conversations to return. Defaults to 100 with a maximum of 1000. If a provider has a maximum limit lower than 1000, the provider's maximum limit will be used instead.
 
         filter : typing.Optional[typing.Union[str, typing.Sequence[str]]]
             Filter results by this query. Defaults to no filter. If used more than once, the queries are ANDed together.
 
         cursor : typing.Optional[str]
             Start search from cursor position.
+
+        include_raw_data : typing.Optional[bool]
+            Include the raw data from the chat provider in the response. Defaults to `false`.
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -1654,6 +1887,7 @@ class AsyncRawChatClient:
                 "limit": limit,
                 "filter": filter,
                 "cursor": cursor,
+                "include_raw_data": include_raw_data,
             },
             request_options=request_options,
         )
@@ -1816,6 +2050,7 @@ class AsyncRawChatClient:
         meta: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
         limit: typing.Optional[int] = None,
         cursor: typing.Optional[str] = None,
+        include_raw_data: typing.Optional[bool] = None,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[ChatQueryConversationMembersResponse]:
         """
@@ -1831,10 +2066,13 @@ class AsyncRawChatClient:
             Add metadata to the response by invoking meta functions.
 
         limit : typing.Optional[int]
-            Number of members to return. Defaults to 100.
+            Number of members to return. Defaults to 100 with a maximum of 1000. If a provider has a maximum limit lower than 1000, the provider's maximum limit will be used instead.
 
         cursor : typing.Optional[str]
             Start search from cursor position.
+
+        include_raw_data : typing.Optional[bool]
+            Include the raw data from the chat provider in the response. Defaults to `false`.
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -1850,6 +2088,7 @@ class AsyncRawChatClient:
                 "meta": meta,
                 "limit": limit,
                 "cursor": cursor,
+                "include_raw_data": include_raw_data,
             },
             request_options=request_options,
         )
@@ -2013,6 +2252,7 @@ class AsyncRawChatClient:
         limit: typing.Optional[int] = None,
         filter: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
         cursor: typing.Optional[str] = None,
+        include_raw_data: typing.Optional[bool] = None,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[ChatQueryMessagesResponse]:
         """
@@ -2028,13 +2268,16 @@ class AsyncRawChatClient:
             Add metadata to the response by invoking meta functions.
 
         limit : typing.Optional[int]
-            Number of messages to return. Defaults to 100.
+            Number of messages to return. Defaults to 100 with a maximum of 1000. If a provider has a maximum limit lower than 1000, the provider's maximum limit will be used instead.
 
         filter : typing.Optional[typing.Union[str, typing.Sequence[str]]]
             Filter results by this query. Supported filter fields vary by provider. Defaults to no filter. If used more than once, the queries are ANDed together.
 
         cursor : typing.Optional[str]
             Start search from cursor position.
+
+        include_raw_data : typing.Optional[bool]
+            Include the raw data from the chat provider in the response. Defaults to `false`.
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -2051,6 +2294,7 @@ class AsyncRawChatClient:
                 "limit": limit,
                 "filter": filter,
                 "cursor": cursor,
+                "include_raw_data": include_raw_data,
             },
             request_options=request_options,
         )
@@ -2212,6 +2456,7 @@ class AsyncRawChatClient:
         limit: typing.Optional[int] = None,
         filter: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
         cursor: typing.Optional[str] = None,
+        include_raw_data: typing.Optional[bool] = None,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[ChatQueryConversationsResponse]:
         """
@@ -2223,13 +2468,16 @@ class AsyncRawChatClient:
             Add metadata to the response by invoking meta functions.
 
         limit : typing.Optional[int]
-            Number of conversations to return. Defaults to 100.
+            Number of conversations to return. Defaults to 100 with a maximum of 1000. If a provider has a maximum limit lower than 1000, the provider's maximum limit will be used instead.
 
         filter : typing.Optional[typing.Union[str, typing.Sequence[str]]]
             Filter results by this query. Defaults to no filter. If used more than once, the queries are ANDed together.
 
         cursor : typing.Optional[str]
             Start search from cursor position.
+
+        include_raw_data : typing.Optional[bool]
+            Include the raw data from the chat provider in the response. Defaults to `false`.
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -2246,6 +2494,7 @@ class AsyncRawChatClient:
                 "limit": limit,
                 "filter": filter,
                 "cursor": cursor,
+                "include_raw_data": include_raw_data,
             },
             request_options=request_options,
         )
@@ -2407,6 +2656,7 @@ class AsyncRawChatClient:
         meta: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
         limit: typing.Optional[int] = None,
         cursor: typing.Optional[str] = None,
+        include_raw_data: typing.Optional[bool] = None,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[ChatQueryConversationMembersResponse]:
         """
@@ -2420,10 +2670,13 @@ class AsyncRawChatClient:
             Add metadata to the response by invoking meta functions.
 
         limit : typing.Optional[int]
-            Number of members to return. Defaults to 100.
+            Number of members to return. Defaults to 100 with a maximum of 1000. If a provider has a maximum limit lower than 1000, the provider's maximum limit will be used instead.
 
         cursor : typing.Optional[str]
             Start search from cursor position.
+
+        include_raw_data : typing.Optional[bool]
+            Include the raw data from the chat provider in the response. Defaults to `false`.
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -2439,6 +2692,7 @@ class AsyncRawChatClient:
                 "meta": meta,
                 "limit": limit,
                 "cursor": cursor,
+                "include_raw_data": include_raw_data,
             },
             request_options=request_options,
         )
@@ -2593,6 +2847,195 @@ class AsyncRawChatClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
+    async def query_messages(
+        self,
+        *,
+        meta: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
+        limit: typing.Optional[int] = None,
+        filter: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
+        cursor: typing.Optional[str] = None,
+        include_raw_data: typing.Optional[bool] = None,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> AsyncHttpResponse[ChatQueryMessagesResponse]:
+        """
+        Returns all messages across every conversation in the connected workspace or tenant.
+
+        Parameters
+        ----------
+        meta : typing.Optional[typing.Union[str, typing.Sequence[str]]]
+            Add metadata to the response by invoking meta functions.
+
+        limit : typing.Optional[int]
+            Number of messages to return per page. Defaults to 100 with a maximum of 1000. If a provider has a maximum limit lower than 1000, the provider's maximum limit will be used instead.
+
+        filter : typing.Optional[typing.Union[str, typing.Sequence[str]]]
+            Filter results by this query. Only an optional time window (`time[gte]`/`time[lte]`) is supported, and only for providers whose message APIs support time filtering. Defaults to no filter. If used more than once, the queries are ANDed together.
+
+        cursor : typing.Optional[str]
+            Start search from cursor position.
+
+        include_raw_data : typing.Optional[bool]
+            Include the raw data from the chat provider in the response. Defaults to `false`.
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        AsyncHttpResponse[ChatQueryMessagesResponse]
+        """
+        _response = await self._client_wrapper.httpx_client.request(
+            "v1/chat/messages",
+            method="GET",
+            params={
+                "meta": meta,
+                "limit": limit,
+                "filter": filter,
+                "cursor": cursor,
+                "include_raw_data": include_raw_data,
+            },
+            request_options=request_options,
+        )
+        try:
+            if 200 <= _response.status_code < 300:
+                _data = typing.cast(
+                    ChatQueryMessagesResponse,
+                    construct_type(
+                        type_=ChatQueryMessagesResponse,  # type: ignore
+                        object_=_response.json(),
+                    ),
+                )
+                return AsyncHttpResponse(response=_response, data=_data)
+            if _response.status_code == 400:
+                raise BadRequestError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 401:
+                raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 403:
+                raise ForbiddenError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 404:
+                raise NotFoundError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 405:
+                raise MethodNotAllowedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 429:
+                raise TooManyRequestsError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 500:
+                raise InternalServerError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 501:
+                raise NotImplementedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 502:
+                raise BadGatewayError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 503:
+                raise ServiceUnavailableError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 504:
+                raise GatewayTimeoutError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            _response_json = _response.json()
+        except JSONDecodeError:
+            raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response.text)
+        except ValidationError as e:
+            raise ParsingError(
+                status_code=_response.status_code, headers=dict(_response.headers), body=_response.json(), cause=e
+            )
+        raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
+
     async def query_conversation_messages(
         self,
         conversation_id: str,
@@ -2601,6 +3044,7 @@ class AsyncRawChatClient:
         limit: typing.Optional[int] = None,
         filter: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
         cursor: typing.Optional[str] = None,
+        include_raw_data: typing.Optional[bool] = None,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[ChatQueryMessagesResponse]:
         """
@@ -2614,13 +3058,16 @@ class AsyncRawChatClient:
             Add metadata to the response by invoking meta functions.
 
         limit : typing.Optional[int]
-            Number of messages to return. Defaults to 100.
+            Number of messages to return. Defaults to 100 with a maximum of 1000. If a provider has a maximum limit lower than 1000, the provider's maximum limit will be used instead.
 
         filter : typing.Optional[typing.Union[str, typing.Sequence[str]]]
             Filter results by this query. Supported filter fields vary by provider. Defaults to no filter. If used more than once, the queries are ANDed together.
 
         cursor : typing.Optional[str]
             Start search from cursor position.
+
+        include_raw_data : typing.Optional[bool]
+            Include the raw data from the chat provider in the response. Defaults to `false`.
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -2637,6 +3084,7 @@ class AsyncRawChatClient:
                 "limit": limit,
                 "filter": filter,
                 "cursor": cursor,
+                "include_raw_data": include_raw_data,
             },
             request_options=request_options,
         )
