@@ -116,6 +116,8 @@ from .ping_one_credential import PingOneCredential
 from .q_radar_credential import QRadarCredential
 from .qualys_cloud_credential import QualysCloudCredential
 from .rapid_7_insight_cloud_credential import Rapid7InsightCloudCredential
+from .secureframe_credential import SecureframeCredential
+from .secureframe_region import SecureframeRegion
 from .sentinel_credential import SentinelCredential
 from .sentinel_one_credential import SentinelOneCredential
 from .sentinel_one_edr_events_credential import SentinelOneEdrEventsCredential
@@ -1160,6 +1162,20 @@ class ProviderConfig_EndpointmanagementNinjaone(UncheckedBaseModel):
     credential: NinjaOneCredential
     region: NinjaOneRegion
     url: typing.Optional[str] = None
+
+    if IS_PYDANTIC_V2:
+        model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow")  # type: ignore # Pydantic v2
+    else:
+
+        class Config:
+            smart_union = True
+            extra = pydantic.Extra.allow
+
+
+class ProviderConfig_GrcSecureframe(UncheckedBaseModel):
+    type: typing.Literal["grc_secureframe"] = "grc_secureframe"
+    credential: SecureframeCredential
+    region: SecureframeRegion
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow")  # type: ignore # Pydantic v2
@@ -2796,6 +2812,7 @@ ProviderConfig = typing_extensions.Annotated[
         ProviderConfig_EndpointmanagementIru,
         ProviderConfig_EndpointmanagementJamf,
         ProviderConfig_EndpointmanagementNinjaone,
+        ProviderConfig_GrcSecureframe,
         ProviderConfig_IdentityAshby,
         ProviderConfig_IdentityAwsIam,
         ProviderConfig_IdentityCrowdstrike,

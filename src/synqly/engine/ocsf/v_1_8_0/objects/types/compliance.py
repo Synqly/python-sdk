@@ -54,6 +54,11 @@ class Compliance(UncheckedBaseModel):
     The list of control parameters evaluated in a Compliance check. E.g., parameters for CloudTrail configuration might include <code>multiRegionTrailEnabled: true</code>, <code>logFileValidationEnabled: true</code>, and <code>requiredRegions: [us-east-1, us-west-2]</code>
     """
 
+    control_uid: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    The unique identifier of the control in the source GRC system that this evaluation was performed against.
+    """
+
     desc: typing.Optional[str] = pydantic.Field(default=None)
     """
     The description or criteria of a control.

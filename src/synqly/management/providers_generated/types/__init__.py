@@ -243,6 +243,7 @@ if typing.TYPE_CHECKING:
         GoogleServiceAccountCredential_OAuthClient,
         GoogleServiceAccountCredential_OAuthClientId,
     )
+    from .grc_secureframe import GrcSecureframe
     from .greenhouse_credential import (
         GreenhouseCredential,
         GreenhouseCredential_OAuthClient,
@@ -469,6 +470,7 @@ if typing.TYPE_CHECKING:
         ProviderConfig_EndpointmanagementIru,
         ProviderConfig_EndpointmanagementJamf,
         ProviderConfig_EndpointmanagementNinjaone,
+        ProviderConfig_GrcSecureframe,
         ProviderConfig_IdentityAshby,
         ProviderConfig_IdentityAwsIam,
         ProviderConfig_IdentityCrowdstrike,
@@ -585,6 +587,12 @@ if typing.TYPE_CHECKING:
         Rapid7InsightCloudCredential_Token,
         Rapid7InsightCloudCredential_TokenId,
     )
+    from .secureframe_credential import (
+        SecureframeCredential,
+        SecureframeCredential_Basic,
+        SecureframeCredential_BasicId,
+    )
+    from .secureframe_region import SecureframeRegion
     from .security_awareness_know_be_4 import SecurityAwarenessKnowBe4
     from .sentinel_credential import (
         SentinelCredential,
@@ -1000,6 +1008,7 @@ _dynamic_imports: typing.Dict[str, str] = {
     "GoogleServiceAccountCredential": ".google_service_account_credential",
     "GoogleServiceAccountCredential_OAuthClient": ".google_service_account_credential",
     "GoogleServiceAccountCredential_OAuthClientId": ".google_service_account_credential",
+    "GrcSecureframe": ".grc_secureframe",
     "GreenhouseCredential": ".greenhouse_credential",
     "GreenhouseCredential_OAuthClient": ".greenhouse_credential",
     "GreenhouseCredential_OAuthClientId": ".greenhouse_credential",
@@ -1224,6 +1233,7 @@ _dynamic_imports: typing.Dict[str, str] = {
     "ProviderConfig_EndpointmanagementIru": ".provider_config",
     "ProviderConfig_EndpointmanagementJamf": ".provider_config",
     "ProviderConfig_EndpointmanagementNinjaone": ".provider_config",
+    "ProviderConfig_GrcSecureframe": ".provider_config",
     "ProviderConfig_IdentityAshby": ".provider_config",
     "ProviderConfig_IdentityAwsIam": ".provider_config",
     "ProviderConfig_IdentityCrowdstrike": ".provider_config",
@@ -1336,6 +1346,10 @@ _dynamic_imports: typing.Dict[str, str] = {
     "Rapid7InsightCloudCredential": ".rapid_7_insight_cloud_credential",
     "Rapid7InsightCloudCredential_Token": ".rapid_7_insight_cloud_credential",
     "Rapid7InsightCloudCredential_TokenId": ".rapid_7_insight_cloud_credential",
+    "SecureframeCredential": ".secureframe_credential",
+    "SecureframeCredential_Basic": ".secureframe_credential",
+    "SecureframeCredential_BasicId": ".secureframe_credential",
+    "SecureframeRegion": ".secureframe_region",
     "SecurityAwarenessKnowBe4": ".security_awareness_know_be_4",
     "SentinelCredential": ".sentinel_credential",
     "SentinelCredential_OAuthClient": ".sentinel_credential",
@@ -1775,6 +1789,7 @@ __all__ = [
     "GoogleServiceAccountCredential",
     "GoogleServiceAccountCredential_OAuthClient",
     "GoogleServiceAccountCredential_OAuthClientId",
+    "GrcSecureframe",
     "GreenhouseCredential",
     "GreenhouseCredential_OAuthClient",
     "GreenhouseCredential_OAuthClientId",
@@ -1999,6 +2014,7 @@ __all__ = [
     "ProviderConfig_EndpointmanagementIru",
     "ProviderConfig_EndpointmanagementJamf",
     "ProviderConfig_EndpointmanagementNinjaone",
+    "ProviderConfig_GrcSecureframe",
     "ProviderConfig_IdentityAshby",
     "ProviderConfig_IdentityAwsIam",
     "ProviderConfig_IdentityCrowdstrike",
@@ -2111,6 +2127,10 @@ __all__ = [
     "Rapid7InsightCloudCredential",
     "Rapid7InsightCloudCredential_Token",
     "Rapid7InsightCloudCredential_TokenId",
+    "SecureframeCredential",
+    "SecureframeCredential_Basic",
+    "SecureframeCredential_BasicId",
+    "SecureframeRegion",
     "SecurityAwarenessKnowBe4",
     "SentinelCredential",
     "SentinelCredential_OAuthClient",

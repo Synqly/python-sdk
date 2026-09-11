@@ -938,6 +938,78 @@ from ...ocsf.v_1_8_0.chatmessageactivity.classes.types.status_id import (
 from ...ocsf.v_1_8_0.chatmessageactivity.classes.types.type_uid import (
     TypeUid as ocsf_v_1_8_0_chatmessageactivity_classes_types_type_uid_TypeUid,
 )
+from ...ocsf.v_1_8_0.compliancecontrolinventoryinfo.classes.types.activity_id import (
+    ActivityId as ocsf_v_1_8_0_compliancecontrolinventoryinfo_classes_types_activity_id_ActivityId,
+)
+from ...ocsf.v_1_8_0.compliancecontrolinventoryinfo.classes.types.category_uid import (
+    CategoryUid as ocsf_v_1_8_0_compliancecontrolinventoryinfo_classes_types_category_uid_CategoryUid,
+)
+from ...ocsf.v_1_8_0.compliancecontrolinventoryinfo.classes.types.class_uid import (
+    ClassUid as ocsf_v_1_8_0_compliancecontrolinventoryinfo_classes_types_class_uid_ClassUid,
+)
+from ...ocsf.v_1_8_0.compliancecontrolinventoryinfo.classes.types.severity_id import (
+    SeverityId as ocsf_v_1_8_0_compliancecontrolinventoryinfo_classes_types_severity_id_SeverityId,
+)
+from ...ocsf.v_1_8_0.compliancecontrolinventoryinfo.classes.types.status_id import (
+    StatusId as ocsf_v_1_8_0_compliancecontrolinventoryinfo_classes_types_status_id_StatusId,
+)
+from ...ocsf.v_1_8_0.compliancecontrolinventoryinfo.classes.types.type_uid import (
+    TypeUid as ocsf_v_1_8_0_compliancecontrolinventoryinfo_classes_types_type_uid_TypeUid,
+)
+from ...ocsf.v_1_8_0.complianceevidenceinventoryinfo.classes.types.activity_id import (
+    ActivityId as ocsf_v_1_8_0_complianceevidenceinventoryinfo_classes_types_activity_id_ActivityId,
+)
+from ...ocsf.v_1_8_0.complianceevidenceinventoryinfo.classes.types.category_uid import (
+    CategoryUid as ocsf_v_1_8_0_complianceevidenceinventoryinfo_classes_types_category_uid_CategoryUid,
+)
+from ...ocsf.v_1_8_0.complianceevidenceinventoryinfo.classes.types.class_uid import (
+    ClassUid as ocsf_v_1_8_0_complianceevidenceinventoryinfo_classes_types_class_uid_ClassUid,
+)
+from ...ocsf.v_1_8_0.complianceevidenceinventoryinfo.classes.types.severity_id import (
+    SeverityId as ocsf_v_1_8_0_complianceevidenceinventoryinfo_classes_types_severity_id_SeverityId,
+)
+from ...ocsf.v_1_8_0.complianceevidenceinventoryinfo.classes.types.status_id import (
+    StatusId as ocsf_v_1_8_0_complianceevidenceinventoryinfo_classes_types_status_id_StatusId,
+)
+from ...ocsf.v_1_8_0.complianceevidenceinventoryinfo.classes.types.type_uid import (
+    TypeUid as ocsf_v_1_8_0_complianceevidenceinventoryinfo_classes_types_type_uid_TypeUid,
+)
+from ...ocsf.v_1_8_0.complianceframeworkinventoryinfo.classes.types.activity_id import (
+    ActivityId as ocsf_v_1_8_0_complianceframeworkinventoryinfo_classes_types_activity_id_ActivityId,
+)
+from ...ocsf.v_1_8_0.complianceframeworkinventoryinfo.classes.types.category_uid import (
+    CategoryUid as ocsf_v_1_8_0_complianceframeworkinventoryinfo_classes_types_category_uid_CategoryUid,
+)
+from ...ocsf.v_1_8_0.complianceframeworkinventoryinfo.classes.types.class_uid import (
+    ClassUid as ocsf_v_1_8_0_complianceframeworkinventoryinfo_classes_types_class_uid_ClassUid,
+)
+from ...ocsf.v_1_8_0.complianceframeworkinventoryinfo.classes.types.severity_id import (
+    SeverityId as ocsf_v_1_8_0_complianceframeworkinventoryinfo_classes_types_severity_id_SeverityId,
+)
+from ...ocsf.v_1_8_0.complianceframeworkinventoryinfo.classes.types.status_id import (
+    StatusId as ocsf_v_1_8_0_complianceframeworkinventoryinfo_classes_types_status_id_StatusId,
+)
+from ...ocsf.v_1_8_0.complianceframeworkinventoryinfo.classes.types.type_uid import (
+    TypeUid as ocsf_v_1_8_0_complianceframeworkinventoryinfo_classes_types_type_uid_TypeUid,
+)
+from ...ocsf.v_1_8_0.compliancetestinventoryinfo.classes.types.activity_id import (
+    ActivityId as ocsf_v_1_8_0_compliancetestinventoryinfo_classes_types_activity_id_ActivityId,
+)
+from ...ocsf.v_1_8_0.compliancetestinventoryinfo.classes.types.category_uid import (
+    CategoryUid as ocsf_v_1_8_0_compliancetestinventoryinfo_classes_types_category_uid_CategoryUid,
+)
+from ...ocsf.v_1_8_0.compliancetestinventoryinfo.classes.types.class_uid import (
+    ClassUid as ocsf_v_1_8_0_compliancetestinventoryinfo_classes_types_class_uid_ClassUid,
+)
+from ...ocsf.v_1_8_0.compliancetestinventoryinfo.classes.types.severity_id import (
+    SeverityId as ocsf_v_1_8_0_compliancetestinventoryinfo_classes_types_severity_id_SeverityId,
+)
+from ...ocsf.v_1_8_0.compliancetestinventoryinfo.classes.types.status_id import (
+    StatusId as ocsf_v_1_8_0_compliancetestinventoryinfo_classes_types_status_id_StatusId,
+)
+from ...ocsf.v_1_8_0.compliancetestinventoryinfo.classes.types.type_uid import (
+    TypeUid as ocsf_v_1_8_0_compliancetestinventoryinfo_classes_types_type_uid_TypeUid,
+)
 from ...ocsf.v_1_8_0.conversationactivity.classes.types.activity_id import (
     ActivityId as ocsf_v_1_8_0_conversationactivity_classes_types_activity_id_ActivityId,
 )
@@ -995,6 +1067,10 @@ from ...ocsf.v_1_8_0.objects.types.authorization import (
 )
 from ...ocsf.v_1_8_0.objects.types.chat_message import ChatMessage
 from ...ocsf.v_1_8_0.objects.types.compliance import Compliance as ocsf_v_1_8_0_objects_types_compliance_Compliance
+from ...ocsf.v_1_8_0.objects.types.compliance_control import ComplianceControl
+from ...ocsf.v_1_8_0.objects.types.compliance_evidence import ComplianceEvidence
+from ...ocsf.v_1_8_0.objects.types.compliance_framework import ComplianceFramework
+from ...ocsf.v_1_8_0.objects.types.compliance_test import ComplianceTest
 from ...ocsf.v_1_8_0.objects.types.conversation import Conversation
 from ...ocsf.v_1_8_0.objects.types.device import Device as ocsf_v_1_8_0_objects_types_device_Device
 from ...ocsf.v_1_8_0.objects.types.enrichment import Enrichment as ocsf_v_1_8_0_objects_types_enrichment_Enrichment
@@ -3287,6 +3363,178 @@ class Event_ApplicationInventoryInfo(UncheckedBaseModel):
             extra = pydantic.Extra.allow
 
 
+class Event_ComplianceControlInventoryInfo(UncheckedBaseModel):
+    class_name: typing.Literal["Compliance Control Inventory Info"] = "Compliance Control Inventory Info"
+    activity_id: ocsf_v_1_8_0_compliancecontrolinventoryinfo_classes_types_activity_id_ActivityId
+    activity_name: typing.Optional[str] = None
+    category_name: typing.Optional[str] = None
+    category_uid: ocsf_v_1_8_0_compliancecontrolinventoryinfo_classes_types_category_uid_CategoryUid
+    class_uid: ocsf_v_1_8_0_compliancecontrolinventoryinfo_classes_types_class_uid_ClassUid
+    compliance_control: ComplianceControl
+    count: typing.Optional[int] = None
+    duration: typing.Optional[int] = None
+    end_time: typing.Optional[ocsf_v_1_8_0_base_types_timestamp_Timestamp] = None
+    end_time_dt: typing.Optional[dt.datetime] = None
+    enrichments: typing.Optional[typing.List[ocsf_v_1_8_0_objects_types_enrichment_Enrichment]] = None
+    message: typing.Optional[str] = None
+    metadata: ocsf_v_1_8_0_objects_types_metadata_Metadata
+    observables: typing.Optional[typing.List[ocsf_v_1_8_0_objects_types_observable_Observable]] = None
+    raw_data: typing.Optional[str] = None
+    raw_data_hash: typing.Optional[ocsf_v_1_8_0_objects_types_fingerprint_Fingerprint] = None
+    raw_data_size: typing.Optional[int] = None
+    severity: typing.Optional[str] = None
+    severity_id: ocsf_v_1_8_0_compliancecontrolinventoryinfo_classes_types_severity_id_SeverityId
+    start_time: typing.Optional[ocsf_v_1_8_0_base_types_timestamp_Timestamp] = None
+    start_time_dt: typing.Optional[dt.datetime] = None
+    status: typing.Optional[str] = None
+    status_code: typing.Optional[str] = None
+    status_detail: typing.Optional[str] = None
+    status_id: typing.Optional[ocsf_v_1_8_0_compliancecontrolinventoryinfo_classes_types_status_id_StatusId] = None
+    time: ocsf_v_1_8_0_base_types_timestamp_Timestamp
+    time_dt: typing.Optional[dt.datetime] = None
+    timezone_offset: typing.Optional[int] = None
+    type_name: typing.Optional[str] = None
+    type_uid: ocsf_v_1_8_0_compliancecontrolinventoryinfo_classes_types_type_uid_TypeUid
+    unmapped: typing.Optional[ocsf_v_1_8_0_objects_types_object_Object] = None
+
+    if IS_PYDANTIC_V2:
+        model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow")  # type: ignore # Pydantic v2
+    else:
+
+        class Config:
+            smart_union = True
+            extra = pydantic.Extra.allow
+
+
+class Event_ComplianceFrameworkInventoryInfo(UncheckedBaseModel):
+    class_name: typing.Literal["Compliance Framework Inventory Info"] = "Compliance Framework Inventory Info"
+    activity_id: ocsf_v_1_8_0_complianceframeworkinventoryinfo_classes_types_activity_id_ActivityId
+    activity_name: typing.Optional[str] = None
+    category_name: typing.Optional[str] = None
+    category_uid: ocsf_v_1_8_0_complianceframeworkinventoryinfo_classes_types_category_uid_CategoryUid
+    class_uid: ocsf_v_1_8_0_complianceframeworkinventoryinfo_classes_types_class_uid_ClassUid
+    compliance_framework: ComplianceFramework
+    count: typing.Optional[int] = None
+    duration: typing.Optional[int] = None
+    end_time: typing.Optional[ocsf_v_1_8_0_base_types_timestamp_Timestamp] = None
+    end_time_dt: typing.Optional[dt.datetime] = None
+    enrichments: typing.Optional[typing.List[ocsf_v_1_8_0_objects_types_enrichment_Enrichment]] = None
+    message: typing.Optional[str] = None
+    metadata: ocsf_v_1_8_0_objects_types_metadata_Metadata
+    observables: typing.Optional[typing.List[ocsf_v_1_8_0_objects_types_observable_Observable]] = None
+    raw_data: typing.Optional[str] = None
+    raw_data_hash: typing.Optional[ocsf_v_1_8_0_objects_types_fingerprint_Fingerprint] = None
+    raw_data_size: typing.Optional[int] = None
+    severity: typing.Optional[str] = None
+    severity_id: ocsf_v_1_8_0_complianceframeworkinventoryinfo_classes_types_severity_id_SeverityId
+    start_time: typing.Optional[ocsf_v_1_8_0_base_types_timestamp_Timestamp] = None
+    start_time_dt: typing.Optional[dt.datetime] = None
+    status: typing.Optional[str] = None
+    status_code: typing.Optional[str] = None
+    status_detail: typing.Optional[str] = None
+    status_id: typing.Optional[ocsf_v_1_8_0_complianceframeworkinventoryinfo_classes_types_status_id_StatusId] = None
+    time: ocsf_v_1_8_0_base_types_timestamp_Timestamp
+    time_dt: typing.Optional[dt.datetime] = None
+    timezone_offset: typing.Optional[int] = None
+    type_name: typing.Optional[str] = None
+    type_uid: ocsf_v_1_8_0_complianceframeworkinventoryinfo_classes_types_type_uid_TypeUid
+    unmapped: typing.Optional[ocsf_v_1_8_0_objects_types_object_Object] = None
+
+    if IS_PYDANTIC_V2:
+        model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow")  # type: ignore # Pydantic v2
+    else:
+
+        class Config:
+            smart_union = True
+            extra = pydantic.Extra.allow
+
+
+class Event_ComplianceTestInventoryInfo(UncheckedBaseModel):
+    class_name: typing.Literal["Compliance Test Inventory Info"] = "Compliance Test Inventory Info"
+    activity_id: ocsf_v_1_8_0_compliancetestinventoryinfo_classes_types_activity_id_ActivityId
+    activity_name: typing.Optional[str] = None
+    category_name: typing.Optional[str] = None
+    category_uid: ocsf_v_1_8_0_compliancetestinventoryinfo_classes_types_category_uid_CategoryUid
+    class_uid: ocsf_v_1_8_0_compliancetestinventoryinfo_classes_types_class_uid_ClassUid
+    compliance_test: ComplianceTest
+    count: typing.Optional[int] = None
+    duration: typing.Optional[int] = None
+    end_time: typing.Optional[ocsf_v_1_8_0_base_types_timestamp_Timestamp] = None
+    end_time_dt: typing.Optional[dt.datetime] = None
+    enrichments: typing.Optional[typing.List[ocsf_v_1_8_0_objects_types_enrichment_Enrichment]] = None
+    message: typing.Optional[str] = None
+    metadata: ocsf_v_1_8_0_objects_types_metadata_Metadata
+    observables: typing.Optional[typing.List[ocsf_v_1_8_0_objects_types_observable_Observable]] = None
+    raw_data: typing.Optional[str] = None
+    raw_data_hash: typing.Optional[ocsf_v_1_8_0_objects_types_fingerprint_Fingerprint] = None
+    raw_data_size: typing.Optional[int] = None
+    severity: typing.Optional[str] = None
+    severity_id: ocsf_v_1_8_0_compliancetestinventoryinfo_classes_types_severity_id_SeverityId
+    start_time: typing.Optional[ocsf_v_1_8_0_base_types_timestamp_Timestamp] = None
+    start_time_dt: typing.Optional[dt.datetime] = None
+    status: typing.Optional[str] = None
+    status_code: typing.Optional[str] = None
+    status_detail: typing.Optional[str] = None
+    status_id: typing.Optional[ocsf_v_1_8_0_compliancetestinventoryinfo_classes_types_status_id_StatusId] = None
+    time: ocsf_v_1_8_0_base_types_timestamp_Timestamp
+    time_dt: typing.Optional[dt.datetime] = None
+    timezone_offset: typing.Optional[int] = None
+    type_name: typing.Optional[str] = None
+    type_uid: ocsf_v_1_8_0_compliancetestinventoryinfo_classes_types_type_uid_TypeUid
+    unmapped: typing.Optional[ocsf_v_1_8_0_objects_types_object_Object] = None
+
+    if IS_PYDANTIC_V2:
+        model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow")  # type: ignore # Pydantic v2
+    else:
+
+        class Config:
+            smart_union = True
+            extra = pydantic.Extra.allow
+
+
+class Event_ComplianceEvidenceInventoryInfo(UncheckedBaseModel):
+    class_name: typing.Literal["Compliance Evidence Inventory Info"] = "Compliance Evidence Inventory Info"
+    activity_id: ocsf_v_1_8_0_complianceevidenceinventoryinfo_classes_types_activity_id_ActivityId
+    activity_name: typing.Optional[str] = None
+    category_name: typing.Optional[str] = None
+    category_uid: ocsf_v_1_8_0_complianceevidenceinventoryinfo_classes_types_category_uid_CategoryUid
+    class_uid: ocsf_v_1_8_0_complianceevidenceinventoryinfo_classes_types_class_uid_ClassUid
+    compliance_evidence: ComplianceEvidence
+    count: typing.Optional[int] = None
+    duration: typing.Optional[int] = None
+    end_time: typing.Optional[ocsf_v_1_8_0_base_types_timestamp_Timestamp] = None
+    end_time_dt: typing.Optional[dt.datetime] = None
+    enrichments: typing.Optional[typing.List[ocsf_v_1_8_0_objects_types_enrichment_Enrichment]] = None
+    message: typing.Optional[str] = None
+    metadata: ocsf_v_1_8_0_objects_types_metadata_Metadata
+    observables: typing.Optional[typing.List[ocsf_v_1_8_0_objects_types_observable_Observable]] = None
+    raw_data: typing.Optional[str] = None
+    raw_data_hash: typing.Optional[ocsf_v_1_8_0_objects_types_fingerprint_Fingerprint] = None
+    raw_data_size: typing.Optional[int] = None
+    severity: typing.Optional[str] = None
+    severity_id: ocsf_v_1_8_0_complianceevidenceinventoryinfo_classes_types_severity_id_SeverityId
+    start_time: typing.Optional[ocsf_v_1_8_0_base_types_timestamp_Timestamp] = None
+    start_time_dt: typing.Optional[dt.datetime] = None
+    status: typing.Optional[str] = None
+    status_code: typing.Optional[str] = None
+    status_detail: typing.Optional[str] = None
+    status_id: typing.Optional[ocsf_v_1_8_0_complianceevidenceinventoryinfo_classes_types_status_id_StatusId] = None
+    time: ocsf_v_1_8_0_base_types_timestamp_Timestamp
+    time_dt: typing.Optional[dt.datetime] = None
+    timezone_offset: typing.Optional[int] = None
+    type_name: typing.Optional[str] = None
+    type_uid: ocsf_v_1_8_0_complianceevidenceinventoryinfo_classes_types_type_uid_TypeUid
+    unmapped: typing.Optional[ocsf_v_1_8_0_objects_types_object_Object] = None
+
+    if IS_PYDANTIC_V2:
+        model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow")  # type: ignore # Pydantic v2
+    else:
+
+        class Config:
+            smart_union = True
+            extra = pydantic.Extra.allow
+
+
 class Event_EventLogActivity(UncheckedBaseModel):
     class_name: typing.Literal["Event Log Activity"] = "Event Log Activity"
     action: typing.Optional[str] = None
@@ -3517,6 +3765,10 @@ Event = typing_extensions.Annotated[
         Event_ChatMessageActivity,
         Event_ConversationActivity,
         Event_ApplicationInventoryInfo,
+        Event_ComplianceControlInventoryInfo,
+        Event_ComplianceFrameworkInventoryInfo,
+        Event_ComplianceTestInventoryInfo,
+        Event_ComplianceEvidenceInventoryInfo,
         Event_EventLogActivity,
         Event_TrainingCampaignInventoryInfo,
         Event_PhishingSimulationInventoryInfo,
@@ -3533,6 +3785,10 @@ update_forward_refs(Event_SoftwareInventoryInfo)
 update_forward_refs(Event_ChatMessageActivity)
 update_forward_refs(Event_ConversationActivity)
 update_forward_refs(Event_ApplicationInventoryInfo, LdapPerson=LdapPerson, User=ocsf_v_1_8_0_objects_types_user_User)
+update_forward_refs(Event_ComplianceControlInventoryInfo)
+update_forward_refs(Event_ComplianceFrameworkInventoryInfo)
+update_forward_refs(Event_ComplianceTestInventoryInfo)
+update_forward_refs(Event_ComplianceEvidenceInventoryInfo)
 update_forward_refs(Event_TrainingCampaignInventoryInfo)
 update_forward_refs(Event_PhishingSimulationInventoryInfo)
 update_forward_refs(Event_UserInventoryInfo, LdapPerson=LdapPerson, User=ocsf_v_1_8_0_objects_types_user_User)

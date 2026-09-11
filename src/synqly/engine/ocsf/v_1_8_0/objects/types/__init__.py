@@ -53,7 +53,15 @@ if typing.TYPE_CHECKING:
     from .classifier_details import ClassifierDetails
     from .cloud import Cloud
     from .compliance import Compliance
+    from .compliance_control import ComplianceControl
+    from .compliance_control_assessment_status_id import ComplianceControlAssessmentStatusId
+    from .compliance_control_implementation_status_id import ComplianceControlImplementationStatusId
+    from .compliance_evidence import ComplianceEvidence
+    from .compliance_evidence_evidence_type_id import ComplianceEvidenceEvidenceTypeId
+    from .compliance_framework import ComplianceFramework
     from .compliance_status_id import ComplianceStatusId
+    from .compliance_test import ComplianceTest
+    from .compliance_test_assessment_status_id import ComplianceTestAssessmentStatusId
     from .container import Container
     from .conversation import Conversation
     from .conversation_type_id import ConversationTypeId
@@ -354,7 +362,15 @@ _dynamic_imports: typing.Dict[str, str] = {
     "ClassifierDetails": ".classifier_details",
     "Cloud": ".cloud",
     "Compliance": ".compliance",
+    "ComplianceControl": ".compliance_control",
+    "ComplianceControlAssessmentStatusId": ".compliance_control_assessment_status_id",
+    "ComplianceControlImplementationStatusId": ".compliance_control_implementation_status_id",
+    "ComplianceEvidence": ".compliance_evidence",
+    "ComplianceEvidenceEvidenceTypeId": ".compliance_evidence_evidence_type_id",
+    "ComplianceFramework": ".compliance_framework",
     "ComplianceStatusId": ".compliance_status_id",
+    "ComplianceTest": ".compliance_test",
+    "ComplianceTestAssessmentStatusId": ".compliance_test_assessment_status_id",
     "Container": ".container",
     "Conversation": ".conversation",
     "ConversationTypeId": ".conversation_type_id",
@@ -679,7 +695,15 @@ __all__ = [
     "ClassifierDetails",
     "Cloud",
     "Compliance",
+    "ComplianceControl",
+    "ComplianceControlAssessmentStatusId",
+    "ComplianceControlImplementationStatusId",
+    "ComplianceEvidence",
+    "ComplianceEvidenceEvidenceTypeId",
+    "ComplianceFramework",
     "ComplianceStatusId",
+    "ComplianceTest",
+    "ComplianceTestAssessmentStatusId",
     "Container",
     "Conversation",
     "ConversationTypeId",

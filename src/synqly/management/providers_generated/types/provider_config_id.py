@@ -367,6 +367,11 @@ class ProviderConfigId(enum.StrEnum):
     NinjaOne
     """
 
+    GRC_SECUREFRAME = "grc_secureframe"
+    """
+    Secureframe
+    """
+
     IDENTITY_ASHBY = "identity_ashby"
     """
     Ashby Identity
@@ -971,6 +976,7 @@ class ProviderConfigId(enum.StrEnum):
         endpointmanagement_iru: typing.Callable[[], T_Result],
         endpointmanagement_jamf: typing.Callable[[], T_Result],
         endpointmanagement_ninjaone: typing.Callable[[], T_Result],
+        grc_secureframe: typing.Callable[[], T_Result],
         identity_ashby: typing.Callable[[], T_Result],
         identity_aws_iam: typing.Callable[[], T_Result],
         identity_crowd_strike: typing.Callable[[], T_Result],
@@ -1219,6 +1225,8 @@ class ProviderConfigId(enum.StrEnum):
             return endpointmanagement_jamf()
         if self is ProviderConfigId.ENDPOINTMANAGEMENT_NINJAONE:
             return endpointmanagement_ninjaone()
+        if self is ProviderConfigId.GRC_SECUREFRAME:
+            return grc_secureframe()
         if self is ProviderConfigId.IDENTITY_ASHBY:
             return identity_ashby()
         if self is ProviderConfigId.IDENTITY_AWS_IAM:

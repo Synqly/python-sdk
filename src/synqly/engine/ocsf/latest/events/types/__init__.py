@@ -13,6 +13,7 @@ if typing.TYPE_CHECKING:
     from .authentication import Authentication
     from .cloud_activity import CloudActivity
     from .cloud_resources_inventory_info import CloudResourcesInventoryInfo
+    from .compliance_control_inventory_info import ComplianceControlInventoryInfo
     from .compliance_finding import ComplianceFinding
     from .detection_finding import DetectionFinding
     from .dns_activity import DnsActivity
@@ -44,6 +45,7 @@ _dynamic_imports: typing.Dict[str, str] = {
     "Authentication": ".authentication",
     "CloudActivity": ".cloud_activity",
     "CloudResourcesInventoryInfo": ".cloud_resources_inventory_info",
+    "ComplianceControlInventoryInfo": ".compliance_control_inventory_info",
     "ComplianceFinding": ".compliance_finding",
     "DetectionFinding": ".detection_finding",
     "DnsActivity": ".dns_activity",
@@ -99,6 +101,7 @@ __all__ = [
     "Authentication",
     "CloudActivity",
     "CloudResourcesInventoryInfo",
+    "ComplianceControlInventoryInfo",
     "ComplianceFinding",
     "DetectionFinding",
     "DnsActivity",

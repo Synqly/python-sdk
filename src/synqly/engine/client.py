@@ -18,6 +18,7 @@ if typing.TYPE_CHECKING:
     from .edr.client import AsyncEdrClient, EdrClient
     from .emailsecurity.client import AsyncEmailsecurityClient, EmailsecurityClient
     from .endpointmanagement.client import AsyncEndpointmanagementClient, EndpointmanagementClient
+    from .grc.client import AsyncGrcClient, GrcClient
     from .hooks.client import AsyncHooksClient, HooksClient
     from .identity.client import AsyncIdentityClient, IdentityClient
     from .incidentresponse.client import AsyncIncidentresponseClient, IncidentresponseClient
@@ -127,6 +128,7 @@ class SynqlyEngine:
         self._edr: typing.Optional[EdrClient] = None
         self._emailsecurity: typing.Optional[EmailsecurityClient] = None
         self._endpointmanagement: typing.Optional[EndpointmanagementClient] = None
+        self._grc: typing.Optional[GrcClient] = None
         self._hooks: typing.Optional[HooksClient] = None
         self._identity: typing.Optional[IdentityClient] = None
         self._incidentresponse: typing.Optional[IncidentresponseClient] = None
@@ -204,6 +206,14 @@ class SynqlyEngine:
 
             self._endpointmanagement = EndpointmanagementClient(client_wrapper=self._client_wrapper)
         return self._endpointmanagement
+
+    @property
+    def grc(self):
+        if self._grc is None:
+            from .grc.client import GrcClient  # noqa: E402
+
+            self._grc = GrcClient(client_wrapper=self._client_wrapper)
+        return self._grc
 
     @property
     def hooks(self):
@@ -425,6 +435,7 @@ class AsyncSynqlyEngine:
         self._edr: typing.Optional[AsyncEdrClient] = None
         self._emailsecurity: typing.Optional[AsyncEmailsecurityClient] = None
         self._endpointmanagement: typing.Optional[AsyncEndpointmanagementClient] = None
+        self._grc: typing.Optional[AsyncGrcClient] = None
         self._hooks: typing.Optional[AsyncHooksClient] = None
         self._identity: typing.Optional[AsyncIdentityClient] = None
         self._incidentresponse: typing.Optional[AsyncIncidentresponseClient] = None
@@ -502,6 +513,14 @@ class AsyncSynqlyEngine:
 
             self._endpointmanagement = AsyncEndpointmanagementClient(client_wrapper=self._client_wrapper)
         return self._endpointmanagement
+
+    @property
+    def grc(self):
+        if self._grc is None:
+            from .grc.client import AsyncGrcClient  # noqa: E402
+
+            self._grc = AsyncGrcClient(client_wrapper=self._client_wrapper)
+        return self._grc
 
     @property
     def hooks(self):

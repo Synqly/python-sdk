@@ -75,6 +75,16 @@ class OperationId(enum.StrEnum):
     ENDPOINTMANAGEMENT_RESTART_DEVICE = "endpointmanagement_restart_device"
     ENDPOINTMANAGEMENT_UPDATE_DEVICE = "endpointmanagement_update_device"
     ENDPOINTMANAGEMENT_WIPE_DEVICE = "endpointmanagement_wipe_device"
+    GRC_GET_CONTROL = "grc_get_control"
+    GRC_GET_DEVICE = "grc_get_device"
+    GRC_GET_PERSONNEL = "grc_get_personnel"
+    GRC_GET_TEST = "grc_get_test"
+    GRC_QUERY_CONTROLS = "grc_query_controls"
+    GRC_QUERY_DEVICES = "grc_query_devices"
+    GRC_QUERY_EVIDENCE = "grc_query_evidence"
+    GRC_QUERY_FRAMEWORKS = "grc_query_frameworks"
+    GRC_QUERY_PERSONNEL = "grc_query_personnel"
+    GRC_QUERY_TESTS = "grc_query_tests"
     IDENTITY_DISABLE_USER = "identity_disable_user"
     IDENTITY_ENABLE_USER = "identity_enable_user"
     IDENTITY_EXPIRE_ALL_USER_SESSIONS = "identity_expire_all_user_sessions"
@@ -227,6 +237,16 @@ class OperationId(enum.StrEnum):
         endpointmanagement_restart_device: typing.Callable[[], T_Result],
         endpointmanagement_update_device: typing.Callable[[], T_Result],
         endpointmanagement_wipe_device: typing.Callable[[], T_Result],
+        grc_get_control: typing.Callable[[], T_Result],
+        grc_get_device: typing.Callable[[], T_Result],
+        grc_get_personnel: typing.Callable[[], T_Result],
+        grc_get_test: typing.Callable[[], T_Result],
+        grc_query_controls: typing.Callable[[], T_Result],
+        grc_query_devices: typing.Callable[[], T_Result],
+        grc_query_evidence: typing.Callable[[], T_Result],
+        grc_query_frameworks: typing.Callable[[], T_Result],
+        grc_query_personnel: typing.Callable[[], T_Result],
+        grc_query_tests: typing.Callable[[], T_Result],
         identity_disable_user: typing.Callable[[], T_Result],
         identity_enable_user: typing.Callable[[], T_Result],
         identity_expire_all_user_sessions: typing.Callable[[], T_Result],
@@ -435,6 +455,26 @@ class OperationId(enum.StrEnum):
             return endpointmanagement_update_device()
         if self is OperationId.ENDPOINTMANAGEMENT_WIPE_DEVICE:
             return endpointmanagement_wipe_device()
+        if self is OperationId.GRC_GET_CONTROL:
+            return grc_get_control()
+        if self is OperationId.GRC_GET_DEVICE:
+            return grc_get_device()
+        if self is OperationId.GRC_GET_PERSONNEL:
+            return grc_get_personnel()
+        if self is OperationId.GRC_GET_TEST:
+            return grc_get_test()
+        if self is OperationId.GRC_QUERY_CONTROLS:
+            return grc_query_controls()
+        if self is OperationId.GRC_QUERY_DEVICES:
+            return grc_query_devices()
+        if self is OperationId.GRC_QUERY_EVIDENCE:
+            return grc_query_evidence()
+        if self is OperationId.GRC_QUERY_FRAMEWORKS:
+            return grc_query_frameworks()
+        if self is OperationId.GRC_QUERY_PERSONNEL:
+            return grc_query_personnel()
+        if self is OperationId.GRC_QUERY_TESTS:
+            return grc_query_tests()
         if self is OperationId.IDENTITY_DISABLE_USER:
             return identity_disable_user()
         if self is OperationId.IDENTITY_ENABLE_USER:

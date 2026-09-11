@@ -20,6 +20,7 @@ class CategoryId(enum.StrEnum):
     EDR = "edr"
     EMAILSECURITY = "emailsecurity"
     ENDPOINTMANAGEMENT = "endpointmanagement"
+    GRC = "grc"
     IDENTITY = "identity"
     INCIDENTRESPONSE = "incidentresponse"
     NETWORKSECURITY = "networksecurity"
@@ -51,6 +52,7 @@ class CategoryId(enum.StrEnum):
         edr: typing.Callable[[], T_Result],
         emailsecurity: typing.Callable[[], T_Result],
         endpointmanagement: typing.Callable[[], T_Result],
+        grc: typing.Callable[[], T_Result],
         identity: typing.Callable[[], T_Result],
         incidentresponse: typing.Callable[[], T_Result],
         networksecurity: typing.Callable[[], T_Result],
@@ -79,6 +81,8 @@ class CategoryId(enum.StrEnum):
             return emailsecurity()
         if self is CategoryId.ENDPOINTMANAGEMENT:
             return endpointmanagement()
+        if self is CategoryId.GRC:
+            return grc()
         if self is CategoryId.IDENTITY:
             return identity()
         if self is CategoryId.INCIDENTRESPONSE:
