@@ -687,6 +687,21 @@ class ProviderConfigId(enum.StrEnum):
     Synqly Test Provider
     """
 
+    THREAT_INTEL_ABUSE_IPDB = "threatintel_abuseipdb"
+    """
+    AbuseIPDB
+    """
+
+    THREAT_INTEL_THREAT_FOX = "threatintel_threatfox"
+    """
+    ThreatFox
+    """
+
+    THREAT_INTEL_VIRUS_TOTAL = "threatintel_virustotal"
+    """
+    VirusTotal
+    """
+
     TICKETING_AUTOTASK = "ticketing_autotask"
     """
     Autotask Operations Cloud
@@ -1040,6 +1055,9 @@ class ProviderConfigId(enum.StrEnum):
         storage_azure_blob: typing.Callable[[], T_Result],
         storage_gcs: typing.Callable[[], T_Result],
         storage_mock: typing.Callable[[], T_Result],
+        threat_intel_abuse_ipdb: typing.Callable[[], T_Result],
+        threat_intel_threat_fox: typing.Callable[[], T_Result],
+        threat_intel_virus_total: typing.Callable[[], T_Result],
         ticketing_autotask: typing.Callable[[], T_Result],
         ticketing_azure_dev_ops: typing.Callable[[], T_Result],
         ticketing_bmchelix: typing.Callable[[], T_Result],
@@ -1353,6 +1371,12 @@ class ProviderConfigId(enum.StrEnum):
             return storage_gcs()
         if self is ProviderConfigId.STORAGE_MOCK:
             return storage_mock()
+        if self is ProviderConfigId.THREAT_INTEL_ABUSE_IPDB:
+            return threat_intel_abuse_ipdb()
+        if self is ProviderConfigId.THREAT_INTEL_THREAT_FOX:
+            return threat_intel_threat_fox()
+        if self is ProviderConfigId.THREAT_INTEL_VIRUS_TOTAL:
+            return threat_intel_virus_total()
         if self is ProviderConfigId.TICKETING_AUTOTASK:
             return ticketing_autotask()
         if self is ProviderConfigId.TICKETING_AZURE_DEV_OPS:

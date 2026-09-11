@@ -6,6 +6,7 @@ import typing
 from importlib import import_module
 
 if typing.TYPE_CHECKING:
+    from .abuse_ipdb_credential import AbuseIpdbCredential, AbuseIpdbCredential_Token, AbuseIpdbCredential_TokenId
     from .api_config import ApiConfig
     from .api_region import ApiRegion
     from .app_sec_service_now import AppSecServiceNow
@@ -534,6 +535,9 @@ if typing.TYPE_CHECKING:
         ProviderConfig_StorageAzureBlob,
         ProviderConfig_StorageGcs,
         ProviderConfig_StorageMockStorage,
+        ProviderConfig_ThreatintelAbuseipdb,
+        ProviderConfig_ThreatintelThreatfox,
+        ProviderConfig_ThreatintelVirustotal,
         ProviderConfig_TicketingAutotask,
         ProviderConfig_TicketingAzureDevops,
         ProviderConfig_TicketingBmchelix,
@@ -709,6 +713,10 @@ if typing.TYPE_CHECKING:
         TenableCloudCredential_TokenId,
     )
     from .tenable_sc_credential import TenableScCredential, TenableScCredential_Token, TenableScCredential_TokenId
+    from .threat_fox_credential import ThreatFoxCredential, ThreatFoxCredential_Token, ThreatFoxCredential_TokenId
+    from .threat_intel_abuse_ipdb import ThreatIntelAbuseIpdb
+    from .threat_intel_threat_fox import ThreatIntelThreatFox
+    from .threat_intel_virus_total import ThreatIntelVirusTotal
     from .ticketing_autotask import TicketingAutotask
     from .ticketing_azure_dev_ops import TicketingAzureDevOps
     from .ticketing_bmchelix import TicketingBmchelix
@@ -755,6 +763,7 @@ if typing.TYPE_CHECKING:
         VeracodeCredential_OAuthClientId,
     )
     from .veracode_region import VeracodeRegion
+    from .virus_total_credential import VirusTotalCredential, VirusTotalCredential_Token, VirusTotalCredential_TokenId
     from .vulnerabilities_amazon_inspector import VulnerabilitiesAmazonInspector
     from .vulnerabilities_axonius import VulnerabilitiesAxonius
     from .vulnerabilities_axonius_dataset import VulnerabilitiesAxoniusDataset
@@ -788,6 +797,9 @@ if typing.TYPE_CHECKING:
     from .xurrent_region import XurrentRegion
     from .zendesk_credential import ZendeskCredential, ZendeskCredential_Basic, ZendeskCredential_BasicId
 _dynamic_imports: typing.Dict[str, str] = {
+    "AbuseIpdbCredential": ".abuse_ipdb_credential",
+    "AbuseIpdbCredential_Token": ".abuse_ipdb_credential",
+    "AbuseIpdbCredential_TokenId": ".abuse_ipdb_credential",
     "ApiConfig": ".api_config",
     "ApiRegion": ".api_region",
     "AppSecServiceNow": ".app_sec_service_now",
@@ -1297,6 +1309,9 @@ _dynamic_imports: typing.Dict[str, str] = {
     "ProviderConfig_StorageAzureBlob": ".provider_config",
     "ProviderConfig_StorageGcs": ".provider_config",
     "ProviderConfig_StorageMockStorage": ".provider_config",
+    "ProviderConfig_ThreatintelAbuseipdb": ".provider_config",
+    "ProviderConfig_ThreatintelThreatfox": ".provider_config",
+    "ProviderConfig_ThreatintelVirustotal": ".provider_config",
     "ProviderConfig_TicketingAutotask": ".provider_config",
     "ProviderConfig_TicketingAzureDevops": ".provider_config",
     "ProviderConfig_TicketingBmchelix": ".provider_config",
@@ -1458,6 +1473,12 @@ _dynamic_imports: typing.Dict[str, str] = {
     "TenableScCredential": ".tenable_sc_credential",
     "TenableScCredential_Token": ".tenable_sc_credential",
     "TenableScCredential_TokenId": ".tenable_sc_credential",
+    "ThreatFoxCredential": ".threat_fox_credential",
+    "ThreatFoxCredential_Token": ".threat_fox_credential",
+    "ThreatFoxCredential_TokenId": ".threat_fox_credential",
+    "ThreatIntelAbuseIpdb": ".threat_intel_abuse_ipdb",
+    "ThreatIntelThreatFox": ".threat_intel_threat_fox",
+    "ThreatIntelVirusTotal": ".threat_intel_virus_total",
     "TicketingAutotask": ".ticketing_autotask",
     "TicketingAzureDevOps": ".ticketing_azure_dev_ops",
     "TicketingBmchelix": ".ticketing_bmchelix",
@@ -1504,6 +1525,9 @@ _dynamic_imports: typing.Dict[str, str] = {
     "VeracodeCredential_OAuthClient": ".veracode_credential",
     "VeracodeCredential_OAuthClientId": ".veracode_credential",
     "VeracodeRegion": ".veracode_region",
+    "VirusTotalCredential": ".virus_total_credential",
+    "VirusTotalCredential_Token": ".virus_total_credential",
+    "VirusTotalCredential_TokenId": ".virus_total_credential",
     "VulnerabilitiesAmazonInspector": ".vulnerabilities_amazon_inspector",
     "VulnerabilitiesAxonius": ".vulnerabilities_axonius",
     "VulnerabilitiesAxoniusDataset": ".vulnerabilities_axonius_dataset",
@@ -1569,6 +1593,9 @@ def __dir__():
 
 
 __all__ = [
+    "AbuseIpdbCredential",
+    "AbuseIpdbCredential_Token",
+    "AbuseIpdbCredential_TokenId",
     "ApiConfig",
     "ApiRegion",
     "AppSecServiceNow",
@@ -2078,6 +2105,9 @@ __all__ = [
     "ProviderConfig_StorageAzureBlob",
     "ProviderConfig_StorageGcs",
     "ProviderConfig_StorageMockStorage",
+    "ProviderConfig_ThreatintelAbuseipdb",
+    "ProviderConfig_ThreatintelThreatfox",
+    "ProviderConfig_ThreatintelVirustotal",
     "ProviderConfig_TicketingAutotask",
     "ProviderConfig_TicketingAzureDevops",
     "ProviderConfig_TicketingBmchelix",
@@ -2239,6 +2269,12 @@ __all__ = [
     "TenableScCredential",
     "TenableScCredential_Token",
     "TenableScCredential_TokenId",
+    "ThreatFoxCredential",
+    "ThreatFoxCredential_Token",
+    "ThreatFoxCredential_TokenId",
+    "ThreatIntelAbuseIpdb",
+    "ThreatIntelThreatFox",
+    "ThreatIntelVirusTotal",
     "TicketingAutotask",
     "TicketingAzureDevOps",
     "TicketingBmchelix",
@@ -2285,6 +2321,9 @@ __all__ = [
     "VeracodeCredential_OAuthClient",
     "VeracodeCredential_OAuthClientId",
     "VeracodeRegion",
+    "VirusTotalCredential",
+    "VirusTotalCredential_Token",
+    "VirusTotalCredential_TokenId",
     "VulnerabilitiesAmazonInspector",
     "VulnerabilitiesAxonius",
     "VulnerabilitiesAxoniusDataset",

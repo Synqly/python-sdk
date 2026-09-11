@@ -8,6 +8,7 @@ import pydantic
 import typing_extensions
 from ...core.pydantic_utilities import IS_PYDANTIC_V2
 from ...core.unchecked_base_model import UncheckedBaseModel, UnionMetadata
+from .abuse_ipdb_credential import AbuseIpdbCredential
 from .api_config import ApiConfig
 from .api_region import ApiRegion
 from .appsec_opentext_core_application_security_dataset import AppsecOpentextCoreApplicationSecurityDataset
@@ -140,6 +141,7 @@ from .teams_credential import TeamsCredential
 from .teams_graph_chat_credential import TeamsGraphChatCredential
 from .tenable_cloud_credential import TenableCloudCredential
 from .tenable_sc_credential import TenableScCredential
+from .threat_fox_credential import ThreatFoxCredential
 from .ticketing_ivanti_dataset import TicketingIvantiDataset
 from .ticketing_pagerduty_dataset import TicketingPagerdutyDataset
 from .torq_credential import TorqCredential
@@ -152,6 +154,7 @@ from .upwind_credential import UpwindCredential
 from .upwind_region import UpwindRegion
 from .veracode_credential import VeracodeCredential
 from .veracode_region import VeracodeRegion
+from .virus_total_credential import VirusTotalCredential
 from .vulnerabilities_axonius_dataset import VulnerabilitiesAxoniusDataset
 from .vulnerabilities_crowd_strike_dataset import VulnerabilitiesCrowdStrikeDataset
 from .vulnerabilities_qualys_cloud_dataset import VulnerabilitiesQualysCloudDataset
@@ -2146,6 +2149,45 @@ class ProviderConfig_StorageMockStorage(UncheckedBaseModel):
             extra = pydantic.Extra.allow
 
 
+class ProviderConfig_ThreatintelAbuseipdb(UncheckedBaseModel):
+    type: typing.Literal["threatintel_abuseipdb"] = "threatintel_abuseipdb"
+    credential: AbuseIpdbCredential
+
+    if IS_PYDANTIC_V2:
+        model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow")  # type: ignore # Pydantic v2
+    else:
+
+        class Config:
+            smart_union = True
+            extra = pydantic.Extra.allow
+
+
+class ProviderConfig_ThreatintelThreatfox(UncheckedBaseModel):
+    type: typing.Literal["threatintel_threatfox"] = "threatintel_threatfox"
+    credential: ThreatFoxCredential
+
+    if IS_PYDANTIC_V2:
+        model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow")  # type: ignore # Pydantic v2
+    else:
+
+        class Config:
+            smart_union = True
+            extra = pydantic.Extra.allow
+
+
+class ProviderConfig_ThreatintelVirustotal(UncheckedBaseModel):
+    type: typing.Literal["threatintel_virustotal"] = "threatintel_virustotal"
+    credential: VirusTotalCredential
+
+    if IS_PYDANTIC_V2:
+        model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow")  # type: ignore # Pydantic v2
+    else:
+
+        class Config:
+            smart_union = True
+            extra = pydantic.Extra.allow
+
+
 class ProviderConfig_TicketingAutotask(UncheckedBaseModel):
     type: typing.Literal["ticketing_autotask"] = "ticketing_autotask"
     api_integration_code_credential: AutotaskApiIntegrationCodeCredential
@@ -2876,6 +2918,9 @@ ProviderConfig = typing_extensions.Annotated[
         ProviderConfig_StorageAzureBlob,
         ProviderConfig_StorageGcs,
         ProviderConfig_StorageMockStorage,
+        ProviderConfig_ThreatintelAbuseipdb,
+        ProviderConfig_ThreatintelThreatfox,
+        ProviderConfig_ThreatintelVirustotal,
         ProviderConfig_TicketingAutotask,
         ProviderConfig_TicketingAzureDevops,
         ProviderConfig_TicketingBmchelix,

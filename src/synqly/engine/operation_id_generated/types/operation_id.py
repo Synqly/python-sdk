@@ -125,6 +125,10 @@ class OperationId(enum.StrEnum):
     STORAGE_DOWNLOAD_FILE = "storage_download_file"
     STORAGE_LIST_FILES = "storage_list_files"
     STORAGE_UPLOAD_FILE = "storage_upload_file"
+    THREATINTEL_LOOKUP_DOMAIN = "threatintel_lookup_domain"
+    THREATINTEL_LOOKUP_HASH = "threatintel_lookup_hash"
+    THREATINTEL_LOOKUP_IP = "threatintel_lookup_ip"
+    THREATINTEL_LOOKUP_URL = "threatintel_lookup_url"
     TICKETING_CREATE_ATTACHMENT = "ticketing_create_attachment"
     TICKETING_CREATE_COMMENT = "ticketing_create_comment"
     TICKETING_CREATE_NOTE = "ticketing_create_note"
@@ -287,6 +291,10 @@ class OperationId(enum.StrEnum):
         storage_download_file: typing.Callable[[], T_Result],
         storage_list_files: typing.Callable[[], T_Result],
         storage_upload_file: typing.Callable[[], T_Result],
+        threatintel_lookup_domain: typing.Callable[[], T_Result],
+        threatintel_lookup_hash: typing.Callable[[], T_Result],
+        threatintel_lookup_ip: typing.Callable[[], T_Result],
+        threatintel_lookup_url: typing.Callable[[], T_Result],
         ticketing_create_attachment: typing.Callable[[], T_Result],
         ticketing_create_comment: typing.Callable[[], T_Result],
         ticketing_create_note: typing.Callable[[], T_Result],
@@ -555,6 +563,14 @@ class OperationId(enum.StrEnum):
             return storage_list_files()
         if self is OperationId.STORAGE_UPLOAD_FILE:
             return storage_upload_file()
+        if self is OperationId.THREATINTEL_LOOKUP_DOMAIN:
+            return threatintel_lookup_domain()
+        if self is OperationId.THREATINTEL_LOOKUP_HASH:
+            return threatintel_lookup_hash()
+        if self is OperationId.THREATINTEL_LOOKUP_IP:
+            return threatintel_lookup_ip()
+        if self is OperationId.THREATINTEL_LOOKUP_URL:
+            return threatintel_lookup_url()
         if self is OperationId.TICKETING_CREATE_ATTACHMENT:
             return ticketing_create_attachment()
         if self is OperationId.TICKETING_CREATE_COMMENT:

@@ -35,6 +35,7 @@ if typing.TYPE_CHECKING:
         sink,
         stix,
         storage,
+        threatintel,
         ticketing,
         vulnerabilities,
     )
@@ -238,6 +239,7 @@ if typing.TYPE_CHECKING:
         Event_ModuleActivity,
         Event_NetworkActivity,
         Event_NoteActivity,
+        Event_OsintInventoryInfo,
         Event_PhishingSimulationInventoryInfo,
         Event_ProcessActivity,
         Event_ScanActivity,
@@ -365,6 +367,12 @@ if typing.TYPE_CHECKING:
     )
     from .sink import CreateSinkEventsResponse
     from .storage import ListStorageResponse, StoragePath
+    from .threatintel import (
+        ThreatIntelLookupDomainResponse,
+        ThreatIntelLookupHashResponse,
+        ThreatIntelLookupIpResponse,
+        ThreatIntelLookupUrlResponse,
+    )
     from .ticketing import (
         Actor,
         Actor_Agent,
@@ -578,6 +586,7 @@ _dynamic_imports: typing.Dict[str, str] = {
     "Event_ModuleActivity": ".events",
     "Event_NetworkActivity": ".events",
     "Event_NoteActivity": ".events",
+    "Event_OsintInventoryInfo": ".events",
     "Event_PhishingSimulationInventoryInfo": ".events",
     "Event_ProcessActivity": ".events",
     "Event_ScanActivity": ".events",
@@ -804,6 +813,10 @@ _dynamic_imports: typing.Dict[str, str] = {
     "SynqlyEngine": ".client",
     "SynqlyEngineEnvironment": ".environment",
     "ThreatEvent": ".edr",
+    "ThreatIntelLookupDomainResponse": ".threatintel",
+    "ThreatIntelLookupHashResponse": ".threatintel",
+    "ThreatIntelLookupIpResponse": ".threatintel",
+    "ThreatIntelLookupUrlResponse": ".threatintel",
     "Ticket": ".ticketing",
     "TicketId": ".ticketing",
     "TicketingWebhookResponse": ".hooks",
@@ -854,6 +867,7 @@ _dynamic_imports: typing.Dict[str, str] = {
     "sink": ".sink",
     "stix": ".stix",
     "storage": ".storage",
+    "threatintel": ".threatintel",
     "ticketing": ".ticketing",
     "vulnerabilities": ".vulnerabilities",
 }
@@ -1009,6 +1023,7 @@ __all__ = [
     "Event_ModuleActivity",
     "Event_NetworkActivity",
     "Event_NoteActivity",
+    "Event_OsintInventoryInfo",
     "Event_PhishingSimulationInventoryInfo",
     "Event_ProcessActivity",
     "Event_ScanActivity",
@@ -1235,6 +1250,10 @@ __all__ = [
     "SynqlyEngine",
     "SynqlyEngineEnvironment",
     "ThreatEvent",
+    "ThreatIntelLookupDomainResponse",
+    "ThreatIntelLookupHashResponse",
+    "ThreatIntelLookupIpResponse",
+    "ThreatIntelLookupUrlResponse",
     "Ticket",
     "TicketId",
     "TicketingWebhookResponse",
@@ -1285,6 +1304,7 @@ __all__ = [
     "sink",
     "stix",
     "storage",
+    "threatintel",
     "ticketing",
     "vulnerabilities",
 ]

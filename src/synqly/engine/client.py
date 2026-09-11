@@ -30,6 +30,7 @@ if typing.TYPE_CHECKING:
     from .siem.client import AsyncSiemClient, SiemClient
     from .sink.client import AsyncSinkClient, SinkClient
     from .storage.client import AsyncStorageClient, StorageClient
+    from .threatintel.client import AsyncThreatintelClient, ThreatintelClient
     from .ticketing.client import AsyncTicketingClient, TicketingClient
     from .vulnerabilities.client import AsyncVulnerabilitiesClient, VulnerabilitiesClient
 
@@ -140,6 +141,7 @@ class SynqlyEngine:
         self._siem: typing.Optional[SiemClient] = None
         self._sink: typing.Optional[SinkClient] = None
         self._storage: typing.Optional[StorageClient] = None
+        self._threatintel: typing.Optional[ThreatintelClient] = None
         self._ticketing: typing.Optional[TicketingClient] = None
         self._vulnerabilities: typing.Optional[VulnerabilitiesClient] = None
 
@@ -304,6 +306,14 @@ class SynqlyEngine:
         return self._storage
 
     @property
+    def threatintel(self):
+        if self._threatintel is None:
+            from .threatintel.client import ThreatintelClient  # noqa: E402
+
+            self._threatintel = ThreatintelClient(client_wrapper=self._client_wrapper)
+        return self._threatintel
+
+    @property
     def ticketing(self):
         if self._ticketing is None:
             from .ticketing.client import TicketingClient  # noqa: E402
@@ -447,6 +457,7 @@ class AsyncSynqlyEngine:
         self._siem: typing.Optional[AsyncSiemClient] = None
         self._sink: typing.Optional[AsyncSinkClient] = None
         self._storage: typing.Optional[AsyncStorageClient] = None
+        self._threatintel: typing.Optional[AsyncThreatintelClient] = None
         self._ticketing: typing.Optional[AsyncTicketingClient] = None
         self._vulnerabilities: typing.Optional[AsyncVulnerabilitiesClient] = None
 
@@ -609,6 +620,14 @@ class AsyncSynqlyEngine:
 
             self._storage = AsyncStorageClient(client_wrapper=self._client_wrapper)
         return self._storage
+
+    @property
+    def threatintel(self):
+        if self._threatintel is None:
+            from .threatintel.client import AsyncThreatintelClient  # noqa: E402
+
+            self._threatintel = AsyncThreatintelClient(client_wrapper=self._client_wrapper)
+        return self._threatintel
 
     @property
     def ticketing(self):

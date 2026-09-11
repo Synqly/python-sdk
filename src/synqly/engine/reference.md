@@ -11618,6 +11618,363 @@ client.storage.delete_file(
 </dl>
 </details>
 
+## Threatintel
+<details><summary><code>client.threatintel.<a href="src/synqly/threatintel/client.py">lookup_hash</a>(...) -> ThreatIntelLookupHashResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Looks up a file hash against the token-linked threat intelligence source and returns normalized reputation and context. MD5, SHA-1, and SHA-256 hashes are supported; the hash type is detected from the value. A lookup that finds no intel records is a successful response with an empty `osint` array.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```python
+from synqly import SynqlyEngine
+from synqly.environment import SynqlyEngineEnvironment
+
+client = SynqlyEngine(
+    token="<token>",
+    environment=SynqlyEngineEnvironment.SYNQLY,
+)
+
+client.threatintel.lookup_hash(
+    value="value",
+)
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**value:** `str` — The file hash to look up (MD5, SHA-1, or SHA-256, hex-encoded).
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**meta:** `typing.Optional[typing.Union[str, typing.Sequence[str]]]` — Add metadata to the response by invoking meta functions. Documentation for [meta functions](https://docs.synqly.com/api-reference/meta-functions) is available. Not all meta functions are available at every endpoint.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**include_raw_data:** `typing.Optional[bool]` — Include the raw data from the provider in the response. Defaults to `false`.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `typing.Optional[RequestOptions]` — Request-specific configuration.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.threatintel.<a href="src/synqly/threatintel/client.py">lookup_url</a>(...) -> ThreatIntelLookupUrlResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Looks up a URL against the token-linked threat intelligence source and returns normalized reputation and context. Note that the looked-up URL is disclosed to the third-party intelligence provider; avoid looking up URLs that embed secrets (for example, signed URLs) unless that disclosure is acceptable. A lookup that finds no intel records is a successful response with an empty `osint` array.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```python
+from synqly import SynqlyEngine
+from synqly.environment import SynqlyEngineEnvironment
+
+client = SynqlyEngine(
+    token="<token>",
+    environment=SynqlyEngineEnvironment.SYNQLY,
+)
+
+client.threatintel.lookup_url(
+    value="value",
+)
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**value:** `str` — The URL to look up. Must be absolute and use the `http` or `https` scheme.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**meta:** `typing.Optional[typing.Union[str, typing.Sequence[str]]]` — Add metadata to the response by invoking meta functions. Documentation for [meta functions](https://docs.synqly.com/api-reference/meta-functions) is available. Not all meta functions are available at every endpoint.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**include_raw_data:** `typing.Optional[bool]` — Include the raw data from the provider in the response. Defaults to `false`.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `typing.Optional[RequestOptions]` — Request-specific configuration.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.threatintel.<a href="src/synqly/threatintel/client.py">lookup_domain</a>(...) -> ThreatIntelLookupDomainResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Looks up a domain name against the token-linked threat intelligence source and returns normalized reputation and context. Note that the looked-up domain is disclosed to the third-party intelligence provider, which can reveal internal hostnames. A lookup that finds no intel records is a successful response with an empty `osint` array.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```python
+from synqly import SynqlyEngine
+from synqly.environment import SynqlyEngineEnvironment
+
+client = SynqlyEngine(
+    token="<token>",
+    environment=SynqlyEngineEnvironment.SYNQLY,
+)
+
+client.threatintel.lookup_domain(
+    value="value",
+)
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**value:** `str` — The domain name to look up. Internationalized domain names must be in punycode (A-label) form.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**meta:** `typing.Optional[typing.Union[str, typing.Sequence[str]]]` — Add metadata to the response by invoking meta functions. Documentation for [meta functions](https://docs.synqly.com/api-reference/meta-functions) is available. Not all meta functions are available at every endpoint.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**include_raw_data:** `typing.Optional[bool]` — Include the raw data from the provider in the response. Defaults to `false`.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `typing.Optional[RequestOptions]` — Request-specific configuration.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.threatintel.<a href="src/synqly/threatintel/client.py">lookup_ip</a>(...) -> ThreatIntelLookupIpResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Looks up an IPv4 or IPv6 address against the token-linked threat intelligence source and returns normalized reputation and context. A lookup that finds no intel records is a successful response with an empty `osint` array.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```python
+from synqly import SynqlyEngine
+from synqly.environment import SynqlyEngineEnvironment
+
+client = SynqlyEngine(
+    token="<token>",
+    environment=SynqlyEngineEnvironment.SYNQLY,
+)
+
+client.threatintel.lookup_ip(
+    value="value",
+)
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**value:** `str` — The IPv4 or IPv6 address to look up.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**meta:** `typing.Optional[typing.Union[str, typing.Sequence[str]]]` — Add metadata to the response by invoking meta functions. Documentation for [meta functions](https://docs.synqly.com/api-reference/meta-functions) is available. Not all meta functions are available at every endpoint.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**include_raw_data:** `typing.Optional[bool]` — Include the raw data from the provider in the response. Defaults to `false`.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `typing.Optional[RequestOptions]` — Request-specific configuration.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 ## Ticketing
 <details><summary><code>client.ticketing.<a href="src/synqly/ticketing/client.py">list_remote_fields</a>(...) -> ListRemoteFieldsResponse</code></summary>
 <dl>
