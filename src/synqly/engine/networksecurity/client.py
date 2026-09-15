@@ -5,6 +5,8 @@ import typing
 from ..core.client_wrapper import AsyncClientWrapper, SyncClientWrapper
 from ..core.request_options import RequestOptions
 from .raw_client import AsyncRawNetworksecurityClient, RawNetworksecurityClient
+from .types.query_dns_events_response import QueryDnsEventsResponse
+from .types.query_dns_log_configurations_response import QueryDnsLogConfigurationsResponse
 from .types.query_traffic_events_response import QueryTrafficEventsResponse
 from .types.query_traffic_log_configurations_response import QueryTrafficLogConfigurationsResponse
 
@@ -115,6 +117,101 @@ class NetworksecurityClient:
         client.networksecurity.query_traffic_events()
         """
         _response = self._raw_client.query_traffic_events(
+            meta=meta, limit=limit, filter=filter, cursor=cursor, request_options=request_options
+        )
+        return _response.data
+
+    def query_dns_log_configurations(
+        self,
+        *,
+        meta: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
+        limit: typing.Optional[int] = None,
+        filter: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
+        cursor: typing.Optional[str] = None,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> QueryDnsLogConfigurationsResponse:
+        """
+        Returns DNS log configurations discovered for the integration.
+
+        Parameters
+        ----------
+        meta : typing.Optional[typing.Union[str, typing.Sequence[str]]]
+            Add metadata to the response by invoking meta functions. Documentation for [meta functions](https://docs.synqly.com/api-reference/meta-functions) is available. Not all meta functions are available at every endpoint.
+
+        limit : typing.Optional[int]
+            Number of DNS log configurations to return. Defaults to 100 with a maximum of 200. If a provider has a maximum limit lower than 200, the provider's maximum limit will be used instead.
+
+        filter : typing.Optional[typing.Union[str, typing.Sequence[str]]]
+            Filter results by this query. For more information on filtering, refer to our [Filtering Guide](https://docs.synqly.com/guides/connectors/networksecurity/query-filters). Defaults to no filter. If used more than once, the queries are ANDed together. No network security provider currently supports filters on this endpoint, so a request that includes a filter is rejected with a 400 error.
+
+        cursor : typing.Optional[str]
+            Start search from cursor position.
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        QueryDnsLogConfigurationsResponse
+
+        Examples
+        --------
+        from synqly import SynqlyEngine
+
+        client = SynqlyEngine(
+            token="YOUR_TOKEN",
+        )
+        client.networksecurity.query_dns_log_configurations()
+        """
+        _response = self._raw_client.query_dns_log_configurations(
+            meta=meta, limit=limit, filter=filter, cursor=cursor, request_options=request_options
+        )
+        return _response.data
+
+    def query_dns_events(
+        self,
+        *,
+        meta: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
+        limit: typing.Optional[int] = None,
+        filter: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
+        cursor: typing.Optional[str] = None,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> QueryDnsEventsResponse:
+        """
+        Returns DNS events from DNS log configurations on the
+        integration. Results are normalized to OCSF DNS Activity (class_uid 4003).
+
+        Parameters
+        ----------
+        meta : typing.Optional[typing.Union[str, typing.Sequence[str]]]
+            Add metadata to the response by invoking meta functions. Documentation for [meta functions](https://docs.synqly.com/api-reference/meta-functions) is available. Not all meta functions are available at every endpoint.
+
+        limit : typing.Optional[int]
+            Number of DNS events to return. Defaults to 100 with a maximum of 200. If a provider has a maximum limit lower than 200, the provider's maximum limit will be used instead.
+
+        filter : typing.Optional[typing.Union[str, typing.Sequence[str]]]
+            Filter results by this query. For more information on filtering, refer to our [Filtering Guide](https://docs.synqly.com/guides/connectors/networksecurity/query-filters). Defaults to no filter. If used more than once, the queries are ANDed together. Network security providers support only the `time[gte]` and `time[lte]` filters on this endpoint, and any other filter is rejected with a 400 error. When no time filter is supplied, the query covers the most recent hour.
+
+        cursor : typing.Optional[str]
+            Start search from cursor position.
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        QueryDnsEventsResponse
+
+        Examples
+        --------
+        from synqly import SynqlyEngine
+
+        client = SynqlyEngine(
+            token="YOUR_TOKEN",
+        )
+        client.networksecurity.query_dns_events()
+        """
+        _response = self._raw_client.query_dns_events(
             meta=meta, limit=limit, filter=filter, cursor=cursor, request_options=request_options
         )
         return _response.data
@@ -242,6 +339,117 @@ class AsyncNetworksecurityClient:
         asyncio.run(main())
         """
         _response = await self._raw_client.query_traffic_events(
+            meta=meta, limit=limit, filter=filter, cursor=cursor, request_options=request_options
+        )
+        return _response.data
+
+    async def query_dns_log_configurations(
+        self,
+        *,
+        meta: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
+        limit: typing.Optional[int] = None,
+        filter: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
+        cursor: typing.Optional[str] = None,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> QueryDnsLogConfigurationsResponse:
+        """
+        Returns DNS log configurations discovered for the integration.
+
+        Parameters
+        ----------
+        meta : typing.Optional[typing.Union[str, typing.Sequence[str]]]
+            Add metadata to the response by invoking meta functions. Documentation for [meta functions](https://docs.synqly.com/api-reference/meta-functions) is available. Not all meta functions are available at every endpoint.
+
+        limit : typing.Optional[int]
+            Number of DNS log configurations to return. Defaults to 100 with a maximum of 200. If a provider has a maximum limit lower than 200, the provider's maximum limit will be used instead.
+
+        filter : typing.Optional[typing.Union[str, typing.Sequence[str]]]
+            Filter results by this query. For more information on filtering, refer to our [Filtering Guide](https://docs.synqly.com/guides/connectors/networksecurity/query-filters). Defaults to no filter. If used more than once, the queries are ANDed together. No network security provider currently supports filters on this endpoint, so a request that includes a filter is rejected with a 400 error.
+
+        cursor : typing.Optional[str]
+            Start search from cursor position.
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        QueryDnsLogConfigurationsResponse
+
+        Examples
+        --------
+        import asyncio
+
+        from synqly import AsyncSynqlyEngine
+
+        client = AsyncSynqlyEngine(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.networksecurity.query_dns_log_configurations()
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.query_dns_log_configurations(
+            meta=meta, limit=limit, filter=filter, cursor=cursor, request_options=request_options
+        )
+        return _response.data
+
+    async def query_dns_events(
+        self,
+        *,
+        meta: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
+        limit: typing.Optional[int] = None,
+        filter: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
+        cursor: typing.Optional[str] = None,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> QueryDnsEventsResponse:
+        """
+        Returns DNS events from DNS log configurations on the
+        integration. Results are normalized to OCSF DNS Activity (class_uid 4003).
+
+        Parameters
+        ----------
+        meta : typing.Optional[typing.Union[str, typing.Sequence[str]]]
+            Add metadata to the response by invoking meta functions. Documentation for [meta functions](https://docs.synqly.com/api-reference/meta-functions) is available. Not all meta functions are available at every endpoint.
+
+        limit : typing.Optional[int]
+            Number of DNS events to return. Defaults to 100 with a maximum of 200. If a provider has a maximum limit lower than 200, the provider's maximum limit will be used instead.
+
+        filter : typing.Optional[typing.Union[str, typing.Sequence[str]]]
+            Filter results by this query. For more information on filtering, refer to our [Filtering Guide](https://docs.synqly.com/guides/connectors/networksecurity/query-filters). Defaults to no filter. If used more than once, the queries are ANDed together. Network security providers support only the `time[gte]` and `time[lte]` filters on this endpoint, and any other filter is rejected with a 400 error. When no time filter is supplied, the query covers the most recent hour.
+
+        cursor : typing.Optional[str]
+            Start search from cursor position.
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        QueryDnsEventsResponse
+
+        Examples
+        --------
+        import asyncio
+
+        from synqly import AsyncSynqlyEngine
+
+        client = AsyncSynqlyEngine(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.networksecurity.query_dns_events()
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.query_dns_events(
             meta=meta, limit=limit, filter=filter, cursor=cursor, request_options=request_options
         )
         return _response.data

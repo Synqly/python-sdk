@@ -1427,6 +1427,7 @@ class ProviderConfig_IncidentresponsePagerduty(UncheckedBaseModel):
 class ProviderConfig_NetworksecurityAws(UncheckedBaseModel):
     type: typing.Literal["networksecurity_aws"] = "networksecurity_aws"
     credential: AwsProviderCredential
+    dns_log_configuration_ids: typing.Optional[typing.List[str]] = None
     region: AwsRegion
     traffic_log_configuration_ids: typing.Optional[typing.List[str]] = None
 

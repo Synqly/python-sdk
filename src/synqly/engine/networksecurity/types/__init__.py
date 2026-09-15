@@ -6,11 +6,19 @@ import typing
 from importlib import import_module
 
 if typing.TYPE_CHECKING:
+    from .dns_event import DnsEvent
+    from .dns_log_configuration import DnsLogConfiguration
+    from .query_dns_events_response import QueryDnsEventsResponse
+    from .query_dns_log_configurations_response import QueryDnsLogConfigurationsResponse
     from .query_traffic_events_response import QueryTrafficEventsResponse
     from .query_traffic_log_configurations_response import QueryTrafficLogConfigurationsResponse
     from .traffic_event import TrafficEvent
     from .traffic_log_configuration import TrafficLogConfiguration
 _dynamic_imports: typing.Dict[str, str] = {
+    "DnsEvent": ".dns_event",
+    "DnsLogConfiguration": ".dns_log_configuration",
+    "QueryDnsEventsResponse": ".query_dns_events_response",
+    "QueryDnsLogConfigurationsResponse": ".query_dns_log_configurations_response",
     "QueryTrafficEventsResponse": ".query_traffic_events_response",
     "QueryTrafficLogConfigurationsResponse": ".query_traffic_log_configurations_response",
     "TrafficEvent": ".traffic_event",
@@ -40,6 +48,10 @@ def __dir__():
 
 
 __all__ = [
+    "DnsEvent",
+    "DnsLogConfiguration",
+    "QueryDnsEventsResponse",
+    "QueryDnsLogConfigurationsResponse",
     "QueryTrafficEventsResponse",
     "QueryTrafficLogConfigurationsResponse",
     "TrafficEvent",
