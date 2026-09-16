@@ -6,12 +6,17 @@ import typing
 import pydantic
 from .....core.pydantic_utilities import IS_PYDANTIC_V2
 from .....core.unchecked_base_model import UncheckedBaseModel
+from ...base.types.hostname import Hostname
 from ...base.types.ip_address import IpAddress
 from ...base.types.mac_address import MacAddress
+from ...base.types.resource_uid import ResourceUid
 from ...base.types.timestamp import Timestamp
 from ...base.types.url_string import UrlString
 from .agent import Agent
+from .graph import Graph
 from .group import Group
+from .key_value_object import KeyValueObject
+from .resource_details_role_id import ResourceDetailsRoleId
 from .user import User
 
 
@@ -30,6 +35,16 @@ class ResourceDetails(UncheckedBaseModel):
     The canonical cloud partition name to which the region is assigned (e.g. AWS Partitions: aws, aws-cn, aws-us-gov).
     """
 
+    created_time: typing.Optional[Timestamp] = pydantic.Field(default=None)
+    """
+    The time when the resource was created.
+    """
+
+    created_time_dt: typing.Optional[dt.datetime] = pydantic.Field(default=None)
+    """
+    The time when the resource was created.
+    """
+
     criticality: typing.Optional[str] = pydantic.Field(default=None)
     """
     The criticality of the resource as defined by the event source.
@@ -45,9 +60,19 @@ class ResourceDetails(UncheckedBaseModel):
     The name of the related resource group.
     """
 
+    hostname: typing.Optional[Hostname] = pydantic.Field(default=None)
+    """
+    The fully qualified name of the resource.
+    """
+
     ip: typing.Optional[IpAddress] = pydantic.Field(default=None)
     """
     The IP address associated with the resource.
+    """
+
+    is_backed_up: typing.Optional[bool] = pydantic.Field(default=None)
+    """
+    Indicates whether the device or resource has a backup enabled, such as an automated snapshot or a cloud backup. For example, this is indicated by the <code>cloudBackupEnabled</code> value within JAMF Pro mobile devices or the registration of an AWS ARN with the AWS Backup service.
     """
 
     labels: typing.Optional[typing.List[str]] = pydantic.Field(default=None)
@@ -68,6 +93,16 @@ class ResourceDetails(UncheckedBaseModel):
     mac: typing.Optional[MacAddress] = pydantic.Field(default=None)
     """
     The MAC address associated with the resource.
+    """
+
+    modified_time: typing.Optional[Timestamp] = pydantic.Field(default=None)
+    """
+    The time when the resource was last modified.
+    """
+
+    modified_time_dt: typing.Optional[dt.datetime] = pydantic.Field(default=None)
+    """
+    The time when the resource was last modified.
     """
 
     name: typing.Optional[str] = pydantic.Field(default=None)
@@ -95,9 +130,29 @@ class ResourceDetails(UncheckedBaseModel):
     The cloud region of the resource.
     """
 
+    resource_relationship: typing.Optional[Graph] = pydantic.Field(default=None)
+    """
+    A graph representation showing how this resource relates to and interacts with other entities in the environment. This can include parent/child relationships, dependencies, or other connections.
+    """
+
+    role: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    The role of the resource in the context of the event or finding, normalized to the caption of the role_id value. In the case of 'Other', it is defined by the event source.
+    """
+
+    role_id: typing.Optional[ResourceDetailsRoleId] = pydantic.Field(default=None)
+    """
+    The normalized identifier of the resource's role in the context of the event or finding.
+    """
+
     src_url: typing.Optional[UrlString] = pydantic.Field(default=None)
     """
     The URL of the resource in the event sources system.
+    """
+
+    tags: typing.Optional[typing.List[KeyValueObject]] = pydantic.Field(default=None)
+    """
+    The list of tags; <code>{key:value}</code> pairs associated to the resource.
     """
 
     type: typing.Optional[str] = pydantic.Field(default=None)
@@ -105,9 +160,14 @@ class ResourceDetails(UncheckedBaseModel):
     The resource type as defined by the event source.
     """
 
-    uid: typing.Optional[str] = pydantic.Field(default=None)
+    uid: typing.Optional[ResourceUid] = pydantic.Field(default=None)
     """
     The unique identifier of the resource.
+    """
+
+    uid_alt: typing.Optional[ResourceUid] = pydantic.Field(default=None)
+    """
+    The alternative unique identifier of the resource.
     """
 
     vendor_name: typing.Optional[str] = pydantic.Field(default=None)
@@ -123,6 +183,11 @@ class ResourceDetails(UncheckedBaseModel):
     version: typing.Optional[str] = pydantic.Field(default=None)
     """
     The version of the resource. For example 1.2.3.
+    """
+
+    zone: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    The specific availability zone within a cloud region where the resource is located.
     """
 
     if IS_PYDANTIC_V2:

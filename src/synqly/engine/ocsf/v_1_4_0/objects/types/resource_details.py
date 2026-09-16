@@ -6,12 +6,14 @@ import typing
 import pydantic
 from .....core.pydantic_utilities import IS_PYDANTIC_V2
 from .....core.unchecked_base_model import UncheckedBaseModel
+from ...base.types.hostname import Hostname
 from ...base.types.ip_address import IpAddress
 from ...base.types.mac_address import MacAddress
 from ...base.types.timestamp import Timestamp
 from ...base.types.url_string import UrlString
 from .agent import Agent
 from .group import Group
+from .key_value_object import KeyValueObject
 from .user import User
 
 
@@ -43,6 +45,11 @@ class ResourceDetails(UncheckedBaseModel):
     group: typing.Optional[Group] = pydantic.Field(default=None)
     """
     The name of the related resource group.
+    """
+
+    hostname: typing.Optional[Hostname] = pydantic.Field(default=None)
+    """
+    The fully qualified name of the resource.
     """
 
     ip: typing.Optional[IpAddress] = pydantic.Field(default=None)
@@ -98,6 +105,11 @@ class ResourceDetails(UncheckedBaseModel):
     src_url: typing.Optional[UrlString] = pydantic.Field(default=None)
     """
     The URL of the resource in the event sources system.
+    """
+
+    tags: typing.Optional[typing.List[KeyValueObject]] = pydantic.Field(default=None)
+    """
+    The list of tags; <code>{key:value}</code> pairs associated to the resource.
     """
 
     type: typing.Optional[str] = pydantic.Field(default=None)

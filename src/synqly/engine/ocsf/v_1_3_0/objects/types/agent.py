@@ -6,6 +6,7 @@ import pydantic
 from .....core.pydantic_utilities import IS_PYDANTIC_V2
 from .....core.unchecked_base_model import UncheckedBaseModel
 from .agent_type_id import AgentTypeId
+from .policy import Policy
 
 
 class Agent(UncheckedBaseModel):
@@ -16,6 +17,11 @@ class Agent(UncheckedBaseModel):
     name: typing.Optional[str] = pydantic.Field(default=None)
     """
     The name of the agent or sensor. For example: <code>AWS SSM Agent</code>.
+    """
+
+    policies: typing.Optional[typing.List[Policy]] = pydantic.Field(default=None)
+    """
+    Describes the various policies that may be applied or enforced by an agent or sensor. E.g., Conditional Access, prevention, auto-update, tamper protection, destination configuration, etc.
     """
 
     type: typing.Optional[str] = pydantic.Field(default=None)

@@ -215,6 +215,7 @@ if typing.TYPE_CHECKING:
     from .request import Request
     from .resource import Resource
     from .resource_details import ResourceDetails
+    from .resource_details_role_id import ResourceDetailsRoleId
     from .response import Response
     from .rpc_interface import RpcInterface
     from .rule import Rule
@@ -492,6 +493,7 @@ _dynamic_imports: typing.Dict[str, str] = {
     "Request": ".request",
     "Resource": ".resource",
     "ResourceDetails": ".resource_details",
+    "ResourceDetailsRoleId": ".resource_details_role_id",
     "Response": ".response",
     "RpcInterface": ".rpc_interface",
     "Rule": ".rule",
@@ -793,6 +795,7 @@ __all__ = [
     "Request",
     "Resource",
     "ResourceDetails",
+    "ResourceDetailsRoleId",
     "Response",
     "RpcInterface",
     "Rule",
