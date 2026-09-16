@@ -19,6 +19,7 @@ class OperationId(enum.StrEnum):
     ASSETS_CREATE_SOFTWARE = "assets_create_software"
     ASSETS_GET_LABELS = "assets_get_labels"
     ASSETS_QUERY_ALERTS = "assets_query_alerts"
+    ASSETS_QUERY_DEVICE_SOFTWARE = "assets_query_device_software"
     ASSETS_QUERY_DEVICES = "assets_query_devices"
     ASSETS_QUERY_SOFTWARE = "assets_query_software"
     ASSETS_QUERY_UTILIZATION = "assets_query_utilization"
@@ -187,6 +188,7 @@ class OperationId(enum.StrEnum):
         assets_create_software: typing.Callable[[], T_Result],
         assets_get_labels: typing.Callable[[], T_Result],
         assets_query_alerts: typing.Callable[[], T_Result],
+        assets_query_device_software: typing.Callable[[], T_Result],
         assets_query_devices: typing.Callable[[], T_Result],
         assets_query_software: typing.Callable[[], T_Result],
         assets_query_utilization: typing.Callable[[], T_Result],
@@ -355,6 +357,8 @@ class OperationId(enum.StrEnum):
             return assets_get_labels()
         if self is OperationId.ASSETS_QUERY_ALERTS:
             return assets_query_alerts()
+        if self is OperationId.ASSETS_QUERY_DEVICE_SOFTWARE:
+            return assets_query_device_software()
         if self is OperationId.ASSETS_QUERY_DEVICES:
             return assets_query_devices()
         if self is OperationId.ASSETS_QUERY_SOFTWARE:

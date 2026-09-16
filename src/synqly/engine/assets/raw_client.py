@@ -972,6 +972,237 @@ class RawAssetsClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
+    def query_device_software(
+        self,
+        device_uid: str,
+        *,
+        meta: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
+        limit: typing.Optional[int] = None,
+        cursor: typing.Optional[str] = None,
+        filter: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
+        order: typing.Optional[str] = None,
+        include_raw_data: typing.Optional[bool] = None,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> HttpResponse[QuerySoftwareInventoryResponse]:
+        """
+        Query software inventory records for a single device.
+
+        Parameters
+        ----------
+        device_uid : str
+            Uid of the device.
+
+        meta : typing.Optional[typing.Union[str, typing.Sequence[str]]]
+            Add metadata to the response by invoking meta functions. Documentation for [meta functions](https://docs.synqly.com/api-reference/meta-functions) is available. Not all meta functions are available at every endpoint.
+
+        limit : typing.Optional[int]
+            Number of software inventory records to return. Defaults to 50.
+
+        cursor : typing.Optional[str]
+            Start search from cursor position.
+
+        filter : typing.Optional[typing.Union[str, typing.Sequence[str]]]
+            Filter results by this query. For more information on filtering, refer to the [Assets Filtering Guide](https://docs.synqly.com/guides/connectors/assets/query-filters). Defaults to no filter. If used more than once, the queries are ANDed together.
+
+        order : typing.Optional[str]
+            Results are returned in a fixed `package.name` ascending order. Passing `order` is rejected.
+
+        include_raw_data : typing.Optional[bool]
+            Include the raw data from the provider in the response. Defaults to `false`.
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        HttpResponse[QuerySoftwareInventoryResponse]
+        """
+        _response = self._client_wrapper.httpx_client.request(
+            f"v1/assets/devices/{encode_path_param(device_uid)}/software",
+            method="GET",
+            params={
+                "meta": meta,
+                "limit": limit,
+                "cursor": cursor,
+                "filter": filter,
+                "order": order,
+                "include_raw_data": include_raw_data,
+            },
+            request_options=request_options,
+        )
+        try:
+            if 200 <= _response.status_code < 300:
+                _data = typing.cast(
+                    QuerySoftwareInventoryResponse,
+                    construct_type(
+                        type_=QuerySoftwareInventoryResponse,  # type: ignore
+                        object_=_response.json(),
+                    ),
+                )
+                return HttpResponse(response=_response, data=_data)
+            if _response.status_code == 400:
+                raise BadRequestError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 401:
+                raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 403:
+                raise ForbiddenError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 404:
+                raise NotFoundError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 405:
+                raise MethodNotAllowedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 409:
+                raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 415:
+                raise UnsupportedMediaTypeError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 429:
+                raise TooManyRequestsError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 500:
+                raise InternalServerError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 501:
+                raise NotImplementedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 502:
+                raise BadGatewayError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 503:
+                raise ServiceUnavailableError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 504:
+                raise GatewayTimeoutError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            _response_json = _response.json()
+        except JSONDecodeError:
+            raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response.text)
+        except ValidationError as e:
+            raise ParsingError(
+                status_code=_response.status_code, headers=dict(_response.headers), body=_response.json(), cause=e
+            )
+        raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
+
     def create_software(
         self,
         *,
@@ -2189,6 +2420,237 @@ class AsyncRawAssetsClient:
         """
         _response = await self._client_wrapper.httpx_client.request(
             "v1/assets/software",
+            method="GET",
+            params={
+                "meta": meta,
+                "limit": limit,
+                "cursor": cursor,
+                "filter": filter,
+                "order": order,
+                "include_raw_data": include_raw_data,
+            },
+            request_options=request_options,
+        )
+        try:
+            if 200 <= _response.status_code < 300:
+                _data = typing.cast(
+                    QuerySoftwareInventoryResponse,
+                    construct_type(
+                        type_=QuerySoftwareInventoryResponse,  # type: ignore
+                        object_=_response.json(),
+                    ),
+                )
+                return AsyncHttpResponse(response=_response, data=_data)
+            if _response.status_code == 400:
+                raise BadRequestError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 401:
+                raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 403:
+                raise ForbiddenError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 404:
+                raise NotFoundError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 405:
+                raise MethodNotAllowedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 409:
+                raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 415:
+                raise UnsupportedMediaTypeError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 429:
+                raise TooManyRequestsError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 500:
+                raise InternalServerError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 501:
+                raise NotImplementedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 502:
+                raise BadGatewayError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 503:
+                raise ServiceUnavailableError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 504:
+                raise GatewayTimeoutError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            _response_json = _response.json()
+        except JSONDecodeError:
+            raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response.text)
+        except ValidationError as e:
+            raise ParsingError(
+                status_code=_response.status_code, headers=dict(_response.headers), body=_response.json(), cause=e
+            )
+        raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
+
+    async def query_device_software(
+        self,
+        device_uid: str,
+        *,
+        meta: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
+        limit: typing.Optional[int] = None,
+        cursor: typing.Optional[str] = None,
+        filter: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
+        order: typing.Optional[str] = None,
+        include_raw_data: typing.Optional[bool] = None,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> AsyncHttpResponse[QuerySoftwareInventoryResponse]:
+        """
+        Query software inventory records for a single device.
+
+        Parameters
+        ----------
+        device_uid : str
+            Uid of the device.
+
+        meta : typing.Optional[typing.Union[str, typing.Sequence[str]]]
+            Add metadata to the response by invoking meta functions. Documentation for [meta functions](https://docs.synqly.com/api-reference/meta-functions) is available. Not all meta functions are available at every endpoint.
+
+        limit : typing.Optional[int]
+            Number of software inventory records to return. Defaults to 50.
+
+        cursor : typing.Optional[str]
+            Start search from cursor position.
+
+        filter : typing.Optional[typing.Union[str, typing.Sequence[str]]]
+            Filter results by this query. For more information on filtering, refer to the [Assets Filtering Guide](https://docs.synqly.com/guides/connectors/assets/query-filters). Defaults to no filter. If used more than once, the queries are ANDed together.
+
+        order : typing.Optional[str]
+            Results are returned in a fixed `package.name` ascending order. Passing `order` is rejected.
+
+        include_raw_data : typing.Optional[bool]
+            Include the raw data from the provider in the response. Defaults to `false`.
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        AsyncHttpResponse[QuerySoftwareInventoryResponse]
+        """
+        _response = await self._client_wrapper.httpx_client.request(
+            f"v1/assets/devices/{encode_path_param(device_uid)}/software",
             method="GET",
             params={
                 "meta": meta,

@@ -339,6 +339,74 @@ class AssetsClient:
         )
         return _response.data
 
+    def query_device_software(
+        self,
+        device_uid: str,
+        *,
+        meta: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
+        limit: typing.Optional[int] = None,
+        cursor: typing.Optional[str] = None,
+        filter: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
+        order: typing.Optional[str] = None,
+        include_raw_data: typing.Optional[bool] = None,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> QuerySoftwareInventoryResponse:
+        """
+        Query software inventory records for a single device.
+
+        Parameters
+        ----------
+        device_uid : str
+            Uid of the device.
+
+        meta : typing.Optional[typing.Union[str, typing.Sequence[str]]]
+            Add metadata to the response by invoking meta functions. Documentation for [meta functions](https://docs.synqly.com/api-reference/meta-functions) is available. Not all meta functions are available at every endpoint.
+
+        limit : typing.Optional[int]
+            Number of software inventory records to return. Defaults to 50.
+
+        cursor : typing.Optional[str]
+            Start search from cursor position.
+
+        filter : typing.Optional[typing.Union[str, typing.Sequence[str]]]
+            Filter results by this query. For more information on filtering, refer to the [Assets Filtering Guide](https://docs.synqly.com/guides/connectors/assets/query-filters). Defaults to no filter. If used more than once, the queries are ANDed together.
+
+        order : typing.Optional[str]
+            Results are returned in a fixed `package.name` ascending order. Passing `order` is rejected.
+
+        include_raw_data : typing.Optional[bool]
+            Include the raw data from the provider in the response. Defaults to `false`.
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        QuerySoftwareInventoryResponse
+
+        Examples
+        --------
+        from synqly import SynqlyEngine
+
+        client = SynqlyEngine(
+            token="YOUR_TOKEN",
+        )
+        client.assets.query_device_software(
+            device_uid="deviceUid",
+        )
+        """
+        _response = self._raw_client.query_device_software(
+            device_uid,
+            meta=meta,
+            limit=limit,
+            cursor=cursor,
+            filter=filter,
+            order=order,
+            include_raw_data=include_raw_data,
+            request_options=request_options,
+        )
+        return _response.data
+
     def create_software(
         self,
         *,
@@ -866,6 +934,82 @@ class AsyncAssetsClient:
         asyncio.run(main())
         """
         _response = await self._raw_client.query_software(
+            meta=meta,
+            limit=limit,
+            cursor=cursor,
+            filter=filter,
+            order=order,
+            include_raw_data=include_raw_data,
+            request_options=request_options,
+        )
+        return _response.data
+
+    async def query_device_software(
+        self,
+        device_uid: str,
+        *,
+        meta: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
+        limit: typing.Optional[int] = None,
+        cursor: typing.Optional[str] = None,
+        filter: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
+        order: typing.Optional[str] = None,
+        include_raw_data: typing.Optional[bool] = None,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> QuerySoftwareInventoryResponse:
+        """
+        Query software inventory records for a single device.
+
+        Parameters
+        ----------
+        device_uid : str
+            Uid of the device.
+
+        meta : typing.Optional[typing.Union[str, typing.Sequence[str]]]
+            Add metadata to the response by invoking meta functions. Documentation for [meta functions](https://docs.synqly.com/api-reference/meta-functions) is available. Not all meta functions are available at every endpoint.
+
+        limit : typing.Optional[int]
+            Number of software inventory records to return. Defaults to 50.
+
+        cursor : typing.Optional[str]
+            Start search from cursor position.
+
+        filter : typing.Optional[typing.Union[str, typing.Sequence[str]]]
+            Filter results by this query. For more information on filtering, refer to the [Assets Filtering Guide](https://docs.synqly.com/guides/connectors/assets/query-filters). Defaults to no filter. If used more than once, the queries are ANDed together.
+
+        order : typing.Optional[str]
+            Results are returned in a fixed `package.name` ascending order. Passing `order` is rejected.
+
+        include_raw_data : typing.Optional[bool]
+            Include the raw data from the provider in the response. Defaults to `false`.
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        QuerySoftwareInventoryResponse
+
+        Examples
+        --------
+        import asyncio
+
+        from synqly import AsyncSynqlyEngine
+
+        client = AsyncSynqlyEngine(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.assets.query_device_software(
+                device_uid="deviceUid",
+            )
+
+
+        asyncio.run(main())
+        """
+        _response = await self._raw_client.query_device_software(
+            device_uid,
             meta=meta,
             limit=limit,
             cursor=cursor,
