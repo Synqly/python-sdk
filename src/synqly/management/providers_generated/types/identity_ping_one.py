@@ -30,7 +30,7 @@ class IdentityPingOne(UncheckedBaseModel):
     credential: PingOneCredential
     organization_id: str = pydantic.Field()
     """
-    The organization ID that the client app is a part of.
+    The PingOne environment ID that the worker application belongs to.
     """
 
     url: PingOneApiurl = pydantic.Field()
