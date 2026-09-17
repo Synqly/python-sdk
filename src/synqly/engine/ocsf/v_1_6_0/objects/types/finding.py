@@ -8,6 +8,7 @@ from .....core.pydantic_utilities import IS_PYDANTIC_V2
 from .....core.unchecked_base_model import UncheckedBaseModel
 from ...base.types.timestamp import Timestamp
 from ...base.types.url_string import UrlString
+from .object import Object
 from .product import Product
 from .related_event import RelatedEvent
 from .remediation import Remediation
@@ -106,6 +107,11 @@ class Finding(UncheckedBaseModel):
     uid: str = pydantic.Field()
     """
     The unique identifier of the reported finding.
+    """
+
+    xattributes: typing.Optional[Object] = pydantic.Field(default=None)
+    """
+    An unordered collection of zero or more name/value pairs that represent a finding's extended attributes and are specific to the event source.
     """
 
     if IS_PYDANTIC_V2:
