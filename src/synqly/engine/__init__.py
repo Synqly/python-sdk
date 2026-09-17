@@ -176,7 +176,7 @@ if typing.TYPE_CHECKING:
     )
     from .endpointmanagement import (
         ComplianceFinding,
-        DeviceActionRequest,
+        DeviceActionRequestBody,
         DeviceActionResponse,
         EndpointManagementDevice,
         GetEndpointManagementDeviceResponse,
@@ -546,7 +546,7 @@ _dynamic_imports: typing.Dict[str, str] = {
     "DeleteIoaResponse": ".edr",
     "DeleteIocsResponse": ".edr",
     "Device": ".assets",
-    "DeviceActionRequest": ".endpointmanagement",
+    "DeviceActionRequestBody": ".endpointmanagement",
     "DeviceActionResponse": ".endpointmanagement",
     "DnsEvent": ".networksecurity",
     "DnsLogConfiguration": ".networksecurity",
@@ -987,7 +987,7 @@ __all__ = [
     "DeleteIoaResponse",
     "DeleteIocsResponse",
     "Device",
-    "DeviceActionRequest",
+    "DeviceActionRequestBody",
     "DeviceActionResponse",
     "DnsEvent",
     "DnsLogConfiguration",

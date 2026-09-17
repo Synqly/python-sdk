@@ -7,7 +7,7 @@ from ...core.pydantic_utilities import IS_PYDANTIC_V2
 from ...core.unchecked_base_model import UncheckedBaseModel
 
 
-class DeviceActionRequest(UncheckedBaseModel):
+class DeviceActionRequestBody(UncheckedBaseModel):
     device_id: str = pydantic.Field()
     """
     Target device ID.

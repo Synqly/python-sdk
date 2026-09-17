@@ -8,7 +8,7 @@ from importlib import import_module
 if typing.TYPE_CHECKING:
     from .types import (
         ComplianceFinding,
-        DeviceActionRequest,
+        DeviceActionRequestBody,
         DeviceActionResponse,
         EndpointManagementDevice,
         GetEndpointManagementDeviceResponse,
@@ -20,7 +20,7 @@ if typing.TYPE_CHECKING:
     )
 _dynamic_imports: typing.Dict[str, str] = {
     "ComplianceFinding": ".types",
-    "DeviceActionRequest": ".types",
+    "DeviceActionRequestBody": ".types",
     "DeviceActionResponse": ".types",
     "EndpointManagementDevice": ".types",
     "GetEndpointManagementDeviceResponse": ".types",
@@ -55,7 +55,7 @@ def __dir__():
 
 __all__ = [
     "ComplianceFinding",
-    "DeviceActionRequest",
+    "DeviceActionRequestBody",
     "DeviceActionResponse",
     "EndpointManagementDevice",
     "GetEndpointManagementDeviceResponse",

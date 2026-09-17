@@ -244,6 +244,7 @@ class EndpointmanagementClient:
         self,
         *,
         device_id: str,
+        meta: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
         comment: typing.Optional[str] = OMIT,
         params: typing.Optional[typing.Dict[str, typing.Any]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
@@ -255,6 +256,9 @@ class EndpointmanagementClient:
         ----------
         device_id : str
             Target device ID.
+
+        meta : typing.Optional[typing.Union[str, typing.Sequence[str]]]
+            Add metadata to the response by invoking meta functions. Documentation for [meta functions](https://docs.synqly.com/api-reference/meta-functions) is available. Not all meta functions are available at every endpoint.
 
         comment : typing.Optional[str]
             Optional comment or reason for the action.
@@ -281,7 +285,7 @@ class EndpointmanagementClient:
         )
         """
         _response = self._raw_client.update_device(
-            device_id=device_id, comment=comment, params=params, request_options=request_options
+            device_id=device_id, meta=meta, comment=comment, params=params, request_options=request_options
         )
         return _response.data
 
@@ -289,6 +293,7 @@ class EndpointmanagementClient:
         self,
         *,
         device_id: str,
+        meta: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
         comment: typing.Optional[str] = OMIT,
         params: typing.Optional[typing.Dict[str, typing.Any]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
@@ -300,6 +305,9 @@ class EndpointmanagementClient:
         ----------
         device_id : str
             Target device ID.
+
+        meta : typing.Optional[typing.Union[str, typing.Sequence[str]]]
+            Add metadata to the response by invoking meta functions. Documentation for [meta functions](https://docs.synqly.com/api-reference/meta-functions) is available. Not all meta functions are available at every endpoint.
 
         comment : typing.Optional[str]
             Optional comment or reason for the action.
@@ -326,7 +334,7 @@ class EndpointmanagementClient:
         )
         """
         _response = self._raw_client.lock_device(
-            device_id=device_id, comment=comment, params=params, request_options=request_options
+            device_id=device_id, meta=meta, comment=comment, params=params, request_options=request_options
         )
         return _response.data
 
@@ -334,6 +342,7 @@ class EndpointmanagementClient:
         self,
         *,
         device_id: str,
+        meta: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
         comment: typing.Optional[str] = OMIT,
         params: typing.Optional[typing.Dict[str, typing.Any]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
@@ -345,6 +354,9 @@ class EndpointmanagementClient:
         ----------
         device_id : str
             Target device ID.
+
+        meta : typing.Optional[typing.Union[str, typing.Sequence[str]]]
+            Add metadata to the response by invoking meta functions. Documentation for [meta functions](https://docs.synqly.com/api-reference/meta-functions) is available. Not all meta functions are available at every endpoint.
 
         comment : typing.Optional[str]
             Optional comment or reason for the action.
@@ -371,7 +383,7 @@ class EndpointmanagementClient:
         )
         """
         _response = self._raw_client.restart_device(
-            device_id=device_id, comment=comment, params=params, request_options=request_options
+            device_id=device_id, meta=meta, comment=comment, params=params, request_options=request_options
         )
         return _response.data
 
@@ -379,6 +391,7 @@ class EndpointmanagementClient:
         self,
         *,
         device_id: str,
+        meta: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
         comment: typing.Optional[str] = OMIT,
         params: typing.Optional[typing.Dict[str, typing.Any]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
@@ -390,6 +403,9 @@ class EndpointmanagementClient:
         ----------
         device_id : str
             Target device ID.
+
+        meta : typing.Optional[typing.Union[str, typing.Sequence[str]]]
+            Add metadata to the response by invoking meta functions. Documentation for [meta functions](https://docs.synqly.com/api-reference/meta-functions) is available. Not all meta functions are available at every endpoint.
 
         comment : typing.Optional[str]
             Optional comment or reason for the action.
@@ -416,7 +432,7 @@ class EndpointmanagementClient:
         )
         """
         _response = self._raw_client.wipe_device(
-            device_id=device_id, comment=comment, params=params, request_options=request_options
+            device_id=device_id, meta=meta, comment=comment, params=params, request_options=request_options
         )
         return _response.data
 
@@ -736,6 +752,7 @@ class AsyncEndpointmanagementClient:
         self,
         *,
         device_id: str,
+        meta: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
         comment: typing.Optional[str] = OMIT,
         params: typing.Optional[typing.Dict[str, typing.Any]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
@@ -747,6 +764,9 @@ class AsyncEndpointmanagementClient:
         ----------
         device_id : str
             Target device ID.
+
+        meta : typing.Optional[typing.Union[str, typing.Sequence[str]]]
+            Add metadata to the response by invoking meta functions. Documentation for [meta functions](https://docs.synqly.com/api-reference/meta-functions) is available. Not all meta functions are available at every endpoint.
 
         comment : typing.Optional[str]
             Optional comment or reason for the action.
@@ -781,7 +801,7 @@ class AsyncEndpointmanagementClient:
         asyncio.run(main())
         """
         _response = await self._raw_client.update_device(
-            device_id=device_id, comment=comment, params=params, request_options=request_options
+            device_id=device_id, meta=meta, comment=comment, params=params, request_options=request_options
         )
         return _response.data
 
@@ -789,6 +809,7 @@ class AsyncEndpointmanagementClient:
         self,
         *,
         device_id: str,
+        meta: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
         comment: typing.Optional[str] = OMIT,
         params: typing.Optional[typing.Dict[str, typing.Any]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
@@ -800,6 +821,9 @@ class AsyncEndpointmanagementClient:
         ----------
         device_id : str
             Target device ID.
+
+        meta : typing.Optional[typing.Union[str, typing.Sequence[str]]]
+            Add metadata to the response by invoking meta functions. Documentation for [meta functions](https://docs.synqly.com/api-reference/meta-functions) is available. Not all meta functions are available at every endpoint.
 
         comment : typing.Optional[str]
             Optional comment or reason for the action.
@@ -834,7 +858,7 @@ class AsyncEndpointmanagementClient:
         asyncio.run(main())
         """
         _response = await self._raw_client.lock_device(
-            device_id=device_id, comment=comment, params=params, request_options=request_options
+            device_id=device_id, meta=meta, comment=comment, params=params, request_options=request_options
         )
         return _response.data
 
@@ -842,6 +866,7 @@ class AsyncEndpointmanagementClient:
         self,
         *,
         device_id: str,
+        meta: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
         comment: typing.Optional[str] = OMIT,
         params: typing.Optional[typing.Dict[str, typing.Any]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
@@ -853,6 +878,9 @@ class AsyncEndpointmanagementClient:
         ----------
         device_id : str
             Target device ID.
+
+        meta : typing.Optional[typing.Union[str, typing.Sequence[str]]]
+            Add metadata to the response by invoking meta functions. Documentation for [meta functions](https://docs.synqly.com/api-reference/meta-functions) is available. Not all meta functions are available at every endpoint.
 
         comment : typing.Optional[str]
             Optional comment or reason for the action.
@@ -887,7 +915,7 @@ class AsyncEndpointmanagementClient:
         asyncio.run(main())
         """
         _response = await self._raw_client.restart_device(
-            device_id=device_id, comment=comment, params=params, request_options=request_options
+            device_id=device_id, meta=meta, comment=comment, params=params, request_options=request_options
         )
         return _response.data
 
@@ -895,6 +923,7 @@ class AsyncEndpointmanagementClient:
         self,
         *,
         device_id: str,
+        meta: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
         comment: typing.Optional[str] = OMIT,
         params: typing.Optional[typing.Dict[str, typing.Any]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
@@ -906,6 +935,9 @@ class AsyncEndpointmanagementClient:
         ----------
         device_id : str
             Target device ID.
+
+        meta : typing.Optional[typing.Union[str, typing.Sequence[str]]]
+            Add metadata to the response by invoking meta functions. Documentation for [meta functions](https://docs.synqly.com/api-reference/meta-functions) is available. Not all meta functions are available at every endpoint.
 
         comment : typing.Optional[str]
             Optional comment or reason for the action.
@@ -940,7 +972,7 @@ class AsyncEndpointmanagementClient:
         asyncio.run(main())
         """
         _response = await self._raw_client.wipe_device(
-            device_id=device_id, comment=comment, params=params, request_options=request_options
+            device_id=device_id, meta=meta, comment=comment, params=params, request_options=request_options
         )
         return _response.data
 

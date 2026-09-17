@@ -6112,7 +6112,15 @@ client.endpointmanagement.update_device(
 <dl>
 <dd>
 
-**request:** `DeviceActionRequest` 
+**request:** `DeviceActionRequestBody` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**meta:** `typing.Optional[typing.Union[str, typing.Sequence[str]]]` — Add metadata to the response by invoking meta functions. Documentation for [meta functions](https://docs.synqly.com/api-reference/meta-functions) is available. Not all meta functions are available at every endpoint.
     
 </dd>
 </dl>
@@ -6185,7 +6193,15 @@ client.endpointmanagement.lock_device(
 <dl>
 <dd>
 
-**request:** `DeviceActionRequest` 
+**request:** `DeviceActionRequestBody` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**meta:** `typing.Optional[typing.Union[str, typing.Sequence[str]]]` — Add metadata to the response by invoking meta functions. Documentation for [meta functions](https://docs.synqly.com/api-reference/meta-functions) is available. Not all meta functions are available at every endpoint.
     
 </dd>
 </dl>
@@ -6258,7 +6274,15 @@ client.endpointmanagement.restart_device(
 <dl>
 <dd>
 
-**request:** `DeviceActionRequest` 
+**request:** `DeviceActionRequestBody` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**meta:** `typing.Optional[typing.Union[str, typing.Sequence[str]]]` — Add metadata to the response by invoking meta functions. Documentation for [meta functions](https://docs.synqly.com/api-reference/meta-functions) is available. Not all meta functions are available at every endpoint.
     
 </dd>
 </dl>
@@ -6331,7 +6355,15 @@ client.endpointmanagement.wipe_device(
 <dl>
 <dd>
 
-**request:** `DeviceActionRequest` 
+**request:** `DeviceActionRequestBody` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**meta:** `typing.Optional[typing.Union[str, typing.Sequence[str]]]` — Add metadata to the response by invoking meta functions. Documentation for [meta functions](https://docs.synqly.com/api-reference/meta-functions) is available. Not all meta functions are available at every endpoint.
     
 </dd>
 </dl>

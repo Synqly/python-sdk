@@ -7,7 +7,7 @@ from importlib import import_module
 
 if typing.TYPE_CHECKING:
     from .compliance_finding import ComplianceFinding
-    from .device_action_request import DeviceActionRequest
+    from .device_action_request_body import DeviceActionRequestBody
     from .device_action_response import DeviceActionResponse
     from .endpoint_management_device import EndpointManagementDevice
     from .get_endpoint_management_device_response import GetEndpointManagementDeviceResponse
@@ -18,7 +18,7 @@ if typing.TYPE_CHECKING:
     from .remediation_request import RemediationRequest
 _dynamic_imports: typing.Dict[str, str] = {
     "ComplianceFinding": ".compliance_finding",
-    "DeviceActionRequest": ".device_action_request",
+    "DeviceActionRequestBody": ".device_action_request_body",
     "DeviceActionResponse": ".device_action_response",
     "EndpointManagementDevice": ".endpoint_management_device",
     "GetEndpointManagementDeviceResponse": ".get_endpoint_management_device_response",
@@ -53,7 +53,7 @@ def __dir__():
 
 __all__ = [
     "ComplianceFinding",
-    "DeviceActionRequest",
+    "DeviceActionRequestBody",
     "DeviceActionResponse",
     "EndpointManagementDevice",
     "GetEndpointManagementDeviceResponse",

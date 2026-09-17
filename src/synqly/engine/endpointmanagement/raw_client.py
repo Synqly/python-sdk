@@ -931,6 +931,7 @@ class RawEndpointmanagementClient:
         self,
         *,
         device_id: str,
+        meta: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
         comment: typing.Optional[str] = OMIT,
         params: typing.Optional[typing.Dict[str, typing.Any]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
@@ -942,6 +943,9 @@ class RawEndpointmanagementClient:
         ----------
         device_id : str
             Target device ID.
+
+        meta : typing.Optional[typing.Union[str, typing.Sequence[str]]]
+            Add metadata to the response by invoking meta functions. Documentation for [meta functions](https://docs.synqly.com/api-reference/meta-functions) is available. Not all meta functions are available at every endpoint.
 
         comment : typing.Optional[str]
             Optional comment or reason for the action.
@@ -959,6 +963,9 @@ class RawEndpointmanagementClient:
         _response = self._client_wrapper.httpx_client.request(
             "v1/endpoint-management/devices/actions/update",
             method="POST",
+            params={
+                "meta": meta,
+            },
             json={
                 "device_id": device_id,
                 "comment": comment,
@@ -1144,6 +1151,7 @@ class RawEndpointmanagementClient:
         self,
         *,
         device_id: str,
+        meta: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
         comment: typing.Optional[str] = OMIT,
         params: typing.Optional[typing.Dict[str, typing.Any]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
@@ -1155,6 +1163,9 @@ class RawEndpointmanagementClient:
         ----------
         device_id : str
             Target device ID.
+
+        meta : typing.Optional[typing.Union[str, typing.Sequence[str]]]
+            Add metadata to the response by invoking meta functions. Documentation for [meta functions](https://docs.synqly.com/api-reference/meta-functions) is available. Not all meta functions are available at every endpoint.
 
         comment : typing.Optional[str]
             Optional comment or reason for the action.
@@ -1172,6 +1183,9 @@ class RawEndpointmanagementClient:
         _response = self._client_wrapper.httpx_client.request(
             "v1/endpoint-management/devices/actions/lock",
             method="POST",
+            params={
+                "meta": meta,
+            },
             json={
                 "device_id": device_id,
                 "comment": comment,
@@ -1357,6 +1371,7 @@ class RawEndpointmanagementClient:
         self,
         *,
         device_id: str,
+        meta: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
         comment: typing.Optional[str] = OMIT,
         params: typing.Optional[typing.Dict[str, typing.Any]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
@@ -1368,6 +1383,9 @@ class RawEndpointmanagementClient:
         ----------
         device_id : str
             Target device ID.
+
+        meta : typing.Optional[typing.Union[str, typing.Sequence[str]]]
+            Add metadata to the response by invoking meta functions. Documentation for [meta functions](https://docs.synqly.com/api-reference/meta-functions) is available. Not all meta functions are available at every endpoint.
 
         comment : typing.Optional[str]
             Optional comment or reason for the action.
@@ -1385,6 +1403,9 @@ class RawEndpointmanagementClient:
         _response = self._client_wrapper.httpx_client.request(
             "v1/endpoint-management/devices/actions/restart",
             method="POST",
+            params={
+                "meta": meta,
+            },
             json={
                 "device_id": device_id,
                 "comment": comment,
@@ -1570,6 +1591,7 @@ class RawEndpointmanagementClient:
         self,
         *,
         device_id: str,
+        meta: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
         comment: typing.Optional[str] = OMIT,
         params: typing.Optional[typing.Dict[str, typing.Any]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
@@ -1581,6 +1603,9 @@ class RawEndpointmanagementClient:
         ----------
         device_id : str
             Target device ID.
+
+        meta : typing.Optional[typing.Union[str, typing.Sequence[str]]]
+            Add metadata to the response by invoking meta functions. Documentation for [meta functions](https://docs.synqly.com/api-reference/meta-functions) is available. Not all meta functions are available at every endpoint.
 
         comment : typing.Optional[str]
             Optional comment or reason for the action.
@@ -1598,6 +1623,9 @@ class RawEndpointmanagementClient:
         _response = self._client_wrapper.httpx_client.request(
             "v1/endpoint-management/devices/actions/wipe",
             method="POST",
+            params={
+                "meta": meta,
+            },
             json={
                 "device_id": device_id,
                 "comment": comment,
@@ -2898,6 +2926,7 @@ class AsyncRawEndpointmanagementClient:
         self,
         *,
         device_id: str,
+        meta: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
         comment: typing.Optional[str] = OMIT,
         params: typing.Optional[typing.Dict[str, typing.Any]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
@@ -2909,6 +2938,9 @@ class AsyncRawEndpointmanagementClient:
         ----------
         device_id : str
             Target device ID.
+
+        meta : typing.Optional[typing.Union[str, typing.Sequence[str]]]
+            Add metadata to the response by invoking meta functions. Documentation for [meta functions](https://docs.synqly.com/api-reference/meta-functions) is available. Not all meta functions are available at every endpoint.
 
         comment : typing.Optional[str]
             Optional comment or reason for the action.
@@ -2926,6 +2958,9 @@ class AsyncRawEndpointmanagementClient:
         _response = await self._client_wrapper.httpx_client.request(
             "v1/endpoint-management/devices/actions/update",
             method="POST",
+            params={
+                "meta": meta,
+            },
             json={
                 "device_id": device_id,
                 "comment": comment,
@@ -3111,6 +3146,7 @@ class AsyncRawEndpointmanagementClient:
         self,
         *,
         device_id: str,
+        meta: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
         comment: typing.Optional[str] = OMIT,
         params: typing.Optional[typing.Dict[str, typing.Any]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
@@ -3122,6 +3158,9 @@ class AsyncRawEndpointmanagementClient:
         ----------
         device_id : str
             Target device ID.
+
+        meta : typing.Optional[typing.Union[str, typing.Sequence[str]]]
+            Add metadata to the response by invoking meta functions. Documentation for [meta functions](https://docs.synqly.com/api-reference/meta-functions) is available. Not all meta functions are available at every endpoint.
 
         comment : typing.Optional[str]
             Optional comment or reason for the action.
@@ -3139,6 +3178,9 @@ class AsyncRawEndpointmanagementClient:
         _response = await self._client_wrapper.httpx_client.request(
             "v1/endpoint-management/devices/actions/lock",
             method="POST",
+            params={
+                "meta": meta,
+            },
             json={
                 "device_id": device_id,
                 "comment": comment,
@@ -3324,6 +3366,7 @@ class AsyncRawEndpointmanagementClient:
         self,
         *,
         device_id: str,
+        meta: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
         comment: typing.Optional[str] = OMIT,
         params: typing.Optional[typing.Dict[str, typing.Any]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
@@ -3335,6 +3378,9 @@ class AsyncRawEndpointmanagementClient:
         ----------
         device_id : str
             Target device ID.
+
+        meta : typing.Optional[typing.Union[str, typing.Sequence[str]]]
+            Add metadata to the response by invoking meta functions. Documentation for [meta functions](https://docs.synqly.com/api-reference/meta-functions) is available. Not all meta functions are available at every endpoint.
 
         comment : typing.Optional[str]
             Optional comment or reason for the action.
@@ -3352,6 +3398,9 @@ class AsyncRawEndpointmanagementClient:
         _response = await self._client_wrapper.httpx_client.request(
             "v1/endpoint-management/devices/actions/restart",
             method="POST",
+            params={
+                "meta": meta,
+            },
             json={
                 "device_id": device_id,
                 "comment": comment,
@@ -3537,6 +3586,7 @@ class AsyncRawEndpointmanagementClient:
         self,
         *,
         device_id: str,
+        meta: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
         comment: typing.Optional[str] = OMIT,
         params: typing.Optional[typing.Dict[str, typing.Any]] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
@@ -3548,6 +3598,9 @@ class AsyncRawEndpointmanagementClient:
         ----------
         device_id : str
             Target device ID.
+
+        meta : typing.Optional[typing.Union[str, typing.Sequence[str]]]
+            Add metadata to the response by invoking meta functions. Documentation for [meta functions](https://docs.synqly.com/api-reference/meta-functions) is available. Not all meta functions are available at every endpoint.
 
         comment : typing.Optional[str]
             Optional comment or reason for the action.
@@ -3565,6 +3618,9 @@ class AsyncRawEndpointmanagementClient:
         _response = await self._client_wrapper.httpx_client.request(
             "v1/endpoint-management/devices/actions/wipe",
             method="POST",
+            params={
+                "meta": meta,
+            },
             json={
                 "device_id": device_id,
                 "comment": comment,
