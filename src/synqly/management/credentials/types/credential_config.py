@@ -101,6 +101,7 @@ class CredentialConfig_TlsCertificate(UncheckedBaseModel):
     type: typing.Literal["tls_certificate"] = "tls_certificate"
     certificate: str
     private_key: str
+    extra: typing.Optional[typing.Dict[str, typing.Any]] = None
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow")  # type: ignore # Pydantic v2

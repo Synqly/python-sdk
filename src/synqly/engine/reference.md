@@ -5617,7 +5617,7 @@ client.emailsecurity.get_threat_details(
 <dl>
 <dd>
 
-Returns a list of email events matching the query from the token-linked Email Security provider. Defaults to the last 30 days of email events. This can be overridden by using the `time` filter. Note that some providers may have a maximum time range limit.
+Returns a list of email events matching the query from the token-linked Email Security provider. Most providers default to the last 30 days of email events, which the `time` filter overrides. Others use a different default range or filter on a different time field, so refer to the provider's declared filters. Some providers also limit the maximum time range.
 </dd>
 </dl>
 </dd>

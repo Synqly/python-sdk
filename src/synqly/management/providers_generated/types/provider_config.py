@@ -102,6 +102,8 @@ from .ninja_one_credential import NinjaOneCredential
 from .ninja_one_region import NinjaOneRegion
 from .nozomi_vantage_credential import NozomiVantageCredential
 from .nucleus_credential import NucleusCredential
+from .o_365_management_activity_cloud import O365ManagementActivityCloud
+from .o_365_management_activity_credential import O365ManagementActivityCredential
 from .okta_credential import OktaCredential
 from .open_search_credential import OpenSearchCredential
 from .open_text_application_security_credential import OpenTextApplicationSecurityCredential
@@ -1092,6 +1094,22 @@ class ProviderConfig_EmailsecurityMimecastCloudGateway(UncheckedBaseModel):
 class ProviderConfig_EmailsecurityMimecastCloudGatewayMock(UncheckedBaseModel):
     type: typing.Literal["emailsecurity_mimecast_cloud_gateway_mock"] = "emailsecurity_mimecast_cloud_gateway_mock"
     dataset: EmailSecurityMimecastCloudGatewayDataset
+
+    if IS_PYDANTIC_V2:
+        model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow")  # type: ignore # Pydantic v2
+    else:
+
+        class Config:
+            smart_union = True
+            extra = pydantic.Extra.allow
+
+
+class ProviderConfig_EmailsecurityO365ManagementActivity(UncheckedBaseModel):
+    type: typing.Literal["emailsecurity_o365_management_activity"] = "emailsecurity_o365_management_activity"
+    cloud: typing.Optional[O365ManagementActivityCloud] = None
+    credential: O365ManagementActivityCredential
+    operations: typing.Optional[typing.List[str]] = None
+    tenant_id: str
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow")  # type: ignore # Pydantic v2
@@ -2850,6 +2868,7 @@ ProviderConfig = typing_extensions.Annotated[
         ProviderConfig_EmailsecurityExchangeOnline,
         ProviderConfig_EmailsecurityMimecastCloudGateway,
         ProviderConfig_EmailsecurityMimecastCloudGatewayMock,
+        ProviderConfig_EmailsecurityO365ManagementActivity,
         ProviderConfig_EndpointmanagementAutomox,
         ProviderConfig_EndpointmanagementIntune,
         ProviderConfig_EndpointmanagementIru,

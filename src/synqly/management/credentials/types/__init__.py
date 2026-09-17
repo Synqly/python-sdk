@@ -41,6 +41,7 @@ if typing.TYPE_CHECKING:
     from .secret_credential import SecretCredential
     from .secret_credential_id import SecretCredentialId
     from .tls_certificate_credential import TlsCertificateCredential
+    from .tls_certificate_credential_id import TlsCertificateCredentialId
     from .token_credential import TokenCredential
     from .token_credential_id import TokenCredentialId
     from .update_credential_request import UpdateCredentialRequest
@@ -79,6 +80,7 @@ _dynamic_imports: typing.Dict[str, str] = {
     "SecretCredential": ".secret_credential",
     "SecretCredentialId": ".secret_credential_id",
     "TlsCertificateCredential": ".tls_certificate_credential",
+    "TlsCertificateCredentialId": ".tls_certificate_credential_id",
     "TokenCredential": ".token_credential",
     "TokenCredentialId": ".token_credential_id",
     "UpdateCredentialRequest": ".update_credential_request",
@@ -141,6 +143,7 @@ __all__ = [
     "SecretCredential",
     "SecretCredentialId",
     "TlsCertificateCredential",
+    "TlsCertificateCredentialId",
     "TokenCredential",
     "TokenCredentialId",
     "UpdateCredentialRequest",

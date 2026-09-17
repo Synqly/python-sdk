@@ -26,6 +26,16 @@ class Email(UncheckedBaseModel):
     The number of attachments in the email as reported by the event source.
     """
 
+    bcc: typing.Optional[typing.List[EmailAddress]] = pydantic.Field(default=None)
+    """
+    The machine-readable email header Bcc values, as defined by RFC 5322. For example <code>example.user@usersdomain.com</code>.
+    """
+
+    bcc_mailboxes: typing.Optional[typing.List[str]] = pydantic.Field(default=None)
+    """
+    The human-readable email header Bcc Mailbox values. For example <code>'Example User &lt;example.user@usersdomain.com&gt;'</code>.
+    """
+
     cc: typing.Optional[typing.List[EmailAddress]] = pydantic.Field(default=None)
     """
     The machine-readable email header Cc values, as defined by RFC 5322. For example <code>example.user@usersdomain.com</code>.

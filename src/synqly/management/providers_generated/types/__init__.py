@@ -216,6 +216,7 @@ if typing.TYPE_CHECKING:
     from .email_security_mimecast_cloud_gateway import EmailSecurityMimecastCloudGateway
     from .email_security_mimecast_cloud_gateway_dataset import EmailSecurityMimecastCloudGatewayDataset
     from .email_security_mimecast_cloud_gateway_mock import EmailSecurityMimecastCloudGatewayMock
+    from .email_security_o_365_management_activity import EmailSecurityO365ManagementActivity
     from .endpointmanagement_automox import EndpointmanagementAutomox
     from .endpointmanagement_intune import EndpointmanagementIntune
     from .endpointmanagement_iru import EndpointmanagementIru
@@ -367,6 +368,14 @@ if typing.TYPE_CHECKING:
         NozomiVantageCredential_BasicId,
     )
     from .nucleus_credential import NucleusCredential, NucleusCredential_Token, NucleusCredential_TokenId
+    from .o_365_management_activity_cloud import O365ManagementActivityCloud
+    from .o_365_management_activity_credential import (
+        O365ManagementActivityCredential,
+        O365ManagementActivityCredential_OAuthClient,
+        O365ManagementActivityCredential_OAuthClientId,
+        O365ManagementActivityCredential_TlsCertificate,
+        O365ManagementActivityCredential_TlsCertificateId,
+    )
     from .okta_credential import (
         OktaCredential,
         OktaCredential_OAuthClient,
@@ -466,6 +475,7 @@ if typing.TYPE_CHECKING:
         ProviderConfig_EmailsecurityExchangeOnline,
         ProviderConfig_EmailsecurityMimecastCloudGateway,
         ProviderConfig_EmailsecurityMimecastCloudGatewayMock,
+        ProviderConfig_EmailsecurityO365ManagementActivity,
         ProviderConfig_EndpointmanagementAutomox,
         ProviderConfig_EndpointmanagementIntune,
         ProviderConfig_EndpointmanagementIru,
@@ -982,6 +992,7 @@ _dynamic_imports: typing.Dict[str, str] = {
     "EmailSecurityMimecastCloudGateway": ".email_security_mimecast_cloud_gateway",
     "EmailSecurityMimecastCloudGatewayDataset": ".email_security_mimecast_cloud_gateway_dataset",
     "EmailSecurityMimecastCloudGatewayMock": ".email_security_mimecast_cloud_gateway_mock",
+    "EmailSecurityO365ManagementActivity": ".email_security_o_365_management_activity",
     "EndpointmanagementAutomox": ".endpointmanagement_automox",
     "EndpointmanagementIntune": ".endpointmanagement_intune",
     "EndpointmanagementIru": ".endpointmanagement_iru",
@@ -1137,6 +1148,12 @@ _dynamic_imports: typing.Dict[str, str] = {
     "NucleusCredential": ".nucleus_credential",
     "NucleusCredential_Token": ".nucleus_credential",
     "NucleusCredential_TokenId": ".nucleus_credential",
+    "O365ManagementActivityCloud": ".o_365_management_activity_cloud",
+    "O365ManagementActivityCredential": ".o_365_management_activity_credential",
+    "O365ManagementActivityCredential_OAuthClient": ".o_365_management_activity_credential",
+    "O365ManagementActivityCredential_OAuthClientId": ".o_365_management_activity_credential",
+    "O365ManagementActivityCredential_TlsCertificate": ".o_365_management_activity_credential",
+    "O365ManagementActivityCredential_TlsCertificateId": ".o_365_management_activity_credential",
     "OktaCredential": ".okta_credential",
     "OktaCredential_OAuthClient": ".okta_credential",
     "OktaCredential_OAuthClientId": ".okta_credential",
@@ -1240,6 +1257,7 @@ _dynamic_imports: typing.Dict[str, str] = {
     "ProviderConfig_EmailsecurityExchangeOnline": ".provider_config",
     "ProviderConfig_EmailsecurityMimecastCloudGateway": ".provider_config",
     "ProviderConfig_EmailsecurityMimecastCloudGatewayMock": ".provider_config",
+    "ProviderConfig_EmailsecurityO365ManagementActivity": ".provider_config",
     "ProviderConfig_EndpointmanagementAutomox": ".provider_config",
     "ProviderConfig_EndpointmanagementIntune": ".provider_config",
     "ProviderConfig_EndpointmanagementIru": ".provider_config",
@@ -1778,6 +1796,7 @@ __all__ = [
     "EmailSecurityMimecastCloudGateway",
     "EmailSecurityMimecastCloudGatewayDataset",
     "EmailSecurityMimecastCloudGatewayMock",
+    "EmailSecurityO365ManagementActivity",
     "EndpointmanagementAutomox",
     "EndpointmanagementIntune",
     "EndpointmanagementIru",
@@ -1933,6 +1952,12 @@ __all__ = [
     "NucleusCredential",
     "NucleusCredential_Token",
     "NucleusCredential_TokenId",
+    "O365ManagementActivityCloud",
+    "O365ManagementActivityCredential",
+    "O365ManagementActivityCredential_OAuthClient",
+    "O365ManagementActivityCredential_OAuthClientId",
+    "O365ManagementActivityCredential_TlsCertificate",
+    "O365ManagementActivityCredential_TlsCertificateId",
     "OktaCredential",
     "OktaCredential_OAuthClient",
     "OktaCredential_OAuthClientId",
@@ -2036,6 +2061,7 @@ __all__ = [
     "ProviderConfig_EmailsecurityExchangeOnline",
     "ProviderConfig_EmailsecurityMimecastCloudGateway",
     "ProviderConfig_EmailsecurityMimecastCloudGatewayMock",
+    "ProviderConfig_EmailsecurityO365ManagementActivity",
     "ProviderConfig_EndpointmanagementAutomox",
     "ProviderConfig_EndpointmanagementIntune",
     "ProviderConfig_EndpointmanagementIru",

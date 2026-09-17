@@ -22,6 +22,11 @@ class TlsCertificateCredential(CredentialBase):
     PEM-encoded private key corresponding to the certificate.
     """
 
+    extra: typing.Optional[typing.Dict[str, typing.Any]] = pydantic.Field(default=None)
+    """
+    Optional connection specific JSON map data such as the client ID the certificate authenticates
+    """
+
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow")  # type: ignore # Pydantic v2
     else:

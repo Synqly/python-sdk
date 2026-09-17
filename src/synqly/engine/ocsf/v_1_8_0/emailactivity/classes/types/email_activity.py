@@ -12,8 +12,10 @@ from ......core.serialization import FieldMetadata
 from ......core.unchecked_base_model import UncheckedBaseModel
 from ....base.types.email_address import EmailAddress
 from ....base.types.timestamp import Timestamp
+from ....objects.types.actor import Actor
 from ....objects.types.attack import Attack
 from ....objects.types.authorization import Authorization
+from ....objects.types.device import Device
 from ....objects.types.email import Email
 from ....objects.types.email_auth import EmailAuth
 from ....objects.types.enrichment import Enrichment
@@ -62,6 +64,11 @@ class EmailActivity(UncheckedBaseModel):
     activity_name: typing.Optional[str] = pydantic.Field(default=None)
     """
     The event activity name, as defined by the activity_id.
+    """
+
+    actor: typing.Optional[Actor] = pydantic.Field(default=None)
+    """
+    The actor object describes details about the user/role/process that was the source of the activity. Note that this is not the threat actor of a campaign but may be part of a campaign.
     """
 
     attacks: typing.Optional[typing.List[Attack]] = pydantic.Field(default=None)
@@ -122,6 +129,11 @@ class EmailActivity(UncheckedBaseModel):
     count: typing.Optional[int] = pydantic.Field(default=None)
     """
     The number of times that events in the same logical group occurred during the event <strong>Start Time</strong> to <strong>End Time</strong> period.
+    """
+
+    device: typing.Optional[Device] = pydantic.Field(default=None)
+    """
+    An addressable device, computer system or host.
     """
 
     direction: typing.Optional[str] = pydantic.Field(default=None)
