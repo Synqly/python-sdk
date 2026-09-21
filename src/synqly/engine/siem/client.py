@@ -375,7 +375,7 @@ class SiemClient:
             Number of `Account` objects to return in this page. Defaults to 100.
 
         order : typing.Optional[typing.Union[str, typing.Sequence[str]]]
-            Select a field to order the results by. Defaults to `time`. To control the direction of the sorting, append `[asc]` or `[desc]` to the field name. For example, `name[desc]` will sort the results by `name` in descending order. The ordering defaults to `asc` if not specified. May be used multiple times to order by multiple fields, and the ordering is applied in the order the fields are specified.
+            Select a field to order the results by. Defaults to `time` descending (newest first). To control the direction of the sorting, append `[asc]` or `[desc]` to the field name. For example, `name[desc]` will sort the results by `name` in descending order. Bare `order=time` is descending. May be used multiple times to order by multiple fields, and the ordering is applied in the order the fields are specified.
 
         filter : typing.Optional[typing.Union[str, typing.Sequence[str]]]
             Filter results by this query. For more information on filtering, refer to our [Filtering Guide](https://docs.synqly.com/guides/connectors/siem/query-filters). Defaults to no filter. If used more than once, the queries are ANDed together.
@@ -929,7 +929,7 @@ class AsyncSiemClient:
             Number of `Account` objects to return in this page. Defaults to 100.
 
         order : typing.Optional[typing.Union[str, typing.Sequence[str]]]
-            Select a field to order the results by. Defaults to `time`. To control the direction of the sorting, append `[asc]` or `[desc]` to the field name. For example, `name[desc]` will sort the results by `name` in descending order. The ordering defaults to `asc` if not specified. May be used multiple times to order by multiple fields, and the ordering is applied in the order the fields are specified.
+            Select a field to order the results by. Defaults to `time` descending (newest first). To control the direction of the sorting, append `[asc]` or `[desc]` to the field name. For example, `name[desc]` will sort the results by `name` in descending order. Bare `order=time` is descending. May be used multiple times to order by multiple fields, and the ordering is applied in the order the fields are specified.
 
         filter : typing.Optional[typing.Union[str, typing.Sequence[str]]]
             Filter results by this query. For more information on filtering, refer to our [Filtering Guide](https://docs.synqly.com/guides/connectors/siem/query-filters). Defaults to no filter. If used more than once, the queries are ANDed together.
