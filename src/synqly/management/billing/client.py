@@ -77,6 +77,47 @@ class BillingClient:
         )
         return _response.data
 
+    def export(
+        self,
+        *,
+        month: typing.Optional[BillingMonth] = None,
+        from_: typing.Optional[BillingMonth] = None,
+        to: typing.Optional[BillingMonth] = None,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> typing.Iterator[bytes]:
+        """
+        Downloads billing reports as a gzipped tar archive, covering every Organization the token can access. Give `month` for one month, or `from` and `to` for an inclusive range; with neither, the previous month is exported. The archive holds a CSV of every billed line item per month, a `metadata.json` naming the export time, Synqly version and months covered, and an `export.log`. A month no Organization was billed for is left out of both. Use a RootOrganization token to cover multiple Organizations in one archive. Month-to-date `partial` reports are not exported; use Get Billing Report for those.
+
+        Parameters
+        ----------
+        month : typing.Optional[BillingMonth]
+            A single month to export. Each month name resolves to its most recently completed occurrence, so the twelve names cover the previous twelve months. Defaults to the previous month when no month or range is given. `partial` is not accepted, and this cannot be combined with `from`/`to`.
+
+        from_ : typing.Optional[BillingMonth]
+            First month of an inclusive range, given with `to`. The archive holds one CSV per month in the range, in chronological order, and a month nobody was billed for is left out. `partial` is not accepted.
+
+        to : typing.Optional[BillingMonth]
+            Last month of an inclusive range, given with `from`. Must not resolve to a month earlier than `from`. `partial` is not accepted.
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration. You can pass in configuration such as `chunk_size`, and more to customize the request and response.
+
+        Returns
+        -------
+        typing.Iterator[bytes]
+
+        Examples
+        --------
+        from synqly import SynqlyManagement
+
+        client = SynqlyManagement(
+            token="YOUR_TOKEN",
+        )
+        client.billing.export()
+        """
+        with self._raw_client.export(month=month, from_=from_, to=to, request_options=request_options) as r:
+            yield from r.data
+
     def get(
         self,
         organization_id: OrganizationId,
@@ -193,6 +234,56 @@ class AsyncBillingClient:
             limit=limit, start_after=start_after, order=order, filter=filter, request_options=request_options
         )
         return _response.data
+
+    async def export(
+        self,
+        *,
+        month: typing.Optional[BillingMonth] = None,
+        from_: typing.Optional[BillingMonth] = None,
+        to: typing.Optional[BillingMonth] = None,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> typing.AsyncIterator[bytes]:
+        """
+        Downloads billing reports as a gzipped tar archive, covering every Organization the token can access. Give `month` for one month, or `from` and `to` for an inclusive range; with neither, the previous month is exported. The archive holds a CSV of every billed line item per month, a `metadata.json` naming the export time, Synqly version and months covered, and an `export.log`. A month no Organization was billed for is left out of both. Use a RootOrganization token to cover multiple Organizations in one archive. Month-to-date `partial` reports are not exported; use Get Billing Report for those.
+
+        Parameters
+        ----------
+        month : typing.Optional[BillingMonth]
+            A single month to export. Each month name resolves to its most recently completed occurrence, so the twelve names cover the previous twelve months. Defaults to the previous month when no month or range is given. `partial` is not accepted, and this cannot be combined with `from`/`to`.
+
+        from_ : typing.Optional[BillingMonth]
+            First month of an inclusive range, given with `to`. The archive holds one CSV per month in the range, in chronological order, and a month nobody was billed for is left out. `partial` is not accepted.
+
+        to : typing.Optional[BillingMonth]
+            Last month of an inclusive range, given with `from`. Must not resolve to a month earlier than `from`. `partial` is not accepted.
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration. You can pass in configuration such as `chunk_size`, and more to customize the request and response.
+
+        Returns
+        -------
+        typing.AsyncIterator[bytes]
+
+        Examples
+        --------
+        import asyncio
+
+        from synqly import AsyncSynqlyManagement
+
+        client = AsyncSynqlyManagement(
+            token="YOUR_TOKEN",
+        )
+
+
+        async def main() -> None:
+            await client.billing.export()
+
+
+        asyncio.run(main())
+        """
+        async with self._raw_client.export(month=month, from_=from_, to=to, request_options=request_options) as r:
+            async for _chunk in r.data:
+                yield _chunk
 
     async def get(
         self,
