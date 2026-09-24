@@ -70,6 +70,11 @@ class Enrollment(UncheckedBaseModel):
     The normalized identifier of the enrollment progress state.
     """
 
+    training_campaign_uid: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    The training campaign that this enrollment is associated with. This attribute is only populated when the enrollment object is not nested within any level of a training campaign.
+    """
+
     type: typing.Optional[str] = pydantic.Field(default=None)
     """
     The enrollment type as reported by the source.
