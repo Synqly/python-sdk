@@ -2914,6 +2914,12 @@ client.credentials.update(
 
 Patches the `Credential` object matching `{credentialId}`, where the
 `Credential` belongs to the `Account`, `Integration`, `IntegrationPoint` or `OrganizationWebhook` matching `{ownerId}`.
+
+This endpoint accepts only a restricted set of patch shapes:
+the `add`, `remove` and `replace` operations, targeting `/name`,
+`/fullname`, `/expires` or a `/config` field. The `copy`, `move` and
+`test` operations are not accepted. Any other operation or path is
+rejected with a `400`.
 </dd>
 </dl>
 </dd>
