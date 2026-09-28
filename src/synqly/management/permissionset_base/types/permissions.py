@@ -24,6 +24,11 @@ class Permissions(enum.StrEnum):
     Permission set that provides the minimum level of access necessary for MCP management use. Can create and update integrations but cannot use any Connector API.
     """
 
+    ACCOUNT_PROVISIONER = "account-provisioner"
+    """
+    Permission set that provides the minimum level of access necessary to onboard accounts. Can create accounts and, as part of creating an account, issue a token scoped to that account. Cannot read or modify existing accounts and cannot issue tokens on its own.
+    """
+
     _UNKNOWN = "__PERMISSIONS_UNKNOWN__"
     """
     This member is used for forward compatibility. If the value is not recognized by the enum, it will be stored here, and the raw value is accessible through `.value`.
@@ -45,6 +50,7 @@ class Permissions(enum.StrEnum):
         token_issuer: typing.Callable[[], T_Result],
         mcp_integrations_use_only: typing.Callable[[], T_Result],
         mcp_management: typing.Callable[[], T_Result],
+        account_provisioner: typing.Callable[[], T_Result],
         _unknown_member: typing.Callable[[str], T_Result],
     ) -> T_Result:
         if self is Permissions.ADMINISTRATOR:
@@ -63,4 +69,6 @@ class Permissions(enum.StrEnum):
             return mcp_integrations_use_only()
         if self is Permissions.MCP_MANAGEMENT:
             return mcp_management()
+        if self is Permissions.ACCOUNT_PROVISIONER:
+            return account_provisioner()
         return _unknown_member(self._value_)

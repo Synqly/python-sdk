@@ -59,6 +59,7 @@ if typing.TYPE_CHECKING:
         GetAccountResponse,
         ListAccountsResponse,
         PatchAccountResponse,
+        ProvisionedTokenRequest,
         UpdateAccountRequest,
         UpdateAccountResponse,
     )
@@ -2093,6 +2094,7 @@ _dynamic_imports: typing.Dict[str, str] = {
     "ProviderOperations": ".capabilities",
     "ProviderOrder": ".capabilities",
     "ProviderRelease": ".capabilities",
+    "ProvisionedTokenRequest": ".accounts",
     "QRadarCredential": ".providers_generated",
     "QRadarCredential_Token": ".providers_generated",
     "QRadarCredential_TokenId": ".providers_generated",
@@ -3331,6 +3333,7 @@ __all__ = [
     "ProviderOperations",
     "ProviderOrder",
     "ProviderRelease",
+    "ProvisionedTokenRequest",
     "QRadarCredential",
     "QRadarCredential_Token",
     "QRadarCredential_TokenId",

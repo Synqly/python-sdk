@@ -203,6 +203,12 @@ client.accounts.get(
 Creates an `Account` object. For more information on Organizations and
 Accounts, refer to our
 [Synqly Overview](https://docs.synqly.com/docs/synqly-overview).
+
+If the request carries a `token` block, a token scoped to the new `Account` is
+created in the same transaction and returned in `result.token`. The token secret
+is returned exactly once and cannot be retrieved again; if the response is lost,
+an organization administrator must issue a replacement token with
+`POST /v1/tokens`.
 </dd>
 </dl>
 </dd>
@@ -459,8 +465,10 @@ client.accounts.patch(
 <dl>
 <dd>
 
-Deletes the `Account` matching `{accountId}`. Deleting an `Account` also deletea
-all `Tokens` and `Credentials` belonging to the `Account`.
+Deletes the `Account` matching `{accountId}`. Deleting an `Account` also deletes
+its `Integrations` and `Credentials`. `Tokens` scoped to the `Account` are not
+revoked; they remain listed under `GET /v1/tokens` and should be deleted by an
+organization administrator.
 </dd>
 </dl>
 </dd>

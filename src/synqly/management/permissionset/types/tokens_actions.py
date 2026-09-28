@@ -12,6 +12,11 @@ class TokensActions(enum.StrEnum):
     CREATE = "create"
     CREATE_INTEGRATION = "create_integration"
     CREATE_SYNQLY_INTEGRATIONS = "create_synqly_integrations"
+    PROVISION = "provision"
+    """
+    Issue a token only as part of `POST /v1/accounts`, scoped by the server to the account being created. Grants no route under `/v1/tokens`.
+    """
+
     DELETE = "delete"
     GET = "get"
     RESET = "reset"
@@ -36,6 +41,7 @@ class TokensActions(enum.StrEnum):
         create: typing.Callable[[], T_Result],
         create_integration: typing.Callable[[], T_Result],
         create_synqly_integrations: typing.Callable[[], T_Result],
+        provision: typing.Callable[[], T_Result],
         delete: typing.Callable[[], T_Result],
         get: typing.Callable[[], T_Result],
         reset: typing.Callable[[], T_Result],
@@ -53,6 +59,8 @@ class TokensActions(enum.StrEnum):
             return create_integration()
         if self is TokensActions.CREATE_SYNQLY_INTEGRATIONS:
             return create_synqly_integrations()
+        if self is TokensActions.PROVISION:
+            return provision()
         if self is TokensActions.DELETE:
             return delete()
         if self is TokensActions.GET:

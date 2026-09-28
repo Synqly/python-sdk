@@ -13,6 +13,7 @@ if typing.TYPE_CHECKING:
     from .get_account_response import GetAccountResponse
     from .list_accounts_response import ListAccountsResponse
     from .patch_account_response import PatchAccountResponse
+    from .provisioned_token_request import ProvisionedTokenRequest
     from .update_account_request import UpdateAccountRequest
     from .update_account_response import UpdateAccountResponse
 _dynamic_imports: typing.Dict[str, str] = {
@@ -23,6 +24,7 @@ _dynamic_imports: typing.Dict[str, str] = {
     "GetAccountResponse": ".get_account_response",
     "ListAccountsResponse": ".list_accounts_response",
     "PatchAccountResponse": ".patch_account_response",
+    "ProvisionedTokenRequest": ".provisioned_token_request",
     "UpdateAccountRequest": ".update_account_request",
     "UpdateAccountResponse": ".update_account_response",
 }
@@ -57,6 +59,7 @@ __all__ = [
     "GetAccountResponse",
     "ListAccountsResponse",
     "PatchAccountResponse",
+    "ProvisionedTokenRequest",
     "UpdateAccountRequest",
     "UpdateAccountResponse",
 ]

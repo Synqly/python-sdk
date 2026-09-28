@@ -6,6 +6,7 @@ import pydantic
 from ...core.pydantic_utilities import IS_PYDANTIC_V2
 from ...core.unchecked_base_model import UncheckedBaseModel
 from ...organization_base.types.environment import Environment
+from .provisioned_token_request import ProvisionedTokenRequest
 
 
 class CreateAccountRequest(UncheckedBaseModel):
@@ -27,6 +28,14 @@ class CreateAccountRequest(UncheckedBaseModel):
     labels: typing.Optional[typing.List[str]] = pydantic.Field(default=None)
     """
     User defined labels that apply to this account. Labels are limited to 48 characters in length, must contain at least 1 character, and must contain only letters, numbers, underscores, hyphens, colons, and periods. The label values can be used in role bindings to limit the scope of permissions.
+    """
+
+    token: typing.Optional[ProvisionedTokenRequest] = pydantic.Field(default=None)
+    """
+    Optionally issue a token scoped to the new `Account`. The token secret is
+    returned exactly once, in this response, and cannot be retrieved again. If the
+    response is lost, an organization administrator must issue a replacement with
+    `POST /v1/tokens`.
     """
 
     if IS_PYDANTIC_V2:

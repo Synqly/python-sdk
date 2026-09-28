@@ -30,6 +30,7 @@ from .types.create_account_response import CreateAccountResponse
 from .types.get_account_response import GetAccountResponse
 from .types.list_accounts_response import ListAccountsResponse
 from .types.patch_account_response import PatchAccountResponse
+from .types.provisioned_token_request import ProvisionedTokenRequest
 from .types.update_account_response import UpdateAccountResponse
 from pydantic import ValidationError
 
@@ -385,12 +386,19 @@ class RawAccountsClient:
         fullname: typing.Optional[str] = OMIT,
         environment: typing.Optional[Environment] = OMIT,
         labels: typing.Optional[typing.Sequence[str]] = OMIT,
+        token: typing.Optional[ProvisionedTokenRequest] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[CreateAccountResponse]:
         """
         Creates an `Account` object. For more information on Organizations and
         Accounts, refer to our
         [Synqly Overview](https://docs.synqly.com/docs/synqly-overview).
+
+        If the request carries a `token` block, a token scoped to the new `Account` is
+        created in the same transaction and returned in `result.token`. The token secret
+        is returned exactly once and cannot be retrieved again; if the response is lost,
+        an organization administrator must issue a replacement token with
+        `POST /v1/tokens`.
 
         Parameters
         ----------
@@ -405,6 +413,12 @@ class RawAccountsClient:
 
         labels : typing.Optional[typing.Sequence[str]]
             User defined labels that apply to this account. Labels are limited to 48 characters in length, must contain at least 1 character, and must contain only letters, numbers, underscores, hyphens, colons, and periods. The label values can be used in role bindings to limit the scope of permissions.
+
+        token : typing.Optional[ProvisionedTokenRequest]
+            Optionally issue a token scoped to the new `Account`. The token secret is
+            returned exactly once, in this response, and cannot be retrieved again. If the
+            response is lost, an organization administrator must issue a replacement with
+            `POST /v1/tokens`.
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -421,6 +435,7 @@ class RawAccountsClient:
                 "fullname": fullname,
                 "environment": environment,
                 "labels": labels,
+                "token": token,
             },
             request_options=request_options,
             omit=OMIT,
@@ -917,8 +932,10 @@ class RawAccountsClient:
         self, account_id: AccountId, *, request_options: typing.Optional[RequestOptions] = None
     ) -> HttpResponse[None]:
         """
-        Deletes the `Account` matching `{accountId}`. Deleting an `Account` also deletea
-        all `Tokens` and `Credentials` belonging to the `Account`.
+        Deletes the `Account` matching `{accountId}`. Deleting an `Account` also deletes
+        its `Integrations` and `Credentials`. `Tokens` scoped to the `Account` are not
+        revoked; they remain listed under `GET /v1/tokens` and should be deleted by an
+        organization administrator.
 
         Parameters
         ----------
@@ -1407,12 +1424,19 @@ class AsyncRawAccountsClient:
         fullname: typing.Optional[str] = OMIT,
         environment: typing.Optional[Environment] = OMIT,
         labels: typing.Optional[typing.Sequence[str]] = OMIT,
+        token: typing.Optional[ProvisionedTokenRequest] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[CreateAccountResponse]:
         """
         Creates an `Account` object. For more information on Organizations and
         Accounts, refer to our
         [Synqly Overview](https://docs.synqly.com/docs/synqly-overview).
+
+        If the request carries a `token` block, a token scoped to the new `Account` is
+        created in the same transaction and returned in `result.token`. The token secret
+        is returned exactly once and cannot be retrieved again; if the response is lost,
+        an organization administrator must issue a replacement token with
+        `POST /v1/tokens`.
 
         Parameters
         ----------
@@ -1427,6 +1451,12 @@ class AsyncRawAccountsClient:
 
         labels : typing.Optional[typing.Sequence[str]]
             User defined labels that apply to this account. Labels are limited to 48 characters in length, must contain at least 1 character, and must contain only letters, numbers, underscores, hyphens, colons, and periods. The label values can be used in role bindings to limit the scope of permissions.
+
+        token : typing.Optional[ProvisionedTokenRequest]
+            Optionally issue a token scoped to the new `Account`. The token secret is
+            returned exactly once, in this response, and cannot be retrieved again. If the
+            response is lost, an organization administrator must issue a replacement with
+            `POST /v1/tokens`.
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -1443,6 +1473,7 @@ class AsyncRawAccountsClient:
                 "fullname": fullname,
                 "environment": environment,
                 "labels": labels,
+                "token": token,
             },
             request_options=request_options,
             omit=OMIT,
@@ -1939,8 +1970,10 @@ class AsyncRawAccountsClient:
         self, account_id: AccountId, *, request_options: typing.Optional[RequestOptions] = None
     ) -> AsyncHttpResponse[None]:
         """
-        Deletes the `Account` matching `{accountId}`. Deleting an `Account` also deletea
-        all `Tokens` and `Credentials` belonging to the `Account`.
+        Deletes the `Account` matching `{accountId}`. Deleting an `Account` also deletes
+        its `Integrations` and `Credentials`. `Tokens` scoped to the `Account` are not
+        revoked; they remain listed under `GET /v1/tokens` and should be deleted by an
+        organization administrator.
 
         Parameters
         ----------
