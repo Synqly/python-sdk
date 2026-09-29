@@ -242,6 +242,11 @@ class ProviderConfigId(enum.StrEnum):
     Palo Alto Networks Cortex Cloud Security
     """
 
+    CLOUD_SECURITY_SENTINEL_ONE = "cloudsecurity_sentinelone"
+    """
+    SentinelOne Singularity™ Cloud Native Security
+    """
+
     CLOUD_SECURITY_UPWIND = "cloudsecurity_upwind"
     """
     Upwind Cloud Security
@@ -971,6 +976,7 @@ class ProviderConfigId(enum.StrEnum):
         cloud_security_defender: typing.Callable[[], T_Result],
         cloud_security_google: typing.Callable[[], T_Result],
         cloud_security_palo_alto: typing.Callable[[], T_Result],
+        cloud_security_sentinel_one: typing.Callable[[], T_Result],
         cloud_security_upwind: typing.Callable[[], T_Result],
         cloud_security_wiz: typing.Callable[[], T_Result],
         custom_synqly: typing.Callable[[], T_Result],
@@ -1199,6 +1205,8 @@ class ProviderConfigId(enum.StrEnum):
             return cloud_security_google()
         if self is ProviderConfigId.CLOUD_SECURITY_PALO_ALTO:
             return cloud_security_palo_alto()
+        if self is ProviderConfigId.CLOUD_SECURITY_SENTINEL_ONE:
+            return cloud_security_sentinel_one()
         if self is ProviderConfigId.CLOUD_SECURITY_UPWIND:
             return cloud_security_upwind()
         if self is ProviderConfigId.CLOUD_SECURITY_WIZ:

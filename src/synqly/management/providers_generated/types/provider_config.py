@@ -816,6 +816,20 @@ class ProviderConfig_CloudsecurityPaloalto(UncheckedBaseModel):
             extra = pydantic.Extra.allow
 
 
+class ProviderConfig_CloudsecuritySentinelone(UncheckedBaseModel):
+    type: typing.Literal["cloudsecurity_sentinelone"] = "cloudsecurity_sentinelone"
+    credential: SentinelOneCredential
+    url: str
+
+    if IS_PYDANTIC_V2:
+        model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow")  # type: ignore # Pydantic v2
+    else:
+
+        class Config:
+            smart_union = True
+            extra = pydantic.Extra.allow
+
+
 class ProviderConfig_CloudsecurityUpwind(UncheckedBaseModel):
     type: typing.Literal["cloudsecurity_upwind"] = "cloudsecurity_upwind"
     credential: UpwindCredential
@@ -2846,6 +2860,7 @@ ProviderConfig = typing_extensions.Annotated[
         ProviderConfig_CloudsecurityDefender,
         ProviderConfig_CloudsecurityGoogle,
         ProviderConfig_CloudsecurityPaloalto,
+        ProviderConfig_CloudsecuritySentinelone,
         ProviderConfig_CloudsecurityUpwind,
         ProviderConfig_CloudsecurityWiz,
         ProviderConfig_CustomSynqly,

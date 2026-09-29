@@ -128,6 +128,7 @@ if typing.TYPE_CHECKING:
     from .cloud_security_event_bridge_sqs_queues import CloudSecurityEventBridgeSqsQueues
     from .cloud_security_google import CloudSecurityGoogle
     from .cloud_security_palo_alto import CloudSecurityPaloAlto
+    from .cloud_security_sentinel_one import CloudSecuritySentinelOne
     from .cloud_security_upwind import CloudSecurityUpwind
     from .cloud_security_wiz import CloudSecurityWiz
     from .copilot_chat_credential import (
@@ -455,6 +456,7 @@ if typing.TYPE_CHECKING:
         ProviderConfig_CloudsecurityDefender,
         ProviderConfig_CloudsecurityGoogle,
         ProviderConfig_CloudsecurityPaloalto,
+        ProviderConfig_CloudsecuritySentinelone,
         ProviderConfig_CloudsecurityUpwind,
         ProviderConfig_CloudsecurityWiz,
         ProviderConfig_CustomSynqly,
@@ -924,6 +926,7 @@ _dynamic_imports: typing.Dict[str, str] = {
     "CloudSecurityEventBridgeSqsQueues": ".cloud_security_event_bridge_sqs_queues",
     "CloudSecurityGoogle": ".cloud_security_google",
     "CloudSecurityPaloAlto": ".cloud_security_palo_alto",
+    "CloudSecuritySentinelOne": ".cloud_security_sentinel_one",
     "CloudSecurityUpwind": ".cloud_security_upwind",
     "CloudSecurityWiz": ".cloud_security_wiz",
     "CopilotChatCredential": ".copilot_chat_credential",
@@ -1237,6 +1240,7 @@ _dynamic_imports: typing.Dict[str, str] = {
     "ProviderConfig_CloudsecurityDefender": ".provider_config",
     "ProviderConfig_CloudsecurityGoogle": ".provider_config",
     "ProviderConfig_CloudsecurityPaloalto": ".provider_config",
+    "ProviderConfig_CloudsecuritySentinelone": ".provider_config",
     "ProviderConfig_CloudsecurityUpwind": ".provider_config",
     "ProviderConfig_CloudsecurityWiz": ".provider_config",
     "ProviderConfig_CustomSynqly": ".provider_config",
@@ -1728,6 +1732,7 @@ __all__ = [
     "CloudSecurityEventBridgeSqsQueues",
     "CloudSecurityGoogle",
     "CloudSecurityPaloAlto",
+    "CloudSecuritySentinelOne",
     "CloudSecurityUpwind",
     "CloudSecurityWiz",
     "CopilotChatCredential",
@@ -2041,6 +2046,7 @@ __all__ = [
     "ProviderConfig_CloudsecurityDefender",
     "ProviderConfig_CloudsecurityGoogle",
     "ProviderConfig_CloudsecurityPaloalto",
+    "ProviderConfig_CloudsecuritySentinelone",
     "ProviderConfig_CloudsecurityUpwind",
     "ProviderConfig_CloudsecurityWiz",
     "ProviderConfig_CustomSynqly",
