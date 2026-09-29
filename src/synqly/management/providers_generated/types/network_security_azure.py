@@ -26,19 +26,9 @@ class NetworkSecurityAzure(UncheckedBaseModel):
     Client ID and secret for an Entra app that can read Network Watcher flow logs and their storage.
     """
 
-    network_watcher_name: str = pydantic.Field()
-    """
-    Name of the Network Watcher to use.
-    """
-
-    resource_group: str = pydantic.Field()
-    """
-    Resource group that contains the Network Watcher.
-    """
-
     subscription_id: str = pydantic.Field()
     """
-    Azure subscription that contains the Network Watcher.
+    Azure subscription that owns the flow logs.
     """
 
     tenant_id: str = pydantic.Field()
@@ -48,7 +38,7 @@ class NetworkSecurityAzure(UncheckedBaseModel):
 
     traffic_log_configuration_ids: typing.Optional[typing.List[str]] = pydantic.Field(default=None)
     """
-    Optional list of flow log names or IDs. Leave empty to include all flow logs for this Network Watcher.
+    Optional list of flow log resource IDs. Leave empty to include all flow logs in the subscription.
     """
 
     if IS_PYDANTIC_V2:
