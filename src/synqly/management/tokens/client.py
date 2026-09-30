@@ -80,20 +80,6 @@ class TokensClient:
         Returns
         -------
         CreateTokenResponse
-
-        Examples
-        --------
-        from synqly import SynqlyManagement
-        from synqly.permissionset_base import Permissions
-        from synqly.role_base import Resources
-
-        client = SynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-        client.tokens.create_token(
-            resources=Resources(),
-            permission_set=Permissions.ADMINISTRATOR,
-        )
         """
         _response = self._raw_client.create_token(
             resources=resources,
@@ -131,18 +117,6 @@ class TokensClient:
         Returns
         -------
         CreateMcpTokenResponse
-
-        Examples
-        --------
-        from synqly import SynqlyManagement
-        from synqly.tokens import McpTokenScope_Management
-
-        client = SynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-        client.tokens.create_mcp_token(
-            scope=McpTokenScope_Management(),
-        )
         """
         _response = self._raw_client.create_mcp_token(scope=scope, token_ttl=token_ttl, request_options=request_options)
         return _response.data
@@ -180,18 +154,6 @@ class TokensClient:
         Returns
         -------
         CreateIntegrationTokenResponse
-
-        Examples
-        --------
-        from synqly import SynqlyManagement
-
-        client = SynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-        client.tokens.create_integration_token(
-            account_id="accountId",
-            integration_id="integrationId",
-        )
         """
         _response = self._raw_client.create_integration_token(
             account_id, integration_id, name=name, token_ttl=token_ttl, request_options=request_options
@@ -217,15 +179,6 @@ class TokensClient:
         Returns
         -------
         CreateSynqlyIntegrationsTokenResponse
-
-        Examples
-        --------
-        from synqly import SynqlyManagement
-
-        client = SynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-        client.tokens.create_synqly_integrations_token()
         """
         _response = self._raw_client.create_synqly_integrations_token(
             token_ttl=token_ttl, request_options=request_options
@@ -247,17 +200,6 @@ class TokensClient:
         Returns
         -------
         None
-
-        Examples
-        --------
-        from synqly import SynqlyManagement
-
-        client = SynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-        client.tokens.delete(
-            refresh_token_id="refreshTokenId",
-        )
         """
         _response = self._raw_client.delete(refresh_token_id, request_options=request_options)
         return _response.data
@@ -300,15 +242,6 @@ class TokensClient:
         Returns
         -------
         ListTokensResponse
-
-        Examples
-        --------
-        from synqly import SynqlyManagement
-
-        client = SynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-        client.tokens.list()
         """
         _response = self._raw_client.list(
             limit=limit, start_after=start_after, order=order, filter=filter, request_options=request_options
@@ -333,17 +266,6 @@ class TokensClient:
         Returns
         -------
         GetTokenResponse
-
-        Examples
-        --------
-        from synqly import SynqlyManagement
-
-        client = SynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-        client.tokens.get(
-            refresh_token_id="refreshTokenId",
-        )
         """
         _response = self._raw_client.get(refresh_token_id, request_options=request_options)
         return _response.data
@@ -369,18 +291,6 @@ class TokensClient:
         Returns
         -------
         ResetTokenResponse
-
-        Examples
-        --------
-        from synqly import SynqlyManagement
-
-        client = SynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-        client.tokens.reset(
-            owner_id="ownerId",
-            refresh_token_id="refreshTokenId",
-        )
         """
         _response = self._raw_client.reset(owner_id, refresh_token_id, request_options=request_options)
         return _response.data
@@ -406,18 +316,6 @@ class TokensClient:
         Returns
         -------
         RotateTokenResponse
-
-        Examples
-        --------
-        from synqly import SynqlyManagement
-
-        client = SynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-        client.tokens.rotate(
-            owner_id="ownerId",
-            refresh_token_id="refreshTokenId",
-        )
         """
         _response = self._raw_client.rotate(owner_id, refresh_token_id, request_options=request_options)
         return _response.data
@@ -440,17 +338,6 @@ class TokensClient:
         Returns
         -------
         RefreshTokenResponse
-
-        Examples
-        --------
-        from synqly import SynqlyManagement
-
-        client = SynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-        client.tokens.refresh(
-            refresh_token_id="refreshTokenId",
-        )
         """
         _response = self._raw_client.refresh(refresh_token_id, request_options=request_options)
         return _response.data
@@ -472,17 +359,6 @@ class TokensClient:
         Returns
         -------
         None
-
-        Examples
-        --------
-        from synqly import SynqlyManagement
-
-        client = SynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-        client.tokens.remove_secondary(
-            refresh_token_id="refreshTokenId",
-        )
         """
         _response = self._raw_client.remove_secondary(refresh_token_id, request_options=request_options)
         return _response.data
@@ -542,28 +418,6 @@ class AsyncTokensClient:
         Returns
         -------
         CreateTokenResponse
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyManagement
-        from synqly.permissionset_base import Permissions
-        from synqly.role_base import Resources
-
-        client = AsyncSynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.tokens.create_token(
-                resources=Resources(),
-                permission_set=Permissions.ADMINISTRATOR,
-            )
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.create_token(
             resources=resources,
@@ -601,26 +455,6 @@ class AsyncTokensClient:
         Returns
         -------
         CreateMcpTokenResponse
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyManagement
-        from synqly.tokens import McpTokenScope_Management
-
-        client = AsyncSynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.tokens.create_mcp_token(
-                scope=McpTokenScope_Management(),
-            )
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.create_mcp_token(
             scope=scope, token_ttl=token_ttl, request_options=request_options
@@ -660,26 +494,6 @@ class AsyncTokensClient:
         Returns
         -------
         CreateIntegrationTokenResponse
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyManagement
-
-        client = AsyncSynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.tokens.create_integration_token(
-                account_id="accountId",
-                integration_id="integrationId",
-            )
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.create_integration_token(
             account_id, integration_id, name=name, token_ttl=token_ttl, request_options=request_options
@@ -705,23 +519,6 @@ class AsyncTokensClient:
         Returns
         -------
         CreateSynqlyIntegrationsTokenResponse
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyManagement
-
-        client = AsyncSynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.tokens.create_synqly_integrations_token()
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.create_synqly_integrations_token(
             token_ttl=token_ttl, request_options=request_options
@@ -745,25 +542,6 @@ class AsyncTokensClient:
         Returns
         -------
         None
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyManagement
-
-        client = AsyncSynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.tokens.delete(
-                refresh_token_id="refreshTokenId",
-            )
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.delete(refresh_token_id, request_options=request_options)
         return _response.data
@@ -806,23 +584,6 @@ class AsyncTokensClient:
         Returns
         -------
         ListTokensResponse
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyManagement
-
-        client = AsyncSynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.tokens.list()
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.list(
             limit=limit, start_after=start_after, order=order, filter=filter, request_options=request_options
@@ -847,25 +608,6 @@ class AsyncTokensClient:
         Returns
         -------
         GetTokenResponse
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyManagement
-
-        client = AsyncSynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.tokens.get(
-                refresh_token_id="refreshTokenId",
-            )
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.get(refresh_token_id, request_options=request_options)
         return _response.data
@@ -891,26 +633,6 @@ class AsyncTokensClient:
         Returns
         -------
         ResetTokenResponse
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyManagement
-
-        client = AsyncSynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.tokens.reset(
-                owner_id="ownerId",
-                refresh_token_id="refreshTokenId",
-            )
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.reset(owner_id, refresh_token_id, request_options=request_options)
         return _response.data
@@ -936,26 +658,6 @@ class AsyncTokensClient:
         Returns
         -------
         RotateTokenResponse
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyManagement
-
-        client = AsyncSynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.tokens.rotate(
-                owner_id="ownerId",
-                refresh_token_id="refreshTokenId",
-            )
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.rotate(owner_id, refresh_token_id, request_options=request_options)
         return _response.data
@@ -978,25 +680,6 @@ class AsyncTokensClient:
         Returns
         -------
         RefreshTokenResponse
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyManagement
-
-        client = AsyncSynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.tokens.refresh(
-                refresh_token_id="refreshTokenId",
-            )
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.refresh(refresh_token_id, request_options=request_options)
         return _response.data
@@ -1018,25 +701,6 @@ class AsyncTokensClient:
         Returns
         -------
         None
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyManagement
-
-        client = AsyncSynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.tokens.remove_secondary(
-                refresh_token_id="refreshTokenId",
-            )
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.remove_secondary(refresh_token_id, request_options=request_options)
         return _response.data

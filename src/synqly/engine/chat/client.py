@@ -62,15 +62,6 @@ class ChatClient:
         Returns
         -------
         ChatQueryUsersResponse
-
-        Examples
-        --------
-        from synqly import SynqlyEngine
-
-        client = SynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-        client.chat.query_users()
         """
         _response = self._raw_client.query_users(
             meta=meta,
@@ -121,17 +112,6 @@ class ChatClient:
         Returns
         -------
         ChatQueryConversationsResponse
-
-        Examples
-        --------
-        from synqly import SynqlyEngine
-
-        client = SynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-        client.chat.query_user_conversations(
-            user_id="userId",
-        )
         """
         _response = self._raw_client.query_user_conversations(
             user_id,
@@ -182,18 +162,6 @@ class ChatClient:
         Returns
         -------
         ChatQueryConversationMembersResponse
-
-        Examples
-        --------
-        from synqly import SynqlyEngine
-
-        client = SynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-        client.chat.query_user_conversation_members(
-            user_id="userId",
-            conversation_id="conversationId",
-        )
         """
         _response = self._raw_client.query_user_conversation_members(
             user_id,
@@ -248,18 +216,6 @@ class ChatClient:
         Returns
         -------
         ChatQueryMessagesResponse
-
-        Examples
-        --------
-        from synqly import SynqlyEngine
-
-        client = SynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-        client.chat.query_user_conversation_messages(
-            user_id="userId",
-            conversation_id="conversationId",
-        )
         """
         _response = self._raw_client.query_user_conversation_messages(
             user_id,
@@ -309,15 +265,6 @@ class ChatClient:
         Returns
         -------
         ChatQueryConversationsResponse
-
-        Examples
-        --------
-        from synqly import SynqlyEngine
-
-        client = SynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-        client.chat.query_conversations()
         """
         _response = self._raw_client.query_conversations(
             meta=meta,
@@ -364,17 +311,6 @@ class ChatClient:
         Returns
         -------
         ChatQueryConversationMembersResponse
-
-        Examples
-        --------
-        from synqly import SynqlyEngine
-
-        client = SynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-        client.chat.query_conversation_members(
-            conversation_id="conversationId",
-        )
         """
         _response = self._raw_client.query_conversation_members(
             conversation_id,
@@ -422,15 +358,6 @@ class ChatClient:
         Returns
         -------
         ChatQueryMessagesResponse
-
-        Examples
-        --------
-        from synqly import SynqlyEngine
-
-        client = SynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-        client.chat.query_messages()
         """
         _response = self._raw_client.query_messages(
             meta=meta,
@@ -481,17 +408,6 @@ class ChatClient:
         Returns
         -------
         ChatQueryMessagesResponse
-
-        Examples
-        --------
-        from synqly import SynqlyEngine
-
-        client = SynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-        client.chat.query_conversation_messages(
-            conversation_id="conversationId",
-        )
         """
         _response = self._raw_client.query_conversation_messages(
             conversation_id,
@@ -556,23 +472,6 @@ class AsyncChatClient:
         Returns
         -------
         ChatQueryUsersResponse
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyEngine
-
-        client = AsyncSynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.chat.query_users()
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.query_users(
             meta=meta,
@@ -623,25 +522,6 @@ class AsyncChatClient:
         Returns
         -------
         ChatQueryConversationsResponse
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyEngine
-
-        client = AsyncSynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.chat.query_user_conversations(
-                user_id="userId",
-            )
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.query_user_conversations(
             user_id,
@@ -692,26 +572,6 @@ class AsyncChatClient:
         Returns
         -------
         ChatQueryConversationMembersResponse
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyEngine
-
-        client = AsyncSynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.chat.query_user_conversation_members(
-                user_id="userId",
-                conversation_id="conversationId",
-            )
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.query_user_conversation_members(
             user_id,
@@ -766,26 +626,6 @@ class AsyncChatClient:
         Returns
         -------
         ChatQueryMessagesResponse
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyEngine
-
-        client = AsyncSynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.chat.query_user_conversation_messages(
-                user_id="userId",
-                conversation_id="conversationId",
-            )
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.query_user_conversation_messages(
             user_id,
@@ -835,23 +675,6 @@ class AsyncChatClient:
         Returns
         -------
         ChatQueryConversationsResponse
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyEngine
-
-        client = AsyncSynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.chat.query_conversations()
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.query_conversations(
             meta=meta,
@@ -898,25 +721,6 @@ class AsyncChatClient:
         Returns
         -------
         ChatQueryConversationMembersResponse
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyEngine
-
-        client = AsyncSynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.chat.query_conversation_members(
-                conversation_id="conversationId",
-            )
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.query_conversation_members(
             conversation_id,
@@ -964,23 +768,6 @@ class AsyncChatClient:
         Returns
         -------
         ChatQueryMessagesResponse
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyEngine
-
-        client = AsyncSynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.chat.query_messages()
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.query_messages(
             meta=meta,
@@ -1031,25 +818,6 @@ class AsyncChatClient:
         Returns
         -------
         ChatQueryMessagesResponse
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyEngine
-
-        client = AsyncSynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.chat.query_conversation_messages(
-                conversation_id="conversationId",
-            )
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.query_conversation_messages(
             conversation_id,

@@ -94,15 +94,6 @@ class IntegrationsClient:
         Returns
         -------
         ListIntegrationsResponse
-
-        Examples
-        --------
-        from synqly import SynqlyManagement
-
-        client = SynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-        client.integrations.list()
         """
         _response = self._raw_client.list(
             limit=limit,
@@ -163,17 +154,6 @@ class IntegrationsClient:
         Returns
         -------
         ListAccountIntegrationsResponse
-
-        Examples
-        --------
-        from synqly import SynqlyManagement
-
-        client = SynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-        client.integrations.list_account(
-            account_id="accountId",
-        )
         """
         _response = self._raw_client.list_account(
             account_id,
@@ -210,18 +190,6 @@ class IntegrationsClient:
         Returns
         -------
         GetIntegrationResponse
-
-        Examples
-        --------
-        from synqly import SynqlyManagement
-
-        client = SynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-        client.integrations.get(
-            account_id="accountId",
-            integration_id="integrationId",
-        )
         """
         _response = self._raw_client.get(account_id, integration_id, request_options=request_options)
         return _response.data
@@ -283,29 +251,6 @@ class IntegrationsClient:
         Returns
         -------
         CreateIntegrationResponse
-
-        Examples
-        --------
-        from synqly import SynqlyManagement
-        from synqly.providers_generated import (
-            AwsProviderCredential_Aws,
-            AwsRegion,
-            ProviderConfig_AppsecAmazonInspector,
-        )
-
-        client = SynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-        client.integrations.create(
-            account_id="accountId",
-            provider_config=ProviderConfig_AppsecAmazonInspector(
-                credential=AwsProviderCredential_Aws(
-                    access_key_id="access_key_id",
-                    secret_access_key="secret_access_key",
-                ),
-                region=AwsRegion.US_EAST_1,
-            ),
-        )
         """
         _response = self._raw_client.create(
             account_id,
@@ -346,32 +291,6 @@ class IntegrationsClient:
         Returns
         -------
         VerifyIntegrationResponse
-
-        Examples
-        --------
-        from synqly import SynqlyManagement
-        from synqly.integrations import CreateIntegrationRequest
-        from synqly.providers_generated import (
-            AwsProviderCredential_Aws,
-            AwsRegion,
-            ProviderConfig_AppsecAmazonInspector,
-        )
-
-        client = SynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-        client.integrations.verify(
-            account_id="accountId",
-            integration=CreateIntegrationRequest(
-                provider_config=ProviderConfig_AppsecAmazonInspector(
-                    credential=AwsProviderCredential_Aws(
-                        access_key_id="access_key_id",
-                        secret_access_key="secret_access_key",
-                    ),
-                    region=AwsRegion.US_EAST_1,
-                ),
-            ),
-        )
         """
         _response = self._raw_client.verify(account_id, integration=integration, request_options=request_options)
         return _response.data
@@ -407,18 +326,6 @@ class IntegrationsClient:
         Returns
         -------
         VerifyIntegrationResponse
-
-        Examples
-        --------
-        from synqly import SynqlyManagement
-
-        client = SynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-        client.integrations.verify_existing(
-            account_id="accountId",
-            integration_id="integrationId",
-        )
         """
         _response = self._raw_client.verify_existing(
             account_id, integration_id, request=request, request_options=request_options
@@ -523,47 +430,6 @@ class IntegrationsClient:
         Returns
         -------
         UpdateIntegrationResponse
-
-        Examples
-        --------
-        import datetime
-
-        from synqly import SynqlyManagement
-        from synqly.capabilities_base import CategoryId
-        from synqly.providers_generated import (
-            AwsProviderCredential_Aws,
-            AwsRegion,
-            ProviderConfig_AppsecAmazonInspector,
-        )
-
-        client = SynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-        client.integrations.update(
-            account_id_="accountId",
-            integration_id="integrationId",
-            id="id",
-            fullname="fullname",
-            refresh_token_id="refresh_token_id",
-            account_id="account_id",
-            category=CategoryId.APPSEC,
-            provider_config=ProviderConfig_AppsecAmazonInspector(
-                credential=AwsProviderCredential_Aws(
-                    access_key_id="access_key_id",
-                    secret_access_key="secret_access_key",
-                ),
-                region=AwsRegion.US_EAST_1,
-            ),
-            provider_fullname="provider_fullname",
-            provider_type="provider_type",
-            name="name",
-            created_at=datetime.datetime.fromisoformat(
-                "2024-01-15 09:30:00+00:00",
-            ),
-            updated_at=datetime.datetime.fromisoformat(
-                "2024-01-15 09:30:00+00:00",
-            ),
-        )
         """
         _response = self._raw_client.update(
             account_id_,
@@ -617,29 +483,6 @@ class IntegrationsClient:
         Returns
         -------
         PatchIntegrationResponse
-
-        Examples
-        --------
-        from synqly import SynqlyManagement
-        from synqly.common import PatchOp, PatchOperation
-
-        client = SynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-        client.integrations.patch(
-            account_id="accountId",
-            integration_id="integrationId",
-            request=[
-                PatchOperation(
-                    op=PatchOp.ADD,
-                    path="path",
-                ),
-                PatchOperation(
-                    op=PatchOp.ADD,
-                    path="path",
-                ),
-            ],
-        )
         """
         _response = self._raw_client.patch(account_id, integration_id, request=request, request_options=request_options)
         return _response.data
@@ -668,18 +511,6 @@ class IntegrationsClient:
         Returns
         -------
         None
-
-        Examples
-        --------
-        from synqly import SynqlyManagement
-
-        client = SynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-        client.integrations.delete(
-            account_id="accountId",
-            integration_id="integrationId",
-        )
         """
         _response = self._raw_client.delete(account_id, integration_id, request_options=request_options)
         return _response.data
@@ -744,23 +575,6 @@ class AsyncIntegrationsClient:
         Returns
         -------
         ListIntegrationsResponse
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyManagement
-
-        client = AsyncSynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.integrations.list()
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.list(
             limit=limit,
@@ -821,25 +635,6 @@ class AsyncIntegrationsClient:
         Returns
         -------
         ListAccountIntegrationsResponse
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyManagement
-
-        client = AsyncSynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.integrations.list_account(
-                account_id="accountId",
-            )
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.list_account(
             account_id,
@@ -876,26 +671,6 @@ class AsyncIntegrationsClient:
         Returns
         -------
         GetIntegrationResponse
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyManagement
-
-        client = AsyncSynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.integrations.get(
-                account_id="accountId",
-                integration_id="integrationId",
-            )
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.get(account_id, integration_id, request_options=request_options)
         return _response.data
@@ -957,37 +732,6 @@ class AsyncIntegrationsClient:
         Returns
         -------
         CreateIntegrationResponse
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyManagement
-        from synqly.providers_generated import (
-            AwsProviderCredential_Aws,
-            AwsRegion,
-            ProviderConfig_AppsecAmazonInspector,
-        )
-
-        client = AsyncSynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.integrations.create(
-                account_id="accountId",
-                provider_config=ProviderConfig_AppsecAmazonInspector(
-                    credential=AwsProviderCredential_Aws(
-                        access_key_id="access_key_id",
-                        secret_access_key="secret_access_key",
-                    ),
-                    region=AwsRegion.US_EAST_1,
-                ),
-            )
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.create(
             account_id,
@@ -1028,40 +772,6 @@ class AsyncIntegrationsClient:
         Returns
         -------
         VerifyIntegrationResponse
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyManagement
-        from synqly.integrations import CreateIntegrationRequest
-        from synqly.providers_generated import (
-            AwsProviderCredential_Aws,
-            AwsRegion,
-            ProviderConfig_AppsecAmazonInspector,
-        )
-
-        client = AsyncSynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.integrations.verify(
-                account_id="accountId",
-                integration=CreateIntegrationRequest(
-                    provider_config=ProviderConfig_AppsecAmazonInspector(
-                        credential=AwsProviderCredential_Aws(
-                            access_key_id="access_key_id",
-                            secret_access_key="secret_access_key",
-                        ),
-                        region=AwsRegion.US_EAST_1,
-                    ),
-                ),
-            )
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.verify(account_id, integration=integration, request_options=request_options)
         return _response.data
@@ -1097,26 +807,6 @@ class AsyncIntegrationsClient:
         Returns
         -------
         VerifyIntegrationResponse
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyManagement
-
-        client = AsyncSynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.integrations.verify_existing(
-                account_id="accountId",
-                integration_id="integrationId",
-            )
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.verify_existing(
             account_id, integration_id, request=request, request_options=request_options
@@ -1221,54 +911,6 @@ class AsyncIntegrationsClient:
         Returns
         -------
         UpdateIntegrationResponse
-
-        Examples
-        --------
-        import asyncio
-        import datetime
-
-        from synqly import AsyncSynqlyManagement
-        from synqly.capabilities_base import CategoryId
-        from synqly.providers_generated import (
-            AwsProviderCredential_Aws,
-            AwsRegion,
-            ProviderConfig_AppsecAmazonInspector,
-        )
-
-        client = AsyncSynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.integrations.update(
-                account_id_="accountId",
-                integration_id="integrationId",
-                id="id",
-                fullname="fullname",
-                refresh_token_id="refresh_token_id",
-                account_id="account_id",
-                category=CategoryId.APPSEC,
-                provider_config=ProviderConfig_AppsecAmazonInspector(
-                    credential=AwsProviderCredential_Aws(
-                        access_key_id="access_key_id",
-                        secret_access_key="secret_access_key",
-                    ),
-                    region=AwsRegion.US_EAST_1,
-                ),
-                provider_fullname="provider_fullname",
-                provider_type="provider_type",
-                name="name",
-                created_at=datetime.datetime.fromisoformat(
-                    "2024-01-15 09:30:00+00:00",
-                ),
-                updated_at=datetime.datetime.fromisoformat(
-                    "2024-01-15 09:30:00+00:00",
-                ),
-            )
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.update(
             account_id_,
@@ -1322,37 +964,6 @@ class AsyncIntegrationsClient:
         Returns
         -------
         PatchIntegrationResponse
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyManagement
-        from synqly.common import PatchOp, PatchOperation
-
-        client = AsyncSynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.integrations.patch(
-                account_id="accountId",
-                integration_id="integrationId",
-                request=[
-                    PatchOperation(
-                        op=PatchOp.ADD,
-                        path="path",
-                    ),
-                    PatchOperation(
-                        op=PatchOp.ADD,
-                        path="path",
-                    ),
-                ],
-            )
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.patch(
             account_id, integration_id, request=request, request_options=request_options
@@ -1383,26 +994,6 @@ class AsyncIntegrationsClient:
         Returns
         -------
         None
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyManagement
-
-        client = AsyncSynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.integrations.delete(
-                account_id="accountId",
-                integration_id="integrationId",
-            )
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.delete(account_id, integration_id, request_options=request_options)
         return _response.data

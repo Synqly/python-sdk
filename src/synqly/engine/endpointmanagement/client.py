@@ -68,15 +68,6 @@ class EndpointmanagementClient:
         Returns
         -------
         QueryEndpointManagementDevicesResponse
-
-        Examples
-        --------
-        from synqly import SynqlyEngine
-
-        client = SynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-        client.endpointmanagement.query_devices()
         """
         _response = self._raw_client.query_devices(
             meta=meta, limit=limit, cursor=cursor, order=order, filter=filter, request_options=request_options
@@ -106,17 +97,6 @@ class EndpointmanagementClient:
         Returns
         -------
         GetEndpointManagementDeviceResponse
-
-        Examples
-        --------
-        from synqly import SynqlyEngine
-
-        client = SynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-        client.endpointmanagement.get_device(
-            id="id",
-        )
         """
         _response = self._raw_client.get_device(id, meta=meta, request_options=request_options)
         return _response.data
@@ -153,15 +133,6 @@ class EndpointmanagementClient:
         Returns
         -------
         QueryDeviceComplianceResponse
-
-        Examples
-        --------
-        from synqly import SynqlyEngine
-
-        client = SynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-        client.endpointmanagement.query_compliance_findings()
         """
         _response = self._raw_client.query_compliance_findings(
             meta=meta, limit=limit, cursor=cursor, filter=filter, request_options=request_options
@@ -218,15 +189,6 @@ class EndpointmanagementClient:
         Returns
         -------
         RemediateDeviceResponse
-
-        Examples
-        --------
-        from synqly import SynqlyEngine
-
-        client = SynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-        client.endpointmanagement.remediate_device()
         """
         _response = self._raw_client.remediate_device(
             meta=meta,
@@ -272,17 +234,6 @@ class EndpointmanagementClient:
         Returns
         -------
         DeviceActionResponse
-
-        Examples
-        --------
-        from synqly import SynqlyEngine
-
-        client = SynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-        client.endpointmanagement.update_device(
-            device_id="device_id",
-        )
         """
         _response = self._raw_client.update_device(
             device_id=device_id, meta=meta, comment=comment, params=params, request_options=request_options
@@ -321,17 +272,6 @@ class EndpointmanagementClient:
         Returns
         -------
         DeviceActionResponse
-
-        Examples
-        --------
-        from synqly import SynqlyEngine
-
-        client = SynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-        client.endpointmanagement.lock_device(
-            device_id="device_id",
-        )
         """
         _response = self._raw_client.lock_device(
             device_id=device_id, meta=meta, comment=comment, params=params, request_options=request_options
@@ -370,17 +310,6 @@ class EndpointmanagementClient:
         Returns
         -------
         DeviceActionResponse
-
-        Examples
-        --------
-        from synqly import SynqlyEngine
-
-        client = SynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-        client.endpointmanagement.restart_device(
-            device_id="device_id",
-        )
         """
         _response = self._raw_client.restart_device(
             device_id=device_id, meta=meta, comment=comment, params=params, request_options=request_options
@@ -419,17 +348,6 @@ class EndpointmanagementClient:
         Returns
         -------
         DeviceActionResponse
-
-        Examples
-        --------
-        from synqly import SynqlyEngine
-
-        client = SynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-        client.endpointmanagement.wipe_device(
-            device_id="device_id",
-        )
         """
         _response = self._raw_client.wipe_device(
             device_id=device_id, meta=meta, comment=comment, params=params, request_options=request_options
@@ -475,17 +393,6 @@ class EndpointmanagementClient:
         Returns
         -------
         QueryDeviceApplicationsResponse
-
-        Examples
-        --------
-        from synqly import SynqlyEngine
-
-        client = SynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-        client.endpointmanagement.query_device_applications(
-            id="id",
-        )
         """
         _response = self._raw_client.query_device_applications(
             id, meta=meta, limit=limit, cursor=cursor, order=order, filter=filter, request_options=request_options
@@ -544,23 +451,6 @@ class AsyncEndpointmanagementClient:
         Returns
         -------
         QueryEndpointManagementDevicesResponse
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyEngine
-
-        client = AsyncSynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.endpointmanagement.query_devices()
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.query_devices(
             meta=meta, limit=limit, cursor=cursor, order=order, filter=filter, request_options=request_options
@@ -590,25 +480,6 @@ class AsyncEndpointmanagementClient:
         Returns
         -------
         GetEndpointManagementDeviceResponse
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyEngine
-
-        client = AsyncSynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.endpointmanagement.get_device(
-                id="id",
-            )
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.get_device(id, meta=meta, request_options=request_options)
         return _response.data
@@ -645,23 +516,6 @@ class AsyncEndpointmanagementClient:
         Returns
         -------
         QueryDeviceComplianceResponse
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyEngine
-
-        client = AsyncSynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.endpointmanagement.query_compliance_findings()
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.query_compliance_findings(
             meta=meta, limit=limit, cursor=cursor, filter=filter, request_options=request_options
@@ -718,23 +572,6 @@ class AsyncEndpointmanagementClient:
         Returns
         -------
         RemediateDeviceResponse
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyEngine
-
-        client = AsyncSynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.endpointmanagement.remediate_device()
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.remediate_device(
             meta=meta,
@@ -780,25 +617,6 @@ class AsyncEndpointmanagementClient:
         Returns
         -------
         DeviceActionResponse
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyEngine
-
-        client = AsyncSynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.endpointmanagement.update_device(
-                device_id="device_id",
-            )
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.update_device(
             device_id=device_id, meta=meta, comment=comment, params=params, request_options=request_options
@@ -837,25 +655,6 @@ class AsyncEndpointmanagementClient:
         Returns
         -------
         DeviceActionResponse
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyEngine
-
-        client = AsyncSynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.endpointmanagement.lock_device(
-                device_id="device_id",
-            )
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.lock_device(
             device_id=device_id, meta=meta, comment=comment, params=params, request_options=request_options
@@ -894,25 +693,6 @@ class AsyncEndpointmanagementClient:
         Returns
         -------
         DeviceActionResponse
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyEngine
-
-        client = AsyncSynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.endpointmanagement.restart_device(
-                device_id="device_id",
-            )
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.restart_device(
             device_id=device_id, meta=meta, comment=comment, params=params, request_options=request_options
@@ -951,25 +731,6 @@ class AsyncEndpointmanagementClient:
         Returns
         -------
         DeviceActionResponse
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyEngine
-
-        client = AsyncSynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.endpointmanagement.wipe_device(
-                device_id="device_id",
-            )
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.wipe_device(
             device_id=device_id, meta=meta, comment=comment, params=params, request_options=request_options
@@ -1015,25 +776,6 @@ class AsyncEndpointmanagementClient:
         Returns
         -------
         QueryDeviceApplicationsResponse
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyEngine
-
-        client = AsyncSynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.endpointmanagement.query_device_applications(
-                id="id",
-            )
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.query_device_applications(
             id, meta=meta, limit=limit, cursor=cursor, order=order, filter=filter, request_options=request_options

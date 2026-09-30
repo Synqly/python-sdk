@@ -55,15 +55,6 @@ class CapabilitiesClient:
         Returns
         -------
         ListConnectorsCapabilitiesResponse
-
-        Examples
-        --------
-        from synqly import SynqlyManagement
-
-        client = SynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-        client.capabilities.list_connectors()
         """
         _response = self._raw_client.list_connectors(expand=expand, request_options=request_options)
         return _response.data
@@ -92,15 +83,6 @@ class CapabilitiesClient:
         Returns
         -------
         ListProvidersCapabilitiesResponse
-
-        Examples
-        --------
-        from synqly import SynqlyManagement
-
-        client = SynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-        client.capabilities.list_providers()
         """
         _response = self._raw_client.list_providers(expand=expand, request_options=request_options)
         return _response.data
@@ -132,18 +114,6 @@ class CapabilitiesClient:
         Returns
         -------
         ProviderCapabilitiesResponse
-
-        Examples
-        --------
-        from synqly import SynqlyManagement
-        from synqly.providers_generated import ProviderConfigId
-
-        client = SynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-        client.capabilities.get_provider(
-            provider_id=ProviderConfigId.APPSEC_AMAZON_INSPECTOR,
-        )
         """
         _response = self._raw_client.get_provider(provider_id, expand=expand, request_options=request_options)
         return _response.data
@@ -190,23 +160,6 @@ class AsyncCapabilitiesClient:
         Returns
         -------
         ListConnectorsCapabilitiesResponse
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyManagement
-
-        client = AsyncSynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.capabilities.list_connectors()
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.list_connectors(expand=expand, request_options=request_options)
         return _response.data
@@ -235,23 +188,6 @@ class AsyncCapabilitiesClient:
         Returns
         -------
         ListProvidersCapabilitiesResponse
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyManagement
-
-        client = AsyncSynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.capabilities.list_providers()
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.list_providers(expand=expand, request_options=request_options)
         return _response.data
@@ -283,26 +219,6 @@ class AsyncCapabilitiesClient:
         Returns
         -------
         ProviderCapabilitiesResponse
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyManagement
-        from synqly.providers_generated import ProviderConfigId
-
-        client = AsyncSynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.capabilities.get_provider(
-                provider_id=ProviderConfigId.APPSEC_AMAZON_INSPECTOR,
-            )
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.get_provider(provider_id, expand=expand, request_options=request_options)
         return _response.data

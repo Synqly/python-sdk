@@ -37,15 +37,6 @@ class PermissionsetClient:
         Returns
         -------
         ListPermissionSetsResponse
-
-        Examples
-        --------
-        from synqly import SynqlyManagement
-
-        client = SynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-        client.permissionset.list()
         """
         _response = self._raw_client.list(request_options=request_options)
         return _response.data
@@ -67,18 +58,6 @@ class PermissionsetClient:
         Returns
         -------
         GetPermissionSetResponse
-
-        Examples
-        --------
-        from synqly import SynqlyManagement
-        from synqly.permissionset_base import Permissions
-
-        client = SynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-        client.permissionset.get(
-            permissionset_id=Permissions.ADMINISTRATOR,
-        )
         """
         _response = self._raw_client.get(permissionset_id, request_options=request_options)
         return _response.data
@@ -111,23 +90,6 @@ class AsyncPermissionsetClient:
         Returns
         -------
         ListPermissionSetsResponse
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyManagement
-
-        client = AsyncSynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.permissionset.list()
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.list(request_options=request_options)
         return _response.data
@@ -149,26 +111,6 @@ class AsyncPermissionsetClient:
         Returns
         -------
         GetPermissionSetResponse
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyManagement
-        from synqly.permissionset_base import Permissions
-
-        client = AsyncSynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.permissionset.get(
-                permissionset_id=Permissions.ADMINISTRATOR,
-            )
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.get(permissionset_id, request_options=request_options)
         return _response.data

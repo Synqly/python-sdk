@@ -73,15 +73,6 @@ class MembersClient:
         Returns
         -------
         ListMembersResponse
-
-        Examples
-        --------
-        from synqly import SynqlyManagement
-
-        client = SynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-        client.members.list()
         """
         _response = self._raw_client.list(
             limit=limit, start_after=start_after, order=order, filter=filter, request_options=request_options
@@ -102,17 +93,6 @@ class MembersClient:
         Returns
         -------
         GetMemberResponse
-
-        Examples
-        --------
-        from synqly import SynqlyManagement
-
-        client = SynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-        client.members.get(
-            member_id="memberId",
-        )
         """
         _response = self._raw_client.get(member_id, request_options=request_options)
         return _response.data
@@ -164,18 +144,6 @@ class MembersClient:
         Returns
         -------
         CreateMemberResponse
-
-        Examples
-        --------
-        from synqly import SynqlyManagement
-
-        client = SynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-        client.members.create(
-            name="name",
-            secret="secret",
-        )
         """
         _response = self._raw_client.create(
             name=name,
@@ -262,43 +230,6 @@ class MembersClient:
         Returns
         -------
         UpdateMemberResponse
-
-        Examples
-        --------
-        import datetime
-
-        from synqly import SynqlyManagement
-        from synqly.member_base import MemberType, State
-
-        client = SynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-        client.members.update(
-            member_id="memberId",
-            id="id",
-            state=State.DISABLED,
-            last_logon=datetime.datetime.fromisoformat(
-                "2024-01-15 09:30:00+00:00",
-            ),
-            fullname="fullname",
-            ttl="ttl",
-            token_ttl="token_ttl",
-            expires=datetime.datetime.fromisoformat(
-                "2024-01-15 09:30:00+00:00",
-            ),
-            pin_expires=datetime.datetime.fromisoformat(
-                "2024-01-15 09:30:00+00:00",
-            ),
-            role_binding=["role_binding", "role_binding"],
-            type=MemberType.PERSONAL,
-            name="name",
-            created_at=datetime.datetime.fromisoformat(
-                "2024-01-15 09:30:00+00:00",
-            ),
-            updated_at=datetime.datetime.fromisoformat(
-                "2024-01-15 09:30:00+00:00",
-            ),
-        )
         """
         _response = self._raw_client.update(
             member_id,
@@ -343,28 +274,6 @@ class MembersClient:
         Returns
         -------
         PatchMemberResponse
-
-        Examples
-        --------
-        from synqly import SynqlyManagement
-        from synqly.common import PatchOp, PatchOperation
-
-        client = SynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-        client.members.patch(
-            member_id="memberId",
-            request=[
-                PatchOperation(
-                    op=PatchOp.ADD,
-                    path="path",
-                ),
-                PatchOperation(
-                    op=PatchOp.ADD,
-                    path="path",
-                ),
-            ],
-        )
         """
         _response = self._raw_client.patch(member_id, request=request, request_options=request_options)
         return _response.data
@@ -383,17 +292,6 @@ class MembersClient:
         Returns
         -------
         None
-
-        Examples
-        --------
-        from synqly import SynqlyManagement
-
-        client = SynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-        client.members.delete(
-            member_id="memberId",
-        )
         """
         _response = self._raw_client.delete(member_id, request_options=request_options)
         return _response.data
@@ -450,23 +348,6 @@ class AsyncMembersClient:
         Returns
         -------
         ListMembersResponse
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyManagement
-
-        client = AsyncSynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.members.list()
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.list(
             limit=limit, start_after=start_after, order=order, filter=filter, request_options=request_options
@@ -489,25 +370,6 @@ class AsyncMembersClient:
         Returns
         -------
         GetMemberResponse
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyManagement
-
-        client = AsyncSynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.members.get(
-                member_id="memberId",
-            )
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.get(member_id, request_options=request_options)
         return _response.data
@@ -559,26 +421,6 @@ class AsyncMembersClient:
         Returns
         -------
         CreateMemberResponse
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyManagement
-
-        client = AsyncSynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.members.create(
-                name="name",
-                secret="secret",
-            )
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.create(
             name=name,
@@ -665,50 +507,6 @@ class AsyncMembersClient:
         Returns
         -------
         UpdateMemberResponse
-
-        Examples
-        --------
-        import asyncio
-        import datetime
-
-        from synqly import AsyncSynqlyManagement
-        from synqly.member_base import MemberType, State
-
-        client = AsyncSynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.members.update(
-                member_id="memberId",
-                id="id",
-                state=State.DISABLED,
-                last_logon=datetime.datetime.fromisoformat(
-                    "2024-01-15 09:30:00+00:00",
-                ),
-                fullname="fullname",
-                ttl="ttl",
-                token_ttl="token_ttl",
-                expires=datetime.datetime.fromisoformat(
-                    "2024-01-15 09:30:00+00:00",
-                ),
-                pin_expires=datetime.datetime.fromisoformat(
-                    "2024-01-15 09:30:00+00:00",
-                ),
-                role_binding=["role_binding", "role_binding"],
-                type=MemberType.PERSONAL,
-                name="name",
-                created_at=datetime.datetime.fromisoformat(
-                    "2024-01-15 09:30:00+00:00",
-                ),
-                updated_at=datetime.datetime.fromisoformat(
-                    "2024-01-15 09:30:00+00:00",
-                ),
-            )
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.update(
             member_id,
@@ -753,36 +551,6 @@ class AsyncMembersClient:
         Returns
         -------
         PatchMemberResponse
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyManagement
-        from synqly.common import PatchOp, PatchOperation
-
-        client = AsyncSynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.members.patch(
-                member_id="memberId",
-                request=[
-                    PatchOperation(
-                        op=PatchOp.ADD,
-                        path="path",
-                    ),
-                    PatchOperation(
-                        op=PatchOp.ADD,
-                        path="path",
-                    ),
-                ],
-            )
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.patch(member_id, request=request, request_options=request_options)
         return _response.data
@@ -801,25 +569,6 @@ class AsyncMembersClient:
         Returns
         -------
         None
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyManagement
-
-        client = AsyncSynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.members.delete(
-                member_id="memberId",
-            )
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.delete(member_id, request_options=request_options)
         return _response.data

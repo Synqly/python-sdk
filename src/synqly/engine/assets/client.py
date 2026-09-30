@@ -76,15 +76,6 @@ class AssetsClient:
         Returns
         -------
         QueryDevicesResponse
-
-        Examples
-        --------
-        from synqly import SynqlyEngine
-
-        client = SynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-        client.assets.query_devices()
         """
         _response = self._raw_client.query_devices(
             meta=meta,
@@ -125,33 +116,6 @@ class AssetsClient:
         Returns
         -------
         CreateDeviceResponse
-
-        Examples
-        --------
-        from synqly import SynqlyEngine
-        from synqly.ocsf.v_1_3_0.inventoryinfo.classes import InventoryInfo
-        from synqly.ocsf.v_1_3_0.objects import Device, Metadata, Product
-
-        client = SynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-        client.assets.create_asset(
-            device=InventoryInfo(
-                activity_id=1,
-                category_uid=1,
-                class_uid=1,
-                device=Device(
-                    type_id=1,
-                ),
-                metadata=Metadata(
-                    product=Product(),
-                    version="version",
-                ),
-                severity_id=1,
-                time=1,
-                type_uid=1,
-            ),
-        )
         """
         _response = self._raw_client.create_asset(
             device=device, meta=meta, source_name=source_name, request_options=request_options
@@ -188,51 +152,6 @@ class AssetsClient:
         Returns
         -------
         CreateDevicesResponse
-
-        Examples
-        --------
-        from synqly import SynqlyEngine
-        from synqly.ocsf.v_1_3_0.inventoryinfo.classes import InventoryInfo
-        from synqly.ocsf.v_1_3_0.objects import Device, Metadata, Product
-
-        client = SynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-        client.assets.create_devices(
-            devices=[
-                InventoryInfo(
-                    activity_id=1,
-                    category_uid=1,
-                    class_uid=1,
-                    device=Device(
-                        type_id=1,
-                    ),
-                    metadata=Metadata(
-                        product=Product(),
-                        version="version",
-                    ),
-                    severity_id=1,
-                    time=1,
-                    type_uid=1,
-                ),
-                InventoryInfo(
-                    activity_id=1,
-                    category_uid=1,
-                    class_uid=1,
-                    device=Device(
-                        type_id=1,
-                    ),
-                    metadata=Metadata(
-                        product=Product(),
-                        version="version",
-                    ),
-                    severity_id=1,
-                    time=1,
-                    type_uid=1,
-                ),
-            ],
-            source_name="source_name",
-        )
         """
         _response = self._raw_client.create_devices(
             devices=devices,
@@ -263,15 +182,6 @@ class AssetsClient:
         Returns
         -------
         GetLabelsResponse
-
-        Examples
-        --------
-        from synqly import SynqlyEngine
-
-        client = SynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-        client.assets.get_labels()
         """
         _response = self._raw_client.get_labels(meta=meta, request_options=request_options)
         return _response.data
@@ -318,15 +228,6 @@ class AssetsClient:
         Returns
         -------
         QuerySoftwareInventoryResponse
-
-        Examples
-        --------
-        from synqly import SynqlyEngine
-
-        client = SynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-        client.assets.query_software()
         """
         _response = self._raw_client.query_software(
             meta=meta,
@@ -383,17 +284,6 @@ class AssetsClient:
         Returns
         -------
         QuerySoftwareInventoryResponse
-
-        Examples
-        --------
-        from synqly import SynqlyEngine
-
-        client = SynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-        client.assets.query_device_software(
-            device_uid="deviceUid",
-        )
         """
         _response = self._raw_client.query_device_software(
             device_uid,
@@ -459,33 +349,6 @@ class AssetsClient:
         Returns
         -------
         CreateSoftwareInventoryResponse
-
-        Examples
-        --------
-        from synqly import SynqlyEngine
-        from synqly.ocsf.v_1_8_0.objects import Device, Metadata, Product
-        from synqly.ocsf.v_1_8_0.softwareinventoryinfo.classes import SoftwareInfo
-
-        client = SynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-        client.assets.create_software(
-            software_inventory=SoftwareInfo(
-                activity_id=1,
-                category_uid=1,
-                class_uid=1,
-                device=Device(
-                    type_id=1,
-                ),
-                metadata=Metadata(
-                    product=Product(),
-                    version="version",
-                ),
-                severity_id=1,
-                time=1,
-                type_uid=1,
-            ),
-        )
         """
         _response = self._raw_client.create_software(
             software_inventory=software_inventory, meta=meta, source_name=source_name, request_options=request_options
@@ -545,34 +408,6 @@ class AssetsClient:
         Returns
         -------
         UpdateSoftwareInventoryResponse
-
-        Examples
-        --------
-        from synqly import SynqlyEngine
-        from synqly.ocsf.v_1_8_0.objects import Device, Metadata, Product
-        from synqly.ocsf.v_1_8_0.softwareinventoryinfo.classes import SoftwareInfo
-
-        client = SynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-        client.assets.update_software(
-            device_uid="deviceUid",
-            software_inventory=SoftwareInfo(
-                activity_id=1,
-                category_uid=1,
-                class_uid=1,
-                device=Device(
-                    type_id=1,
-                ),
-                metadata=Metadata(
-                    product=Product(),
-                    version="version",
-                ),
-                severity_id=1,
-                time=1,
-                type_uid=1,
-            ),
-        )
         """
         _response = self._raw_client.update_software(
             device_uid,
@@ -641,23 +476,6 @@ class AsyncAssetsClient:
         Returns
         -------
         QueryDevicesResponse
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyEngine
-
-        client = AsyncSynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.assets.query_devices()
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.query_devices(
             meta=meta,
@@ -698,41 +516,6 @@ class AsyncAssetsClient:
         Returns
         -------
         CreateDeviceResponse
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyEngine
-        from synqly.ocsf.v_1_3_0.inventoryinfo.classes import InventoryInfo
-        from synqly.ocsf.v_1_3_0.objects import Device, Metadata, Product
-
-        client = AsyncSynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.assets.create_asset(
-                device=InventoryInfo(
-                    activity_id=1,
-                    category_uid=1,
-                    class_uid=1,
-                    device=Device(
-                        type_id=1,
-                    ),
-                    metadata=Metadata(
-                        product=Product(),
-                        version="version",
-                    ),
-                    severity_id=1,
-                    time=1,
-                    type_uid=1,
-                ),
-            )
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.create_asset(
             device=device, meta=meta, source_name=source_name, request_options=request_options
@@ -769,59 +552,6 @@ class AsyncAssetsClient:
         Returns
         -------
         CreateDevicesResponse
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyEngine
-        from synqly.ocsf.v_1_3_0.inventoryinfo.classes import InventoryInfo
-        from synqly.ocsf.v_1_3_0.objects import Device, Metadata, Product
-
-        client = AsyncSynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.assets.create_devices(
-                devices=[
-                    InventoryInfo(
-                        activity_id=1,
-                        category_uid=1,
-                        class_uid=1,
-                        device=Device(
-                            type_id=1,
-                        ),
-                        metadata=Metadata(
-                            product=Product(),
-                            version="version",
-                        ),
-                        severity_id=1,
-                        time=1,
-                        type_uid=1,
-                    ),
-                    InventoryInfo(
-                        activity_id=1,
-                        category_uid=1,
-                        class_uid=1,
-                        device=Device(
-                            type_id=1,
-                        ),
-                        metadata=Metadata(
-                            product=Product(),
-                            version="version",
-                        ),
-                        severity_id=1,
-                        time=1,
-                        type_uid=1,
-                    ),
-                ],
-                source_name="source_name",
-            )
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.create_devices(
             devices=devices,
@@ -852,23 +582,6 @@ class AsyncAssetsClient:
         Returns
         -------
         GetLabelsResponse
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyEngine
-
-        client = AsyncSynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.assets.get_labels()
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.get_labels(meta=meta, request_options=request_options)
         return _response.data
@@ -915,23 +628,6 @@ class AsyncAssetsClient:
         Returns
         -------
         QuerySoftwareInventoryResponse
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyEngine
-
-        client = AsyncSynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.assets.query_software()
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.query_software(
             meta=meta,
@@ -988,25 +684,6 @@ class AsyncAssetsClient:
         Returns
         -------
         QuerySoftwareInventoryResponse
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyEngine
-
-        client = AsyncSynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.assets.query_device_software(
-                device_uid="deviceUid",
-            )
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.query_device_software(
             device_uid,
@@ -1072,41 +749,6 @@ class AsyncAssetsClient:
         Returns
         -------
         CreateSoftwareInventoryResponse
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyEngine
-        from synqly.ocsf.v_1_8_0.objects import Device, Metadata, Product
-        from synqly.ocsf.v_1_8_0.softwareinventoryinfo.classes import SoftwareInfo
-
-        client = AsyncSynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.assets.create_software(
-                software_inventory=SoftwareInfo(
-                    activity_id=1,
-                    category_uid=1,
-                    class_uid=1,
-                    device=Device(
-                        type_id=1,
-                    ),
-                    metadata=Metadata(
-                        product=Product(),
-                        version="version",
-                    ),
-                    severity_id=1,
-                    time=1,
-                    type_uid=1,
-                ),
-            )
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.create_software(
             software_inventory=software_inventory, meta=meta, source_name=source_name, request_options=request_options
@@ -1166,42 +808,6 @@ class AsyncAssetsClient:
         Returns
         -------
         UpdateSoftwareInventoryResponse
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyEngine
-        from synqly.ocsf.v_1_8_0.objects import Device, Metadata, Product
-        from synqly.ocsf.v_1_8_0.softwareinventoryinfo.classes import SoftwareInfo
-
-        client = AsyncSynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.assets.update_software(
-                device_uid="deviceUid",
-                software_inventory=SoftwareInfo(
-                    activity_id=1,
-                    category_uid=1,
-                    class_uid=1,
-                    device=Device(
-                        type_id=1,
-                    ),
-                    metadata=Metadata(
-                        product=Product(),
-                        version="version",
-                    ),
-                    severity_id=1,
-                    time=1,
-                    type_uid=1,
-                ),
-            )
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.update_software(
             device_uid,

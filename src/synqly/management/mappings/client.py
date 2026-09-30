@@ -75,15 +75,6 @@ class MappingsClient:
         Returns
         -------
         ListMappingsResponse
-
-        Examples
-        --------
-        from synqly import SynqlyManagement
-
-        client = SynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-        client.mappings.list()
         """
         _response = self._raw_client.list(
             limit=limit,
@@ -111,17 +102,6 @@ class MappingsClient:
         Returns
         -------
         GetMappingResponse
-
-        Examples
-        --------
-        from synqly import SynqlyManagement
-
-        client = SynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-        client.mappings.get(
-            mapping_id="mappingId",
-        )
         """
         _response = self._raw_client.get(mapping_id, request_options=request_options)
         return _response.data
@@ -154,17 +134,6 @@ class MappingsClient:
         Returns
         -------
         CreateMappingResponse
-
-        Examples
-        --------
-        from synqly import SynqlyManagement
-
-        client = SynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-        client.mappings.create(
-            data="data",
-        )
         """
         _response = self._raw_client.create(data=data, name=name, fullname=fullname, request_options=request_options)
         return _response.data
@@ -215,30 +184,6 @@ class MappingsClient:
         Returns
         -------
         UpdateMappingResponse
-
-        Examples
-        --------
-        import datetime
-
-        from synqly import SynqlyManagement
-
-        client = SynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-        client.mappings.update(
-            mapping_id="mappingId",
-            data="data",
-            id="id",
-            fullname="fullname",
-            organization_id="organization_id",
-            name="name",
-            created_at=datetime.datetime.fromisoformat(
-                "2024-01-15 09:30:00+00:00",
-            ),
-            updated_at=datetime.datetime.fromisoformat(
-                "2024-01-15 09:30:00+00:00",
-            ),
-        )
         """
         _response = self._raw_client.update(
             mapping_id,
@@ -275,28 +220,6 @@ class MappingsClient:
         Returns
         -------
         PatchMappingResponse
-
-        Examples
-        --------
-        from synqly import SynqlyManagement
-        from synqly.common import PatchOp, PatchOperation
-
-        client = SynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-        client.mappings.patch(
-            mapping_id="mappingId",
-            request=[
-                PatchOperation(
-                    op=PatchOp.ADD,
-                    path="path",
-                ),
-                PatchOperation(
-                    op=PatchOp.ADD,
-                    path="path",
-                ),
-            ],
-        )
         """
         _response = self._raw_client.patch(mapping_id, request=request, request_options=request_options)
         return _response.data
@@ -315,17 +238,6 @@ class MappingsClient:
         Returns
         -------
         None
-
-        Examples
-        --------
-        from synqly import SynqlyManagement
-
-        client = SynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-        client.mappings.delete(
-            mapping_id="mappingId",
-        )
         """
         _response = self._raw_client.delete(mapping_id, request_options=request_options)
         return _response.data
@@ -358,18 +270,6 @@ class MappingsClient:
         Returns
         -------
         ApplyMappingResponse
-
-        Examples
-        --------
-        from synqly import SynqlyManagement
-
-        client = SynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-        client.mappings.apply(
-            mappings=["mappings", "mappings"],
-            data={"data": {"key": "value"}},
-        )
         """
         _response = self._raw_client.apply(
             mappings=mappings, data=data, include_raw_data=include_raw_data, request_options=request_options
@@ -432,23 +332,6 @@ class AsyncMappingsClient:
         Returns
         -------
         ListMappingsResponse
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyManagement
-
-        client = AsyncSynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.mappings.list()
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.list(
             limit=limit,
@@ -476,25 +359,6 @@ class AsyncMappingsClient:
         Returns
         -------
         GetMappingResponse
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyManagement
-
-        client = AsyncSynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.mappings.get(
-                mapping_id="mappingId",
-            )
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.get(mapping_id, request_options=request_options)
         return _response.data
@@ -527,25 +391,6 @@ class AsyncMappingsClient:
         Returns
         -------
         CreateMappingResponse
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyManagement
-
-        client = AsyncSynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.mappings.create(
-                data="data",
-            )
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.create(
             data=data, name=name, fullname=fullname, request_options=request_options
@@ -598,37 +443,6 @@ class AsyncMappingsClient:
         Returns
         -------
         UpdateMappingResponse
-
-        Examples
-        --------
-        import asyncio
-        import datetime
-
-        from synqly import AsyncSynqlyManagement
-
-        client = AsyncSynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.mappings.update(
-                mapping_id="mappingId",
-                data="data",
-                id="id",
-                fullname="fullname",
-                organization_id="organization_id",
-                name="name",
-                created_at=datetime.datetime.fromisoformat(
-                    "2024-01-15 09:30:00+00:00",
-                ),
-                updated_at=datetime.datetime.fromisoformat(
-                    "2024-01-15 09:30:00+00:00",
-                ),
-            )
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.update(
             mapping_id,
@@ -665,36 +479,6 @@ class AsyncMappingsClient:
         Returns
         -------
         PatchMappingResponse
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyManagement
-        from synqly.common import PatchOp, PatchOperation
-
-        client = AsyncSynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.mappings.patch(
-                mapping_id="mappingId",
-                request=[
-                    PatchOperation(
-                        op=PatchOp.ADD,
-                        path="path",
-                    ),
-                    PatchOperation(
-                        op=PatchOp.ADD,
-                        path="path",
-                    ),
-                ],
-            )
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.patch(mapping_id, request=request, request_options=request_options)
         return _response.data
@@ -713,25 +497,6 @@ class AsyncMappingsClient:
         Returns
         -------
         None
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyManagement
-
-        client = AsyncSynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.mappings.delete(
-                mapping_id="mappingId",
-            )
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.delete(mapping_id, request_options=request_options)
         return _response.data
@@ -764,26 +529,6 @@ class AsyncMappingsClient:
         Returns
         -------
         ApplyMappingResponse
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyManagement
-
-        client = AsyncSynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.mappings.apply(
-                mappings=["mappings", "mappings"],
-                data={"data": {"key": "value"}},
-            )
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.apply(
             mappings=mappings, data=data, include_raw_data=include_raw_data, request_options=request_options

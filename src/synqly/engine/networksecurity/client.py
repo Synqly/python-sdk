@@ -58,15 +58,6 @@ class NetworksecurityClient:
         Returns
         -------
         QueryTrafficLogConfigurationsResponse
-
-        Examples
-        --------
-        from synqly import SynqlyEngine
-
-        client = SynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-        client.networksecurity.query_traffic_log_configurations()
         """
         _response = self._raw_client.query_traffic_log_configurations(
             meta=meta, limit=limit, filter=filter, cursor=cursor, request_options=request_options
@@ -106,15 +97,6 @@ class NetworksecurityClient:
         Returns
         -------
         QueryTrafficEventsResponse
-
-        Examples
-        --------
-        from synqly import SynqlyEngine
-
-        client = SynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-        client.networksecurity.query_traffic_events()
         """
         _response = self._raw_client.query_traffic_events(
             meta=meta, limit=limit, filter=filter, cursor=cursor, request_options=request_options
@@ -153,15 +135,6 @@ class NetworksecurityClient:
         Returns
         -------
         QueryDnsLogConfigurationsResponse
-
-        Examples
-        --------
-        from synqly import SynqlyEngine
-
-        client = SynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-        client.networksecurity.query_dns_log_configurations()
         """
         _response = self._raw_client.query_dns_log_configurations(
             meta=meta, limit=limit, filter=filter, cursor=cursor, request_options=request_options
@@ -201,15 +174,6 @@ class NetworksecurityClient:
         Returns
         -------
         QueryDnsEventsResponse
-
-        Examples
-        --------
-        from synqly import SynqlyEngine
-
-        client = SynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-        client.networksecurity.query_dns_events()
         """
         _response = self._raw_client.query_dns_events(
             meta=meta, limit=limit, filter=filter, cursor=cursor, request_options=request_options
@@ -264,23 +228,6 @@ class AsyncNetworksecurityClient:
         Returns
         -------
         QueryTrafficLogConfigurationsResponse
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyEngine
-
-        client = AsyncSynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.networksecurity.query_traffic_log_configurations()
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.query_traffic_log_configurations(
             meta=meta, limit=limit, filter=filter, cursor=cursor, request_options=request_options
@@ -320,23 +267,6 @@ class AsyncNetworksecurityClient:
         Returns
         -------
         QueryTrafficEventsResponse
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyEngine
-
-        client = AsyncSynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.networksecurity.query_traffic_events()
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.query_traffic_events(
             meta=meta, limit=limit, filter=filter, cursor=cursor, request_options=request_options
@@ -375,23 +305,6 @@ class AsyncNetworksecurityClient:
         Returns
         -------
         QueryDnsLogConfigurationsResponse
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyEngine
-
-        client = AsyncSynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.networksecurity.query_dns_log_configurations()
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.query_dns_log_configurations(
             meta=meta, limit=limit, filter=filter, cursor=cursor, request_options=request_options
@@ -431,23 +344,6 @@ class AsyncNetworksecurityClient:
         Returns
         -------
         QueryDnsEventsResponse
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyEngine
-
-        client = AsyncSynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.networksecurity.query_dns_events()
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.query_dns_events(
             meta=meta, limit=limit, filter=filter, cursor=cursor, request_options=request_options

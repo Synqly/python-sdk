@@ -55,15 +55,6 @@ class IncidentresponseClient:
         Returns
         -------
         IncidentResponseQueryEscalationPoliciesResponse
-
-        Examples
-        --------
-        from synqly import SynqlyEngine
-
-        client = SynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-        client.incidentresponse.query_escalation_policies()
         """
         _response = self._raw_client.query_escalation_policies(
             meta=meta, limit=limit, cursor=cursor, request_options=request_options
@@ -93,17 +84,6 @@ class IncidentresponseClient:
         Returns
         -------
         IncidentResponseQueryEscalationPolicyUsersOnCallResponse
-
-        Examples
-        --------
-        from synqly import SynqlyEngine
-
-        client = SynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-        client.incidentresponse.query_escalation_policy_users_on_call(
-            escalation_policy_id="escalationPolicyId",
-        )
         """
         _response = self._raw_client.query_escalation_policy_users_on_call(
             escalation_policy_id, meta=meta, request_options=request_options
@@ -154,23 +134,6 @@ class AsyncIncidentresponseClient:
         Returns
         -------
         IncidentResponseQueryEscalationPoliciesResponse
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyEngine
-
-        client = AsyncSynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.incidentresponse.query_escalation_policies()
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.query_escalation_policies(
             meta=meta, limit=limit, cursor=cursor, request_options=request_options
@@ -200,25 +163,6 @@ class AsyncIncidentresponseClient:
         Returns
         -------
         IncidentResponseQueryEscalationPolicyUsersOnCallResponse
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyEngine
-
-        client = AsyncSynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.incidentresponse.query_escalation_policy_users_on_call(
-                escalation_policy_id="escalationPolicyId",
-            )
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.query_escalation_policy_users_on_call(
             escalation_policy_id, meta=meta, request_options=request_options

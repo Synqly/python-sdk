@@ -37,15 +37,6 @@ class MetaClient:
         Returns
         -------
         GetOpenApiSpecResponse
-
-        Examples
-        --------
-        from synqly import SynqlyManagement
-
-        client = SynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-        client.meta.management_openapi_spec()
         """
         _response = self._raw_client.management_openapi_spec(request_options=request_options)
         return _response.data
@@ -62,15 +53,6 @@ class MetaClient:
         Returns
         -------
         GetOpenApiSpecResponse
-
-        Examples
-        --------
-        from synqly import SynqlyManagement
-
-        client = SynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-        client.meta.engine_openapi_spec()
         """
         _response = self._raw_client.engine_openapi_spec(request_options=request_options)
         return _response.data
@@ -105,23 +87,6 @@ class AsyncMetaClient:
         Returns
         -------
         GetOpenApiSpecResponse
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyManagement
-
-        client = AsyncSynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.meta.management_openapi_spec()
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.management_openapi_spec(request_options=request_options)
         return _response.data
@@ -140,23 +105,6 @@ class AsyncMetaClient:
         Returns
         -------
         GetOpenApiSpecResponse
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyManagement
-
-        client = AsyncSynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.meta.engine_openapi_spec()
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.engine_openapi_spec(request_options=request_options)
         return _response.data

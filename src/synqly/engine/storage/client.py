@@ -58,17 +58,6 @@ class StorageClient:
         Returns
         -------
         ListStorageResponse
-
-        Examples
-        --------
-        from synqly import SynqlyEngine
-
-        client = SynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-        client.storage.list_files(
-            path="path",
-        )
         """
         _response = self._raw_client.list_files(
             path, meta=meta, cursor=cursor, limit=limit, request_options=request_options
@@ -122,17 +111,6 @@ class StorageClient:
         Returns
         -------
         typing.Iterator[bytes]
-
-        Examples
-        --------
-        from synqly import SynqlyEngine
-
-        client = SynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-        client.storage.download_file(
-            path="path",
-        )
         """
         with self._raw_client.download_file(path, request_options=request_options) as r:
             yield from r.data
@@ -160,17 +138,6 @@ class StorageClient:
         Returns
         -------
         None
-
-        Examples
-        --------
-        from synqly import SynqlyEngine
-
-        client = SynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-        client.storage.delete_file(
-            path="path",
-        )
         """
         _response = self._raw_client.delete_file(path, meta=meta, request_options=request_options)
         return _response.data
@@ -222,25 +189,6 @@ class AsyncStorageClient:
         Returns
         -------
         ListStorageResponse
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyEngine
-
-        client = AsyncSynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.storage.list_files(
-                path="path",
-            )
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.list_files(
             path, meta=meta, cursor=cursor, limit=limit, request_options=request_options
@@ -294,25 +242,6 @@ class AsyncStorageClient:
         Returns
         -------
         typing.AsyncIterator[bytes]
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyEngine
-
-        client = AsyncSynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.storage.download_file(
-                path="path",
-            )
-
-
-        asyncio.run(main())
         """
         async with self._raw_client.download_file(path, request_options=request_options) as r:
             async for _chunk in r.data:
@@ -341,25 +270,6 @@ class AsyncStorageClient:
         Returns
         -------
         None
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyEngine
-
-        client = AsyncSynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.storage.delete_file(
-                path="path",
-            )
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.delete_file(path, meta=meta, request_options=request_options)
         return _response.data

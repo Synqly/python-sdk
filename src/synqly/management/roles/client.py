@@ -71,15 +71,6 @@ class RolesClient:
         Returns
         -------
         ListRolesResponse
-
-        Examples
-        --------
-        from synqly import SynqlyManagement
-
-        client = SynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-        client.roles.list()
         """
         _response = self._raw_client.list(
             limit=limit, start_after=start_after, order=order, filter=filter, request_options=request_options
@@ -101,17 +92,6 @@ class RolesClient:
         Returns
         -------
         GetRoleResponse
-
-        Examples
-        --------
-        from synqly import SynqlyManagement
-
-        client = SynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-        client.roles.get(
-            role_id="roleId",
-        )
         """
         _response = self._raw_client.get(role_id, request_options=request_options)
         return _response.data
@@ -153,18 +133,6 @@ class RolesClient:
         Returns
         -------
         CreateRoleResponse
-
-        Examples
-        --------
-        from synqly import SynqlyManagement
-        from synqly.permissionset_base import Permissions
-
-        client = SynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-        client.roles.create(
-            permission_set=Permissions.ADMINISTRATOR,
-        )
         """
         _response = self._raw_client.create(
             permission_set=permission_set,
@@ -227,30 +195,6 @@ class RolesClient:
         Returns
         -------
         UpdateRoleResponse
-
-        Examples
-        --------
-        import datetime
-
-        from synqly import SynqlyManagement
-        from synqly.permissionset_base import Permissions
-
-        client = SynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-        client.roles.update(
-            role_id="roleId",
-            id="id",
-            fullname="fullname",
-            permission_set=Permissions.ADMINISTRATOR,
-            name="name",
-            created_at=datetime.datetime.fromisoformat(
-                "2024-01-15 09:30:00+00:00",
-            ),
-            updated_at=datetime.datetime.fromisoformat(
-                "2024-01-15 09:30:00+00:00",
-            ),
-        )
         """
         _response = self._raw_client.update(
             role_id,
@@ -289,28 +233,6 @@ class RolesClient:
         Returns
         -------
         PatchRoleResponse
-
-        Examples
-        --------
-        from synqly import SynqlyManagement
-        from synqly.common import PatchOp, PatchOperation
-
-        client = SynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-        client.roles.patch(
-            role_id="roleId",
-            request=[
-                PatchOperation(
-                    op=PatchOp.ADD,
-                    path="path",
-                ),
-                PatchOperation(
-                    op=PatchOp.ADD,
-                    path="path",
-                ),
-            ],
-        )
         """
         _response = self._raw_client.patch(role_id, request=request, request_options=request_options)
         return _response.data
@@ -330,17 +252,6 @@ class RolesClient:
         Returns
         -------
         None
-
-        Examples
-        --------
-        from synqly import SynqlyManagement
-
-        client = SynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-        client.roles.delete(
-            role_id="roleId",
-        )
         """
         _response = self._raw_client.delete(role_id, request_options=request_options)
         return _response.data
@@ -397,23 +308,6 @@ class AsyncRolesClient:
         Returns
         -------
         ListRolesResponse
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyManagement
-
-        client = AsyncSynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.roles.list()
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.list(
             limit=limit, start_after=start_after, order=order, filter=filter, request_options=request_options
@@ -435,25 +329,6 @@ class AsyncRolesClient:
         Returns
         -------
         GetRoleResponse
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyManagement
-
-        client = AsyncSynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.roles.get(
-                role_id="roleId",
-            )
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.get(role_id, request_options=request_options)
         return _response.data
@@ -495,26 +370,6 @@ class AsyncRolesClient:
         Returns
         -------
         CreateRoleResponse
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyManagement
-        from synqly.permissionset_base import Permissions
-
-        client = AsyncSynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.roles.create(
-                permission_set=Permissions.ADMINISTRATOR,
-            )
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.create(
             permission_set=permission_set,
@@ -577,37 +432,6 @@ class AsyncRolesClient:
         Returns
         -------
         UpdateRoleResponse
-
-        Examples
-        --------
-        import asyncio
-        import datetime
-
-        from synqly import AsyncSynqlyManagement
-        from synqly.permissionset_base import Permissions
-
-        client = AsyncSynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.roles.update(
-                role_id="roleId",
-                id="id",
-                fullname="fullname",
-                permission_set=Permissions.ADMINISTRATOR,
-                name="name",
-                created_at=datetime.datetime.fromisoformat(
-                    "2024-01-15 09:30:00+00:00",
-                ),
-                updated_at=datetime.datetime.fromisoformat(
-                    "2024-01-15 09:30:00+00:00",
-                ),
-            )
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.update(
             role_id,
@@ -646,36 +470,6 @@ class AsyncRolesClient:
         Returns
         -------
         PatchRoleResponse
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyManagement
-        from synqly.common import PatchOp, PatchOperation
-
-        client = AsyncSynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.roles.patch(
-                role_id="roleId",
-                request=[
-                    PatchOperation(
-                        op=PatchOp.ADD,
-                        path="path",
-                    ),
-                    PatchOperation(
-                        op=PatchOp.ADD,
-                        path="path",
-                    ),
-                ],
-            )
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.patch(role_id, request=request, request_options=request_options)
         return _response.data
@@ -695,25 +489,6 @@ class AsyncRolesClient:
         Returns
         -------
         None
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyManagement
-
-        client = AsyncSynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.roles.delete(
-                role_id="roleId",
-            )
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.delete(role_id, request_options=request_options)
         return _response.data

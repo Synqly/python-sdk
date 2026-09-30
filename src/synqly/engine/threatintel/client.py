@@ -57,17 +57,6 @@ class ThreatintelClient:
         Returns
         -------
         ThreatIntelLookupHashResponse
-
-        Examples
-        --------
-        from synqly import SynqlyEngine
-
-        client = SynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-        client.threatintel.lookup_hash(
-            value="value",
-        )
         """
         _response = self._raw_client.lookup_hash(
             value=value, meta=meta, include_raw_data=include_raw_data, request_options=request_options
@@ -102,17 +91,6 @@ class ThreatintelClient:
         Returns
         -------
         ThreatIntelLookupUrlResponse
-
-        Examples
-        --------
-        from synqly import SynqlyEngine
-
-        client = SynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-        client.threatintel.lookup_url(
-            value="value",
-        )
         """
         _response = self._raw_client.lookup_url(
             value=value, meta=meta, include_raw_data=include_raw_data, request_options=request_options
@@ -147,17 +125,6 @@ class ThreatintelClient:
         Returns
         -------
         ThreatIntelLookupDomainResponse
-
-        Examples
-        --------
-        from synqly import SynqlyEngine
-
-        client = SynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-        client.threatintel.lookup_domain(
-            value="value",
-        )
         """
         _response = self._raw_client.lookup_domain(
             value=value, meta=meta, include_raw_data=include_raw_data, request_options=request_options
@@ -192,17 +159,6 @@ class ThreatintelClient:
         Returns
         -------
         ThreatIntelLookupIpResponse
-
-        Examples
-        --------
-        from synqly import SynqlyEngine
-
-        client = SynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-        client.threatintel.lookup_ip(
-            value="value",
-        )
         """
         _response = self._raw_client.lookup_ip(
             value=value, meta=meta, include_raw_data=include_raw_data, request_options=request_options
@@ -253,25 +209,6 @@ class AsyncThreatintelClient:
         Returns
         -------
         ThreatIntelLookupHashResponse
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyEngine
-
-        client = AsyncSynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.threatintel.lookup_hash(
-                value="value",
-            )
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.lookup_hash(
             value=value, meta=meta, include_raw_data=include_raw_data, request_options=request_options
@@ -306,25 +243,6 @@ class AsyncThreatintelClient:
         Returns
         -------
         ThreatIntelLookupUrlResponse
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyEngine
-
-        client = AsyncSynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.threatintel.lookup_url(
-                value="value",
-            )
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.lookup_url(
             value=value, meta=meta, include_raw_data=include_raw_data, request_options=request_options
@@ -359,25 +277,6 @@ class AsyncThreatintelClient:
         Returns
         -------
         ThreatIntelLookupDomainResponse
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyEngine
-
-        client = AsyncSynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.threatintel.lookup_domain(
-                value="value",
-            )
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.lookup_domain(
             value=value, meta=meta, include_raw_data=include_raw_data, request_options=request_options
@@ -412,25 +311,6 @@ class AsyncThreatintelClient:
         Returns
         -------
         ThreatIntelLookupIpResponse
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyEngine
-
-        client = AsyncSynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.threatintel.lookup_ip(
-                value="value",
-            )
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.lookup_ip(
             value=value, meta=meta, include_raw_data=include_raw_data, request_options=request_options

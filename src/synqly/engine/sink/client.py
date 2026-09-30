@@ -54,46 +54,6 @@ class SinkClient:
         Returns
         -------
         CreateSinkEventsResponse
-
-        Examples
-        --------
-        from synqly import SynqlyEngine
-        from synqly.events import Event_AccountChange
-        from synqly.ocsf.v_1_3_0.objects import Metadata, Product, User
-
-        client = SynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-        client.sink.post_events(
-            request=[
-                Event_AccountChange(
-                    activity_id=1,
-                    category_uid=1,
-                    class_uid=1,
-                    metadata=Metadata(
-                        product=Product(),
-                        version="version",
-                    ),
-                    severity_id=1,
-                    time=1,
-                    type_uid=1,
-                    user=User(),
-                ),
-                Event_AccountChange(
-                    activity_id=1,
-                    category_uid=1,
-                    class_uid=1,
-                    metadata=Metadata(
-                        product=Product(),
-                        version="version",
-                    ),
-                    severity_id=1,
-                    time=1,
-                    type_uid=1,
-                    user=User(),
-                ),
-            ],
-        )
         """
         _response = self._raw_client.post_events(
             request=request, meta=meta, location=location, request_options=request_options
@@ -143,54 +103,6 @@ class AsyncSinkClient:
         Returns
         -------
         CreateSinkEventsResponse
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyEngine
-        from synqly.events import Event_AccountChange
-        from synqly.ocsf.v_1_3_0.objects import Metadata, Product, User
-
-        client = AsyncSynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.sink.post_events(
-                request=[
-                    Event_AccountChange(
-                        activity_id=1,
-                        category_uid=1,
-                        class_uid=1,
-                        metadata=Metadata(
-                            product=Product(),
-                            version="version",
-                        ),
-                        severity_id=1,
-                        time=1,
-                        type_uid=1,
-                        user=User(),
-                    ),
-                    Event_AccountChange(
-                        activity_id=1,
-                        category_uid=1,
-                        class_uid=1,
-                        metadata=Metadata(
-                            product=Product(),
-                            version="version",
-                        ),
-                        severity_id=1,
-                        time=1,
-                        type_uid=1,
-                        user=User(),
-                    ),
-                ],
-            )
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.post_events(
             request=request, meta=meta, location=location, request_options=request_options

@@ -78,15 +78,6 @@ class IntegrationPointsClient:
         Returns
         -------
         ListIntegrationPointsResponse
-
-        Examples
-        --------
-        from synqly import SynqlyManagement
-
-        client = SynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-        client.integration_points.list()
         """
         _response = self._raw_client.list(
             limit=limit,
@@ -114,17 +105,6 @@ class IntegrationPointsClient:
         Returns
         -------
         GetIntegrationPointResponse
-
-        Examples
-        --------
-        from synqly import SynqlyManagement
-
-        client = SynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-        client.integration_points.get(
-            integration_point_id="integrationPointId",
-        )
         """
         _response = self._raw_client.get(integration_point_id, request_options=request_options)
         return _response.data
@@ -181,20 +161,6 @@ class IntegrationPointsClient:
         Returns
         -------
         CreateIntegrationPointResponse
-
-        Examples
-        --------
-        from synqly import SynqlyManagement
-        from synqly.capabilities_base import CategoryId
-        from synqly.integration_points import IntegrationEnvironments
-
-        client = SynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-        client.integration_points.create(
-            connector=CategoryId.APPSEC,
-            environments=IntegrationEnvironments(),
-        )
         """
         _response = self._raw_client.create(
             connector=connector,
@@ -275,31 +241,6 @@ class IntegrationPointsClient:
         Returns
         -------
         UpdateIntegrationPointResponse
-
-        Examples
-        --------
-        import datetime
-
-        from synqly import SynqlyManagement
-        from synqly.capabilities_base import CategoryId
-        from synqly.integration_points import IntegrationEnvironments
-
-        client = SynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-        client.integration_points.update(
-            integration_point_id="integrationPointId",
-            id="id",
-            connector=CategoryId.APPSEC,
-            environments=IntegrationEnvironments(),
-            name="name",
-            created_at=datetime.datetime.fromisoformat(
-                "2024-01-15 09:30:00+00:00",
-            ),
-            updated_at=datetime.datetime.fromisoformat(
-                "2024-01-15 09:30:00+00:00",
-            ),
-        )
         """
         _response = self._raw_client.update(
             integration_point_id,
@@ -340,28 +281,6 @@ class IntegrationPointsClient:
         Returns
         -------
         PatchIntegrationPointResponse
-
-        Examples
-        --------
-        from synqly import SynqlyManagement
-        from synqly.common import PatchOp, PatchOperation
-
-        client = SynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-        client.integration_points.patch(
-            integration_point_id="integrationPointId",
-            request=[
-                PatchOperation(
-                    op=PatchOp.ADD,
-                    path="path",
-                ),
-                PatchOperation(
-                    op=PatchOp.ADD,
-                    path="path",
-                ),
-            ],
-        )
         """
         _response = self._raw_client.patch(integration_point_id, request=request, request_options=request_options)
         return _response.data
@@ -382,17 +301,6 @@ class IntegrationPointsClient:
         Returns
         -------
         None
-
-        Examples
-        --------
-        from synqly import SynqlyManagement
-
-        client = SynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-        client.integration_points.delete(
-            integration_point_id="integrationPointId",
-        )
         """
         _response = self._raw_client.delete(integration_point_id, request_options=request_options)
         return _response.data
@@ -453,23 +361,6 @@ class AsyncIntegrationPointsClient:
         Returns
         -------
         ListIntegrationPointsResponse
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyManagement
-
-        client = AsyncSynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.integration_points.list()
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.list(
             limit=limit,
@@ -497,25 +388,6 @@ class AsyncIntegrationPointsClient:
         Returns
         -------
         GetIntegrationPointResponse
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyManagement
-
-        client = AsyncSynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.integration_points.get(
-                integration_point_id="integrationPointId",
-            )
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.get(integration_point_id, request_options=request_options)
         return _response.data
@@ -572,28 +444,6 @@ class AsyncIntegrationPointsClient:
         Returns
         -------
         CreateIntegrationPointResponse
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyManagement
-        from synqly.capabilities_base import CategoryId
-        from synqly.integration_points import IntegrationEnvironments
-
-        client = AsyncSynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.integration_points.create(
-                connector=CategoryId.APPSEC,
-                environments=IntegrationEnvironments(),
-            )
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.create(
             connector=connector,
@@ -674,38 +524,6 @@ class AsyncIntegrationPointsClient:
         Returns
         -------
         UpdateIntegrationPointResponse
-
-        Examples
-        --------
-        import asyncio
-        import datetime
-
-        from synqly import AsyncSynqlyManagement
-        from synqly.capabilities_base import CategoryId
-        from synqly.integration_points import IntegrationEnvironments
-
-        client = AsyncSynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.integration_points.update(
-                integration_point_id="integrationPointId",
-                id="id",
-                connector=CategoryId.APPSEC,
-                environments=IntegrationEnvironments(),
-                name="name",
-                created_at=datetime.datetime.fromisoformat(
-                    "2024-01-15 09:30:00+00:00",
-                ),
-                updated_at=datetime.datetime.fromisoformat(
-                    "2024-01-15 09:30:00+00:00",
-                ),
-            )
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.update(
             integration_point_id,
@@ -746,36 +564,6 @@ class AsyncIntegrationPointsClient:
         Returns
         -------
         PatchIntegrationPointResponse
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyManagement
-        from synqly.common import PatchOp, PatchOperation
-
-        client = AsyncSynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.integration_points.patch(
-                integration_point_id="integrationPointId",
-                request=[
-                    PatchOperation(
-                        op=PatchOp.ADD,
-                        path="path",
-                    ),
-                    PatchOperation(
-                        op=PatchOp.ADD,
-                        path="path",
-                    ),
-                ],
-            )
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.patch(integration_point_id, request=request, request_options=request_options)
         return _response.data
@@ -796,25 +584,6 @@ class AsyncIntegrationPointsClient:
         Returns
         -------
         None
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyManagement
-
-        client = AsyncSynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.integration_points.delete(
-                integration_point_id="integrationPointId",
-            )
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.delete(integration_point_id, request_options=request_options)
         return _response.data

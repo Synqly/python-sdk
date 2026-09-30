@@ -78,15 +78,6 @@ class AccountsClient:
         Returns
         -------
         ListAccountsResponse
-
-        Examples
-        --------
-        from synqly import SynqlyManagement
-
-        client = SynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-        client.accounts.list()
         """
         _response = self._raw_client.list(
             limit=limit,
@@ -116,17 +107,6 @@ class AccountsClient:
         Returns
         -------
         GetAccountResponse
-
-        Examples
-        --------
-        from synqly import SynqlyManagement
-
-        client = SynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-        client.accounts.get(
-            account_id="accountId",
-        )
         """
         _response = self._raw_client.get(account_id, request_options=request_options)
         return _response.data
@@ -178,15 +158,6 @@ class AccountsClient:
         Returns
         -------
         CreateAccountResponse
-
-        Examples
-        --------
-        from synqly import SynqlyManagement
-
-        client = SynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-        client.accounts.create()
         """
         _response = self._raw_client.create(
             name=name,
@@ -250,31 +221,6 @@ class AccountsClient:
         Returns
         -------
         UpdateAccountResponse
-
-        Examples
-        --------
-        import datetime
-
-        from synqly import SynqlyManagement
-        from synqly.organization_base import Environment
-
-        client = SynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-        client.accounts.update(
-            account_id="accountId",
-            id="id",
-            fullname="fullname",
-            organization_id="organization_id",
-            environment=Environment.TEST,
-            name="name",
-            created_at=datetime.datetime.fromisoformat(
-                "2024-01-15 09:30:00+00:00",
-            ),
-            updated_at=datetime.datetime.fromisoformat(
-                "2024-01-15 09:30:00+00:00",
-            ),
-        )
         """
         _response = self._raw_client.update(
             account_id,
@@ -314,28 +260,6 @@ class AccountsClient:
         Returns
         -------
         PatchAccountResponse
-
-        Examples
-        --------
-        from synqly import SynqlyManagement
-        from synqly.common import PatchOp, PatchOperation
-
-        client = SynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-        client.accounts.patch(
-            account_id="accountId",
-            request=[
-                PatchOperation(
-                    op=PatchOp.ADD,
-                    path="path",
-                ),
-                PatchOperation(
-                    op=PatchOp.ADD,
-                    path="path",
-                ),
-            ],
-        )
         """
         _response = self._raw_client.patch(account_id, request=request, request_options=request_options)
         return _response.data
@@ -357,17 +281,6 @@ class AccountsClient:
         Returns
         -------
         None
-
-        Examples
-        --------
-        from synqly import SynqlyManagement
-
-        client = SynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-        client.accounts.delete(
-            account_id="accountId",
-        )
         """
         _response = self._raw_client.delete(account_id, request_options=request_options)
         return _response.data
@@ -430,23 +343,6 @@ class AsyncAccountsClient:
         Returns
         -------
         ListAccountsResponse
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyManagement
-
-        client = AsyncSynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.accounts.list()
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.list(
             limit=limit,
@@ -476,25 +372,6 @@ class AsyncAccountsClient:
         Returns
         -------
         GetAccountResponse
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyManagement
-
-        client = AsyncSynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.accounts.get(
-                account_id="accountId",
-            )
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.get(account_id, request_options=request_options)
         return _response.data
@@ -546,23 +423,6 @@ class AsyncAccountsClient:
         Returns
         -------
         CreateAccountResponse
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyManagement
-
-        client = AsyncSynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.accounts.create()
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.create(
             name=name,
@@ -626,38 +486,6 @@ class AsyncAccountsClient:
         Returns
         -------
         UpdateAccountResponse
-
-        Examples
-        --------
-        import asyncio
-        import datetime
-
-        from synqly import AsyncSynqlyManagement
-        from synqly.organization_base import Environment
-
-        client = AsyncSynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.accounts.update(
-                account_id="accountId",
-                id="id",
-                fullname="fullname",
-                organization_id="organization_id",
-                environment=Environment.TEST,
-                name="name",
-                created_at=datetime.datetime.fromisoformat(
-                    "2024-01-15 09:30:00+00:00",
-                ),
-                updated_at=datetime.datetime.fromisoformat(
-                    "2024-01-15 09:30:00+00:00",
-                ),
-            )
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.update(
             account_id,
@@ -697,36 +525,6 @@ class AsyncAccountsClient:
         Returns
         -------
         PatchAccountResponse
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyManagement
-        from synqly.common import PatchOp, PatchOperation
-
-        client = AsyncSynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.accounts.patch(
-                account_id="accountId",
-                request=[
-                    PatchOperation(
-                        op=PatchOp.ADD,
-                        path="path",
-                    ),
-                    PatchOperation(
-                        op=PatchOp.ADD,
-                        path="path",
-                    ),
-                ],
-            )
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.patch(account_id, request=request, request_options=request_options)
         return _response.data
@@ -748,25 +546,6 @@ class AsyncAccountsClient:
         Returns
         -------
         None
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyManagement
-
-        client = AsyncSynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.accounts.delete(
-                account_id="accountId",
-            )
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.delete(account_id, request_options=request_options)
         return _response.data

@@ -70,15 +70,6 @@ class AppsecClient:
         Returns
         -------
         AppSecQueryApplicationsResponse
-
-        Examples
-        --------
-        from synqly import SynqlyEngine
-
-        client = SynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-        client.appsec.query_applications()
         """
         _response = self._raw_client.query_applications(
             meta=meta,
@@ -129,17 +120,6 @@ class AppsecClient:
         Returns
         -------
         AppSecQueryApplicationFindingsResponse
-
-        Examples
-        --------
-        from synqly import SynqlyEngine
-
-        client = SynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-        client.appsec.query_application_findings(
-            application_id="applicationId",
-        )
         """
         _response = self._raw_client.query_application_findings(
             application_id,
@@ -188,15 +168,6 @@ class AppsecClient:
         Returns
         -------
         AppSecQueryFindingsResponse
-
-        Examples
-        --------
-        from synqly import SynqlyEngine
-
-        client = SynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-        client.appsec.query_findings()
         """
         _response = self._raw_client.query_findings(
             meta=meta,
@@ -231,52 +202,6 @@ class AppsecClient:
         Returns
         -------
         AppSecCreateFindingsResponse
-
-        Examples
-        --------
-        from synqly import SynqlyEngine
-        from synqly.ocsf.v_1_8_0.applicationsecurityposturefinding.classes import (
-            ApplicationSecurityPostureFinding,
-        )
-        from synqly.ocsf.v_1_8_0.objects import FindingInfo, Metadata, Product
-
-        client = SynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-        client.appsec.create_findings(
-            request=[
-                ApplicationSecurityPostureFinding(
-                    activity_id=1,
-                    category_uid=1,
-                    class_uid=1,
-                    finding_info=FindingInfo(
-                        uid="uid",
-                    ),
-                    metadata=Metadata(
-                        product=Product(),
-                        version="version",
-                    ),
-                    severity_id=1,
-                    time=1,
-                    type_uid=1,
-                ),
-                ApplicationSecurityPostureFinding(
-                    activity_id=1,
-                    category_uid=1,
-                    class_uid=1,
-                    finding_info=FindingInfo(
-                        uid="uid",
-                    ),
-                    metadata=Metadata(
-                        product=Product(),
-                        version="version",
-                    ),
-                    severity_id=1,
-                    time=1,
-                    type_uid=1,
-                ),
-            ],
-        )
         """
         _response = self._raw_client.create_findings(request=request, meta=meta, request_options=request_options)
         return _response.data
@@ -311,18 +236,6 @@ class AppsecClient:
         Returns
         -------
         AppSecGetApplicationFindingDetailsResponse
-
-        Examples
-        --------
-        from synqly import SynqlyEngine
-
-        client = SynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-        client.appsec.get_application_finding_details(
-            application_id="applicationId",
-            finding_id="findingId",
-        )
         """
         _response = self._raw_client.get_application_finding_details(
             application_id, finding_id, meta=meta, include_raw_data=include_raw_data, request_options=request_options
@@ -364,17 +277,6 @@ class AppsecClient:
         Returns
         -------
         AppSecQueryApplicationScansResponse
-
-        Examples
-        --------
-        from synqly import SynqlyEngine
-
-        client = SynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-        client.appsec.query_application_scans(
-            application_id="applicationId",
-        )
         """
         _response = self._raw_client.query_application_scans(
             application_id,
@@ -438,23 +340,6 @@ class AsyncAppsecClient:
         Returns
         -------
         AppSecQueryApplicationsResponse
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyEngine
-
-        client = AsyncSynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.appsec.query_applications()
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.query_applications(
             meta=meta,
@@ -505,25 +390,6 @@ class AsyncAppsecClient:
         Returns
         -------
         AppSecQueryApplicationFindingsResponse
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyEngine
-
-        client = AsyncSynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.appsec.query_application_findings(
-                application_id="applicationId",
-            )
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.query_application_findings(
             application_id,
@@ -572,23 +438,6 @@ class AsyncAppsecClient:
         Returns
         -------
         AppSecQueryFindingsResponse
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyEngine
-
-        client = AsyncSynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.appsec.query_findings()
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.query_findings(
             meta=meta,
@@ -623,60 +472,6 @@ class AsyncAppsecClient:
         Returns
         -------
         AppSecCreateFindingsResponse
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyEngine
-        from synqly.ocsf.v_1_8_0.applicationsecurityposturefinding.classes import (
-            ApplicationSecurityPostureFinding,
-        )
-        from synqly.ocsf.v_1_8_0.objects import FindingInfo, Metadata, Product
-
-        client = AsyncSynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.appsec.create_findings(
-                request=[
-                    ApplicationSecurityPostureFinding(
-                        activity_id=1,
-                        category_uid=1,
-                        class_uid=1,
-                        finding_info=FindingInfo(
-                            uid="uid",
-                        ),
-                        metadata=Metadata(
-                            product=Product(),
-                            version="version",
-                        ),
-                        severity_id=1,
-                        time=1,
-                        type_uid=1,
-                    ),
-                    ApplicationSecurityPostureFinding(
-                        activity_id=1,
-                        category_uid=1,
-                        class_uid=1,
-                        finding_info=FindingInfo(
-                            uid="uid",
-                        ),
-                        metadata=Metadata(
-                            product=Product(),
-                            version="version",
-                        ),
-                        severity_id=1,
-                        time=1,
-                        type_uid=1,
-                    ),
-                ],
-            )
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.create_findings(request=request, meta=meta, request_options=request_options)
         return _response.data
@@ -711,26 +506,6 @@ class AsyncAppsecClient:
         Returns
         -------
         AppSecGetApplicationFindingDetailsResponse
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyEngine
-
-        client = AsyncSynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.appsec.get_application_finding_details(
-                application_id="applicationId",
-                finding_id="findingId",
-            )
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.get_application_finding_details(
             application_id, finding_id, meta=meta, include_raw_data=include_raw_data, request_options=request_options
@@ -772,25 +547,6 @@ class AsyncAppsecClient:
         Returns
         -------
         AppSecQueryApplicationScansResponse
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyEngine
-
-        client = AsyncSynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.appsec.query_application_scans(
-                application_id="applicationId",
-            )
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.query_application_scans(
             application_id,

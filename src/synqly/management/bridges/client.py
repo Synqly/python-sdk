@@ -74,17 +74,6 @@ class BridgesClient:
         Returns
         -------
         ListBridgesResponse
-
-        Examples
-        --------
-        from synqly import SynqlyManagement
-
-        client = SynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-        client.bridges.list(
-            account_id="accountId",
-        )
         """
         _response = self._raw_client.list(
             account_id,
@@ -119,18 +108,6 @@ class BridgesClient:
         Returns
         -------
         GetBridgeResponse
-
-        Examples
-        --------
-        from synqly import SynqlyManagement
-
-        client = SynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-        client.bridges.get(
-            account_id="accountId",
-            bridge_id="bridgeId",
-        )
         """
         _response = self._raw_client.get(account_id, bridge_id, request_options=request_options)
         return _response.data
@@ -157,18 +134,6 @@ class BridgesClient:
         Returns
         -------
         GetBridgeStatusResponse
-
-        Examples
-        --------
-        from synqly import SynqlyManagement
-
-        client = SynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-        client.bridges.get_status(
-            account_id="accountId",
-            bridge_id="bridgeId",
-        )
         """
         _response = self._raw_client.get_status(account_id, bridge_id, request_options=request_options)
         return _response.data
@@ -211,17 +176,6 @@ class BridgesClient:
         Returns
         -------
         CreateBridgeResponse
-
-        Examples
-        --------
-        from synqly import SynqlyManagement
-
-        client = SynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-        client.bridges.create(
-            account_id="accountId",
-        )
         """
         _response = self._raw_client.create(
             account_id,
@@ -283,29 +237,6 @@ class BridgesClient:
         Returns
         -------
         UpdateBridgeResponse
-
-        Examples
-        --------
-        import datetime
-
-        from synqly import SynqlyManagement
-
-        client = SynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-        client.bridges.update(
-            account_id="accountId",
-            bridge_id="bridgeId",
-            id="id",
-            fullname="fullname",
-            name="name",
-            created_at=datetime.datetime.fromisoformat(
-                "2024-01-15 09:30:00+00:00",
-            ),
-            updated_at=datetime.datetime.fromisoformat(
-                "2024-01-15 09:30:00+00:00",
-            ),
-        )
         """
         _response = self._raw_client.update(
             account_id,
@@ -347,29 +278,6 @@ class BridgesClient:
         Returns
         -------
         PatchBridgeResponse
-
-        Examples
-        --------
-        from synqly import SynqlyManagement
-        from synqly.common import PatchOp, PatchOperation
-
-        client = SynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-        client.bridges.patch(
-            account_id="accountId",
-            bridge_id="bridgeId",
-            request=[
-                PatchOperation(
-                    op=PatchOp.ADD,
-                    path="path",
-                ),
-                PatchOperation(
-                    op=PatchOp.ADD,
-                    path="path",
-                ),
-            ],
-        )
         """
         _response = self._raw_client.patch(account_id, bridge_id, request=request, request_options=request_options)
         return _response.data
@@ -397,18 +305,6 @@ class BridgesClient:
         Returns
         -------
         None
-
-        Examples
-        --------
-        from synqly import SynqlyManagement
-
-        client = SynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-        client.bridges.delete(
-            account_id="accountId",
-            bridge_id="bridgeId",
-        )
         """
         _response = self._raw_client.delete(account_id, bridge_id, request_options=request_options)
         return _response.data
@@ -468,25 +364,6 @@ class AsyncBridgesClient:
         Returns
         -------
         ListBridgesResponse
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyManagement
-
-        client = AsyncSynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.bridges.list(
-                account_id="accountId",
-            )
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.list(
             account_id,
@@ -521,26 +398,6 @@ class AsyncBridgesClient:
         Returns
         -------
         GetBridgeResponse
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyManagement
-
-        client = AsyncSynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.bridges.get(
-                account_id="accountId",
-                bridge_id="bridgeId",
-            )
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.get(account_id, bridge_id, request_options=request_options)
         return _response.data
@@ -567,26 +424,6 @@ class AsyncBridgesClient:
         Returns
         -------
         GetBridgeStatusResponse
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyManagement
-
-        client = AsyncSynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.bridges.get_status(
-                account_id="accountId",
-                bridge_id="bridgeId",
-            )
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.get_status(account_id, bridge_id, request_options=request_options)
         return _response.data
@@ -629,25 +466,6 @@ class AsyncBridgesClient:
         Returns
         -------
         CreateBridgeResponse
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyManagement
-
-        client = AsyncSynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.bridges.create(
-                account_id="accountId",
-            )
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.create(
             account_id,
@@ -709,36 +527,6 @@ class AsyncBridgesClient:
         Returns
         -------
         UpdateBridgeResponse
-
-        Examples
-        --------
-        import asyncio
-        import datetime
-
-        from synqly import AsyncSynqlyManagement
-
-        client = AsyncSynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.bridges.update(
-                account_id="accountId",
-                bridge_id="bridgeId",
-                id="id",
-                fullname="fullname",
-                name="name",
-                created_at=datetime.datetime.fromisoformat(
-                    "2024-01-15 09:30:00+00:00",
-                ),
-                updated_at=datetime.datetime.fromisoformat(
-                    "2024-01-15 09:30:00+00:00",
-                ),
-            )
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.update(
             account_id,
@@ -780,37 +568,6 @@ class AsyncBridgesClient:
         Returns
         -------
         PatchBridgeResponse
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyManagement
-        from synqly.common import PatchOp, PatchOperation
-
-        client = AsyncSynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.bridges.patch(
-                account_id="accountId",
-                bridge_id="bridgeId",
-                request=[
-                    PatchOperation(
-                        op=PatchOp.ADD,
-                        path="path",
-                    ),
-                    PatchOperation(
-                        op=PatchOp.ADD,
-                        path="path",
-                    ),
-                ],
-            )
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.patch(
             account_id, bridge_id, request=request, request_options=request_options
@@ -840,26 +597,6 @@ class AsyncBridgesClient:
         Returns
         -------
         None
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyManagement
-
-        client = AsyncSynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.bridges.delete(
-                account_id="accountId",
-                bridge_id="bridgeId",
-            )
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.delete(account_id, bridge_id, request_options=request_options)
         return _response.data

@@ -71,15 +71,6 @@ class SecurityawarenessClient:
         Returns
         -------
         SecurityAwarenessQueryTrainingCampaignsResponse
-
-        Examples
-        --------
-        from synqly import SynqlyEngine
-
-        client = SynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-        client.securityawareness.query_training_campaigns()
         """
         _response = self._raw_client.query_training_campaigns(
             meta=meta,
@@ -127,15 +118,6 @@ class SecurityawarenessClient:
         Returns
         -------
         SecurityAwarenessQueryPhishingSimulationsResponse
-
-        Examples
-        --------
-        from synqly import SynqlyEngine
-
-        client = SynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-        client.securityawareness.query_phishing_simulations()
         """
         _response = self._raw_client.query_phishing_simulations(
             meta=meta,
@@ -183,15 +165,6 @@ class SecurityawarenessClient:
         Returns
         -------
         SecurityAwarenessQueryUsersResponse
-
-        Examples
-        --------
-        from synqly import SynqlyEngine
-
-        client = SynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-        client.securityawareness.query_users()
         """
         _response = self._raw_client.query_users(
             meta=meta,
@@ -230,17 +203,6 @@ class SecurityawarenessClient:
         Returns
         -------
         SecurityAwarenessGetTrainingCampaignDetailsResponse
-
-        Examples
-        --------
-        from synqly import SynqlyEngine
-
-        client = SynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-        client.securityawareness.get_training_campaign_details(
-            training_campaign_id="trainingCampaignId",
-        )
         """
         _response = self._raw_client.get_training_campaign_details(
             training_campaign_id, meta=meta, include_raw_data=include_raw_data, request_options=request_options
@@ -274,17 +236,6 @@ class SecurityawarenessClient:
         Returns
         -------
         SecurityAwarenessGetPhishingSimulationDetailsResponse
-
-        Examples
-        --------
-        from synqly import SynqlyEngine
-
-        client = SynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-        client.securityawareness.get_phishing_simulation_details(
-            phishing_simulation_id="phishingSimulationId",
-        )
         """
         _response = self._raw_client.get_phishing_simulation_details(
             phishing_simulation_id, meta=meta, include_raw_data=include_raw_data, request_options=request_options
@@ -318,17 +269,6 @@ class SecurityawarenessClient:
         Returns
         -------
         SecurityAwarenessGetUserDetailsResponse
-
-        Examples
-        --------
-        from synqly import SynqlyEngine
-
-        client = SynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-        client.securityawareness.get_user_details(
-            user_id="userId",
-        )
         """
         _response = self._raw_client.get_user_details(
             user_id, meta=meta, include_raw_data=include_raw_data, request_options=request_options
@@ -387,23 +327,6 @@ class AsyncSecurityawarenessClient:
         Returns
         -------
         SecurityAwarenessQueryTrainingCampaignsResponse
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyEngine
-
-        client = AsyncSynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.securityawareness.query_training_campaigns()
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.query_training_campaigns(
             meta=meta,
@@ -451,23 +374,6 @@ class AsyncSecurityawarenessClient:
         Returns
         -------
         SecurityAwarenessQueryPhishingSimulationsResponse
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyEngine
-
-        client = AsyncSynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.securityawareness.query_phishing_simulations()
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.query_phishing_simulations(
             meta=meta,
@@ -515,23 +421,6 @@ class AsyncSecurityawarenessClient:
         Returns
         -------
         SecurityAwarenessQueryUsersResponse
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyEngine
-
-        client = AsyncSynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.securityawareness.query_users()
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.query_users(
             meta=meta,
@@ -570,25 +459,6 @@ class AsyncSecurityawarenessClient:
         Returns
         -------
         SecurityAwarenessGetTrainingCampaignDetailsResponse
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyEngine
-
-        client = AsyncSynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.securityawareness.get_training_campaign_details(
-                training_campaign_id="trainingCampaignId",
-            )
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.get_training_campaign_details(
             training_campaign_id, meta=meta, include_raw_data=include_raw_data, request_options=request_options
@@ -622,25 +492,6 @@ class AsyncSecurityawarenessClient:
         Returns
         -------
         SecurityAwarenessGetPhishingSimulationDetailsResponse
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyEngine
-
-        client = AsyncSynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.securityawareness.get_phishing_simulation_details(
-                phishing_simulation_id="phishingSimulationId",
-            )
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.get_phishing_simulation_details(
             phishing_simulation_id, meta=meta, include_raw_data=include_raw_data, request_options=request_options
@@ -674,25 +525,6 @@ class AsyncSecurityawarenessClient:
         Returns
         -------
         SecurityAwarenessGetUserDetailsResponse
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyEngine
-
-        client = AsyncSynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.securityawareness.get_user_details(
-                user_id="userId",
-            )
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.get_user_details(
             user_id, meta=meta, include_raw_data=include_raw_data, request_options=request_options

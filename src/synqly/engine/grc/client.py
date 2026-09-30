@@ -76,15 +76,6 @@ class GrcClient:
         Returns
         -------
         GrcQueryFrameworksResponse
-
-        Examples
-        --------
-        from synqly import SynqlyEngine
-
-        client = SynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-        client.grc.query_frameworks()
         """
         _response = self._raw_client.query_frameworks(
             meta=meta,
@@ -137,15 +128,6 @@ class GrcClient:
         Returns
         -------
         GrcQueryControlsResponse
-
-        Examples
-        --------
-        from synqly import SynqlyEngine
-
-        client = SynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-        client.grc.query_controls()
         """
         _response = self._raw_client.query_controls(
             meta=meta,
@@ -185,17 +167,6 @@ class GrcClient:
         Returns
         -------
         GrcGetControlResponse
-
-        Examples
-        --------
-        from synqly import SynqlyEngine
-
-        client = SynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-        client.grc.get_control(
-            control_id="controlId",
-        )
         """
         _response = self._raw_client.get_control(
             control_id, meta=meta, include_raw_data=include_raw_data, request_options=request_options
@@ -242,15 +213,6 @@ class GrcClient:
         Returns
         -------
         GrcQueryTestsResponse
-
-        Examples
-        --------
-        from synqly import SynqlyEngine
-
-        client = SynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-        client.grc.query_tests()
         """
         _response = self._raw_client.query_tests(
             meta=meta,
@@ -290,17 +252,6 @@ class GrcClient:
         Returns
         -------
         GrcGetTestResponse
-
-        Examples
-        --------
-        from synqly import SynqlyEngine
-
-        client = SynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-        client.grc.get_test(
-            test_id="testId",
-        )
         """
         _response = self._raw_client.get_test(
             test_id, meta=meta, include_raw_data=include_raw_data, request_options=request_options
@@ -347,15 +298,6 @@ class GrcClient:
         Returns
         -------
         GrcQueryEvidenceResponse
-
-        Examples
-        --------
-        from synqly import SynqlyEngine
-
-        client = SynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-        client.grc.query_evidence()
         """
         _response = self._raw_client.query_evidence(
             meta=meta,
@@ -408,15 +350,6 @@ class GrcClient:
         Returns
         -------
         GrcQueryDevicesResponse
-
-        Examples
-        --------
-        from synqly import SynqlyEngine
-
-        client = SynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-        client.grc.query_devices()
         """
         _response = self._raw_client.query_devices(
             meta=meta,
@@ -456,17 +389,6 @@ class GrcClient:
         Returns
         -------
         GrcGetDeviceResponse
-
-        Examples
-        --------
-        from synqly import SynqlyEngine
-
-        client = SynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-        client.grc.get_device(
-            device_id="deviceId",
-        )
         """
         _response = self._raw_client.get_device(
             device_id, meta=meta, include_raw_data=include_raw_data, request_options=request_options
@@ -513,15 +435,6 @@ class GrcClient:
         Returns
         -------
         GrcQueryPersonnelResponse
-
-        Examples
-        --------
-        from synqly import SynqlyEngine
-
-        client = SynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-        client.grc.query_personnel()
         """
         _response = self._raw_client.query_personnel(
             meta=meta,
@@ -561,17 +474,6 @@ class GrcClient:
         Returns
         -------
         GrcGetPersonnelResponse
-
-        Examples
-        --------
-        from synqly import SynqlyEngine
-
-        client = SynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-        client.grc.get_personnel(
-            personnel_id="personnelId",
-        )
         """
         _response = self._raw_client.get_personnel(
             personnel_id, meta=meta, include_raw_data=include_raw_data, request_options=request_options
@@ -634,23 +536,6 @@ class AsyncGrcClient:
         Returns
         -------
         GrcQueryFrameworksResponse
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyEngine
-
-        client = AsyncSynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.grc.query_frameworks()
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.query_frameworks(
             meta=meta,
@@ -703,23 +588,6 @@ class AsyncGrcClient:
         Returns
         -------
         GrcQueryControlsResponse
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyEngine
-
-        client = AsyncSynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.grc.query_controls()
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.query_controls(
             meta=meta,
@@ -759,25 +627,6 @@ class AsyncGrcClient:
         Returns
         -------
         GrcGetControlResponse
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyEngine
-
-        client = AsyncSynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.grc.get_control(
-                control_id="controlId",
-            )
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.get_control(
             control_id, meta=meta, include_raw_data=include_raw_data, request_options=request_options
@@ -824,23 +673,6 @@ class AsyncGrcClient:
         Returns
         -------
         GrcQueryTestsResponse
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyEngine
-
-        client = AsyncSynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.grc.query_tests()
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.query_tests(
             meta=meta,
@@ -880,25 +712,6 @@ class AsyncGrcClient:
         Returns
         -------
         GrcGetTestResponse
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyEngine
-
-        client = AsyncSynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.grc.get_test(
-                test_id="testId",
-            )
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.get_test(
             test_id, meta=meta, include_raw_data=include_raw_data, request_options=request_options
@@ -945,23 +758,6 @@ class AsyncGrcClient:
         Returns
         -------
         GrcQueryEvidenceResponse
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyEngine
-
-        client = AsyncSynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.grc.query_evidence()
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.query_evidence(
             meta=meta,
@@ -1014,23 +810,6 @@ class AsyncGrcClient:
         Returns
         -------
         GrcQueryDevicesResponse
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyEngine
-
-        client = AsyncSynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.grc.query_devices()
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.query_devices(
             meta=meta,
@@ -1070,25 +849,6 @@ class AsyncGrcClient:
         Returns
         -------
         GrcGetDeviceResponse
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyEngine
-
-        client = AsyncSynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.grc.get_device(
-                device_id="deviceId",
-            )
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.get_device(
             device_id, meta=meta, include_raw_data=include_raw_data, request_options=request_options
@@ -1135,23 +895,6 @@ class AsyncGrcClient:
         Returns
         -------
         GrcQueryPersonnelResponse
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyEngine
-
-        client = AsyncSynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.grc.query_personnel()
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.query_personnel(
             meta=meta,
@@ -1191,25 +934,6 @@ class AsyncGrcClient:
         Returns
         -------
         GrcGetPersonnelResponse
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyEngine
-
-        client = AsyncSynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.grc.get_personnel(
-                personnel_id="personnelId",
-            )
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.get_personnel(
             personnel_id, meta=meta, include_raw_data=include_raw_data, request_options=request_options

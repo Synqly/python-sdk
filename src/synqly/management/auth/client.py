@@ -64,19 +64,6 @@ class AuthClient:
         Returns
         -------
         LogonResponse
-
-        Examples
-        --------
-        from synqly import SynqlyManagement
-
-        client = SynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-        client.auth.logon(
-            organization_id="organizationId",
-            name="name",
-            secret="secret",
-        )
         """
         _response = self._raw_client.logon(organization_id, name=name, secret=secret, request_options=request_options)
         return _response.data
@@ -101,18 +88,6 @@ class AuthClient:
         Returns
         -------
         ChangePasswordResponse
-
-        Examples
-        --------
-        from synqly import SynqlyManagement
-
-        client = SynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-        client.auth.change_password(
-            old_secret="old_secret",
-            new_secret="new_secret",
-        )
         """
         _response = self._raw_client.change_password(
             old_secret=old_secret, new_secret=new_secret, request_options=request_options
@@ -131,15 +106,6 @@ class AuthClient:
         Returns
         -------
         None
-
-        Examples
-        --------
-        from synqly import SynqlyManagement
-
-        client = SynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-        client.auth.logoff()
         """
         _response = self._raw_client.logoff(request_options=request_options)
         return _response.data
@@ -167,23 +133,6 @@ class AuthClient:
         Returns
         -------
         CreateSsoResponse
-
-        Examples
-        --------
-        from synqly import SynqlyManagement
-        from synqly.auth import CreateSsoConfiguration_Oidc
-
-        client = SynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-        client.auth.create_sso(
-            fullname="fullname",
-            config=CreateSsoConfiguration_Oidc(
-                issuer_url="issuer_url",
-                client_id="client_id",
-                client_secret="client_secret",
-            ),
-        )
         """
         _response = self._raw_client.create_sso(fullname=fullname, config=config, request_options=request_options)
         return _response.data
@@ -201,15 +150,6 @@ class AuthClient:
         Returns
         -------
         ListSsoResponse
-
-        Examples
-        --------
-        from synqly import SynqlyManagement
-
-        client = SynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-        client.auth.list_sso()
         """
         _response = self._raw_client.list_sso(request_options=request_options)
         return _response.data
@@ -231,17 +171,6 @@ class AuthClient:
         Returns
         -------
         GetSsoResponse
-
-        Examples
-        --------
-        from synqly import SynqlyManagement
-
-        client = SynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-        client.auth.get_sso(
-            sso_id="ssoId",
-        )
         """
         _response = self._raw_client.get_sso(sso_id, request_options=request_options)
         return _response.data
@@ -260,15 +189,6 @@ class AuthClient:
         Returns
         -------
         GetSsoMetadataResponse
-
-        Examples
-        --------
-        from synqly import SynqlyManagement
-
-        client = SynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-        client.auth.get_sso_metadata()
         """
         _response = self._raw_client.get_sso_metadata(request_options=request_options)
         return _response.data
@@ -308,23 +228,6 @@ class AuthClient:
         Returns
         -------
         UpdateSsoResponse
-
-        Examples
-        --------
-        from synqly import SynqlyManagement
-        from synqly.auth import UpdateSsoConfiguration_Oidc
-
-        client = SynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-        client.auth.update_sso(
-            sso_id="ssoId",
-            fullname="fullname",
-            config=UpdateSsoConfiguration_Oidc(
-                issuer_url="issuer_url",
-                client_id="client_id",
-            ),
-        )
         """
         _response = self._raw_client.update_sso(
             sso_id, fullname=fullname, config=config, updated_at=updated_at, request_options=request_options
@@ -349,17 +252,6 @@ class AuthClient:
         Returns
         -------
         None
-
-        Examples
-        --------
-        from synqly import SynqlyManagement
-
-        client = SynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-        client.auth.delete_sso(
-            sso_id="ssoId",
-        )
         """
         _response = self._raw_client.delete_sso(sso_id, request_options=request_options)
         return _response.data
@@ -407,27 +299,6 @@ class AsyncAuthClient:
         Returns
         -------
         LogonResponse
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyManagement
-
-        client = AsyncSynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.auth.logon(
-                organization_id="organizationId",
-                name="name",
-                secret="secret",
-            )
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.logon(
             organization_id, name=name, secret=secret, request_options=request_options
@@ -454,26 +325,6 @@ class AsyncAuthClient:
         Returns
         -------
         ChangePasswordResponse
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyManagement
-
-        client = AsyncSynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.auth.change_password(
-                old_secret="old_secret",
-                new_secret="new_secret",
-            )
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.change_password(
             old_secret=old_secret, new_secret=new_secret, request_options=request_options
@@ -492,23 +343,6 @@ class AsyncAuthClient:
         Returns
         -------
         None
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyManagement
-
-        client = AsyncSynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.auth.logoff()
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.logoff(request_options=request_options)
         return _response.data
@@ -536,31 +370,6 @@ class AsyncAuthClient:
         Returns
         -------
         CreateSsoResponse
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyManagement
-        from synqly.auth import CreateSsoConfiguration_Oidc
-
-        client = AsyncSynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.auth.create_sso(
-                fullname="fullname",
-                config=CreateSsoConfiguration_Oidc(
-                    issuer_url="issuer_url",
-                    client_id="client_id",
-                    client_secret="client_secret",
-                ),
-            )
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.create_sso(fullname=fullname, config=config, request_options=request_options)
         return _response.data
@@ -578,23 +387,6 @@ class AsyncAuthClient:
         Returns
         -------
         ListSsoResponse
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyManagement
-
-        client = AsyncSynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.auth.list_sso()
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.list_sso(request_options=request_options)
         return _response.data
@@ -616,25 +408,6 @@ class AsyncAuthClient:
         Returns
         -------
         GetSsoResponse
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyManagement
-
-        client = AsyncSynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.auth.get_sso(
-                sso_id="ssoId",
-            )
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.get_sso(sso_id, request_options=request_options)
         return _response.data
@@ -655,23 +428,6 @@ class AsyncAuthClient:
         Returns
         -------
         GetSsoMetadataResponse
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyManagement
-
-        client = AsyncSynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.auth.get_sso_metadata()
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.get_sso_metadata(request_options=request_options)
         return _response.data
@@ -711,31 +467,6 @@ class AsyncAuthClient:
         Returns
         -------
         UpdateSsoResponse
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyManagement
-        from synqly.auth import UpdateSsoConfiguration_Oidc
-
-        client = AsyncSynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.auth.update_sso(
-                sso_id="ssoId",
-                fullname="fullname",
-                config=UpdateSsoConfiguration_Oidc(
-                    issuer_url="issuer_url",
-                    client_id="client_id",
-                ),
-            )
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.update_sso(
             sso_id, fullname=fullname, config=config, updated_at=updated_at, request_options=request_options
@@ -760,25 +491,6 @@ class AsyncAuthClient:
         Returns
         -------
         None
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyManagement
-
-        client = AsyncSynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.auth.delete_sso(
-                sso_id="ssoId",
-            )
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.delete_sso(sso_id, request_options=request_options)
         return _response.data

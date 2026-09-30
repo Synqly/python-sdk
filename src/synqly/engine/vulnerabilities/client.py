@@ -78,15 +78,6 @@ class VulnerabilitiesClient:
         Returns
         -------
         QueryFindingsResponse
-
-        Examples
-        --------
-        from synqly import SynqlyEngine
-
-        client = SynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-        client.vulnerabilities.query_findings()
         """
         _response = self._raw_client.query_findings(
             meta=meta,
@@ -121,54 +112,6 @@ class VulnerabilitiesClient:
         Returns
         -------
         CreateFindingsResponse
-
-        Examples
-        --------
-        from synqly import SynqlyEngine
-        from synqly.ocsf.v_1_3_0.objects import Finding, Metadata, Product
-        from synqly.ocsf.v_1_3_0.securityfinding.classes import SecurityFinding
-
-        client = SynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-        client.vulnerabilities.create_findings(
-            findings=[
-                SecurityFinding(
-                    activity_id=1,
-                    category_uid=1,
-                    class_uid=1,
-                    finding=Finding(
-                        title="title",
-                        uid="uid",
-                    ),
-                    metadata=Metadata(
-                        product=Product(),
-                        version="version",
-                    ),
-                    severity_id=1,
-                    state_id=1,
-                    time=1,
-                    type_uid=1,
-                ),
-                SecurityFinding(
-                    activity_id=1,
-                    category_uid=1,
-                    class_uid=1,
-                    finding=Finding(
-                        title="title",
-                        uid="uid",
-                    ),
-                    metadata=Metadata(
-                        product=Product(),
-                        version="version",
-                    ),
-                    severity_id=1,
-                    state_id=1,
-                    time=1,
-                    type_uid=1,
-                ),
-            ],
-        )
         """
         _response = self._raw_client.create_findings(findings=findings, meta=meta, request_options=request_options)
         return _response.data
@@ -211,18 +154,6 @@ class VulnerabilitiesClient:
         Returns
         -------
         None
-
-        Examples
-        --------
-        from synqly import SynqlyEngine
-
-        client = SynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-        client.vulnerabilities.update_finding(
-            finding_id="findingId",
-            severity_id=1,
-        )
         """
         _response = self._raw_client.update_finding(
             finding_id,
@@ -271,15 +202,6 @@ class VulnerabilitiesClient:
         Returns
         -------
         QueryAssetsResponse
-
-        Examples
-        --------
-        from synqly import SynqlyEngine
-
-        client = SynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-        client.vulnerabilities.query_assets()
         """
         _response = self._raw_client.query_assets(
             meta=meta,
@@ -319,34 +241,6 @@ class VulnerabilitiesClient:
         Returns
         -------
         typing.Optional[CreateAssetResponse]
-
-        Examples
-        --------
-        from synqly import SynqlyEngine
-        from synqly.ocsf.v_1_3_0.inventoryinfo.classes import InventoryInfo
-        from synqly.ocsf.v_1_3_0.objects import Device, Metadata, Product
-
-        client = SynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-        client.vulnerabilities.create_asset(
-            asset=InventoryInfo(
-                activity_id=1,
-                category_uid=1,
-                class_uid=1,
-                device=Device(
-                    type_id=1,
-                ),
-                metadata=Metadata(
-                    product=Product(),
-                    version="version",
-                ),
-                severity_id=1,
-                time=1,
-                type_uid=1,
-            ),
-            source_name="source_name",
-        )
         """
         _response = self._raw_client.create_asset(
             asset=asset, source_name=source_name, meta=meta, request_options=request_options
@@ -385,35 +279,6 @@ class VulnerabilitiesClient:
         Returns
         -------
         typing.Optional[Asset]
-
-        Examples
-        --------
-        from synqly import SynqlyEngine
-        from synqly.ocsf.v_1_3_0.inventoryinfo.classes import InventoryInfo
-        from synqly.ocsf.v_1_3_0.objects import Device, Metadata, Product
-
-        client = SynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-        client.vulnerabilities.update_asset(
-            asset_id="assetId",
-            asset=InventoryInfo(
-                activity_id=1,
-                category_uid=1,
-                class_uid=1,
-                device=Device(
-                    type_id=1,
-                ),
-                metadata=Metadata(
-                    product=Product(),
-                    version="version",
-                ),
-                severity_id=1,
-                time=1,
-                type_uid=1,
-            ),
-            source_name="source_name",
-        )
         """
         _response = self._raw_client.update_asset(
             asset_id, asset=asset, source_name=source_name, meta=meta, request_options=request_options
@@ -452,15 +317,6 @@ class VulnerabilitiesClient:
         Returns
         -------
         QueryScansResponse
-
-        Examples
-        --------
-        from synqly import SynqlyEngine
-
-        client = SynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-        client.vulnerabilities.query_scans()
         """
         _response = self._raw_client.query_scans(
             meta=meta, limit=limit, cursor=cursor, filter=filter, request_options=request_options
@@ -495,17 +351,6 @@ class VulnerabilitiesClient:
         Returns
         -------
         GetScanActivityResponse
-
-        Examples
-        --------
-        from synqly import SynqlyEngine
-
-        client = SynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-        client.vulnerabilities.get_scan_activity(
-            scan_id="scan_id",
-        )
         """
         _response = self._raw_client.get_scan_activity(
             scan_id, meta=meta, include_raw_data=include_raw_data, request_options=request_options
@@ -540,17 +385,6 @@ class VulnerabilitiesClient:
         Returns
         -------
         GetScanActivitiesResponse
-
-        Examples
-        --------
-        from synqly import SynqlyEngine
-
-        client = SynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-        client.vulnerabilities.get_scan_activities(
-            scan_id="scan_id",
-        )
         """
         _response = self._raw_client.get_scan_activities(
             scan_id, meta=meta, include_raw_data=include_raw_data, request_options=request_options
@@ -585,50 +419,6 @@ class VulnerabilitiesClient:
         Returns
         -------
         UploadScanResponse
-
-        Examples
-        --------
-        from synqly import SynqlyEngine
-        from synqly.ocsf.v_1_3_0.inventoryinfo.classes import InventoryInfo
-        from synqly.ocsf.v_1_3_0.objects import Device, Metadata, Product
-
-        client = SynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-        client.vulnerabilities.upload_scan(
-            assets=[
-                InventoryInfo(
-                    activity_id=1,
-                    category_uid=1,
-                    class_uid=1,
-                    device=Device(
-                        type_id=1,
-                    ),
-                    metadata=Metadata(
-                        product=Product(),
-                        version="version",
-                    ),
-                    severity_id=1,
-                    time=1,
-                    type_uid=1,
-                ),
-                InventoryInfo(
-                    activity_id=1,
-                    category_uid=1,
-                    class_uid=1,
-                    device=Device(
-                        type_id=1,
-                    ),
-                    metadata=Metadata(
-                        product=Product(),
-                        version="version",
-                    ),
-                    severity_id=1,
-                    time=1,
-                    type_uid=1,
-                ),
-            ],
-        )
         """
         _response = self._raw_client.upload_scan(
             assets=assets, meta=meta, source_name=source_name, request_options=request_options
@@ -659,17 +449,6 @@ class VulnerabilitiesClient:
         Returns
         -------
         GetScanStatusResponse
-
-        Examples
-        --------
-        from synqly import SynqlyEngine
-
-        client = SynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-        client.vulnerabilities.get_scan_status(
-            scan_id="scan_id",
-        )
         """
         _response = self._raw_client.get_scan_status(scan_id, meta=meta, request_options=request_options)
         return _response.data
@@ -702,15 +481,6 @@ class VulnerabilitiesClient:
         Returns
         -------
         GetLabelsResponse
-
-        Examples
-        --------
-        from synqly import SynqlyEngine
-
-        client = SynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-        client.vulnerabilities.get_labels()
         """
         _response = self._raw_client.get_labels(meta=meta, limit=limit, cursor=cursor, request_options=request_options)
         return _response.data
@@ -755,17 +525,6 @@ class VulnerabilitiesClient:
         Returns
         -------
         VulnerabilitiesQueryScanFindingsResponse
-
-        Examples
-        --------
-        from synqly import SynqlyEngine
-
-        client = SynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-        client.vulnerabilities.query_scan_findings(
-            scan_id="scanId",
-        )
         """
         _response = self._raw_client.query_scan_findings(
             scan_id,
@@ -830,23 +589,6 @@ class AsyncVulnerabilitiesClient:
         Returns
         -------
         QueryFindingsResponse
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyEngine
-
-        client = AsyncSynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.vulnerabilities.query_findings()
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.query_findings(
             meta=meta,
@@ -881,62 +623,6 @@ class AsyncVulnerabilitiesClient:
         Returns
         -------
         CreateFindingsResponse
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyEngine
-        from synqly.ocsf.v_1_3_0.objects import Finding, Metadata, Product
-        from synqly.ocsf.v_1_3_0.securityfinding.classes import SecurityFinding
-
-        client = AsyncSynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.vulnerabilities.create_findings(
-                findings=[
-                    SecurityFinding(
-                        activity_id=1,
-                        category_uid=1,
-                        class_uid=1,
-                        finding=Finding(
-                            title="title",
-                            uid="uid",
-                        ),
-                        metadata=Metadata(
-                            product=Product(),
-                            version="version",
-                        ),
-                        severity_id=1,
-                        state_id=1,
-                        time=1,
-                        type_uid=1,
-                    ),
-                    SecurityFinding(
-                        activity_id=1,
-                        category_uid=1,
-                        class_uid=1,
-                        finding=Finding(
-                            title="title",
-                            uid="uid",
-                        ),
-                        metadata=Metadata(
-                            product=Product(),
-                            version="version",
-                        ),
-                        severity_id=1,
-                        state_id=1,
-                        time=1,
-                        type_uid=1,
-                    ),
-                ],
-            )
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.create_findings(
             findings=findings, meta=meta, request_options=request_options
@@ -981,26 +667,6 @@ class AsyncVulnerabilitiesClient:
         Returns
         -------
         None
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyEngine
-
-        client = AsyncSynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.vulnerabilities.update_finding(
-                finding_id="findingId",
-                severity_id=1,
-            )
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.update_finding(
             finding_id,
@@ -1049,23 +715,6 @@ class AsyncVulnerabilitiesClient:
         Returns
         -------
         QueryAssetsResponse
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyEngine
-
-        client = AsyncSynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.vulnerabilities.query_assets()
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.query_assets(
             meta=meta,
@@ -1105,42 +754,6 @@ class AsyncVulnerabilitiesClient:
         Returns
         -------
         typing.Optional[CreateAssetResponse]
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyEngine
-        from synqly.ocsf.v_1_3_0.inventoryinfo.classes import InventoryInfo
-        from synqly.ocsf.v_1_3_0.objects import Device, Metadata, Product
-
-        client = AsyncSynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.vulnerabilities.create_asset(
-                asset=InventoryInfo(
-                    activity_id=1,
-                    category_uid=1,
-                    class_uid=1,
-                    device=Device(
-                        type_id=1,
-                    ),
-                    metadata=Metadata(
-                        product=Product(),
-                        version="version",
-                    ),
-                    severity_id=1,
-                    time=1,
-                    type_uid=1,
-                ),
-                source_name="source_name",
-            )
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.create_asset(
             asset=asset, source_name=source_name, meta=meta, request_options=request_options
@@ -1179,43 +792,6 @@ class AsyncVulnerabilitiesClient:
         Returns
         -------
         typing.Optional[Asset]
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyEngine
-        from synqly.ocsf.v_1_3_0.inventoryinfo.classes import InventoryInfo
-        from synqly.ocsf.v_1_3_0.objects import Device, Metadata, Product
-
-        client = AsyncSynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.vulnerabilities.update_asset(
-                asset_id="assetId",
-                asset=InventoryInfo(
-                    activity_id=1,
-                    category_uid=1,
-                    class_uid=1,
-                    device=Device(
-                        type_id=1,
-                    ),
-                    metadata=Metadata(
-                        product=Product(),
-                        version="version",
-                    ),
-                    severity_id=1,
-                    time=1,
-                    type_uid=1,
-                ),
-                source_name="source_name",
-            )
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.update_asset(
             asset_id, asset=asset, source_name=source_name, meta=meta, request_options=request_options
@@ -1254,23 +830,6 @@ class AsyncVulnerabilitiesClient:
         Returns
         -------
         QueryScansResponse
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyEngine
-
-        client = AsyncSynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.vulnerabilities.query_scans()
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.query_scans(
             meta=meta, limit=limit, cursor=cursor, filter=filter, request_options=request_options
@@ -1305,25 +864,6 @@ class AsyncVulnerabilitiesClient:
         Returns
         -------
         GetScanActivityResponse
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyEngine
-
-        client = AsyncSynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.vulnerabilities.get_scan_activity(
-                scan_id="scan_id",
-            )
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.get_scan_activity(
             scan_id, meta=meta, include_raw_data=include_raw_data, request_options=request_options
@@ -1358,25 +898,6 @@ class AsyncVulnerabilitiesClient:
         Returns
         -------
         GetScanActivitiesResponse
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyEngine
-
-        client = AsyncSynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.vulnerabilities.get_scan_activities(
-                scan_id="scan_id",
-            )
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.get_scan_activities(
             scan_id, meta=meta, include_raw_data=include_raw_data, request_options=request_options
@@ -1411,58 +932,6 @@ class AsyncVulnerabilitiesClient:
         Returns
         -------
         UploadScanResponse
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyEngine
-        from synqly.ocsf.v_1_3_0.inventoryinfo.classes import InventoryInfo
-        from synqly.ocsf.v_1_3_0.objects import Device, Metadata, Product
-
-        client = AsyncSynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.vulnerabilities.upload_scan(
-                assets=[
-                    InventoryInfo(
-                        activity_id=1,
-                        category_uid=1,
-                        class_uid=1,
-                        device=Device(
-                            type_id=1,
-                        ),
-                        metadata=Metadata(
-                            product=Product(),
-                            version="version",
-                        ),
-                        severity_id=1,
-                        time=1,
-                        type_uid=1,
-                    ),
-                    InventoryInfo(
-                        activity_id=1,
-                        category_uid=1,
-                        class_uid=1,
-                        device=Device(
-                            type_id=1,
-                        ),
-                        metadata=Metadata(
-                            product=Product(),
-                            version="version",
-                        ),
-                        severity_id=1,
-                        time=1,
-                        type_uid=1,
-                    ),
-                ],
-            )
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.upload_scan(
             assets=assets, meta=meta, source_name=source_name, request_options=request_options
@@ -1493,25 +962,6 @@ class AsyncVulnerabilitiesClient:
         Returns
         -------
         GetScanStatusResponse
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyEngine
-
-        client = AsyncSynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.vulnerabilities.get_scan_status(
-                scan_id="scan_id",
-            )
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.get_scan_status(scan_id, meta=meta, request_options=request_options)
         return _response.data
@@ -1544,23 +994,6 @@ class AsyncVulnerabilitiesClient:
         Returns
         -------
         GetLabelsResponse
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyEngine
-
-        client = AsyncSynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.vulnerabilities.get_labels()
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.get_labels(
             meta=meta, limit=limit, cursor=cursor, request_options=request_options
@@ -1607,25 +1040,6 @@ class AsyncVulnerabilitiesClient:
         Returns
         -------
         VulnerabilitiesQueryScanFindingsResponse
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyEngine
-
-        client = AsyncSynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.vulnerabilities.query_scan_findings(
-                scan_id="scanId",
-            )
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.query_scan_findings(
             scan_id,

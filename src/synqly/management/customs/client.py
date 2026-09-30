@@ -74,15 +74,6 @@ class CustomsClient:
         Returns
         -------
         ListCustomsResponse
-
-        Examples
-        --------
-        from synqly import SynqlyManagement
-
-        client = SynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-        client.customs.list()
         """
         _response = self._raw_client.list(
             limit=limit,
@@ -108,17 +99,6 @@ class CustomsClient:
         Returns
         -------
         GetCustomResponse
-
-        Examples
-        --------
-        from synqly import SynqlyManagement
-
-        client = SynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-        client.customs.get(
-            custom_id="customId",
-        )
         """
         _response = self._raw_client.get(custom_id, request_options=request_options)
         return _response.data
@@ -151,17 +131,6 @@ class CustomsClient:
         Returns
         -------
         CreateCustomResponse
-
-        Examples
-        --------
-        from synqly import SynqlyManagement
-
-        client = SynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-        client.customs.create(
-            data="data",
-        )
         """
         _response = self._raw_client.create(data=data, name=name, fullname=fullname, request_options=request_options)
         return _response.data
@@ -212,30 +181,6 @@ class CustomsClient:
         Returns
         -------
         UpdateCustomResponse
-
-        Examples
-        --------
-        import datetime
-
-        from synqly import SynqlyManagement
-
-        client = SynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-        client.customs.update(
-            custom_id="customId",
-            id="id",
-            fullname="fullname",
-            organization_id="organization_id",
-            data="data",
-            name="name",
-            created_at=datetime.datetime.fromisoformat(
-                "2024-01-15 09:30:00+00:00",
-            ),
-            updated_at=datetime.datetime.fromisoformat(
-                "2024-01-15 09:30:00+00:00",
-            ),
-        )
         """
         _response = self._raw_client.update(
             custom_id,
@@ -272,28 +217,6 @@ class CustomsClient:
         Returns
         -------
         PatchCustomResponse
-
-        Examples
-        --------
-        from synqly import SynqlyManagement
-        from synqly.common import PatchOp, PatchOperation
-
-        client = SynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-        client.customs.patch(
-            custom_id="customId",
-            request=[
-                PatchOperation(
-                    op=PatchOp.ADD,
-                    path="path",
-                ),
-                PatchOperation(
-                    op=PatchOp.ADD,
-                    path="path",
-                ),
-            ],
-        )
         """
         _response = self._raw_client.patch(custom_id, request=request, request_options=request_options)
         return _response.data
@@ -312,17 +235,6 @@ class CustomsClient:
         Returns
         -------
         None
-
-        Examples
-        --------
-        from synqly import SynqlyManagement
-
-        client = SynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-        client.customs.delete(
-            custom_id="customId",
-        )
         """
         _response = self._raw_client.delete(custom_id, request_options=request_options)
         return _response.data
@@ -383,23 +295,6 @@ class AsyncCustomsClient:
         Returns
         -------
         ListCustomsResponse
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyManagement
-
-        client = AsyncSynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.customs.list()
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.list(
             limit=limit,
@@ -427,25 +322,6 @@ class AsyncCustomsClient:
         Returns
         -------
         GetCustomResponse
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyManagement
-
-        client = AsyncSynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.customs.get(
-                custom_id="customId",
-            )
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.get(custom_id, request_options=request_options)
         return _response.data
@@ -478,25 +354,6 @@ class AsyncCustomsClient:
         Returns
         -------
         CreateCustomResponse
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyManagement
-
-        client = AsyncSynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.customs.create(
-                data="data",
-            )
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.create(
             data=data, name=name, fullname=fullname, request_options=request_options
@@ -549,37 +406,6 @@ class AsyncCustomsClient:
         Returns
         -------
         UpdateCustomResponse
-
-        Examples
-        --------
-        import asyncio
-        import datetime
-
-        from synqly import AsyncSynqlyManagement
-
-        client = AsyncSynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.customs.update(
-                custom_id="customId",
-                id="id",
-                fullname="fullname",
-                organization_id="organization_id",
-                data="data",
-                name="name",
-                created_at=datetime.datetime.fromisoformat(
-                    "2024-01-15 09:30:00+00:00",
-                ),
-                updated_at=datetime.datetime.fromisoformat(
-                    "2024-01-15 09:30:00+00:00",
-                ),
-            )
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.update(
             custom_id,
@@ -616,36 +442,6 @@ class AsyncCustomsClient:
         Returns
         -------
         PatchCustomResponse
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyManagement
-        from synqly.common import PatchOp, PatchOperation
-
-        client = AsyncSynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.customs.patch(
-                custom_id="customId",
-                request=[
-                    PatchOperation(
-                        op=PatchOp.ADD,
-                        path="path",
-                    ),
-                    PatchOperation(
-                        op=PatchOp.ADD,
-                        path="path",
-                    ),
-                ],
-            )
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.patch(custom_id, request=request, request_options=request_options)
         return _response.data
@@ -664,25 +460,6 @@ class AsyncCustomsClient:
         Returns
         -------
         None
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyManagement
-
-        client = AsyncSynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.customs.delete(
-                custom_id="customId",
-            )
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.delete(custom_id, request_options=request_options)
         return _response.data

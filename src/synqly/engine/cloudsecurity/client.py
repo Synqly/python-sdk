@@ -63,15 +63,6 @@ class CloudsecurityClient:
         Returns
         -------
         QueryEventsResponse
-
-        Examples
-        --------
-        from synqly import SynqlyEngine
-
-        client = SynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-        client.cloudsecurity.query_events()
         """
         _response = self._raw_client.query_events(
             meta=meta, limit=limit, order=order, filter=filter, cursor=cursor, request_options=request_options
@@ -118,15 +109,6 @@ class CloudsecurityClient:
         Returns
         -------
         QueryIomsResponse
-
-        Examples
-        --------
-        from synqly import SynqlyEngine
-
-        client = SynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-        client.cloudsecurity.query_ioms()
         """
         _response = self._raw_client.query_ioms(
             meta=meta,
@@ -179,15 +161,6 @@ class CloudsecurityClient:
         Returns
         -------
         QueryCloudResourceInventoryResponse
-
-        Examples
-        --------
-        from synqly import SynqlyEngine
-
-        client = SynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-        client.cloudsecurity.query_cloud_resource_inventory()
         """
         _response = self._raw_client.query_cloud_resource_inventory(
             meta=meta,
@@ -240,15 +213,6 @@ class CloudsecurityClient:
         Returns
         -------
         QueryComplianceFindingsResponse
-
-        Examples
-        --------
-        from synqly import SynqlyEngine
-
-        client = SynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-        client.cloudsecurity.query_compliance_findings()
         """
         _response = self._raw_client.query_compliance_findings(
             meta=meta,
@@ -301,15 +265,6 @@ class CloudsecurityClient:
         Returns
         -------
         QueryCloudSecurityThreatsResponse
-
-        Examples
-        --------
-        from synqly import SynqlyEngine
-
-        client = SynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-        client.cloudsecurity.query_threats()
         """
         _response = self._raw_client.query_threats(
             meta=meta,
@@ -374,23 +329,6 @@ class AsyncCloudsecurityClient:
         Returns
         -------
         QueryEventsResponse
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyEngine
-
-        client = AsyncSynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.cloudsecurity.query_events()
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.query_events(
             meta=meta, limit=limit, order=order, filter=filter, cursor=cursor, request_options=request_options
@@ -437,23 +375,6 @@ class AsyncCloudsecurityClient:
         Returns
         -------
         QueryIomsResponse
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyEngine
-
-        client = AsyncSynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.cloudsecurity.query_ioms()
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.query_ioms(
             meta=meta,
@@ -506,23 +427,6 @@ class AsyncCloudsecurityClient:
         Returns
         -------
         QueryCloudResourceInventoryResponse
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyEngine
-
-        client = AsyncSynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.cloudsecurity.query_cloud_resource_inventory()
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.query_cloud_resource_inventory(
             meta=meta,
@@ -575,23 +479,6 @@ class AsyncCloudsecurityClient:
         Returns
         -------
         QueryComplianceFindingsResponse
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyEngine
-
-        client = AsyncSynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.cloudsecurity.query_compliance_findings()
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.query_compliance_findings(
             meta=meta,
@@ -644,23 +531,6 @@ class AsyncCloudsecurityClient:
         Returns
         -------
         QueryCloudSecurityThreatsResponse
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyEngine
-
-        client = AsyncSynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.cloudsecurity.query_threats()
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.query_threats(
             meta=meta,

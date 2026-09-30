@@ -42,15 +42,6 @@ class SubOrgsClient:
         Returns
         -------
         ListOrganizationResponse
-
-        Examples
-        --------
-        from synqly import SynqlyManagement
-
-        client = SynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-        client.sub_orgs.list()
         """
         _response = self._raw_client.list(request_options=request_options)
         return _response.data
@@ -71,17 +62,6 @@ class SubOrgsClient:
         Returns
         -------
         GetOrganizationResponse
-
-        Examples
-        --------
-        from synqly import SynqlyManagement
-
-        client = SynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-        client.sub_orgs.get(
-            organization_id="organizationId",
-        )
         """
         _response = self._raw_client.get(organization_id, request_options=request_options)
         return _response.data
@@ -126,15 +106,6 @@ class SubOrgsClient:
         Returns
         -------
         CreateOrganizationResponse
-
-        Examples
-        --------
-        from synqly import SynqlyManagement
-
-        client = SynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-        client.sub_orgs.create()
         """
         _response = self._raw_client.create(
             name=name,
@@ -163,17 +134,6 @@ class SubOrgsClient:
         Returns
         -------
         None
-
-        Examples
-        --------
-        from synqly import SynqlyManagement
-
-        client = SynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-        client.sub_orgs.delete(
-            organization_id="organizationId",
-        )
         """
         _response = self._raw_client.delete(organization_id, request_options=request_options)
         return _response.data
@@ -206,23 +166,6 @@ class AsyncSubOrgsClient:
         Returns
         -------
         ListOrganizationResponse
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyManagement
-
-        client = AsyncSynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.sub_orgs.list()
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.list(request_options=request_options)
         return _response.data
@@ -243,25 +186,6 @@ class AsyncSubOrgsClient:
         Returns
         -------
         GetOrganizationResponse
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyManagement
-
-        client = AsyncSynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.sub_orgs.get(
-                organization_id="organizationId",
-            )
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.get(organization_id, request_options=request_options)
         return _response.data
@@ -306,23 +230,6 @@ class AsyncSubOrgsClient:
         Returns
         -------
         CreateOrganizationResponse
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyManagement
-
-        client = AsyncSynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.sub_orgs.create()
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.create(
             name=name,
@@ -351,25 +258,6 @@ class AsyncSubOrgsClient:
         Returns
         -------
         None
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyManagement
-
-        client = AsyncSynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.sub_orgs.delete(
-                organization_id="organizationId",
-            )
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.delete(organization_id, request_options=request_options)
         return _response.data

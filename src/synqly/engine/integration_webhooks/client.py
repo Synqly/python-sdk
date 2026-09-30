@@ -44,17 +44,6 @@ class IntegrationWebhooksClient:
         Returns
         -------
         CreateIntegrationWebHookResponse
-
-        Examples
-        --------
-        from synqly import SynqlyEngine
-
-        client = SynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-        client.integration_webhooks.create_webhook(
-            project="project",
-        )
         """
         _response = self._raw_client.create_webhook(project=project, request_options=request_options)
         return _response.data
@@ -71,15 +60,6 @@ class IntegrationWebhooksClient:
         Returns
         -------
         None
-
-        Examples
-        --------
-        from synqly import SynqlyEngine
-
-        client = SynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-        client.integration_webhooks.delete_webhook()
         """
         _response = self._raw_client.delete_webhook(request_options=request_options)
         return _response.data
@@ -98,15 +78,6 @@ class IntegrationWebhooksClient:
         Returns
         -------
         ListIntegrationWebHooksResponse
-
-        Examples
-        --------
-        from synqly import SynqlyEngine
-
-        client = SynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-        client.integration_webhooks.list_webhooks()
         """
         _response = self._raw_client.list_webhooks(request_options=request_options)
         return _response.data
@@ -144,25 +115,6 @@ class AsyncIntegrationWebhooksClient:
         Returns
         -------
         CreateIntegrationWebHookResponse
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyEngine
-
-        client = AsyncSynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.integration_webhooks.create_webhook(
-                project="project",
-            )
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.create_webhook(project=project, request_options=request_options)
         return _response.data
@@ -179,23 +131,6 @@ class AsyncIntegrationWebhooksClient:
         Returns
         -------
         None
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyEngine
-
-        client = AsyncSynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.integration_webhooks.delete_webhook()
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.delete_webhook(request_options=request_options)
         return _response.data
@@ -214,23 +149,6 @@ class AsyncIntegrationWebhooksClient:
         Returns
         -------
         ListIntegrationWebHooksResponse
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyEngine
-
-        client = AsyncSynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.integration_webhooks.list_webhooks()
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.list_webhooks(request_options=request_options)
         return _response.data

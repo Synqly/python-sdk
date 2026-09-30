@@ -45,17 +45,6 @@ class OperationsClient:
         Returns
         -------
         GetOperationResponse
-
-        Examples
-        --------
-        from synqly import SynqlyEngine
-
-        client = SynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-        client.operations.get(
-            operation_id="operationId",
-        )
         """
         _response = self._raw_client.get(operation_id, request_options=request_options)
         return _response.data
@@ -80,19 +69,6 @@ class OperationsClient:
         Returns
         -------
         CreateOperationResponse
-
-        Examples
-        --------
-        from synqly import SynqlyEngine
-        from synqly.operation_base import OperationInput
-
-        client = SynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-        client.operations.create(
-            operation="operation",
-            input=OperationInput(),
-        )
         """
         _response = self._raw_client.create(operation=operation, input=input, request_options=request_options)
         return _response.data
@@ -113,17 +89,6 @@ class OperationsClient:
         Returns
         -------
         None
-
-        Examples
-        --------
-        from synqly import SynqlyEngine
-
-        client = SynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-        client.operations.cancel(
-            operation_id="operationId",
-        )
         """
         _response = self._raw_client.cancel(operation_id, request_options=request_options)
         return _response.data
@@ -160,25 +125,6 @@ class AsyncOperationsClient:
         Returns
         -------
         GetOperationResponse
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyEngine
-
-        client = AsyncSynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.operations.get(
-                operation_id="operationId",
-            )
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.get(operation_id, request_options=request_options)
         return _response.data
@@ -203,27 +149,6 @@ class AsyncOperationsClient:
         Returns
         -------
         CreateOperationResponse
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyEngine
-        from synqly.operation_base import OperationInput
-
-        client = AsyncSynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.operations.create(
-                operation="operation",
-                input=OperationInput(),
-            )
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.create(operation=operation, input=input, request_options=request_options)
         return _response.data
@@ -244,25 +169,6 @@ class AsyncOperationsClient:
         Returns
         -------
         None
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyEngine
-
-        client = AsyncSynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.operations.cancel(
-                operation_id="operationId",
-            )
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.cancel(operation_id, request_options=request_options)
         return _response.data

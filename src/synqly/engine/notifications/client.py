@@ -52,17 +52,6 @@ class NotificationsClient:
         Returns
         -------
         GetNotificationResponse
-
-        Examples
-        --------
-        from synqly import SynqlyEngine
-
-        client = SynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-        client.notifications.get_message(
-            notification_id="notificationId",
-        )
         """
         _response = self._raw_client.get_message(notification_id, meta=meta, request_options=request_options)
         return _response.data
@@ -131,17 +120,6 @@ class NotificationsClient:
         Returns
         -------
         CreateNotificationResponse
-
-        Examples
-        --------
-        from synqly import SynqlyEngine
-
-        client = SynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-        client.notifications.create_message(
-            summary="summary",
-        )
         """
         _response = self._raw_client.create_message(
             summary=summary,
@@ -183,17 +161,6 @@ class NotificationsClient:
         Returns
         -------
         None
-
-        Examples
-        --------
-        from synqly import SynqlyEngine
-
-        client = SynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-        client.notifications.clear_message(
-            notification_id="notificationId",
-        )
         """
         _response = self._raw_client.clear_message(notification_id, meta=meta, request_options=request_options)
         return _response.data
@@ -237,25 +204,6 @@ class AsyncNotificationsClient:
         Returns
         -------
         GetNotificationResponse
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyEngine
-
-        client = AsyncSynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.notifications.get_message(
-                notification_id="notificationId",
-            )
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.get_message(notification_id, meta=meta, request_options=request_options)
         return _response.data
@@ -324,25 +272,6 @@ class AsyncNotificationsClient:
         Returns
         -------
         CreateNotificationResponse
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyEngine
-
-        client = AsyncSynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.notifications.create_message(
-                summary="summary",
-            )
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.create_message(
             summary=summary,
@@ -384,25 +313,6 @@ class AsyncNotificationsClient:
         Returns
         -------
         None
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyEngine
-
-        client = AsyncSynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.notifications.clear_message(
-                notification_id="notificationId",
-            )
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.clear_message(notification_id, meta=meta, request_options=request_options)
         return _response.data

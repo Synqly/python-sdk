@@ -70,15 +70,6 @@ class TicketingClient:
         Returns
         -------
         ListRemoteFieldsResponse
-
-        Examples
-        --------
-        from synqly import SynqlyEngine
-
-        client = SynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-        client.ticketing.list_remote_fields()
         """
         _response = self._raw_client.list_remote_fields(meta=meta, request_options=request_options)
         return _response.data
@@ -111,15 +102,6 @@ class TicketingClient:
         Returns
         -------
         ListProjectsResponse
-
-        Examples
-        --------
-        from synqly import SynqlyEngine
-
-        client = SynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-        client.ticketing.list_projects()
         """
         _response = self._raw_client.list_projects(
             meta=meta, cursor=cursor, limit=limit, request_options=request_options
@@ -162,15 +144,6 @@ class TicketingClient:
         Returns
         -------
         QueryTicketsResponse
-
-        Examples
-        --------
-        from synqly import SynqlyEngine
-
-        client = SynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-        client.ticketing.query_tickets()
         """
         _response = self._raw_client.query_tickets(
             meta=meta, cursor=cursor, limit=limit, order=order, filter=filter, request_options=request_options
@@ -200,17 +173,6 @@ class TicketingClient:
         Returns
         -------
         GetTicketResponse
-
-        Examples
-        --------
-        from synqly import SynqlyEngine
-
-        client = SynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-        client.ticketing.get_ticket(
-            ticket_id="ticketId",
-        )
         """
         _response = self._raw_client.get_ticket(ticket_id, meta=meta, request_options=request_options)
         return _response.data
@@ -295,17 +257,6 @@ class TicketingClient:
         Returns
         -------
         CreateTicketResponse
-
-        Examples
-        --------
-        from synqly import SynqlyEngine
-
-        client = SynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-        client.ticketing.create_ticket(
-            name="name",
-        )
         """
         _response = self._raw_client.create_ticket(
             name=name,
@@ -354,28 +305,6 @@ class TicketingClient:
         Returns
         -------
         PatchTicketResponse
-
-        Examples
-        --------
-        from synqly import SynqlyEngine
-        from synqly.common import PatchOp, PatchOperation
-
-        client = SynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-        client.ticketing.patch_ticket(
-            ticket_id="ticketId",
-            request=[
-                PatchOperation(
-                    op=PatchOp.ADD,
-                    path="path",
-                ),
-                PatchOperation(
-                    op=PatchOp.ADD,
-                    path="path",
-                ),
-            ],
-        )
         """
         _response = self._raw_client.patch_ticket(
             ticket_id, request=request, meta=meta, request_options=request_options
@@ -413,19 +342,6 @@ class TicketingClient:
         Returns
         -------
         CreateAttachmentResponse
-
-        Examples
-        --------
-        from synqly import SynqlyEngine
-
-        client = SynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-        client.ticketing.create_attachment(
-            ticket_id="ticketId",
-            file_name="file_name",
-            content="SGVsbG8gd29ybGQh",
-        )
         """
         _response = self._raw_client.create_attachment(
             ticket_id, file_name=file_name, content=content, meta=meta, request_options=request_options
@@ -455,17 +371,6 @@ class TicketingClient:
         Returns
         -------
         ListAttachmentsMetadataResponse
-
-        Examples
-        --------
-        from synqly import SynqlyEngine
-
-        client = SynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-        client.ticketing.list_attachments_metadata(
-            ticket_id="ticketId",
-        )
         """
         _response = self._raw_client.list_attachments_metadata(ticket_id, meta=meta, request_options=request_options)
         return _response.data
@@ -496,18 +401,6 @@ class TicketingClient:
         Returns
         -------
         DownloadAttachmentResponse
-
-        Examples
-        --------
-        from synqly import SynqlyEngine
-
-        client = SynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-        client.ticketing.download_attachment(
-            ticket_id="ticketId",
-            attachment_id="attachmentId",
-        )
         """
         _response = self._raw_client.download_attachment(
             ticket_id, attachment_id, meta=meta, request_options=request_options
@@ -540,18 +433,6 @@ class TicketingClient:
         Returns
         -------
         None
-
-        Examples
-        --------
-        from synqly import SynqlyEngine
-
-        client = SynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-        client.ticketing.delete_attachment(
-            ticket_id="ticketId",
-            attachment_id="attachmentId",
-        )
         """
         _response = self._raw_client.delete_attachment(
             ticket_id, attachment_id, meta=meta, request_options=request_options
@@ -581,17 +462,6 @@ class TicketingClient:
         Returns
         -------
         ListCommentsResponse
-
-        Examples
-        --------
-        from synqly import SynqlyEngine
-
-        client = SynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-        client.ticketing.list_comments(
-            ticket_id="ticketId",
-        )
         """
         _response = self._raw_client.list_comments(ticket_id, meta=meta, request_options=request_options)
         return _response.data
@@ -627,18 +497,6 @@ class TicketingClient:
         Returns
         -------
         CreateCommentResponse
-
-        Examples
-        --------
-        from synqly import SynqlyEngine
-
-        client = SynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-        client.ticketing.create_comment(
-            ticket_id="ticketId",
-            content="content",
-        )
         """
         _response = self._raw_client.create_comment(
             ticket_id, content=content, meta=meta, creator=creator, request_options=request_options
@@ -671,18 +529,6 @@ class TicketingClient:
         Returns
         -------
         None
-
-        Examples
-        --------
-        from synqly import SynqlyEngine
-
-        client = SynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-        client.ticketing.delete_comment(
-            ticket_id="ticketId",
-            comment_id="commentId",
-        )
         """
         _response = self._raw_client.delete_comment(ticket_id, comment_id, meta=meta, request_options=request_options)
         return _response.data
@@ -718,19 +564,6 @@ class TicketingClient:
         Returns
         -------
         CreateNoteResponse
-
-        Examples
-        --------
-        from synqly import SynqlyEngine
-
-        client = SynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-        client.ticketing.create_note(
-            ticket_id="ticketId",
-            content="content",
-            title="title",
-        )
         """
         _response = self._raw_client.create_note(
             ticket_id, content=content, title=title, meta=meta, request_options=request_options
@@ -763,18 +596,6 @@ class TicketingClient:
         Returns
         -------
         None
-
-        Examples
-        --------
-        from synqly import SynqlyEngine
-
-        client = SynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-        client.ticketing.delete_note(
-            ticket_id="ticketId",
-            note_id="noteId",
-        )
         """
         _response = self._raw_client.delete_note(ticket_id, note_id, meta=meta, request_options=request_options)
         return _response.data
@@ -802,17 +623,6 @@ class TicketingClient:
         Returns
         -------
         ListNotesResponse
-
-        Examples
-        --------
-        from synqly import SynqlyEngine
-
-        client = SynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-        client.ticketing.list_notes(
-            ticket_id="ticketId",
-        )
         """
         _response = self._raw_client.list_notes(ticket_id, meta=meta, request_options=request_options)
         return _response.data
@@ -846,29 +656,6 @@ class TicketingClient:
         Returns
         -------
         PatchNoteResponse
-
-        Examples
-        --------
-        from synqly import SynqlyEngine
-        from synqly.common import PatchOp, PatchOperation
-
-        client = SynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-        client.ticketing.patch_note(
-            ticket_id="ticketId",
-            note_id="noteId",
-            request=[
-                PatchOperation(
-                    op=PatchOp.ADD,
-                    path="path",
-                ),
-                PatchOperation(
-                    op=PatchOp.ADD,
-                    path="path",
-                ),
-            ],
-        )
         """
         _response = self._raw_client.patch_note(
             ticket_id, note_id, request=request, meta=meta, request_options=request_options
@@ -907,15 +694,6 @@ class TicketingClient:
         Returns
         -------
         QueryEscalationPoliciesResponse
-
-        Examples
-        --------
-        from synqly import SynqlyEngine
-
-        client = SynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-        client.ticketing.query_escalation_policies()
         """
         _response = self._raw_client.query_escalation_policies(
             meta=meta, limit=limit, cursor=cursor, filter=filter, request_options=request_options
@@ -945,17 +723,6 @@ class TicketingClient:
         Returns
         -------
         ListOnCallResponse
-
-        Examples
-        --------
-        from synqly import SynqlyEngine
-
-        client = SynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-        client.ticketing.list_on_call(
-            escalation_policy_id="escalationPolicyId",
-        )
         """
         _response = self._raw_client.list_on_call(escalation_policy_id, meta=meta, request_options=request_options)
         return _response.data
@@ -996,23 +763,6 @@ class AsyncTicketingClient:
         Returns
         -------
         ListRemoteFieldsResponse
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyEngine
-
-        client = AsyncSynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.ticketing.list_remote_fields()
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.list_remote_fields(meta=meta, request_options=request_options)
         return _response.data
@@ -1045,23 +795,6 @@ class AsyncTicketingClient:
         Returns
         -------
         ListProjectsResponse
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyEngine
-
-        client = AsyncSynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.ticketing.list_projects()
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.list_projects(
             meta=meta, cursor=cursor, limit=limit, request_options=request_options
@@ -1104,23 +837,6 @@ class AsyncTicketingClient:
         Returns
         -------
         QueryTicketsResponse
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyEngine
-
-        client = AsyncSynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.ticketing.query_tickets()
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.query_tickets(
             meta=meta, cursor=cursor, limit=limit, order=order, filter=filter, request_options=request_options
@@ -1150,25 +866,6 @@ class AsyncTicketingClient:
         Returns
         -------
         GetTicketResponse
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyEngine
-
-        client = AsyncSynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.ticketing.get_ticket(
-                ticket_id="ticketId",
-            )
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.get_ticket(ticket_id, meta=meta, request_options=request_options)
         return _response.data
@@ -1253,25 +950,6 @@ class AsyncTicketingClient:
         Returns
         -------
         CreateTicketResponse
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyEngine
-
-        client = AsyncSynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.ticketing.create_ticket(
-                name="name",
-            )
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.create_ticket(
             name=name,
@@ -1320,36 +998,6 @@ class AsyncTicketingClient:
         Returns
         -------
         PatchTicketResponse
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyEngine
-        from synqly.common import PatchOp, PatchOperation
-
-        client = AsyncSynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.ticketing.patch_ticket(
-                ticket_id="ticketId",
-                request=[
-                    PatchOperation(
-                        op=PatchOp.ADD,
-                        path="path",
-                    ),
-                    PatchOperation(
-                        op=PatchOp.ADD,
-                        path="path",
-                    ),
-                ],
-            )
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.patch_ticket(
             ticket_id, request=request, meta=meta, request_options=request_options
@@ -1387,27 +1035,6 @@ class AsyncTicketingClient:
         Returns
         -------
         CreateAttachmentResponse
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyEngine
-
-        client = AsyncSynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.ticketing.create_attachment(
-                ticket_id="ticketId",
-                file_name="file_name",
-                content="SGVsbG8gd29ybGQh",
-            )
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.create_attachment(
             ticket_id, file_name=file_name, content=content, meta=meta, request_options=request_options
@@ -1437,25 +1064,6 @@ class AsyncTicketingClient:
         Returns
         -------
         ListAttachmentsMetadataResponse
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyEngine
-
-        client = AsyncSynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.ticketing.list_attachments_metadata(
-                ticket_id="ticketId",
-            )
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.list_attachments_metadata(
             ticket_id, meta=meta, request_options=request_options
@@ -1488,26 +1096,6 @@ class AsyncTicketingClient:
         Returns
         -------
         DownloadAttachmentResponse
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyEngine
-
-        client = AsyncSynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.ticketing.download_attachment(
-                ticket_id="ticketId",
-                attachment_id="attachmentId",
-            )
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.download_attachment(
             ticket_id, attachment_id, meta=meta, request_options=request_options
@@ -1540,26 +1128,6 @@ class AsyncTicketingClient:
         Returns
         -------
         None
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyEngine
-
-        client = AsyncSynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.ticketing.delete_attachment(
-                ticket_id="ticketId",
-                attachment_id="attachmentId",
-            )
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.delete_attachment(
             ticket_id, attachment_id, meta=meta, request_options=request_options
@@ -1589,25 +1157,6 @@ class AsyncTicketingClient:
         Returns
         -------
         ListCommentsResponse
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyEngine
-
-        client = AsyncSynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.ticketing.list_comments(
-                ticket_id="ticketId",
-            )
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.list_comments(ticket_id, meta=meta, request_options=request_options)
         return _response.data
@@ -1643,26 +1192,6 @@ class AsyncTicketingClient:
         Returns
         -------
         CreateCommentResponse
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyEngine
-
-        client = AsyncSynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.ticketing.create_comment(
-                ticket_id="ticketId",
-                content="content",
-            )
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.create_comment(
             ticket_id, content=content, meta=meta, creator=creator, request_options=request_options
@@ -1695,26 +1224,6 @@ class AsyncTicketingClient:
         Returns
         -------
         None
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyEngine
-
-        client = AsyncSynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.ticketing.delete_comment(
-                ticket_id="ticketId",
-                comment_id="commentId",
-            )
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.delete_comment(
             ticket_id, comment_id, meta=meta, request_options=request_options
@@ -1752,27 +1261,6 @@ class AsyncTicketingClient:
         Returns
         -------
         CreateNoteResponse
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyEngine
-
-        client = AsyncSynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.ticketing.create_note(
-                ticket_id="ticketId",
-                content="content",
-                title="title",
-            )
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.create_note(
             ticket_id, content=content, title=title, meta=meta, request_options=request_options
@@ -1805,26 +1293,6 @@ class AsyncTicketingClient:
         Returns
         -------
         None
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyEngine
-
-        client = AsyncSynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.ticketing.delete_note(
-                ticket_id="ticketId",
-                note_id="noteId",
-            )
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.delete_note(ticket_id, note_id, meta=meta, request_options=request_options)
         return _response.data
@@ -1852,25 +1320,6 @@ class AsyncTicketingClient:
         Returns
         -------
         ListNotesResponse
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyEngine
-
-        client = AsyncSynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.ticketing.list_notes(
-                ticket_id="ticketId",
-            )
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.list_notes(ticket_id, meta=meta, request_options=request_options)
         return _response.data
@@ -1904,37 +1353,6 @@ class AsyncTicketingClient:
         Returns
         -------
         PatchNoteResponse
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyEngine
-        from synqly.common import PatchOp, PatchOperation
-
-        client = AsyncSynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.ticketing.patch_note(
-                ticket_id="ticketId",
-                note_id="noteId",
-                request=[
-                    PatchOperation(
-                        op=PatchOp.ADD,
-                        path="path",
-                    ),
-                    PatchOperation(
-                        op=PatchOp.ADD,
-                        path="path",
-                    ),
-                ],
-            )
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.patch_note(
             ticket_id, note_id, request=request, meta=meta, request_options=request_options
@@ -1973,23 +1391,6 @@ class AsyncTicketingClient:
         Returns
         -------
         QueryEscalationPoliciesResponse
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyEngine
-
-        client = AsyncSynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.ticketing.query_escalation_policies()
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.query_escalation_policies(
             meta=meta, limit=limit, cursor=cursor, filter=filter, request_options=request_options
@@ -2019,25 +1420,6 @@ class AsyncTicketingClient:
         Returns
         -------
         ListOnCallResponse
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyEngine
-
-        client = AsyncSynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.ticketing.list_on_call(
-                escalation_policy_id="escalationPolicyId",
-            )
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.list_on_call(
             escalation_policy_id, meta=meta, request_options=request_options

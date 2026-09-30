@@ -82,17 +82,6 @@ class CredentialsClient:
         Returns
         -------
         ListCredentialsResponse
-
-        Examples
-        --------
-        from synqly import SynqlyManagement
-
-        client = SynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-        client.credentials.list(
-            owner_id="ownerId",
-        )
         """
         _response = self._raw_client.list(
             owner_id, limit=limit, start_after=start_after, order=order, filter=filter, request_options=request_options
@@ -118,18 +107,6 @@ class CredentialsClient:
         Returns
         -------
         GetCredentialResponse
-
-        Examples
-        --------
-        from synqly import SynqlyManagement
-
-        client = SynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-        client.credentials.get(
-            owner_id="ownerId",
-            credential_id="credentialId",
-        )
         """
         _response = self._raw_client.get(owner_id, credential_id, request_options=request_options)
         return _response.data
@@ -150,17 +127,6 @@ class CredentialsClient:
         Returns
         -------
         LookupCredentialResponse
-
-        Examples
-        --------
-        from synqly import SynqlyManagement
-
-        client = SynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-        client.credentials.lookup(
-            credential_id="credentialId",
-        )
         """
         _response = self._raw_client.lookup(credential_id, request_options=request_options)
         return _response.data
@@ -206,17 +172,6 @@ class CredentialsClient:
         Returns
         -------
         CreateCredentialResponse
-
-        Examples
-        --------
-        from synqly import SynqlyManagement
-
-        client = SynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-        client.credentials.create(
-            owner_id="ownerId",
-        )
         """
         _response = self._raw_client.create(
             owner_id,
@@ -303,32 +258,6 @@ class CredentialsClient:
         Returns
         -------
         UpdateCredentialResponse
-
-        Examples
-        --------
-        import datetime
-
-        from synqly import SynqlyManagement
-        from synqly.credentials import ManagedType, OwnerType
-
-        client = SynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-        client.credentials.update(
-            owner_id="ownerId",
-            credential_id="credentialId",
-            id="id",
-            owner_type=OwnerType.ACCOUNT,
-            fullname="fullname",
-            managed=ManagedType.MANAGED,
-            name="name",
-            created_at=datetime.datetime.fromisoformat(
-                "2024-01-15 09:30:00+00:00",
-            ),
-            updated_at=datetime.datetime.fromisoformat(
-                "2024-01-15 09:30:00+00:00",
-            ),
-        )
         """
         _response = self._raw_client.update(
             owner_id,
@@ -382,29 +311,6 @@ class CredentialsClient:
         Returns
         -------
         PatchCredentialResponse
-
-        Examples
-        --------
-        from synqly import SynqlyManagement
-        from synqly.common import PatchOp, PatchOperation
-
-        client = SynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-        client.credentials.patch(
-            owner_id="ownerId",
-            credential_id="credentialId",
-            request=[
-                PatchOperation(
-                    op=PatchOp.ADD,
-                    path="path",
-                ),
-                PatchOperation(
-                    op=PatchOp.ADD,
-                    path="path",
-                ),
-            ],
-        )
         """
         _response = self._raw_client.patch(owner_id, credential_id, request=request, request_options=request_options)
         return _response.data
@@ -428,18 +334,6 @@ class CredentialsClient:
         Returns
         -------
         None
-
-        Examples
-        --------
-        from synqly import SynqlyManagement
-
-        client = SynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-        client.credentials.delete(
-            owner_id="ownerId",
-            credential_id="credentialId",
-        )
         """
         _response = self._raw_client.delete(owner_id, credential_id, request_options=request_options)
         return _response.data
@@ -500,25 +394,6 @@ class AsyncCredentialsClient:
         Returns
         -------
         ListCredentialsResponse
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyManagement
-
-        client = AsyncSynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.credentials.list(
-                owner_id="ownerId",
-            )
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.list(
             owner_id, limit=limit, start_after=start_after, order=order, filter=filter, request_options=request_options
@@ -544,26 +419,6 @@ class AsyncCredentialsClient:
         Returns
         -------
         GetCredentialResponse
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyManagement
-
-        client = AsyncSynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.credentials.get(
-                owner_id="ownerId",
-                credential_id="credentialId",
-            )
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.get(owner_id, credential_id, request_options=request_options)
         return _response.data
@@ -584,25 +439,6 @@ class AsyncCredentialsClient:
         Returns
         -------
         LookupCredentialResponse
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyManagement
-
-        client = AsyncSynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.credentials.lookup(
-                credential_id="credentialId",
-            )
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.lookup(credential_id, request_options=request_options)
         return _response.data
@@ -648,25 +484,6 @@ class AsyncCredentialsClient:
         Returns
         -------
         CreateCredentialResponse
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyManagement
-
-        client = AsyncSynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.credentials.create(
-                owner_id="ownerId",
-            )
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.create(
             owner_id,
@@ -753,39 +570,6 @@ class AsyncCredentialsClient:
         Returns
         -------
         UpdateCredentialResponse
-
-        Examples
-        --------
-        import asyncio
-        import datetime
-
-        from synqly import AsyncSynqlyManagement
-        from synqly.credentials import ManagedType, OwnerType
-
-        client = AsyncSynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.credentials.update(
-                owner_id="ownerId",
-                credential_id="credentialId",
-                id="id",
-                owner_type=OwnerType.ACCOUNT,
-                fullname="fullname",
-                managed=ManagedType.MANAGED,
-                name="name",
-                created_at=datetime.datetime.fromisoformat(
-                    "2024-01-15 09:30:00+00:00",
-                ),
-                updated_at=datetime.datetime.fromisoformat(
-                    "2024-01-15 09:30:00+00:00",
-                ),
-            )
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.update(
             owner_id,
@@ -839,37 +623,6 @@ class AsyncCredentialsClient:
         Returns
         -------
         PatchCredentialResponse
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyManagement
-        from synqly.common import PatchOp, PatchOperation
-
-        client = AsyncSynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.credentials.patch(
-                owner_id="ownerId",
-                credential_id="credentialId",
-                request=[
-                    PatchOperation(
-                        op=PatchOp.ADD,
-                        path="path",
-                    ),
-                    PatchOperation(
-                        op=PatchOp.ADD,
-                        path="path",
-                    ),
-                ],
-            )
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.patch(
             owner_id, credential_id, request=request, request_options=request_options
@@ -895,26 +648,6 @@ class AsyncCredentialsClient:
         Returns
         -------
         None
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyManagement
-
-        client = AsyncSynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.credentials.delete(
-                owner_id="ownerId",
-                credential_id="credentialId",
-            )
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.delete(owner_id, credential_id, request_options=request_options)
         return _response.data

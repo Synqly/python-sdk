@@ -47,15 +47,6 @@ class OrganizationClient:
         Returns
         -------
         GetOrganizationResponse
-
-        Examples
-        --------
-        from synqly import SynqlyManagement
-
-        client = SynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-        client.organization.get()
         """
         _response = self._raw_client.get(request_options=request_options)
         return _response.data
@@ -127,30 +118,6 @@ class OrganizationClient:
         Returns
         -------
         UpdateOrganizationResponse
-
-        Examples
-        --------
-        import datetime
-
-        from synqly import SynqlyManagement
-        from synqly.organization_base import OrganizationType
-
-        client = SynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-        client.organization.update(
-            id="id",
-            refresh_token_id="refresh_token_id",
-            organization_type=OrganizationType.ROOT,
-            fullname="fullname",
-            name="name",
-            created_at=datetime.datetime.fromisoformat(
-                "2024-01-15 09:30:00+00:00",
-            ),
-            updated_at=datetime.datetime.fromisoformat(
-                "2024-01-15 09:30:00+00:00",
-            ),
-        )
         """
         _response = self._raw_client.update(
             id=id,
@@ -186,27 +153,6 @@ class OrganizationClient:
         Returns
         -------
         PatchOrganizationResponse
-
-        Examples
-        --------
-        from synqly import SynqlyManagement
-        from synqly.common import PatchOp, PatchOperation
-
-        client = SynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-        client.organization.patch(
-            request=[
-                PatchOperation(
-                    op=PatchOp.ADD,
-                    path="path",
-                ),
-                PatchOperation(
-                    op=PatchOp.ADD,
-                    path="path",
-                ),
-            ],
-        )
         """
         _response = self._raw_client.patch(request=request, request_options=request_options)
         return _response.data
@@ -239,23 +185,6 @@ class AsyncOrganizationClient:
         Returns
         -------
         GetOrganizationResponse
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyManagement
-
-        client = AsyncSynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.organization.get()
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.get(request_options=request_options)
         return _response.data
@@ -327,37 +256,6 @@ class AsyncOrganizationClient:
         Returns
         -------
         UpdateOrganizationResponse
-
-        Examples
-        --------
-        import asyncio
-        import datetime
-
-        from synqly import AsyncSynqlyManagement
-        from synqly.organization_base import OrganizationType
-
-        client = AsyncSynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.organization.update(
-                id="id",
-                refresh_token_id="refresh_token_id",
-                organization_type=OrganizationType.ROOT,
-                fullname="fullname",
-                name="name",
-                created_at=datetime.datetime.fromisoformat(
-                    "2024-01-15 09:30:00+00:00",
-                ),
-                updated_at=datetime.datetime.fromisoformat(
-                    "2024-01-15 09:30:00+00:00",
-                ),
-            )
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.update(
             id=id,
@@ -393,35 +291,6 @@ class AsyncOrganizationClient:
         Returns
         -------
         PatchOrganizationResponse
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyManagement
-        from synqly.common import PatchOp, PatchOperation
-
-        client = AsyncSynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.organization.patch(
-                request=[
-                    PatchOperation(
-                        op=PatchOp.ADD,
-                        path="path",
-                    ),
-                    PatchOperation(
-                        op=PatchOp.ADD,
-                        path="path",
-                    ),
-                ],
-            )
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.patch(request=request, request_options=request_options)
         return _response.data

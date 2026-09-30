@@ -60,15 +60,6 @@ class OperationsClient:
         Returns
         -------
         ListOperationsResponse
-
-        Examples
-        --------
-        from synqly import SynqlyManagement
-
-        client = SynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-        client.operations.list()
         """
         _response = self._raw_client.list(
             limit=limit, start_after=start_after, order=order, filter=filter, request_options=request_options
@@ -122,15 +113,6 @@ class OperationsClient:
         Returns
         -------
         ListExecutionHistoryResponse
-
-        Examples
-        --------
-        from synqly import SynqlyManagement
-
-        client = SynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-        client.operations.list_execution_history()
         """
         _response = self._raw_client.list_execution_history(
             filter=filter, order=order, limit=limit, start_after=start_after, request_options=request_options
@@ -189,23 +171,6 @@ class AsyncOperationsClient:
         Returns
         -------
         ListOperationsResponse
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyManagement
-
-        client = AsyncSynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.operations.list()
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.list(
             limit=limit, start_after=start_after, order=order, filter=filter, request_options=request_options
@@ -259,23 +224,6 @@ class AsyncOperationsClient:
         Returns
         -------
         ListExecutionHistoryResponse
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyManagement
-
-        client = AsyncSynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.operations.list_execution_history()
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.list_execution_history(
             filter=filter, order=order, limit=limit, start_after=start_after, request_options=request_options

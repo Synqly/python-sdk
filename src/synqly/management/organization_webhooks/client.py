@@ -73,15 +73,6 @@ class OrganizationWebhooksClient:
         Returns
         -------
         ListOrganizationWebhooksResponse
-
-        Examples
-        --------
-        from synqly import SynqlyManagement
-
-        client = SynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-        client.organization_webhooks.list()
         """
         _response = self._raw_client.list(
             limit=limit, start_after=start_after, order=order, filter=filter, request_options=request_options
@@ -104,17 +95,6 @@ class OrganizationWebhooksClient:
         Returns
         -------
         GetOrganizationWebhookResponse
-
-        Examples
-        --------
-        from synqly import SynqlyManagement
-
-        client = SynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-        client.organization_webhooks.get(
-            webhook_id="webhookId",
-        )
         """
         _response = self._raw_client.get(webhook_id, request_options=request_options)
         return _response.data
@@ -159,23 +139,6 @@ class OrganizationWebhooksClient:
         Returns
         -------
         CreateOrganizationWebhookResponse
-
-        Examples
-        --------
-        from synqly import SynqlyManagement
-        from synqly.organization_webhook_base import WebhookFilter
-        from synqly.organization_webhooks import OrganizationWebhookSecret
-
-        client = SynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-        client.organization_webhooks.create(
-            filters=[WebhookFilter.ALL, WebhookFilter.ALL],
-            url="url",
-            secret=OrganizationWebhookSecret(
-                value="value",
-            ),
-        )
         """
         _response = self._raw_client.create(
             filters=filters,
@@ -244,34 +207,6 @@ class OrganizationWebhooksClient:
         Returns
         -------
         UpdateOrganizationWebhookResponse
-
-        Examples
-        --------
-        import datetime
-
-        from synqly import SynqlyManagement
-        from synqly.organization_base import Environment
-        from synqly.organization_webhook_base import WebhookFilter
-
-        client = SynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-        client.organization_webhooks.update(
-            webhook_id="webhookId",
-            id="id",
-            fullname="fullname",
-            environment=Environment.TEST,
-            filters=[WebhookFilter.ALL, WebhookFilter.ALL],
-            url="url",
-            credential_id="credential_id",
-            name="name",
-            created_at=datetime.datetime.fromisoformat(
-                "2024-01-15 09:30:00+00:00",
-            ),
-            updated_at=datetime.datetime.fromisoformat(
-                "2024-01-15 09:30:00+00:00",
-            ),
-        )
         """
         _response = self._raw_client.update(
             webhook_id,
@@ -312,28 +247,6 @@ class OrganizationWebhooksClient:
         Returns
         -------
         PatchOrganizationWebhookResponse
-
-        Examples
-        --------
-        from synqly import SynqlyManagement
-        from synqly.common import PatchOp, PatchOperation
-
-        client = SynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-        client.organization_webhooks.patch(
-            webhook_id="webhookId",
-            request=[
-                PatchOperation(
-                    op=PatchOp.ADD,
-                    path="path",
-                ),
-                PatchOperation(
-                    op=PatchOp.ADD,
-                    path="path",
-                ),
-            ],
-        )
         """
         _response = self._raw_client.patch(webhook_id, request=request, request_options=request_options)
         return _response.data
@@ -352,17 +265,6 @@ class OrganizationWebhooksClient:
         Returns
         -------
         None
-
-        Examples
-        --------
-        from synqly import SynqlyManagement
-
-        client = SynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-        client.organization_webhooks.delete(
-            webhook_id="webhookId",
-        )
         """
         _response = self._raw_client.delete(webhook_id, request_options=request_options)
         return _response.data
@@ -419,23 +321,6 @@ class AsyncOrganizationWebhooksClient:
         Returns
         -------
         ListOrganizationWebhooksResponse
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyManagement
-
-        client = AsyncSynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.organization_webhooks.list()
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.list(
             limit=limit, start_after=start_after, order=order, filter=filter, request_options=request_options
@@ -458,25 +343,6 @@ class AsyncOrganizationWebhooksClient:
         Returns
         -------
         GetOrganizationWebhookResponse
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyManagement
-
-        client = AsyncSynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.organization_webhooks.get(
-                webhook_id="webhookId",
-            )
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.get(webhook_id, request_options=request_options)
         return _response.data
@@ -521,31 +387,6 @@ class AsyncOrganizationWebhooksClient:
         Returns
         -------
         CreateOrganizationWebhookResponse
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyManagement
-        from synqly.organization_webhook_base import WebhookFilter
-        from synqly.organization_webhooks import OrganizationWebhookSecret
-
-        client = AsyncSynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.organization_webhooks.create(
-                filters=[WebhookFilter.ALL, WebhookFilter.ALL],
-                url="url",
-                secret=OrganizationWebhookSecret(
-                    value="value",
-                ),
-            )
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.create(
             filters=filters,
@@ -614,41 +455,6 @@ class AsyncOrganizationWebhooksClient:
         Returns
         -------
         UpdateOrganizationWebhookResponse
-
-        Examples
-        --------
-        import asyncio
-        import datetime
-
-        from synqly import AsyncSynqlyManagement
-        from synqly.organization_base import Environment
-        from synqly.organization_webhook_base import WebhookFilter
-
-        client = AsyncSynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.organization_webhooks.update(
-                webhook_id="webhookId",
-                id="id",
-                fullname="fullname",
-                environment=Environment.TEST,
-                filters=[WebhookFilter.ALL, WebhookFilter.ALL],
-                url="url",
-                credential_id="credential_id",
-                name="name",
-                created_at=datetime.datetime.fromisoformat(
-                    "2024-01-15 09:30:00+00:00",
-                ),
-                updated_at=datetime.datetime.fromisoformat(
-                    "2024-01-15 09:30:00+00:00",
-                ),
-            )
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.update(
             webhook_id,
@@ -689,36 +495,6 @@ class AsyncOrganizationWebhooksClient:
         Returns
         -------
         PatchOrganizationWebhookResponse
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyManagement
-        from synqly.common import PatchOp, PatchOperation
-
-        client = AsyncSynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.organization_webhooks.patch(
-                webhook_id="webhookId",
-                request=[
-                    PatchOperation(
-                        op=PatchOp.ADD,
-                        path="path",
-                    ),
-                    PatchOperation(
-                        op=PatchOp.ADD,
-                        path="path",
-                    ),
-                ],
-            )
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.patch(webhook_id, request=request, request_options=request_options)
         return _response.data
@@ -737,25 +513,6 @@ class AsyncOrganizationWebhooksClient:
         Returns
         -------
         None
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyManagement
-
-        client = AsyncSynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.organization_webhooks.delete(
-                webhook_id="webhookId",
-            )
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.delete(webhook_id, request_options=request_options)
         return _response.data

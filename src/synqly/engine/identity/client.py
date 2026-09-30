@@ -72,15 +72,6 @@ class IdentityClient:
         Returns
         -------
         QueryIdentityAuditLogResponse
-
-        Examples
-        --------
-        from synqly import SynqlyEngine
-
-        client = SynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-        client.identity.query_audit_log()
         """
         _response = self._raw_client.query_audit_log(
             meta=meta,
@@ -133,15 +124,6 @@ class IdentityClient:
         Returns
         -------
         QueryIdentityRiskEventsResponse
-
-        Examples
-        --------
-        from synqly import SynqlyEngine
-
-        client = SynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-        client.identity.query_risk_events()
         """
         _response = self._raw_client.query_risk_events(
             meta=meta,
@@ -194,15 +176,6 @@ class IdentityClient:
         Returns
         -------
         QueryIdentityRiskyUsersResponse
-
-        Examples
-        --------
-        from synqly import SynqlyEngine
-
-        client = SynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-        client.identity.query_risky_users()
         """
         _response = self._raw_client.query_risky_users(
             meta=meta,
@@ -251,15 +224,6 @@ class IdentityClient:
         Returns
         -------
         QueryUsersResponse
-
-        Examples
-        --------
-        from synqly import SynqlyEngine
-
-        client = SynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-        client.identity.query_users()
         """
         _response = self._raw_client.query_users(
             meta=meta, limit=limit, cursor=cursor, order=order, filter=filter, request_options=request_options
@@ -290,17 +254,6 @@ class IdentityClient:
         Returns
         -------
         GetUserResponse
-
-        Examples
-        --------
-        from synqly import SynqlyEngine
-
-        client = SynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-        client.identity.get_user(
-            user_id="userId",
-        )
         """
         _response = self._raw_client.get_user(user_id, meta=meta, request_options=request_options)
         return _response.data
@@ -341,15 +294,6 @@ class IdentityClient:
         Returns
         -------
         QueryGroupsResponse
-
-        Examples
-        --------
-        from synqly import SynqlyEngine
-
-        client = SynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-        client.identity.query_groups()
         """
         _response = self._raw_client.query_groups(
             meta=meta, limit=limit, cursor=cursor, order=order, filter=filter, request_options=request_options
@@ -380,17 +324,6 @@ class IdentityClient:
         Returns
         -------
         GetGroupResponse
-
-        Examples
-        --------
-        from synqly import SynqlyEngine
-
-        client = SynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-        client.identity.get_group(
-            group_id="groupId",
-        )
         """
         _response = self._raw_client.get_group(group_id, meta=meta, request_options=request_options)
         return _response.data
@@ -426,17 +359,6 @@ class IdentityClient:
         Returns
         -------
         GetGroupMembersResponse
-
-        Examples
-        --------
-        from synqly import SynqlyEngine
-
-        client = SynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-        client.identity.get_group_members(
-            group_id="groupId",
-        )
         """
         _response = self._raw_client.get_group_members(
             group_id, meta=meta, limit=limit, cursor=cursor, request_options=request_options
@@ -466,17 +388,6 @@ class IdentityClient:
         Returns
         -------
         None
-
-        Examples
-        --------
-        from synqly import SynqlyEngine
-
-        client = SynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-        client.identity.enable_user(
-            user_id="userId",
-        )
         """
         _response = self._raw_client.enable_user(user_id, meta=meta, request_options=request_options)
         return _response.data
@@ -504,17 +415,6 @@ class IdentityClient:
         Returns
         -------
         None
-
-        Examples
-        --------
-        from synqly import SynqlyEngine
-
-        client = SynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-        client.identity.disable_user(
-            user_id="userId",
-        )
         """
         _response = self._raw_client.disable_user(user_id, meta=meta, request_options=request_options)
         return _response.data
@@ -542,17 +442,6 @@ class IdentityClient:
         Returns
         -------
         None
-
-        Examples
-        --------
-        from synqly import SynqlyEngine
-
-        client = SynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-        client.identity.force_user_password_reset(
-            user_id="userId",
-        )
         """
         _response = self._raw_client.force_user_password_reset(user_id, meta=meta, request_options=request_options)
         return _response.data
@@ -580,17 +469,6 @@ class IdentityClient:
         Returns
         -------
         None
-
-        Examples
-        --------
-        from synqly import SynqlyEngine
-
-        client = SynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-        client.identity.expire_all_user_sessions(
-            user_id="userId",
-        )
         """
         _response = self._raw_client.expire_all_user_sessions(user_id, meta=meta, request_options=request_options)
         return _response.data
@@ -611,17 +489,6 @@ class IdentityClient:
         Returns
         -------
         typing.Iterator[bytes]
-
-        Examples
-        --------
-        from synqly import SynqlyEngine
-
-        client = SynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-        client.identity.get_user_picture(
-            user_id="userId",
-        )
         """
         with self._raw_client.get_user_picture(user_id, request_options=request_options) as r:
             yield from r.data
@@ -682,23 +549,6 @@ class AsyncIdentityClient:
         Returns
         -------
         QueryIdentityAuditLogResponse
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyEngine
-
-        client = AsyncSynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.identity.query_audit_log()
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.query_audit_log(
             meta=meta,
@@ -751,23 +601,6 @@ class AsyncIdentityClient:
         Returns
         -------
         QueryIdentityRiskEventsResponse
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyEngine
-
-        client = AsyncSynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.identity.query_risk_events()
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.query_risk_events(
             meta=meta,
@@ -820,23 +653,6 @@ class AsyncIdentityClient:
         Returns
         -------
         QueryIdentityRiskyUsersResponse
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyEngine
-
-        client = AsyncSynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.identity.query_risky_users()
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.query_risky_users(
             meta=meta,
@@ -885,23 +701,6 @@ class AsyncIdentityClient:
         Returns
         -------
         QueryUsersResponse
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyEngine
-
-        client = AsyncSynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.identity.query_users()
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.query_users(
             meta=meta, limit=limit, cursor=cursor, order=order, filter=filter, request_options=request_options
@@ -932,25 +731,6 @@ class AsyncIdentityClient:
         Returns
         -------
         GetUserResponse
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyEngine
-
-        client = AsyncSynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.identity.get_user(
-                user_id="userId",
-            )
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.get_user(user_id, meta=meta, request_options=request_options)
         return _response.data
@@ -991,23 +771,6 @@ class AsyncIdentityClient:
         Returns
         -------
         QueryGroupsResponse
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyEngine
-
-        client = AsyncSynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.identity.query_groups()
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.query_groups(
             meta=meta, limit=limit, cursor=cursor, order=order, filter=filter, request_options=request_options
@@ -1038,25 +801,6 @@ class AsyncIdentityClient:
         Returns
         -------
         GetGroupResponse
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyEngine
-
-        client = AsyncSynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.identity.get_group(
-                group_id="groupId",
-            )
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.get_group(group_id, meta=meta, request_options=request_options)
         return _response.data
@@ -1092,25 +836,6 @@ class AsyncIdentityClient:
         Returns
         -------
         GetGroupMembersResponse
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyEngine
-
-        client = AsyncSynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.identity.get_group_members(
-                group_id="groupId",
-            )
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.get_group_members(
             group_id, meta=meta, limit=limit, cursor=cursor, request_options=request_options
@@ -1140,25 +865,6 @@ class AsyncIdentityClient:
         Returns
         -------
         None
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyEngine
-
-        client = AsyncSynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.identity.enable_user(
-                user_id="userId",
-            )
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.enable_user(user_id, meta=meta, request_options=request_options)
         return _response.data
@@ -1186,25 +892,6 @@ class AsyncIdentityClient:
         Returns
         -------
         None
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyEngine
-
-        client = AsyncSynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.identity.disable_user(
-                user_id="userId",
-            )
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.disable_user(user_id, meta=meta, request_options=request_options)
         return _response.data
@@ -1232,25 +919,6 @@ class AsyncIdentityClient:
         Returns
         -------
         None
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyEngine
-
-        client = AsyncSynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.identity.force_user_password_reset(
-                user_id="userId",
-            )
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.force_user_password_reset(
             user_id, meta=meta, request_options=request_options
@@ -1280,25 +948,6 @@ class AsyncIdentityClient:
         Returns
         -------
         None
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyEngine
-
-        client = AsyncSynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.identity.expire_all_user_sessions(
-                user_id="userId",
-            )
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.expire_all_user_sessions(user_id, meta=meta, request_options=request_options)
         return _response.data
@@ -1319,25 +968,6 @@ class AsyncIdentityClient:
         Returns
         -------
         typing.AsyncIterator[bytes]
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyEngine
-
-        client = AsyncSynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.identity.get_user_picture(
-                user_id="userId",
-            )
-
-
-        asyncio.run(main())
         """
         async with self._raw_client.get_user_picture(user_id, request_options=request_options) as r:
             async for _chunk in r.data:

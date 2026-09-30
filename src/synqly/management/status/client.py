@@ -70,15 +70,6 @@ class StatusClient:
         Returns
         -------
         ListStatusResponse
-
-        Examples
-        --------
-        from synqly import SynqlyManagement
-
-        client = SynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-        client.status.list()
         """
         _response = self._raw_client.list(
             limit=limit,
@@ -112,18 +103,6 @@ class StatusClient:
         Returns
         -------
         GetStatusResponse
-
-        Examples
-        --------
-        from synqly import SynqlyManagement
-
-        client = SynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-        client.status.get(
-            account_id="accountId",
-            integration_id="integrationId",
-        )
         """
         _response = self._raw_client.get(account_id, integration_id, request_options=request_options)
         return _response.data
@@ -150,18 +129,6 @@ class StatusClient:
         Returns
         -------
         None
-
-        Examples
-        --------
-        from synqly import SynqlyManagement
-
-        client = SynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-        client.status.reset(
-            account_id="accountId",
-            integration_id="integrationId",
-        )
         """
         _response = self._raw_client.reset(account_id, integration_id, request_options=request_options)
         return _response.data
@@ -205,18 +172,6 @@ class StatusClient:
         Returns
         -------
         ListStatusEventsResponse
-
-        Examples
-        --------
-        from synqly import SynqlyManagement
-
-        client = SynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-        client.status.list_events(
-            account_id="accountId",
-            integration_id="integrationId",
-        )
         """
         _response = self._raw_client.list_events(
             account_id,
@@ -241,15 +196,6 @@ class StatusClient:
         Returns
         -------
         GetStatusTimeseries
-
-        Examples
-        --------
-        from synqly import SynqlyManagement
-
-        client = SynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-        client.status.get_timeseries()
         """
         _response = self._raw_client.get_timeseries(request_options=request_options)
         return _response.data
@@ -280,18 +226,6 @@ class StatusClient:
         Returns
         -------
         GetIntegrationTimeseries
-
-        Examples
-        --------
-        from synqly import SynqlyManagement
-
-        client = SynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-        client.status.get_integration_timeseries(
-            account_id="accountId",
-            integration_id="integrationId",
-        )
         """
         _response = self._raw_client.get_integration_timeseries(
             account_id, integration_id, interval=interval, request_options=request_options
@@ -354,23 +288,6 @@ class AsyncStatusClient:
         Returns
         -------
         ListStatusResponse
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyManagement
-
-        client = AsyncSynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.status.list()
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.list(
             limit=limit,
@@ -404,26 +321,6 @@ class AsyncStatusClient:
         Returns
         -------
         GetStatusResponse
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyManagement
-
-        client = AsyncSynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.status.get(
-                account_id="accountId",
-                integration_id="integrationId",
-            )
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.get(account_id, integration_id, request_options=request_options)
         return _response.data
@@ -450,26 +347,6 @@ class AsyncStatusClient:
         Returns
         -------
         None
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyManagement
-
-        client = AsyncSynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.status.reset(
-                account_id="accountId",
-                integration_id="integrationId",
-            )
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.reset(account_id, integration_id, request_options=request_options)
         return _response.data
@@ -513,26 +390,6 @@ class AsyncStatusClient:
         Returns
         -------
         ListStatusEventsResponse
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyManagement
-
-        client = AsyncSynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.status.list_events(
-                account_id="accountId",
-                integration_id="integrationId",
-            )
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.list_events(
             account_id,
@@ -557,23 +414,6 @@ class AsyncStatusClient:
         Returns
         -------
         GetStatusTimeseries
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyManagement
-
-        client = AsyncSynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.status.get_timeseries()
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.get_timeseries(request_options=request_options)
         return _response.data
@@ -604,26 +444,6 @@ class AsyncStatusClient:
         Returns
         -------
         GetIntegrationTimeseries
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyManagement
-
-        client = AsyncSynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.status.get_integration_timeseries(
-                account_id="accountId",
-                integration_id="integrationId",
-            )
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.get_integration_timeseries(
             account_id, integration_id, interval=interval, request_options=request_options

@@ -62,15 +62,6 @@ class BillingClient:
         Returns
         -------
         ListBillingResponse
-
-        Examples
-        --------
-        from synqly import SynqlyManagement
-
-        client = SynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-        client.billing.list()
         """
         _response = self._raw_client.list(
             limit=limit, start_after=start_after, order=order, filter=filter, request_options=request_options
@@ -105,15 +96,6 @@ class BillingClient:
         Returns
         -------
         typing.Iterator[bytes]
-
-        Examples
-        --------
-        from synqly import SynqlyManagement
-
-        client = SynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-        client.billing.export()
         """
         with self._raw_client.export(month=month, from_=from_, to=to, request_options=request_options) as r:
             yield from r.data
@@ -143,19 +125,6 @@ class BillingClient:
         Returns
         -------
         GetBillingResponse
-
-        Examples
-        --------
-        from synqly import SynqlyManagement
-        from synqly.billing import BillingMonth
-
-        client = SynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-        client.billing.get(
-            organization_id="organizationId",
-            month=BillingMonth.PARTIAL,
-        )
         """
         _response = self._raw_client.get(organization_id, month, request_options=request_options)
         return _response.data
@@ -212,23 +181,6 @@ class AsyncBillingClient:
         Returns
         -------
         ListBillingResponse
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyManagement
-
-        client = AsyncSynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.billing.list()
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.list(
             limit=limit, start_after=start_after, order=order, filter=filter, request_options=request_options
@@ -263,23 +215,6 @@ class AsyncBillingClient:
         Returns
         -------
         typing.AsyncIterator[bytes]
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyManagement
-
-        client = AsyncSynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.billing.export()
-
-
-        asyncio.run(main())
         """
         async with self._raw_client.export(month=month, from_=from_, to=to, request_options=request_options) as r:
             async for _chunk in r.data:
@@ -310,27 +245,6 @@ class AsyncBillingClient:
         Returns
         -------
         GetBillingResponse
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyManagement
-        from synqly.billing import BillingMonth
-
-        client = AsyncSynqlyManagement(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.billing.get(
-                organization_id="organizationId",
-                month=BillingMonth.PARTIAL,
-            )
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.get(organization_id, month, request_options=request_options)
         return _response.data

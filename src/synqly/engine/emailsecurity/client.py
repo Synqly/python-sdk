@@ -58,15 +58,6 @@ class EmailsecurityClient:
         Returns
         -------
         EmailSecurityQueryThreatsResponse
-
-        Examples
-        --------
-        from synqly import SynqlyEngine
-
-        client = SynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-        client.emailsecurity.query_threats()
         """
         _response = self._raw_client.query_threats(
             meta=meta, limit=limit, filter=filter, cursor=cursor, request_options=request_options
@@ -96,17 +87,6 @@ class EmailsecurityClient:
         Returns
         -------
         EmailSecurityGetThreatDetailsResponse
-
-        Examples
-        --------
-        from synqly import SynqlyEngine
-
-        client = SynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-        client.emailsecurity.get_threat_details(
-            threat_id="threatId",
-        )
         """
         _response = self._raw_client.get_threat_details(threat_id, meta=meta, request_options=request_options)
         return _response.data
@@ -143,15 +123,6 @@ class EmailsecurityClient:
         Returns
         -------
         EmailSecurityQueryEmailEventsResponse
-
-        Examples
-        --------
-        from synqly import SynqlyEngine
-
-        client = SynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-        client.emailsecurity.query_email_events()
         """
         _response = self._raw_client.query_email_events(
             meta=meta, limit=limit, filter=filter, cursor=cursor, request_options=request_options
@@ -206,23 +177,6 @@ class AsyncEmailsecurityClient:
         Returns
         -------
         EmailSecurityQueryThreatsResponse
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyEngine
-
-        client = AsyncSynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.emailsecurity.query_threats()
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.query_threats(
             meta=meta, limit=limit, filter=filter, cursor=cursor, request_options=request_options
@@ -252,25 +206,6 @@ class AsyncEmailsecurityClient:
         Returns
         -------
         EmailSecurityGetThreatDetailsResponse
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyEngine
-
-        client = AsyncSynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.emailsecurity.get_threat_details(
-                threat_id="threatId",
-            )
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.get_threat_details(threat_id, meta=meta, request_options=request_options)
         return _response.data
@@ -307,23 +242,6 @@ class AsyncEmailsecurityClient:
         Returns
         -------
         EmailSecurityQueryEmailEventsResponse
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyEngine
-
-        client = AsyncSynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.emailsecurity.query_email_events()
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.query_email_events(
             meta=meta, limit=limit, filter=filter, cursor=cursor, request_options=request_options

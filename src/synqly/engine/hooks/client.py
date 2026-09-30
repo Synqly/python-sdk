@@ -52,18 +52,6 @@ class HooksClient:
         Returns
         -------
         None
-
-        Examples
-        --------
-        from synqly import SynqlyEngine
-
-        client = SynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-        client.hooks.proxy(
-            token="token",
-            request={"key": "value"},
-        )
         """
         _response = self._raw_client.proxy(token=token, request=request, meta=meta, request_options=request_options)
         return _response.data
@@ -111,26 +99,6 @@ class AsyncHooksClient:
         Returns
         -------
         None
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyEngine
-
-        client = AsyncSynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.hooks.proxy(
-                token="token",
-                request={"key": "value"},
-            )
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.proxy(
             token=token, request=request, meta=meta, request_options=request_options

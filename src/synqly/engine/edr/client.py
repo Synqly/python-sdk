@@ -89,15 +89,6 @@ class EdrClient:
         Returns
         -------
         QueryEndpointsResponse
-
-        Examples
-        --------
-        from synqly import SynqlyEngine
-
-        client = SynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-        client.edr.query_endpoints()
         """
         _response = self._raw_client.query_endpoints(
             meta=meta,
@@ -133,17 +124,6 @@ class EdrClient:
         Returns
         -------
         GetEndpointResponse
-
-        Examples
-        --------
-        from synqly import SynqlyEngine
-
-        client = SynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-        client.edr.get_endpoint(
-            id="id",
-        )
         """
         _response = self._raw_client.get_endpoint(id, meta=meta, request_options=request_options)
         return _response.data
@@ -179,18 +159,6 @@ class EdrClient:
         Returns
         -------
         ExecuteCommandResponse
-
-        Examples
-        --------
-        from synqly import SynqlyEngine
-
-        client = SynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-        client.edr.execute_command(
-            uid="uid",
-            command="command",
-        )
         """
         _response = self._raw_client.execute_command(
             uid, command=command, meta=meta, cursor=cursor, request_options=request_options
@@ -232,18 +200,6 @@ class EdrClient:
         Returns
         -------
         ExecuteRemoteScriptResponse
-
-        Examples
-        --------
-        from synqly import SynqlyEngine
-
-        client = SynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-        client.edr.execute_remote_script(
-            uid="uid",
-            script="script",
-        )
         """
         _response = self._raw_client.execute_remote_script(
             uid, script=script, meta=meta, args=args, cursor=cursor, request_options=request_options
@@ -277,18 +233,6 @@ class EdrClient:
         Returns
         -------
         typing.Iterator[bytes]
-
-        Examples
-        --------
-        from synqly import SynqlyEngine
-
-        client = SynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-        client.edr.retrieve_file(
-            uid="uid",
-            path="path",
-        )
         """
         with self._raw_client.retrieve_file(uid, path=path, password=password, request_options=request_options) as r:
             yield from r.data
@@ -333,15 +277,6 @@ class EdrClient:
         Returns
         -------
         QueryApplicationsResponse
-
-        Examples
-        --------
-        from synqly import SynqlyEngine
-
-        client = SynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-        client.edr.query_applications()
         """
         _response = self._raw_client.query_applications(
             meta=meta,
@@ -390,19 +325,6 @@ class EdrClient:
         Returns
         -------
         NetworkQuarantineResponse
-
-        Examples
-        --------
-        from synqly import SynqlyEngine
-        from synqly.edr import ConnectionState
-
-        client = SynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-        client.edr.network_quarantine(
-            state=ConnectionState.CONNECT,
-            endpoint_ids=["endpoint_ids", "endpoint_ids"],
-        )
         """
         _response = self._raw_client.network_quarantine(
             state=state,
@@ -454,15 +376,6 @@ class EdrClient:
         Returns
         -------
         QueryThreatsResponse
-
-        Examples
-        --------
-        from synqly import SynqlyEngine
-
-        client = SynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-        client.edr.query_threatevents()
         """
         _response = self._raw_client.query_threatevents(
             meta=meta,
@@ -515,15 +428,6 @@ class EdrClient:
         Returns
         -------
         QueryAlertsResponse
-
-        Examples
-        --------
-        from synqly import SynqlyEngine
-
-        client = SynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-        client.edr.query_alerts()
         """
         _response = self._raw_client.query_alerts(
             meta=meta,
@@ -576,15 +480,6 @@ class EdrClient:
         Returns
         -------
         QueryIocsResponse
-
-        Examples
-        --------
-        from synqly import SynqlyEngine
-
-        client = SynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-        client.edr.query_iocs()
         """
         _response = self._raw_client.query_iocs(
             meta=meta,
@@ -621,45 +516,6 @@ class EdrClient:
         Returns
         -------
         CreateIocsResponse
-
-        Examples
-        --------
-        import datetime
-
-        from synqly import SynqlyEngine
-        from synqly.stix.indicator import Indicator
-
-        client = SynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-        client.edr.create_iocs(
-            indicators=[
-                Indicator(
-                    valid_from=datetime.datetime.fromisoformat(
-                        "2024-01-15 09:30:00+00:00",
-                    ),
-                    id="id",
-                    created=datetime.datetime.fromisoformat(
-                        "2024-01-15 09:30:00+00:00",
-                    ),
-                    modified=datetime.datetime.fromisoformat(
-                        "2024-01-15 09:30:00+00:00",
-                    ),
-                ),
-                Indicator(
-                    valid_from=datetime.datetime.fromisoformat(
-                        "2024-01-15 09:30:00+00:00",
-                    ),
-                    id="id",
-                    created=datetime.datetime.fromisoformat(
-                        "2024-01-15 09:30:00+00:00",
-                    ),
-                    modified=datetime.datetime.fromisoformat(
-                        "2024-01-15 09:30:00+00:00",
-                    ),
-                ),
-            ],
-        )
         """
         _response = self._raw_client.create_iocs(indicators=indicators, meta=meta, request_options=request_options)
         return _response.data
@@ -688,15 +544,6 @@ class EdrClient:
         Returns
         -------
         DeleteIocsResponse
-
-        Examples
-        --------
-        from synqly import SynqlyEngine
-
-        client = SynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-        client.edr.delete_iocs()
         """
         _response = self._raw_client.delete_iocs(meta=meta, ids=ids, request_options=request_options)
         return _response.data
@@ -741,15 +588,6 @@ class EdrClient:
         Returns
         -------
         QueryIoaResponse
-
-        Examples
-        --------
-        from synqly import SynqlyEngine
-
-        client = SynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-        client.edr.query_ioa()
         """
         _response = self._raw_client.query_ioa(
             meta=meta,
@@ -777,20 +615,6 @@ class EdrClient:
         Returns
         -------
         CreateIoaResponse
-
-        Examples
-        --------
-        from synqly import SynqlyEngine
-        from synqly.edr import Ioa
-
-        client = SynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-        client.edr.create_ioa(
-            ioa=Ioa(
-                name="name",
-            ),
-        )
         """
         _response = self._raw_client.create_ioa(ioa=ioa, request_options=request_options)
         return _response.data
@@ -823,15 +647,6 @@ class EdrClient:
         Returns
         -------
         DeleteIoaResponse
-
-        Examples
-        --------
-        from synqly import SynqlyEngine
-
-        client = SynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-        client.edr.delete_ioa()
         """
         _response = self._raw_client.delete_ioa(meta=meta, ids=ids, group_id=group_id, request_options=request_options)
         return _response.data
@@ -876,15 +691,6 @@ class EdrClient:
         Returns
         -------
         QueryPostureScoreResponse
-
-        Examples
-        --------
-        from synqly import SynqlyEngine
-
-        client = SynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-        client.edr.query_posture_score()
         """
         _response = self._raw_client.query_posture_score(
             meta=meta,
@@ -943,15 +749,6 @@ class EdrClient:
         Returns
         -------
         QueryEdrEventsResponse
-
-        Examples
-        --------
-        from synqly import SynqlyEngine
-
-        client = SynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-        client.edr.query_edr_events()
         """
         _response = self._raw_client.query_edr_events(
             meta=meta,
@@ -996,17 +793,6 @@ class EdrClient:
         Returns
         -------
         GetThreatNotesResponse
-
-        Examples
-        --------
-        from synqly import SynqlyEngine
-
-        client = SynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-        client.edr.get_threat_notes(
-            threat_id="threatId",
-        )
         """
         _response = self._raw_client.get_threat_notes(
             threat_id, meta=meta, limit=limit, cursor=cursor, request_options=request_options
@@ -1040,40 +826,6 @@ class EdrClient:
         Returns
         -------
         CreateThreatNoteResponse
-
-        Examples
-        --------
-        from synqly import SynqlyEngine
-        from synqly.ocsf.v_1_8_0.noteactivity.classes import NoteActivity
-        from synqly.ocsf.v_1_8_0.objects import (
-            Annotation,
-            FindingInfo,
-            Metadata,
-            Product,
-        )
-
-        client = SynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-        client.edr.create_threat_note(
-            threat_id="threatId",
-            note=NoteActivity(
-                activity_id=1,
-                category_uid=1,
-                class_uid=1,
-                finding_info=FindingInfo(
-                    uid="uid",
-                ),
-                metadata=Metadata(
-                    product=Product(),
-                    version="version",
-                ),
-                note=Annotation(),
-                severity_id=1,
-                time=1,
-                type_uid=1,
-            ),
-        )
         """
         _response = self._raw_client.create_threat_note(
             threat_id, note=note, meta=meta, request_options=request_options
@@ -1136,23 +888,6 @@ class AsyncEdrClient:
         Returns
         -------
         QueryEndpointsResponse
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyEngine
-
-        client = AsyncSynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.edr.query_endpoints()
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.query_endpoints(
             meta=meta,
@@ -1188,25 +923,6 @@ class AsyncEdrClient:
         Returns
         -------
         GetEndpointResponse
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyEngine
-
-        client = AsyncSynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.edr.get_endpoint(
-                id="id",
-            )
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.get_endpoint(id, meta=meta, request_options=request_options)
         return _response.data
@@ -1242,26 +958,6 @@ class AsyncEdrClient:
         Returns
         -------
         ExecuteCommandResponse
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyEngine
-
-        client = AsyncSynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.edr.execute_command(
-                uid="uid",
-                command="command",
-            )
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.execute_command(
             uid, command=command, meta=meta, cursor=cursor, request_options=request_options
@@ -1303,26 +999,6 @@ class AsyncEdrClient:
         Returns
         -------
         ExecuteRemoteScriptResponse
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyEngine
-
-        client = AsyncSynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.edr.execute_remote_script(
-                uid="uid",
-                script="script",
-            )
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.execute_remote_script(
             uid, script=script, meta=meta, args=args, cursor=cursor, request_options=request_options
@@ -1356,26 +1032,6 @@ class AsyncEdrClient:
         Returns
         -------
         typing.AsyncIterator[bytes]
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyEngine
-
-        client = AsyncSynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.edr.retrieve_file(
-                uid="uid",
-                path="path",
-            )
-
-
-        asyncio.run(main())
         """
         async with self._raw_client.retrieve_file(
             uid, path=path, password=password, request_options=request_options
@@ -1423,23 +1079,6 @@ class AsyncEdrClient:
         Returns
         -------
         QueryApplicationsResponse
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyEngine
-
-        client = AsyncSynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.edr.query_applications()
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.query_applications(
             meta=meta,
@@ -1488,27 +1127,6 @@ class AsyncEdrClient:
         Returns
         -------
         NetworkQuarantineResponse
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyEngine
-        from synqly.edr import ConnectionState
-
-        client = AsyncSynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.edr.network_quarantine(
-                state=ConnectionState.CONNECT,
-                endpoint_ids=["endpoint_ids", "endpoint_ids"],
-            )
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.network_quarantine(
             state=state,
@@ -1560,23 +1178,6 @@ class AsyncEdrClient:
         Returns
         -------
         QueryThreatsResponse
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyEngine
-
-        client = AsyncSynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.edr.query_threatevents()
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.query_threatevents(
             meta=meta,
@@ -1629,23 +1230,6 @@ class AsyncEdrClient:
         Returns
         -------
         QueryAlertsResponse
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyEngine
-
-        client = AsyncSynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.edr.query_alerts()
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.query_alerts(
             meta=meta,
@@ -1698,23 +1282,6 @@ class AsyncEdrClient:
         Returns
         -------
         QueryIocsResponse
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyEngine
-
-        client = AsyncSynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.edr.query_iocs()
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.query_iocs(
             meta=meta,
@@ -1751,52 +1318,6 @@ class AsyncEdrClient:
         Returns
         -------
         CreateIocsResponse
-
-        Examples
-        --------
-        import asyncio
-        import datetime
-
-        from synqly import AsyncSynqlyEngine
-        from synqly.stix.indicator import Indicator
-
-        client = AsyncSynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.edr.create_iocs(
-                indicators=[
-                    Indicator(
-                        valid_from=datetime.datetime.fromisoformat(
-                            "2024-01-15 09:30:00+00:00",
-                        ),
-                        id="id",
-                        created=datetime.datetime.fromisoformat(
-                            "2024-01-15 09:30:00+00:00",
-                        ),
-                        modified=datetime.datetime.fromisoformat(
-                            "2024-01-15 09:30:00+00:00",
-                        ),
-                    ),
-                    Indicator(
-                        valid_from=datetime.datetime.fromisoformat(
-                            "2024-01-15 09:30:00+00:00",
-                        ),
-                        id="id",
-                        created=datetime.datetime.fromisoformat(
-                            "2024-01-15 09:30:00+00:00",
-                        ),
-                        modified=datetime.datetime.fromisoformat(
-                            "2024-01-15 09:30:00+00:00",
-                        ),
-                    ),
-                ],
-            )
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.create_iocs(
             indicators=indicators, meta=meta, request_options=request_options
@@ -1827,23 +1348,6 @@ class AsyncEdrClient:
         Returns
         -------
         DeleteIocsResponse
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyEngine
-
-        client = AsyncSynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.edr.delete_iocs()
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.delete_iocs(meta=meta, ids=ids, request_options=request_options)
         return _response.data
@@ -1888,23 +1392,6 @@ class AsyncEdrClient:
         Returns
         -------
         QueryIoaResponse
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyEngine
-
-        client = AsyncSynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.edr.query_ioa()
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.query_ioa(
             meta=meta,
@@ -1934,28 +1421,6 @@ class AsyncEdrClient:
         Returns
         -------
         CreateIoaResponse
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyEngine
-        from synqly.edr import Ioa
-
-        client = AsyncSynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.edr.create_ioa(
-                ioa=Ioa(
-                    name="name",
-                ),
-            )
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.create_ioa(ioa=ioa, request_options=request_options)
         return _response.data
@@ -1988,23 +1453,6 @@ class AsyncEdrClient:
         Returns
         -------
         DeleteIoaResponse
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyEngine
-
-        client = AsyncSynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.edr.delete_ioa()
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.delete_ioa(
             meta=meta, ids=ids, group_id=group_id, request_options=request_options
@@ -2051,23 +1499,6 @@ class AsyncEdrClient:
         Returns
         -------
         QueryPostureScoreResponse
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyEngine
-
-        client = AsyncSynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.edr.query_posture_score()
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.query_posture_score(
             meta=meta,
@@ -2126,23 +1557,6 @@ class AsyncEdrClient:
         Returns
         -------
         QueryEdrEventsResponse
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyEngine
-
-        client = AsyncSynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.edr.query_edr_events()
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.query_edr_events(
             meta=meta,
@@ -2187,25 +1601,6 @@ class AsyncEdrClient:
         Returns
         -------
         GetThreatNotesResponse
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyEngine
-
-        client = AsyncSynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.edr.get_threat_notes(
-                threat_id="threatId",
-            )
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.get_threat_notes(
             threat_id, meta=meta, limit=limit, cursor=cursor, request_options=request_options
@@ -2239,48 +1634,6 @@ class AsyncEdrClient:
         Returns
         -------
         CreateThreatNoteResponse
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyEngine
-        from synqly.ocsf.v_1_8_0.noteactivity.classes import NoteActivity
-        from synqly.ocsf.v_1_8_0.objects import (
-            Annotation,
-            FindingInfo,
-            Metadata,
-            Product,
-        )
-
-        client = AsyncSynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.edr.create_threat_note(
-                threat_id="threatId",
-                note=NoteActivity(
-                    activity_id=1,
-                    category_uid=1,
-                    class_uid=1,
-                    finding_info=FindingInfo(
-                        uid="uid",
-                    ),
-                    metadata=Metadata(
-                        product=Product(),
-                        version="version",
-                    ),
-                    note=Annotation(),
-                    severity_id=1,
-                    time=1,
-                    type_uid=1,
-                ),
-            )
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.create_threat_note(
             threat_id, note=note, meta=meta, request_options=request_options

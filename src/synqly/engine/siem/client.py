@@ -75,15 +75,6 @@ class SiemClient:
         Returns
         -------
         QueryInvestigationResponse
-
-        Examples
-        --------
-        from synqly import SynqlyEngine
-
-        client = SynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-        client.siem.query_investigations()
         """
         _response = self._raw_client.query_investigations(
             meta=meta,
@@ -124,17 +115,6 @@ class SiemClient:
         Returns
         -------
         GetInvestigationResponse
-
-        Examples
-        --------
-        from synqly import SynqlyEngine
-
-        client = SynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-        client.siem.get_investigation(
-            id="id",
-        )
         """
         _response = self._raw_client.get_investigation(
             id, meta=meta, include_raw_data=include_raw_data, request_options=request_options
@@ -168,28 +148,6 @@ class SiemClient:
         Returns
         -------
         GetInvestigationResponse
-
-        Examples
-        --------
-        from synqly import SynqlyEngine
-        from synqly.common import PatchOp, PatchOperation
-
-        client = SynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-        client.siem.patch_investigation(
-            id="id",
-            request=[
-                PatchOperation(
-                    op=PatchOp.ADD,
-                    path="path",
-                ),
-                PatchOperation(
-                    op=PatchOp.ADD,
-                    path="path",
-                ),
-            ],
-        )
         """
         _response = self._raw_client.patch_investigation(
             id, request=request, meta=meta, request_options=request_options
@@ -224,17 +182,6 @@ class SiemClient:
         Returns
         -------
         GetEvidenceResponse
-
-        Examples
-        --------
-        from synqly import SynqlyEngine
-
-        client = SynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-        client.siem.get_evidence(
-            id="id",
-        )
         """
         _response = self._raw_client.get_evidence(
             id, meta=meta, include_raw_data=include_raw_data, request_options=request_options
@@ -269,15 +216,6 @@ class SiemClient:
         Returns
         -------
         QueryLogProvidersResponse
-
-        Examples
-        --------
-        from synqly import SynqlyEngine
-
-        client = SynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-        client.siem.query_log_providers()
         """
         _response = self._raw_client.query_log_providers(
             meta=meta, cursor=cursor, limit=limit, request_options=request_options
@@ -307,46 +245,6 @@ class SiemClient:
         Returns
         -------
         CreateSiemEventsResponse
-
-        Examples
-        --------
-        from synqly import SynqlyEngine
-        from synqly.events import Event_AccountChange
-        from synqly.ocsf.v_1_3_0.objects import Metadata, Product, User
-
-        client = SynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-        client.siem.post_events(
-            request=[
-                Event_AccountChange(
-                    activity_id=1,
-                    category_uid=1,
-                    class_uid=1,
-                    metadata=Metadata(
-                        product=Product(),
-                        version="version",
-                    ),
-                    severity_id=1,
-                    time=1,
-                    type_uid=1,
-                    user=User(),
-                ),
-                Event_AccountChange(
-                    activity_id=1,
-                    category_uid=1,
-                    class_uid=1,
-                    metadata=Metadata(
-                        product=Product(),
-                        version="version",
-                    ),
-                    severity_id=1,
-                    time=1,
-                    type_uid=1,
-                    user=User(),
-                ),
-            ],
-        )
         """
         _response = self._raw_client.post_events(request=request, meta=meta, request_options=request_options)
         return _response.data
@@ -397,15 +295,6 @@ class SiemClient:
         Returns
         -------
         QuerySiemEventsResponse
-
-        Examples
-        --------
-        from synqly import SynqlyEngine
-
-        client = SynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-        client.siem.query_events()
         """
         _response = self._raw_client.query_events(
             cursor=cursor,
@@ -459,15 +348,6 @@ class SiemClient:
         Returns
         -------
         QuerySiemAlertsResponse
-
-        Examples
-        --------
-        from synqly import SynqlyEngine
-
-        client = SynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-        client.siem.query_alerts()
         """
         _response = self._raw_client.query_alerts(
             cursor=cursor,
@@ -508,17 +388,6 @@ class SiemClient:
         Returns
         -------
         GetAlertResponse
-
-        Examples
-        --------
-        from synqly import SynqlyEngine
-
-        client = SynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-        client.siem.get_alert(
-            id="id",
-        )
         """
         _response = self._raw_client.get_alert(
             id, meta=meta, include_raw_data=include_raw_data, request_options=request_options
@@ -581,23 +450,6 @@ class AsyncSiemClient:
         Returns
         -------
         QueryInvestigationResponse
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyEngine
-
-        client = AsyncSynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.siem.query_investigations()
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.query_investigations(
             meta=meta,
@@ -638,25 +490,6 @@ class AsyncSiemClient:
         Returns
         -------
         GetInvestigationResponse
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyEngine
-
-        client = AsyncSynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.siem.get_investigation(
-                id="id",
-            )
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.get_investigation(
             id, meta=meta, include_raw_data=include_raw_data, request_options=request_options
@@ -690,36 +523,6 @@ class AsyncSiemClient:
         Returns
         -------
         GetInvestigationResponse
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyEngine
-        from synqly.common import PatchOp, PatchOperation
-
-        client = AsyncSynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.siem.patch_investigation(
-                id="id",
-                request=[
-                    PatchOperation(
-                        op=PatchOp.ADD,
-                        path="path",
-                    ),
-                    PatchOperation(
-                        op=PatchOp.ADD,
-                        path="path",
-                    ),
-                ],
-            )
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.patch_investigation(
             id, request=request, meta=meta, request_options=request_options
@@ -754,25 +557,6 @@ class AsyncSiemClient:
         Returns
         -------
         GetEvidenceResponse
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyEngine
-
-        client = AsyncSynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.siem.get_evidence(
-                id="id",
-            )
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.get_evidence(
             id, meta=meta, include_raw_data=include_raw_data, request_options=request_options
@@ -807,23 +591,6 @@ class AsyncSiemClient:
         Returns
         -------
         QueryLogProvidersResponse
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyEngine
-
-        client = AsyncSynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.siem.query_log_providers()
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.query_log_providers(
             meta=meta, cursor=cursor, limit=limit, request_options=request_options
@@ -853,54 +620,6 @@ class AsyncSiemClient:
         Returns
         -------
         CreateSiemEventsResponse
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyEngine
-        from synqly.events import Event_AccountChange
-        from synqly.ocsf.v_1_3_0.objects import Metadata, Product, User
-
-        client = AsyncSynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.siem.post_events(
-                request=[
-                    Event_AccountChange(
-                        activity_id=1,
-                        category_uid=1,
-                        class_uid=1,
-                        metadata=Metadata(
-                            product=Product(),
-                            version="version",
-                        ),
-                        severity_id=1,
-                        time=1,
-                        type_uid=1,
-                        user=User(),
-                    ),
-                    Event_AccountChange(
-                        activity_id=1,
-                        category_uid=1,
-                        class_uid=1,
-                        metadata=Metadata(
-                            product=Product(),
-                            version="version",
-                        ),
-                        severity_id=1,
-                        time=1,
-                        type_uid=1,
-                        user=User(),
-                    ),
-                ],
-            )
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.post_events(request=request, meta=meta, request_options=request_options)
         return _response.data
@@ -951,23 +670,6 @@ class AsyncSiemClient:
         Returns
         -------
         QuerySiemEventsResponse
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyEngine
-
-        client = AsyncSynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.siem.query_events()
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.query_events(
             cursor=cursor,
@@ -1021,23 +723,6 @@ class AsyncSiemClient:
         Returns
         -------
         QuerySiemAlertsResponse
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyEngine
-
-        client = AsyncSynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.siem.query_alerts()
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.query_alerts(
             cursor=cursor,
@@ -1078,25 +763,6 @@ class AsyncSiemClient:
         Returns
         -------
         GetAlertResponse
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyEngine
-
-        client = AsyncSynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.siem.get_alert(
-                id="id",
-            )
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.get_alert(
             id, meta=meta, include_raw_data=include_raw_data, request_options=request_options

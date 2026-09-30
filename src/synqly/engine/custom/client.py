@@ -75,18 +75,6 @@ class CustomClient:
         Returns
         -------
         QueryCustomResponse
-
-        Examples
-        --------
-        from synqly import SynqlyEngine
-        from synqly.operation_id_generated import OperationId
-
-        client = SynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-        client.custom.query(
-            operation=OperationId.APPSEC_CREATE_FINDINGS,
-        )
         """
         _response = self._raw_client.query(
             operation,
@@ -132,19 +120,6 @@ class CustomClient:
         Returns
         -------
         GetCustomResponse
-
-        Examples
-        --------
-        from synqly import SynqlyEngine
-        from synqly.operation_id_generated import OperationId
-
-        client = SynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-        client.custom.get(
-            operation=OperationId.APPSEC_CREATE_FINDINGS,
-            id="id",
-        )
         """
         _response = self._raw_client.get(
             operation, id, meta=meta, include_raw_data=include_raw_data, request_options=request_options
@@ -182,30 +157,6 @@ class CustomClient:
         Returns
         -------
         GetCustomResponse
-
-        Examples
-        --------
-        from synqly import SynqlyEngine
-        from synqly.common import PatchOp, PatchOperation
-        from synqly.operation_id_generated import OperationId
-
-        client = SynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-        client.custom.patch(
-            operation=OperationId.APPSEC_CREATE_FINDINGS,
-            id="id",
-            request=[
-                PatchOperation(
-                    op=PatchOp.ADD,
-                    path="path",
-                ),
-                PatchOperation(
-                    op=PatchOp.ADD,
-                    path="path",
-                ),
-            ],
-        )
         """
         _response = self._raw_client.patch(operation, id, request=request, meta=meta, request_options=request_options)
         return _response.data
@@ -238,19 +189,6 @@ class CustomClient:
         Returns
         -------
         None
-
-        Examples
-        --------
-        from synqly import SynqlyEngine
-        from synqly.operation_id_generated import OperationId
-
-        client = SynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-        client.custom.delete(
-            operation=OperationId.APPSEC_CREATE_FINDINGS,
-            id="id",
-        )
         """
         _response = self._raw_client.delete(operation, id, meta=meta, request_options=request_options)
         return _response.data
@@ -282,19 +220,6 @@ class CustomClient:
         Returns
         -------
         CreateCustomResponse
-
-        Examples
-        --------
-        from synqly import SynqlyEngine
-        from synqly.operation_id_generated import OperationId
-
-        client = SynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-        client.custom.post(
-            operation=OperationId.APPSEC_CREATE_FINDINGS,
-            request={"string": {"key": "value"}},
-        )
         """
         _response = self._raw_client.post(operation, request=request, meta=meta, request_options=request_options)
         return _response.data
@@ -326,19 +251,6 @@ class CustomClient:
         Returns
         -------
         CreateBatchCustomResponse
-
-        Examples
-        --------
-        from synqly import SynqlyEngine
-        from synqly.operation_id_generated import OperationId
-
-        client = SynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-        client.custom.post_batch(
-            operation=OperationId.APPSEC_CREATE_FINDINGS,
-            request=[{"string": {"key": "value"}}, {"string": {"key": "value"}}],
-        )
         """
         _response = self._raw_client.post_batch(operation, request=request, meta=meta, request_options=request_options)
         return _response.data
@@ -403,26 +315,6 @@ class AsyncCustomClient:
         Returns
         -------
         QueryCustomResponse
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyEngine
-        from synqly.operation_id_generated import OperationId
-
-        client = AsyncSynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.custom.query(
-                operation=OperationId.APPSEC_CREATE_FINDINGS,
-            )
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.query(
             operation,
@@ -468,27 +360,6 @@ class AsyncCustomClient:
         Returns
         -------
         GetCustomResponse
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyEngine
-        from synqly.operation_id_generated import OperationId
-
-        client = AsyncSynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.custom.get(
-                operation=OperationId.APPSEC_CREATE_FINDINGS,
-                id="id",
-            )
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.get(
             operation, id, meta=meta, include_raw_data=include_raw_data, request_options=request_options
@@ -526,38 +397,6 @@ class AsyncCustomClient:
         Returns
         -------
         GetCustomResponse
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyEngine
-        from synqly.common import PatchOp, PatchOperation
-        from synqly.operation_id_generated import OperationId
-
-        client = AsyncSynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.custom.patch(
-                operation=OperationId.APPSEC_CREATE_FINDINGS,
-                id="id",
-                request=[
-                    PatchOperation(
-                        op=PatchOp.ADD,
-                        path="path",
-                    ),
-                    PatchOperation(
-                        op=PatchOp.ADD,
-                        path="path",
-                    ),
-                ],
-            )
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.patch(
             operation, id, request=request, meta=meta, request_options=request_options
@@ -592,27 +431,6 @@ class AsyncCustomClient:
         Returns
         -------
         None
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyEngine
-        from synqly.operation_id_generated import OperationId
-
-        client = AsyncSynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.custom.delete(
-                operation=OperationId.APPSEC_CREATE_FINDINGS,
-                id="id",
-            )
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.delete(operation, id, meta=meta, request_options=request_options)
         return _response.data
@@ -644,27 +462,6 @@ class AsyncCustomClient:
         Returns
         -------
         CreateCustomResponse
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyEngine
-        from synqly.operation_id_generated import OperationId
-
-        client = AsyncSynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.custom.post(
-                operation=OperationId.APPSEC_CREATE_FINDINGS,
-                request={"string": {"key": "value"}},
-            )
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.post(operation, request=request, meta=meta, request_options=request_options)
         return _response.data
@@ -696,27 +493,6 @@ class AsyncCustomClient:
         Returns
         -------
         CreateBatchCustomResponse
-
-        Examples
-        --------
-        import asyncio
-
-        from synqly import AsyncSynqlyEngine
-        from synqly.operation_id_generated import OperationId
-
-        client = AsyncSynqlyEngine(
-            token="YOUR_TOKEN",
-        )
-
-
-        async def main() -> None:
-            await client.custom.post_batch(
-                operation=OperationId.APPSEC_CREATE_FINDINGS,
-                request=[{"string": {"key": "value"}}, {"string": {"key": "value"}}],
-            )
-
-
-        asyncio.run(main())
         """
         _response = await self._raw_client.post_batch(
             operation, request=request, meta=meta, request_options=request_options
