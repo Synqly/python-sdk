@@ -6,6 +6,8 @@ This example demonstrates how to use Synqly Python SDK to create an Assets Integ
 
 # Standard imports
 import sys
+import time
+import random
 import argparse
 import configparser
 import httpx
@@ -24,9 +26,19 @@ from synqly import engine
 from synqly import management as mgmt
 from synqly.management.client import SynqlyManagement
 
-TENANT_ARMIS_NAME = "Tenant Armis Centrix"
-TENANT_NOZOMI_NAME = "Tenant Nozomi Vantage"
-TENANT_SERVICENOW_NAME = "Tenant ServiceNow"
+def unique_name(base):
+    """
+    Appends a short unique suffix to a base name to create a unique name.
+    """
+    return "{} {}-{:04d}".format(base, time.time_ns(), random.randint(0, 9999))
+
+
+# Computed once at module load so every reference below (create, configure,
+# credential, prints, and clean_example's matching) uses the same value for
+# this run.
+TENANT_ARMIS_NAME = unique_name("Tenant Armis Centrix")
+TENANT_NOZOMI_NAME = unique_name("Tenant Nozomi Vantage")
+TENANT_SERVICENOW_NAME = unique_name("Tenant ServiceNow")
 
 def clean_example(app: utils.App, app_config: any):
     if app != None and len(app.tenants) > 0:

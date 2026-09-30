@@ -6,6 +6,8 @@ This example demonstrates how to use Synqly Python SDK to create an Identity Int
 
 import os
 import sys
+import time
+import random
 import argparse
 import configparser
 import httpx
@@ -23,9 +25,19 @@ from shared import utils
 from synqly import management as mgmt
 from synqly.management.client import SynqlyManagement
 
-TENANT_GOOGLE_NAME = "Tenant Google"
-TENANT_OKTA_NAME = "Tenant Okta"
-TENANT_PINGONE_NAME = "Tenant PingOne"
+def unique_name(base):
+    """
+    Appends a short unique suffix to a base name to create a unique name.
+    """
+    return "{} {}-{:04d}".format(base, time.time_ns(), random.randint(0, 9999))
+
+
+# Computed once at module load so every reference below (create, configure,
+# credential, prints, and clean_example's matching) uses the same value for
+# this run.
+TENANT_GOOGLE_NAME = unique_name("Tenant Google")
+TENANT_OKTA_NAME = unique_name("Tenant Okta")
+TENANT_PINGONE_NAME = unique_name("Tenant PingOne")
 
 def clean_example(app: utils.App, app_config: any):
     if app != None and len(app.tenants) > 0:

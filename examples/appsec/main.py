@@ -1,4 +1,6 @@
 import sys
+import time
+import random
 import argparse
 import configparser
 import pprint
@@ -10,8 +12,19 @@ from synqly.management.client import SynqlyManagement
 from synqly import engine
 from synqly.engine.client import SynqlyEngine
 
-TENANT_NAME = "AppSec Tenant"
 BASE_URL = "https://api.synqly.com"
+
+
+def unique_name(base):
+    """
+    Appends a short unique suffix to a base name to create a unique name.
+    """
+    return "{} {}-{:04d}".format(base, time.time_ns(), random.randint(0, 9999))
+
+
+# Computed once at module load so the account create below uses a stable
+# per-run name.
+ACCOUNT_NAME = unique_name("AppSec Example")
 
 def parse_args():
     parser = argparse.ArgumentParser(
@@ -159,7 +172,7 @@ def main():
     )
 
     # create an account
-    account_response = mgmt_client.accounts.create(fullname="AppSec Example")
+    account_response = mgmt_client.accounts.create(fullname=ACCOUNT_NAME)
     account_id = account_response.result.account.id
 
     integration_ids: list[str] = []

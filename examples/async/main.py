@@ -10,6 +10,7 @@ import argparse
 import configparser
 import httpx
 import time
+import random
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
@@ -26,7 +27,17 @@ from synqly import engine
 from synqly import management as mgmt
 from synqly.management.client import SynqlyManagement
 
-TENANT_SERVICENOW_NAME = "Tenant ServiceNow"
+def unique_name(base):
+    """
+    Appends a short unique suffix to a base name to create a unique name.
+    """
+    return "{} {}-{:04d}".format(base, time.time_ns(), random.randint(0, 9999))
+
+
+# Computed once at module load so every reference below (create, configure,
+# credential, prints, and clean_example's matching) uses the same value for
+# this run.
+TENANT_SERVICENOW_NAME = unique_name("Tenant ServiceNow")
 
 def clean_async(account_id: str, async_mgmt: SynqlyManagement, tenant: utils.Tenant):
     if tenant != None:

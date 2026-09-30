@@ -7,6 +7,8 @@ Notifications Integration for a tenant.
 
 # Standard imports
 import sys
+import time
+import random
 import argparse
 import httpx
 from pathlib import Path
@@ -24,7 +26,17 @@ from synqly import engine
 from synqly import management as mgmt
 from synqly.management.client import SynqlyManagement
 
-TENANT_NAME = "Notifier Co"
+def unique_name(base):
+    """
+    Appends a short unique suffix to a base name to create a unique name.
+    """
+    return "{} {}-{:04d}".format(base, time.time_ns(), random.randint(0, 9999))
+
+
+# Computed once at module load so every reference below (create, configure,
+# credential, prints, and clean_example's matching) uses the same value for
+# this run.
+TENANT_NAME = unique_name("Notifier Co")
 
 def clean_example(app: utils.App, synqly_org_token: str):
     if app != None and len(app.tenants) > 0:

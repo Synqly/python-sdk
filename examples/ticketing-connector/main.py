@@ -12,6 +12,7 @@ import httpx
 from pathlib import Path
 import sys
 import time
+import random
 
 # Add the root directory to the system path so that we can import common
 # Application logic.
@@ -26,7 +27,17 @@ from synqly import engine
 from synqly import management as mgmt
 from synqly.management.client import SynqlyManagement
 
-TENANT_NAME = "Golden Ticket Solutions"
+def unique_name(base):
+    """
+    Appends a short unique suffix to a base name to create a unique name.
+    """
+    return "{} {}-{:04d}".format(base, time.time_ns(), random.randint(0, 9999))
+
+
+# Computed once at module load so every reference below (create, configure,
+# credential, prints, and clean_example's matching) uses the same value for
+# this run.
+TENANT_NAME = unique_name("Golden Ticket Solutions")
 
 def clean_example(app: utils.App, synqly_org_token: str):
     if app != None and len(app.tenants) > 0:

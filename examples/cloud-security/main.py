@@ -1,4 +1,6 @@
 import sys
+import time
+import random
 import argparse
 import configparser
 import pprint
@@ -9,7 +11,18 @@ from synqly import management as mgmt
 from synqly.management.client import SynqlyManagement
 from synqly.engine.client import SynqlyEngine
 
-TENANT_NAME = "Cloud Security Tenant"
+
+def unique_name(base):
+    """
+    Appends a short unique suffix to a base name to create a unique name.
+    """
+    return "{} {}-{:04d}".format(base, time.time_ns(), random.randint(0, 9999))
+
+
+# Computed once at module load so every reference below (create, configure,
+# credential, prints, and clean_example's matching) uses the same value for
+# this run.
+TENANT_NAME = unique_name("Cloud Security Tenant")
 BASE_URL = "https://api.synqly.com"
 
 
