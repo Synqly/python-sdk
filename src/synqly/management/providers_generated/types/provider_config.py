@@ -1476,6 +1476,7 @@ class ProviderConfig_NetworksecurityAzure(UncheckedBaseModel):
     type: typing.Literal["networksecurity_azure"] = "networksecurity_azure"
     azure_cloud: typing.Optional[AzureCloud] = None
     credential: AzureNetworkSecurityCredential
+    dns_log_configuration_ids: typing.Optional[typing.List[str]] = None
     subscription_id: str
     tenant_id: str
     traffic_log_configuration_ids: typing.Optional[typing.List[str]] = None

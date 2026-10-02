@@ -11,7 +11,7 @@ from .azure_network_security_credential import AzureNetworkSecurityCredential
 
 class NetworkSecurityAzure(UncheckedBaseModel):
     """
-    Connect Synqly to Azure Network Watcher flow logs.
+    Configuration for the Microsoft Azure Network Security Provider.
 
     [Configuration guide](https://docs.synqly.com/guides/provider-configuration/azure-networksecurity-setup)
     """
@@ -23,12 +23,17 @@ class NetworkSecurityAzure(UncheckedBaseModel):
 
     credential: AzureNetworkSecurityCredential = pydantic.Field()
     """
-    Client ID and secret for an Entra app that can read Network Watcher flow logs and their storage.
+    Client ID and secret for the Entra app.
+    """
+
+    dns_log_configuration_ids: typing.Optional[typing.List[str]] = pydantic.Field(default=None)
+    """
+    Optional list of DNS log configuration IDs, in the form `{resourceId}|{category}`. Leave empty to include all DNS logging in the subscription.
     """
 
     subscription_id: str = pydantic.Field()
     """
-    Azure subscription that owns the flow logs.
+    Azure subscription that owns the flow logs and DNS security policies.
     """
 
     tenant_id: str = pydantic.Field()
