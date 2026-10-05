@@ -59,8 +59,10 @@ class OperationId(enum.StrEnum):
     EDR_QUERY_APPLICATIONS = "edr_query_applications"
     EDR_QUERY_EDR_EVENTS = "edr_query_edr_events"
     EDR_QUERY_ENDPOINTS = "edr_query_endpoints"
+    EDR_QUERY_EXCLUSIONS = "edr_query_exclusions"
     EDR_QUERY_IOA = "edr_query_ioa"
     EDR_QUERY_IOCS = "edr_query_iocs"
+    EDR_QUERY_POLICIES = "edr_query_policies"
     EDR_QUERY_POSTURE_SCORE = "edr_query_posture_score"
     EDR_QUERY_THREATEVENTS = "edr_query_threatevents"
     EDR_RETRIEVE_FILE = "edr_retrieve_file"
@@ -228,8 +230,10 @@ class OperationId(enum.StrEnum):
         edr_query_applications: typing.Callable[[], T_Result],
         edr_query_edr_events: typing.Callable[[], T_Result],
         edr_query_endpoints: typing.Callable[[], T_Result],
+        edr_query_exclusions: typing.Callable[[], T_Result],
         edr_query_ioa: typing.Callable[[], T_Result],
         edr_query_iocs: typing.Callable[[], T_Result],
+        edr_query_policies: typing.Callable[[], T_Result],
         edr_query_posture_score: typing.Callable[[], T_Result],
         edr_query_threatevents: typing.Callable[[], T_Result],
         edr_retrieve_file: typing.Callable[[], T_Result],
@@ -437,10 +441,14 @@ class OperationId(enum.StrEnum):
             return edr_query_edr_events()
         if self is OperationId.EDR_QUERY_ENDPOINTS:
             return edr_query_endpoints()
+        if self is OperationId.EDR_QUERY_EXCLUSIONS:
+            return edr_query_exclusions()
         if self is OperationId.EDR_QUERY_IOA:
             return edr_query_ioa()
         if self is OperationId.EDR_QUERY_IOCS:
             return edr_query_iocs()
+        if self is OperationId.EDR_QUERY_POLICIES:
+            return edr_query_policies()
         if self is OperationId.EDR_QUERY_POSTURE_SCORE:
             return edr_query_posture_score()
         if self is OperationId.EDR_QUERY_THREATEVENTS:

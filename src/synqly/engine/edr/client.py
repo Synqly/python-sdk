@@ -25,8 +25,10 @@ from .types.query_alerts_response import QueryAlertsResponse
 from .types.query_applications_response import QueryApplicationsResponse
 from .types.query_edr_events_response import QueryEdrEventsResponse
 from .types.query_endpoints_response import QueryEndpointsResponse
+from .types.query_exclusions_response import QueryExclusionsResponse
 from .types.query_ioa_response import QueryIoaResponse
 from .types.query_iocs_response import QueryIocsResponse
+from .types.query_policies_response import QueryPoliciesResponse
 from .types.query_posture_score_response import QueryPostureScoreResponse
 from .types.query_threats_response import QueryThreatsResponse
 
@@ -649,6 +651,110 @@ class EdrClient:
         DeleteIoaResponse
         """
         _response = self._raw_client.delete_ioa(meta=meta, ids=ids, group_id=group_id, request_options=request_options)
+        return _response.data
+
+    def query_exclusions(
+        self,
+        *,
+        meta: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
+        limit: typing.Optional[int] = None,
+        cursor: typing.Optional[str] = None,
+        order: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
+        filter: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
+        include_raw_data: typing.Optional[bool] = None,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> QueryExclusionsResponse:
+        """
+        Returns the exclusions configured in the token-linked EDR source as OCSF Compliance Findings, one per exclusion rule, with the rule's pattern, type, platform, owner and scope. By default only admin-created exclusions are returned; filter `resource.owner.type[in]Admin,System` to include rules the vendor manages.
+
+        Parameters
+        ----------
+        meta : typing.Optional[typing.Union[str, typing.Sequence[str]]]
+            Add metadata to the response by invoking meta functions. Documentation for [meta functions](https://docs.synqly.com/api-reference/meta-functions) is available. Not all meta functions are available at every endpoint.
+
+        limit : typing.Optional[int]
+            Number of exclusions to return. Defaults to 50.
+
+        cursor : typing.Optional[str]
+            Start search from cursor position.
+
+        order : typing.Optional[typing.Union[str, typing.Sequence[str]]]
+            Select a field to order the results by. To control the direction of the sorting, append `[asc]` or `[desc]` to the field name. For example, `created_time[desc]` will sort the results by `created_time` in descending order. The ordering defaults to `asc` if not specified.
+
+        filter : typing.Optional[typing.Union[str, typing.Sequence[str]]]
+            Filter results by this query. For more information on filtering, refer to our [Filtering Guide](https://docs.synqly.com/guides/connectors/edr/query-filters). Defaults to no filter. If used more than once, the queries are ANDed together.
+
+        include_raw_data : typing.Optional[bool]
+            Include the raw data from the EDR in the response. Defaults to `false`.
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        QueryExclusionsResponse
+        """
+        _response = self._raw_client.query_exclusions(
+            meta=meta,
+            limit=limit,
+            cursor=cursor,
+            order=order,
+            filter=filter,
+            include_raw_data=include_raw_data,
+            request_options=request_options,
+        )
+        return _response.data
+
+    def query_policies(
+        self,
+        *,
+        meta: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
+        limit: typing.Optional[int] = None,
+        cursor: typing.Optional[str] = None,
+        order: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
+        filter: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
+        include_raw_data: typing.Optional[bool] = None,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> QueryPoliciesResponse:
+        """
+        Returns the protection policy at one level of the token-linked EDR source's policy tree (global, account, site or group; `resource.type` selects the level and defaults to global) as OCSF Compliance Findings, one per scope at that level, with each recommended setting as an assessment and the vendor policy setting that decided it. Findings describe the policy at the requested level; overrides below it are not reflected.
+
+        Parameters
+        ----------
+        meta : typing.Optional[typing.Union[str, typing.Sequence[str]]]
+            Add metadata to the response by invoking meta functions. Documentation for [meta functions](https://docs.synqly.com/api-reference/meta-functions) is available. Not all meta functions are available at every endpoint.
+
+        limit : typing.Optional[int]
+            Number of findings to return. Defaults to 50.
+
+        cursor : typing.Optional[str]
+            Start search from cursor position.
+
+        order : typing.Optional[typing.Union[str, typing.Sequence[str]]]
+            Select a field to order the results by. To control the direction of the sorting, append `[asc]` or `[desc]` to the field name. For example, `created_time[desc]` will sort the results by `created_time` in descending order. The ordering defaults to `asc` if not specified.
+
+        filter : typing.Optional[typing.Union[str, typing.Sequence[str]]]
+            Filter results by this query. For more information on filtering, refer to our [Filtering Guide](https://docs.synqly.com/guides/connectors/edr/query-filters). Defaults to no filter. If used more than once, the queries are ANDed together.
+
+        include_raw_data : typing.Optional[bool]
+            Include the raw data from the EDR in the response. Defaults to `false`.
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        QueryPoliciesResponse
+        """
+        _response = self._raw_client.query_policies(
+            meta=meta,
+            limit=limit,
+            cursor=cursor,
+            order=order,
+            filter=filter,
+            include_raw_data=include_raw_data,
+            request_options=request_options,
+        )
         return _response.data
 
     def query_posture_score(
@@ -1456,6 +1562,110 @@ class AsyncEdrClient:
         """
         _response = await self._raw_client.delete_ioa(
             meta=meta, ids=ids, group_id=group_id, request_options=request_options
+        )
+        return _response.data
+
+    async def query_exclusions(
+        self,
+        *,
+        meta: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
+        limit: typing.Optional[int] = None,
+        cursor: typing.Optional[str] = None,
+        order: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
+        filter: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
+        include_raw_data: typing.Optional[bool] = None,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> QueryExclusionsResponse:
+        """
+        Returns the exclusions configured in the token-linked EDR source as OCSF Compliance Findings, one per exclusion rule, with the rule's pattern, type, platform, owner and scope. By default only admin-created exclusions are returned; filter `resource.owner.type[in]Admin,System` to include rules the vendor manages.
+
+        Parameters
+        ----------
+        meta : typing.Optional[typing.Union[str, typing.Sequence[str]]]
+            Add metadata to the response by invoking meta functions. Documentation for [meta functions](https://docs.synqly.com/api-reference/meta-functions) is available. Not all meta functions are available at every endpoint.
+
+        limit : typing.Optional[int]
+            Number of exclusions to return. Defaults to 50.
+
+        cursor : typing.Optional[str]
+            Start search from cursor position.
+
+        order : typing.Optional[typing.Union[str, typing.Sequence[str]]]
+            Select a field to order the results by. To control the direction of the sorting, append `[asc]` or `[desc]` to the field name. For example, `created_time[desc]` will sort the results by `created_time` in descending order. The ordering defaults to `asc` if not specified.
+
+        filter : typing.Optional[typing.Union[str, typing.Sequence[str]]]
+            Filter results by this query. For more information on filtering, refer to our [Filtering Guide](https://docs.synqly.com/guides/connectors/edr/query-filters). Defaults to no filter. If used more than once, the queries are ANDed together.
+
+        include_raw_data : typing.Optional[bool]
+            Include the raw data from the EDR in the response. Defaults to `false`.
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        QueryExclusionsResponse
+        """
+        _response = await self._raw_client.query_exclusions(
+            meta=meta,
+            limit=limit,
+            cursor=cursor,
+            order=order,
+            filter=filter,
+            include_raw_data=include_raw_data,
+            request_options=request_options,
+        )
+        return _response.data
+
+    async def query_policies(
+        self,
+        *,
+        meta: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
+        limit: typing.Optional[int] = None,
+        cursor: typing.Optional[str] = None,
+        order: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
+        filter: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
+        include_raw_data: typing.Optional[bool] = None,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> QueryPoliciesResponse:
+        """
+        Returns the protection policy at one level of the token-linked EDR source's policy tree (global, account, site or group; `resource.type` selects the level and defaults to global) as OCSF Compliance Findings, one per scope at that level, with each recommended setting as an assessment and the vendor policy setting that decided it. Findings describe the policy at the requested level; overrides below it are not reflected.
+
+        Parameters
+        ----------
+        meta : typing.Optional[typing.Union[str, typing.Sequence[str]]]
+            Add metadata to the response by invoking meta functions. Documentation for [meta functions](https://docs.synqly.com/api-reference/meta-functions) is available. Not all meta functions are available at every endpoint.
+
+        limit : typing.Optional[int]
+            Number of findings to return. Defaults to 50.
+
+        cursor : typing.Optional[str]
+            Start search from cursor position.
+
+        order : typing.Optional[typing.Union[str, typing.Sequence[str]]]
+            Select a field to order the results by. To control the direction of the sorting, append `[asc]` or `[desc]` to the field name. For example, `created_time[desc]` will sort the results by `created_time` in descending order. The ordering defaults to `asc` if not specified.
+
+        filter : typing.Optional[typing.Union[str, typing.Sequence[str]]]
+            Filter results by this query. For more information on filtering, refer to our [Filtering Guide](https://docs.synqly.com/guides/connectors/edr/query-filters). Defaults to no filter. If used more than once, the queries are ANDed together.
+
+        include_raw_data : typing.Optional[bool]
+            Include the raw data from the EDR in the response. Defaults to `false`.
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        QueryPoliciesResponse
+        """
+        _response = await self._raw_client.query_policies(
+            meta=meta,
+            limit=limit,
+            cursor=cursor,
+            order=order,
+            filter=filter,
+            include_raw_data=include_raw_data,
+            request_options=request_options,
         )
         return _response.data
 

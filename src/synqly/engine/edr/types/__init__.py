@@ -43,8 +43,10 @@ if typing.TYPE_CHECKING:
     from .query_applications_response import QueryApplicationsResponse
     from .query_edr_events_response import QueryEdrEventsResponse
     from .query_endpoints_response import QueryEndpointsResponse
+    from .query_exclusions_response import QueryExclusionsResponse
     from .query_ioa_response import QueryIoaResponse
     from .query_iocs_response import QueryIocsResponse
+    from .query_policies_response import QueryPoliciesResponse
     from .query_posture_score_response import QueryPostureScoreResponse
     from .query_threats_response import QueryThreatsResponse
     from .retrieve_file_request import RetrieveFileRequest
@@ -87,8 +89,10 @@ _dynamic_imports: typing.Dict[str, str] = {
     "QueryApplicationsResponse": ".query_applications_response",
     "QueryEdrEventsResponse": ".query_edr_events_response",
     "QueryEndpointsResponse": ".query_endpoints_response",
+    "QueryExclusionsResponse": ".query_exclusions_response",
     "QueryIoaResponse": ".query_ioa_response",
     "QueryIocsResponse": ".query_iocs_response",
+    "QueryPoliciesResponse": ".query_policies_response",
     "QueryPostureScoreResponse": ".query_posture_score_response",
     "QueryThreatsResponse": ".query_threats_response",
     "RetrieveFileRequest": ".retrieve_file_request",
@@ -155,8 +159,10 @@ __all__ = [
     "QueryApplicationsResponse",
     "QueryEdrEventsResponse",
     "QueryEndpointsResponse",
+    "QueryExclusionsResponse",
     "QueryIoaResponse",
     "QueryIocsResponse",
+    "QueryPoliciesResponse",
     "QueryPostureScoreResponse",
     "QueryThreatsResponse",
     "RetrieveFileRequest",
