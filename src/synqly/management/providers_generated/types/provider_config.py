@@ -35,6 +35,7 @@ from .azure_cloud import AzureCloud
 from .azure_dev_ops_ticketing_credential import AzureDevOpsTicketingCredential
 from .azure_monitor_logs_credential import AzureMonitorLogsCredential
 from .azure_network_security_credential import AzureNetworkSecurityCredential
+from .big_fix_credential import BigFixCredential
 from .bitdefender_credential import BitdefenderCredential
 from .bmc_helix_credential import BmcHelixCredential
 from .channel_join_behavior import ChannelJoinBehavior
@@ -1139,6 +1140,21 @@ class ProviderConfig_EndpointmanagementAutomox(UncheckedBaseModel):
     credential: AutomoxApiKeyCredential
     org_id: str
     url: typing.Optional[str] = None
+
+    if IS_PYDANTIC_V2:
+        model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow")  # type: ignore # Pydantic v2
+    else:
+
+        class Config:
+            smart_union = True
+            extra = pydantic.Extra.allow
+
+
+class ProviderConfig_EndpointmanagementBigfix(UncheckedBaseModel):
+    type: typing.Literal["endpointmanagement_bigfix"] = "endpointmanagement_bigfix"
+    credential: BigFixCredential
+    skip_verify: typing.Optional[bool] = None
+    url: str
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow")  # type: ignore # Pydantic v2
@@ -2884,6 +2900,7 @@ ProviderConfig = typing_extensions.Annotated[
         ProviderConfig_EmailsecurityMimecastCloudGatewayMock,
         ProviderConfig_EmailsecurityO365ManagementActivity,
         ProviderConfig_EndpointmanagementAutomox,
+        ProviderConfig_EndpointmanagementBigfix,
         ProviderConfig_EndpointmanagementIntune,
         ProviderConfig_EndpointmanagementIru,
         ProviderConfig_EndpointmanagementJamf,

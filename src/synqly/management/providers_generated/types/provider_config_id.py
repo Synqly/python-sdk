@@ -357,6 +357,11 @@ class ProviderConfigId(enum.StrEnum):
     Automox
     """
 
+    ENDPOINTMANAGEMENT_BIGFIX = "endpointmanagement_bigfix"
+    """
+    HCL BigFix
+    """
+
     ENDPOINTMANAGEMENT_INTUNE = "endpointmanagement_intune"
     """
     Microsoft Intune
@@ -999,6 +1004,7 @@ class ProviderConfigId(enum.StrEnum):
         email_security_mimecast_cloud_gateway_mock: typing.Callable[[], T_Result],
         email_security_o_365_management_activity: typing.Callable[[], T_Result],
         endpointmanagement_automox: typing.Callable[[], T_Result],
+        endpointmanagement_bigfix: typing.Callable[[], T_Result],
         endpointmanagement_intune: typing.Callable[[], T_Result],
         endpointmanagement_iru: typing.Callable[[], T_Result],
         endpointmanagement_jamf: typing.Callable[[], T_Result],
@@ -1251,6 +1257,8 @@ class ProviderConfigId(enum.StrEnum):
             return email_security_o_365_management_activity()
         if self is ProviderConfigId.ENDPOINTMANAGEMENT_AUTOMOX:
             return endpointmanagement_automox()
+        if self is ProviderConfigId.ENDPOINTMANAGEMENT_BIGFIX:
+            return endpointmanagement_bigfix()
         if self is ProviderConfigId.ENDPOINTMANAGEMENT_INTUNE:
             return endpointmanagement_intune()
         if self is ProviderConfigId.ENDPOINTMANAGEMENT_IRU:

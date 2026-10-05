@@ -105,6 +105,7 @@ if typing.TYPE_CHECKING:
         AzureNetworkSecurityCredential_OAuthClient,
         AzureNetworkSecurityCredential_OAuthClientId,
     )
+    from .big_fix_credential import BigFixCredential, BigFixCredential_Basic, BigFixCredential_BasicId
     from .bitdefender_credential import (
         BitdefenderCredential,
         BitdefenderCredential_Token,
@@ -219,6 +220,7 @@ if typing.TYPE_CHECKING:
     from .email_security_mimecast_cloud_gateway_mock import EmailSecurityMimecastCloudGatewayMock
     from .email_security_o_365_management_activity import EmailSecurityO365ManagementActivity
     from .endpointmanagement_automox import EndpointmanagementAutomox
+    from .endpointmanagement_bigfix import EndpointmanagementBigfix
     from .endpointmanagement_intune import EndpointmanagementIntune
     from .endpointmanagement_iru import EndpointmanagementIru
     from .endpointmanagement_jamf import EndpointmanagementJamf
@@ -479,6 +481,7 @@ if typing.TYPE_CHECKING:
         ProviderConfig_EmailsecurityMimecastCloudGatewayMock,
         ProviderConfig_EmailsecurityO365ManagementActivity,
         ProviderConfig_EndpointmanagementAutomox,
+        ProviderConfig_EndpointmanagementBigfix,
         ProviderConfig_EndpointmanagementIntune,
         ProviderConfig_EndpointmanagementIru,
         ProviderConfig_EndpointmanagementJamf,
@@ -900,6 +903,9 @@ _dynamic_imports: typing.Dict[str, str] = {
     "AzureNetworkSecurityCredential": ".azure_network_security_credential",
     "AzureNetworkSecurityCredential_OAuthClient": ".azure_network_security_credential",
     "AzureNetworkSecurityCredential_OAuthClientId": ".azure_network_security_credential",
+    "BigFixCredential": ".big_fix_credential",
+    "BigFixCredential_Basic": ".big_fix_credential",
+    "BigFixCredential_BasicId": ".big_fix_credential",
     "BitdefenderCredential": ".bitdefender_credential",
     "BitdefenderCredential_Token": ".bitdefender_credential",
     "BitdefenderCredential_TokenId": ".bitdefender_credential",
@@ -997,6 +1003,7 @@ _dynamic_imports: typing.Dict[str, str] = {
     "EmailSecurityMimecastCloudGatewayMock": ".email_security_mimecast_cloud_gateway_mock",
     "EmailSecurityO365ManagementActivity": ".email_security_o_365_management_activity",
     "EndpointmanagementAutomox": ".endpointmanagement_automox",
+    "EndpointmanagementBigfix": ".endpointmanagement_bigfix",
     "EndpointmanagementIntune": ".endpointmanagement_intune",
     "EndpointmanagementIru": ".endpointmanagement_iru",
     "EndpointmanagementJamf": ".endpointmanagement_jamf",
@@ -1263,6 +1270,7 @@ _dynamic_imports: typing.Dict[str, str] = {
     "ProviderConfig_EmailsecurityMimecastCloudGatewayMock": ".provider_config",
     "ProviderConfig_EmailsecurityO365ManagementActivity": ".provider_config",
     "ProviderConfig_EndpointmanagementAutomox": ".provider_config",
+    "ProviderConfig_EndpointmanagementBigfix": ".provider_config",
     "ProviderConfig_EndpointmanagementIntune": ".provider_config",
     "ProviderConfig_EndpointmanagementIru": ".provider_config",
     "ProviderConfig_EndpointmanagementJamf": ".provider_config",
@@ -1706,6 +1714,9 @@ __all__ = [
     "AzureNetworkSecurityCredential",
     "AzureNetworkSecurityCredential_OAuthClient",
     "AzureNetworkSecurityCredential_OAuthClientId",
+    "BigFixCredential",
+    "BigFixCredential_Basic",
+    "BigFixCredential_BasicId",
     "BitdefenderCredential",
     "BitdefenderCredential_Token",
     "BitdefenderCredential_TokenId",
@@ -1803,6 +1814,7 @@ __all__ = [
     "EmailSecurityMimecastCloudGatewayMock",
     "EmailSecurityO365ManagementActivity",
     "EndpointmanagementAutomox",
+    "EndpointmanagementBigfix",
     "EndpointmanagementIntune",
     "EndpointmanagementIru",
     "EndpointmanagementJamf",
@@ -2069,6 +2081,7 @@ __all__ = [
     "ProviderConfig_EmailsecurityMimecastCloudGatewayMock",
     "ProviderConfig_EmailsecurityO365ManagementActivity",
     "ProviderConfig_EndpointmanagementAutomox",
+    "ProviderConfig_EndpointmanagementBigfix",
     "ProviderConfig_EndpointmanagementIntune",
     "ProviderConfig_EndpointmanagementIru",
     "ProviderConfig_EndpointmanagementJamf",
