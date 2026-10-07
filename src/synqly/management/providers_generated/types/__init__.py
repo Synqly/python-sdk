@@ -189,6 +189,7 @@ if typing.TYPE_CHECKING:
     from .edr_crowd_strike_mock import EdrCrowdStrikeMock
     from .edr_defender import EdrDefender
     from .edr_eset_connect import EdrEsetConnect
+    from .edr_huntress import EdrHuntress
     from .edr_iru import EdrIru
     from .edr_malwarebytes import EdrMalwarebytes
     from .edr_sentinel_one import EdrSentinelOne
@@ -295,6 +296,7 @@ if typing.TYPE_CHECKING:
         HttpReceiverTokenCredential_TokenId,
     )
     from .http_request_body_format import HttpRequestBodyFormat
+    from .huntress_credential import HuntressCredential, HuntressCredential_Basic, HuntressCredential_BasicId
     from .identity_ashby import IdentityAshby
     from .identity_aws_iam import IdentityAwsIam
     from .identity_crowd_strike import IdentityCrowdStrike
@@ -467,6 +469,7 @@ if typing.TYPE_CHECKING:
         ProviderConfig_EdrCrowdstrikeMock,
         ProviderConfig_EdrDefender,
         ProviderConfig_EdrEsetConnect,
+        ProviderConfig_EdrHuntress,
         ProviderConfig_EdrIru,
         ProviderConfig_EdrMalwarebytes,
         ProviderConfig_EdrSentinelone,
@@ -976,6 +979,7 @@ _dynamic_imports: typing.Dict[str, str] = {
     "EdrCrowdStrikeMock": ".edr_crowd_strike_mock",
     "EdrDefender": ".edr_defender",
     "EdrEsetConnect": ".edr_eset_connect",
+    "EdrHuntress": ".edr_huntress",
     "EdrIru": ".edr_iru",
     "EdrMalwarebytes": ".edr_malwarebytes",
     "EdrSentinelOne": ".edr_sentinel_one",
@@ -1076,6 +1080,9 @@ _dynamic_imports: typing.Dict[str, str] = {
     "HttpReceiverTokenCredential_Token": ".http_receiver_token_credential",
     "HttpReceiverTokenCredential_TokenId": ".http_receiver_token_credential",
     "HttpRequestBodyFormat": ".http_request_body_format",
+    "HuntressCredential": ".huntress_credential",
+    "HuntressCredential_Basic": ".huntress_credential",
+    "HuntressCredential_BasicId": ".huntress_credential",
     "IdentityAshby": ".identity_ashby",
     "IdentityAwsIam": ".identity_aws_iam",
     "IdentityCrowdStrike": ".identity_crowd_strike",
@@ -1256,6 +1263,7 @@ _dynamic_imports: typing.Dict[str, str] = {
     "ProviderConfig_EdrCrowdstrikeMock": ".provider_config",
     "ProviderConfig_EdrDefender": ".provider_config",
     "ProviderConfig_EdrEsetConnect": ".provider_config",
+    "ProviderConfig_EdrHuntress": ".provider_config",
     "ProviderConfig_EdrIru": ".provider_config",
     "ProviderConfig_EdrMalwarebytes": ".provider_config",
     "ProviderConfig_EdrSentinelone": ".provider_config",
@@ -1787,6 +1795,7 @@ __all__ = [
     "EdrCrowdStrikeMock",
     "EdrDefender",
     "EdrEsetConnect",
+    "EdrHuntress",
     "EdrIru",
     "EdrMalwarebytes",
     "EdrSentinelOne",
@@ -1887,6 +1896,9 @@ __all__ = [
     "HttpReceiverTokenCredential_Token",
     "HttpReceiverTokenCredential_TokenId",
     "HttpRequestBodyFormat",
+    "HuntressCredential",
+    "HuntressCredential_Basic",
+    "HuntressCredential_BasicId",
     "IdentityAshby",
     "IdentityAwsIam",
     "IdentityCrowdStrike",
@@ -2067,6 +2079,7 @@ __all__ = [
     "ProviderConfig_EdrCrowdstrikeMock",
     "ProviderConfig_EdrDefender",
     "ProviderConfig_EdrEsetConnect",
+    "ProviderConfig_EdrHuntress",
     "ProviderConfig_EdrIru",
     "ProviderConfig_EdrMalwarebytes",
     "ProviderConfig_EdrSentinelone",

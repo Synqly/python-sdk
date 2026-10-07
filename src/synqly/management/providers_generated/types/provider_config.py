@@ -79,6 +79,7 @@ from .http_receiver_auth_config import HttpReceiverAuthConfig
 from .http_receiver_method import HttpReceiverMethod
 from .http_receiver_signing_credential import HttpReceiverSigningCredential
 from .http_request_body_format import HttpRequestBodyFormat
+from .huntress_credential import HuntressCredential
 from .identity_crowd_strike_dataset import IdentityCrowdStrikeDataset
 from .identity_entra_id_dataset import IdentityEntraIdDataset
 from .identity_google_dataset import IdentityGoogleDataset
@@ -936,6 +937,20 @@ class ProviderConfig_EdrEsetConnect(UncheckedBaseModel):
     type: typing.Literal["edr_eset_connect"] = "edr_eset_connect"
     credential: EsetCredential
     region: ApiRegion
+
+    if IS_PYDANTIC_V2:
+        model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow")  # type: ignore # Pydantic v2
+    else:
+
+        class Config:
+            smart_union = True
+            extra = pydantic.Extra.allow
+
+
+class ProviderConfig_EdrHuntress(UncheckedBaseModel):
+    type: typing.Literal["edr_huntress"] = "edr_huntress"
+    credential: HuntressCredential
+    url: str
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow")  # type: ignore # Pydantic v2
@@ -2886,6 +2901,7 @@ ProviderConfig = typing_extensions.Annotated[
         ProviderConfig_EdrCrowdstrikeMock,
         ProviderConfig_EdrDefender,
         ProviderConfig_EdrEsetConnect,
+        ProviderConfig_EdrHuntress,
         ProviderConfig_EdrIru,
         ProviderConfig_EdrMalwarebytes,
         ProviderConfig_EdrSentinelone,
