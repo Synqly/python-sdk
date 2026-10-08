@@ -143,6 +143,7 @@ from .swimlane_credential import SwimlaneCredential
 from .tanium_cloud_credential import TaniumCloudCredential
 from .teams_credential import TeamsCredential
 from .teams_graph_chat_credential import TeamsGraphChatCredential
+from .tenable_asm_credential import TenableAsmCredential
 from .tenable_cloud_credential import TenableCloudCredential
 from .tenable_sc_credential import TenableScCredential
 from .threat_fox_credential import ThreatFoxCredential
@@ -2802,6 +2803,20 @@ class ProviderConfig_VulnerabilitiesTaniumCloudMock(UncheckedBaseModel):
             extra = pydantic.Extra.allow
 
 
+class ProviderConfig_VulnerabilitiesTenableAsm(UncheckedBaseModel):
+    type: typing.Literal["vulnerabilities_tenable_asm"] = "vulnerabilities_tenable_asm"
+    credential: TenableAsmCredential
+    url: typing.Optional[str] = None
+
+    if IS_PYDANTIC_V2:
+        model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow")  # type: ignore # Pydantic v2
+    else:
+
+        class Config:
+            smart_union = True
+            extra = pydantic.Extra.allow
+
+
 class ProviderConfig_VulnerabilitiesTenableCloud(UncheckedBaseModel):
     type: typing.Literal["vulnerabilities_tenable_cloud"] = "vulnerabilities_tenable_cloud"
     credential: TenableCloudCredential
@@ -3025,6 +3040,7 @@ ProviderConfig = typing_extensions.Annotated[
         ProviderConfig_VulnerabilitiesServicenowVr,
         ProviderConfig_VulnerabilitiesTaniumCloud,
         ProviderConfig_VulnerabilitiesTaniumCloudMock,
+        ProviderConfig_VulnerabilitiesTenableAsm,
         ProviderConfig_VulnerabilitiesTenableCloud,
         ProviderConfig_VulnerabilitiesTenableSc,
         ProviderConfig_VulnerabilitiesWiz,
