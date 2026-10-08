@@ -53,6 +53,7 @@ from .datadog_api_key_credential import DatadogApiKeyCredential
 from .datadog_application_key_credential import DatadogApplicationKeyCredential
 from .defender_credential import DefenderCredential
 from .defender_easm_credential import DefenderEasmCredential
+from .duo_security_credential import DuoSecurityCredential
 from .edr_crowd_strike_dataset import EdrCrowdStrikeDataset
 from .elasticsearch_auth_options import ElasticsearchAuthOptions
 from .elasticsearch_credential import ElasticsearchCredential
@@ -1297,6 +1298,20 @@ class ProviderConfig_IdentityCrowdstrike(UncheckedBaseModel):
 class ProviderConfig_IdentityCrowdstrikeMock(UncheckedBaseModel):
     type: typing.Literal["identity_crowdstrike_mock"] = "identity_crowdstrike_mock"
     dataset: IdentityCrowdStrikeDataset
+
+    if IS_PYDANTIC_V2:
+        model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow")  # type: ignore # Pydantic v2
+    else:
+
+        class Config:
+            smart_union = True
+            extra = pydantic.Extra.allow
+
+
+class ProviderConfig_IdentityDuosecurity(UncheckedBaseModel):
+    type: typing.Literal["identity_duosecurity"] = "identity_duosecurity"
+    credential: DuoSecurityCredential
+    url: str
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow")  # type: ignore # Pydantic v2
@@ -2941,6 +2956,7 @@ ProviderConfig = typing_extensions.Annotated[
         ProviderConfig_IdentityAwsIam,
         ProviderConfig_IdentityCrowdstrike,
         ProviderConfig_IdentityCrowdstrikeMock,
+        ProviderConfig_IdentityDuosecurity,
         ProviderConfig_IdentityEntraId,
         ProviderConfig_IdentityEntraIdMock,
         ProviderConfig_IdentityGithub,

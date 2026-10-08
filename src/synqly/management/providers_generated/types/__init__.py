@@ -183,6 +183,11 @@ if typing.TYPE_CHECKING:
         DefenderEasmCredential_OAuthClient,
         DefenderEasmCredential_OAuthClientId,
     )
+    from .duo_security_credential import (
+        DuoSecurityCredential,
+        DuoSecurityCredential_Basic,
+        DuoSecurityCredential_BasicId,
+    )
     from .edr_bitdefender import EdrBitdefender
     from .edr_crowd_strike import EdrCrowdStrike
     from .edr_crowd_strike_dataset import EdrCrowdStrikeDataset
@@ -302,6 +307,7 @@ if typing.TYPE_CHECKING:
     from .identity_crowd_strike import IdentityCrowdStrike
     from .identity_crowd_strike_dataset import IdentityCrowdStrikeDataset
     from .identity_crowd_strike_mock import IdentityCrowdStrikeMock
+    from .identity_duo_security import IdentityDuoSecurity
     from .identity_entra_id import IdentityEntraId
     from .identity_entra_id_dataset import IdentityEntraIdDataset
     from .identity_entra_id_mock import IdentityEntraIdMock
@@ -494,6 +500,7 @@ if typing.TYPE_CHECKING:
         ProviderConfig_IdentityAwsIam,
         ProviderConfig_IdentityCrowdstrike,
         ProviderConfig_IdentityCrowdstrikeMock,
+        ProviderConfig_IdentityDuosecurity,
         ProviderConfig_IdentityEntraId,
         ProviderConfig_IdentityEntraIdMock,
         ProviderConfig_IdentityGithub,
@@ -976,6 +983,9 @@ _dynamic_imports: typing.Dict[str, str] = {
     "DefenderEasmCredential": ".defender_easm_credential",
     "DefenderEasmCredential_OAuthClient": ".defender_easm_credential",
     "DefenderEasmCredential_OAuthClientId": ".defender_easm_credential",
+    "DuoSecurityCredential": ".duo_security_credential",
+    "DuoSecurityCredential_Basic": ".duo_security_credential",
+    "DuoSecurityCredential_BasicId": ".duo_security_credential",
     "EdrBitdefender": ".edr_bitdefender",
     "EdrCrowdStrike": ".edr_crowd_strike",
     "EdrCrowdStrikeDataset": ".edr_crowd_strike_dataset",
@@ -1091,6 +1101,7 @@ _dynamic_imports: typing.Dict[str, str] = {
     "IdentityCrowdStrike": ".identity_crowd_strike",
     "IdentityCrowdStrikeDataset": ".identity_crowd_strike_dataset",
     "IdentityCrowdStrikeMock": ".identity_crowd_strike_mock",
+    "IdentityDuoSecurity": ".identity_duo_security",
     "IdentityEntraId": ".identity_entra_id",
     "IdentityEntraIdDataset": ".identity_entra_id_dataset",
     "IdentityEntraIdMock": ".identity_entra_id_mock",
@@ -1291,6 +1302,7 @@ _dynamic_imports: typing.Dict[str, str] = {
     "ProviderConfig_IdentityAwsIam": ".provider_config",
     "ProviderConfig_IdentityCrowdstrike": ".provider_config",
     "ProviderConfig_IdentityCrowdstrikeMock": ".provider_config",
+    "ProviderConfig_IdentityDuosecurity": ".provider_config",
     "ProviderConfig_IdentityEntraId": ".provider_config",
     "ProviderConfig_IdentityEntraIdMock": ".provider_config",
     "ProviderConfig_IdentityGithub": ".provider_config",
@@ -1797,6 +1809,9 @@ __all__ = [
     "DefenderEasmCredential",
     "DefenderEasmCredential_OAuthClient",
     "DefenderEasmCredential_OAuthClientId",
+    "DuoSecurityCredential",
+    "DuoSecurityCredential_Basic",
+    "DuoSecurityCredential_BasicId",
     "EdrBitdefender",
     "EdrCrowdStrike",
     "EdrCrowdStrikeDataset",
@@ -1912,6 +1927,7 @@ __all__ = [
     "IdentityCrowdStrike",
     "IdentityCrowdStrikeDataset",
     "IdentityCrowdStrikeMock",
+    "IdentityDuoSecurity",
     "IdentityEntraId",
     "IdentityEntraIdDataset",
     "IdentityEntraIdMock",
@@ -2112,6 +2128,7 @@ __all__ = [
     "ProviderConfig_IdentityAwsIam",
     "ProviderConfig_IdentityCrowdstrike",
     "ProviderConfig_IdentityCrowdstrikeMock",
+    "ProviderConfig_IdentityDuosecurity",
     "ProviderConfig_IdentityEntraId",
     "ProviderConfig_IdentityEntraIdMock",
     "ProviderConfig_IdentityGithub",
