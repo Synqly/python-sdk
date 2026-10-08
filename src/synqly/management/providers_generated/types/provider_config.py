@@ -112,6 +112,8 @@ from .open_search_credential import OpenSearchCredential
 from .open_text_application_security_credential import OpenTextApplicationSecurityCredential
 from .open_text_core_application_security_credential import OpenTextCoreApplicationSecurityCredential
 from .open_text_core_application_security_url import OpenTextCoreApplicationSecurityUrl
+from .orca_credential import OrcaCredential
+from .orca_region import OrcaRegion
 from .pager_duty_credential import PagerDutyCredential
 from .palo_alto_credential import PaloAltoCredential
 from .panther_ingestion_credential import PantherIngestionCredential
@@ -796,6 +798,22 @@ class ProviderConfig_CloudsecurityGoogle(UncheckedBaseModel):
     type: typing.Literal["cloudsecurity_google"] = "cloudsecurity_google"
     credential: GoogleServiceAccountCredential
     scope_path: str
+
+    if IS_PYDANTIC_V2:
+        model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow")  # type: ignore # Pydantic v2
+    else:
+
+        class Config:
+            smart_union = True
+            extra = pydantic.Extra.allow
+
+
+class ProviderConfig_CloudsecurityOrca(UncheckedBaseModel):
+    type: typing.Literal["cloudsecurity_orca"] = "cloudsecurity_orca"
+    compliance_framework_ids: typing.Optional[typing.List[str]] = None
+    credential: OrcaCredential
+    region: OrcaRegion
+    url: typing.Optional[str] = None
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow")  # type: ignore # Pydantic v2
@@ -2921,6 +2939,7 @@ ProviderConfig = typing_extensions.Annotated[
         ProviderConfig_CloudsecurityCrowdstrikeMock,
         ProviderConfig_CloudsecurityDefender,
         ProviderConfig_CloudsecurityGoogle,
+        ProviderConfig_CloudsecurityOrca,
         ProviderConfig_CloudsecurityPaloalto,
         ProviderConfig_CloudsecuritySentinelone,
         ProviderConfig_CloudsecurityUpwind,

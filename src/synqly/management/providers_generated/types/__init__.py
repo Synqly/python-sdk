@@ -128,6 +128,7 @@ if typing.TYPE_CHECKING:
     from .cloud_security_defender import CloudSecurityDefender
     from .cloud_security_event_bridge_sqs_queues import CloudSecurityEventBridgeSqsQueues
     from .cloud_security_google import CloudSecurityGoogle
+    from .cloud_security_orca import CloudSecurityOrca
     from .cloud_security_palo_alto import CloudSecurityPaloAlto
     from .cloud_security_sentinel_one import CloudSecuritySentinelOne
     from .cloud_security_upwind import CloudSecurityUpwind
@@ -406,6 +407,8 @@ if typing.TYPE_CHECKING:
         OpenTextCoreApplicationSecurityCredential_OAuthClientId,
     )
     from .open_text_core_application_security_url import OpenTextCoreApplicationSecurityUrl
+    from .orca_credential import OrcaCredential, OrcaCredential_Token, OrcaCredential_TokenId
+    from .orca_region import OrcaRegion
     from .pager_duty_credential import PagerDutyCredential, PagerDutyCredential_Token, PagerDutyCredential_TokenId
     from .palo_alto_credential import PaloAltoCredential, PaloAltoCredential_Basic, PaloAltoCredential_BasicId
     from .panther_api_credential import PantherApiCredential, PantherApiCredential_Token, PantherApiCredential_TokenId
@@ -465,6 +468,7 @@ if typing.TYPE_CHECKING:
         ProviderConfig_CloudsecurityCrowdstrikeMock,
         ProviderConfig_CloudsecurityDefender,
         ProviderConfig_CloudsecurityGoogle,
+        ProviderConfig_CloudsecurityOrca,
         ProviderConfig_CloudsecurityPaloalto,
         ProviderConfig_CloudsecuritySentinelone,
         ProviderConfig_CloudsecurityUpwind,
@@ -944,6 +948,7 @@ _dynamic_imports: typing.Dict[str, str] = {
     "CloudSecurityDefender": ".cloud_security_defender",
     "CloudSecurityEventBridgeSqsQueues": ".cloud_security_event_bridge_sqs_queues",
     "CloudSecurityGoogle": ".cloud_security_google",
+    "CloudSecurityOrca": ".cloud_security_orca",
     "CloudSecurityPaloAlto": ".cloud_security_palo_alto",
     "CloudSecuritySentinelOne": ".cloud_security_sentinel_one",
     "CloudSecurityUpwind": ".cloud_security_upwind",
@@ -1200,6 +1205,10 @@ _dynamic_imports: typing.Dict[str, str] = {
     "OpenTextCoreApplicationSecurityCredential_OAuthClient": ".open_text_core_application_security_credential",
     "OpenTextCoreApplicationSecurityCredential_OAuthClientId": ".open_text_core_application_security_credential",
     "OpenTextCoreApplicationSecurityUrl": ".open_text_core_application_security_url",
+    "OrcaCredential": ".orca_credential",
+    "OrcaCredential_Token": ".orca_credential",
+    "OrcaCredential_TokenId": ".orca_credential",
+    "OrcaRegion": ".orca_region",
     "PagerDutyCredential": ".pager_duty_credential",
     "PagerDutyCredential_Token": ".pager_duty_credential",
     "PagerDutyCredential_TokenId": ".pager_duty_credential",
@@ -1267,6 +1276,7 @@ _dynamic_imports: typing.Dict[str, str] = {
     "ProviderConfig_CloudsecurityCrowdstrikeMock": ".provider_config",
     "ProviderConfig_CloudsecurityDefender": ".provider_config",
     "ProviderConfig_CloudsecurityGoogle": ".provider_config",
+    "ProviderConfig_CloudsecurityOrca": ".provider_config",
     "ProviderConfig_CloudsecurityPaloalto": ".provider_config",
     "ProviderConfig_CloudsecuritySentinelone": ".provider_config",
     "ProviderConfig_CloudsecurityUpwind": ".provider_config",
@@ -1770,6 +1780,7 @@ __all__ = [
     "CloudSecurityDefender",
     "CloudSecurityEventBridgeSqsQueues",
     "CloudSecurityGoogle",
+    "CloudSecurityOrca",
     "CloudSecurityPaloAlto",
     "CloudSecuritySentinelOne",
     "CloudSecurityUpwind",
@@ -2026,6 +2037,10 @@ __all__ = [
     "OpenTextCoreApplicationSecurityCredential_OAuthClient",
     "OpenTextCoreApplicationSecurityCredential_OAuthClientId",
     "OpenTextCoreApplicationSecurityUrl",
+    "OrcaCredential",
+    "OrcaCredential_Token",
+    "OrcaCredential_TokenId",
+    "OrcaRegion",
     "PagerDutyCredential",
     "PagerDutyCredential_Token",
     "PagerDutyCredential_TokenId",
@@ -2093,6 +2108,7 @@ __all__ = [
     "ProviderConfig_CloudsecurityCrowdstrikeMock",
     "ProviderConfig_CloudsecurityDefender",
     "ProviderConfig_CloudsecurityGoogle",
+    "ProviderConfig_CloudsecurityOrca",
     "ProviderConfig_CloudsecurityPaloalto",
     "ProviderConfig_CloudsecuritySentinelone",
     "ProviderConfig_CloudsecurityUpwind",

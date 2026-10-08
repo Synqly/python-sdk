@@ -237,6 +237,11 @@ class ProviderConfigId(enum.StrEnum):
     Google Security Command Center
     """
 
+    CLOUD_SECURITY_ORCA = "cloudsecurity_orca"
+    """
+    Orca Security
+    """
+
     CLOUD_SECURITY_PALO_ALTO = "cloudsecurity_paloalto"
     """
     Palo Alto Networks Cortex Cloud Security
@@ -995,6 +1000,7 @@ class ProviderConfigId(enum.StrEnum):
         cloud_security_crowd_strike_mock: typing.Callable[[], T_Result],
         cloud_security_defender: typing.Callable[[], T_Result],
         cloud_security_google: typing.Callable[[], T_Result],
+        cloud_security_orca: typing.Callable[[], T_Result],
         cloud_security_palo_alto: typing.Callable[[], T_Result],
         cloud_security_sentinel_one: typing.Callable[[], T_Result],
         cloud_security_upwind: typing.Callable[[], T_Result],
@@ -1227,6 +1233,8 @@ class ProviderConfigId(enum.StrEnum):
             return cloud_security_defender()
         if self is ProviderConfigId.CLOUD_SECURITY_GOOGLE:
             return cloud_security_google()
+        if self is ProviderConfigId.CLOUD_SECURITY_ORCA:
+            return cloud_security_orca()
         if self is ProviderConfigId.CLOUD_SECURITY_PALO_ALTO:
             return cloud_security_palo_alto()
         if self is ProviderConfigId.CLOUD_SECURITY_SENTINEL_ONE:
