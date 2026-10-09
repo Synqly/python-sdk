@@ -740,7 +740,10 @@ class RawCredentialsClient:
     ) -> HttpResponse[UpdateCredentialResponse]:
         """
         Updates the `Credential` object matching `{credentialId}`, where the
-        `Credential` belongs to the `Account`, `Integration`, `IntegrationPoint` or `OrganizationWebhook` matching `{ownerId}`.
+        `Credential` belongs to the `Account`, `Integration`,
+        `IntegrationPoint` or `OrganizationWebhook` matching `{ownerId}`. The
+        owner of a `Credential` cannot be changed. `{ownerId}` must be the
+        credential's owner.
 
         Parameters
         ----------
@@ -960,6 +963,9 @@ class RawCredentialsClient:
         `/fullname`, `/expires` or a `/config` field. The `copy`, `move` and
         `test` operations are not accepted. Any other operation or path is
         rejected with a `400`.
+
+        The owner of a `Credential` cannot be changed. `{ownerId}` must be the
+        credential's owner.
 
         Parameters
         ----------
@@ -1956,7 +1962,10 @@ class AsyncRawCredentialsClient:
     ) -> AsyncHttpResponse[UpdateCredentialResponse]:
         """
         Updates the `Credential` object matching `{credentialId}`, where the
-        `Credential` belongs to the `Account`, `Integration`, `IntegrationPoint` or `OrganizationWebhook` matching `{ownerId}`.
+        `Credential` belongs to the `Account`, `Integration`,
+        `IntegrationPoint` or `OrganizationWebhook` matching `{ownerId}`. The
+        owner of a `Credential` cannot be changed. `{ownerId}` must be the
+        credential's owner.
 
         Parameters
         ----------
@@ -2176,6 +2185,9 @@ class AsyncRawCredentialsClient:
         `/fullname`, `/expires` or a `/config` field. The `copy`, `move` and
         `test` operations are not accepted. Any other operation or path is
         rejected with a `400`.
+
+        The owner of a `Credential` cannot be changed. `{ownerId}` must be the
+        credential's owner.
 
         Parameters
         ----------
