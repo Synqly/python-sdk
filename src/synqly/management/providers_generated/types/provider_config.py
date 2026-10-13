@@ -1075,6 +1075,7 @@ class ProviderConfig_EdrTrellixEns(UncheckedBaseModel):
     api_key: TrellixEnsApiKeyCredential
     credential: TrellixEnsCredential
     tenant_id: str
+    url: typing.Optional[str] = None
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow")  # type: ignore # Pydantic v2

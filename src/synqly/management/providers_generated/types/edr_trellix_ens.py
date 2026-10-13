@@ -29,6 +29,11 @@ class EdrTrellixEns(UncheckedBaseModel):
     Trellix tenant GUID for the customer tenancy you want to query.
     """
 
+    url: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    Base URL override for the Trellix ePO API. Only required for custom or proxied environments.
+    """
+
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow")  # type: ignore # Pydantic v2
     else:
