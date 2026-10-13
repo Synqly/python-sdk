@@ -29,6 +29,11 @@ class ProviderFilter(UncheckedBaseModel):
     List of possible values for this filter.
     """
 
+    docs: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    Caller-facing notes for this filter, such as operator semantics that differ from the Synqly default.
+    """
+
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow")  # type: ignore # Pydantic v2
     else:
