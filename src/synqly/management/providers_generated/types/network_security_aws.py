@@ -11,14 +11,14 @@ from .aws_region import AwsRegion
 
 class NetworkSecurityAws(UncheckedBaseModel):
     """
-    Configuration for AWS VPC Flow Logs and Route 53 Resolver query logs.
+    Configuration for the AWS Network Security Provider.
 
     [Configuration guide](https://docs.synqly.com/guides/provider-configuration/aws-networksecurity-setup)
     """
 
     credential: AwsProviderCredential = pydantic.Field()
     """
-    AWS credentials that can read VPC Flow Logs, Route 53 Resolver query logs, and their CloudWatch Logs or S3 destinations.
+    AWS credentials with sufficient access.
     """
 
     dns_log_configuration_ids: typing.Optional[typing.List[str]] = pydantic.Field(default=None)
@@ -28,7 +28,7 @@ class NetworkSecurityAws(UncheckedBaseModel):
 
     region: AwsRegion = pydantic.Field()
     """
-    AWS region where your VPC Flow Logs and Route 53 Resolver query logs are configured (for example, `us-east-1`).
+    The [AWS region](https://docs.aws.amazon.com/global-infrastructure/latest/regions/aws-regions.html) to use for the Amazon Network Security provider.
     """
 
     traffic_log_configuration_ids: typing.Optional[typing.List[str]] = pydantic.Field(default=None)

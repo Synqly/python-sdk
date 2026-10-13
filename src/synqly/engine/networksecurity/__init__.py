@@ -9,8 +9,10 @@ if typing.TYPE_CHECKING:
     from .types import (
         DnsEvent,
         DnsLogConfiguration,
+        FirewallRuleRecord,
         QueryDnsEventsResponse,
         QueryDnsLogConfigurationsResponse,
+        QueryFirewallRulesResponse,
         QueryTrafficEventsResponse,
         QueryTrafficLogConfigurationsResponse,
         TrafficEvent,
@@ -19,8 +21,10 @@ if typing.TYPE_CHECKING:
 _dynamic_imports: typing.Dict[str, str] = {
     "DnsEvent": ".types",
     "DnsLogConfiguration": ".types",
+    "FirewallRuleRecord": ".types",
     "QueryDnsEventsResponse": ".types",
     "QueryDnsLogConfigurationsResponse": ".types",
+    "QueryFirewallRulesResponse": ".types",
     "QueryTrafficEventsResponse": ".types",
     "QueryTrafficLogConfigurationsResponse": ".types",
     "TrafficEvent": ".types",
@@ -52,8 +56,10 @@ def __dir__():
 __all__ = [
     "DnsEvent",
     "DnsLogConfiguration",
+    "FirewallRuleRecord",
     "QueryDnsEventsResponse",
     "QueryDnsLogConfigurationsResponse",
+    "QueryFirewallRulesResponse",
     "QueryTrafficEventsResponse",
     "QueryTrafficLogConfigurationsResponse",
     "TrafficEvent",

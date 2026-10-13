@@ -132,6 +132,9 @@ if typing.TYPE_CHECKING:
     from .fingerprint import Fingerprint
     from .fingerprint_algorithm_id import FingerprintAlgorithmId
     from .firewall_rule import FirewallRule
+    from .firewall_rule_action_id import FirewallRuleActionId
+    from .firewall_rule_direction_id import FirewallRuleDirectionId
+    from .firewall_rule_protocol import FirewallRuleProtocol
     from .function_invocation import FunctionInvocation
     from .gpu_info import GpuInfo
     from .gpu_info_bus_type_id import GpuInfoBusTypeId
@@ -441,6 +444,9 @@ _dynamic_imports: typing.Dict[str, str] = {
     "Fingerprint": ".fingerprint",
     "FingerprintAlgorithmId": ".fingerprint_algorithm_id",
     "FirewallRule": ".firewall_rule",
+    "FirewallRuleActionId": ".firewall_rule_action_id",
+    "FirewallRuleDirectionId": ".firewall_rule_direction_id",
+    "FirewallRuleProtocol": ".firewall_rule_protocol",
     "FunctionInvocation": ".function_invocation",
     "GpuInfo": ".gpu_info",
     "GpuInfoBusTypeId": ".gpu_info_bus_type_id",
@@ -774,6 +780,9 @@ __all__ = [
     "Fingerprint",
     "FingerprintAlgorithmId",
     "FirewallRule",
+    "FirewallRuleActionId",
+    "FirewallRuleDirectionId",
+    "FirewallRuleProtocol",
     "FunctionInvocation",
     "GpuInfo",
     "GpuInfoBusTypeId",

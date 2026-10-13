@@ -105,6 +105,7 @@ class OperationId(enum.StrEnum):
     INCIDENTRESPONSE_QUERY_ESCALATION_POLICY_USERS_ON_CALL = "incidentresponse_query_escalation_policy_users_on_call"
     NETWORKSECURITY_QUERY_DNS_EVENTS = "networksecurity_query_dns_events"
     NETWORKSECURITY_QUERY_DNS_LOG_CONFIGURATIONS = "networksecurity_query_dns_log_configurations"
+    NETWORKSECURITY_QUERY_FIREWALL_RULES = "networksecurity_query_firewall_rules"
     NETWORKSECURITY_QUERY_TRAFFIC_EVENTS = "networksecurity_query_traffic_events"
     NETWORKSECURITY_QUERY_TRAFFIC_LOG_CONFIGURATIONS = "networksecurity_query_traffic_log_configurations"
     NOTIFICATIONS_CLEAR_MESSAGE = "notifications_clear_message"
@@ -276,6 +277,7 @@ class OperationId(enum.StrEnum):
         incidentresponse_query_escalation_policy_users_on_call: typing.Callable[[], T_Result],
         networksecurity_query_dns_events: typing.Callable[[], T_Result],
         networksecurity_query_dns_log_configurations: typing.Callable[[], T_Result],
+        networksecurity_query_firewall_rules: typing.Callable[[], T_Result],
         networksecurity_query_traffic_events: typing.Callable[[], T_Result],
         networksecurity_query_traffic_log_configurations: typing.Callable[[], T_Result],
         notifications_clear_message: typing.Callable[[], T_Result],
@@ -533,6 +535,8 @@ class OperationId(enum.StrEnum):
             return networksecurity_query_dns_events()
         if self is OperationId.NETWORKSECURITY_QUERY_DNS_LOG_CONFIGURATIONS:
             return networksecurity_query_dns_log_configurations()
+        if self is OperationId.NETWORKSECURITY_QUERY_FIREWALL_RULES:
+            return networksecurity_query_firewall_rules()
         if self is OperationId.NETWORKSECURITY_QUERY_TRAFFIC_EVENTS:
             return networksecurity_query_traffic_events()
         if self is OperationId.NETWORKSECURITY_QUERY_TRAFFIC_LOG_CONFIGURATIONS:

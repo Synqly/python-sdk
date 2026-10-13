@@ -7,6 +7,7 @@ from ..core.request_options import RequestOptions
 from .raw_client import AsyncRawNetworksecurityClient, RawNetworksecurityClient
 from .types.query_dns_events_response import QueryDnsEventsResponse
 from .types.query_dns_log_configurations_response import QueryDnsLogConfigurationsResponse
+from .types.query_firewall_rules_response import QueryFirewallRulesResponse
 from .types.query_traffic_events_response import QueryTrafficEventsResponse
 from .types.query_traffic_log_configurations_response import QueryTrafficLogConfigurationsResponse
 
@@ -180,6 +181,45 @@ class NetworksecurityClient:
         )
         return _response.data
 
+    def query_firewall_rules(
+        self,
+        *,
+        meta: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
+        limit: typing.Optional[int] = None,
+        filter: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
+        cursor: typing.Optional[str] = None,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> QueryFirewallRulesResponse:
+        """
+        Returns the firewall rules that control traffic within the integration's scope. Built-in default rules that the provider's API does not
+        report are not included. A rule that applies to several networks is returned once per network
+
+        Parameters
+        ----------
+        meta : typing.Optional[typing.Union[str, typing.Sequence[str]]]
+            Add metadata to the response by invoking meta functions. Documentation for [meta functions](https://docs.synqly.com/api-reference/meta-functions) is available. Not all meta functions are available at every endpoint.
+
+        limit : typing.Optional[int]
+            Number of firewall rules to return. Defaults to 100 with a maximum of 200. If a provider has a maximum limit lower than 200, the provider's maximum limit will be used instead.
+
+        filter : typing.Optional[typing.Union[str, typing.Sequence[str]]]
+            Filter results by this query. For more information on filtering, refer to our [Filtering Guide](https://docs.synqly.com/guides/connectors/networksecurity/query-filters). Defaults to no filter. If used more than once, the queries are ANDed together. No network security provider currently supports filters on this endpoint, so a request that includes a filter is rejected with a 400 error.
+
+        cursor : typing.Optional[str]
+            Start search from cursor position.
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        QueryFirewallRulesResponse
+        """
+        _response = self._raw_client.query_firewall_rules(
+            meta=meta, limit=limit, filter=filter, cursor=cursor, request_options=request_options
+        )
+        return _response.data
+
 
 class AsyncNetworksecurityClient:
     def __init__(self, *, client_wrapper: AsyncClientWrapper):
@@ -346,6 +386,45 @@ class AsyncNetworksecurityClient:
         QueryDnsEventsResponse
         """
         _response = await self._raw_client.query_dns_events(
+            meta=meta, limit=limit, filter=filter, cursor=cursor, request_options=request_options
+        )
+        return _response.data
+
+    async def query_firewall_rules(
+        self,
+        *,
+        meta: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
+        limit: typing.Optional[int] = None,
+        filter: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
+        cursor: typing.Optional[str] = None,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> QueryFirewallRulesResponse:
+        """
+        Returns the firewall rules that control traffic within the integration's scope. Built-in default rules that the provider's API does not
+        report are not included. A rule that applies to several networks is returned once per network
+
+        Parameters
+        ----------
+        meta : typing.Optional[typing.Union[str, typing.Sequence[str]]]
+            Add metadata to the response by invoking meta functions. Documentation for [meta functions](https://docs.synqly.com/api-reference/meta-functions) is available. Not all meta functions are available at every endpoint.
+
+        limit : typing.Optional[int]
+            Number of firewall rules to return. Defaults to 100 with a maximum of 200. If a provider has a maximum limit lower than 200, the provider's maximum limit will be used instead.
+
+        filter : typing.Optional[typing.Union[str, typing.Sequence[str]]]
+            Filter results by this query. For more information on filtering, refer to our [Filtering Guide](https://docs.synqly.com/guides/connectors/networksecurity/query-filters). Defaults to no filter. If used more than once, the queries are ANDed together. No network security provider currently supports filters on this endpoint, so a request that includes a filter is rejected with a 400 error.
+
+        cursor : typing.Optional[str]
+            Start search from cursor position.
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        QueryFirewallRulesResponse
+        """
+        _response = await self._raw_client.query_firewall_rules(
             meta=meta, limit=limit, filter=filter, cursor=cursor, request_options=request_options
         )
         return _response.data

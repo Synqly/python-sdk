@@ -5,11 +5,25 @@ import typing
 import pydantic
 from .....core.pydantic_utilities import IS_PYDANTIC_V2
 from .....core.unchecked_base_model import UncheckedBaseModel
+from ...base.types.subnet import Subnet
+from .firewall_rule_action_id import FirewallRuleActionId
+from .firewall_rule_direction_id import FirewallRuleDirectionId
+from .firewall_rule_protocol import FirewallRuleProtocol
 
 
 class FirewallRule(UncheckedBaseModel):
     """
     The Firewall Rule object represents a specific rule within a firewall policy or event. It contains information about a rule's configuration, properties, and associated actions that define how network traffic is handled by the firewall.
+    """
+
+    action: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    The action the rule applies to matching traffic, normalized to the caption of <code>action_id</code>. In the case of <code>Other</code>, it is defined by the source. For example: <code>goto_next</code>.
+    """
+
+    action_id: typing.Optional[FirewallRuleActionId] = pydantic.Field(default=None)
+    """
+    The normalized action the rule applies to matching traffic.
     """
 
     category: typing.Optional[str] = pydantic.Field(default=None)
@@ -27,9 +41,39 @@ class FirewallRule(UncheckedBaseModel):
     The description of the rule that generated the event.
     """
 
+    direction: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    The direction of the traffic the rule applies to, normalized to the caption of <code>direction_id</code>.
+    """
+
+    direction_id: typing.Optional[FirewallRuleDirectionId] = pydantic.Field(default=None)
+    """
+    The normalized direction of the traffic the rule applies to.
+    """
+
+    dst_ip_ranges: typing.Optional[typing.List[Subnet]] = pydantic.Field(default=None)
+    """
+    The destination IP ranges, in CIDR notation, that a rule matches. Absent when the rule matches its destination by something other than an IP range, such as a security group, prefix list or network tag; an absent range never means any address. A rule open to every address lists <code>0.0.0.0/0</code> or <code>::/0</code>.
+    """
+
     duration: typing.Optional[int] = pydantic.Field(default=None)
     """
     The rule response time duration, usually used for challenge completion time.
+    """
+
+    evaluation_priority: typing.Optional[int] = pydantic.Field(default=None)
+    """
+    The rule's priority within the policy or rule set it belongs to; lower values are evaluated first.
+    """
+
+    is_disabled: typing.Optional[bool] = pydantic.Field(default=None)
+    """
+    Indicates whether the rule is disabled and so not applied.
+    """
+
+    is_logging_enabled: typing.Optional[bool] = pydantic.Field(default=None)
+    """
+    Indicates whether traffic the rule matches is logged.
     """
 
     match_details: typing.Optional[typing.List[str]] = pydantic.Field(default=None)
@@ -47,6 +91,11 @@ class FirewallRule(UncheckedBaseModel):
     The name of the rule that generated the event.
     """
 
+    protocol_ports: typing.Optional[typing.List[FirewallRuleProtocol]] = pydantic.Field(default=None)
+    """
+    The protocols, and for each its ports, that a rule matches.
+    """
+
     rate_limit: typing.Optional[int] = pydantic.Field(default=None)
     """
     The rate limit for a rate-based rule.
@@ -55,6 +104,11 @@ class FirewallRule(UncheckedBaseModel):
     sensitivity: typing.Optional[str] = pydantic.Field(default=None)
     """
     The sensitivity of the firewall rule in the matched event. For example: HIGH.
+    """
+
+    src_ip_ranges: typing.Optional[typing.List[Subnet]] = pydantic.Field(default=None)
+    """
+    The source IP ranges, in CIDR notation, that a rule matches. Absent when the rule matches its source by something other than an IP range, such as a security group, prefix list or network tag; an absent range never means any address. A rule open to every address lists <code>0.0.0.0/0</code> or <code>::/0</code>.
     """
 
     type: typing.Optional[str] = pydantic.Field(default=None)
@@ -70,6 +124,11 @@ class FirewallRule(UncheckedBaseModel):
     version: typing.Optional[str] = pydantic.Field(default=None)
     """
     The rule version. For example: <code>1.1</code>.
+    """
+
+    vpc_uid: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    The unique identifier of the network the rule is applied to.
     """
 
     if IS_PYDANTIC_V2:

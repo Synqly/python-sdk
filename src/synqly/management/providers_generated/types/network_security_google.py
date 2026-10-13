@@ -10,14 +10,14 @@ from .google_service_account_credential import GoogleServiceAccountCredential
 
 class NetworkSecurityGoogle(UncheckedBaseModel):
     """
-    Connect Synqly to Google VPC flow logs.
+    Configuration for the Google Cloud Platform Network Security Provider.
 
     [Configuration guide](https://docs.synqly.com/guides/provider-configuration/google-networksecurity-setup)
     """
 
     credential: GoogleServiceAccountCredential = pydantic.Field()
     """
-    Service account credentials that can read VPC flow log configuration and logs in the project.
+    Service account credentials with sufficient access.
     """
 
     project_id: str = pydantic.Field()

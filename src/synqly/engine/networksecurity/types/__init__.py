@@ -8,8 +8,10 @@ from importlib import import_module
 if typing.TYPE_CHECKING:
     from .dns_event import DnsEvent
     from .dns_log_configuration import DnsLogConfiguration
+    from .firewall_rule_record import FirewallRuleRecord
     from .query_dns_events_response import QueryDnsEventsResponse
     from .query_dns_log_configurations_response import QueryDnsLogConfigurationsResponse
+    from .query_firewall_rules_response import QueryFirewallRulesResponse
     from .query_traffic_events_response import QueryTrafficEventsResponse
     from .query_traffic_log_configurations_response import QueryTrafficLogConfigurationsResponse
     from .traffic_event import TrafficEvent
@@ -17,8 +19,10 @@ if typing.TYPE_CHECKING:
 _dynamic_imports: typing.Dict[str, str] = {
     "DnsEvent": ".dns_event",
     "DnsLogConfiguration": ".dns_log_configuration",
+    "FirewallRuleRecord": ".firewall_rule_record",
     "QueryDnsEventsResponse": ".query_dns_events_response",
     "QueryDnsLogConfigurationsResponse": ".query_dns_log_configurations_response",
+    "QueryFirewallRulesResponse": ".query_firewall_rules_response",
     "QueryTrafficEventsResponse": ".query_traffic_events_response",
     "QueryTrafficLogConfigurationsResponse": ".query_traffic_log_configurations_response",
     "TrafficEvent": ".traffic_event",
@@ -50,8 +54,10 @@ def __dir__():
 __all__ = [
     "DnsEvent",
     "DnsLogConfiguration",
+    "FirewallRuleRecord",
     "QueryDnsEventsResponse",
     "QueryDnsLogConfigurationsResponse",
+    "QueryFirewallRulesResponse",
     "QueryTrafficEventsResponse",
     "QueryTrafficLogConfigurationsResponse",
     "TrafficEvent",
