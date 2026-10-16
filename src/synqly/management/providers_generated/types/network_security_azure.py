@@ -33,7 +33,7 @@ class NetworkSecurityAzure(UncheckedBaseModel):
 
     subscription_id: str = pydantic.Field()
     """
-    Azure subscription that owns the flow logs and DNS security policies.
+    Azure subscription that owns the network security resources.
     """
 
     tenant_id: str = pydantic.Field()

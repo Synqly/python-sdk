@@ -14,7 +14,7 @@ class FirewallRuleProtocol(UncheckedBaseModel):
 
     port_ranges: typing.Optional[typing.List[str]] = pydantic.Field(default=None)
     """
-    The ports matched for this protocol. Absent when the rule matches every port.
+    The destination ports matched for this protocol. Absent when the rule matches every port.
     """
 
     protocol_name: str = pydantic.Field()
