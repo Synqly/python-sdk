@@ -30,6 +30,7 @@ class ScheduledOperationId(enum.StrEnum):
     IDENTITY_QUERY_AUDIT_LOG = "identity_query_audit_log"
     IDENTITY_QUERY_GROUPS = "identity_query_groups"
     IDENTITY_QUERY_GROUPS_ENRICHED = "identity_query_groups_enriched"
+    IDENTITY_QUERY_RISK_EVENTS = "identity_query_risk_events"
     IDENTITY_QUERY_USERS = "identity_query_users"
     IDENTITY_QUERY_USERS_ENRICHED = "identity_query_users_enriched"
     SIEM_QUERY_EVENTS = "siem_query_events"
@@ -73,6 +74,7 @@ class ScheduledOperationId(enum.StrEnum):
         identity_query_audit_log: typing.Callable[[], T_Result],
         identity_query_groups: typing.Callable[[], T_Result],
         identity_query_groups_enriched: typing.Callable[[], T_Result],
+        identity_query_risk_events: typing.Callable[[], T_Result],
         identity_query_users: typing.Callable[[], T_Result],
         identity_query_users_enriched: typing.Callable[[], T_Result],
         siem_query_events: typing.Callable[[], T_Result],
@@ -127,6 +129,8 @@ class ScheduledOperationId(enum.StrEnum):
             return identity_query_groups()
         if self is ScheduledOperationId.IDENTITY_QUERY_GROUPS_ENRICHED:
             return identity_query_groups_enriched()
+        if self is ScheduledOperationId.IDENTITY_QUERY_RISK_EVENTS:
+            return identity_query_risk_events()
         if self is ScheduledOperationId.IDENTITY_QUERY_USERS:
             return identity_query_users()
         if self is ScheduledOperationId.IDENTITY_QUERY_USERS_ENRICHED:
