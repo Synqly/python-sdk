@@ -12,6 +12,7 @@ from ...integration_points.types.integration_point_id import IntegrationPointId
 from ...organization_webhook_base.types.webhook_id import WebhookId
 from .credential_config_no_secret import CredentialConfigNoSecret
 from .credential_id import CredentialId
+from .credential_kind import CredentialKind
 from .managed_type import ManagedType
 from .owner_type import OwnerType
 
@@ -61,6 +62,11 @@ class CredentialResponse(Base):
     managed: ManagedType = pydantic.Field()
     """
     Field is set by the management process. Determines lifecycle and ownership of the credential.
+    """
+
+    kind: CredentialKind = pydantic.Field()
+    """
+    What the credential is for. Read only - it is set when the credential is created and cannot be changed.
     """
 
     if IS_PYDANTIC_V2:
