@@ -2716,6 +2716,7 @@ class ProviderConfig_VulnerabilitiesNucleus(UncheckedBaseModel):
 class ProviderConfig_VulnerabilitiesPentera(UncheckedBaseModel):
     type: typing.Literal["vulnerabilities_pentera"] = "vulnerabilities_pentera"
     credential: PenteraCredential
+    skip_tls_verify: typing.Optional[bool] = None
     url: str
 
     if IS_PYDANTIC_V2:

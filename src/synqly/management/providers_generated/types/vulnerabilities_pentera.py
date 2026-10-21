@@ -18,6 +18,11 @@ class VulnerabilitiesPentera(UncheckedBaseModel):
     Credentials for the Pentera API.
     """
 
+    skip_tls_verify: typing.Optional[bool] = pydantic.Field(default=None)
+    """
+    When true, skips verification of the Pentera TLS certificate.
+    """
+
     url: str = pydantic.Field()
     """
     Base URL of the Pentera appliance.
