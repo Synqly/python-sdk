@@ -3321,7 +3321,7 @@ class RawEdrClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[QueryExclusionsResponse]:
         """
-        Returns the exclusions configured in the token-linked EDR source as OCSF Compliance Findings, one per exclusion rule, with the rule's pattern, type, platform, owner and scope. By default only admin-created exclusions are returned; filter `resource.owner.type[in]Admin,System` to include rules the vendor manages.
+        Returns the exclusions configured in the token-linked EDR source as OCSF Compliance Findings, one per exclusion rule, with the rule's pattern, match type and scope. The filters a provider accepts, and which rules it returns when a filter is omitted, are described in that provider's filter documentation.
 
         Parameters
         ----------
@@ -3537,7 +3537,7 @@ class RawEdrClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[QueryPoliciesResponse]:
         """
-        Returns the protection policy at one level of the token-linked EDR source's policy tree (global, account, site or group; `resource.type` selects the level and defaults to global) as OCSF Compliance Findings, one per scope at that level, with each recommended setting as an assessment and the vendor policy setting that decided it. Findings describe the policy at the requested level; overrides below it are not reflected.
+        Returns the protection policies configured in the token-linked EDR source as OCSF Compliance Findings, one per policy or policy scope, with each recommended setting as an assessment and the vendor policy setting that decided it. `resource.type` selects the policies to evaluate; its values and default are described in each provider's filter documentation.
 
         Parameters
         ----------
@@ -7763,7 +7763,7 @@ class AsyncRawEdrClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[QueryExclusionsResponse]:
         """
-        Returns the exclusions configured in the token-linked EDR source as OCSF Compliance Findings, one per exclusion rule, with the rule's pattern, type, platform, owner and scope. By default only admin-created exclusions are returned; filter `resource.owner.type[in]Admin,System` to include rules the vendor manages.
+        Returns the exclusions configured in the token-linked EDR source as OCSF Compliance Findings, one per exclusion rule, with the rule's pattern, match type and scope. The filters a provider accepts, and which rules it returns when a filter is omitted, are described in that provider's filter documentation.
 
         Parameters
         ----------
@@ -7979,7 +7979,7 @@ class AsyncRawEdrClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[QueryPoliciesResponse]:
         """
-        Returns the protection policy at one level of the token-linked EDR source's policy tree (global, account, site or group; `resource.type` selects the level and defaults to global) as OCSF Compliance Findings, one per scope at that level, with each recommended setting as an assessment and the vendor policy setting that decided it. Findings describe the policy at the requested level; overrides below it are not reflected.
+        Returns the protection policies configured in the token-linked EDR source as OCSF Compliance Findings, one per policy or policy scope, with each recommended setting as an assessment and the vendor policy setting that decided it. `resource.type` selects the policies to evaluate; its values and default are described in each provider's filter documentation.
 
         Parameters
         ----------
