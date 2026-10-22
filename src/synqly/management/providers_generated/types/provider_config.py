@@ -1030,7 +1030,7 @@ class ProviderConfig_EdrSentinelone(UncheckedBaseModel):
 class ProviderConfig_EdrSophos(UncheckedBaseModel):
     type: typing.Literal["edr_sophos"] = "edr_sophos"
     credential: SophosCredential
-    url: str
+    url: typing.Optional[str] = None
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow")  # type: ignore # Pydantic v2

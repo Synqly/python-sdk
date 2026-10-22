@@ -16,9 +16,9 @@ class EdrSophos(UncheckedBaseModel):
     """
 
     credential: SophosCredential
-    url: str = pydantic.Field()
+    url: typing.Optional[str] = pydantic.Field(default=None)
     """
-    Base URL for the Sophos Endpoint API.
+    Base URL for the Sophos Central API. Leave blank to discover the region automatically.
     """
 
     if IS_PYDANTIC_V2:
