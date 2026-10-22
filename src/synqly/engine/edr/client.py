@@ -185,16 +185,16 @@ class EdrClient:
         uid : Id
 
         script : str
-            The script content to run on the remote endpoint. The engine runs it via the provider's script-execution facility (for example CrowdStrike RTR `runscript`) and returns the captured stdout/stderr.
+            The script content to run on the remote endpoint.
 
         meta : typing.Optional[typing.Union[str, typing.Sequence[str]]]
             Add metadata to the response by invoking meta functions. Documentation for [meta functions](https://docs.synqly.com/api-reference/meta-functions) is available. Not all meta functions are available at every endpoint.
 
         args : typing.Optional[str]
-            Optional command-line arguments passed to the script.
+            Optional command-line arguments passed to the script. Providers may limit their length and the characters they accept.
 
         cursor : typing.Optional[str]
-            Opaque cursor returned from a previous pending response, used to continue polling the in-flight execution.
+            Opaque cursor returned from a previous pending response, used to continue polling the in-flight execution. A resume must resend the same script; some providers also require the original args. An execution left pending and never resumed may leave provider objects behind.
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -1088,16 +1088,16 @@ class AsyncEdrClient:
         uid : Id
 
         script : str
-            The script content to run on the remote endpoint. The engine runs it via the provider's script-execution facility (for example CrowdStrike RTR `runscript`) and returns the captured stdout/stderr.
+            The script content to run on the remote endpoint.
 
         meta : typing.Optional[typing.Union[str, typing.Sequence[str]]]
             Add metadata to the response by invoking meta functions. Documentation for [meta functions](https://docs.synqly.com/api-reference/meta-functions) is available. Not all meta functions are available at every endpoint.
 
         args : typing.Optional[str]
-            Optional command-line arguments passed to the script.
+            Optional command-line arguments passed to the script. Providers may limit their length and the characters they accept.
 
         cursor : typing.Optional[str]
-            Opaque cursor returned from a previous pending response, used to continue polling the in-flight execution.
+            Opaque cursor returned from a previous pending response, used to continue polling the in-flight execution. A resume must resend the same script; some providers also require the original args. An execution left pending and never resumed may leave provider objects behind.
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.

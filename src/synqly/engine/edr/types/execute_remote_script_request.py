@@ -10,17 +10,17 @@ from ...core.unchecked_base_model import UncheckedBaseModel
 class ExecuteRemoteScriptRequest(UncheckedBaseModel):
     script: str = pydantic.Field()
     """
-    The script content to run on the remote endpoint. The engine runs it via the provider's script-execution facility (for example CrowdStrike RTR `runscript`) and returns the captured stdout/stderr.
+    The script content to run on the remote endpoint.
     """
 
     args: typing.Optional[str] = pydantic.Field(default=None)
     """
-    Optional command-line arguments passed to the script.
+    Optional command-line arguments passed to the script. Providers may limit their length and the characters they accept.
     """
 
     cursor: typing.Optional[str] = pydantic.Field(default=None)
     """
-    Opaque cursor returned from a previous pending response, used to continue polling the in-flight execution.
+    Opaque cursor returned from a previous pending response, used to continue polling the in-flight execution. A resume must resend the same script; some providers also require the original args. An execution left pending and never resumed may leave provider objects behind.
     """
 
     if IS_PYDANTIC_V2:

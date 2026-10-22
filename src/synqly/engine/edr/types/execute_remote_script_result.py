@@ -20,7 +20,7 @@ class ExecuteRemoteScriptResult(UncheckedBaseModel):
 
     stderr: typing.Optional[str] = pydantic.Field(default=None)
     """
-    The script stderr collected during the synchronous polling window.
+    The script stderr collected during the synchronous polling window. Omitted by providers that merge stderr into stdout.
     """
 
     if IS_PYDANTIC_V2:

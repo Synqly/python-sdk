@@ -10,7 +10,7 @@ from .tanium_cloud_credential import TaniumCloudCredential
 
 class EdrTanium(UncheckedBaseModel):
     """
-    Configuration for Tanium Cloud as a EDR Provider
+    Configuration for Tanium Cloud as a EDR Provider.
 
     [Configuration guide](https://docs.synqly.com/guides/provider-configuration/tanium-setup)
     """
