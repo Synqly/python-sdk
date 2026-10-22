@@ -29,7 +29,6 @@ if typing.TYPE_CHECKING:
     from .securityawareness.client import AsyncSecurityawarenessClient, SecurityawarenessClient
     from .siem.client import AsyncSiemClient, SiemClient
     from .sink.client import AsyncSinkClient, SinkClient
-    from .ssf.client import AsyncSsfClient, SsfClient
     from .storage.client import AsyncStorageClient, StorageClient
     from .threatintel.client import AsyncThreatintelClient, ThreatintelClient
     from .ticketing.client import AsyncTicketingClient, TicketingClient
@@ -141,7 +140,6 @@ class SynqlyEngine:
         self._securityawareness: typing.Optional[SecurityawarenessClient] = None
         self._siem: typing.Optional[SiemClient] = None
         self._sink: typing.Optional[SinkClient] = None
-        self._ssf: typing.Optional[SsfClient] = None
         self._storage: typing.Optional[StorageClient] = None
         self._threatintel: typing.Optional[ThreatintelClient] = None
         self._ticketing: typing.Optional[TicketingClient] = None
@@ -298,14 +296,6 @@ class SynqlyEngine:
 
             self._sink = SinkClient(client_wrapper=self._client_wrapper)
         return self._sink
-
-    @property
-    def ssf(self):
-        if self._ssf is None:
-            from .ssf.client import SsfClient  # noqa: E402
-
-            self._ssf = SsfClient(client_wrapper=self._client_wrapper)
-        return self._ssf
 
     @property
     def storage(self):
@@ -466,7 +456,6 @@ class AsyncSynqlyEngine:
         self._securityawareness: typing.Optional[AsyncSecurityawarenessClient] = None
         self._siem: typing.Optional[AsyncSiemClient] = None
         self._sink: typing.Optional[AsyncSinkClient] = None
-        self._ssf: typing.Optional[AsyncSsfClient] = None
         self._storage: typing.Optional[AsyncStorageClient] = None
         self._threatintel: typing.Optional[AsyncThreatintelClient] = None
         self._ticketing: typing.Optional[AsyncTicketingClient] = None
@@ -623,14 +612,6 @@ class AsyncSynqlyEngine:
 
             self._sink = AsyncSinkClient(client_wrapper=self._client_wrapper)
         return self._sink
-
-    @property
-    def ssf(self):
-        if self._ssf is None:
-            from .ssf.client import AsyncSsfClient  # noqa: E402
-
-            self._ssf = AsyncSsfClient(client_wrapper=self._client_wrapper)
-        return self._ssf
 
     @property
     def storage(self):

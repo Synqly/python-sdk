@@ -28,7 +28,6 @@ if typing.TYPE_CHECKING:
     )
     from .credential_config_no_secret import CredentialConfigNoSecret
     from .credential_id import CredentialId
-    from .credential_kind import CredentialKind
     from .credential_response import CredentialResponse
     from .credential_type import CredentialType
     from .get_credential_response import GetCredentialResponse
@@ -68,7 +67,6 @@ _dynamic_imports: typing.Dict[str, str] = {
     "CredentialConfig_TlsCertificate": ".credential_config",
     "CredentialConfig_Token": ".credential_config",
     "CredentialId": ".credential_id",
-    "CredentialKind": ".credential_kind",
     "CredentialResponse": ".credential_response",
     "CredentialType": ".credential_type",
     "GetCredentialResponse": ".get_credential_response",
@@ -132,7 +130,6 @@ __all__ = [
     "CredentialConfig_TlsCertificate",
     "CredentialConfig_Token",
     "CredentialId",
-    "CredentialKind",
     "CredentialResponse",
     "CredentialType",
     "GetCredentialResponse",

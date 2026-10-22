@@ -127,9 +127,6 @@ class OperationId(enum.StrEnum):
     SIEM_QUERY_INVESTIGATIONS = "siem_query_investigations"
     SIEM_QUERY_LOG_PROVIDERS = "siem_query_log_providers"
     SINK_POST_EVENTS = "sink_post_events"
-    SSF_GET_TRANSMITTER_URLS = "ssf_get_transmitter_urls"
-    SSF_JWKS = "ssf_jwks"
-    SSF_POST_EVENT = "ssf_post_event"
     STORAGE_DELETE_FILE = "storage_delete_file"
     STORAGE_DOWNLOAD_FILE = "storage_download_file"
     STORAGE_LIST_FILES = "storage_list_files"
@@ -302,9 +299,6 @@ class OperationId(enum.StrEnum):
         siem_query_investigations: typing.Callable[[], T_Result],
         siem_query_log_providers: typing.Callable[[], T_Result],
         sink_post_events: typing.Callable[[], T_Result],
-        ssf_get_transmitter_urls: typing.Callable[[], T_Result],
-        ssf_jwks: typing.Callable[[], T_Result],
-        ssf_post_event: typing.Callable[[], T_Result],
         storage_delete_file: typing.Callable[[], T_Result],
         storage_download_file: typing.Callable[[], T_Result],
         storage_list_files: typing.Callable[[], T_Result],
@@ -585,12 +579,6 @@ class OperationId(enum.StrEnum):
             return siem_query_log_providers()
         if self is OperationId.SINK_POST_EVENTS:
             return sink_post_events()
-        if self is OperationId.SSF_GET_TRANSMITTER_URLS:
-            return ssf_get_transmitter_urls()
-        if self is OperationId.SSF_JWKS:
-            return ssf_jwks()
-        if self is OperationId.SSF_POST_EVENT:
-            return ssf_post_event()
         if self is OperationId.STORAGE_DELETE_FILE:
             return storage_delete_file()
         if self is OperationId.STORAGE_DOWNLOAD_FILE:

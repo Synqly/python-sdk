@@ -28,7 +28,6 @@ class CategoryId(enum.StrEnum):
     SECURITYAWARENESS = "securityawareness"
     SIEM = "siem"
     SINK = "sink"
-    SSF = "ssf"
     STORAGE = "storage"
     THREATINTEL = "threatintel"
     TICKETING = "ticketing"
@@ -62,7 +61,6 @@ class CategoryId(enum.StrEnum):
         securityawareness: typing.Callable[[], T_Result],
         siem: typing.Callable[[], T_Result],
         sink: typing.Callable[[], T_Result],
-        ssf: typing.Callable[[], T_Result],
         storage: typing.Callable[[], T_Result],
         threatintel: typing.Callable[[], T_Result],
         ticketing: typing.Callable[[], T_Result],
@@ -101,8 +99,6 @@ class CategoryId(enum.StrEnum):
             return siem()
         if self is CategoryId.SINK:
             return sink()
-        if self is CategoryId.SSF:
-            return ssf()
         if self is CategoryId.STORAGE:
             return storage()
         if self is CategoryId.THREATINTEL:

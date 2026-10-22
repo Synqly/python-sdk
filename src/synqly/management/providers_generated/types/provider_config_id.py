@@ -697,11 +697,6 @@ class ProviderConfigId(enum.StrEnum):
     Trimedx Sink
     """
 
-    SSF_OKTA = "ssf_okta"
-    """
-    Okta Shared Signals
-    """
-
     STORAGE_AWS_S_3 = "storage_aws_s3"
     """
     Amazon S3
@@ -1097,7 +1092,6 @@ class ProviderConfigId(enum.StrEnum):
         sink_sumo_logic: typing.Callable[[], T_Result],
         sink_swimlane: typing.Callable[[], T_Result],
         sink_trimedx: typing.Callable[[], T_Result],
-        ssf_okta: typing.Callable[[], T_Result],
         storage_aws_s_3: typing.Callable[[], T_Result],
         storage_azure_blob: typing.Callable[[], T_Result],
         storage_gcs: typing.Callable[[], T_Result],
@@ -1423,8 +1417,6 @@ class ProviderConfigId(enum.StrEnum):
             return sink_swimlane()
         if self is ProviderConfigId.SINK_TRIMEDX:
             return sink_trimedx()
-        if self is ProviderConfigId.SSF_OKTA:
-            return ssf_okta()
         if self is ProviderConfigId.STORAGE_AWS_S_3:
             return storage_aws_s_3()
         if self is ProviderConfigId.STORAGE_AZURE_BLOB:
