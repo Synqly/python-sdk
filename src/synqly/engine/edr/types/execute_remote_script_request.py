@@ -10,7 +10,7 @@ from ...core.unchecked_base_model import UncheckedBaseModel
 class ExecuteRemoteScriptRequest(UncheckedBaseModel):
     script: str = pydantic.Field()
     """
-    The script content to run on the remote endpoint.
+    The script content to run on the remote endpoint. Required to start an execution. When resuming with a cursor it may be left empty; if sent, it must match the original.
     """
 
     args: typing.Optional[str] = pydantic.Field(default=None)
@@ -20,7 +20,7 @@ class ExecuteRemoteScriptRequest(UncheckedBaseModel):
 
     cursor: typing.Optional[str] = pydantic.Field(default=None)
     """
-    Opaque cursor returned from a previous pending response, used to continue polling the in-flight execution. A resume must resend the same script; some providers also require the original args. An execution left pending and never resumed may leave provider objects behind.
+    Opaque cursor returned from a previous pending response, used to continue polling the in-flight execution. A resume needs only the cursor: the script may be left empty and args omitted. However, any that are sent on a resume  must match the original execution. An execution left pending and never  resumed may leave provider objects behind.
     """
 
     if IS_PYDANTIC_V2:
