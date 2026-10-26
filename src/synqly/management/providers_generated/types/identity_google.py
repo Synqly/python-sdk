@@ -26,6 +26,11 @@ class IdentityGoogle(UncheckedBaseModel):
     Email address of the user that the service account is impersonating for domain-wide delegation. For more information, see [this Google support article](https://support.google.com/a/answer/162106).
     """
 
+    url: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    Optional base URL override for the Google Workspace Admin APIs. Give the root only — the Directory and Reports paths are appended for you. Leave empty to use Google's standard endpoints.
+    """
+
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow")  # type: ignore # Pydantic v2
     else:
