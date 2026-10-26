@@ -15,6 +15,10 @@ class OptionValue(UncheckedBaseModel):
 
     id: Id
     name: str
+    attributes: typing.Optional[typing.Dict[str, typing.Any]] = pydantic.Field(default=None)
+    """
+    Provider-specific details about this option, such as the workflow state type and position of a Linear status.
+    """
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow")  # type: ignore # Pydantic v2
