@@ -296,10 +296,10 @@ class RawGrcClient:
             Number of controls to return. Defaults to 100.
 
         order : typing.Optional[typing.Union[str, typing.Sequence[str]]]
-            Order results by a supported field. Ascending by default; append `[desc]` for descending (or `[asc]`). Supported fields — `compliance_control.name`, `compliance_control.created_time`, `compliance_control.modified_time`.
+            Order results by a supported field. Ascending by default; append `[desc]` for descending (or `[asc]`). Supported fields vary by provider; consult the [capabilities API](https://docs.synqly.com/api-reference/management/capabilities) for a given provider's coverage.
 
         filter : typing.Optional[typing.Union[str, typing.Sequence[str]]]
-            Filter results with `field[operator]value` clauses using `eq`/`in` (repeat the parameter to AND clauses together). Supported fields — `compliance_control.assessment_status`, `compliance_control.name`, `compliance_control.vendor_code`. See the [Filtering Guide](https://docs.synqly.com/guides/connectors/grc/query-filters).
+            Filter results with `field[operator]value` clauses using `eq`/`in` (repeat the parameter to AND clauses together). Supported fields vary by provider; consult the [capabilities API](https://docs.synqly.com/api-reference/management/capabilities) for a given provider's coverage. See the [Filtering Guide](https://docs.synqly.com/guides/connectors/grc/query-filters).
 
         cursor : typing.Optional[str]
             Start search from cursor position.
@@ -733,10 +733,10 @@ class RawGrcClient:
             Number of tests to return. Defaults to 100.
 
         order : typing.Optional[typing.Union[str, typing.Sequence[str]]]
-            Order results by a supported field. Ascending by default; append `[desc]` for descending (or `[asc]`). Supported fields — `compliance_test.created_time`, `compliance_test.modified_time`.
+            Order results by a supported field. Ascending by default; append `[desc]` for descending (or `[asc]`). Supported fields vary by provider; consult the [capabilities API](https://docs.synqly.com/api-reference/management/capabilities) for a given provider's coverage.
 
         filter : typing.Optional[typing.Union[str, typing.Sequence[str]]]
-            Filter results with `field[operator]value` clauses using `eq`/`in` (repeat the parameter to AND clauses together). Supported fields — `compliance_test.name`. See the [Filtering Guide](https://docs.synqly.com/guides/connectors/grc/query-filters).
+            Filter results with `field[operator]value` clauses using `eq`/`in` (repeat the parameter to AND clauses together). Supported fields vary by provider; consult the [capabilities API](https://docs.synqly.com/api-reference/management/capabilities) for a given provider's coverage. See the [Filtering Guide](https://docs.synqly.com/guides/connectors/grc/query-filters).
 
         cursor : typing.Optional[str]
             Start search from cursor position.
@@ -1170,10 +1170,10 @@ class RawGrcClient:
             Number of evidence artifacts to return. Defaults to 100.
 
         order : typing.Optional[typing.Union[str, typing.Sequence[str]]]
-            Order results by a supported field. Ascending by default; append `[desc]` for descending (or `[asc]`). Supported fields — `compliance_evidence.created_time`, `compliance_evidence.modified_time`.
+            Order results by a supported field. Ascending by default; append `[desc]` for descending (or `[asc]`). Supported fields vary by provider; consult the [capabilities API](https://docs.synqly.com/api-reference/management/capabilities) for a given provider's coverage.
 
         filter : typing.Optional[typing.Union[str, typing.Sequence[str]]]
-            Filter results with `field[operator]value` clauses using `eq`/`in` (repeat the parameter to AND clauses together). Supported fields — `compliance_evidence.evidence_type`. See the [Filtering Guide](https://docs.synqly.com/guides/connectors/grc/query-filters).
+            Filter results with `field[operator]value` clauses using `eq`/`in` (repeat the parameter to AND clauses together). Supported fields vary by provider; consult the [capabilities API](https://docs.synqly.com/api-reference/management/capabilities) for a given provider's coverage. See the [Filtering Guide](https://docs.synqly.com/guides/connectors/grc/query-filters).
 
         cursor : typing.Optional[str]
             Start search from cursor position.
@@ -1397,10 +1397,10 @@ class RawGrcClient:
             Number of devices to return. Defaults to 100.
 
         order : typing.Optional[typing.Union[str, typing.Sequence[str]]]
-            Order results by a supported field. Ascending by default; append `[desc]` for descending (or `[asc]`). Supported fields — `device.name`.
+            Order results by a supported field. Ascending by default; append `[desc]` for descending (or `[asc]`). Supported fields vary by provider; consult the [capabilities API](https://docs.synqly.com/api-reference/management/capabilities) for a given provider's coverage.
 
         filter : typing.Optional[typing.Union[str, typing.Sequence[str]]]
-            Filter results with `field[operator]value` clauses using `eq`/`in` (repeat the parameter to AND clauses together). Supported fields — `device.name`. See the [Filtering Guide](https://docs.synqly.com/guides/connectors/grc/query-filters).
+            Filter results with `field[operator]value` clauses using `eq`/`in` (repeat the parameter to AND clauses together). Supported fields vary by provider; consult the [capabilities API](https://docs.synqly.com/api-reference/management/capabilities) for a given provider's coverage. See the [Filtering Guide](https://docs.synqly.com/guides/connectors/grc/query-filters).
 
         cursor : typing.Optional[str]
             Start search from cursor position.
@@ -1834,10 +1834,10 @@ class RawGrcClient:
             Number of people to return. Defaults to 100.
 
         order : typing.Optional[typing.Union[str, typing.Sequence[str]]]
-            Order results by a supported field. Ascending by default; append `[desc]` for descending (or `[asc]`). Supported fields — `resource.name`.
+            Order results by a supported field. Ascending by default; append `[desc]` for descending (or `[asc]`). Supported fields vary by provider; consult the [capabilities API](https://docs.synqly.com/api-reference/management/capabilities) for a given provider's coverage.
 
         filter : typing.Optional[typing.Union[str, typing.Sequence[str]]]
-            Filter results with `field[operator]value` clauses using `eq`/`in` (repeat the parameter to AND clauses together). Supported fields — `resource.name`. See the [Filtering Guide](https://docs.synqly.com/guides/connectors/grc/query-filters).
+            Filter results with `field[operator]value` clauses using `eq`/`in` (repeat the parameter to AND clauses together). Supported fields vary by provider; consult the [capabilities API](https://docs.synqly.com/api-reference/management/capabilities) for a given provider's coverage. See the [Filtering Guide](https://docs.synqly.com/guides/connectors/grc/query-filters).
 
         cursor : typing.Optional[str]
             Start search from cursor position.
@@ -2503,10 +2503,10 @@ class AsyncRawGrcClient:
             Number of controls to return. Defaults to 100.
 
         order : typing.Optional[typing.Union[str, typing.Sequence[str]]]
-            Order results by a supported field. Ascending by default; append `[desc]` for descending (or `[asc]`). Supported fields — `compliance_control.name`, `compliance_control.created_time`, `compliance_control.modified_time`.
+            Order results by a supported field. Ascending by default; append `[desc]` for descending (or `[asc]`). Supported fields vary by provider; consult the [capabilities API](https://docs.synqly.com/api-reference/management/capabilities) for a given provider's coverage.
 
         filter : typing.Optional[typing.Union[str, typing.Sequence[str]]]
-            Filter results with `field[operator]value` clauses using `eq`/`in` (repeat the parameter to AND clauses together). Supported fields — `compliance_control.assessment_status`, `compliance_control.name`, `compliance_control.vendor_code`. See the [Filtering Guide](https://docs.synqly.com/guides/connectors/grc/query-filters).
+            Filter results with `field[operator]value` clauses using `eq`/`in` (repeat the parameter to AND clauses together). Supported fields vary by provider; consult the [capabilities API](https://docs.synqly.com/api-reference/management/capabilities) for a given provider's coverage. See the [Filtering Guide](https://docs.synqly.com/guides/connectors/grc/query-filters).
 
         cursor : typing.Optional[str]
             Start search from cursor position.
@@ -2940,10 +2940,10 @@ class AsyncRawGrcClient:
             Number of tests to return. Defaults to 100.
 
         order : typing.Optional[typing.Union[str, typing.Sequence[str]]]
-            Order results by a supported field. Ascending by default; append `[desc]` for descending (or `[asc]`). Supported fields — `compliance_test.created_time`, `compliance_test.modified_time`.
+            Order results by a supported field. Ascending by default; append `[desc]` for descending (or `[asc]`). Supported fields vary by provider; consult the [capabilities API](https://docs.synqly.com/api-reference/management/capabilities) for a given provider's coverage.
 
         filter : typing.Optional[typing.Union[str, typing.Sequence[str]]]
-            Filter results with `field[operator]value` clauses using `eq`/`in` (repeat the parameter to AND clauses together). Supported fields — `compliance_test.name`. See the [Filtering Guide](https://docs.synqly.com/guides/connectors/grc/query-filters).
+            Filter results with `field[operator]value` clauses using `eq`/`in` (repeat the parameter to AND clauses together). Supported fields vary by provider; consult the [capabilities API](https://docs.synqly.com/api-reference/management/capabilities) for a given provider's coverage. See the [Filtering Guide](https://docs.synqly.com/guides/connectors/grc/query-filters).
 
         cursor : typing.Optional[str]
             Start search from cursor position.
@@ -3377,10 +3377,10 @@ class AsyncRawGrcClient:
             Number of evidence artifacts to return. Defaults to 100.
 
         order : typing.Optional[typing.Union[str, typing.Sequence[str]]]
-            Order results by a supported field. Ascending by default; append `[desc]` for descending (or `[asc]`). Supported fields — `compliance_evidence.created_time`, `compliance_evidence.modified_time`.
+            Order results by a supported field. Ascending by default; append `[desc]` for descending (or `[asc]`). Supported fields vary by provider; consult the [capabilities API](https://docs.synqly.com/api-reference/management/capabilities) for a given provider's coverage.
 
         filter : typing.Optional[typing.Union[str, typing.Sequence[str]]]
-            Filter results with `field[operator]value` clauses using `eq`/`in` (repeat the parameter to AND clauses together). Supported fields — `compliance_evidence.evidence_type`. See the [Filtering Guide](https://docs.synqly.com/guides/connectors/grc/query-filters).
+            Filter results with `field[operator]value` clauses using `eq`/`in` (repeat the parameter to AND clauses together). Supported fields vary by provider; consult the [capabilities API](https://docs.synqly.com/api-reference/management/capabilities) for a given provider's coverage. See the [Filtering Guide](https://docs.synqly.com/guides/connectors/grc/query-filters).
 
         cursor : typing.Optional[str]
             Start search from cursor position.
@@ -3604,10 +3604,10 @@ class AsyncRawGrcClient:
             Number of devices to return. Defaults to 100.
 
         order : typing.Optional[typing.Union[str, typing.Sequence[str]]]
-            Order results by a supported field. Ascending by default; append `[desc]` for descending (or `[asc]`). Supported fields — `device.name`.
+            Order results by a supported field. Ascending by default; append `[desc]` for descending (or `[asc]`). Supported fields vary by provider; consult the [capabilities API](https://docs.synqly.com/api-reference/management/capabilities) for a given provider's coverage.
 
         filter : typing.Optional[typing.Union[str, typing.Sequence[str]]]
-            Filter results with `field[operator]value` clauses using `eq`/`in` (repeat the parameter to AND clauses together). Supported fields — `device.name`. See the [Filtering Guide](https://docs.synqly.com/guides/connectors/grc/query-filters).
+            Filter results with `field[operator]value` clauses using `eq`/`in` (repeat the parameter to AND clauses together). Supported fields vary by provider; consult the [capabilities API](https://docs.synqly.com/api-reference/management/capabilities) for a given provider's coverage. See the [Filtering Guide](https://docs.synqly.com/guides/connectors/grc/query-filters).
 
         cursor : typing.Optional[str]
             Start search from cursor position.
@@ -4041,10 +4041,10 @@ class AsyncRawGrcClient:
             Number of people to return. Defaults to 100.
 
         order : typing.Optional[typing.Union[str, typing.Sequence[str]]]
-            Order results by a supported field. Ascending by default; append `[desc]` for descending (or `[asc]`). Supported fields — `resource.name`.
+            Order results by a supported field. Ascending by default; append `[desc]` for descending (or `[asc]`). Supported fields vary by provider; consult the [capabilities API](https://docs.synqly.com/api-reference/management/capabilities) for a given provider's coverage.
 
         filter : typing.Optional[typing.Union[str, typing.Sequence[str]]]
-            Filter results with `field[operator]value` clauses using `eq`/`in` (repeat the parameter to AND clauses together). Supported fields — `resource.name`. See the [Filtering Guide](https://docs.synqly.com/guides/connectors/grc/query-filters).
+            Filter results with `field[operator]value` clauses using `eq`/`in` (repeat the parameter to AND clauses together). Supported fields vary by provider; consult the [capabilities API](https://docs.synqly.com/api-reference/management/capabilities) for a given provider's coverage. See the [Filtering Guide](https://docs.synqly.com/guides/connectors/grc/query-filters).
 
         cursor : typing.Optional[str]
             Start search from cursor position.

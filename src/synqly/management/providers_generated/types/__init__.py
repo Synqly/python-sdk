@@ -184,6 +184,8 @@ if typing.TYPE_CHECKING:
         DefenderEasmCredential_OAuthClient,
         DefenderEasmCredential_OAuthClientId,
     )
+    from .drata_credential import DrataCredential, DrataCredential_Token, DrataCredential_TokenId
+    from .drata_region import DrataRegion
     from .duo_security_credential import (
         DuoSecurityCredential,
         DuoSecurityCredential_Basic,
@@ -255,6 +257,7 @@ if typing.TYPE_CHECKING:
         GoogleServiceAccountCredential_OAuthClient,
         GoogleServiceAccountCredential_OAuthClientId,
     )
+    from .grc_drata import GrcDrata
     from .grc_secureframe import GrcSecureframe
     from .greenhouse_credential import (
         GreenhouseCredential,
@@ -499,6 +502,7 @@ if typing.TYPE_CHECKING:
         ProviderConfig_EndpointmanagementIru,
         ProviderConfig_EndpointmanagementJamf,
         ProviderConfig_EndpointmanagementNinjaone,
+        ProviderConfig_GrcDrata,
         ProviderConfig_GrcSecureframe,
         ProviderConfig_IdentityAshby,
         ProviderConfig_IdentityAwsIam,
@@ -988,6 +992,10 @@ _dynamic_imports: typing.Dict[str, str] = {
     "DefenderEasmCredential": ".defender_easm_credential",
     "DefenderEasmCredential_OAuthClient": ".defender_easm_credential",
     "DefenderEasmCredential_OAuthClientId": ".defender_easm_credential",
+    "DrataCredential": ".drata_credential",
+    "DrataCredential_Token": ".drata_credential",
+    "DrataCredential_TokenId": ".drata_credential",
+    "DrataRegion": ".drata_region",
     "DuoSecurityCredential": ".duo_security_credential",
     "DuoSecurityCredential_Basic": ".duo_security_credential",
     "DuoSecurityCredential_BasicId": ".duo_security_credential",
@@ -1063,6 +1071,7 @@ _dynamic_imports: typing.Dict[str, str] = {
     "GoogleServiceAccountCredential": ".google_service_account_credential",
     "GoogleServiceAccountCredential_OAuthClient": ".google_service_account_credential",
     "GoogleServiceAccountCredential_OAuthClientId": ".google_service_account_credential",
+    "GrcDrata": ".grc_drata",
     "GrcSecureframe": ".grc_secureframe",
     "GreenhouseCredential": ".greenhouse_credential",
     "GreenhouseCredential_OAuthClient": ".greenhouse_credential",
@@ -1307,6 +1316,7 @@ _dynamic_imports: typing.Dict[str, str] = {
     "ProviderConfig_EndpointmanagementIru": ".provider_config",
     "ProviderConfig_EndpointmanagementJamf": ".provider_config",
     "ProviderConfig_EndpointmanagementNinjaone": ".provider_config",
+    "ProviderConfig_GrcDrata": ".provider_config",
     "ProviderConfig_GrcSecureframe": ".provider_config",
     "ProviderConfig_IdentityAshby": ".provider_config",
     "ProviderConfig_IdentityAwsIam": ".provider_config",
@@ -1820,6 +1830,10 @@ __all__ = [
     "DefenderEasmCredential",
     "DefenderEasmCredential_OAuthClient",
     "DefenderEasmCredential_OAuthClientId",
+    "DrataCredential",
+    "DrataCredential_Token",
+    "DrataCredential_TokenId",
+    "DrataRegion",
     "DuoSecurityCredential",
     "DuoSecurityCredential_Basic",
     "DuoSecurityCredential_BasicId",
@@ -1895,6 +1909,7 @@ __all__ = [
     "GoogleServiceAccountCredential",
     "GoogleServiceAccountCredential_OAuthClient",
     "GoogleServiceAccountCredential_OAuthClientId",
+    "GrcDrata",
     "GrcSecureframe",
     "GreenhouseCredential",
     "GreenhouseCredential_OAuthClient",
@@ -2139,6 +2154,7 @@ __all__ = [
     "ProviderConfig_EndpointmanagementIru",
     "ProviderConfig_EndpointmanagementJamf",
     "ProviderConfig_EndpointmanagementNinjaone",
+    "ProviderConfig_GrcDrata",
     "ProviderConfig_GrcSecureframe",
     "ProviderConfig_IdentityAshby",
     "ProviderConfig_IdentityAwsIam",
