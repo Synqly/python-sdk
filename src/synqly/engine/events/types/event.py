@@ -867,6 +867,24 @@ from ...ocsf.v_1_6_0.objects.types.osint import Osint as ocsf_v_1_6_0_objects_ty
 from ...ocsf.v_1_6_0.objects.types.policy import Policy as ocsf_v_1_6_0_objects_types_policy_Policy
 from ...ocsf.v_1_6_0.objects.types.sharing import Sharing as ocsf_v_1_6_0_objects_types_sharing_Sharing
 from ...ocsf.v_1_6_0.objects.types.tls import Tls as ocsf_v_1_6_0_objects_types_tls_Tls
+from ...ocsf.v_1_8_0.accessgrantinventoryinfo.classes.types.activity_id import (
+    ActivityId as ocsf_v_1_8_0_accessgrantinventoryinfo_classes_types_activity_id_ActivityId,
+)
+from ...ocsf.v_1_8_0.accessgrantinventoryinfo.classes.types.category_uid import (
+    CategoryUid as ocsf_v_1_8_0_accessgrantinventoryinfo_classes_types_category_uid_CategoryUid,
+)
+from ...ocsf.v_1_8_0.accessgrantinventoryinfo.classes.types.class_uid import (
+    ClassUid as ocsf_v_1_8_0_accessgrantinventoryinfo_classes_types_class_uid_ClassUid,
+)
+from ...ocsf.v_1_8_0.accessgrantinventoryinfo.classes.types.severity_id import (
+    SeverityId as ocsf_v_1_8_0_accessgrantinventoryinfo_classes_types_severity_id_SeverityId,
+)
+from ...ocsf.v_1_8_0.accessgrantinventoryinfo.classes.types.status_id import (
+    StatusId as ocsf_v_1_8_0_accessgrantinventoryinfo_classes_types_status_id_StatusId,
+)
+from ...ocsf.v_1_8_0.accessgrantinventoryinfo.classes.types.type_uid import (
+    TypeUid as ocsf_v_1_8_0_accessgrantinventoryinfo_classes_types_type_uid_TypeUid,
+)
 from ...ocsf.v_1_8_0.applicationinventoryinfo.classes.types.activity_id import (
     ActivityId as ocsf_v_1_8_0_applicationinventoryinfo_classes_types_activity_id_ActivityId,
 )
@@ -1060,7 +1078,6 @@ from ...ocsf.v_1_8_0.noteactivity.classes.types.type_uid import (
 )
 from ...ocsf.v_1_8_0.objects.types.actor import Actor as ocsf_v_1_8_0_objects_types_actor_Actor
 from ...ocsf.v_1_8_0.objects.types.annotation import Annotation
-from ...ocsf.v_1_8_0.objects.types.application import Application
 from ...ocsf.v_1_8_0.objects.types.attack import Attack as ocsf_v_1_8_0_objects_types_attack_Attack
 from ...ocsf.v_1_8_0.objects.types.authorization import (
     Authorization as ocsf_v_1_8_0_objects_types_authorization_Authorization,
@@ -1095,6 +1112,7 @@ from ...ocsf.v_1_8_0.objects.types.package import Package
 from ...ocsf.v_1_8_0.objects.types.phishing_program import PhishingProgram
 from ...ocsf.v_1_8_0.objects.types.phishing_simulation import PhishingSimulation
 from ...ocsf.v_1_8_0.objects.types.policy import Policy as ocsf_v_1_8_0_objects_types_policy_Policy
+from ...ocsf.v_1_8_0.objects.types.principal import Principal
 from ...ocsf.v_1_8_0.objects.types.product import Product as ocsf_v_1_8_0_objects_types_product_Product
 from ...ocsf.v_1_8_0.objects.types.remediation import Remediation as ocsf_v_1_8_0_objects_types_remediation_Remediation
 from ...ocsf.v_1_8_0.objects.types.resource_details import (
@@ -1317,7 +1335,7 @@ class Event_ApplicationSecurityPostureFinding(UncheckedBaseModel):
     action_id: typing.Optional[ocsf_v_1_8_0_applicationsecurityposturefinding_classes_types_action_id_ActionId] = None
     activity_id: ocsf_v_1_8_0_applicationsecurityposturefinding_classes_types_activity_id_ActivityId
     activity_name: typing.Optional[str] = None
-    application: typing.Optional[Application] = None
+    application: typing.Optional["Application"] = None
     attacks: typing.Optional[typing.List[ocsf_v_1_8_0_objects_types_attack_Attack]] = None
     authorizations: typing.Optional[typing.List[ocsf_v_1_8_0_objects_types_authorization_Authorization]] = None
     category_name: typing.Optional[str] = None
@@ -3328,7 +3346,7 @@ class Event_ApplicationInventoryInfo(UncheckedBaseModel):
     class_name: typing.Literal["Application Inventory Info"] = "Application Inventory Info"
     activity_id: ocsf_v_1_8_0_applicationinventoryinfo_classes_types_activity_id_ActivityId
     activity_name: typing.Optional[str] = None
-    application: Application
+    application: "Application"
     category_name: typing.Optional[str] = None
     category_uid: ocsf_v_1_8_0_applicationinventoryinfo_classes_types_category_uid_CategoryUid
     class_uid: ocsf_v_1_8_0_applicationinventoryinfo_classes_types_class_uid_ClassUid
@@ -3372,6 +3390,52 @@ class Event_ApplicationInventoryInfo(UncheckedBaseModel):
     uid_alt: typing.Optional[str] = None
     unmapped: typing.Optional[ocsf_v_1_8_0_objects_types_object_Object] = None
     url: typing.Optional[ocsf_v_1_8_0_objects_types_url_Url] = None
+
+    if IS_PYDANTIC_V2:
+        model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow")  # type: ignore # Pydantic v2
+    else:
+
+        class Config:
+            smart_union = True
+            extra = pydantic.Extra.allow
+
+
+class Event_AccessGrantInventoryInfo(UncheckedBaseModel):
+    class_name: typing.Literal["Access Grant Inventory Info"] = "Access Grant Inventory Info"
+    access_grant: "AccessGrant"
+    activity_id: ocsf_v_1_8_0_accessgrantinventoryinfo_classes_types_activity_id_ActivityId
+    activity_name: typing.Optional[str] = None
+    actor: typing.Optional[ocsf_v_1_8_0_objects_types_actor_Actor] = None
+    application: typing.Optional["Application"] = None
+    category_name: typing.Optional[str] = None
+    category_uid: ocsf_v_1_8_0_accessgrantinventoryinfo_classes_types_category_uid_CategoryUid
+    class_uid: ocsf_v_1_8_0_accessgrantinventoryinfo_classes_types_class_uid_ClassUid
+    count: typing.Optional[int] = None
+    duration: typing.Optional[int] = None
+    end_time: typing.Optional[ocsf_v_1_8_0_base_types_timestamp_Timestamp] = None
+    end_time_dt: typing.Optional[dt.datetime] = None
+    enrichments: typing.Optional[typing.List[ocsf_v_1_8_0_objects_types_enrichment_Enrichment]] = None
+    message: typing.Optional[str] = None
+    metadata: ocsf_v_1_8_0_objects_types_metadata_Metadata
+    observables: typing.Optional[typing.List[ocsf_v_1_8_0_objects_types_observable_Observable]] = None
+    principal: Principal
+    raw_data: typing.Optional[str] = None
+    raw_data_hash: typing.Optional[ocsf_v_1_8_0_objects_types_fingerprint_Fingerprint] = None
+    raw_data_size: typing.Optional[int] = None
+    severity: typing.Optional[str] = None
+    severity_id: ocsf_v_1_8_0_accessgrantinventoryinfo_classes_types_severity_id_SeverityId
+    start_time: typing.Optional[ocsf_v_1_8_0_base_types_timestamp_Timestamp] = None
+    start_time_dt: typing.Optional[dt.datetime] = None
+    status: typing.Optional[str] = None
+    status_code: typing.Optional[str] = None
+    status_detail: typing.Optional[str] = None
+    status_id: typing.Optional[ocsf_v_1_8_0_accessgrantinventoryinfo_classes_types_status_id_StatusId] = None
+    time: ocsf_v_1_8_0_base_types_timestamp_Timestamp
+    time_dt: typing.Optional[dt.datetime] = None
+    timezone_offset: typing.Optional[int] = None
+    type_name: typing.Optional[str] = None
+    type_uid: ocsf_v_1_8_0_accessgrantinventoryinfo_classes_types_type_uid_TypeUid
+    unmapped: typing.Optional[ocsf_v_1_8_0_objects_types_object_Object] = None
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow")  # type: ignore # Pydantic v2
@@ -3828,6 +3892,7 @@ Event = typing_extensions.Annotated[
         Event_ChatMessageActivity,
         Event_ConversationActivity,
         Event_ApplicationInventoryInfo,
+        Event_AccessGrantInventoryInfo,
         Event_ComplianceControlInventoryInfo,
         Event_ComplianceFrameworkInventoryInfo,
         Event_ComplianceTestInventoryInfo,
@@ -3840,15 +3905,24 @@ Event = typing_extensions.Annotated[
     ],
     UnionMetadata(discriminant="class_name"),
 ]
+from ...ocsf.v_1_8_0.objects.types.access_grant import AccessGrant  # noqa: E402, I001
+from ...ocsf.v_1_8_0.objects.types.application import Application  # noqa: E402, I001
 from ...ocsf.v_1_8_0.objects.types.ldap_person import LdapPerson  # noqa: E402, I001
 from ...ocsf.v_1_8_0.objects.types.user import User as ocsf_v_1_8_0_objects_types_user_User  # noqa: E402, I001
 
-update_forward_refs(Event_ApplicationSecurityPostureFinding)
+update_forward_refs(Event_ApplicationSecurityPostureFinding, AccessGrant=AccessGrant, Application=Application)
 update_forward_refs(Event_NoteActivity)
 update_forward_refs(Event_SoftwareInventoryInfo)
 update_forward_refs(Event_ChatMessageActivity)
 update_forward_refs(Event_ConversationActivity)
-update_forward_refs(Event_ApplicationInventoryInfo, LdapPerson=LdapPerson, User=ocsf_v_1_8_0_objects_types_user_User)
+update_forward_refs(
+    Event_ApplicationInventoryInfo,
+    AccessGrant=AccessGrant,
+    Application=Application,
+    LdapPerson=LdapPerson,
+    User=ocsf_v_1_8_0_objects_types_user_User,
+)
+update_forward_refs(Event_AccessGrantInventoryInfo, AccessGrant=AccessGrant, Application=Application)
 update_forward_refs(Event_ComplianceControlInventoryInfo)
 update_forward_refs(Event_ComplianceFrameworkInventoryInfo)
 update_forward_refs(Event_ComplianceTestInventoryInfo)

@@ -7,11 +7,32 @@ import pydantic
 from .....core.pydantic_utilities import IS_PYDANTIC_V2
 from .....core.unchecked_base_model import UncheckedBaseModel
 from ...base.types.timestamp import Timestamp
+from .programmatic_credential_type_id import ProgrammaticCredentialTypeId
 
 
 class ProgrammaticCredential(UncheckedBaseModel):
     """
     The Programmatic Credential object describes service-specific credentials used for direct API access and system integration. These credentials are typically issued by individual services or platforms for accessing their APIs and resources, focusing on credential lifecycle management and usage tracking. Examples include API keys, service account keys, client certificates, and vendor-specific access tokens.
+    """
+
+    created_time: typing.Optional[Timestamp] = pydantic.Field(default=None)
+    """
+    The time when the credential was created or became valid.
+    """
+
+    created_time_dt: typing.Optional[dt.datetime] = pydantic.Field(default=None)
+    """
+    The time when the credential was created or became valid.
+    """
+
+    expiration_time: typing.Optional[Timestamp] = pydantic.Field(default=None)
+    """
+    The time when the credential expires.
+    """
+
+    expiration_time_dt: typing.Optional[dt.datetime] = pydantic.Field(default=None)
+    """
+    The time when the credential expires.
     """
 
     last_used_time: typing.Optional[Timestamp] = pydantic.Field(default=None)
@@ -24,9 +45,19 @@ class ProgrammaticCredential(UncheckedBaseModel):
     The timestamp when this programmatic credential was last used for authentication or API access. This helps track credential usage patterns, identify dormant credentials that may pose security risks, and support credential lifecycle management. The timestamp should reflect the most recent successful authentication or API call using this credential.
     """
 
+    name: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    The display name of the credential.
+    """
+
     type: typing.Optional[str] = pydantic.Field(default=None)
     """
-    The type or category of programmatic credential, normalized to the caption of the type_id value. In the case of 'Other', it is defined by the event source. Examples include 'API Key', 'Service Account Key', 'Access Token', 'Client Certificate', 'OAuth Token', 'Personal Access Token', etc.
+    The credential type, normalized to the caption of the <code>type_id</code> value. In the case of 'Other', it is defined by the event source.
+    """
+
+    type_id: typing.Optional[ProgrammaticCredentialTypeId] = pydantic.Field(default=None)
+    """
+    The normalized identifier of the programmatic credential type.
     """
 
     uid: str = pydantic.Field()

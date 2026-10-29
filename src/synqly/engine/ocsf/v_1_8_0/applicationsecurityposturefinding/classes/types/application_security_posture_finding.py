@@ -9,7 +9,6 @@ import pydantic
 from ......core.pydantic_utilities import IS_PYDANTIC_V2, update_forward_refs
 from ......core.unchecked_base_model import UncheckedBaseModel
 from ....base.types.timestamp import Timestamp
-from ....objects.types.application import Application
 from ....objects.types.attack import Attack
 from ....objects.types.authorization import Authorization
 from ....objects.types.compliance import Compliance
@@ -65,7 +64,7 @@ class ApplicationSecurityPostureFinding(UncheckedBaseModel):
     The finding activity name, as defined by the <code>activity_id</code>.
     """
 
-    application: typing.Optional[Application] = pydantic.Field(default=None)
+    application: typing.Optional["Application"] = pydantic.Field(default=None)
     """
     An Application describes the details for an inventoried application as reported by an Application Security tool or other Developer-centric tooling. Applications can be defined as Kubernetes resources, Containerized resources, or application hosting-specific cloud sources such as AWS Elastic BeanStalk, AWS Lightsail, or Azure Logic Apps.
     """
@@ -339,4 +338,7 @@ class ApplicationSecurityPostureFinding(UncheckedBaseModel):
             extra = pydantic.Extra.allow
 
 
-update_forward_refs(ApplicationSecurityPostureFinding)
+from ....objects.types.access_grant import AccessGrant  # noqa: E402, I001
+from ....objects.types.application import Application  # noqa: E402, I001
+
+update_forward_refs(ApplicationSecurityPostureFinding, AccessGrant=AccessGrant, Application=Application)

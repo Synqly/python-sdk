@@ -7,6 +7,10 @@ from importlib import import_module
 
 if typing.TYPE_CHECKING:
     from .access_analysis_result import AccessAnalysisResult
+    from .access_grant import AccessGrant
+    from .access_grant_consent_type_id import AccessGrantConsentTypeId
+    from .access_grant_state_id import AccessGrantStateId
+    from .access_grant_type_id import AccessGrantTypeId
     from .account import Account
     from .account_type_id import AccountTypeId
     from .actor import Actor
@@ -30,6 +34,7 @@ if typing.TYPE_CHECKING:
     from .anomaly_analysis import AnomalyAnalysis
     from .api import Api
     from .application import Application
+    from .application_publisher_type_id import ApplicationPublisherTypeId
     from .application_risk_level_id import ApplicationRiskLevelId
     from .assessment import Assessment
     from .attack import Attack
@@ -148,6 +153,7 @@ if typing.TYPE_CHECKING:
     from .http_request import HttpRequest
     from .http_request_http_method import HttpRequestHttpMethod
     from .http_response import HttpResponse
+    from .iam_role import IamRole
     from .identity_activity_metrics import IdentityActivityMetrics
     from .idp import Idp
     from .idp_state_id import IdpStateId
@@ -229,6 +235,8 @@ if typing.TYPE_CHECKING:
     from .phishing_simulation_type_id import PhishingSimulationTypeId
     from .policy import Policy
     from .port_info import PortInfo
+    from .principal import Principal
+    from .principal_type_id import PrincipalTypeId
     from .privilege_attack_info import PrivilegeAttackInfo
     from .privilege_info import PrivilegeInfo
     from .privilege_info_type_id import PrivilegeInfoTypeId
@@ -237,6 +245,7 @@ if typing.TYPE_CHECKING:
     from .process_integrity_id import ProcessIntegrityId
     from .product import Product
     from .programmatic_credential import ProgrammaticCredential
+    from .programmatic_credential_type_id import ProgrammaticCredentialTypeId
     from .query_evidence import QueryEvidence
     from .query_evidence_query_type_id import QueryEvidenceQueryTypeId
     from .query_evidence_tcp_state_id import QueryEvidenceTcpStateId
@@ -319,6 +328,10 @@ if typing.TYPE_CHECKING:
     from .whois_dnssec_status_id import WhoisDnssecStatusId
 _dynamic_imports: typing.Dict[str, str] = {
     "AccessAnalysisResult": ".access_analysis_result",
+    "AccessGrant": ".access_grant",
+    "AccessGrantConsentTypeId": ".access_grant_consent_type_id",
+    "AccessGrantStateId": ".access_grant_state_id",
+    "AccessGrantTypeId": ".access_grant_type_id",
     "Account": ".account",
     "AccountTypeId": ".account_type_id",
     "Actor": ".actor",
@@ -342,6 +355,7 @@ _dynamic_imports: typing.Dict[str, str] = {
     "AnomalyAnalysis": ".anomaly_analysis",
     "Api": ".api",
     "Application": ".application",
+    "ApplicationPublisherTypeId": ".application_publisher_type_id",
     "ApplicationRiskLevelId": ".application_risk_level_id",
     "Assessment": ".assessment",
     "Attack": ".attack",
@@ -460,6 +474,7 @@ _dynamic_imports: typing.Dict[str, str] = {
     "HttpRequest": ".http_request",
     "HttpRequestHttpMethod": ".http_request_http_method",
     "HttpResponse": ".http_response",
+    "IamRole": ".iam_role",
     "IdentityActivityMetrics": ".identity_activity_metrics",
     "Idp": ".idp",
     "IdpStateId": ".idp_state_id",
@@ -541,6 +556,8 @@ _dynamic_imports: typing.Dict[str, str] = {
     "PhishingSimulationTypeId": ".phishing_simulation_type_id",
     "Policy": ".policy",
     "PortInfo": ".port_info",
+    "Principal": ".principal",
+    "PrincipalTypeId": ".principal_type_id",
     "PrivilegeAttackInfo": ".privilege_attack_info",
     "PrivilegeInfo": ".privilege_info",
     "PrivilegeInfoTypeId": ".privilege_info_type_id",
@@ -549,6 +566,7 @@ _dynamic_imports: typing.Dict[str, str] = {
     "ProcessIntegrityId": ".process_integrity_id",
     "Product": ".product",
     "ProgrammaticCredential": ".programmatic_credential",
+    "ProgrammaticCredentialTypeId": ".programmatic_credential_type_id",
     "QueryEvidence": ".query_evidence",
     "QueryEvidenceQueryTypeId": ".query_evidence_query_type_id",
     "QueryEvidenceTcpStateId": ".query_evidence_tcp_state_id",
@@ -655,6 +673,10 @@ def __dir__():
 
 __all__ = [
     "AccessAnalysisResult",
+    "AccessGrant",
+    "AccessGrantConsentTypeId",
+    "AccessGrantStateId",
+    "AccessGrantTypeId",
     "Account",
     "AccountTypeId",
     "Actor",
@@ -678,6 +700,7 @@ __all__ = [
     "AnomalyAnalysis",
     "Api",
     "Application",
+    "ApplicationPublisherTypeId",
     "ApplicationRiskLevelId",
     "Assessment",
     "Attack",
@@ -796,6 +819,7 @@ __all__ = [
     "HttpRequest",
     "HttpRequestHttpMethod",
     "HttpResponse",
+    "IamRole",
     "IdentityActivityMetrics",
     "Idp",
     "IdpStateId",
@@ -877,6 +901,8 @@ __all__ = [
     "PhishingSimulationTypeId",
     "Policy",
     "PortInfo",
+    "Principal",
+    "PrincipalTypeId",
     "PrivilegeAttackInfo",
     "PrivilegeInfo",
     "PrivilegeInfoTypeId",
@@ -885,6 +911,7 @@ __all__ = [
     "ProcessIntegrityId",
     "Product",
     "ProgrammaticCredential",
+    "ProgrammaticCredentialTypeId",
     "QueryEvidence",
     "QueryEvidenceQueryTypeId",
     "QueryEvidenceTcpStateId",

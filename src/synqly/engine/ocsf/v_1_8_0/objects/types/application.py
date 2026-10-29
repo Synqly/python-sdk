@@ -11,11 +11,15 @@ from .....core.unchecked_base_model import UncheckedBaseModel
 from ...base.types.hostname import Hostname
 from ...base.types.timestamp import Timestamp
 from ...base.types.url_string import UrlString
+from .application_publisher_type_id import ApplicationPublisherTypeId
 from .application_risk_level_id import ApplicationRiskLevelId
 from .graph import Graph
 from .group import Group
 from .key_value_object import KeyValueObject
+from .product import Product
+from .programmatic_credential import ProgrammaticCredential
 from .sbom import Sbom
+from .sso import Sso
 from .url import Url
 
 
@@ -69,6 +73,16 @@ class Application(UncheckedBaseModel):
     The fully qualified name of the application.
     """
 
+    is_disabled: typing.Optional[bool] = pydantic.Field(default=None)
+    """
+    Indicates whether the application is disabled.
+    """
+
+    is_publisher_verified: typing.Optional[bool] = pydantic.Field(default=None)
+    """
+    Indicates whether the platform the application is registered in has verified its publisher.
+    """
+
     labels: typing.Optional[typing.List[str]] = pydantic.Field(default=None)
     """
     The list of labels associated to the application.
@@ -104,9 +118,34 @@ class Application(UncheckedBaseModel):
     The identity of the service or user account that owns the application.
     """
 
+    product: typing.Optional[Product] = pydantic.Field(default=None)
+    """
+    The software product that this application is an instance of, carrying product identity such as <code>vendor_name</code>, <code>cpe_name</code>, and canonical <code>version</code>.
+    """
+
+    programmatic_credentials: typing.Optional[typing.List[ProgrammaticCredential]] = pydantic.Field(default=None)
+    """
+    The credentials registered for the application, such as client secrets and certificates.
+    """
+
+    publisher_type: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    The application publisher type, normalized to the caption of the <code>publisher_type_id</code> value. In the case of 'Other', it is defined by the event source.
+    """
+
+    publisher_type_id: typing.Optional[ApplicationPublisherTypeId] = pydantic.Field(default=None)
+    """
+    The normalized identifier of the application's publisher type, relative to the organization or tenant the application is registered in or connected to.
+    """
+
     region: typing.Optional[str] = pydantic.Field(default=None)
     """
     The cloud region of the resource.
+    """
+
+    requested_access_grants: typing.Optional[typing.List["AccessGrant"]] = pydantic.Field(default=None)
+    """
+    The access the application requests, whether or not it has been granted.
     """
 
     resource_relationship: typing.Optional[Graph] = pydantic.Field(default=None)
@@ -137,6 +176,11 @@ class Application(UncheckedBaseModel):
     src_url: typing.Optional[UrlString] = pydantic.Field(default=None)
     """
     URL pointing to the source of the application in the event source.
+    """
+
+    sso: typing.Optional[Sso] = pydantic.Field(default=None)
+    """
+    The single sign-on configuration of the application.
     """
 
     tags: typing.Optional[typing.List[KeyValueObject]] = pydantic.Field(default=None)
@@ -180,5 +224,6 @@ class Application(UncheckedBaseModel):
 
 from .ldap_person import LdapPerson  # noqa: E402, I001
 from .user import User  # noqa: E402, I001
+from .access_grant import AccessGrant  # noqa: E402, I001
 
-update_forward_refs(Application, LdapPerson=LdapPerson, User=User)
+update_forward_refs(Application, AccessGrant=AccessGrant, LdapPerson=LdapPerson, User=User)

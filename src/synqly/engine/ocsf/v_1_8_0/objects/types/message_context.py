@@ -7,7 +7,6 @@ import typing
 import pydantic
 from .....core.pydantic_utilities import IS_PYDANTIC_V2, update_forward_refs
 from .....core.unchecked_base_model import UncheckedBaseModel
-from .application import Application
 from .message_context_ai_role_id import MessageContextAiRoleId
 from .service import Service
 
@@ -27,7 +26,7 @@ class MessageContext(UncheckedBaseModel):
     Specifies the functional role of the AI within the context of this message, such as retrieving information, assisting reasoning, executing a tool, or generating content.
     """
 
-    application: typing.Optional[Application] = pydantic.Field(default=None)
+    application: typing.Optional["Application"] = pydantic.Field(default=None)
     """
     The initiating client application. In AI systems, this represents the client-side application or framework that initiates requests (e.g., LangChain application, web browser, mobile app, SDK implementation).
     """
@@ -71,4 +70,7 @@ class MessageContext(UncheckedBaseModel):
             extra = pydantic.Extra.allow
 
 
-update_forward_refs(MessageContext)
+from .access_grant import AccessGrant  # noqa: E402, I001
+from .application import Application  # noqa: E402, I001
+
+update_forward_refs(MessageContext, AccessGrant=AccessGrant, Application=Application)

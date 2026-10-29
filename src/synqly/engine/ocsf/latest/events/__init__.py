@@ -7,6 +7,7 @@ from importlib import import_module
 
 if typing.TYPE_CHECKING:
     from .types import (
+        AccessGrantInventoryInfo,
         AccountChange,
         ApiActivity,
         ApplicationInventoryInfo,
@@ -40,6 +41,7 @@ if typing.TYPE_CHECKING:
         WebResourceAccessActivity,
     )
 _dynamic_imports: typing.Dict[str, str] = {
+    "AccessGrantInventoryInfo": ".types",
     "AccountChange": ".types",
     "ApiActivity": ".types",
     "ApplicationInventoryInfo": ".types",
@@ -96,6 +98,7 @@ def __dir__():
 
 
 __all__ = [
+    "AccessGrantInventoryInfo",
     "AccountChange",
     "ApiActivity",
     "ApplicationInventoryInfo",

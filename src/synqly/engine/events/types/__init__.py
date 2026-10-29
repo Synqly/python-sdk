@@ -8,6 +8,7 @@ from importlib import import_module
 if typing.TYPE_CHECKING:
     from .event import (
         Event,
+        Event_AccessGrantInventoryInfo,
         Event_AccountChange,
         Event_ApiActivity,
         Event_ApplicationInventoryInfo,
@@ -56,6 +57,7 @@ if typing.TYPE_CHECKING:
     )
 _dynamic_imports: typing.Dict[str, str] = {
     "Event": ".event",
+    "Event_AccessGrantInventoryInfo": ".event",
     "Event_AccountChange": ".event",
     "Event_ApiActivity": ".event",
     "Event_ApplicationInventoryInfo": ".event",
@@ -127,6 +129,7 @@ def __dir__():
 
 __all__ = [
     "Event",
+    "Event_AccessGrantInventoryInfo",
     "Event_AccountChange",
     "Event_ApiActivity",
     "Event_ApplicationInventoryInfo",

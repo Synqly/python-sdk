@@ -6,6 +6,7 @@ import typing
 from importlib import import_module
 
 if typing.TYPE_CHECKING:
+    from .access_grant_inventory_info import AccessGrantInventoryInfo
     from .account_change import AccountChange
     from .api_activity import ApiActivity
     from .application_inventory_info import ApplicationInventoryInfo
@@ -38,6 +39,7 @@ if typing.TYPE_CHECKING:
     from .vulnerability_finding import VulnerabilityFinding
     from .web_resource_access_activity import WebResourceAccessActivity
 _dynamic_imports: typing.Dict[str, str] = {
+    "AccessGrantInventoryInfo": ".access_grant_inventory_info",
     "AccountChange": ".account_change",
     "ApiActivity": ".api_activity",
     "ApplicationInventoryInfo": ".application_inventory_info",
@@ -94,6 +96,7 @@ def __dir__():
 
 
 __all__ = [
+    "AccessGrantInventoryInfo",
     "AccountChange",
     "ApiActivity",
     "ApplicationInventoryInfo",
