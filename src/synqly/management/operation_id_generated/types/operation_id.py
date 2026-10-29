@@ -101,6 +101,7 @@ class OperationId(enum.StrEnum):
     IDENTITY_QUERY_APPLICATIONS = "identity_query_applications"
     IDENTITY_QUERY_AUDIT_LOG = "identity_query_audit_log"
     IDENTITY_QUERY_GROUPS = "identity_query_groups"
+    IDENTITY_QUERY_POLICIES = "identity_query_policies"
     IDENTITY_QUERY_RISK_EVENTS = "identity_query_risk_events"
     IDENTITY_QUERY_RISKY_USERS = "identity_query_risky_users"
     IDENTITY_QUERY_USERS = "identity_query_users"
@@ -276,6 +277,7 @@ class OperationId(enum.StrEnum):
         identity_query_applications: typing.Callable[[], T_Result],
         identity_query_audit_log: typing.Callable[[], T_Result],
         identity_query_groups: typing.Callable[[], T_Result],
+        identity_query_policies: typing.Callable[[], T_Result],
         identity_query_risk_events: typing.Callable[[], T_Result],
         identity_query_risky_users: typing.Callable[[], T_Result],
         identity_query_users: typing.Callable[[], T_Result],
@@ -533,6 +535,8 @@ class OperationId(enum.StrEnum):
             return identity_query_audit_log()
         if self is OperationId.IDENTITY_QUERY_GROUPS:
             return identity_query_groups()
+        if self is OperationId.IDENTITY_QUERY_POLICIES:
+            return identity_query_policies()
         if self is OperationId.IDENTITY_QUERY_RISK_EVENTS:
             return identity_query_risk_events()
         if self is OperationId.IDENTITY_QUERY_RISKY_USERS:

@@ -13,6 +13,7 @@ from .types.query_groups_response import QueryGroupsResponse
 from .types.query_identity_access_grants_response import QueryIdentityAccessGrantsResponse
 from .types.query_identity_applications_response import QueryIdentityApplicationsResponse
 from .types.query_identity_audit_log_response import QueryIdentityAuditLogResponse
+from .types.query_identity_policies_response import QueryIdentityPoliciesResponse
 from .types.query_identity_risk_events_response import QueryIdentityRiskEventsResponse
 from .types.query_identity_risky_users_response import QueryIdentityRiskyUsersResponse
 from .types.query_users_response import QueryUsersResponse
@@ -284,6 +285,58 @@ class IdentityClient:
         QueryIdentityAccessGrantsResponse
         """
         _response = self._raw_client.query_access_grants(
+            meta=meta,
+            limit=limit,
+            cursor=cursor,
+            order=order,
+            filter=filter,
+            include_raw_data=include_raw_data,
+            request_options=request_options,
+        )
+        return _response.data
+
+    def query_policies(
+        self,
+        *,
+        meta: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
+        limit: typing.Optional[int] = None,
+        cursor: typing.Optional[str] = None,
+        order: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
+        filter: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
+        include_raw_data: typing.Optional[bool] = None,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> QueryIdentityPoliciesResponse:
+        """
+        Returns the authentication, authorization, consent and access policies configured in the token-linked identity provider. Disabled and report-only policies are included.
+
+        Parameters
+        ----------
+        meta : typing.Optional[typing.Union[str, typing.Sequence[str]]]
+            Add metadata to the response by invoking meta functions. Documentation for [meta functions](https://docs.synqly.com/api-reference/meta-functions) is available. Not all meta functions are available at every endpoint.
+
+        limit : typing.Optional[int]
+            Number of policies to return. Defaults to 100.
+
+        cursor : typing.Optional[str]
+            Start search from cursor position.
+
+        order : typing.Optional[typing.Union[str, typing.Sequence[str]]]
+            Not supported on this endpoint; any value returns 400. Policies are returned in the provider's documented kind order.
+
+        filter : typing.Optional[typing.Union[str, typing.Sequence[str]]]
+            Filter results by this query. For more information on filtering, refer to our [Filtering Guide](https://docs.synqly.com/guides/connectors/identity/query-filters). Defaults to no filter. If used more than once, the queries are ANDed together.
+
+        include_raw_data : typing.Optional[bool]
+            Include the raw data from the identity provider in the response. Defaults to `false`.
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        QueryIdentityPoliciesResponse
+        """
+        _response = self._raw_client.query_policies(
             meta=meta,
             limit=limit,
             cursor=cursor,
@@ -865,6 +918,58 @@ class AsyncIdentityClient:
         QueryIdentityAccessGrantsResponse
         """
         _response = await self._raw_client.query_access_grants(
+            meta=meta,
+            limit=limit,
+            cursor=cursor,
+            order=order,
+            filter=filter,
+            include_raw_data=include_raw_data,
+            request_options=request_options,
+        )
+        return _response.data
+
+    async def query_policies(
+        self,
+        *,
+        meta: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
+        limit: typing.Optional[int] = None,
+        cursor: typing.Optional[str] = None,
+        order: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
+        filter: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
+        include_raw_data: typing.Optional[bool] = None,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> QueryIdentityPoliciesResponse:
+        """
+        Returns the authentication, authorization, consent and access policies configured in the token-linked identity provider. Disabled and report-only policies are included.
+
+        Parameters
+        ----------
+        meta : typing.Optional[typing.Union[str, typing.Sequence[str]]]
+            Add metadata to the response by invoking meta functions. Documentation for [meta functions](https://docs.synqly.com/api-reference/meta-functions) is available. Not all meta functions are available at every endpoint.
+
+        limit : typing.Optional[int]
+            Number of policies to return. Defaults to 100.
+
+        cursor : typing.Optional[str]
+            Start search from cursor position.
+
+        order : typing.Optional[typing.Union[str, typing.Sequence[str]]]
+            Not supported on this endpoint; any value returns 400. Policies are returned in the provider's documented kind order.
+
+        filter : typing.Optional[typing.Union[str, typing.Sequence[str]]]
+            Filter results by this query. For more information on filtering, refer to our [Filtering Guide](https://docs.synqly.com/guides/connectors/identity/query-filters). Defaults to no filter. If used more than once, the queries are ANDed together.
+
+        include_raw_data : typing.Optional[bool]
+            Include the raw data from the identity provider in the response. Defaults to `false`.
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        QueryIdentityPoliciesResponse
+        """
+        _response = await self._raw_client.query_policies(
             meta=meta,
             limit=limit,
             cursor=cursor,

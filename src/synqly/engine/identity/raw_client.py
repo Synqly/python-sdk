@@ -34,6 +34,7 @@ from .types.query_groups_response import QueryGroupsResponse
 from .types.query_identity_access_grants_response import QueryIdentityAccessGrantsResponse
 from .types.query_identity_applications_response import QueryIdentityApplicationsResponse
 from .types.query_identity_audit_log_response import QueryIdentityAuditLogResponse
+from .types.query_identity_policies_response import QueryIdentityPoliciesResponse
 from .types.query_identity_risk_events_response import QueryIdentityRiskEventsResponse
 from .types.query_identity_risky_users_response import QueryIdentityRiskyUsersResponse
 from .types.query_users_response import QueryUsersResponse
@@ -1013,6 +1014,233 @@ class RawIdentityClient:
                     QueryIdentityAccessGrantsResponse,
                     construct_type(
                         type_=QueryIdentityAccessGrantsResponse,  # type: ignore
+                        object_=_response.json(),
+                    ),
+                )
+                return HttpResponse(response=_response, data=_data)
+            if _response.status_code == 400:
+                raise BadRequestError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 401:
+                raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 403:
+                raise ForbiddenError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 404:
+                raise NotFoundError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 405:
+                raise MethodNotAllowedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 409:
+                raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 415:
+                raise UnsupportedMediaTypeError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 429:
+                raise TooManyRequestsError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 500:
+                raise InternalServerError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 501:
+                raise NotImplementedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 502:
+                raise BadGatewayError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 503:
+                raise ServiceUnavailableError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 504:
+                raise GatewayTimeoutError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            _response_json = _response.json()
+        except JSONDecodeError:
+            raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response.text)
+        except ValidationError as e:
+            raise ParsingError(
+                status_code=_response.status_code, headers=dict(_response.headers), body=_response.json(), cause=e
+            )
+        raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
+
+    def query_policies(
+        self,
+        *,
+        meta: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
+        limit: typing.Optional[int] = None,
+        cursor: typing.Optional[str] = None,
+        order: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
+        filter: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
+        include_raw_data: typing.Optional[bool] = None,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> HttpResponse[QueryIdentityPoliciesResponse]:
+        """
+        Returns the authentication, authorization, consent and access policies configured in the token-linked identity provider. Disabled and report-only policies are included.
+
+        Parameters
+        ----------
+        meta : typing.Optional[typing.Union[str, typing.Sequence[str]]]
+            Add metadata to the response by invoking meta functions. Documentation for [meta functions](https://docs.synqly.com/api-reference/meta-functions) is available. Not all meta functions are available at every endpoint.
+
+        limit : typing.Optional[int]
+            Number of policies to return. Defaults to 100.
+
+        cursor : typing.Optional[str]
+            Start search from cursor position.
+
+        order : typing.Optional[typing.Union[str, typing.Sequence[str]]]
+            Not supported on this endpoint; any value returns 400. Policies are returned in the provider's documented kind order.
+
+        filter : typing.Optional[typing.Union[str, typing.Sequence[str]]]
+            Filter results by this query. For more information on filtering, refer to our [Filtering Guide](https://docs.synqly.com/guides/connectors/identity/query-filters). Defaults to no filter. If used more than once, the queries are ANDed together.
+
+        include_raw_data : typing.Optional[bool]
+            Include the raw data from the identity provider in the response. Defaults to `false`.
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        HttpResponse[QueryIdentityPoliciesResponse]
+        """
+        _response = self._client_wrapper.httpx_client.request(
+            "v1/identity/policies",
+            method="GET",
+            params={
+                "meta": meta,
+                "limit": limit,
+                "cursor": cursor,
+                "order": order,
+                "filter": filter,
+                "include_raw_data": include_raw_data,
+            },
+            request_options=request_options,
+        )
+        try:
+            if 200 <= _response.status_code < 300:
+                _data = typing.cast(
+                    QueryIdentityPoliciesResponse,
+                    construct_type(
+                        type_=QueryIdentityPoliciesResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -4218,6 +4446,233 @@ class AsyncRawIdentityClient:
                     QueryIdentityAccessGrantsResponse,
                     construct_type(
                         type_=QueryIdentityAccessGrantsResponse,  # type: ignore
+                        object_=_response.json(),
+                    ),
+                )
+                return AsyncHttpResponse(response=_response, data=_data)
+            if _response.status_code == 400:
+                raise BadRequestError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 401:
+                raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 403:
+                raise ForbiddenError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 404:
+                raise NotFoundError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 405:
+                raise MethodNotAllowedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 409:
+                raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 415:
+                raise UnsupportedMediaTypeError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 429:
+                raise TooManyRequestsError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 500:
+                raise InternalServerError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 501:
+                raise NotImplementedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 502:
+                raise BadGatewayError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 503:
+                raise ServiceUnavailableError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 504:
+                raise GatewayTimeoutError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            _response_json = _response.json()
+        except JSONDecodeError:
+            raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response.text)
+        except ValidationError as e:
+            raise ParsingError(
+                status_code=_response.status_code, headers=dict(_response.headers), body=_response.json(), cause=e
+            )
+        raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
+
+    async def query_policies(
+        self,
+        *,
+        meta: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
+        limit: typing.Optional[int] = None,
+        cursor: typing.Optional[str] = None,
+        order: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
+        filter: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
+        include_raw_data: typing.Optional[bool] = None,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> AsyncHttpResponse[QueryIdentityPoliciesResponse]:
+        """
+        Returns the authentication, authorization, consent and access policies configured in the token-linked identity provider. Disabled and report-only policies are included.
+
+        Parameters
+        ----------
+        meta : typing.Optional[typing.Union[str, typing.Sequence[str]]]
+            Add metadata to the response by invoking meta functions. Documentation for [meta functions](https://docs.synqly.com/api-reference/meta-functions) is available. Not all meta functions are available at every endpoint.
+
+        limit : typing.Optional[int]
+            Number of policies to return. Defaults to 100.
+
+        cursor : typing.Optional[str]
+            Start search from cursor position.
+
+        order : typing.Optional[typing.Union[str, typing.Sequence[str]]]
+            Not supported on this endpoint; any value returns 400. Policies are returned in the provider's documented kind order.
+
+        filter : typing.Optional[typing.Union[str, typing.Sequence[str]]]
+            Filter results by this query. For more information on filtering, refer to our [Filtering Guide](https://docs.synqly.com/guides/connectors/identity/query-filters). Defaults to no filter. If used more than once, the queries are ANDed together.
+
+        include_raw_data : typing.Optional[bool]
+            Include the raw data from the identity provider in the response. Defaults to `false`.
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        AsyncHttpResponse[QueryIdentityPoliciesResponse]
+        """
+        _response = await self._client_wrapper.httpx_client.request(
+            "v1/identity/policies",
+            method="GET",
+            params={
+                "meta": meta,
+                "limit": limit,
+                "cursor": cursor,
+                "order": order,
+                "filter": filter,
+                "include_raw_data": include_raw_data,
+            },
+            request_options=request_options,
+        )
+        try:
+            if 200 <= _response.status_code < 300:
+                _data = typing.cast(
+                    QueryIdentityPoliciesResponse,
+                    construct_type(
+                        type_=QueryIdentityPoliciesResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
