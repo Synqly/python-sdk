@@ -66,6 +66,7 @@ class OperationId(enum.StrEnum):
     EDR_QUERY_POSTURE_SCORE = "edr_query_posture_score"
     EDR_QUERY_THREATEVENTS = "edr_query_threatevents"
     EDR_RETRIEVE_FILE = "edr_retrieve_file"
+    EDR_UPDATE_ALERT = "edr_update_alert"
     EMAILSECURITY_GET_THREAT_DETAILS = "emailsecurity_get_threat_details"
     EMAILSECURITY_QUERY_EMAIL_EVENTS = "emailsecurity_query_email_events"
     EMAILSECURITY_QUERY_THREATS = "emailsecurity_query_threats"
@@ -238,6 +239,7 @@ class OperationId(enum.StrEnum):
         edr_query_posture_score: typing.Callable[[], T_Result],
         edr_query_threatevents: typing.Callable[[], T_Result],
         edr_retrieve_file: typing.Callable[[], T_Result],
+        edr_update_alert: typing.Callable[[], T_Result],
         emailsecurity_get_threat_details: typing.Callable[[], T_Result],
         emailsecurity_query_email_events: typing.Callable[[], T_Result],
         emailsecurity_query_threats: typing.Callable[[], T_Result],
@@ -457,6 +459,8 @@ class OperationId(enum.StrEnum):
             return edr_query_threatevents()
         if self is OperationId.EDR_RETRIEVE_FILE:
             return edr_retrieve_file()
+        if self is OperationId.EDR_UPDATE_ALERT:
+            return edr_update_alert()
         if self is OperationId.EMAILSECURITY_GET_THREAT_DETAILS:
             return emailsecurity_get_threat_details()
         if self is OperationId.EMAILSECURITY_QUERY_EMAIL_EVENTS:

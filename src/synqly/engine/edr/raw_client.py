@@ -4,6 +4,8 @@ import contextlib
 import typing
 from json.decoder import JSONDecodeError
 
+from ..alerts.types.alert_assignee import AlertAssignee
+from ..alerts.types.update_alert_response import UpdateAlertResponse
 from ..common.errors.bad_gateway_error import BadGatewayError
 from ..common.errors.bad_request_error import BadRequestError
 from ..common.errors.conflict_error import ConflictError
@@ -27,6 +29,8 @@ from ..core.jsonable_encoder import encode_path_param
 from ..core.parse_error import ParsingError
 from ..core.request_options import RequestOptions
 from ..core.unchecked_base_model import construct_type
+from ..ocsf.v_1_3_0.detectionfinding.classes.types.status_id import StatusId
+from ..ocsf.v_1_3_0.incidentfinding.classes.types.verdict_id import VerdictId
 from ..ocsf.v_1_8_0.noteactivity.classes.types.note_activity import NoteActivity
 from ..stix.indicator.types.indicator import Indicator
 from .types.connection_state import ConnectionState
@@ -1892,6 +1896,259 @@ class RawEdrClient:
                     QueryAlertsResponse,
                     construct_type(
                         type_=QueryAlertsResponse,  # type: ignore
+                        object_=_response.json(),
+                    ),
+                )
+                return HttpResponse(response=_response, data=_data)
+            if _response.status_code == 400:
+                raise BadRequestError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 401:
+                raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 403:
+                raise ForbiddenError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 404:
+                raise NotFoundError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 405:
+                raise MethodNotAllowedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 409:
+                raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 415:
+                raise UnsupportedMediaTypeError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 429:
+                raise TooManyRequestsError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 500:
+                raise InternalServerError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 501:
+                raise NotImplementedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 502:
+                raise BadGatewayError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 503:
+                raise ServiceUnavailableError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 504:
+                raise GatewayTimeoutError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            _response_json = _response.json()
+        except JSONDecodeError:
+            raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response.text)
+        except ValidationError as e:
+            raise ParsingError(
+                status_code=_response.status_code, headers=dict(_response.headers), body=_response.json(), cause=e
+            )
+        raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
+
+    def update_alert(
+        self,
+        alert_id: str,
+        *,
+        meta: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
+        status_id: typing.Optional[StatusId] = OMIT,
+        verdict_id: typing.Optional[VerdictId] = OMIT,
+        comment: typing.Optional[str] = OMIT,
+        assignee: typing.Optional[AlertAssignee] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> HttpResponse[UpdateAlertResponse]:
+        """
+        Updates the triage state of a single alert in the token-linked EDR source: its lifecycle status, the analyst verdict, a comment and who it is assigned to.
+
+        Parameters
+        ----------
+        alert_id : str
+            UID of the Alert (URL encoded). This will be `finding_info.uid` in the OCSF model.
+
+        meta : typing.Optional[typing.Union[str, typing.Sequence[str]]]
+            Add metadata to the response by invoking meta functions. Documentation for [meta functions](https://docs.synqly.com/api-reference/meta-functions) is available. Not all meta functions are available at every endpoint.
+
+        status_id : typing.Optional[StatusId]
+            The triage state to move the alert to, as an OCSF Detection Finding `status_id`:
+
+            - `0`: Unknown. Rejected with a `400`.
+            - `1`: New.
+            - `2`: InProgress.
+            - `3`: Suppressed. Requires a `verdict_id` other than `2` (TruePositive); either violation is rejected with a `400`.
+            - `4`: Resolved.
+            - `99`: Other. Rejected with a `400`.
+
+            Providers with no distinct suppressed state read a closed alert with a false-positive (or equivalent) verdict back as `3`.
+
+        verdict_id : typing.Optional[VerdictId]
+            The analyst verdict to record, as an OCSF Incident Finding `verdict_id`:
+
+            - `0`: Unknown. Clears the verdict where the provider supports it.
+            - `1`: FalsePositive.
+            - `2`: TruePositive.
+            - `3`: Disregard.
+            - `4`: Suspicious.
+            - `5`: Benign.
+            - `6`: Test.
+            - `7`: InsufficientData.
+            - `8`: SecurityRisk.
+            - `9`: ManagedExternally.
+            - `10`: Duplicate.
+            - `99`: Other. Rejected with a `400`.
+
+            Providers store different subsets, some only on a closed alert, and a verdict the provider cannot store is rejected with a `400`.
+
+        comment : typing.Optional[str]
+            A comment to append to the alert. Comments are appended, never replaced, so re-sending the same comment adds it twice.
+
+        assignee : typing.Optional[AlertAssignee]
+            Who to assign the alert to, by exactly one of `email_addr` or `uid`; `{}` unassigns where the provider supports it. Any other attribute, or an identifier sent as `null`, is rejected with a `400`.
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        HttpResponse[UpdateAlertResponse]
+        """
+        _response = self._client_wrapper.httpx_client.request(
+            f"v1/edr/alerts/{encode_path_param(alert_id)}",
+            method="POST",
+            params={
+                "meta": meta,
+            },
+            json={
+                "status_id": status_id,
+                "verdict_id": verdict_id,
+                "comment": comment,
+                "assignee": assignee,
+            },
+            request_options=request_options,
+            omit=OMIT,
+        )
+        try:
+            if 200 <= _response.status_code < 300:
+                _data = typing.cast(
+                    UpdateAlertResponse,
+                    construct_type(
+                        type_=UpdateAlertResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -6334,6 +6591,259 @@ class AsyncRawEdrClient:
                     QueryAlertsResponse,
                     construct_type(
                         type_=QueryAlertsResponse,  # type: ignore
+                        object_=_response.json(),
+                    ),
+                )
+                return AsyncHttpResponse(response=_response, data=_data)
+            if _response.status_code == 400:
+                raise BadRequestError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 401:
+                raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 403:
+                raise ForbiddenError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 404:
+                raise NotFoundError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 405:
+                raise MethodNotAllowedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 409:
+                raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 415:
+                raise UnsupportedMediaTypeError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 429:
+                raise TooManyRequestsError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 500:
+                raise InternalServerError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 501:
+                raise NotImplementedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 502:
+                raise BadGatewayError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 503:
+                raise ServiceUnavailableError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 504:
+                raise GatewayTimeoutError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            _response_json = _response.json()
+        except JSONDecodeError:
+            raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response.text)
+        except ValidationError as e:
+            raise ParsingError(
+                status_code=_response.status_code, headers=dict(_response.headers), body=_response.json(), cause=e
+            )
+        raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
+
+    async def update_alert(
+        self,
+        alert_id: str,
+        *,
+        meta: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
+        status_id: typing.Optional[StatusId] = OMIT,
+        verdict_id: typing.Optional[VerdictId] = OMIT,
+        comment: typing.Optional[str] = OMIT,
+        assignee: typing.Optional[AlertAssignee] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> AsyncHttpResponse[UpdateAlertResponse]:
+        """
+        Updates the triage state of a single alert in the token-linked EDR source: its lifecycle status, the analyst verdict, a comment and who it is assigned to.
+
+        Parameters
+        ----------
+        alert_id : str
+            UID of the Alert (URL encoded). This will be `finding_info.uid` in the OCSF model.
+
+        meta : typing.Optional[typing.Union[str, typing.Sequence[str]]]
+            Add metadata to the response by invoking meta functions. Documentation for [meta functions](https://docs.synqly.com/api-reference/meta-functions) is available. Not all meta functions are available at every endpoint.
+
+        status_id : typing.Optional[StatusId]
+            The triage state to move the alert to, as an OCSF Detection Finding `status_id`:
+
+            - `0`: Unknown. Rejected with a `400`.
+            - `1`: New.
+            - `2`: InProgress.
+            - `3`: Suppressed. Requires a `verdict_id` other than `2` (TruePositive); either violation is rejected with a `400`.
+            - `4`: Resolved.
+            - `99`: Other. Rejected with a `400`.
+
+            Providers with no distinct suppressed state read a closed alert with a false-positive (or equivalent) verdict back as `3`.
+
+        verdict_id : typing.Optional[VerdictId]
+            The analyst verdict to record, as an OCSF Incident Finding `verdict_id`:
+
+            - `0`: Unknown. Clears the verdict where the provider supports it.
+            - `1`: FalsePositive.
+            - `2`: TruePositive.
+            - `3`: Disregard.
+            - `4`: Suspicious.
+            - `5`: Benign.
+            - `6`: Test.
+            - `7`: InsufficientData.
+            - `8`: SecurityRisk.
+            - `9`: ManagedExternally.
+            - `10`: Duplicate.
+            - `99`: Other. Rejected with a `400`.
+
+            Providers store different subsets, some only on a closed alert, and a verdict the provider cannot store is rejected with a `400`.
+
+        comment : typing.Optional[str]
+            A comment to append to the alert. Comments are appended, never replaced, so re-sending the same comment adds it twice.
+
+        assignee : typing.Optional[AlertAssignee]
+            Who to assign the alert to, by exactly one of `email_addr` or `uid`; `{}` unassigns where the provider supports it. Any other attribute, or an identifier sent as `null`, is rejected with a `400`.
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        AsyncHttpResponse[UpdateAlertResponse]
+        """
+        _response = await self._client_wrapper.httpx_client.request(
+            f"v1/edr/alerts/{encode_path_param(alert_id)}",
+            method="POST",
+            params={
+                "meta": meta,
+            },
+            json={
+                "status_id": status_id,
+                "verdict_id": verdict_id,
+                "comment": comment,
+                "assignee": assignee,
+            },
+            request_options=request_options,
+            omit=OMIT,
+        )
+        try:
+            if 200 <= _response.status_code < 300:
+                _data = typing.cast(
+                    UpdateAlertResponse,
+                    construct_type(
+                        type_=UpdateAlertResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )

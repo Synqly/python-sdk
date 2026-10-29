@@ -7,6 +7,7 @@ from importlib import import_module
 
 if typing.TYPE_CHECKING:
     from . import (
+        alerts,
         appsec,
         assets,
         chat,
@@ -40,6 +41,7 @@ if typing.TYPE_CHECKING:
         vulnerabilities,
     )
     from ._default_clients import DefaultAioHttpClient, DefaultAsyncHttpxClient
+    from .alerts import AlertAssignee, UpdateAlertRequest, UpdateAlertResponse
     from .appsec import (
         AppSecApplication,
         AppSecCreateFindingsResponse,
@@ -474,6 +476,7 @@ _dynamic_imports: typing.Dict[str, str] = {
     "Actor_ScheduleSummary": ".ticketing",
     "Agent": ".ticketing",
     "AgentSummary": ".ticketing",
+    "AlertAssignee": ".alerts",
     "ApiHasStatus": ".engine",
     "ApiQueryResponse": ".engine",
     "ApiResponse": ".engine",
@@ -841,6 +844,8 @@ _dynamic_imports: typing.Dict[str, str] = {
     "TrafficLogConfiguration": ".networksecurity",
     "UnauthorizedError": ".common",
     "UnsupportedMediaTypeError": ".common",
+    "UpdateAlertRequest": ".alerts",
+    "UpdateAlertResponse": ".alerts",
     "UpdateFindingRequest": ".vulnerabilities",
     "UpdateSoftwareInventoryRequest": ".assets",
     "UpdateSoftwareInventoryResponse": ".assets",
@@ -855,6 +860,7 @@ _dynamic_imports: typing.Dict[str, str] = {
     "VulnerabilityStateFilterValue": ".vulnerabilities",
     "WebhookEvent": ".organization_webhook_base",
     "WebhookFilter": ".organization_webhook_base",
+    "alerts": ".alerts",
     "appsec": ".appsec",
     "assets": ".assets",
     "chat": ".chat",
@@ -919,6 +925,7 @@ __all__ = [
     "Actor_ScheduleSummary",
     "Agent",
     "AgentSummary",
+    "AlertAssignee",
     "ApiHasStatus",
     "ApiQueryResponse",
     "ApiResponse",
@@ -1286,6 +1293,8 @@ __all__ = [
     "TrafficLogConfiguration",
     "UnauthorizedError",
     "UnsupportedMediaTypeError",
+    "UpdateAlertRequest",
+    "UpdateAlertResponse",
     "UpdateFindingRequest",
     "UpdateSoftwareInventoryRequest",
     "UpdateSoftwareInventoryResponse",
@@ -1300,6 +1309,7 @@ __all__ = [
     "VulnerabilityStateFilterValue",
     "WebhookEvent",
     "WebhookFilter",
+    "alerts",
     "appsec",
     "assets",
     "chat",
