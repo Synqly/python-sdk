@@ -224,6 +224,7 @@ if typing.TYPE_CHECKING:
     from .email_security_defender_for_office_dataset import EmailSecurityDefenderForOfficeDataset
     from .email_security_defender_for_office_mock import EmailSecurityDefenderForOfficeMock
     from .email_security_exchange_online import EmailSecurityExchangeOnline
+    from .email_security_ironscales import EmailSecurityIronscales
     from .email_security_mimecast_cloud_gateway import EmailSecurityMimecastCloudGateway
     from .email_security_mimecast_cloud_gateway_dataset import EmailSecurityMimecastCloudGatewayDataset
     from .email_security_mimecast_cloud_gateway_mock import EmailSecurityMimecastCloudGatewayMock
@@ -331,6 +332,8 @@ if typing.TYPE_CHECKING:
     from .incident_response_incident_io import IncidentResponseIncidentIo
     from .incident_response_pager_duty import IncidentResponsePagerDuty
     from .intune_credential import IntuneCredential, IntuneCredential_OAuthClient, IntuneCredential_OAuthClientId
+    from .ironscales_credential import IronscalesCredential, IronscalesCredential_Token, IronscalesCredential_TokenId
+    from .ironscales_region import IronscalesRegion
     from .iru_credential import IruCredential, IruCredential_Token, IruCredential_TokenId
     from .ivanti_credential import IvantiCredential, IvantiCredential_OAuthClient, IvantiCredential_OAuthClientId
     from .ivanti_credential_ticketing import (
@@ -493,6 +496,7 @@ if typing.TYPE_CHECKING:
         ProviderConfig_EmailsecurityDefenderForOffice,
         ProviderConfig_EmailsecurityDefenderForOfficeMock,
         ProviderConfig_EmailsecurityExchangeOnline,
+        ProviderConfig_EmailsecurityIronscales,
         ProviderConfig_EmailsecurityMimecastCloudGateway,
         ProviderConfig_EmailsecurityMimecastCloudGatewayMock,
         ProviderConfig_EmailsecurityO365ManagementActivity,
@@ -1028,6 +1032,7 @@ _dynamic_imports: typing.Dict[str, str] = {
     "EmailSecurityDefenderForOfficeDataset": ".email_security_defender_for_office_dataset",
     "EmailSecurityDefenderForOfficeMock": ".email_security_defender_for_office_mock",
     "EmailSecurityExchangeOnline": ".email_security_exchange_online",
+    "EmailSecurityIronscales": ".email_security_ironscales",
     "EmailSecurityMimecastCloudGateway": ".email_security_mimecast_cloud_gateway",
     "EmailSecurityMimecastCloudGatewayDataset": ".email_security_mimecast_cloud_gateway_dataset",
     "EmailSecurityMimecastCloudGatewayMock": ".email_security_mimecast_cloud_gateway_mock",
@@ -1139,6 +1144,10 @@ _dynamic_imports: typing.Dict[str, str] = {
     "IntuneCredential": ".intune_credential",
     "IntuneCredential_OAuthClient": ".intune_credential",
     "IntuneCredential_OAuthClientId": ".intune_credential",
+    "IronscalesCredential": ".ironscales_credential",
+    "IronscalesCredential_Token": ".ironscales_credential",
+    "IronscalesCredential_TokenId": ".ironscales_credential",
+    "IronscalesRegion": ".ironscales_region",
     "IruCredential": ".iru_credential",
     "IruCredential_Token": ".iru_credential",
     "IruCredential_TokenId": ".iru_credential",
@@ -1307,6 +1316,7 @@ _dynamic_imports: typing.Dict[str, str] = {
     "ProviderConfig_EmailsecurityDefenderForOffice": ".provider_config",
     "ProviderConfig_EmailsecurityDefenderForOfficeMock": ".provider_config",
     "ProviderConfig_EmailsecurityExchangeOnline": ".provider_config",
+    "ProviderConfig_EmailsecurityIronscales": ".provider_config",
     "ProviderConfig_EmailsecurityMimecastCloudGateway": ".provider_config",
     "ProviderConfig_EmailsecurityMimecastCloudGatewayMock": ".provider_config",
     "ProviderConfig_EmailsecurityO365ManagementActivity": ".provider_config",
@@ -1866,6 +1876,7 @@ __all__ = [
     "EmailSecurityDefenderForOfficeDataset",
     "EmailSecurityDefenderForOfficeMock",
     "EmailSecurityExchangeOnline",
+    "EmailSecurityIronscales",
     "EmailSecurityMimecastCloudGateway",
     "EmailSecurityMimecastCloudGatewayDataset",
     "EmailSecurityMimecastCloudGatewayMock",
@@ -1977,6 +1988,10 @@ __all__ = [
     "IntuneCredential",
     "IntuneCredential_OAuthClient",
     "IntuneCredential_OAuthClientId",
+    "IronscalesCredential",
+    "IronscalesCredential_Token",
+    "IronscalesCredential_TokenId",
+    "IronscalesRegion",
     "IruCredential",
     "IruCredential_Token",
     "IruCredential_TokenId",
@@ -2145,6 +2160,7 @@ __all__ = [
     "ProviderConfig_EmailsecurityDefenderForOffice",
     "ProviderConfig_EmailsecurityDefenderForOfficeMock",
     "ProviderConfig_EmailsecurityExchangeOnline",
+    "ProviderConfig_EmailsecurityIronscales",
     "ProviderConfig_EmailsecurityMimecastCloudGateway",
     "ProviderConfig_EmailsecurityMimecastCloudGatewayMock",
     "ProviderConfig_EmailsecurityO365ManagementActivity",
