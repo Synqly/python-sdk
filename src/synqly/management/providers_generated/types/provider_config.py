@@ -90,8 +90,6 @@ from .identity_okta_dataset import IdentityOktaDataset
 from .identity_ping_one_dataset import IdentityPingOneDataset
 from .incident_io_credential import IncidentIoCredential
 from .intune_credential import IntuneCredential
-from .ironscales_credential import IronscalesCredential
-from .ironscales_region import IronscalesRegion
 from .iru_credential import IruCredential
 from .ivanti_credential import IvantiCredential
 from .ivanti_credential_ticketing import IvantiCredentialTicketing
@@ -1122,21 +1120,6 @@ class ProviderConfig_EmailsecurityExchangeOnline(UncheckedBaseModel):
     type: typing.Literal["emailsecurity_exchange_online"] = "emailsecurity_exchange_online"
     credential: ExchangeOnlineCredential
     tenant_id: str
-
-    if IS_PYDANTIC_V2:
-        model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow")  # type: ignore # Pydantic v2
-    else:
-
-        class Config:
-            smart_union = True
-            extra = pydantic.Extra.allow
-
-
-class ProviderConfig_EmailsecurityIronscales(UncheckedBaseModel):
-    type: typing.Literal["emailsecurity_ironscales"] = "emailsecurity_ironscales"
-    company_id: str
-    credential: IronscalesCredential
-    region: IronscalesRegion
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow")  # type: ignore # Pydantic v2
@@ -2997,7 +2980,6 @@ ProviderConfig = typing_extensions.Annotated[
         ProviderConfig_EmailsecurityDefenderForOffice,
         ProviderConfig_EmailsecurityDefenderForOfficeMock,
         ProviderConfig_EmailsecurityExchangeOnline,
-        ProviderConfig_EmailsecurityIronscales,
         ProviderConfig_EmailsecurityMimecastCloudGateway,
         ProviderConfig_EmailsecurityMimecastCloudGatewayMock,
         ProviderConfig_EmailsecurityO365ManagementActivity,

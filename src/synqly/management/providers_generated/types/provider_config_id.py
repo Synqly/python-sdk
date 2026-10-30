@@ -347,11 +347,6 @@ class ProviderConfigId(enum.StrEnum):
     Microsoft Exchange Online
     """
 
-    EMAIL_SECURITY_IRONSCALES = "emailsecurity_ironscales"
-    """
-    Ironscales
-    """
-
     EMAIL_SECURITY_MIMECAST_CLOUD_GATEWAY = "emailsecurity_mimecast_cloud_gateway"
     """
     Mimecast Cloud Gateway
@@ -1032,7 +1027,6 @@ class ProviderConfigId(enum.StrEnum):
         email_security_defender_for_office: typing.Callable[[], T_Result],
         email_security_defender_for_office_mock: typing.Callable[[], T_Result],
         email_security_exchange_online: typing.Callable[[], T_Result],
-        email_security_ironscales: typing.Callable[[], T_Result],
         email_security_mimecast_cloud_gateway: typing.Callable[[], T_Result],
         email_security_mimecast_cloud_gateway_mock: typing.Callable[[], T_Result],
         email_security_o_365_management_activity: typing.Callable[[], T_Result],
@@ -1289,8 +1283,6 @@ class ProviderConfigId(enum.StrEnum):
             return email_security_defender_for_office_mock()
         if self is ProviderConfigId.EMAIL_SECURITY_EXCHANGE_ONLINE:
             return email_security_exchange_online()
-        if self is ProviderConfigId.EMAIL_SECURITY_IRONSCALES:
-            return email_security_ironscales()
         if self is ProviderConfigId.EMAIL_SECURITY_MIMECAST_CLOUD_GATEWAY:
             return email_security_mimecast_cloud_gateway()
         if self is ProviderConfigId.EMAIL_SECURITY_MIMECAST_CLOUD_GATEWAY_MOCK:
