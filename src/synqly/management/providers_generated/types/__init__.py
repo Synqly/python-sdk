@@ -7,6 +7,8 @@ from importlib import import_module
 
 if typing.TYPE_CHECKING:
     from .abuse_ipdb_credential import AbuseIpdbCredential, AbuseIpdbCredential_Token, AbuseIpdbCredential_TokenId
+    from .amazon_security_lake_custom_log_sources_config import AmazonSecurityLakeCustomLogSourcesConfig
+    from .amazon_security_lake_ocsf_event_classes import AmazonSecurityLakeOcsfEventClasses
     from .api_config import ApiConfig
     from .api_region import ApiRegion
     from .app_sec_service_now import AppSecServiceNow
@@ -535,6 +537,7 @@ if typing.TYPE_CHECKING:
         ProviderConfig_NotificationsSlackWebhook,
         ProviderConfig_NotificationsTeams,
         ProviderConfig_SecurityawarenessKnowbe4,
+        ProviderConfig_SiemAmazonSecurityLake,
         ProviderConfig_SiemCrowdstrike,
         ProviderConfig_SiemDatadog,
         ProviderConfig_SiemElasticsearch,
@@ -548,6 +551,7 @@ if typing.TYPE_CHECKING:
         ProviderConfig_SiemSentinel,
         ProviderConfig_SiemSplunk,
         ProviderConfig_SiemSumoLogic,
+        ProviderConfig_SinkAmazonSecurityLake,
         ProviderConfig_SinkAwsS3,
         ProviderConfig_SinkAwsSecurityLake,
         ProviderConfig_SinkAwsSqs,
@@ -661,6 +665,7 @@ if typing.TYPE_CHECKING:
         ServiceNowCredential_TokenId,
     )
     from .sevco_credential import SevcoCredential, SevcoCredential_Token, SevcoCredential_TokenId
+    from .siem_amazon_security_lake import SiemAmazonSecurityLake
     from .siem_crowdstrike import SiemCrowdstrike
     from .siem_datadog import SiemDatadog
     from .siem_elasticsearch import SiemElasticsearch
@@ -674,6 +679,7 @@ if typing.TYPE_CHECKING:
     from .siem_sentinel import SiemSentinel
     from .siem_splunk import SiemSplunk
     from .siem_sumo_logic import SiemSumoLogic
+    from .sink_amazon_security_lake import SinkAmazonSecurityLake
     from .sink_aws_s_3 import SinkAwsS3
     from .sink_aws_security_lake import SinkAwsSecurityLake
     from .sink_aws_sqs import SinkAwsSqs
@@ -840,6 +846,8 @@ _dynamic_imports: typing.Dict[str, str] = {
     "AbuseIpdbCredential": ".abuse_ipdb_credential",
     "AbuseIpdbCredential_Token": ".abuse_ipdb_credential",
     "AbuseIpdbCredential_TokenId": ".abuse_ipdb_credential",
+    "AmazonSecurityLakeCustomLogSourcesConfig": ".amazon_security_lake_custom_log_sources_config",
+    "AmazonSecurityLakeOcsfEventClasses": ".amazon_security_lake_ocsf_event_classes",
     "ApiConfig": ".api_config",
     "ApiRegion": ".api_region",
     "AppSecServiceNow": ".app_sec_service_now",
@@ -1355,6 +1363,7 @@ _dynamic_imports: typing.Dict[str, str] = {
     "ProviderConfig_NotificationsSlackWebhook": ".provider_config",
     "ProviderConfig_NotificationsTeams": ".provider_config",
     "ProviderConfig_SecurityawarenessKnowbe4": ".provider_config",
+    "ProviderConfig_SiemAmazonSecurityLake": ".provider_config",
     "ProviderConfig_SiemCrowdstrike": ".provider_config",
     "ProviderConfig_SiemDatadog": ".provider_config",
     "ProviderConfig_SiemElasticsearch": ".provider_config",
@@ -1368,6 +1377,7 @@ _dynamic_imports: typing.Dict[str, str] = {
     "ProviderConfig_SiemSentinel": ".provider_config",
     "ProviderConfig_SiemSplunk": ".provider_config",
     "ProviderConfig_SiemSumoLogic": ".provider_config",
+    "ProviderConfig_SinkAmazonSecurityLake": ".provider_config",
     "ProviderConfig_SinkAwsS3": ".provider_config",
     "ProviderConfig_SinkAwsSecurityLake": ".provider_config",
     "ProviderConfig_SinkAwsSqs": ".provider_config",
@@ -1469,6 +1479,7 @@ _dynamic_imports: typing.Dict[str, str] = {
     "SevcoCredential": ".sevco_credential",
     "SevcoCredential_Token": ".sevco_credential",
     "SevcoCredential_TokenId": ".sevco_credential",
+    "SiemAmazonSecurityLake": ".siem_amazon_security_lake",
     "SiemCrowdstrike": ".siem_crowdstrike",
     "SiemDatadog": ".siem_datadog",
     "SiemElasticsearch": ".siem_elasticsearch",
@@ -1482,6 +1493,7 @@ _dynamic_imports: typing.Dict[str, str] = {
     "SiemSentinel": ".siem_sentinel",
     "SiemSplunk": ".siem_splunk",
     "SiemSumoLogic": ".siem_sumo_logic",
+    "SinkAmazonSecurityLake": ".sink_amazon_security_lake",
     "SinkAwsS3": ".sink_aws_s_3",
     "SinkAwsSecurityLake": ".sink_aws_security_lake",
     "SinkAwsSqs": ".sink_aws_sqs",
@@ -1684,6 +1696,8 @@ __all__ = [
     "AbuseIpdbCredential",
     "AbuseIpdbCredential_Token",
     "AbuseIpdbCredential_TokenId",
+    "AmazonSecurityLakeCustomLogSourcesConfig",
+    "AmazonSecurityLakeOcsfEventClasses",
     "ApiConfig",
     "ApiRegion",
     "AppSecServiceNow",
@@ -2199,6 +2213,7 @@ __all__ = [
     "ProviderConfig_NotificationsSlackWebhook",
     "ProviderConfig_NotificationsTeams",
     "ProviderConfig_SecurityawarenessKnowbe4",
+    "ProviderConfig_SiemAmazonSecurityLake",
     "ProviderConfig_SiemCrowdstrike",
     "ProviderConfig_SiemDatadog",
     "ProviderConfig_SiemElasticsearch",
@@ -2212,6 +2227,7 @@ __all__ = [
     "ProviderConfig_SiemSentinel",
     "ProviderConfig_SiemSplunk",
     "ProviderConfig_SiemSumoLogic",
+    "ProviderConfig_SinkAmazonSecurityLake",
     "ProviderConfig_SinkAwsS3",
     "ProviderConfig_SinkAwsSecurityLake",
     "ProviderConfig_SinkAwsSqs",
@@ -2313,6 +2329,7 @@ __all__ = [
     "SevcoCredential",
     "SevcoCredential_Token",
     "SevcoCredential_TokenId",
+    "SiemAmazonSecurityLake",
     "SiemCrowdstrike",
     "SiemDatadog",
     "SiemElasticsearch",
@@ -2326,6 +2343,7 @@ __all__ = [
     "SiemSentinel",
     "SiemSplunk",
     "SiemSumoLogic",
+    "SinkAmazonSecurityLake",
     "SinkAwsS3",
     "SinkAwsSecurityLake",
     "SinkAwsSqs",

@@ -270,7 +270,7 @@ class SiemClient:
             Cursor to use to retrieve the next page of results.
 
         limit : typing.Optional[int]
-            Number of `Account` objects to return in this page. Defaults to 100.
+            Number of events to return per page. Defaults to 100 with a maximum of 5000. If a provider has a maximum limit lower than 5000, the provider's maximum limit will be used instead.
 
         order : typing.Optional[typing.Union[str, typing.Sequence[str]]]
             Select a field to order the results by. Defaults to `time` descending (newest first). To control the direction of the sorting, append `[asc]` or `[desc]` to the field name. For example, `name[desc]` will sort the results by `name` in descending order. Bare `order=time` is descending. May be used multiple times to order by multiple fields, and the ordering is applied in the order the fields are specified.
@@ -645,7 +645,7 @@ class AsyncSiemClient:
             Cursor to use to retrieve the next page of results.
 
         limit : typing.Optional[int]
-            Number of `Account` objects to return in this page. Defaults to 100.
+            Number of events to return per page. Defaults to 100 with a maximum of 5000. If a provider has a maximum limit lower than 5000, the provider's maximum limit will be used instead.
 
         order : typing.Optional[typing.Union[str, typing.Sequence[str]]]
             Select a field to order the results by. Defaults to `time` descending (newest first). To control the direction of the sorting, append `[asc]` or `[desc]` to the field name. For example, `name[desc]` will sort the results by `name` in descending order. Bare `order=time` is descending. May be used multiple times to order by multiple fields, and the ordering is applied in the order the fields are specified.
