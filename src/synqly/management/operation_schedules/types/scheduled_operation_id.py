@@ -27,9 +27,12 @@ class ScheduledOperationId(enum.StrEnum):
     EMAILSECURITY_QUERY_EMAIL_EVENTS = "emailsecurity_query_email_events"
     ENDPOINTMANAGEMENT_QUERY_DEVICES = "endpointmanagement_query_devices"
     ENDPOINTMANAGEMENT_QUERY_COMPLIANCE_FINDINGS = "endpointmanagement_query_compliance_findings"
+    IDENTITY_QUERY_ACCESS_GRANTS = "identity_query_access_grants"
+    IDENTITY_QUERY_APPLICATIONS = "identity_query_applications"
     IDENTITY_QUERY_AUDIT_LOG = "identity_query_audit_log"
     IDENTITY_QUERY_GROUPS = "identity_query_groups"
     IDENTITY_QUERY_GROUPS_ENRICHED = "identity_query_groups_enriched"
+    IDENTITY_QUERY_POLICIES = "identity_query_policies"
     IDENTITY_QUERY_RISK_EVENTS = "identity_query_risk_events"
     IDENTITY_QUERY_USERS = "identity_query_users"
     IDENTITY_QUERY_USERS_ENRICHED = "identity_query_users_enriched"
@@ -71,9 +74,12 @@ class ScheduledOperationId(enum.StrEnum):
         emailsecurity_query_email_events: typing.Callable[[], T_Result],
         endpointmanagement_query_devices: typing.Callable[[], T_Result],
         endpointmanagement_query_compliance_findings: typing.Callable[[], T_Result],
+        identity_query_access_grants: typing.Callable[[], T_Result],
+        identity_query_applications: typing.Callable[[], T_Result],
         identity_query_audit_log: typing.Callable[[], T_Result],
         identity_query_groups: typing.Callable[[], T_Result],
         identity_query_groups_enriched: typing.Callable[[], T_Result],
+        identity_query_policies: typing.Callable[[], T_Result],
         identity_query_risk_events: typing.Callable[[], T_Result],
         identity_query_users: typing.Callable[[], T_Result],
         identity_query_users_enriched: typing.Callable[[], T_Result],
@@ -123,12 +129,18 @@ class ScheduledOperationId(enum.StrEnum):
             return endpointmanagement_query_devices()
         if self is ScheduledOperationId.ENDPOINTMANAGEMENT_QUERY_COMPLIANCE_FINDINGS:
             return endpointmanagement_query_compliance_findings()
+        if self is ScheduledOperationId.IDENTITY_QUERY_ACCESS_GRANTS:
+            return identity_query_access_grants()
+        if self is ScheduledOperationId.IDENTITY_QUERY_APPLICATIONS:
+            return identity_query_applications()
         if self is ScheduledOperationId.IDENTITY_QUERY_AUDIT_LOG:
             return identity_query_audit_log()
         if self is ScheduledOperationId.IDENTITY_QUERY_GROUPS:
             return identity_query_groups()
         if self is ScheduledOperationId.IDENTITY_QUERY_GROUPS_ENRICHED:
             return identity_query_groups_enriched()
+        if self is ScheduledOperationId.IDENTITY_QUERY_POLICIES:
+            return identity_query_policies()
         if self is ScheduledOperationId.IDENTITY_QUERY_RISK_EVENTS:
             return identity_query_risk_events()
         if self is ScheduledOperationId.IDENTITY_QUERY_USERS:
