@@ -39,7 +39,12 @@ class RemoteField(UncheckedBaseModel):
 
     project_id: typing.Optional[str] = pydantic.Field(default=None)
     """
-    Project id to which this field is scoped to
+    Project to which this field is scoped. On `list_remote_fields`, set only on fields specific to one project. On `list_issue_type_remote_fields`, set on every field to the `id` of the requested Project, as returned by `list_projects`.
+    """
+
+    issue_type_id: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    The `id` of the issue type this field was listed for.
     """
 
     if IS_PYDANTIC_V2:

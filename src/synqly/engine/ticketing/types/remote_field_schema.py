@@ -16,6 +16,11 @@ class RemoteFieldSchema(UncheckedBaseModel):
     field_type: typing_extensions.Annotated[
         typing.Optional[str], FieldMetadata(alias="field_Type"), pydantic.Field(alias="field_Type")
     ] = None
+    required: typing.Optional[bool] = pydantic.Field(default=None)
+    """
+    Whether this field is required.
+    """
+
     enum_values: typing.Optional[typing.List[str]] = pydantic.Field(default=None)
     """
     Display names for possible values the enum can take on.

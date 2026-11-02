@@ -27,9 +27,11 @@ if typing.TYPE_CHECKING:
     from .escalation_policy_rule import EscalationPolicyRule
     from .get_ticket_response import GetTicketResponse
     from .group_summary import GroupSummary
+    from .issue_type import IssueType
     from .issue_type_id import IssueTypeId
     from .list_attachments_metadata_response import ListAttachmentsMetadataResponse
     from .list_comments_response import ListCommentsResponse
+    from .list_issue_types_response import ListIssueTypesResponse
     from .list_notes_response import ListNotesResponse
     from .list_on_call_response import ListOnCallResponse
     from .list_projects_response import ListProjectsResponse
@@ -77,9 +79,11 @@ _dynamic_imports: typing.Dict[str, str] = {
     "EscalationPolicyRule": ".escalation_policy_rule",
     "GetTicketResponse": ".get_ticket_response",
     "GroupSummary": ".group_summary",
+    "IssueType": ".issue_type",
     "IssueTypeId": ".issue_type_id",
     "ListAttachmentsMetadataResponse": ".list_attachments_metadata_response",
     "ListCommentsResponse": ".list_comments_response",
+    "ListIssueTypesResponse": ".list_issue_types_response",
     "ListNotesResponse": ".list_notes_response",
     "ListOnCallResponse": ".list_on_call_response",
     "ListProjectsResponse": ".list_projects_response",
@@ -151,9 +155,11 @@ __all__ = [
     "EscalationPolicyRule",
     "GetTicketResponse",
     "GroupSummary",
+    "IssueType",
     "IssueTypeId",
     "ListAttachmentsMetadataResponse",
     "ListCommentsResponse",
+    "ListIssueTypesResponse",
     "ListNotesResponse",
     "ListOnCallResponse",
     "ListProjectsResponse",

@@ -16,8 +16,10 @@ from .types.create_note_response import CreateNoteResponse
 from .types.create_ticket_response import CreateTicketResponse
 from .types.download_attachment_response import DownloadAttachmentResponse
 from .types.get_ticket_response import GetTicketResponse
+from .types.issue_type_id import IssueTypeId
 from .types.list_attachments_metadata_response import ListAttachmentsMetadataResponse
 from .types.list_comments_response import ListCommentsResponse
+from .types.list_issue_types_response import ListIssueTypesResponse
 from .types.list_notes_response import ListNotesResponse
 from .types.list_on_call_response import ListOnCallResponse
 from .types.list_projects_response import ListProjectsResponse
@@ -26,6 +28,7 @@ from .types.note_id import NoteId
 from .types.patch_note_response import PatchNoteResponse
 from .types.patch_ticket_response import PatchTicketResponse
 from .types.priority import Priority
+from .types.project_id import ProjectId
 from .types.query_escalation_policies_response import QueryEscalationPoliciesResponse
 from .types.query_tickets_response import QueryTicketsResponse
 from .types.status import Status
@@ -72,6 +75,68 @@ class TicketingClient:
         ListRemoteFieldsResponse
         """
         _response = self._raw_client.list_remote_fields(meta=meta, request_options=request_options)
+        return _response.data
+
+    def list_issue_types(
+        self,
+        project_id: ProjectId,
+        *,
+        meta: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> ListIssueTypesResponse:
+        """
+        List issue types for the specified project.
+
+        Parameters
+        ----------
+        project_id : ProjectId
+            Project to list issue types for, as a project key or id.
+
+        meta : typing.Optional[typing.Union[str, typing.Sequence[str]]]
+            Add metadata to the response by invoking meta functions. Documentation for [meta functions](https://docs.synqly.com/api-reference/meta-functions) is available. Not all meta functions are available at every endpoint.
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        ListIssueTypesResponse
+        """
+        _response = self._raw_client.list_issue_types(project_id, meta=meta, request_options=request_options)
+        return _response.data
+
+    def list_issue_type_remote_fields(
+        self,
+        project_id: ProjectId,
+        issue_type_id: IssueTypeId,
+        *,
+        meta: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> ListRemoteFieldsResponse:
+        """
+        Lists the remote fields available when creating a ticket in the specified project, using the specified issue type.
+
+        Parameters
+        ----------
+        project_id : ProjectId
+            Project the issue type belongs to, as a project key or id.
+
+        issue_type_id : IssueTypeId
+            Issue type ID as returned when listing issue types.
+
+        meta : typing.Optional[typing.Union[str, typing.Sequence[str]]]
+            Add metadata to the response by invoking meta functions. Documentation for [meta functions](https://docs.synqly.com/api-reference/meta-functions) is available. Not all meta functions are available at every endpoint.
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        ListRemoteFieldsResponse
+        """
+        _response = self._raw_client.list_issue_type_remote_fields(
+            project_id, issue_type_id, meta=meta, request_options=request_options
+        )
         return _response.data
 
     def list_projects(
@@ -765,6 +830,68 @@ class AsyncTicketingClient:
         ListRemoteFieldsResponse
         """
         _response = await self._raw_client.list_remote_fields(meta=meta, request_options=request_options)
+        return _response.data
+
+    async def list_issue_types(
+        self,
+        project_id: ProjectId,
+        *,
+        meta: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> ListIssueTypesResponse:
+        """
+        List issue types for the specified project.
+
+        Parameters
+        ----------
+        project_id : ProjectId
+            Project to list issue types for, as a project key or id.
+
+        meta : typing.Optional[typing.Union[str, typing.Sequence[str]]]
+            Add metadata to the response by invoking meta functions. Documentation for [meta functions](https://docs.synqly.com/api-reference/meta-functions) is available. Not all meta functions are available at every endpoint.
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        ListIssueTypesResponse
+        """
+        _response = await self._raw_client.list_issue_types(project_id, meta=meta, request_options=request_options)
+        return _response.data
+
+    async def list_issue_type_remote_fields(
+        self,
+        project_id: ProjectId,
+        issue_type_id: IssueTypeId,
+        *,
+        meta: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> ListRemoteFieldsResponse:
+        """
+        Lists the remote fields available when creating a ticket in the specified project, using the specified issue type.
+
+        Parameters
+        ----------
+        project_id : ProjectId
+            Project the issue type belongs to, as a project key or id.
+
+        issue_type_id : IssueTypeId
+            Issue type ID as returned when listing issue types.
+
+        meta : typing.Optional[typing.Union[str, typing.Sequence[str]]]
+            Add metadata to the response by invoking meta functions. Documentation for [meta functions](https://docs.synqly.com/api-reference/meta-functions) is available. Not all meta functions are available at every endpoint.
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        ListRemoteFieldsResponse
+        """
+        _response = await self._raw_client.list_issue_type_remote_fields(
+            project_id, issue_type_id, meta=meta, request_options=request_options
+        )
         return _response.data
 
     async def list_projects(
