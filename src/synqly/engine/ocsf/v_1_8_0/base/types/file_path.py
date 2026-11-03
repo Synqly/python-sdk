@@ -2,5 +2,5 @@
 
 FilePath = str
 """
-The full path to the file. For example: For example:<br><code>c:\windows\system32\svchost.exe</code>.
+The full path to the file. For example: For example:<br><code>c:\\windows\\system32\\svchost.exe</code>.
 """

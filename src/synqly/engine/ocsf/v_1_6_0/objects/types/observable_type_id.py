@@ -25,6 +25,6 @@ ObservableTypeId is an enum, and the following values are allowed.
 26 - GeoLocation: The Geo Location object describes a geographical location, usually associated with an IP address.
 27 - Container: The Container object describes an instance of a specific container. A container is a prepackaged, portable system image that runs isolated on an existing system using a container runtime like containerd.
 30 - Fingerprint: The Fingerprint object provides detailed information about a digital fingerprint, which is a compact representation of data used to identify a longer piece of information, such as a public key or file content. It contains the algorithm and value of the fingerprint, enabling efficient and reliable identification of the associated data.
-45 - FilePath: The full path to the file. For example: For example:<br><code>c:\windows\system32\svchost.exe</code>.
+45 - FilePath: The full path to the file. For example: For example:<br><code>c:\\windows\\system32\\svchost.exe</code>.
 99 - Other: The observable data type is not mapped. See the <code>type</code> attribute, which may contain data source specific value.
 """
