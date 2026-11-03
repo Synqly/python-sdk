@@ -44,7 +44,7 @@ class CustomClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> QueryCustomResponse:
         """
-        Queries operation
+        Queries operation. Deprecated and will be removed in a future release.
 
         Parameters
         ----------
@@ -98,7 +98,7 @@ class CustomClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> GetCustomResponse:
         """
-        Retrieves an Topic by ID.
+        Retrieves an `operation` by ID. Deprecated and will be removed in a future release.
 
         Parameters
         ----------
@@ -136,7 +136,7 @@ class CustomClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> GetCustomResponse:
         """
-        Updates an `operation` by ID.
+        Updates an `operation` by ID. Deprecated and will be removed in a future release.
 
         Parameters
         ----------
@@ -171,6 +171,7 @@ class CustomClient:
     ) -> None:
         """
         Deletes the object matching `id` for the operation matching `operation`.
+        Deprecated and will be removed in a future release.
 
         Parameters
         ----------
@@ -202,7 +203,7 @@ class CustomClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> CreateCustomResponse:
         """
-        Writes an `operation` object to the Custom provider configured with the token used for authentication.
+        Writes an `operation` object to the Custom provider configured with the token used for authentication. Deprecated and will be removed in a future release.
 
         Parameters
         ----------
@@ -233,7 +234,7 @@ class CustomClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> CreateBatchCustomResponse:
         """
-        Writes a batch of `operation` objects to the Custom provider configured with the token used for authentication.
+        Writes a batch of `operation` objects to the Custom provider configured with the token used for authentication. Deprecated and will be removed in a future release.
 
         Parameters
         ----------
@@ -284,7 +285,7 @@ class AsyncCustomClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> QueryCustomResponse:
         """
-        Queries operation
+        Queries operation. Deprecated and will be removed in a future release.
 
         Parameters
         ----------
@@ -338,7 +339,7 @@ class AsyncCustomClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> GetCustomResponse:
         """
-        Retrieves an Topic by ID.
+        Retrieves an `operation` by ID. Deprecated and will be removed in a future release.
 
         Parameters
         ----------
@@ -376,7 +377,7 @@ class AsyncCustomClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> GetCustomResponse:
         """
-        Updates an `operation` by ID.
+        Updates an `operation` by ID. Deprecated and will be removed in a future release.
 
         Parameters
         ----------
@@ -413,6 +414,7 @@ class AsyncCustomClient:
     ) -> None:
         """
         Deletes the object matching `id` for the operation matching `operation`.
+        Deprecated and will be removed in a future release.
 
         Parameters
         ----------
@@ -444,7 +446,7 @@ class AsyncCustomClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> CreateCustomResponse:
         """
-        Writes an `operation` object to the Custom provider configured with the token used for authentication.
+        Writes an `operation` object to the Custom provider configured with the token used for authentication. Deprecated and will be removed in a future release.
 
         Parameters
         ----------
@@ -475,7 +477,7 @@ class AsyncCustomClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> CreateBatchCustomResponse:
         """
-        Writes a batch of `operation` objects to the Custom provider configured with the token used for authentication.
+        Writes a batch of `operation` objects to the Custom provider configured with the token used for authentication. Deprecated and will be removed in a future release.
 
         Parameters
         ----------

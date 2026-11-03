@@ -54,7 +54,7 @@ class RawCustomClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[QueryCustomResponse]:
         """
-        Queries operation
+        Queries operation. Deprecated and will be removed in a future release.
 
         Parameters
         ----------
@@ -282,7 +282,7 @@ class RawCustomClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[GetCustomResponse]:
         """
-        Retrieves an Topic by ID.
+        Retrieves an `operation` by ID. Deprecated and will be removed in a future release.
 
         Parameters
         ----------
@@ -497,7 +497,7 @@ class RawCustomClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[GetCustomResponse]:
         """
-        Updates an `operation` by ID.
+        Updates an `operation` by ID. Deprecated and will be removed in a future release.
 
         Parameters
         ----------
@@ -712,6 +712,7 @@ class RawCustomClient:
     ) -> HttpResponse[None]:
         """
         Deletes the object matching `id` for the operation matching `operation`.
+        Deprecated and will be removed in a future release.
 
         Parameters
         ----------
@@ -914,7 +915,7 @@ class RawCustomClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[CreateCustomResponse]:
         """
-        Writes an `operation` object to the Custom provider configured with the token used for authentication.
+        Writes an `operation` object to the Custom provider configured with the token used for authentication. Deprecated and will be removed in a future release.
 
         Parameters
         ----------
@@ -1125,7 +1126,7 @@ class RawCustomClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[CreateBatchCustomResponse]:
         """
-        Writes a batch of `operation` objects to the Custom provider configured with the token used for authentication.
+        Writes a batch of `operation` objects to the Custom provider configured with the token used for authentication. Deprecated and will be removed in a future release.
 
         Parameters
         ----------
@@ -1345,7 +1346,7 @@ class AsyncRawCustomClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[QueryCustomResponse]:
         """
-        Queries operation
+        Queries operation. Deprecated and will be removed in a future release.
 
         Parameters
         ----------
@@ -1573,7 +1574,7 @@ class AsyncRawCustomClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[GetCustomResponse]:
         """
-        Retrieves an Topic by ID.
+        Retrieves an `operation` by ID. Deprecated and will be removed in a future release.
 
         Parameters
         ----------
@@ -1788,7 +1789,7 @@ class AsyncRawCustomClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[GetCustomResponse]:
         """
-        Updates an `operation` by ID.
+        Updates an `operation` by ID. Deprecated and will be removed in a future release.
 
         Parameters
         ----------
@@ -2003,6 +2004,7 @@ class AsyncRawCustomClient:
     ) -> AsyncHttpResponse[None]:
         """
         Deletes the object matching `id` for the operation matching `operation`.
+        Deprecated and will be removed in a future release.
 
         Parameters
         ----------
@@ -2205,7 +2207,7 @@ class AsyncRawCustomClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[CreateCustomResponse]:
         """
-        Writes an `operation` object to the Custom provider configured with the token used for authentication.
+        Writes an `operation` object to the Custom provider configured with the token used for authentication. Deprecated and will be removed in a future release.
 
         Parameters
         ----------
@@ -2416,7 +2418,7 @@ class AsyncRawCustomClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[CreateBatchCustomResponse]:
         """
-        Writes a batch of `operation` objects to the Custom provider configured with the token used for authentication.
+        Writes a batch of `operation` objects to the Custom provider configured with the token used for authentication. Deprecated and will be removed in a future release.
 
         Parameters
         ----------
