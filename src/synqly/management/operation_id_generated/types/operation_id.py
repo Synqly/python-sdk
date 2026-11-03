@@ -130,6 +130,7 @@ class OperationId(enum.StrEnum):
     SIEM_QUERY_EVENTS = "siem_query_events"
     SIEM_QUERY_INVESTIGATIONS = "siem_query_investigations"
     SIEM_QUERY_LOG_PROVIDERS = "siem_query_log_providers"
+    SIEM_UPDATE_ALERT = "siem_update_alert"
     SINK_POST_EVENTS = "sink_post_events"
     STORAGE_DELETE_FILE = "storage_delete_file"
     STORAGE_DOWNLOAD_FILE = "storage_download_file"
@@ -308,6 +309,7 @@ class OperationId(enum.StrEnum):
         siem_query_events: typing.Callable[[], T_Result],
         siem_query_investigations: typing.Callable[[], T_Result],
         siem_query_log_providers: typing.Callable[[], T_Result],
+        siem_update_alert: typing.Callable[[], T_Result],
         sink_post_events: typing.Callable[[], T_Result],
         storage_delete_file: typing.Callable[[], T_Result],
         storage_download_file: typing.Callable[[], T_Result],
@@ -597,6 +599,8 @@ class OperationId(enum.StrEnum):
             return siem_query_investigations()
         if self is OperationId.SIEM_QUERY_LOG_PROVIDERS:
             return siem_query_log_providers()
+        if self is OperationId.SIEM_UPDATE_ALERT:
+            return siem_update_alert()
         if self is OperationId.SINK_POST_EVENTS:
             return sink_post_events()
         if self is OperationId.STORAGE_DELETE_FILE:

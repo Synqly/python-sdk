@@ -2,9 +2,13 @@
 
 import typing
 
+from ..alerts.types.alert_assignee import AlertAssignee
+from ..alerts.types.update_alert_response import UpdateAlertResponse
 from ..core.client_wrapper import AsyncClientWrapper, SyncClientWrapper
 from ..core.request_options import RequestOptions
 from ..events.types.event import Event
+from ..ocsf.v_1_3_0.detectionfinding.classes.types.status_id import StatusId
+from ..ocsf.v_1_3_0.incidentfinding.classes.types.verdict_id import VerdictId
 from .raw_client import AsyncRawSiemClient, RawSiemClient
 from .types.create_siem_events_response import CreateSiemEventsResponse
 from .types.get_alert_response import GetAlertResponse
@@ -394,6 +398,82 @@ class SiemClient:
         )
         return _response.data
 
+    def update_alert(
+        self,
+        id: str,
+        *,
+        meta: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
+        status_id: typing.Optional[StatusId] = OMIT,
+        verdict_id: typing.Optional[VerdictId] = OMIT,
+        comment: typing.Optional[str] = OMIT,
+        assignee: typing.Optional[AlertAssignee] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> UpdateAlertResponse:
+        """
+        Updates the triage state of a single alert in the token-linked SIEM: its lifecycle status, the analyst verdict, a comment and who it is assigned to.
+
+        Parameters
+        ----------
+        id : str
+            Uid of the alert (URL encoded). This will be `finding_info.uid` in the OCSF model, as Query Alerts and Get Alert return it.
+
+        meta : typing.Optional[typing.Union[str, typing.Sequence[str]]]
+            Add metadata to the response by invoking meta functions. Documentation for [meta functions](https://docs.synqly.com/api-reference/meta-functions) is available. Not all meta functions are available at every endpoint.
+
+        status_id : typing.Optional[StatusId]
+            The triage state to move the alert to, as an OCSF Detection Finding `status_id`:
+
+            - `0`: Unknown. Rejected with a `400`.
+            - `1`: New.
+            - `2`: InProgress.
+            - `3`: Suppressed. Requires a `verdict_id` other than `2` (TruePositive); either violation is rejected with a `400`.
+            - `4`: Resolved.
+            - `99`: Other. Rejected with a `400`.
+
+            Providers with no distinct suppressed state read a closed alert with a false-positive (or equivalent) verdict back as `3`.
+
+        verdict_id : typing.Optional[VerdictId]
+            The analyst verdict to record, as an OCSF Incident Finding `verdict_id`:
+
+            - `0`: Unknown. Clears the verdict where the provider supports it.
+            - `1`: FalsePositive.
+            - `2`: TruePositive.
+            - `3`: Disregard.
+            - `4`: Suspicious.
+            - `5`: Benign.
+            - `6`: Test.
+            - `7`: InsufficientData.
+            - `8`: SecurityRisk.
+            - `9`: ManagedExternally.
+            - `10`: Duplicate.
+            - `99`: Other. Rejected with a `400`.
+
+            Providers store different subsets, some only on a closed alert, and a verdict the provider cannot store is rejected with a `400`.
+
+        comment : typing.Optional[str]
+            A comment to append to the alert. Comments are appended, never replaced, so re-sending the same comment adds it twice.
+
+        assignee : typing.Optional[AlertAssignee]
+            Who to assign the alert to, by exactly one of `email_addr` or `uid`; `{}` unassigns where the provider supports it. Any other attribute, or an identifier sent as `null`, is rejected with a `400`.
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        UpdateAlertResponse
+        """
+        _response = self._raw_client.update_alert(
+            id,
+            meta=meta,
+            status_id=status_id,
+            verdict_id=verdict_id,
+            comment=comment,
+            assignee=assignee,
+            request_options=request_options,
+        )
+        return _response.data
+
 
 class AsyncSiemClient:
     def __init__(self, *, client_wrapper: AsyncClientWrapper):
@@ -766,5 +846,81 @@ class AsyncSiemClient:
         """
         _response = await self._raw_client.get_alert(
             id, meta=meta, include_raw_data=include_raw_data, request_options=request_options
+        )
+        return _response.data
+
+    async def update_alert(
+        self,
+        id: str,
+        *,
+        meta: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
+        status_id: typing.Optional[StatusId] = OMIT,
+        verdict_id: typing.Optional[VerdictId] = OMIT,
+        comment: typing.Optional[str] = OMIT,
+        assignee: typing.Optional[AlertAssignee] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> UpdateAlertResponse:
+        """
+        Updates the triage state of a single alert in the token-linked SIEM: its lifecycle status, the analyst verdict, a comment and who it is assigned to.
+
+        Parameters
+        ----------
+        id : str
+            Uid of the alert (URL encoded). This will be `finding_info.uid` in the OCSF model, as Query Alerts and Get Alert return it.
+
+        meta : typing.Optional[typing.Union[str, typing.Sequence[str]]]
+            Add metadata to the response by invoking meta functions. Documentation for [meta functions](https://docs.synqly.com/api-reference/meta-functions) is available. Not all meta functions are available at every endpoint.
+
+        status_id : typing.Optional[StatusId]
+            The triage state to move the alert to, as an OCSF Detection Finding `status_id`:
+
+            - `0`: Unknown. Rejected with a `400`.
+            - `1`: New.
+            - `2`: InProgress.
+            - `3`: Suppressed. Requires a `verdict_id` other than `2` (TruePositive); either violation is rejected with a `400`.
+            - `4`: Resolved.
+            - `99`: Other. Rejected with a `400`.
+
+            Providers with no distinct suppressed state read a closed alert with a false-positive (or equivalent) verdict back as `3`.
+
+        verdict_id : typing.Optional[VerdictId]
+            The analyst verdict to record, as an OCSF Incident Finding `verdict_id`:
+
+            - `0`: Unknown. Clears the verdict where the provider supports it.
+            - `1`: FalsePositive.
+            - `2`: TruePositive.
+            - `3`: Disregard.
+            - `4`: Suspicious.
+            - `5`: Benign.
+            - `6`: Test.
+            - `7`: InsufficientData.
+            - `8`: SecurityRisk.
+            - `9`: ManagedExternally.
+            - `10`: Duplicate.
+            - `99`: Other. Rejected with a `400`.
+
+            Providers store different subsets, some only on a closed alert, and a verdict the provider cannot store is rejected with a `400`.
+
+        comment : typing.Optional[str]
+            A comment to append to the alert. Comments are appended, never replaced, so re-sending the same comment adds it twice.
+
+        assignee : typing.Optional[AlertAssignee]
+            Who to assign the alert to, by exactly one of `email_addr` or `uid`; `{}` unassigns where the provider supports it. Any other attribute, or an identifier sent as `null`, is rejected with a `400`.
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        UpdateAlertResponse
+        """
+        _response = await self._raw_client.update_alert(
+            id,
+            meta=meta,
+            status_id=status_id,
+            verdict_id=verdict_id,
+            comment=comment,
+            assignee=assignee,
+            request_options=request_options,
         )
         return _response.data
