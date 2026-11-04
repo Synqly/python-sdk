@@ -17,7 +17,7 @@ class ChatMessage(UncheckedBaseModel):
 
     conversation_uid: typing.Optional[str] = pydantic.Field(default=None)
     """
-    The unique identifier of the conversation thread, channel, chat, or AI session.
+    The unique identifier of the conversation: a channel, chat, or AI session.
     """
 
     files: typing.Optional[typing.List[File]] = pydantic.Field(default=None)
@@ -30,9 +30,19 @@ class ChatMessage(UncheckedBaseModel):
     The plain-text content of the message.
     """
 
+    parent_uid: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    The uid of the top-level message this message replies to, which identifies its thread. Absent for a top-level message.
+    """
+
     request_uid: typing.Optional[str] = pydantic.Field(default=None)
     """
     For AI interactions, the unique identifier linking a user prompt to its AI response. Messages with the same request_uid form a prompt/response pair.
+    """
+
+    uid: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    The unique identifier of the message within its conversation.
     """
 
     if IS_PYDANTIC_V2:

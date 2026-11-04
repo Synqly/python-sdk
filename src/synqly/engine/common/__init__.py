@@ -23,6 +23,7 @@ if typing.TYPE_CHECKING:
         ResourceId,
         ResourceReference,
         ResourceType,
+        UserReference,
     )
     from .errors import (
         BadGatewayError,
@@ -71,6 +72,7 @@ _dynamic_imports: typing.Dict[str, str] = {
     "TooManyRequestsError": ".errors",
     "UnauthorizedError": ".errors",
     "UnsupportedMediaTypeError": ".errors",
+    "UserReference": ".types",
 }
 
 
@@ -126,4 +128,5 @@ __all__ = [
     "TooManyRequestsError",
     "UnauthorizedError",
     "UnsupportedMediaTypeError",
+    "UserReference",
 ]

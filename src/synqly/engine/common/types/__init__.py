@@ -22,6 +22,7 @@ if typing.TYPE_CHECKING:
     from .resource_id import ResourceId
     from .resource_reference import ResourceReference
     from .resource_type import ResourceType
+    from .user_reference import UserReference
 _dynamic_imports: typing.Dict[str, str] = {
     "ActionId": ".action_id",
     "Base": ".base",
@@ -39,6 +40,7 @@ _dynamic_imports: typing.Dict[str, str] = {
     "ResourceId": ".resource_id",
     "ResourceReference": ".resource_reference",
     "ResourceType": ".resource_type",
+    "UserReference": ".user_reference",
 }
 
 
@@ -80,4 +82,5 @@ __all__ = [
     "ResourceId",
     "ResourceReference",
     "ResourceType",
+    "UserReference",
 ]

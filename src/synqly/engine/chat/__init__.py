@@ -7,12 +7,14 @@ from importlib import import_module
 
 if typing.TYPE_CHECKING:
     from .types import (
+        ChatMessageResponse,
         ChatQueryConversationMembersResponse,
         ChatQueryConversationsResponse,
         ChatQueryMessagesResponse,
         ChatQueryUsersResponse,
     )
 _dynamic_imports: typing.Dict[str, str] = {
+    "ChatMessageResponse": ".types",
     "ChatQueryConversationMembersResponse": ".types",
     "ChatQueryConversationsResponse": ".types",
     "ChatQueryMessagesResponse": ".types",
@@ -42,6 +44,7 @@ def __dir__():
 
 
 __all__ = [
+    "ChatMessageResponse",
     "ChatQueryConversationMembersResponse",
     "ChatQueryConversationsResponse",
     "ChatQueryMessagesResponse",

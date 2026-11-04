@@ -26,6 +26,9 @@ class OperationId(enum.StrEnum):
     ASSETS_QUERY_VULNERABILITIES = "assets_query_vulnerabilities"
     ASSETS_UPDATE_DEVICE_PROPERTIES = "assets_update_device_properties"
     ASSETS_UPDATE_SOFTWARE = "assets_update_software"
+    CHAT_CREATE_DIRECT_MESSAGE = "chat_create_direct_message"
+    CHAT_CREATE_MESSAGE = "chat_create_message"
+    CHAT_DELETE_MESSAGE = "chat_delete_message"
     CHAT_QUERY_CONVERSATION_MEMBERS = "chat_query_conversation_members"
     CHAT_QUERY_CONVERSATION_MESSAGES = "chat_query_conversation_messages"
     CHAT_QUERY_CONVERSATIONS = "chat_query_conversations"
@@ -34,6 +37,7 @@ class OperationId(enum.StrEnum):
     CHAT_QUERY_USER_CONVERSATION_MESSAGES = "chat_query_user_conversation_messages"
     CHAT_QUERY_USER_CONVERSATIONS = "chat_query_user_conversations"
     CHAT_QUERY_USERS = "chat_query_users"
+    CHAT_UPDATE_MESSAGE = "chat_update_message"
     CLOUDSECURITY_QUERY_CLOUD_RESOURCE_INVENTORY = "cloudsecurity_query_cloud_resource_inventory"
     CLOUDSECURITY_QUERY_COMPLIANCE_FINDINGS = "cloudsecurity_query_compliance_findings"
     CLOUDSECURITY_QUERY_EVENTS = "cloudsecurity_query_events"
@@ -205,6 +209,9 @@ class OperationId(enum.StrEnum):
         assets_query_vulnerabilities: typing.Callable[[], T_Result],
         assets_update_device_properties: typing.Callable[[], T_Result],
         assets_update_software: typing.Callable[[], T_Result],
+        chat_create_direct_message: typing.Callable[[], T_Result],
+        chat_create_message: typing.Callable[[], T_Result],
+        chat_delete_message: typing.Callable[[], T_Result],
         chat_query_conversation_members: typing.Callable[[], T_Result],
         chat_query_conversation_messages: typing.Callable[[], T_Result],
         chat_query_conversations: typing.Callable[[], T_Result],
@@ -213,6 +220,7 @@ class OperationId(enum.StrEnum):
         chat_query_user_conversation_messages: typing.Callable[[], T_Result],
         chat_query_user_conversations: typing.Callable[[], T_Result],
         chat_query_users: typing.Callable[[], T_Result],
+        chat_update_message: typing.Callable[[], T_Result],
         cloudsecurity_query_cloud_resource_inventory: typing.Callable[[], T_Result],
         cloudsecurity_query_compliance_findings: typing.Callable[[], T_Result],
         cloudsecurity_query_events: typing.Callable[[], T_Result],
@@ -391,6 +399,12 @@ class OperationId(enum.StrEnum):
             return assets_update_device_properties()
         if self is OperationId.ASSETS_UPDATE_SOFTWARE:
             return assets_update_software()
+        if self is OperationId.CHAT_CREATE_DIRECT_MESSAGE:
+            return chat_create_direct_message()
+        if self is OperationId.CHAT_CREATE_MESSAGE:
+            return chat_create_message()
+        if self is OperationId.CHAT_DELETE_MESSAGE:
+            return chat_delete_message()
         if self is OperationId.CHAT_QUERY_CONVERSATION_MEMBERS:
             return chat_query_conversation_members()
         if self is OperationId.CHAT_QUERY_CONVERSATION_MESSAGES:
@@ -407,6 +421,8 @@ class OperationId(enum.StrEnum):
             return chat_query_user_conversations()
         if self is OperationId.CHAT_QUERY_USERS:
             return chat_query_users()
+        if self is OperationId.CHAT_UPDATE_MESSAGE:
+            return chat_update_message()
         if self is OperationId.CLOUDSECURITY_QUERY_CLOUD_RESOURCE_INVENTORY:
             return cloudsecurity_query_cloud_resource_inventory()
         if self is OperationId.CLOUDSECURITY_QUERY_COMPLIANCE_FINDINGS:

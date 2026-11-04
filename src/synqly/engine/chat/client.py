@@ -2,13 +2,18 @@
 
 import typing
 
+from ..common.types.user_reference import UserReference
 from ..core.client_wrapper import AsyncClientWrapper, SyncClientWrapper
 from ..core.request_options import RequestOptions
 from .raw_client import AsyncRawChatClient, RawChatClient
+from .types.chat_message_response import ChatMessageResponse
 from .types.chat_query_conversation_members_response import ChatQueryConversationMembersResponse
 from .types.chat_query_conversations_response import ChatQueryConversationsResponse
 from .types.chat_query_messages_response import ChatQueryMessagesResponse
 from .types.chat_query_users_response import ChatQueryUsersResponse
+
+# this is used as the default value for optional parameters
+OMIT = typing.cast(typing.Any, ...)
 
 
 class ChatClient:
@@ -287,7 +292,7 @@ class ChatClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> ChatQueryConversationMembersResponse:
         """
-        Returns the members of a specific conversation. Use the user-scoped variant (query_user_conversation_members) for chats that only exist in a user's mailbox (e.g. Teams 1:1 chats).
+        Returns the members of a specific conversation. Use the user-scoped variant (query_user_conversation_members) for chats that only exist in a user's mailbox (e.g. Teams 1:1 chats). Where the provider supports create_direct_message, the conversation UID it returns is accepted here.
 
         Parameters
         ----------
@@ -381,7 +386,7 @@ class ChatClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> ChatQueryMessagesResponse:
         """
-        Returns messages from a specific conversation. The conversationId must be obtained from query_conversations or query_user_conversations. Use the user-scoped variant (query_user_conversation_messages) for chats that only exist in a user's mailbox.
+        Returns messages from a specific conversation. The conversationId must be obtained from query_conversations or query_user_conversations. Use the user-scoped variant (query_user_conversation_messages) for chats that only exist in a user's mailbox. Where the provider supports create_direct_message, the conversation UID it returns is accepted here. Where the provider declares a `chat_message.parent_uid` filter, filtering on it with the `uid` of a thread's top-level message returns that thread's replies instead.
 
         Parameters
         ----------
@@ -417,6 +422,163 @@ class ChatClient:
             cursor=cursor,
             include_raw_data=include_raw_data,
             request_options=request_options,
+        )
+        return _response.data
+
+    def create_message(
+        self,
+        conversation_id: str,
+        *,
+        message: str,
+        meta: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
+        parent_uid: typing.Optional[str] = OMIT,
+        mentions: typing.Optional[typing.Sequence[UserReference]] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> ChatMessageResponse:
+        """
+        Posts a message to a conversation as the integration's bot or app, either as a new top-level message or as a reply in a thread. The response carries the message's `uid`, which update_message and delete_message accept.
+
+        Parameters
+        ----------
+        conversation_id : str
+            UID of the conversation (URL encoded). This is `chat_message.conversation_uid` in the OCSF model.
+
+        message : str
+            The plain-text content of the message.
+
+        meta : typing.Optional[typing.Union[str, typing.Sequence[str]]]
+            Add metadata to the response by invoking meta functions. Documentation for [meta functions](https://docs.synqly.com/api-reference/meta-functions) is available. Not all meta functions are available at every endpoint.
+
+        parent_uid : typing.Optional[str]
+            UID of the top-level message to reply to, which starts or continues its thread. Omit to post a new top-level message.
+
+        mentions : typing.Optional[typing.Sequence[UserReference]]
+            Users to mention, at most 20. Each is notified and named once at the start of the message, in the provider's own mention format, which `message` then includes in the response and in reads.
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        ChatMessageResponse
+        """
+        _response = self._raw_client.create_message(
+            conversation_id,
+            message=message,
+            meta=meta,
+            parent_uid=parent_uid,
+            mentions=mentions,
+            request_options=request_options,
+        )
+        return _response.data
+
+    def create_direct_message(
+        self,
+        *,
+        user: UserReference,
+        message: str,
+        meta: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> ChatMessageResponse:
+        """
+        Sends a direct message to one user, opening the direct conversation if it does not exist yet. The response's `chat_message.conversation_uid` addresses that conversation for later messages and reads.
+
+        Parameters
+        ----------
+        user : UserReference
+            The user to message.
+
+        message : str
+            The plain-text content of the message.
+
+        meta : typing.Optional[typing.Union[str, typing.Sequence[str]]]
+            Add metadata to the response by invoking meta functions. Documentation for [meta functions](https://docs.synqly.com/api-reference/meta-functions) is available. Not all meta functions are available at every endpoint.
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        ChatMessageResponse
+        """
+        _response = self._raw_client.create_direct_message(
+            user=user, message=message, meta=meta, request_options=request_options
+        )
+        return _response.data
+
+    def update_message(
+        self,
+        conversation_id: str,
+        message_id: str,
+        *,
+        message: str,
+        meta: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
+        mentions: typing.Optional[typing.Sequence[UserReference]] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> ChatMessageResponse:
+        """
+        Replaces the text of a message the integration sent. Messages sent by anyone else cannot be updated, and a provider's admin policy can forbid edits. The response can lack `chat_message.parent_uid`; the `create_message` response for a reply carries it.
+
+        Parameters
+        ----------
+        conversation_id : str
+            UID of the conversation (URL encoded). This is `chat_message.conversation_uid` in the OCSF model.
+
+        message_id : str
+            UID of the message (URL encoded). This is `chat_message.uid` in the OCSF model.
+
+        message : str
+            The new plain-text content of the message.
+
+        meta : typing.Optional[typing.Union[str, typing.Sequence[str]]]
+            Add metadata to the response by invoking meta functions. Documentation for [meta functions](https://docs.synqly.com/api-reference/meta-functions) is available. Not all meta functions are available at every endpoint.
+
+        mentions : typing.Optional[typing.Sequence[UserReference]]
+            Users to mention, at most 20. Each is notified and named once at the start of the message, in the provider's own mention format, which `message` then includes in the response and in reads.
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        ChatMessageResponse
+        """
+        _response = self._raw_client.update_message(
+            conversation_id, message_id, message=message, meta=meta, mentions=mentions, request_options=request_options
+        )
+        return _response.data
+
+    def delete_message(
+        self,
+        conversation_id: str,
+        message_id: str,
+        *,
+        meta: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> None:
+        """
+        Deletes a message the integration sent. Messages sent by anyone else cannot be deleted, and a provider's admin policy can forbid deletes.
+
+        Parameters
+        ----------
+        conversation_id : str
+            UID of the conversation (URL encoded). This is `chat_message.conversation_uid` in the OCSF model.
+
+        message_id : str
+            UID of the message (URL encoded). This is `chat_message.uid` in the OCSF model.
+
+        meta : typing.Optional[typing.Union[str, typing.Sequence[str]]]
+            Add metadata to the response by invoking meta functions. Documentation for [meta functions](https://docs.synqly.com/api-reference/meta-functions) is available. Not all meta functions are available at every endpoint.
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        None
+        """
+        _response = self._raw_client.delete_message(
+            conversation_id, message_id, meta=meta, request_options=request_options
         )
         return _response.data
 
@@ -697,7 +859,7 @@ class AsyncChatClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> ChatQueryConversationMembersResponse:
         """
-        Returns the members of a specific conversation. Use the user-scoped variant (query_user_conversation_members) for chats that only exist in a user's mailbox (e.g. Teams 1:1 chats).
+        Returns the members of a specific conversation. Use the user-scoped variant (query_user_conversation_members) for chats that only exist in a user's mailbox (e.g. Teams 1:1 chats). Where the provider supports create_direct_message, the conversation UID it returns is accepted here.
 
         Parameters
         ----------
@@ -791,7 +953,7 @@ class AsyncChatClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> ChatQueryMessagesResponse:
         """
-        Returns messages from a specific conversation. The conversationId must be obtained from query_conversations or query_user_conversations. Use the user-scoped variant (query_user_conversation_messages) for chats that only exist in a user's mailbox.
+        Returns messages from a specific conversation. The conversationId must be obtained from query_conversations or query_user_conversations. Use the user-scoped variant (query_user_conversation_messages) for chats that only exist in a user's mailbox. Where the provider supports create_direct_message, the conversation UID it returns is accepted here. Where the provider declares a `chat_message.parent_uid` filter, filtering on it with the `uid` of a thread's top-level message returns that thread's replies instead.
 
         Parameters
         ----------
@@ -827,5 +989,162 @@ class AsyncChatClient:
             cursor=cursor,
             include_raw_data=include_raw_data,
             request_options=request_options,
+        )
+        return _response.data
+
+    async def create_message(
+        self,
+        conversation_id: str,
+        *,
+        message: str,
+        meta: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
+        parent_uid: typing.Optional[str] = OMIT,
+        mentions: typing.Optional[typing.Sequence[UserReference]] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> ChatMessageResponse:
+        """
+        Posts a message to a conversation as the integration's bot or app, either as a new top-level message or as a reply in a thread. The response carries the message's `uid`, which update_message and delete_message accept.
+
+        Parameters
+        ----------
+        conversation_id : str
+            UID of the conversation (URL encoded). This is `chat_message.conversation_uid` in the OCSF model.
+
+        message : str
+            The plain-text content of the message.
+
+        meta : typing.Optional[typing.Union[str, typing.Sequence[str]]]
+            Add metadata to the response by invoking meta functions. Documentation for [meta functions](https://docs.synqly.com/api-reference/meta-functions) is available. Not all meta functions are available at every endpoint.
+
+        parent_uid : typing.Optional[str]
+            UID of the top-level message to reply to, which starts or continues its thread. Omit to post a new top-level message.
+
+        mentions : typing.Optional[typing.Sequence[UserReference]]
+            Users to mention, at most 20. Each is notified and named once at the start of the message, in the provider's own mention format, which `message` then includes in the response and in reads.
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        ChatMessageResponse
+        """
+        _response = await self._raw_client.create_message(
+            conversation_id,
+            message=message,
+            meta=meta,
+            parent_uid=parent_uid,
+            mentions=mentions,
+            request_options=request_options,
+        )
+        return _response.data
+
+    async def create_direct_message(
+        self,
+        *,
+        user: UserReference,
+        message: str,
+        meta: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> ChatMessageResponse:
+        """
+        Sends a direct message to one user, opening the direct conversation if it does not exist yet. The response's `chat_message.conversation_uid` addresses that conversation for later messages and reads.
+
+        Parameters
+        ----------
+        user : UserReference
+            The user to message.
+
+        message : str
+            The plain-text content of the message.
+
+        meta : typing.Optional[typing.Union[str, typing.Sequence[str]]]
+            Add metadata to the response by invoking meta functions. Documentation for [meta functions](https://docs.synqly.com/api-reference/meta-functions) is available. Not all meta functions are available at every endpoint.
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        ChatMessageResponse
+        """
+        _response = await self._raw_client.create_direct_message(
+            user=user, message=message, meta=meta, request_options=request_options
+        )
+        return _response.data
+
+    async def update_message(
+        self,
+        conversation_id: str,
+        message_id: str,
+        *,
+        message: str,
+        meta: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
+        mentions: typing.Optional[typing.Sequence[UserReference]] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> ChatMessageResponse:
+        """
+        Replaces the text of a message the integration sent. Messages sent by anyone else cannot be updated, and a provider's admin policy can forbid edits. The response can lack `chat_message.parent_uid`; the `create_message` response for a reply carries it.
+
+        Parameters
+        ----------
+        conversation_id : str
+            UID of the conversation (URL encoded). This is `chat_message.conversation_uid` in the OCSF model.
+
+        message_id : str
+            UID of the message (URL encoded). This is `chat_message.uid` in the OCSF model.
+
+        message : str
+            The new plain-text content of the message.
+
+        meta : typing.Optional[typing.Union[str, typing.Sequence[str]]]
+            Add metadata to the response by invoking meta functions. Documentation for [meta functions](https://docs.synqly.com/api-reference/meta-functions) is available. Not all meta functions are available at every endpoint.
+
+        mentions : typing.Optional[typing.Sequence[UserReference]]
+            Users to mention, at most 20. Each is notified and named once at the start of the message, in the provider's own mention format, which `message` then includes in the response and in reads.
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        ChatMessageResponse
+        """
+        _response = await self._raw_client.update_message(
+            conversation_id, message_id, message=message, meta=meta, mentions=mentions, request_options=request_options
+        )
+        return _response.data
+
+    async def delete_message(
+        self,
+        conversation_id: str,
+        message_id: str,
+        *,
+        meta: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> None:
+        """
+        Deletes a message the integration sent. Messages sent by anyone else cannot be deleted, and a provider's admin policy can forbid deletes.
+
+        Parameters
+        ----------
+        conversation_id : str
+            UID of the conversation (URL encoded). This is `chat_message.conversation_uid` in the OCSF model.
+
+        message_id : str
+            UID of the message (URL encoded). This is `chat_message.uid` in the OCSF model.
+
+        meta : typing.Optional[typing.Union[str, typing.Sequence[str]]]
+            Add metadata to the response by invoking meta functions. Documentation for [meta functions](https://docs.synqly.com/api-reference/meta-functions) is available. Not all meta functions are available at every endpoint.
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        None
+        """
+        _response = await self._raw_client.delete_message(
+            conversation_id, message_id, meta=meta, request_options=request_options
         )
         return _response.data

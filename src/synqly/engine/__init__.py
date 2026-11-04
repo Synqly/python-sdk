@@ -72,6 +72,7 @@ if typing.TYPE_CHECKING:
         UpdateSoftwareInventoryResponse,
     )
     from .chat import (
+        ChatMessageResponse,
         ChatQueryConversationMembersResponse,
         ChatQueryConversationsResponse,
         ChatQueryMessagesResponse,
@@ -116,6 +117,7 @@ if typing.TYPE_CHECKING:
         TooManyRequestsError,
         UnauthorizedError,
         UnsupportedMediaTypeError,
+        UserReference,
     )
     from .custom import (
         CreateBatchCustomResponse,
@@ -507,6 +509,7 @@ _dynamic_imports: typing.Dict[str, str] = {
     "BadRequestError": ".common",
     "Base": ".common",
     "BaseResourceRequest": ".engine",
+    "ChatMessageResponse": ".chat",
     "ChatQueryConversationMembersResponse": ".chat",
     "ChatQueryConversationsResponse": ".chat",
     "ChatQueryMessagesResponse": ".chat",
@@ -866,6 +869,7 @@ _dynamic_imports: typing.Dict[str, str] = {
     "UploadScanStatus": ".vulnerabilities",
     "User": ".vulnerabilities",
     "UserId": ".identity",
+    "UserReference": ".common",
     "VulnerabilitiesFinding": ".vulnerabilities",
     "VulnerabilitiesQueryScanFindingsResponse": ".vulnerabilities",
     "VulnerabilitySeverityFilterValue": ".vulnerabilities",
@@ -962,6 +966,7 @@ __all__ = [
     "BadRequestError",
     "Base",
     "BaseResourceRequest",
+    "ChatMessageResponse",
     "ChatQueryConversationMembersResponse",
     "ChatQueryConversationsResponse",
     "ChatQueryMessagesResponse",
@@ -1321,6 +1326,7 @@ __all__ = [
     "UploadScanStatus",
     "User",
     "UserId",
+    "UserReference",
     "VulnerabilitiesFinding",
     "VulnerabilitiesQueryScanFindingsResponse",
     "VulnerabilitySeverityFilterValue",

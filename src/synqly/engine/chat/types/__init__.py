@@ -6,11 +6,13 @@ import typing
 from importlib import import_module
 
 if typing.TYPE_CHECKING:
+    from .chat_message_response import ChatMessageResponse
     from .chat_query_conversation_members_response import ChatQueryConversationMembersResponse
     from .chat_query_conversations_response import ChatQueryConversationsResponse
     from .chat_query_messages_response import ChatQueryMessagesResponse
     from .chat_query_users_response import ChatQueryUsersResponse
 _dynamic_imports: typing.Dict[str, str] = {
+    "ChatMessageResponse": ".chat_message_response",
     "ChatQueryConversationMembersResponse": ".chat_query_conversation_members_response",
     "ChatQueryConversationsResponse": ".chat_query_conversations_response",
     "ChatQueryMessagesResponse": ".chat_query_messages_response",
@@ -40,6 +42,7 @@ def __dir__():
 
 
 __all__ = [
+    "ChatMessageResponse",
     "ChatQueryConversationMembersResponse",
     "ChatQueryConversationsResponse",
     "ChatQueryMessagesResponse",
