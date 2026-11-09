@@ -12,7 +12,7 @@ from .provisioned_token_request import ProvisionedTokenRequest
 class CreateAccountRequest(UncheckedBaseModel):
     name: typing.Optional[str] = pydantic.Field(default=None)
     """
-    Unique short name for this Account (lowercase [a-z0-9_-], can be used in URLs). Also used for case insensitive duplicate name detection and default sort order. Defaults to AccountId if both name and fullname are not specified.
+    Unique short name for this Account, 2 to 128 characters from [a-zA-Z0-9_-], usable in place of the AccountId in URLs. Names are case-sensitive, so duplicate name detection and `name` filters match the exact case. Also used for default sort order. Accounts in the `test` environment must have a name starting with `~`. Defaults to AccountId if both name and fullname are not specified.
     """
 
     fullname: typing.Optional[str] = pydantic.Field(default=None)
