@@ -10,12 +10,17 @@ T_Result = typing.TypeVar("T_Result")
 class AzureCloud(enum.StrEnum):
     PUBLIC = "public"
     """
-    Azure public cloud (ARM https://management.azure.com).
+    Azure public cloud.
     """
 
     GOVERNMENT = "government"
     """
-    Azure Government (ARM https://management.usgovcloudapi.net).
+    Azure Government, with a GCC High Microsoft 365 tenant.
+    """
+
+    DOD = "dod"
+    """
+    Azure Government, with a DoD Microsoft 365 tenant.
     """
 
     _UNKNOWN = "__AZURECLOUD_UNKNOWN__"
@@ -33,10 +38,13 @@ class AzureCloud(enum.StrEnum):
         self,
         public: typing.Callable[[], T_Result],
         government: typing.Callable[[], T_Result],
+        dod: typing.Callable[[], T_Result],
         _unknown_member: typing.Callable[[str], T_Result],
     ) -> T_Result:
         if self is AzureCloud.PUBLIC:
             return public()
         if self is AzureCloud.GOVERNMENT:
             return government()
+        if self is AzureCloud.DOD:
+            return dod()
         return _unknown_member(self._value_)

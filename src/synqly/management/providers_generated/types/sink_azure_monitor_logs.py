@@ -5,6 +5,7 @@ import typing
 import pydantic
 from ...core.pydantic_utilities import IS_PYDANTIC_V2
 from ...core.unchecked_base_model import UncheckedBaseModel
+from .azure_cloud import AzureCloud
 from .azure_monitor_logs_credential import AzureMonitorLogsCredential
 
 
@@ -13,6 +14,11 @@ class SinkAzureMonitorLogs(UncheckedBaseModel):
     Configuration for Azure Monitor Logs as a Sink Provider. Azure Monitor Logs is a feature of Azure Monitor that collects and organizes log and performance data from monitored resources.
 
     [Configuration guide](https://docs.synqly.com/guides/provider-configuration/azure-monitor-logs)
+    """
+
+    azure_cloud: typing.Optional[AzureCloud] = pydantic.Field(default=None)
+    """
+    Which Microsoft cloud the data collection endpoint is in: `public` (default), or `government` for Azure Government. `dod` behaves the same as `government`.
     """
 
     client_id: str = pydantic.Field()

@@ -5,6 +5,7 @@ import typing
 import pydantic
 from ...core.pydantic_utilities import IS_PYDANTIC_V2
 from ...core.unchecked_base_model import UncheckedBaseModel
+from .azure_cloud import AzureCloud
 from .sentinel_credential import SentinelCredential
 
 
@@ -13,6 +14,11 @@ class SiemSentinel(UncheckedBaseModel):
     Configuration for Microsoft Sentinel SIEM Product.
 
     [Configuration guide](https://docs.synqly.com/guides/provider-configuration/microsoft-sentinel-siem-setup)
+    """
+
+    azure_cloud: typing.Optional[AzureCloud] = pydantic.Field(default=None)
+    """
+    Which Microsoft cloud the workspace is in: `public` (default), `government` for Azure Government with a GCC High tenant, or `dod` for Azure Government with a DoD tenant.
     """
 
     credential: SentinelCredential
@@ -30,12 +36,12 @@ class SiemSentinel(UncheckedBaseModel):
 
     logs_url: typing.Optional[str] = pydantic.Field(default=None)
     """
-    Base URL for the Microsoft Azure Monitor Logs API. Should only be supplied if using an alternate Microsoft cloud, such as GovCloud.
+    Base URL override for the Microsoft Azure Monitor Logs API, for custom or proxied environments. Must be in the same Microsoft cloud as Azure Cloud.
     """
 
     management_url: typing.Optional[str] = pydantic.Field(default=None)
     """
-    Base URL for the Microsoft Azure Management API. Should only be supplied if using an alternate Microsoft cloud, such as GovCloud.
+    Base URL override for the Microsoft Azure Management API, for custom or proxied environments. Must be in the same Microsoft cloud as Azure Cloud.
     """
 
     resource_group: str = pydantic.Field()

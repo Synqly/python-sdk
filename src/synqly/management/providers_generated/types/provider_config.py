@@ -1870,6 +1870,7 @@ class ProviderConfig_SiemRapid7Insightidr(UncheckedBaseModel):
 
 class ProviderConfig_SiemSentinel(UncheckedBaseModel):
     type: typing.Literal["siem_sentinel"] = "siem_sentinel"
+    azure_cloud: typing.Optional[AzureCloud] = None
     credential: SentinelCredential
     default_tables: typing.Optional[typing.List[str]] = None
     ingest_url: typing.Optional[str] = None
@@ -2009,6 +2010,7 @@ class ProviderConfig_SinkAzureBlob(UncheckedBaseModel):
 
 class ProviderConfig_SinkAzureMonitorLogs(UncheckedBaseModel):
     type: typing.Literal["sink_azure_monitor_logs"] = "sink_azure_monitor_logs"
+    azure_cloud: typing.Optional[AzureCloud] = None
     client_id: str
     credential: AzureMonitorLogsCredential
     rule_id: str

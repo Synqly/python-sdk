@@ -18,7 +18,7 @@ class NetworkSecurityAzure(UncheckedBaseModel):
 
     azure_cloud: typing.Optional[AzureCloud] = pydantic.Field(default=None)
     """
-    Which Microsoft cloud to use: `public` (default) or `government`.
+    Which Microsoft cloud to use: `public` (default), `government` or `dod`. `government` and `dod` both use Azure Government.
     """
 
     credential: AzureNetworkSecurityCredential = pydantic.Field()
