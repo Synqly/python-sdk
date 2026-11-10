@@ -4,9 +4,10 @@ import datetime as dt
 import typing
 from json.decoder import JSONDecodeError
 
+from ..auth_base.types.auth_configuration_id import AuthConfigurationId
+from ..auth_base.types.auth_configuration_state import AuthConfigurationState
 from ..auth_base.types.change_password_response import ChangePasswordResponse
 from ..auth_base.types.logon_response import LogonResponse
-from ..auth_base.types.sso_configuration_id import SsoConfigurationId
 from ..common.errors.bad_request_error import BadRequestError
 from ..common.errors.conflict_error import ConflictError
 from ..common.errors.forbidden_error import ForbiddenError
@@ -26,13 +27,13 @@ from ..core.parse_error import ParsingError
 from ..core.request_options import RequestOptions
 from ..core.unchecked_base_model import construct_type
 from ..organization_base.types.organization_id import OrganizationId
-from .types.create_sso_configuration import CreateSsoConfiguration
-from .types.create_sso_response import CreateSsoResponse
-from .types.get_sso_metadata_response import GetSsoMetadataResponse
-from .types.get_sso_response import GetSsoResponse
-from .types.list_sso_response import ListSsoResponse
-from .types.update_sso_configuration import UpdateSsoConfiguration
-from .types.update_sso_response import UpdateSsoResponse
+from .types.create_auth_configuration_response import CreateAuthConfigurationResponse
+from .types.create_id_p_configuration import CreateIdPConfiguration
+from .types.get_auth_configuration_response import GetAuthConfigurationResponse
+from .types.get_auth_metadata_response import GetAuthMetadataResponse
+from .types.list_auth_configurations_response import ListAuthConfigurationsResponse
+from .types.update_auth_configuration_response import UpdateAuthConfigurationResponse
+from .types.update_id_p_configuration import UpdateIdPConfiguration
 from pydantic import ValidationError
 
 # this is used as the default value for optional parameters
@@ -510,12 +511,18 @@ class RawAuthClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    def create_sso(
-        self, *, fullname: str, config: CreateSsoConfiguration, request_options: typing.Optional[RequestOptions] = None
-    ) -> HttpResponse[CreateSsoResponse]:
+    def create_configuration(
+        self,
+        *,
+        fullname: str,
+        config: CreateIdPConfiguration,
+        state: typing.Optional[AuthConfigurationState] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> HttpResponse[CreateAuthConfigurationResponse]:
         """
-        Configure an identity provider for Single Sign-On (SSO) with the organization.
-        Returns the created resource with its assigned SSO configuration ID.
+        Configure an authentication method for the organization — an external Identity
+        Provider (OIDC or SAML) or built-in (password-based) authentication.
+        Returns the created resource with its assigned authentication configuration ID.
 
         Parameters
         ----------
@@ -524,21 +531,25 @@ class RawAuthClient:
             **Note:** To avoid confusion this name must be unique, however it cannot be used
             as an identifier in API calls.
 
-        config : CreateSsoConfiguration
-            Identity provider configuration. The type discriminator determines the SSO provider type.
+        config : CreateIdPConfiguration
+            Identity provider configuration. The type discriminator determines the authentication method.
+
+        state : typing.Optional[AuthConfigurationState]
+            Whether the configuration is enabled or disabled. Defaults to enabled when omitted.
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
 
         Returns
         -------
-        HttpResponse[CreateSsoResponse]
+        HttpResponse[CreateAuthConfigurationResponse]
         """
         _response = self._client_wrapper.httpx_client.request(
-            "v1/auth/sso",
+            "v1/auth/configurations",
             method="POST",
             json={
                 "fullname": fullname,
+                "state": state,
                 "config": config,
             },
             request_options=request_options,
@@ -547,9 +558,9 @@ class RawAuthClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    CreateSsoResponse,
+                    CreateAuthConfigurationResponse,
                     construct_type(
-                        type_=CreateSsoResponse,  # type: ignore
+                        type_=CreateAuthConfigurationResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -651,9 +662,11 @@ class RawAuthClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    def list_sso(self, *, request_options: typing.Optional[RequestOptions] = None) -> HttpResponse[ListSsoResponse]:
+    def list_configurations(
+        self, *, request_options: typing.Optional[RequestOptions] = None
+    ) -> HttpResponse[ListAuthConfigurationsResponse]:
         """
-        List all Single Sign-On (SSO) configurations for the organization.
+        List all authentication configurations for the organization.
         Client secrets are not included.
 
         Parameters
@@ -663,19 +676,19 @@ class RawAuthClient:
 
         Returns
         -------
-        HttpResponse[ListSsoResponse]
+        HttpResponse[ListAuthConfigurationsResponse]
         """
         _response = self._client_wrapper.httpx_client.request(
-            "v1/auth/sso",
+            "v1/auth/configurations",
             method="GET",
             request_options=request_options,
         )
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    ListSsoResponse,
+                    ListAuthConfigurationsResponse,
                     construct_type(
-                        type_=ListSsoResponse,  # type: ignore
+                        type_=ListAuthConfigurationsResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -744,35 +757,34 @@ class RawAuthClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    def get_sso(
-        self, sso_id: SsoConfigurationId, *, request_options: typing.Optional[RequestOptions] = None
-    ) -> HttpResponse[GetSsoResponse]:
+    def get_configuration(
+        self, configuration_id: AuthConfigurationId, *, request_options: typing.Optional[RequestOptions] = None
+    ) -> HttpResponse[GetAuthConfigurationResponse]:
         """
-        Retrieve a specific Single Sign-On (SSO) configuration. Client
-        secrets are not included.
+        Retrieve a specific authentication configuration. The client secret is not included.
 
         Parameters
         ----------
-        sso_id : SsoConfigurationId
+        configuration_id : AuthConfigurationId
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
 
         Returns
         -------
-        HttpResponse[GetSsoResponse]
+        HttpResponse[GetAuthConfigurationResponse]
         """
         _response = self._client_wrapper.httpx_client.request(
-            f"v1/auth/sso/{encode_path_param(sso_id)}",
+            f"v1/auth/configurations/{encode_path_param(configuration_id)}",
             method="GET",
             request_options=request_options,
         )
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    GetSsoResponse,
+                    GetAuthConfigurationResponse,
                     construct_type(
-                        type_=GetSsoResponse,  # type: ignore
+                        type_=GetAuthConfigurationResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -852,9 +864,9 @@ class RawAuthClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    def get_sso_metadata(
+    def get_metadata(
         self, *, request_options: typing.Optional[RequestOptions] = None
-    ) -> HttpResponse[GetSsoMetadataResponse]:
+    ) -> HttpResponse[GetAuthMetadataResponse]:
         """
         Returns configuration that must be used when configuring Identity
         Providers, such as the OIDC redirect URI or SAML ACS URL and SP
@@ -867,7 +879,7 @@ class RawAuthClient:
 
         Returns
         -------
-        HttpResponse[GetSsoMetadataResponse]
+        HttpResponse[GetAuthMetadataResponse]
         """
         _response = self._client_wrapper.httpx_client.request(
             "v1/auth/meta",
@@ -877,9 +889,9 @@ class RawAuthClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    GetSsoMetadataResponse,
+                    GetAuthMetadataResponse,
                     construct_type(
-                        type_=GetSsoMetadataResponse,  # type: ignore
+                        type_=GetAuthMetadataResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -948,31 +960,35 @@ class RawAuthClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    def update_sso(
+    def update_configuration(
         self,
-        sso_id: SsoConfigurationId,
+        configuration_id: AuthConfigurationId,
         *,
         fullname: str,
-        config: UpdateSsoConfiguration,
+        config: UpdateIdPConfiguration,
+        state: typing.Optional[AuthConfigurationState] = OMIT,
         updated_at: typing.Optional[dt.datetime] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
-    ) -> HttpResponse[UpdateSsoResponse]:
+    ) -> HttpResponse[UpdateAuthConfigurationResponse]:
         """
-        Update the SSO configuration by ID. This is a full replacement of the
+        Update the authentication configuration by ID. This is a full replacement of the
         configuration. The `updated_at` field is used for optimistic locking
         to prevent concurrent updates.
 
         Parameters
         ----------
-        sso_id : SsoConfigurationId
+        configuration_id : AuthConfigurationId
 
         fullname : str
             Display name for the configuration, used on authentication screens.
             **Note:** To avoid confusion this name must be unique, however it cannot be used
             as an identifier in API calls.
 
-        config : UpdateSsoConfiguration
-            Identity provider configuration. The type discriminator determines the SSO provider type.
+        config : UpdateIdPConfiguration
+            Identity provider configuration. The type discriminator determines the authentication method.
+
+        state : typing.Optional[AuthConfigurationState]
+            Whether the configuration is enabled or disabled. Defaults to enabled when omitted.
 
         updated_at : typing.Optional[dt.datetime]
             Used for optimistic locking to prevent concurrent updates.
@@ -982,13 +998,14 @@ class RawAuthClient:
 
         Returns
         -------
-        HttpResponse[UpdateSsoResponse]
+        HttpResponse[UpdateAuthConfigurationResponse]
         """
         _response = self._client_wrapper.httpx_client.request(
-            f"v1/auth/sso/{encode_path_param(sso_id)}",
+            f"v1/auth/configurations/{encode_path_param(configuration_id)}",
             method="PUT",
             json={
                 "fullname": fullname,
+                "state": state,
                 "config": config,
                 "updated_at": updated_at,
             },
@@ -998,9 +1015,9 @@ class RawAuthClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    UpdateSsoResponse,
+                    UpdateAuthConfigurationResponse,
                     construct_type(
-                        type_=UpdateSsoResponse,  # type: ignore
+                        type_=UpdateAuthConfigurationResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -1060,6 +1077,17 @@ class RawAuthClient:
                         ),
                     ),
                 )
+            if _response.status_code == 409:
+                raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
             if _response.status_code == 415:
                 raise UnsupportedMediaTypeError(
                     headers=dict(_response.headers),
@@ -1102,17 +1130,17 @@ class RawAuthClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    def delete_sso(
-        self, sso_id: SsoConfigurationId, *, request_options: typing.Optional[RequestOptions] = None
+    def delete_configuration(
+        self, configuration_id: AuthConfigurationId, *, request_options: typing.Optional[RequestOptions] = None
     ) -> HttpResponse[None]:
         """
-        Remove a specific Single Sign-On (SSO) configuration. This may disable signing on
+        Remove a specific authentication configuration. This may disable signing on
         with the identity provider defined in the configuration, and can result in members
         linked to that identity provider no longer being able to access the Organization.
 
         Parameters
         ----------
-        sso_id : SsoConfigurationId
+        configuration_id : AuthConfigurationId
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -1122,7 +1150,7 @@ class RawAuthClient:
         HttpResponse[None]
         """
         _response = self._client_wrapper.httpx_client.request(
-            f"v1/auth/sso/{encode_path_param(sso_id)}",
+            f"v1/auth/configurations/{encode_path_param(configuration_id)}",
             method="DELETE",
             request_options=request_options,
         )
@@ -1676,12 +1704,18 @@ class AsyncRawAuthClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    async def create_sso(
-        self, *, fullname: str, config: CreateSsoConfiguration, request_options: typing.Optional[RequestOptions] = None
-    ) -> AsyncHttpResponse[CreateSsoResponse]:
+    async def create_configuration(
+        self,
+        *,
+        fullname: str,
+        config: CreateIdPConfiguration,
+        state: typing.Optional[AuthConfigurationState] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> AsyncHttpResponse[CreateAuthConfigurationResponse]:
         """
-        Configure an identity provider for Single Sign-On (SSO) with the organization.
-        Returns the created resource with its assigned SSO configuration ID.
+        Configure an authentication method for the organization — an external Identity
+        Provider (OIDC or SAML) or built-in (password-based) authentication.
+        Returns the created resource with its assigned authentication configuration ID.
 
         Parameters
         ----------
@@ -1690,21 +1724,25 @@ class AsyncRawAuthClient:
             **Note:** To avoid confusion this name must be unique, however it cannot be used
             as an identifier in API calls.
 
-        config : CreateSsoConfiguration
-            Identity provider configuration. The type discriminator determines the SSO provider type.
+        config : CreateIdPConfiguration
+            Identity provider configuration. The type discriminator determines the authentication method.
+
+        state : typing.Optional[AuthConfigurationState]
+            Whether the configuration is enabled or disabled. Defaults to enabled when omitted.
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
 
         Returns
         -------
-        AsyncHttpResponse[CreateSsoResponse]
+        AsyncHttpResponse[CreateAuthConfigurationResponse]
         """
         _response = await self._client_wrapper.httpx_client.request(
-            "v1/auth/sso",
+            "v1/auth/configurations",
             method="POST",
             json={
                 "fullname": fullname,
+                "state": state,
                 "config": config,
             },
             request_options=request_options,
@@ -1713,9 +1751,9 @@ class AsyncRawAuthClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    CreateSsoResponse,
+                    CreateAuthConfigurationResponse,
                     construct_type(
-                        type_=CreateSsoResponse,  # type: ignore
+                        type_=CreateAuthConfigurationResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -1817,11 +1855,11 @@ class AsyncRawAuthClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    async def list_sso(
+    async def list_configurations(
         self, *, request_options: typing.Optional[RequestOptions] = None
-    ) -> AsyncHttpResponse[ListSsoResponse]:
+    ) -> AsyncHttpResponse[ListAuthConfigurationsResponse]:
         """
-        List all Single Sign-On (SSO) configurations for the organization.
+        List all authentication configurations for the organization.
         Client secrets are not included.
 
         Parameters
@@ -1831,19 +1869,19 @@ class AsyncRawAuthClient:
 
         Returns
         -------
-        AsyncHttpResponse[ListSsoResponse]
+        AsyncHttpResponse[ListAuthConfigurationsResponse]
         """
         _response = await self._client_wrapper.httpx_client.request(
-            "v1/auth/sso",
+            "v1/auth/configurations",
             method="GET",
             request_options=request_options,
         )
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    ListSsoResponse,
+                    ListAuthConfigurationsResponse,
                     construct_type(
-                        type_=ListSsoResponse,  # type: ignore
+                        type_=ListAuthConfigurationsResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -1912,35 +1950,34 @@ class AsyncRawAuthClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    async def get_sso(
-        self, sso_id: SsoConfigurationId, *, request_options: typing.Optional[RequestOptions] = None
-    ) -> AsyncHttpResponse[GetSsoResponse]:
+    async def get_configuration(
+        self, configuration_id: AuthConfigurationId, *, request_options: typing.Optional[RequestOptions] = None
+    ) -> AsyncHttpResponse[GetAuthConfigurationResponse]:
         """
-        Retrieve a specific Single Sign-On (SSO) configuration. Client
-        secrets are not included.
+        Retrieve a specific authentication configuration. The client secret is not included.
 
         Parameters
         ----------
-        sso_id : SsoConfigurationId
+        configuration_id : AuthConfigurationId
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
 
         Returns
         -------
-        AsyncHttpResponse[GetSsoResponse]
+        AsyncHttpResponse[GetAuthConfigurationResponse]
         """
         _response = await self._client_wrapper.httpx_client.request(
-            f"v1/auth/sso/{encode_path_param(sso_id)}",
+            f"v1/auth/configurations/{encode_path_param(configuration_id)}",
             method="GET",
             request_options=request_options,
         )
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    GetSsoResponse,
+                    GetAuthConfigurationResponse,
                     construct_type(
-                        type_=GetSsoResponse,  # type: ignore
+                        type_=GetAuthConfigurationResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -2020,9 +2057,9 @@ class AsyncRawAuthClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    async def get_sso_metadata(
+    async def get_metadata(
         self, *, request_options: typing.Optional[RequestOptions] = None
-    ) -> AsyncHttpResponse[GetSsoMetadataResponse]:
+    ) -> AsyncHttpResponse[GetAuthMetadataResponse]:
         """
         Returns configuration that must be used when configuring Identity
         Providers, such as the OIDC redirect URI or SAML ACS URL and SP
@@ -2035,7 +2072,7 @@ class AsyncRawAuthClient:
 
         Returns
         -------
-        AsyncHttpResponse[GetSsoMetadataResponse]
+        AsyncHttpResponse[GetAuthMetadataResponse]
         """
         _response = await self._client_wrapper.httpx_client.request(
             "v1/auth/meta",
@@ -2045,9 +2082,9 @@ class AsyncRawAuthClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    GetSsoMetadataResponse,
+                    GetAuthMetadataResponse,
                     construct_type(
-                        type_=GetSsoMetadataResponse,  # type: ignore
+                        type_=GetAuthMetadataResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -2116,31 +2153,35 @@ class AsyncRawAuthClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    async def update_sso(
+    async def update_configuration(
         self,
-        sso_id: SsoConfigurationId,
+        configuration_id: AuthConfigurationId,
         *,
         fullname: str,
-        config: UpdateSsoConfiguration,
+        config: UpdateIdPConfiguration,
+        state: typing.Optional[AuthConfigurationState] = OMIT,
         updated_at: typing.Optional[dt.datetime] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
-    ) -> AsyncHttpResponse[UpdateSsoResponse]:
+    ) -> AsyncHttpResponse[UpdateAuthConfigurationResponse]:
         """
-        Update the SSO configuration by ID. This is a full replacement of the
+        Update the authentication configuration by ID. This is a full replacement of the
         configuration. The `updated_at` field is used for optimistic locking
         to prevent concurrent updates.
 
         Parameters
         ----------
-        sso_id : SsoConfigurationId
+        configuration_id : AuthConfigurationId
 
         fullname : str
             Display name for the configuration, used on authentication screens.
             **Note:** To avoid confusion this name must be unique, however it cannot be used
             as an identifier in API calls.
 
-        config : UpdateSsoConfiguration
-            Identity provider configuration. The type discriminator determines the SSO provider type.
+        config : UpdateIdPConfiguration
+            Identity provider configuration. The type discriminator determines the authentication method.
+
+        state : typing.Optional[AuthConfigurationState]
+            Whether the configuration is enabled or disabled. Defaults to enabled when omitted.
 
         updated_at : typing.Optional[dt.datetime]
             Used for optimistic locking to prevent concurrent updates.
@@ -2150,13 +2191,14 @@ class AsyncRawAuthClient:
 
         Returns
         -------
-        AsyncHttpResponse[UpdateSsoResponse]
+        AsyncHttpResponse[UpdateAuthConfigurationResponse]
         """
         _response = await self._client_wrapper.httpx_client.request(
-            f"v1/auth/sso/{encode_path_param(sso_id)}",
+            f"v1/auth/configurations/{encode_path_param(configuration_id)}",
             method="PUT",
             json={
                 "fullname": fullname,
+                "state": state,
                 "config": config,
                 "updated_at": updated_at,
             },
@@ -2166,9 +2208,9 @@ class AsyncRawAuthClient:
         try:
             if 200 <= _response.status_code < 300:
                 _data = typing.cast(
-                    UpdateSsoResponse,
+                    UpdateAuthConfigurationResponse,
                     construct_type(
-                        type_=UpdateSsoResponse,  # type: ignore
+                        type_=UpdateAuthConfigurationResponse,  # type: ignore
                         object_=_response.json(),
                     ),
                 )
@@ -2228,6 +2270,17 @@ class AsyncRawAuthClient:
                         ),
                     ),
                 )
+            if _response.status_code == 409:
+                raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
             if _response.status_code == 415:
                 raise UnsupportedMediaTypeError(
                     headers=dict(_response.headers),
@@ -2270,17 +2323,17 @@ class AsyncRawAuthClient:
             )
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    async def delete_sso(
-        self, sso_id: SsoConfigurationId, *, request_options: typing.Optional[RequestOptions] = None
+    async def delete_configuration(
+        self, configuration_id: AuthConfigurationId, *, request_options: typing.Optional[RequestOptions] = None
     ) -> AsyncHttpResponse[None]:
         """
-        Remove a specific Single Sign-On (SSO) configuration. This may disable signing on
+        Remove a specific authentication configuration. This may disable signing on
         with the identity provider defined in the configuration, and can result in members
         linked to that identity provider no longer being able to access the Organization.
 
         Parameters
         ----------
-        sso_id : SsoConfigurationId
+        configuration_id : AuthConfigurationId
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -2290,7 +2343,7 @@ class AsyncRawAuthClient:
         AsyncHttpResponse[None]
         """
         _response = await self._client_wrapper.httpx_client.request(
-            f"v1/auth/sso/{encode_path_param(sso_id)}",
+            f"v1/auth/configurations/{encode_path_param(configuration_id)}",
             method="DELETE",
             request_options=request_options,
         )

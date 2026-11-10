@@ -3,13 +3,13 @@
 import typing
 
 import pydantic
-from ...auth_base.types.sso_configuration import SsoConfiguration
+from ...auth_base.types.auth_configuration import AuthConfiguration
 from ...core.pydantic_utilities import IS_PYDANTIC_V2
 from ...core.unchecked_base_model import UncheckedBaseModel
 
 
-class UpdateSsoResponse(UncheckedBaseModel):
-    result: SsoConfiguration
+class CreateAuthConfigurationResponse(UncheckedBaseModel):
+    result: AuthConfiguration
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow")  # type: ignore # Pydantic v2

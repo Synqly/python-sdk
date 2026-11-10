@@ -8,6 +8,7 @@ import pydantic
 import typing_extensions
 from ...core.pydantic_utilities import IS_PYDANTIC_V2
 from ...core.unchecked_base_model import UncheckedBaseModel, UnionMetadata
+from ...member_base.types.member_id import MemberId
 
 
 class IdPConfiguration_Oidc(UncheckedBaseModel):
@@ -40,6 +41,20 @@ class IdPConfiguration_Saml(UncheckedBaseModel):
             extra = pydantic.Extra.allow
 
 
+class IdPConfiguration_Builtin(UncheckedBaseModel):
+    type: typing.Literal["builtin"] = "builtin"
+    allow_for_users: typing.Optional[typing.List[MemberId]] = None
+
+    if IS_PYDANTIC_V2:
+        model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow")  # type: ignore # Pydantic v2
+    else:
+
+        class Config:
+            smart_union = True
+            extra = pydantic.Extra.allow
+
+
 IdPConfiguration = typing_extensions.Annotated[
-    typing.Union[IdPConfiguration_Oidc, IdPConfiguration_Saml], UnionMetadata(discriminant="type")
+    typing.Union[IdPConfiguration_Oidc, IdPConfiguration_Saml, IdPConfiguration_Builtin],
+    UnionMetadata(discriminant="type"),
 ]

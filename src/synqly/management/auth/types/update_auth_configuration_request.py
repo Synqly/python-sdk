@@ -4,14 +4,15 @@ import datetime as dt
 import typing
 
 import pydantic
+from ...auth_base.types.auth_configuration_state import AuthConfigurationState
 from ...core.pydantic_utilities import IS_PYDANTIC_V2
 from ...core.unchecked_base_model import UncheckedBaseModel
-from .update_sso_configuration import UpdateSsoConfiguration
+from .update_id_p_configuration import UpdateIdPConfiguration
 
 
-class UpdateSsoRequest(UncheckedBaseModel):
+class UpdateAuthConfigurationRequest(UncheckedBaseModel):
     """
-    Request to update an SSO configuration
+    Request to update an authentication configuration
     """
 
     fullname: str = pydantic.Field()
@@ -21,9 +22,14 @@ class UpdateSsoRequest(UncheckedBaseModel):
     as an identifier in API calls.
     """
 
-    config: UpdateSsoConfiguration = pydantic.Field()
+    state: typing.Optional[AuthConfigurationState] = pydantic.Field(default=None)
     """
-    Identity provider configuration. The type discriminator determines the SSO provider type.
+    Whether the configuration is enabled or disabled. Defaults to enabled when omitted.
+    """
+
+    config: UpdateIdPConfiguration = pydantic.Field()
+    """
+    Identity provider configuration. The type discriminator determines the authentication method.
     """
 
     updated_at: typing.Optional[dt.datetime] = pydantic.Field(default=None)

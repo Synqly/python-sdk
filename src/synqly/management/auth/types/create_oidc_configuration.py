@@ -7,7 +7,7 @@ from ...core.pydantic_utilities import IS_PYDANTIC_V2
 from ...core.unchecked_base_model import UncheckedBaseModel
 
 
-class UpdateOidcSsoConfiguration(UncheckedBaseModel):
+class CreateOidcConfiguration(UncheckedBaseModel):
     """
     Configuration for an OpenID Connect (OIDC) compliant Identity Provider.
     """
@@ -22,9 +22,9 @@ class UpdateOidcSsoConfiguration(UncheckedBaseModel):
     Client ID registered with the identity provider.
     """
 
-    client_secret: typing.Optional[str] = pydantic.Field(default=None)
+    client_secret: str = pydantic.Field()
     """
-    Client secret. Include only when rotating the secret.
+    Client secret registered with the identity provider.
     """
 
     if IS_PYDANTIC_V2:

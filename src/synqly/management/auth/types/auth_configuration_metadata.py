@@ -9,7 +9,7 @@ from .oidc_user_configuration import OidcUserConfiguration
 from .saml_user_configuration import SamlUserConfiguration
 
 
-class SsoUserConfiguration(UncheckedBaseModel):
+class AuthConfigurationMetadata(UncheckedBaseModel):
     """
     SP-side configuration values the user needs to enter into their Identity Provider.
     Only the fields relevant to the configured protocol are populated.
@@ -17,12 +17,12 @@ class SsoUserConfiguration(UncheckedBaseModel):
 
     oidc: typing.Optional[OidcUserConfiguration] = pydantic.Field(default=None)
     """
-    OIDC configuration values. Present when the SSO configuration uses OIDC.
+    OIDC configuration values. Present when the configuration uses OIDC.
     """
 
     saml: typing.Optional[SamlUserConfiguration] = pydantic.Field(default=None)
     """
-    SAML configuration values. Present when the SSO configuration uses SAML.
+    SAML configuration values. Present when the configuration uses SAML.
     """
 
     if IS_PYDANTIC_V2:

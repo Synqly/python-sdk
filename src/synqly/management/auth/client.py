@@ -3,20 +3,21 @@
 import datetime as dt
 import typing
 
+from ..auth_base.types.auth_configuration_id import AuthConfigurationId
+from ..auth_base.types.auth_configuration_state import AuthConfigurationState
 from ..auth_base.types.change_password_response import ChangePasswordResponse
 from ..auth_base.types.logon_response import LogonResponse
-from ..auth_base.types.sso_configuration_id import SsoConfigurationId
 from ..core.client_wrapper import AsyncClientWrapper, SyncClientWrapper
 from ..core.request_options import RequestOptions
 from ..organization_base.types.organization_id import OrganizationId
 from .raw_client import AsyncRawAuthClient, RawAuthClient
-from .types.create_sso_configuration import CreateSsoConfiguration
-from .types.create_sso_response import CreateSsoResponse
-from .types.get_sso_metadata_response import GetSsoMetadataResponse
-from .types.get_sso_response import GetSsoResponse
-from .types.list_sso_response import ListSsoResponse
-from .types.update_sso_configuration import UpdateSsoConfiguration
-from .types.update_sso_response import UpdateSsoResponse
+from .types.create_auth_configuration_response import CreateAuthConfigurationResponse
+from .types.create_id_p_configuration import CreateIdPConfiguration
+from .types.get_auth_configuration_response import GetAuthConfigurationResponse
+from .types.get_auth_metadata_response import GetAuthMetadataResponse
+from .types.list_auth_configurations_response import ListAuthConfigurationsResponse
+from .types.update_auth_configuration_response import UpdateAuthConfigurationResponse
+from .types.update_id_p_configuration import UpdateIdPConfiguration
 
 # this is used as the default value for optional parameters
 OMIT = typing.cast(typing.Any, ...)
@@ -110,12 +111,18 @@ class AuthClient:
         _response = self._raw_client.logoff(request_options=request_options)
         return _response.data
 
-    def create_sso(
-        self, *, fullname: str, config: CreateSsoConfiguration, request_options: typing.Optional[RequestOptions] = None
-    ) -> CreateSsoResponse:
+    def create_configuration(
+        self,
+        *,
+        fullname: str,
+        config: CreateIdPConfiguration,
+        state: typing.Optional[AuthConfigurationState] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> CreateAuthConfigurationResponse:
         """
-        Configure an identity provider for Single Sign-On (SSO) with the organization.
-        Returns the created resource with its assigned SSO configuration ID.
+        Configure an authentication method for the organization — an external Identity
+        Provider (OIDC or SAML) or built-in (password-based) authentication.
+        Returns the created resource with its assigned authentication configuration ID.
 
         Parameters
         ----------
@@ -124,22 +131,29 @@ class AuthClient:
             **Note:** To avoid confusion this name must be unique, however it cannot be used
             as an identifier in API calls.
 
-        config : CreateSsoConfiguration
-            Identity provider configuration. The type discriminator determines the SSO provider type.
+        config : CreateIdPConfiguration
+            Identity provider configuration. The type discriminator determines the authentication method.
+
+        state : typing.Optional[AuthConfigurationState]
+            Whether the configuration is enabled or disabled. Defaults to enabled when omitted.
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
 
         Returns
         -------
-        CreateSsoResponse
+        CreateAuthConfigurationResponse
         """
-        _response = self._raw_client.create_sso(fullname=fullname, config=config, request_options=request_options)
+        _response = self._raw_client.create_configuration(
+            fullname=fullname, config=config, state=state, request_options=request_options
+        )
         return _response.data
 
-    def list_sso(self, *, request_options: typing.Optional[RequestOptions] = None) -> ListSsoResponse:
+    def list_configurations(
+        self, *, request_options: typing.Optional[RequestOptions] = None
+    ) -> ListAuthConfigurationsResponse:
         """
-        List all Single Sign-On (SSO) configurations for the organization.
+        List all authentication configurations for the organization.
         Client secrets are not included.
 
         Parameters
@@ -149,33 +163,32 @@ class AuthClient:
 
         Returns
         -------
-        ListSsoResponse
+        ListAuthConfigurationsResponse
         """
-        _response = self._raw_client.list_sso(request_options=request_options)
+        _response = self._raw_client.list_configurations(request_options=request_options)
         return _response.data
 
-    def get_sso(
-        self, sso_id: SsoConfigurationId, *, request_options: typing.Optional[RequestOptions] = None
-    ) -> GetSsoResponse:
+    def get_configuration(
+        self, configuration_id: AuthConfigurationId, *, request_options: typing.Optional[RequestOptions] = None
+    ) -> GetAuthConfigurationResponse:
         """
-        Retrieve a specific Single Sign-On (SSO) configuration. Client
-        secrets are not included.
+        Retrieve a specific authentication configuration. The client secret is not included.
 
         Parameters
         ----------
-        sso_id : SsoConfigurationId
+        configuration_id : AuthConfigurationId
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
 
         Returns
         -------
-        GetSsoResponse
+        GetAuthConfigurationResponse
         """
-        _response = self._raw_client.get_sso(sso_id, request_options=request_options)
+        _response = self._raw_client.get_configuration(configuration_id, request_options=request_options)
         return _response.data
 
-    def get_sso_metadata(self, *, request_options: typing.Optional[RequestOptions] = None) -> GetSsoMetadataResponse:
+    def get_metadata(self, *, request_options: typing.Optional[RequestOptions] = None) -> GetAuthMetadataResponse:
         """
         Returns configuration that must be used when configuring Identity
         Providers, such as the OIDC redirect URI or SAML ACS URL and SP
@@ -188,36 +201,40 @@ class AuthClient:
 
         Returns
         -------
-        GetSsoMetadataResponse
+        GetAuthMetadataResponse
         """
-        _response = self._raw_client.get_sso_metadata(request_options=request_options)
+        _response = self._raw_client.get_metadata(request_options=request_options)
         return _response.data
 
-    def update_sso(
+    def update_configuration(
         self,
-        sso_id: SsoConfigurationId,
+        configuration_id: AuthConfigurationId,
         *,
         fullname: str,
-        config: UpdateSsoConfiguration,
+        config: UpdateIdPConfiguration,
+        state: typing.Optional[AuthConfigurationState] = OMIT,
         updated_at: typing.Optional[dt.datetime] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
-    ) -> UpdateSsoResponse:
+    ) -> UpdateAuthConfigurationResponse:
         """
-        Update the SSO configuration by ID. This is a full replacement of the
+        Update the authentication configuration by ID. This is a full replacement of the
         configuration. The `updated_at` field is used for optimistic locking
         to prevent concurrent updates.
 
         Parameters
         ----------
-        sso_id : SsoConfigurationId
+        configuration_id : AuthConfigurationId
 
         fullname : str
             Display name for the configuration, used on authentication screens.
             **Note:** To avoid confusion this name must be unique, however it cannot be used
             as an identifier in API calls.
 
-        config : UpdateSsoConfiguration
-            Identity provider configuration. The type discriminator determines the SSO provider type.
+        config : UpdateIdPConfiguration
+            Identity provider configuration. The type discriminator determines the authentication method.
+
+        state : typing.Optional[AuthConfigurationState]
+            Whether the configuration is enabled or disabled. Defaults to enabled when omitted.
 
         updated_at : typing.Optional[dt.datetime]
             Used for optimistic locking to prevent concurrent updates.
@@ -227,24 +244,29 @@ class AuthClient:
 
         Returns
         -------
-        UpdateSsoResponse
+        UpdateAuthConfigurationResponse
         """
-        _response = self._raw_client.update_sso(
-            sso_id, fullname=fullname, config=config, updated_at=updated_at, request_options=request_options
+        _response = self._raw_client.update_configuration(
+            configuration_id,
+            fullname=fullname,
+            config=config,
+            state=state,
+            updated_at=updated_at,
+            request_options=request_options,
         )
         return _response.data
 
-    def delete_sso(
-        self, sso_id: SsoConfigurationId, *, request_options: typing.Optional[RequestOptions] = None
+    def delete_configuration(
+        self, configuration_id: AuthConfigurationId, *, request_options: typing.Optional[RequestOptions] = None
     ) -> None:
         """
-        Remove a specific Single Sign-On (SSO) configuration. This may disable signing on
+        Remove a specific authentication configuration. This may disable signing on
         with the identity provider defined in the configuration, and can result in members
         linked to that identity provider no longer being able to access the Organization.
 
         Parameters
         ----------
-        sso_id : SsoConfigurationId
+        configuration_id : AuthConfigurationId
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -253,7 +275,7 @@ class AuthClient:
         -------
         None
         """
-        _response = self._raw_client.delete_sso(sso_id, request_options=request_options)
+        _response = self._raw_client.delete_configuration(configuration_id, request_options=request_options)
         return _response.data
 
 
@@ -347,12 +369,18 @@ class AsyncAuthClient:
         _response = await self._raw_client.logoff(request_options=request_options)
         return _response.data
 
-    async def create_sso(
-        self, *, fullname: str, config: CreateSsoConfiguration, request_options: typing.Optional[RequestOptions] = None
-    ) -> CreateSsoResponse:
+    async def create_configuration(
+        self,
+        *,
+        fullname: str,
+        config: CreateIdPConfiguration,
+        state: typing.Optional[AuthConfigurationState] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> CreateAuthConfigurationResponse:
         """
-        Configure an identity provider for Single Sign-On (SSO) with the organization.
-        Returns the created resource with its assigned SSO configuration ID.
+        Configure an authentication method for the organization — an external Identity
+        Provider (OIDC or SAML) or built-in (password-based) authentication.
+        Returns the created resource with its assigned authentication configuration ID.
 
         Parameters
         ----------
@@ -361,22 +389,29 @@ class AsyncAuthClient:
             **Note:** To avoid confusion this name must be unique, however it cannot be used
             as an identifier in API calls.
 
-        config : CreateSsoConfiguration
-            Identity provider configuration. The type discriminator determines the SSO provider type.
+        config : CreateIdPConfiguration
+            Identity provider configuration. The type discriminator determines the authentication method.
+
+        state : typing.Optional[AuthConfigurationState]
+            Whether the configuration is enabled or disabled. Defaults to enabled when omitted.
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
 
         Returns
         -------
-        CreateSsoResponse
+        CreateAuthConfigurationResponse
         """
-        _response = await self._raw_client.create_sso(fullname=fullname, config=config, request_options=request_options)
+        _response = await self._raw_client.create_configuration(
+            fullname=fullname, config=config, state=state, request_options=request_options
+        )
         return _response.data
 
-    async def list_sso(self, *, request_options: typing.Optional[RequestOptions] = None) -> ListSsoResponse:
+    async def list_configurations(
+        self, *, request_options: typing.Optional[RequestOptions] = None
+    ) -> ListAuthConfigurationsResponse:
         """
-        List all Single Sign-On (SSO) configurations for the organization.
+        List all authentication configurations for the organization.
         Client secrets are not included.
 
         Parameters
@@ -386,35 +421,32 @@ class AsyncAuthClient:
 
         Returns
         -------
-        ListSsoResponse
+        ListAuthConfigurationsResponse
         """
-        _response = await self._raw_client.list_sso(request_options=request_options)
+        _response = await self._raw_client.list_configurations(request_options=request_options)
         return _response.data
 
-    async def get_sso(
-        self, sso_id: SsoConfigurationId, *, request_options: typing.Optional[RequestOptions] = None
-    ) -> GetSsoResponse:
+    async def get_configuration(
+        self, configuration_id: AuthConfigurationId, *, request_options: typing.Optional[RequestOptions] = None
+    ) -> GetAuthConfigurationResponse:
         """
-        Retrieve a specific Single Sign-On (SSO) configuration. Client
-        secrets are not included.
+        Retrieve a specific authentication configuration. The client secret is not included.
 
         Parameters
         ----------
-        sso_id : SsoConfigurationId
+        configuration_id : AuthConfigurationId
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
 
         Returns
         -------
-        GetSsoResponse
+        GetAuthConfigurationResponse
         """
-        _response = await self._raw_client.get_sso(sso_id, request_options=request_options)
+        _response = await self._raw_client.get_configuration(configuration_id, request_options=request_options)
         return _response.data
 
-    async def get_sso_metadata(
-        self, *, request_options: typing.Optional[RequestOptions] = None
-    ) -> GetSsoMetadataResponse:
+    async def get_metadata(self, *, request_options: typing.Optional[RequestOptions] = None) -> GetAuthMetadataResponse:
         """
         Returns configuration that must be used when configuring Identity
         Providers, such as the OIDC redirect URI or SAML ACS URL and SP
@@ -427,36 +459,40 @@ class AsyncAuthClient:
 
         Returns
         -------
-        GetSsoMetadataResponse
+        GetAuthMetadataResponse
         """
-        _response = await self._raw_client.get_sso_metadata(request_options=request_options)
+        _response = await self._raw_client.get_metadata(request_options=request_options)
         return _response.data
 
-    async def update_sso(
+    async def update_configuration(
         self,
-        sso_id: SsoConfigurationId,
+        configuration_id: AuthConfigurationId,
         *,
         fullname: str,
-        config: UpdateSsoConfiguration,
+        config: UpdateIdPConfiguration,
+        state: typing.Optional[AuthConfigurationState] = OMIT,
         updated_at: typing.Optional[dt.datetime] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
-    ) -> UpdateSsoResponse:
+    ) -> UpdateAuthConfigurationResponse:
         """
-        Update the SSO configuration by ID. This is a full replacement of the
+        Update the authentication configuration by ID. This is a full replacement of the
         configuration. The `updated_at` field is used for optimistic locking
         to prevent concurrent updates.
 
         Parameters
         ----------
-        sso_id : SsoConfigurationId
+        configuration_id : AuthConfigurationId
 
         fullname : str
             Display name for the configuration, used on authentication screens.
             **Note:** To avoid confusion this name must be unique, however it cannot be used
             as an identifier in API calls.
 
-        config : UpdateSsoConfiguration
-            Identity provider configuration. The type discriminator determines the SSO provider type.
+        config : UpdateIdPConfiguration
+            Identity provider configuration. The type discriminator determines the authentication method.
+
+        state : typing.Optional[AuthConfigurationState]
+            Whether the configuration is enabled or disabled. Defaults to enabled when omitted.
 
         updated_at : typing.Optional[dt.datetime]
             Used for optimistic locking to prevent concurrent updates.
@@ -466,24 +502,29 @@ class AsyncAuthClient:
 
         Returns
         -------
-        UpdateSsoResponse
+        UpdateAuthConfigurationResponse
         """
-        _response = await self._raw_client.update_sso(
-            sso_id, fullname=fullname, config=config, updated_at=updated_at, request_options=request_options
+        _response = await self._raw_client.update_configuration(
+            configuration_id,
+            fullname=fullname,
+            config=config,
+            state=state,
+            updated_at=updated_at,
+            request_options=request_options,
         )
         return _response.data
 
-    async def delete_sso(
-        self, sso_id: SsoConfigurationId, *, request_options: typing.Optional[RequestOptions] = None
+    async def delete_configuration(
+        self, configuration_id: AuthConfigurationId, *, request_options: typing.Optional[RequestOptions] = None
     ) -> None:
         """
-        Remove a specific Single Sign-On (SSO) configuration. This may disable signing on
+        Remove a specific authentication configuration. This may disable signing on
         with the identity provider defined in the configuration, and can result in members
         linked to that identity provider no longer being able to access the Organization.
 
         Parameters
         ----------
-        sso_id : SsoConfigurationId
+        configuration_id : AuthConfigurationId
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -492,5 +533,5 @@ class AsyncAuthClient:
         -------
         None
         """
-        _response = await self._raw_client.delete_sso(sso_id, request_options=request_options)
+        _response = await self._raw_client.delete_configuration(configuration_id, request_options=request_options)
         return _response.data

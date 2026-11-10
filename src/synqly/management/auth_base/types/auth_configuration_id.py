@@ -2,7 +2,7 @@
 
 from ...common.types.id import Id
 
-SsoConfigurationId = Id
+AuthConfigurationId = Id
 """
-Unique identifier for this SSO configuration
+Unique identifier for this authentication configuration
 """

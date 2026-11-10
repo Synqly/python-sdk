@@ -5,26 +5,19 @@ import typing
 import pydantic
 from ...core.pydantic_utilities import IS_PYDANTIC_V2
 from ...core.unchecked_base_model import UncheckedBaseModel
+from ...member_base.types.member_id import MemberId
 
 
-class CreateOidcSsoConfiguration(UncheckedBaseModel):
+class BuiltInConfiguration(UncheckedBaseModel):
     """
-    Configuration for an OpenID Connect (OIDC) compliant Identity Provider.
-    """
-
-    issuer_url: str = pydantic.Field()
-    """
-    Issuer URL used to automatically obtain the OpenID Connect discovery document.
+    Configuration for built-in (password-based) authentication. Only one built-in
+    configuration may exist per Organization.
     """
 
-    client_id: str = pydantic.Field()
+    allow_for_users: typing.Optional[typing.List[MemberId]] = pydantic.Field(default=None)
     """
-    Client ID registered with the identity provider.
-    """
-
-    client_secret: str = pydantic.Field()
-    """
-    Client secret registered with the identity provider.
+    Members allowed to use built-in authentication, identified by member id or name.
+    Use the special list ["*"] to allow all members; this is the default when omitted.
     """
 
     if IS_PYDANTIC_V2:

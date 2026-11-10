@@ -7,21 +7,33 @@ from importlib import import_module
 
 if typing.TYPE_CHECKING:
     from .auth_code import AuthCode
+    from .auth_configuration import AuthConfiguration
+    from .auth_configuration_id import AuthConfigurationId
+    from .auth_configuration_state import AuthConfigurationState
+    from .built_in_configuration import BuiltInConfiguration
     from .change_password_response import ChangePasswordResponse
     from .change_password_response_result import ChangePasswordResponseResult
-    from .id_p_configuration import IdPConfiguration, IdPConfiguration_Oidc, IdPConfiguration_Saml
+    from .id_p_configuration import (
+        IdPConfiguration,
+        IdPConfiguration_Builtin,
+        IdPConfiguration_Oidc,
+        IdPConfiguration_Saml,
+    )
     from .logon_request import LogonRequest
     from .logon_response import LogonResponse
     from .logon_response_result import LogonResponseResult
     from .oidc_configuration import OidcConfiguration
     from .saml_configuration import SamlConfiguration
-    from .sso_configuration import SsoConfiguration
-    from .sso_configuration_id import SsoConfigurationId
 _dynamic_imports: typing.Dict[str, str] = {
     "AuthCode": ".auth_code",
+    "AuthConfiguration": ".auth_configuration",
+    "AuthConfigurationId": ".auth_configuration_id",
+    "AuthConfigurationState": ".auth_configuration_state",
+    "BuiltInConfiguration": ".built_in_configuration",
     "ChangePasswordResponse": ".change_password_response",
     "ChangePasswordResponseResult": ".change_password_response_result",
     "IdPConfiguration": ".id_p_configuration",
+    "IdPConfiguration_Builtin": ".id_p_configuration",
     "IdPConfiguration_Oidc": ".id_p_configuration",
     "IdPConfiguration_Saml": ".id_p_configuration",
     "LogonRequest": ".logon_request",
@@ -29,8 +41,6 @@ _dynamic_imports: typing.Dict[str, str] = {
     "LogonResponseResult": ".logon_response_result",
     "OidcConfiguration": ".oidc_configuration",
     "SamlConfiguration": ".saml_configuration",
-    "SsoConfiguration": ".sso_configuration",
-    "SsoConfigurationId": ".sso_configuration_id",
 }
 
 
@@ -57,9 +67,14 @@ def __dir__():
 
 __all__ = [
     "AuthCode",
+    "AuthConfiguration",
+    "AuthConfigurationId",
+    "AuthConfigurationState",
+    "BuiltInConfiguration",
     "ChangePasswordResponse",
     "ChangePasswordResponseResult",
     "IdPConfiguration",
+    "IdPConfiguration_Builtin",
     "IdPConfiguration_Oidc",
     "IdPConfiguration_Saml",
     "LogonRequest",
@@ -67,6 +82,4 @@ __all__ = [
     "LogonResponseResult",
     "OidcConfiguration",
     "SamlConfiguration",
-    "SsoConfiguration",
-    "SsoConfigurationId",
 ]

@@ -5,24 +5,30 @@ import typing
 import pydantic
 from ...common.types.base import Base
 from ...core.pydantic_utilities import IS_PYDANTIC_V2
+from .auth_configuration_id import AuthConfigurationId
+from .auth_configuration_state import AuthConfigurationState
 from .id_p_configuration import IdPConfiguration
-from .sso_configuration_id import SsoConfigurationId
 
 
-class SsoConfiguration(Base):
+class AuthConfiguration(Base):
     """
-    Single Sign-On (SSO) configuration for an Organization. This describes how to connect
-    to an Identity Provider (IdP) for the purpose of signing in to the Organization.
-    Additionally this describes how to map identities from the IdP to Member accounts
-    of the Organization.
+    Authentication configuration for an Organization. Each configuration describes a single
+    way members can sign in: an external Identity Provider (OIDC or SAML), or the built-in
+    (password-based) authentication method. For external Identity Providers it also describes
+    how to map identities from the IdP to Member accounts of the Organization.
     """
 
-    id: SsoConfigurationId
+    id: AuthConfigurationId
     fullname: str = pydantic.Field()
     """
     Display name for the configuration, used on authentication screens.
     **Note:** To avoid confusion this name must be unique, however it cannot be used
     as an identifier in API calls.
+    """
+
+    state: AuthConfigurationState = pydantic.Field()
+    """
+    Whether this authentication method is enabled or disabled for the Organization.
     """
 
     identity_provider: IdPConfiguration

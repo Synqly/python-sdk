@@ -3,13 +3,16 @@
 import typing
 
 import pydantic
-from ...auth_base.types.sso_configuration import SsoConfiguration
 from ...core.pydantic_utilities import IS_PYDANTIC_V2
 from ...core.unchecked_base_model import UncheckedBaseModel
+from .auth_configuration_metadata import AuthConfigurationMetadata
 
 
-class GetSsoResponse(UncheckedBaseModel):
-    result: SsoConfiguration
+class GetAuthMetadataResponse(UncheckedBaseModel):
+    result: AuthConfigurationMetadata = pydantic.Field()
+    """
+    Information the user needs to configure their Identity Provider.
+    """
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow")  # type: ignore # Pydantic v2

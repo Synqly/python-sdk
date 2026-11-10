@@ -8,9 +8,14 @@ from importlib import import_module
 if typing.TYPE_CHECKING:
     from .types import (
         AuthCode,
+        AuthConfiguration,
+        AuthConfigurationId,
+        AuthConfigurationState,
+        BuiltInConfiguration,
         ChangePasswordResponse,
         ChangePasswordResponseResult,
         IdPConfiguration,
+        IdPConfiguration_Builtin,
         IdPConfiguration_Oidc,
         IdPConfiguration_Saml,
         LogonRequest,
@@ -18,14 +23,17 @@ if typing.TYPE_CHECKING:
         LogonResponseResult,
         OidcConfiguration,
         SamlConfiguration,
-        SsoConfiguration,
-        SsoConfigurationId,
     )
 _dynamic_imports: typing.Dict[str, str] = {
     "AuthCode": ".types",
+    "AuthConfiguration": ".types",
+    "AuthConfigurationId": ".types",
+    "AuthConfigurationState": ".types",
+    "BuiltInConfiguration": ".types",
     "ChangePasswordResponse": ".types",
     "ChangePasswordResponseResult": ".types",
     "IdPConfiguration": ".types",
+    "IdPConfiguration_Builtin": ".types",
     "IdPConfiguration_Oidc": ".types",
     "IdPConfiguration_Saml": ".types",
     "LogonRequest": ".types",
@@ -33,8 +41,6 @@ _dynamic_imports: typing.Dict[str, str] = {
     "LogonResponseResult": ".types",
     "OidcConfiguration": ".types",
     "SamlConfiguration": ".types",
-    "SsoConfiguration": ".types",
-    "SsoConfigurationId": ".types",
 }
 
 
@@ -61,9 +67,14 @@ def __dir__():
 
 __all__ = [
     "AuthCode",
+    "AuthConfiguration",
+    "AuthConfigurationId",
+    "AuthConfigurationState",
+    "BuiltInConfiguration",
     "ChangePasswordResponse",
     "ChangePasswordResponseResult",
     "IdPConfiguration",
+    "IdPConfiguration_Builtin",
     "IdPConfiguration_Oidc",
     "IdPConfiguration_Saml",
     "LogonRequest",
@@ -71,6 +82,4 @@ __all__ = [
     "LogonResponseResult",
     "OidcConfiguration",
     "SamlConfiguration",
-    "SsoConfiguration",
-    "SsoConfigurationId",
 ]

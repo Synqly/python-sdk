@@ -6,53 +6,61 @@ import typing
 from importlib import import_module
 
 if typing.TYPE_CHECKING:
+    from .auth_configuration_metadata import AuthConfigurationMetadata
     from .change_password_request import ChangePasswordRequest
-    from .create_oidc_sso_configuration import CreateOidcSsoConfiguration
-    from .create_samlsso_configuration import CreateSamlssoConfiguration
-    from .create_sso_configuration import (
-        CreateSsoConfiguration,
-        CreateSsoConfiguration_Oidc,
-        CreateSsoConfiguration_Saml,
+    from .create_auth_configuration_request import CreateAuthConfigurationRequest
+    from .create_auth_configuration_response import CreateAuthConfigurationResponse
+    from .create_built_in_configuration import CreateBuiltInConfiguration
+    from .create_id_p_configuration import (
+        CreateIdPConfiguration,
+        CreateIdPConfiguration_Builtin,
+        CreateIdPConfiguration_Oidc,
+        CreateIdPConfiguration_Saml,
     )
-    from .create_sso_request import CreateSsoRequest
-    from .create_sso_response import CreateSsoResponse
-    from .get_sso_metadata_response import GetSsoMetadataResponse
-    from .get_sso_response import GetSsoResponse
-    from .list_sso_response import ListSsoResponse
+    from .create_oidc_configuration import CreateOidcConfiguration
+    from .create_saml_configuration import CreateSamlConfiguration
+    from .get_auth_configuration_response import GetAuthConfigurationResponse
+    from .get_auth_metadata_response import GetAuthMetadataResponse
+    from .list_auth_configurations_response import ListAuthConfigurationsResponse
     from .oidc_user_configuration import OidcUserConfiguration
     from .saml_user_configuration import SamlUserConfiguration
-    from .sso_user_configuration import SsoUserConfiguration
-    from .update_oidc_sso_configuration import UpdateOidcSsoConfiguration
-    from .update_samlsso_configuration import UpdateSamlssoConfiguration
-    from .update_sso_configuration import (
-        UpdateSsoConfiguration,
-        UpdateSsoConfiguration_Oidc,
-        UpdateSsoConfiguration_Saml,
+    from .update_auth_configuration_request import UpdateAuthConfigurationRequest
+    from .update_auth_configuration_response import UpdateAuthConfigurationResponse
+    from .update_built_in_configuration import UpdateBuiltInConfiguration
+    from .update_id_p_configuration import (
+        UpdateIdPConfiguration,
+        UpdateIdPConfiguration_Builtin,
+        UpdateIdPConfiguration_Oidc,
+        UpdateIdPConfiguration_Saml,
     )
-    from .update_sso_request import UpdateSsoRequest
-    from .update_sso_response import UpdateSsoResponse
+    from .update_oidc_configuration import UpdateOidcConfiguration
+    from .update_saml_configuration import UpdateSamlConfiguration
 _dynamic_imports: typing.Dict[str, str] = {
+    "AuthConfigurationMetadata": ".auth_configuration_metadata",
     "ChangePasswordRequest": ".change_password_request",
-    "CreateOidcSsoConfiguration": ".create_oidc_sso_configuration",
-    "CreateSamlssoConfiguration": ".create_samlsso_configuration",
-    "CreateSsoConfiguration": ".create_sso_configuration",
-    "CreateSsoConfiguration_Oidc": ".create_sso_configuration",
-    "CreateSsoConfiguration_Saml": ".create_sso_configuration",
-    "CreateSsoRequest": ".create_sso_request",
-    "CreateSsoResponse": ".create_sso_response",
-    "GetSsoMetadataResponse": ".get_sso_metadata_response",
-    "GetSsoResponse": ".get_sso_response",
-    "ListSsoResponse": ".list_sso_response",
+    "CreateAuthConfigurationRequest": ".create_auth_configuration_request",
+    "CreateAuthConfigurationResponse": ".create_auth_configuration_response",
+    "CreateBuiltInConfiguration": ".create_built_in_configuration",
+    "CreateIdPConfiguration": ".create_id_p_configuration",
+    "CreateIdPConfiguration_Builtin": ".create_id_p_configuration",
+    "CreateIdPConfiguration_Oidc": ".create_id_p_configuration",
+    "CreateIdPConfiguration_Saml": ".create_id_p_configuration",
+    "CreateOidcConfiguration": ".create_oidc_configuration",
+    "CreateSamlConfiguration": ".create_saml_configuration",
+    "GetAuthConfigurationResponse": ".get_auth_configuration_response",
+    "GetAuthMetadataResponse": ".get_auth_metadata_response",
+    "ListAuthConfigurationsResponse": ".list_auth_configurations_response",
     "OidcUserConfiguration": ".oidc_user_configuration",
     "SamlUserConfiguration": ".saml_user_configuration",
-    "SsoUserConfiguration": ".sso_user_configuration",
-    "UpdateOidcSsoConfiguration": ".update_oidc_sso_configuration",
-    "UpdateSamlssoConfiguration": ".update_samlsso_configuration",
-    "UpdateSsoConfiguration": ".update_sso_configuration",
-    "UpdateSsoConfiguration_Oidc": ".update_sso_configuration",
-    "UpdateSsoConfiguration_Saml": ".update_sso_configuration",
-    "UpdateSsoRequest": ".update_sso_request",
-    "UpdateSsoResponse": ".update_sso_response",
+    "UpdateAuthConfigurationRequest": ".update_auth_configuration_request",
+    "UpdateAuthConfigurationResponse": ".update_auth_configuration_response",
+    "UpdateBuiltInConfiguration": ".update_built_in_configuration",
+    "UpdateIdPConfiguration": ".update_id_p_configuration",
+    "UpdateIdPConfiguration_Builtin": ".update_id_p_configuration",
+    "UpdateIdPConfiguration_Oidc": ".update_id_p_configuration",
+    "UpdateIdPConfiguration_Saml": ".update_id_p_configuration",
+    "UpdateOidcConfiguration": ".update_oidc_configuration",
+    "UpdateSamlConfiguration": ".update_saml_configuration",
 }
 
 
@@ -78,25 +86,29 @@ def __dir__():
 
 
 __all__ = [
+    "AuthConfigurationMetadata",
     "ChangePasswordRequest",
-    "CreateOidcSsoConfiguration",
-    "CreateSamlssoConfiguration",
-    "CreateSsoConfiguration",
-    "CreateSsoConfiguration_Oidc",
-    "CreateSsoConfiguration_Saml",
-    "CreateSsoRequest",
-    "CreateSsoResponse",
-    "GetSsoMetadataResponse",
-    "GetSsoResponse",
-    "ListSsoResponse",
+    "CreateAuthConfigurationRequest",
+    "CreateAuthConfigurationResponse",
+    "CreateBuiltInConfiguration",
+    "CreateIdPConfiguration",
+    "CreateIdPConfiguration_Builtin",
+    "CreateIdPConfiguration_Oidc",
+    "CreateIdPConfiguration_Saml",
+    "CreateOidcConfiguration",
+    "CreateSamlConfiguration",
+    "GetAuthConfigurationResponse",
+    "GetAuthMetadataResponse",
+    "ListAuthConfigurationsResponse",
     "OidcUserConfiguration",
     "SamlUserConfiguration",
-    "SsoUserConfiguration",
-    "UpdateOidcSsoConfiguration",
-    "UpdateSamlssoConfiguration",
-    "UpdateSsoConfiguration",
-    "UpdateSsoConfiguration_Oidc",
-    "UpdateSsoConfiguration_Saml",
-    "UpdateSsoRequest",
-    "UpdateSsoResponse",
+    "UpdateAuthConfigurationRequest",
+    "UpdateAuthConfigurationResponse",
+    "UpdateBuiltInConfiguration",
+    "UpdateIdPConfiguration",
+    "UpdateIdPConfiguration_Builtin",
+    "UpdateIdPConfiguration_Oidc",
+    "UpdateIdPConfiguration_Saml",
+    "UpdateOidcConfiguration",
+    "UpdateSamlConfiguration",
 ]

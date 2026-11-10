@@ -8,9 +8,10 @@ import pydantic
 import typing_extensions
 from ...core.pydantic_utilities import IS_PYDANTIC_V2
 from ...core.unchecked_base_model import UncheckedBaseModel, UnionMetadata
+from ...member_base.types.member_id import MemberId
 
 
-class UpdateSsoConfiguration_Oidc(UncheckedBaseModel):
+class UpdateIdPConfiguration_Oidc(UncheckedBaseModel):
     type: typing.Literal["oidc"] = "oidc"
     issuer_url: str
     client_id: str
@@ -25,7 +26,7 @@ class UpdateSsoConfiguration_Oidc(UncheckedBaseModel):
             extra = pydantic.Extra.allow
 
 
-class UpdateSsoConfiguration_Saml(UncheckedBaseModel):
+class UpdateIdPConfiguration_Saml(UncheckedBaseModel):
     type: typing.Literal["saml"] = "saml"
     idp_entity_id: str
     idp_sso_url: str
@@ -43,6 +44,20 @@ class UpdateSsoConfiguration_Saml(UncheckedBaseModel):
             extra = pydantic.Extra.allow
 
 
-UpdateSsoConfiguration = typing_extensions.Annotated[
-    typing.Union[UpdateSsoConfiguration_Oidc, UpdateSsoConfiguration_Saml], UnionMetadata(discriminant="type")
+class UpdateIdPConfiguration_Builtin(UncheckedBaseModel):
+    type: typing.Literal["builtin"] = "builtin"
+    allow_for_users: typing.Optional[typing.List[MemberId]] = None
+
+    if IS_PYDANTIC_V2:
+        model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow")  # type: ignore # Pydantic v2
+    else:
+
+        class Config:
+            smart_union = True
+            extra = pydantic.Extra.allow
+
+
+UpdateIdPConfiguration = typing_extensions.Annotated[
+    typing.Union[UpdateIdPConfiguration_Oidc, UpdateIdPConfiguration_Saml, UpdateIdPConfiguration_Builtin],
+    UnionMetadata(discriminant="type"),
 ]

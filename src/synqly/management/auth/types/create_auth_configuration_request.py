@@ -3,14 +3,15 @@
 import typing
 
 import pydantic
+from ...auth_base.types.auth_configuration_state import AuthConfigurationState
 from ...core.pydantic_utilities import IS_PYDANTIC_V2
 from ...core.unchecked_base_model import UncheckedBaseModel
-from .create_sso_configuration import CreateSsoConfiguration
+from .create_id_p_configuration import CreateIdPConfiguration
 
 
-class CreateSsoRequest(UncheckedBaseModel):
+class CreateAuthConfigurationRequest(UncheckedBaseModel):
     """
-    Request to create an SSO configuration
+    Request to create an authentication configuration
     """
 
     fullname: str = pydantic.Field()
@@ -20,9 +21,14 @@ class CreateSsoRequest(UncheckedBaseModel):
     as an identifier in API calls.
     """
 
-    config: CreateSsoConfiguration = pydantic.Field()
+    state: typing.Optional[AuthConfigurationState] = pydantic.Field(default=None)
     """
-    Identity provider configuration. The type discriminator determines the SSO provider type.
+    Whether the configuration is enabled or disabled. Defaults to enabled when omitted.
+    """
+
+    config: CreateIdPConfiguration = pydantic.Field()
+    """
+    Identity provider configuration. The type discriminator determines the authentication method.
     """
 
     if IS_PYDANTIC_V2:

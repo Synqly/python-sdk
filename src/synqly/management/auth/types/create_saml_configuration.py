@@ -7,7 +7,7 @@ from ...core.pydantic_utilities import IS_PYDANTIC_V2
 from ...core.unchecked_base_model import UncheckedBaseModel
 
 
-class CreateSamlssoConfiguration(UncheckedBaseModel):
+class CreateSamlConfiguration(UncheckedBaseModel):
     """
     Configuration for creating a SAML 2.0 Identity Provider.
     """
