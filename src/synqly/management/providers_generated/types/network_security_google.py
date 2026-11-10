@@ -20,14 +20,24 @@ class NetworkSecurityGoogle(UncheckedBaseModel):
     Service account credentials with sufficient access.
     """
 
+    dns_log_configuration_ids: typing.Optional[typing.List[str]] = pydantic.Field(default=None)
+    """
+    Optional list of DNS logging to read. Leave empty to include all DNS logging in the project.
+    """
+
+    log_resource_names: typing.Optional[typing.List[str]] = pydantic.Field(default=None)
+    """
+    Projects or log buckets to read VPC flow and DNS logs from. Each entry is a Log Router sink destination, a project, or a log bucket view.
+    """
+
     project_id: str = pydantic.Field()
     """
-    Google Cloud project that contains your VPC flow logs.
+    The ID of the Google Cloud project to read from.
     """
 
     traffic_log_configuration_ids: typing.Optional[typing.List[str]] = pydantic.Field(default=None)
     """
-    Optional list of VPC flow log configuration IDs. Leave empty to include all configurations in the project.
+    Optional list of VPC flow logs to read from. Leave empty to include all flow log configurations in the project.
     """
 
     if IS_PYDANTIC_V2:

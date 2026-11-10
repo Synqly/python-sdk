@@ -1594,6 +1594,8 @@ class ProviderConfig_NetworksecurityAzure(UncheckedBaseModel):
 class ProviderConfig_NetworksecurityGoogle(UncheckedBaseModel):
     type: typing.Literal["networksecurity_google"] = "networksecurity_google"
     credential: GoogleServiceAccountCredential
+    dns_log_configuration_ids: typing.Optional[typing.List[str]] = None
+    log_resource_names: typing.Optional[typing.List[str]] = None
     project_id: str
     traffic_log_configuration_ids: typing.Optional[typing.List[str]] = None
 
