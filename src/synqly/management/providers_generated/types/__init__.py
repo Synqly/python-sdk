@@ -572,6 +572,7 @@ if typing.TYPE_CHECKING:
         ProviderConfig_SinkSumoLogic,
         ProviderConfig_SinkSwimlane,
         ProviderConfig_SinkTrimedx,
+        ProviderConfig_SsfOkta,
         ProviderConfig_StorageAwsS3,
         ProviderConfig_StorageAzureBlob,
         ProviderConfig_StorageGcs,
@@ -723,6 +724,7 @@ if typing.TYPE_CHECKING:
         SplunkSearchCredential_Token,
         SplunkSearchCredential_TokenId,
     )
+    from .ssf_okta import SsfOkta
     from .storage_aws_s_3 import StorageAwsS3
     from .storage_azure_blob import StorageAzureBlob
     from .storage_gcs import StorageGcs
@@ -1398,6 +1400,7 @@ _dynamic_imports: typing.Dict[str, str] = {
     "ProviderConfig_SinkSumoLogic": ".provider_config",
     "ProviderConfig_SinkSwimlane": ".provider_config",
     "ProviderConfig_SinkTrimedx": ".provider_config",
+    "ProviderConfig_SsfOkta": ".provider_config",
     "ProviderConfig_StorageAwsS3": ".provider_config",
     "ProviderConfig_StorageAzureBlob": ".provider_config",
     "ProviderConfig_StorageGcs": ".provider_config",
@@ -1539,6 +1542,7 @@ _dynamic_imports: typing.Dict[str, str] = {
     "SplunkSearchCredential": ".splunk_search_credential",
     "SplunkSearchCredential_Token": ".splunk_search_credential",
     "SplunkSearchCredential_TokenId": ".splunk_search_credential",
+    "SsfOkta": ".ssf_okta",
     "StorageAwsS3": ".storage_aws_s_3",
     "StorageAzureBlob": ".storage_azure_blob",
     "StorageGcs": ".storage_gcs",
@@ -2248,6 +2252,7 @@ __all__ = [
     "ProviderConfig_SinkSumoLogic",
     "ProviderConfig_SinkSwimlane",
     "ProviderConfig_SinkTrimedx",
+    "ProviderConfig_SsfOkta",
     "ProviderConfig_StorageAwsS3",
     "ProviderConfig_StorageAzureBlob",
     "ProviderConfig_StorageGcs",
@@ -2389,6 +2394,7 @@ __all__ = [
     "SplunkSearchCredential",
     "SplunkSearchCredential_Token",
     "SplunkSearchCredential_TokenId",
+    "SsfOkta",
     "StorageAwsS3",
     "StorageAzureBlob",
     "StorageGcs",
