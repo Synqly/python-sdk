@@ -153,6 +153,8 @@ from .teams_credential import TeamsCredential
 from .teams_graph_chat_credential import TeamsGraphChatCredential
 from .tenable_asm_credential import TenableAsmCredential
 from .tenable_cloud_credential import TenableCloudCredential
+from .tenable_cloud_security_credential import TenableCloudSecurityCredential
+from .tenable_cloud_security_region import TenableCloudSecurityRegion
 from .tenable_sc_credential import TenableScCredential
 from .threat_fox_credential import ThreatFoxCredential
 from .ticketing_ivanti_dataset import TicketingIvantiDataset
@@ -847,6 +849,21 @@ class ProviderConfig_CloudsecuritySentinelone(UncheckedBaseModel):
     type: typing.Literal["cloudsecurity_sentinelone"] = "cloudsecurity_sentinelone"
     credential: SentinelOneCredential
     url: str
+
+    if IS_PYDANTIC_V2:
+        model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow")  # type: ignore # Pydantic v2
+    else:
+
+        class Config:
+            smart_union = True
+            extra = pydantic.Extra.allow
+
+
+class ProviderConfig_CloudsecurityTenable(UncheckedBaseModel):
+    type: typing.Literal["cloudsecurity_tenable"] = "cloudsecurity_tenable"
+    credential: TenableCloudSecurityCredential
+    region: typing.Optional[TenableCloudSecurityRegion] = None
+    url: typing.Optional[str] = None
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow")  # type: ignore # Pydantic v2
@@ -3027,6 +3044,7 @@ ProviderConfig = typing_extensions.Annotated[
         ProviderConfig_CloudsecurityOrca,
         ProviderConfig_CloudsecurityPaloalto,
         ProviderConfig_CloudsecuritySentinelone,
+        ProviderConfig_CloudsecurityTenable,
         ProviderConfig_CloudsecurityUpwind,
         ProviderConfig_CloudsecurityWiz,
         ProviderConfig_CustomSynqly,

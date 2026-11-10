@@ -133,6 +133,7 @@ if typing.TYPE_CHECKING:
     from .cloud_security_orca import CloudSecurityOrca
     from .cloud_security_palo_alto import CloudSecurityPaloAlto
     from .cloud_security_sentinel_one import CloudSecuritySentinelOne
+    from .cloud_security_tenable import CloudSecurityTenable
     from .cloud_security_upwind import CloudSecurityUpwind
     from .cloud_security_wiz import CloudSecurityWiz
     from .copilot_chat_credential import (
@@ -479,6 +480,7 @@ if typing.TYPE_CHECKING:
         ProviderConfig_CloudsecurityOrca,
         ProviderConfig_CloudsecurityPaloalto,
         ProviderConfig_CloudsecuritySentinelone,
+        ProviderConfig_CloudsecurityTenable,
         ProviderConfig_CloudsecurityUpwind,
         ProviderConfig_CloudsecurityWiz,
         ProviderConfig_CustomSynqly,
@@ -759,6 +761,12 @@ if typing.TYPE_CHECKING:
         TenableCloudCredential_Token,
         TenableCloudCredential_TokenId,
     )
+    from .tenable_cloud_security_credential import (
+        TenableCloudSecurityCredential,
+        TenableCloudSecurityCredential_Token,
+        TenableCloudSecurityCredential_TokenId,
+    )
+    from .tenable_cloud_security_region import TenableCloudSecurityRegion
     from .tenable_sc_credential import TenableScCredential, TenableScCredential_Token, TenableScCredential_TokenId
     from .threat_fox_credential import ThreatFoxCredential, ThreatFoxCredential_Token, ThreatFoxCredential_TokenId
     from .threat_intel_abuse_ipdb import ThreatIntelAbuseIpdb
@@ -969,6 +977,7 @@ _dynamic_imports: typing.Dict[str, str] = {
     "CloudSecurityOrca": ".cloud_security_orca",
     "CloudSecurityPaloAlto": ".cloud_security_palo_alto",
     "CloudSecuritySentinelOne": ".cloud_security_sentinel_one",
+    "CloudSecurityTenable": ".cloud_security_tenable",
     "CloudSecurityUpwind": ".cloud_security_upwind",
     "CloudSecurityWiz": ".cloud_security_wiz",
     "CopilotChatCredential": ".copilot_chat_credential",
@@ -1307,6 +1316,7 @@ _dynamic_imports: typing.Dict[str, str] = {
     "ProviderConfig_CloudsecurityOrca": ".provider_config",
     "ProviderConfig_CloudsecurityPaloalto": ".provider_config",
     "ProviderConfig_CloudsecuritySentinelone": ".provider_config",
+    "ProviderConfig_CloudsecurityTenable": ".provider_config",
     "ProviderConfig_CloudsecurityUpwind": ".provider_config",
     "ProviderConfig_CloudsecurityWiz": ".provider_config",
     "ProviderConfig_CustomSynqly": ".provider_config",
@@ -1573,6 +1583,10 @@ _dynamic_imports: typing.Dict[str, str] = {
     "TenableCloudCredential": ".tenable_cloud_credential",
     "TenableCloudCredential_Token": ".tenable_cloud_credential",
     "TenableCloudCredential_TokenId": ".tenable_cloud_credential",
+    "TenableCloudSecurityCredential": ".tenable_cloud_security_credential",
+    "TenableCloudSecurityCredential_Token": ".tenable_cloud_security_credential",
+    "TenableCloudSecurityCredential_TokenId": ".tenable_cloud_security_credential",
+    "TenableCloudSecurityRegion": ".tenable_cloud_security_region",
     "TenableScCredential": ".tenable_sc_credential",
     "TenableScCredential_Token": ".tenable_sc_credential",
     "TenableScCredential_TokenId": ".tenable_sc_credential",
@@ -1821,6 +1835,7 @@ __all__ = [
     "CloudSecurityOrca",
     "CloudSecurityPaloAlto",
     "CloudSecuritySentinelOne",
+    "CloudSecurityTenable",
     "CloudSecurityUpwind",
     "CloudSecurityWiz",
     "CopilotChatCredential",
@@ -2159,6 +2174,7 @@ __all__ = [
     "ProviderConfig_CloudsecurityOrca",
     "ProviderConfig_CloudsecurityPaloalto",
     "ProviderConfig_CloudsecuritySentinelone",
+    "ProviderConfig_CloudsecurityTenable",
     "ProviderConfig_CloudsecurityUpwind",
     "ProviderConfig_CloudsecurityWiz",
     "ProviderConfig_CustomSynqly",
@@ -2425,6 +2441,10 @@ __all__ = [
     "TenableCloudCredential",
     "TenableCloudCredential_Token",
     "TenableCloudCredential_TokenId",
+    "TenableCloudSecurityCredential",
+    "TenableCloudSecurityCredential_Token",
+    "TenableCloudSecurityCredential_TokenId",
+    "TenableCloudSecurityRegion",
     "TenableScCredential",
     "TenableScCredential_Token",
     "TenableScCredential_TokenId",

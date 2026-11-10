@@ -252,6 +252,11 @@ class ProviderConfigId(enum.StrEnum):
     SentinelOne Singularity™ Cloud Native Security
     """
 
+    CLOUD_SECURITY_TENABLE = "cloudsecurity_tenable"
+    """
+    Tenable Cloud Security
+    """
+
     CLOUD_SECURITY_UPWIND = "cloudsecurity_upwind"
     """
     Upwind Cloud Security
@@ -1028,6 +1033,7 @@ class ProviderConfigId(enum.StrEnum):
         cloud_security_orca: typing.Callable[[], T_Result],
         cloud_security_palo_alto: typing.Callable[[], T_Result],
         cloud_security_sentinel_one: typing.Callable[[], T_Result],
+        cloud_security_tenable: typing.Callable[[], T_Result],
         cloud_security_upwind: typing.Callable[[], T_Result],
         cloud_security_wiz: typing.Callable[[], T_Result],
         custom_synqly: typing.Callable[[], T_Result],
@@ -1269,6 +1275,8 @@ class ProviderConfigId(enum.StrEnum):
             return cloud_security_palo_alto()
         if self is ProviderConfigId.CLOUD_SECURITY_SENTINEL_ONE:
             return cloud_security_sentinel_one()
+        if self is ProviderConfigId.CLOUD_SECURITY_TENABLE:
+            return cloud_security_tenable()
         if self is ProviderConfigId.CLOUD_SECURITY_UPWIND:
             return cloud_security_upwind()
         if self is ProviderConfigId.CLOUD_SECURITY_WIZ:
