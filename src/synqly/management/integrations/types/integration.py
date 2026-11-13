@@ -13,6 +13,7 @@ from ...integration_points.types.integration_point import IntegrationPoint
 from ...integration_points.types.integration_point_id import IntegrationPointId
 from ...management.types.additional_mapping import AdditionalMapping
 from ...management.types.mapping_chain import MappingChain
+from ...oauth_apps.types.integration_o_auth_app_install import IntegrationOAuthAppInstall
 from ...operation_schedules.types.operation_schedule import OperationSchedule
 from ...providers_generated.types.provider_config import ProviderConfig
 from ...token_base.types.token_id import TokenId
@@ -99,6 +100,11 @@ class Integration(Base):
     scheduled_operations: typing.Optional[typing.List[OperationSchedule]] = pydantic.Field(default=None)
     """
     Scheduled operations owned by this integration. During creation, a non-empty list is used as supplied; otherwise, the integration point's current scheduled_operations template is copied onto the integration, if present. The stored list is an independent snapshot: later changes to the integration point never affect it. Clearing this field from an existing integration removes its schedules and does not restore the integration point template. The integration does not require an integration point for these schedules to run.
+    """
+
+    oauth_app_install: typing.Optional[IntegrationOAuthAppInstall] = pydantic.Field(default=None)
+    """
+    The OAuth app install this integration runs with. Present only when the provider config uses an `o_auth_code` credential.
     """
 
     if IS_PYDANTIC_V2:

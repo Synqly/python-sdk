@@ -22,6 +22,7 @@ if typing.TYPE_CHECKING:
         CredentialConfig_AwsRole,
         CredentialConfig_Basic,
         CredentialConfig_OAuthClient,
+        CredentialConfig_OAuthCode,
         CredentialConfig_Secret,
         CredentialConfig_TlsCertificate,
         CredentialConfig_Token,
@@ -37,6 +38,8 @@ if typing.TYPE_CHECKING:
     from .managed_type import ManagedType
     from .o_auth_client_credential import OAuthClientCredential
     from .o_auth_client_credential_id import OAuthClientCredentialId
+    from .o_auth_code_credential import OAuthCodeCredential
+    from .o_auth_code_credential_id import OAuthCodeCredentialId
     from .owner_type import OwnerType
     from .patch_credential_response import PatchCredentialResponse
     from .secret_credential import SecretCredential
@@ -64,6 +67,7 @@ _dynamic_imports: typing.Dict[str, str] = {
     "CredentialConfig_AwsRole": ".credential_config",
     "CredentialConfig_Basic": ".credential_config",
     "CredentialConfig_OAuthClient": ".credential_config",
+    "CredentialConfig_OAuthCode": ".credential_config",
     "CredentialConfig_Secret": ".credential_config",
     "CredentialConfig_TlsCertificate": ".credential_config",
     "CredentialConfig_Token": ".credential_config",
@@ -77,6 +81,8 @@ _dynamic_imports: typing.Dict[str, str] = {
     "ManagedType": ".managed_type",
     "OAuthClientCredential": ".o_auth_client_credential",
     "OAuthClientCredentialId": ".o_auth_client_credential_id",
+    "OAuthCodeCredential": ".o_auth_code_credential",
+    "OAuthCodeCredentialId": ".o_auth_code_credential_id",
     "OwnerType": ".owner_type",
     "PatchCredentialResponse": ".patch_credential_response",
     "SecretCredential": ".secret_credential",
@@ -128,6 +134,7 @@ __all__ = [
     "CredentialConfig_AwsRole",
     "CredentialConfig_Basic",
     "CredentialConfig_OAuthClient",
+    "CredentialConfig_OAuthCode",
     "CredentialConfig_Secret",
     "CredentialConfig_TlsCertificate",
     "CredentialConfig_Token",
@@ -141,6 +148,8 @@ __all__ = [
     "ManagedType",
     "OAuthClientCredential",
     "OAuthClientCredentialId",
+    "OAuthCodeCredential",
+    "OAuthCodeCredentialId",
     "OwnerType",
     "PatchCredentialResponse",
     "SecretCredential",

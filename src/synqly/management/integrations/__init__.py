@@ -7,6 +7,9 @@ from importlib import import_module
 
 if typing.TYPE_CHECKING:
     from .types import (
+        AuthorizeIntegrationRequest,
+        AuthorizeIntegrationResponse,
+        AuthorizeIntegrationResult,
         BridgeSelector,
         BridgeSelector_Id,
         BridgeSelector_Labels,
@@ -28,6 +31,9 @@ if typing.TYPE_CHECKING:
         WebhookItem,
     )
 _dynamic_imports: typing.Dict[str, str] = {
+    "AuthorizeIntegrationRequest": ".types",
+    "AuthorizeIntegrationResponse": ".types",
+    "AuthorizeIntegrationResult": ".types",
     "BridgeSelector": ".types",
     "BridgeSelector_Id": ".types",
     "BridgeSelector_Labels": ".types",
@@ -72,6 +78,9 @@ def __dir__():
 
 
 __all__ = [
+    "AuthorizeIntegrationRequest",
+    "AuthorizeIntegrationResponse",
+    "AuthorizeIntegrationResult",
     "BridgeSelector",
     "BridgeSelector_Id",
     "BridgeSelector_Labels",

@@ -238,7 +238,13 @@ if typing.TYPE_CHECKING:
     from .endpointmanagement_iru import EndpointmanagementIru
     from .endpointmanagement_jamf import EndpointmanagementJamf
     from .endpointmanagement_ninjaone import EndpointmanagementNinjaone
-    from .entra_id_credential import EntraIdCredential, EntraIdCredential_OAuthClient, EntraIdCredential_OAuthClientId
+    from .entra_id_credential import (
+        EntraIdCredential,
+        EntraIdCredential_OAuthClient,
+        EntraIdCredential_OAuthClientId,
+        EntraIdCredential_OAuthCode,
+        EntraIdCredential_OAuthCodeId,
+    )
     from .eset_credential import EsetCredential, EsetCredential_OAuthClient, EsetCredential_OAuthClientId
     from .exchange_online_credential import (
         ExchangeOnlineCredential,
@@ -1065,6 +1071,8 @@ _dynamic_imports: typing.Dict[str, str] = {
     "EntraIdCredential": ".entra_id_credential",
     "EntraIdCredential_OAuthClient": ".entra_id_credential",
     "EntraIdCredential_OAuthClientId": ".entra_id_credential",
+    "EntraIdCredential_OAuthCode": ".entra_id_credential",
+    "EntraIdCredential_OAuthCodeId": ".entra_id_credential",
     "EsetCredential": ".eset_credential",
     "EsetCredential_OAuthClient": ".eset_credential",
     "EsetCredential_OAuthClientId": ".eset_credential",
@@ -1923,6 +1931,8 @@ __all__ = [
     "EntraIdCredential",
     "EntraIdCredential_OAuthClient",
     "EntraIdCredential_OAuthClientId",
+    "EntraIdCredential_OAuthCode",
+    "EntraIdCredential_OAuthCodeId",
     "EsetCredential",
     "EsetCredential_OAuthClient",
     "EsetCredential_OAuthClientId",

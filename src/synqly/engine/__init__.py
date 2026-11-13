@@ -89,6 +89,7 @@ if typing.TYPE_CHECKING:
     )
     from .common import (
         ActionId,
+        AuthorizationRequiredReason,
         BadGatewayError,
         BadRequestError,
         Base,
@@ -507,6 +508,7 @@ _dynamic_imports: typing.Dict[str, str] = {
     "Attachment": ".ticketing",
     "AttachmentId": ".ticketing",
     "AttachmentMetadata": ".ticketing",
+    "AuthorizationRequiredReason": ".common",
     "BadGatewayError": ".common",
     "BadRequestError": ".common",
     "Base": ".common",
@@ -969,6 +971,7 @@ __all__ = [
     "Attachment",
     "AttachmentId",
     "AttachmentMetadata",
+    "AuthorizationRequiredReason",
     "BadGatewayError",
     "BadRequestError",
     "Base",

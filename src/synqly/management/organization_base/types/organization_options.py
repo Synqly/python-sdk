@@ -5,6 +5,7 @@ import typing
 import pydantic
 from ...core.pydantic_utilities import IS_PYDANTIC_V2
 from ...core.unchecked_base_model import UncheckedBaseModel
+from .organization_credential_options import OrganizationCredentialOptions
 
 
 class OrganizationOptions(UncheckedBaseModel):
@@ -26,6 +27,16 @@ class OrganizationOptions(UncheckedBaseModel):
     minimum_password_length: typing.Optional[int] = pydantic.Field(default=None)
     """
     Minimum password length. Default: 8, minimum 8, maximum 72.
+    """
+
+    oauth_app_return_origins: typing.Optional[typing.List[str]] = pydantic.Field(default=None)
+    """
+    Origins a caller may name in the `return_url` of an OAuth app authorization link (`return_url` on Authorize Integration, `oauth_app_return_url` on Create Integration). Each is a scheme, host and optional port, such as `https://app.example.com`, with no path, query or fragment: `https`, or `http` only for localhost. A `return_url` must match one exactly; the deployment's result page is always allowed.
+    """
+
+    credentials: typing.Optional[OrganizationCredentialOptions] = pydantic.Field(default=None)
+    """
+    Credential types this organization opts into.
     """
 
     if IS_PYDANTIC_V2:

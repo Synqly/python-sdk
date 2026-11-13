@@ -35,9 +35,12 @@ from ..integration_points.types.integration_point import IntegrationPoint
 from ..integration_points.types.integration_point_id import IntegrationPointId
 from ..management.types.additional_mapping import AdditionalMapping
 from ..management.types.mapping_chain import MappingChain
+from ..oauth_apps.types.integration_o_auth_app_install import IntegrationOAuthAppInstall
 from ..operation_schedules.types.operation_schedule import OperationSchedule
 from ..providers_generated.types.provider_config import ProviderConfig
 from ..token_base.types.token_id import TokenId
+from .types.authorize_integration_request import AuthorizeIntegrationRequest
+from .types.authorize_integration_response import AuthorizeIntegrationResponse
 from .types.bridge_selector import BridgeSelector
 from .types.create_integration_request import CreateIntegrationRequest
 from .types.create_integration_response import CreateIntegrationResponse
@@ -609,6 +612,7 @@ class RawIntegrationsClient:
         mappings: typing.Optional[typing.Sequence[MappingChain]] = OMIT,
         additional_mappings: typing.Optional[typing.Sequence[AdditionalMapping]] = OMIT,
         scheduled_operations: typing.Optional[typing.Sequence[OperationSchedule]] = OMIT,
+        oauth_app_return_url: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[CreateIntegrationResponse]:
         """
@@ -647,6 +651,9 @@ class RawIntegrationsClient:
         scheduled_operations : typing.Optional[typing.Sequence[OperationSchedule]]
             Scheduled operations owned by this integration. During creation, a non-empty list is used as supplied; otherwise, the integration point's current scheduled_operations template is copied onto the integration, if present. The stored list is an independent snapshot: later changes to the integration point never affect it. Clearing this field from an existing integration removes its schedules and does not restore the integration point template. The integration does not require an integration point for these schedules to run.
 
+        oauth_app_return_url : typing.Optional[str]
+            Where the administrator's browser goes when the install that `oauth_app_authorization_link` starts finishes. See `return_url` on Authorize Integration. Only for a provider config that uses an `o_auth_code` credential.
+
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
 
@@ -667,6 +674,7 @@ class RawIntegrationsClient:
                 "mappings": mappings,
                 "additional_mappings": additional_mappings,
                 "scheduled_operations": scheduled_operations,
+                "oauth_app_return_url": oauth_app_return_url,
             },
             request_options=request_options,
             omit=OMIT,
@@ -1287,6 +1295,7 @@ class RawIntegrationsClient:
         mappings: typing.Optional[typing.Sequence[MappingChain]] = OMIT,
         additional_mappings: typing.Optional[typing.Sequence[AdditionalMapping]] = OMIT,
         scheduled_operations: typing.Optional[typing.Sequence[OperationSchedule]] = OMIT,
+        oauth_app_install: typing.Optional[IntegrationOAuthAppInstall] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[UpdateIntegrationResponse]:
         """
@@ -1355,6 +1364,9 @@ class RawIntegrationsClient:
         scheduled_operations : typing.Optional[typing.Sequence[OperationSchedule]]
             Scheduled operations owned by this integration. During creation, a non-empty list is used as supplied; otherwise, the integration point's current scheduled_operations template is copied onto the integration, if present. The stored list is an independent snapshot: later changes to the integration point never affect it. Clearing this field from an existing integration removes its schedules and does not restore the integration point template. The integration does not require an integration point for these schedules to run.
 
+        oauth_app_install : typing.Optional[IntegrationOAuthAppInstall]
+            The OAuth app install this integration runs with. Present only when the provider config uses an `o_auth_code` credential.
+
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
 
@@ -1382,6 +1394,7 @@ class RawIntegrationsClient:
                 "mappings": mappings,
                 "additional_mappings": additional_mappings,
                 "scheduled_operations": scheduled_operations,
+                "oauth_app_install": oauth_app_install,
                 "name": name,
                 "created_at": created_at,
                 "updated_at": updated_at,
@@ -1663,6 +1676,192 @@ class RawIntegrationsClient:
                 )
             if _response.status_code == 500:
                 raise InternalServerError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            _response_json = _response.json()
+        except JSONDecodeError:
+            raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response.text)
+        except ValidationError as e:
+            raise ParsingError(
+                status_code=_response.status_code, headers=dict(_response.headers), body=_response.json(), cause=e
+            )
+        raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
+
+    def authorize(
+        self,
+        account_id: AccountId,
+        integration_id: IntegrationId,
+        *,
+        request: typing.Optional[AuthorizeIntegrationRequest] = None,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> HttpResponse[AuthorizeIntegrationResponse]:
+        """
+        Returns a new single-use link to install
+        the OAuth app of the `Integration` matching `{integrationId}`. Only
+        integrations whose provider config uses an `o_auth_code` credential can be
+        authorized.
+
+        Issuing a link replaces any earlier link for the integration. It does not
+        change an installed integration: the integration keeps running until the
+        new consent completes, and then runs with the install that consent
+        completed.
+        Use it to finish a pending install, to re-consent after the app's
+        permissions changed, or to reinstall after the app was removed.
+
+        The link is short-lived: issue it when the administrator asks to install,
+        and send their browser to it straight away.
+
+        Parameters
+        ----------
+        account_id : AccountId
+
+        integration_id : IntegrationId
+
+        request : typing.Optional[AuthorizeIntegrationRequest]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        HttpResponse[AuthorizeIntegrationResponse]
+        """
+        _response = self._client_wrapper.httpx_client.request(
+            f"v1/integrations/{encode_path_param(account_id)}/{encode_path_param(integration_id)}/authorize",
+            method="POST",
+            json=request,
+            request_options=request_options,
+            omit=OMIT,
+        )
+        try:
+            if 200 <= _response.status_code < 300:
+                _data = typing.cast(
+                    AuthorizeIntegrationResponse,
+                    construct_type(
+                        type_=AuthorizeIntegrationResponse,  # type: ignore
+                        object_=_response.json(),
+                    ),
+                )
+                return HttpResponse(response=_response, data=_data)
+            if _response.status_code == 400:
+                raise BadRequestError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 401:
+                raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 403:
+                raise ForbiddenError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 404:
+                raise NotFoundError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 405:
+                raise MethodNotAllowedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 409:
+                raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 415:
+                raise UnsupportedMediaTypeError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 429:
+                raise TooManyRequestsError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 500:
+                raise InternalServerError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 503:
+                raise ServiceUnavailableError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         Problem,
@@ -2387,6 +2586,7 @@ class AsyncRawIntegrationsClient:
         mappings: typing.Optional[typing.Sequence[MappingChain]] = OMIT,
         additional_mappings: typing.Optional[typing.Sequence[AdditionalMapping]] = OMIT,
         scheduled_operations: typing.Optional[typing.Sequence[OperationSchedule]] = OMIT,
+        oauth_app_return_url: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[CreateIntegrationResponse]:
         """
@@ -2425,6 +2625,9 @@ class AsyncRawIntegrationsClient:
         scheduled_operations : typing.Optional[typing.Sequence[OperationSchedule]]
             Scheduled operations owned by this integration. During creation, a non-empty list is used as supplied; otherwise, the integration point's current scheduled_operations template is copied onto the integration, if present. The stored list is an independent snapshot: later changes to the integration point never affect it. Clearing this field from an existing integration removes its schedules and does not restore the integration point template. The integration does not require an integration point for these schedules to run.
 
+        oauth_app_return_url : typing.Optional[str]
+            Where the administrator's browser goes when the install that `oauth_app_authorization_link` starts finishes. See `return_url` on Authorize Integration. Only for a provider config that uses an `o_auth_code` credential.
+
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
 
@@ -2445,6 +2648,7 @@ class AsyncRawIntegrationsClient:
                 "mappings": mappings,
                 "additional_mappings": additional_mappings,
                 "scheduled_operations": scheduled_operations,
+                "oauth_app_return_url": oauth_app_return_url,
             },
             request_options=request_options,
             omit=OMIT,
@@ -3065,6 +3269,7 @@ class AsyncRawIntegrationsClient:
         mappings: typing.Optional[typing.Sequence[MappingChain]] = OMIT,
         additional_mappings: typing.Optional[typing.Sequence[AdditionalMapping]] = OMIT,
         scheduled_operations: typing.Optional[typing.Sequence[OperationSchedule]] = OMIT,
+        oauth_app_install: typing.Optional[IntegrationOAuthAppInstall] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[UpdateIntegrationResponse]:
         """
@@ -3133,6 +3338,9 @@ class AsyncRawIntegrationsClient:
         scheduled_operations : typing.Optional[typing.Sequence[OperationSchedule]]
             Scheduled operations owned by this integration. During creation, a non-empty list is used as supplied; otherwise, the integration point's current scheduled_operations template is copied onto the integration, if present. The stored list is an independent snapshot: later changes to the integration point never affect it. Clearing this field from an existing integration removes its schedules and does not restore the integration point template. The integration does not require an integration point for these schedules to run.
 
+        oauth_app_install : typing.Optional[IntegrationOAuthAppInstall]
+            The OAuth app install this integration runs with. Present only when the provider config uses an `o_auth_code` credential.
+
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
 
@@ -3160,6 +3368,7 @@ class AsyncRawIntegrationsClient:
                 "mappings": mappings,
                 "additional_mappings": additional_mappings,
                 "scheduled_operations": scheduled_operations,
+                "oauth_app_install": oauth_app_install,
                 "name": name,
                 "created_at": created_at,
                 "updated_at": updated_at,
@@ -3441,6 +3650,192 @@ class AsyncRawIntegrationsClient:
                 )
             if _response.status_code == 500:
                 raise InternalServerError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            _response_json = _response.json()
+        except JSONDecodeError:
+            raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response.text)
+        except ValidationError as e:
+            raise ParsingError(
+                status_code=_response.status_code, headers=dict(_response.headers), body=_response.json(), cause=e
+            )
+        raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
+
+    async def authorize(
+        self,
+        account_id: AccountId,
+        integration_id: IntegrationId,
+        *,
+        request: typing.Optional[AuthorizeIntegrationRequest] = None,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> AsyncHttpResponse[AuthorizeIntegrationResponse]:
+        """
+        Returns a new single-use link to install
+        the OAuth app of the `Integration` matching `{integrationId}`. Only
+        integrations whose provider config uses an `o_auth_code` credential can be
+        authorized.
+
+        Issuing a link replaces any earlier link for the integration. It does not
+        change an installed integration: the integration keeps running until the
+        new consent completes, and then runs with the install that consent
+        completed.
+        Use it to finish a pending install, to re-consent after the app's
+        permissions changed, or to reinstall after the app was removed.
+
+        The link is short-lived: issue it when the administrator asks to install,
+        and send their browser to it straight away.
+
+        Parameters
+        ----------
+        account_id : AccountId
+
+        integration_id : IntegrationId
+
+        request : typing.Optional[AuthorizeIntegrationRequest]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        AsyncHttpResponse[AuthorizeIntegrationResponse]
+        """
+        _response = await self._client_wrapper.httpx_client.request(
+            f"v1/integrations/{encode_path_param(account_id)}/{encode_path_param(integration_id)}/authorize",
+            method="POST",
+            json=request,
+            request_options=request_options,
+            omit=OMIT,
+        )
+        try:
+            if 200 <= _response.status_code < 300:
+                _data = typing.cast(
+                    AuthorizeIntegrationResponse,
+                    construct_type(
+                        type_=AuthorizeIntegrationResponse,  # type: ignore
+                        object_=_response.json(),
+                    ),
+                )
+                return AsyncHttpResponse(response=_response, data=_data)
+            if _response.status_code == 400:
+                raise BadRequestError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 401:
+                raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 403:
+                raise ForbiddenError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 404:
+                raise NotFoundError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 405:
+                raise MethodNotAllowedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 409:
+                raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 415:
+                raise UnsupportedMediaTypeError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 429:
+                raise TooManyRequestsError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 500:
+                raise InternalServerError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 503:
+                raise ServiceUnavailableError(
                     headers=dict(_response.headers),
                     body=typing.cast(
                         Problem,

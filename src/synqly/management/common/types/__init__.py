@@ -7,6 +7,7 @@ from importlib import import_module
 
 if typing.TYPE_CHECKING:
     from .action_id import ActionId
+    from .authorization_required_reason import AuthorizationRequiredReason
     from .base import Base
     from .id import Id
     from .parameter_location import ParameterLocation
@@ -24,6 +25,7 @@ if typing.TYPE_CHECKING:
     from .resource_type import ResourceType
 _dynamic_imports: typing.Dict[str, str] = {
     "ActionId": ".action_id",
+    "AuthorizationRequiredReason": ".authorization_required_reason",
     "Base": ".base",
     "Id": ".id",
     "ParameterLocation": ".parameter_location",
@@ -65,6 +67,7 @@ def __dir__():
 
 __all__ = [
     "ActionId",
+    "AuthorizationRequiredReason",
     "Base",
     "Id",
     "ParameterLocation",

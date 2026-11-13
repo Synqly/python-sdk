@@ -13,7 +13,9 @@ if typing.TYPE_CHECKING:
     from .get_organization_response import GetOrganizationResponse
     from .list_organization_response import ListOrganizationResponse
     from .organization import Organization
+    from .organization_credential_options import OrganizationCredentialOptions
     from .organization_id import OrganizationId
+    from .organization_option_state import OrganizationOptionState
     from .organization_options import OrganizationOptions
     from .organization_state import OrganizationState
     from .organization_type import OrganizationType
@@ -25,7 +27,9 @@ _dynamic_imports: typing.Dict[str, str] = {
     "GetOrganizationResponse": ".get_organization_response",
     "ListOrganizationResponse": ".list_organization_response",
     "Organization": ".organization",
+    "OrganizationCredentialOptions": ".organization_credential_options",
     "OrganizationId": ".organization_id",
+    "OrganizationOptionState": ".organization_option_state",
     "OrganizationOptions": ".organization_options",
     "OrganizationState": ".organization_state",
     "OrganizationType": ".organization_type",
@@ -61,7 +65,9 @@ __all__ = [
     "GetOrganizationResponse",
     "ListOrganizationResponse",
     "Organization",
+    "OrganizationCredentialOptions",
     "OrganizationId",
+    "OrganizationOptionState",
     "OrganizationOptions",
     "OrganizationState",
     "OrganizationType",

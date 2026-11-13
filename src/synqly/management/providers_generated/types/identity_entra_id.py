@@ -22,9 +22,9 @@ class IdentityEntraId(UncheckedBaseModel):
     Government cloud selector.
     """
 
-    tenant_id: str = pydantic.Field()
+    tenant_id: typing.Optional[str] = pydantic.Field(default=None)
     """
-    Azure Directory (tenant) identifier.
+    The Directory (tenant) ID of your Microsoft Entra tenant, shown on the Overview page of Microsoft Entra ID in the Azure portal. With a client ID and secret, a verified domain of the tenant also works. When you install the Entra ID App, the tenant ID is optional. If the app is already installed in that tenant, the integration uses it without asking an administrator to consent again. Otherwise, the administrator must consent in that tenant. After the app is installed, the tenant cannot be changed.
     """
 
     url: typing.Optional[str] = pydantic.Field(default=None)

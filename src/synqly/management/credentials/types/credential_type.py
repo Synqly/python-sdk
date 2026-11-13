@@ -15,6 +15,7 @@ class CredentialType(enum.StrEnum):
     SECRET = "secret"
     O_AUTH_CLIENT = "o_auth_client"
     TLS_CERTIFICATE = "tls_certificate"
+    O_AUTH_CODE = "o_auth_code"
     _UNKNOWN = "__CREDENTIALTYPE_UNKNOWN__"
     """
     This member is used for forward compatibility. If the value is not recognized by the enum, it will be stored here, and the raw value is accessible through `.value`.
@@ -35,6 +36,7 @@ class CredentialType(enum.StrEnum):
         secret: typing.Callable[[], T_Result],
         o_auth_client: typing.Callable[[], T_Result],
         tls_certificate: typing.Callable[[], T_Result],
+        o_auth_code: typing.Callable[[], T_Result],
         _unknown_member: typing.Callable[[str], T_Result],
     ) -> T_Result:
         if self is CredentialType.AWS:
@@ -51,4 +53,6 @@ class CredentialType(enum.StrEnum):
             return o_auth_client()
         if self is CredentialType.TLS_CERTIFICATE:
             return tls_certificate()
+        if self is CredentialType.O_AUTH_CODE:
+            return o_auth_code()
         return _unknown_member(self._value_)

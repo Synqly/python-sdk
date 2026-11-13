@@ -6,6 +6,7 @@ import pydantic
 from ...core.pydantic_utilities import IS_PYDANTIC_V2
 from ...core.unchecked_base_model import UncheckedBaseModel
 from ...credentials.types.credential_response import CredentialResponse
+from ...oauth_apps.types.o_auth_app_authorization_link import OAuthAppAuthorizationLink
 from ...token_base.types.token_pair import TokenPair
 from .integration import Integration
 
@@ -14,6 +15,10 @@ class CreateIntegrationResponseResult(UncheckedBaseModel):
     credentials_created: typing.Optional[typing.List[CredentialResponse]] = None
     integration: Integration
     token: TokenPair
+    oauth_app_authorization_link: typing.Optional[OAuthAppAuthorizationLink] = pydantic.Field(default=None)
+    """
+    Link to install the OAuth app. It can be opened once, within 10 minutes. Present only when the provider config uses an `o_auth_code` credential.
+    """
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow")  # type: ignore # Pydantic v2

@@ -14,10 +14,13 @@ from ..integration_points.types.integration_point import IntegrationPoint
 from ..integration_points.types.integration_point_id import IntegrationPointId
 from ..management.types.additional_mapping import AdditionalMapping
 from ..management.types.mapping_chain import MappingChain
+from ..oauth_apps.types.integration_o_auth_app_install import IntegrationOAuthAppInstall
 from ..operation_schedules.types.operation_schedule import OperationSchedule
 from ..providers_generated.types.provider_config import ProviderConfig
 from ..token_base.types.token_id import TokenId
 from .raw_client import AsyncRawIntegrationsClient, RawIntegrationsClient
+from .types.authorize_integration_request import AuthorizeIntegrationRequest
+from .types.authorize_integration_response import AuthorizeIntegrationResponse
 from .types.bridge_selector import BridgeSelector
 from .types.create_integration_request import CreateIntegrationRequest
 from .types.create_integration_response import CreateIntegrationResponse
@@ -207,6 +210,7 @@ class IntegrationsClient:
         mappings: typing.Optional[typing.Sequence[MappingChain]] = OMIT,
         additional_mappings: typing.Optional[typing.Sequence[AdditionalMapping]] = OMIT,
         scheduled_operations: typing.Optional[typing.Sequence[OperationSchedule]] = OMIT,
+        oauth_app_return_url: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> CreateIntegrationResponse:
         """
@@ -245,6 +249,9 @@ class IntegrationsClient:
         scheduled_operations : typing.Optional[typing.Sequence[OperationSchedule]]
             Scheduled operations owned by this integration. During creation, a non-empty list is used as supplied; otherwise, the integration point's current scheduled_operations template is copied onto the integration, if present. The stored list is an independent snapshot: later changes to the integration point never affect it. Clearing this field from an existing integration removes its schedules and does not restore the integration point template. The integration does not require an integration point for these schedules to run.
 
+        oauth_app_return_url : typing.Optional[str]
+            Where the administrator's browser goes when the install that `oauth_app_authorization_link` starts finishes. See `return_url` on Authorize Integration. Only for a provider config that uses an `o_auth_code` credential.
+
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
 
@@ -263,6 +270,7 @@ class IntegrationsClient:
             mappings=mappings,
             additional_mappings=additional_mappings,
             scheduled_operations=scheduled_operations,
+            oauth_app_return_url=oauth_app_return_url,
             request_options=request_options,
         )
         return _response.data
@@ -356,6 +364,7 @@ class IntegrationsClient:
         mappings: typing.Optional[typing.Sequence[MappingChain]] = OMIT,
         additional_mappings: typing.Optional[typing.Sequence[AdditionalMapping]] = OMIT,
         scheduled_operations: typing.Optional[typing.Sequence[OperationSchedule]] = OMIT,
+        oauth_app_install: typing.Optional[IntegrationOAuthAppInstall] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> UpdateIntegrationResponse:
         """
@@ -424,6 +433,9 @@ class IntegrationsClient:
         scheduled_operations : typing.Optional[typing.Sequence[OperationSchedule]]
             Scheduled operations owned by this integration. During creation, a non-empty list is used as supplied; otherwise, the integration point's current scheduled_operations template is copied onto the integration, if present. The stored list is an independent snapshot: later changes to the integration point never affect it. Clearing this field from an existing integration removes its schedules and does not restore the integration point template. The integration does not require an integration point for these schedules to run.
 
+        oauth_app_install : typing.Optional[IntegrationOAuthAppInstall]
+            The OAuth app install this integration runs with. Present only when the provider config uses an `o_auth_code` credential.
+
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
 
@@ -453,6 +465,7 @@ class IntegrationsClient:
             mappings=mappings,
             additional_mappings=additional_mappings,
             scheduled_operations=scheduled_operations,
+            oauth_app_install=oauth_app_install,
             request_options=request_options,
         )
         return _response.data
@@ -485,6 +498,50 @@ class IntegrationsClient:
         PatchIntegrationResponse
         """
         _response = self._raw_client.patch(account_id, integration_id, request=request, request_options=request_options)
+        return _response.data
+
+    def authorize(
+        self,
+        account_id: AccountId,
+        integration_id: IntegrationId,
+        *,
+        request: typing.Optional[AuthorizeIntegrationRequest] = None,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> AuthorizeIntegrationResponse:
+        """
+        Returns a new single-use link to install
+        the OAuth app of the `Integration` matching `{integrationId}`. Only
+        integrations whose provider config uses an `o_auth_code` credential can be
+        authorized.
+
+        Issuing a link replaces any earlier link for the integration. It does not
+        change an installed integration: the integration keeps running until the
+        new consent completes, and then runs with the install that consent
+        completed.
+        Use it to finish a pending install, to re-consent after the app's
+        permissions changed, or to reinstall after the app was removed.
+
+        The link is short-lived: issue it when the administrator asks to install,
+        and send their browser to it straight away.
+
+        Parameters
+        ----------
+        account_id : AccountId
+
+        integration_id : IntegrationId
+
+        request : typing.Optional[AuthorizeIntegrationRequest]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        AuthorizeIntegrationResponse
+        """
+        _response = self._raw_client.authorize(
+            account_id, integration_id, request=request, request_options=request_options
+        )
         return _response.data
 
     def delete(
@@ -688,6 +745,7 @@ class AsyncIntegrationsClient:
         mappings: typing.Optional[typing.Sequence[MappingChain]] = OMIT,
         additional_mappings: typing.Optional[typing.Sequence[AdditionalMapping]] = OMIT,
         scheduled_operations: typing.Optional[typing.Sequence[OperationSchedule]] = OMIT,
+        oauth_app_return_url: typing.Optional[str] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> CreateIntegrationResponse:
         """
@@ -726,6 +784,9 @@ class AsyncIntegrationsClient:
         scheduled_operations : typing.Optional[typing.Sequence[OperationSchedule]]
             Scheduled operations owned by this integration. During creation, a non-empty list is used as supplied; otherwise, the integration point's current scheduled_operations template is copied onto the integration, if present. The stored list is an independent snapshot: later changes to the integration point never affect it. Clearing this field from an existing integration removes its schedules and does not restore the integration point template. The integration does not require an integration point for these schedules to run.
 
+        oauth_app_return_url : typing.Optional[str]
+            Where the administrator's browser goes when the install that `oauth_app_authorization_link` starts finishes. See `return_url` on Authorize Integration. Only for a provider config that uses an `o_auth_code` credential.
+
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
 
@@ -744,6 +805,7 @@ class AsyncIntegrationsClient:
             mappings=mappings,
             additional_mappings=additional_mappings,
             scheduled_operations=scheduled_operations,
+            oauth_app_return_url=oauth_app_return_url,
             request_options=request_options,
         )
         return _response.data
@@ -837,6 +899,7 @@ class AsyncIntegrationsClient:
         mappings: typing.Optional[typing.Sequence[MappingChain]] = OMIT,
         additional_mappings: typing.Optional[typing.Sequence[AdditionalMapping]] = OMIT,
         scheduled_operations: typing.Optional[typing.Sequence[OperationSchedule]] = OMIT,
+        oauth_app_install: typing.Optional[IntegrationOAuthAppInstall] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> UpdateIntegrationResponse:
         """
@@ -905,6 +968,9 @@ class AsyncIntegrationsClient:
         scheduled_operations : typing.Optional[typing.Sequence[OperationSchedule]]
             Scheduled operations owned by this integration. During creation, a non-empty list is used as supplied; otherwise, the integration point's current scheduled_operations template is copied onto the integration, if present. The stored list is an independent snapshot: later changes to the integration point never affect it. Clearing this field from an existing integration removes its schedules and does not restore the integration point template. The integration does not require an integration point for these schedules to run.
 
+        oauth_app_install : typing.Optional[IntegrationOAuthAppInstall]
+            The OAuth app install this integration runs with. Present only when the provider config uses an `o_auth_code` credential.
+
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
 
@@ -934,6 +1000,7 @@ class AsyncIntegrationsClient:
             mappings=mappings,
             additional_mappings=additional_mappings,
             scheduled_operations=scheduled_operations,
+            oauth_app_install=oauth_app_install,
             request_options=request_options,
         )
         return _response.data
@@ -966,6 +1033,50 @@ class AsyncIntegrationsClient:
         PatchIntegrationResponse
         """
         _response = await self._raw_client.patch(
+            account_id, integration_id, request=request, request_options=request_options
+        )
+        return _response.data
+
+    async def authorize(
+        self,
+        account_id: AccountId,
+        integration_id: IntegrationId,
+        *,
+        request: typing.Optional[AuthorizeIntegrationRequest] = None,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> AuthorizeIntegrationResponse:
+        """
+        Returns a new single-use link to install
+        the OAuth app of the `Integration` matching `{integrationId}`. Only
+        integrations whose provider config uses an `o_auth_code` credential can be
+        authorized.
+
+        Issuing a link replaces any earlier link for the integration. It does not
+        change an installed integration: the integration keeps running until the
+        new consent completes, and then runs with the install that consent
+        completed.
+        Use it to finish a pending install, to re-consent after the app's
+        permissions changed, or to reinstall after the app was removed.
+
+        The link is short-lived: issue it when the administrator asks to install,
+        and send their browser to it straight away.
+
+        Parameters
+        ----------
+        account_id : AccountId
+
+        integration_id : IntegrationId
+
+        request : typing.Optional[AuthorizeIntegrationRequest]
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        AuthorizeIntegrationResponse
+        """
+        _response = await self._raw_client.authorize(
             account_id, integration_id, request=request, request_options=request_options
         )
         return _response.data

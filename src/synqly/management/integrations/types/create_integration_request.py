@@ -60,6 +60,11 @@ class CreateIntegrationRequest(UncheckedBaseModel):
     Scheduled operations owned by this integration. During creation, a non-empty list is used as supplied; otherwise, the integration point's current scheduled_operations template is copied onto the integration, if present. The stored list is an independent snapshot: later changes to the integration point never affect it. Clearing this field from an existing integration removes its schedules and does not restore the integration point template. The integration does not require an integration point for these schedules to run.
     """
 
+    oauth_app_return_url: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    Where the administrator's browser goes when the install that `oauth_app_authorization_link` starts finishes. See `return_url` on Authorize Integration. Only for a provider config that uses an `o_auth_code` credential.
+    """
+
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow")  # type: ignore # Pydantic v2
     else:

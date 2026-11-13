@@ -6,6 +6,9 @@ import typing
 from importlib import import_module
 
 if typing.TYPE_CHECKING:
+    from .authorize_integration_request import AuthorizeIntegrationRequest
+    from .authorize_integration_response import AuthorizeIntegrationResponse
+    from .authorize_integration_result import AuthorizeIntegrationResult
     from .bridge_selector import BridgeSelector, BridgeSelector_Id, BridgeSelector_Labels
     from .create_integration_request import CreateIntegrationRequest
     from .create_integration_response import CreateIntegrationResponse
@@ -24,6 +27,9 @@ if typing.TYPE_CHECKING:
     from .webhook_config import WebhookConfig
     from .webhook_item import WebhookItem
 _dynamic_imports: typing.Dict[str, str] = {
+    "AuthorizeIntegrationRequest": ".authorize_integration_request",
+    "AuthorizeIntegrationResponse": ".authorize_integration_response",
+    "AuthorizeIntegrationResult": ".authorize_integration_result",
     "BridgeSelector": ".bridge_selector",
     "BridgeSelector_Id": ".bridge_selector",
     "BridgeSelector_Labels": ".bridge_selector",
@@ -68,6 +74,9 @@ def __dir__():
 
 
 __all__ = [
+    "AuthorizeIntegrationRequest",
+    "AuthorizeIntegrationResponse",
+    "AuthorizeIntegrationResult",
     "BridgeSelector",
     "BridgeSelector_Id",
     "BridgeSelector_Labels",

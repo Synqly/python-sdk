@@ -8,6 +8,7 @@ from importlib import import_module
 if typing.TYPE_CHECKING:
     from .types import (
         ActionId,
+        AuthorizationRequiredReason,
         Base,
         Id,
         ParameterLocation,
@@ -42,6 +43,7 @@ if typing.TYPE_CHECKING:
     )
 _dynamic_imports: typing.Dict[str, str] = {
     "ActionId": ".types",
+    "AuthorizationRequiredReason": ".types",
     "BadGatewayError": ".errors",
     "BadRequestError": ".errors",
     "Base": ".types",
@@ -97,6 +99,7 @@ def __dir__():
 
 __all__ = [
     "ActionId",
+    "AuthorizationRequiredReason",
     "BadGatewayError",
     "BadRequestError",
     "Base",

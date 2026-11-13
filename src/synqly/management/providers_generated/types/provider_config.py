@@ -1397,7 +1397,7 @@ class ProviderConfig_IdentityEntraId(UncheckedBaseModel):
     type: typing.Literal["identity_entra_id"] = "identity_entra_id"
     credential: EntraIdCredential
     region: typing.Optional[MicrosoftDefenderRegion] = None
-    tenant_id: str
+    tenant_id: typing.Optional[str] = None
     url: typing.Optional[str] = None
 
     if IS_PYDANTIC_V2:

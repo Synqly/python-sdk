@@ -23,6 +23,7 @@ if typing.TYPE_CHECKING:
     from .mappings.client import AsyncMappingsClient, MappingsClient
     from .members.client import AsyncMembersClient, MembersClient
     from .meta.client import AsyncMetaClient, MetaClient
+    from .oauth_apps.client import AsyncOauthAppsClient, OauthAppsClient
     from .operations.client import AsyncOperationsClient, OperationsClient
     from .organization.client import AsyncOrganizationClient, OrganizationClient
     from .organization_webhooks.client import AsyncOrganizationWebhooksClient, OrganizationWebhooksClient
@@ -132,6 +133,7 @@ class SynqlyManagement:
         self._mappings: typing.Optional[MappingsClient] = None
         self._members: typing.Optional[MembersClient] = None
         self._meta: typing.Optional[MetaClient] = None
+        self._oauth_apps: typing.Optional[OauthAppsClient] = None
         self._operations: typing.Optional[OperationsClient] = None
         self._organization_webhooks: typing.Optional[OrganizationWebhooksClient] = None
         self._organization: typing.Optional[OrganizationClient] = None
@@ -244,6 +246,14 @@ class SynqlyManagement:
 
             self._meta = MetaClient(client_wrapper=self._client_wrapper)
         return self._meta
+
+    @property
+    def oauth_apps(self):
+        if self._oauth_apps is None:
+            from .oauth_apps.client import OauthAppsClient  # noqa: E402
+
+            self._oauth_apps = OauthAppsClient(client_wrapper=self._client_wrapper)
+        return self._oauth_apps
 
     @property
     def operations(self):
@@ -430,6 +440,7 @@ class AsyncSynqlyManagement:
         self._mappings: typing.Optional[AsyncMappingsClient] = None
         self._members: typing.Optional[AsyncMembersClient] = None
         self._meta: typing.Optional[AsyncMetaClient] = None
+        self._oauth_apps: typing.Optional[AsyncOauthAppsClient] = None
         self._operations: typing.Optional[AsyncOperationsClient] = None
         self._organization_webhooks: typing.Optional[AsyncOrganizationWebhooksClient] = None
         self._organization: typing.Optional[AsyncOrganizationClient] = None
@@ -542,6 +553,14 @@ class AsyncSynqlyManagement:
 
             self._meta = AsyncMetaClient(client_wrapper=self._client_wrapper)
         return self._meta
+
+    @property
+    def oauth_apps(self):
+        if self._oauth_apps is None:
+            from .oauth_apps.client import AsyncOauthAppsClient  # noqa: E402
+
+            self._oauth_apps = AsyncOauthAppsClient(client_wrapper=self._client_wrapper)
+        return self._oauth_apps
 
     @property
     def operations(self):

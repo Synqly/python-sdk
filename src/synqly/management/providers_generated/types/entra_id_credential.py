@@ -9,6 +9,7 @@ import typing_extensions
 from ...core.pydantic_utilities import IS_PYDANTIC_V2
 from ...core.unchecked_base_model import UncheckedBaseModel, UnionMetadata
 from ...credentials.types.o_auth_client_credential_id import OAuthClientCredentialId
+from ...credentials.types.o_auth_code_credential_id import OAuthCodeCredentialId
 
 
 class EntraIdCredential_OAuthClient(UncheckedBaseModel):
@@ -37,6 +38,34 @@ class EntraIdCredential_OAuthClientId(UncheckedBaseModel):
             smart_union = True
 
 
+class EntraIdCredential_OAuthCode(UncheckedBaseModel):
+    type: typing.Literal["o_auth_code"] = "o_auth_code"
+
+    if IS_PYDANTIC_V2:
+        model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow")  # type: ignore # Pydantic v2
+    else:
+
+        class Config:
+            smart_union = True
+            extra = pydantic.Extra.allow
+
+
+class EntraIdCredential_OAuthCodeId(UncheckedBaseModel):
+    value: OAuthCodeCredentialId
+    type: typing.Literal["o_auth_code_id"] = "o_auth_code_id"
+
+    if not IS_PYDANTIC_V2:
+
+        class Config:
+            smart_union = True
+
+
 EntraIdCredential = typing_extensions.Annotated[
-    typing.Union[EntraIdCredential_OAuthClient, EntraIdCredential_OAuthClientId], UnionMetadata(discriminant="type")
+    typing.Union[
+        EntraIdCredential_OAuthClient,
+        EntraIdCredential_OAuthClientId,
+        EntraIdCredential_OAuthCode,
+        EntraIdCredential_OAuthCodeId,
+    ],
+    UnionMetadata(discriminant="type"),
 ]

@@ -16,6 +16,7 @@ class IntegrationsActions(enum.StrEnum):
     DELETE = "delete"
     LIST_ACCOUNT = "list_account"
     VERIFY = "verify"
+    AUTHORIZE = "authorize"
     ALL = "*"
     _UNKNOWN = "__INTEGRATIONSACTIONS_UNKNOWN__"
     """
@@ -38,6 +39,7 @@ class IntegrationsActions(enum.StrEnum):
         delete: typing.Callable[[], T_Result],
         list_account: typing.Callable[[], T_Result],
         verify: typing.Callable[[], T_Result],
+        authorize: typing.Callable[[], T_Result],
         all_: typing.Callable[[], T_Result],
         _unknown_member: typing.Callable[[str], T_Result],
     ) -> T_Result:
@@ -57,6 +59,8 @@ class IntegrationsActions(enum.StrEnum):
             return list_account()
         if self is IntegrationsActions.VERIFY:
             return verify()
+        if self is IntegrationsActions.AUTHORIZE:
+            return authorize()
         if self is IntegrationsActions.ALL:
             return all_()
         return _unknown_member(self._value_)
