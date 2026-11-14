@@ -24,7 +24,6 @@ class OperationId(enum.StrEnum):
     ASSETS_QUERY_SOFTWARE = "assets_query_software"
     ASSETS_QUERY_UTILIZATION = "assets_query_utilization"
     ASSETS_QUERY_VULNERABILITIES = "assets_query_vulnerabilities"
-    ASSETS_UPDATE_DEVICE_PROPERTIES = "assets_update_device_properties"
     ASSETS_UPDATE_SOFTWARE = "assets_update_software"
     CHAT_CREATE_DIRECT_MESSAGE = "chat_create_direct_message"
     CHAT_CREATE_MESSAGE = "chat_create_message"
@@ -210,7 +209,6 @@ class OperationId(enum.StrEnum):
         assets_query_software: typing.Callable[[], T_Result],
         assets_query_utilization: typing.Callable[[], T_Result],
         assets_query_vulnerabilities: typing.Callable[[], T_Result],
-        assets_update_device_properties: typing.Callable[[], T_Result],
         assets_update_software: typing.Callable[[], T_Result],
         chat_create_direct_message: typing.Callable[[], T_Result],
         chat_create_message: typing.Callable[[], T_Result],
@@ -401,8 +399,6 @@ class OperationId(enum.StrEnum):
             return assets_query_utilization()
         if self is OperationId.ASSETS_QUERY_VULNERABILITIES:
             return assets_query_vulnerabilities()
-        if self is OperationId.ASSETS_UPDATE_DEVICE_PROPERTIES:
-            return assets_update_device_properties()
         if self is OperationId.ASSETS_UPDATE_SOFTWARE:
             return assets_update_software()
         if self is OperationId.CHAT_CREATE_DIRECT_MESSAGE:
