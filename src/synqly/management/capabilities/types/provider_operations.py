@@ -32,6 +32,11 @@ class ProviderOperations(UncheckedBaseModel):
     Description of the operation.
     """
 
+    docs: typing.Optional[str] = pydantic.Field(default=None)
+    """
+    Provider-specific notes on this operation, in addition to its description, such as what a field holds or whether an action can be reversed.
+    """
+
     request_method: typing.Optional[str] = pydantic.Field(default=None)
     """
     HTTP method used for the operation.
