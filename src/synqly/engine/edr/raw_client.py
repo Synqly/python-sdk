@@ -86,7 +86,7 @@ class RawEdrClient:
             Add metadata to the response by invoking meta functions. Documentation for [meta functions](https://docs.synqly.com/api-reference/meta-functions) is available. Not all meta functions are available at every endpoint.
 
         limit : typing.Optional[int]
-            Number of endpoint assets to return. Defaults to 50.
+            Number of endpoint assets to return. Defaults to 50. A page may hold fewer results than `limit`, or none, even when more remain; keep paging until the returned cursor is empty.
 
         cursor : typing.Optional[str]
             Start search from cursor position.
@@ -1177,7 +1177,7 @@ class RawEdrClient:
             Add metadata to the response by invoking meta functions. Documentation for [meta functions](https://docs.synqly.com/api-reference/meta-functions) is available. Not all meta functions are available at every endpoint.
 
         limit : typing.Optional[int]
-            Number of applications to return. Defaults to 50.
+            Number of applications to return. Defaults to 50. A page may hold fewer results than `limit`, or none, even when more remain; keep paging until the returned cursor is empty.
 
         cursor : typing.Optional[str]
             Start search from cursor position.
@@ -1629,7 +1629,7 @@ class RawEdrClient:
             Add metadata to the response by invoking meta functions. Documentation for [meta functions](https://docs.synqly.com/api-reference/meta-functions) is available. Not all meta functions are available at every endpoint.
 
         limit : typing.Optional[int]
-            Number of threats to return. Defaults to 50.
+            Number of threats to return. Defaults to 50. A page may hold fewer results than `limit`, or none, even when more remain; keep paging until the returned cursor is empty.
 
         cursor : typing.Optional[str]
             Start search from cursor position.
@@ -1856,7 +1856,7 @@ class RawEdrClient:
             Add metadata to the response by invoking meta functions. Documentation for [meta functions](https://docs.synqly.com/api-reference/meta-functions) is available. Not all meta functions are available at every endpoint.
 
         limit : typing.Optional[int]
-            Number of threats to return. Defaults to 50.
+            Number of threats to return. Defaults to 50. A page may hold fewer results than `limit`, or none, even when more remain; keep paging until the returned cursor is empty.
 
         cursor : typing.Optional[str]
             Start search from cursor position.
@@ -2336,7 +2336,7 @@ class RawEdrClient:
             Add metadata to the response by invoking meta functions. Documentation for [meta functions](https://docs.synqly.com/api-reference/meta-functions) is available. Not all meta functions are available at every endpoint.
 
         limit : typing.Optional[int]
-            Number of threats to return. Defaults to 50.
+            Number of threats to return. Defaults to 50. A page may hold fewer results than `limit`, or none, even when more remain; keep paging until the returned cursor is empty.
 
         cursor : typing.Optional[str]
             Start search from cursor position.
@@ -2980,7 +2980,7 @@ class RawEdrClient:
             Add metadata to the response by invoking meta functions. Documentation for [meta functions](https://docs.synqly.com/api-reference/meta-functions) is available. Not all meta functions are available at every endpoint.
 
         limit : typing.Optional[int]
-            Number of IOA rules to return. Defaults to 50.
+            Number of IOA rules to return. Defaults to 50. A page may hold fewer results than `limit`, or none, even when more remain; keep paging until the returned cursor is empty.
 
         cursor : typing.Optional[str]
             Start search from cursor position.
@@ -3586,7 +3586,7 @@ class RawEdrClient:
             Add metadata to the response by invoking meta functions. Documentation for [meta functions](https://docs.synqly.com/api-reference/meta-functions) is available. Not all meta functions are available at every endpoint.
 
         limit : typing.Optional[int]
-            Number of exclusions to return. Defaults to 50.
+            Number of exclusions to return. Defaults to 50. A page may hold fewer results than `limit`, or none, even when more remain; keep paging until the returned cursor is empty.
 
         cursor : typing.Optional[str]
             Start search from cursor position.
@@ -3802,7 +3802,7 @@ class RawEdrClient:
             Add metadata to the response by invoking meta functions. Documentation for [meta functions](https://docs.synqly.com/api-reference/meta-functions) is available. Not all meta functions are available at every endpoint.
 
         limit : typing.Optional[int]
-            Number of findings to return. Defaults to 50.
+            Number of findings to return. Defaults to 50. A page may hold fewer results than `limit`, or none, even when more remain; keep paging until the returned cursor is empty.
 
         cursor : typing.Optional[str]
             Start search from cursor position.
@@ -4018,7 +4018,7 @@ class RawEdrClient:
             Add metadata to the response by invoking meta functions. Documentation for [meta functions](https://docs.synqly.com/api-reference/meta-functions) is available. Not all meta functions are available at every endpoint.
 
         limit : typing.Optional[int]
-            Number of scores for endpoints to return. Defaults to 50.
+            Number of scores for endpoints to return. Defaults to 50. A page may hold fewer results than `limit`, or none, even when more remain; keep paging until the returned cursor is empty.
 
         cursor : typing.Optional[str]
             Start search from cursor position.
@@ -4123,7 +4123,7 @@ class RawEdrClient:
             Include the raw data from the EDR in the response. Defaults to `false`.
 
         limit : typing.Optional[int]
-            Number of events to return. Defaults to 50.
+            Number of events to return. Defaults to 50. A page may hold fewer results than `limit`, or none, even when more remain; keep paging until the returned cursor is empty.
 
         order : typing.Optional[typing.Union[str, typing.Sequence[str]]]
             Select a field to order the results by. To control the direction of the sorting, append
@@ -4347,7 +4347,7 @@ class RawEdrClient:
             Add metadata to the response by invoking meta functions. Documentation for [meta functions](https://docs.synqly.com/api-reference/meta-functions) is available. Not all meta functions are available at every endpoint.
 
         limit : typing.Optional[int]
-            Maximum number of notes to return. Defaults to 100.
+            Maximum number of notes to return. Defaults to 100. A page may hold fewer results than `limit`, or none, even when more remain; keep paging until the returned cursor is empty.
 
         cursor : typing.Optional[str]
             Cursor from a previous response to retrieve the next page of notes.
@@ -4780,7 +4780,7 @@ class AsyncRawEdrClient:
             Add metadata to the response by invoking meta functions. Documentation for [meta functions](https://docs.synqly.com/api-reference/meta-functions) is available. Not all meta functions are available at every endpoint.
 
         limit : typing.Optional[int]
-            Number of endpoint assets to return. Defaults to 50.
+            Number of endpoint assets to return. Defaults to 50. A page may hold fewer results than `limit`, or none, even when more remain; keep paging until the returned cursor is empty.
 
         cursor : typing.Optional[str]
             Start search from cursor position.
@@ -5872,7 +5872,7 @@ class AsyncRawEdrClient:
             Add metadata to the response by invoking meta functions. Documentation for [meta functions](https://docs.synqly.com/api-reference/meta-functions) is available. Not all meta functions are available at every endpoint.
 
         limit : typing.Optional[int]
-            Number of applications to return. Defaults to 50.
+            Number of applications to return. Defaults to 50. A page may hold fewer results than `limit`, or none, even when more remain; keep paging until the returned cursor is empty.
 
         cursor : typing.Optional[str]
             Start search from cursor position.
@@ -6324,7 +6324,7 @@ class AsyncRawEdrClient:
             Add metadata to the response by invoking meta functions. Documentation for [meta functions](https://docs.synqly.com/api-reference/meta-functions) is available. Not all meta functions are available at every endpoint.
 
         limit : typing.Optional[int]
-            Number of threats to return. Defaults to 50.
+            Number of threats to return. Defaults to 50. A page may hold fewer results than `limit`, or none, even when more remain; keep paging until the returned cursor is empty.
 
         cursor : typing.Optional[str]
             Start search from cursor position.
@@ -6551,7 +6551,7 @@ class AsyncRawEdrClient:
             Add metadata to the response by invoking meta functions. Documentation for [meta functions](https://docs.synqly.com/api-reference/meta-functions) is available. Not all meta functions are available at every endpoint.
 
         limit : typing.Optional[int]
-            Number of threats to return. Defaults to 50.
+            Number of threats to return. Defaults to 50. A page may hold fewer results than `limit`, or none, even when more remain; keep paging until the returned cursor is empty.
 
         cursor : typing.Optional[str]
             Start search from cursor position.
@@ -7031,7 +7031,7 @@ class AsyncRawEdrClient:
             Add metadata to the response by invoking meta functions. Documentation for [meta functions](https://docs.synqly.com/api-reference/meta-functions) is available. Not all meta functions are available at every endpoint.
 
         limit : typing.Optional[int]
-            Number of threats to return. Defaults to 50.
+            Number of threats to return. Defaults to 50. A page may hold fewer results than `limit`, or none, even when more remain; keep paging until the returned cursor is empty.
 
         cursor : typing.Optional[str]
             Start search from cursor position.
@@ -7675,7 +7675,7 @@ class AsyncRawEdrClient:
             Add metadata to the response by invoking meta functions. Documentation for [meta functions](https://docs.synqly.com/api-reference/meta-functions) is available. Not all meta functions are available at every endpoint.
 
         limit : typing.Optional[int]
-            Number of IOA rules to return. Defaults to 50.
+            Number of IOA rules to return. Defaults to 50. A page may hold fewer results than `limit`, or none, even when more remain; keep paging until the returned cursor is empty.
 
         cursor : typing.Optional[str]
             Start search from cursor position.
@@ -8281,7 +8281,7 @@ class AsyncRawEdrClient:
             Add metadata to the response by invoking meta functions. Documentation for [meta functions](https://docs.synqly.com/api-reference/meta-functions) is available. Not all meta functions are available at every endpoint.
 
         limit : typing.Optional[int]
-            Number of exclusions to return. Defaults to 50.
+            Number of exclusions to return. Defaults to 50. A page may hold fewer results than `limit`, or none, even when more remain; keep paging until the returned cursor is empty.
 
         cursor : typing.Optional[str]
             Start search from cursor position.
@@ -8497,7 +8497,7 @@ class AsyncRawEdrClient:
             Add metadata to the response by invoking meta functions. Documentation for [meta functions](https://docs.synqly.com/api-reference/meta-functions) is available. Not all meta functions are available at every endpoint.
 
         limit : typing.Optional[int]
-            Number of findings to return. Defaults to 50.
+            Number of findings to return. Defaults to 50. A page may hold fewer results than `limit`, or none, even when more remain; keep paging until the returned cursor is empty.
 
         cursor : typing.Optional[str]
             Start search from cursor position.
@@ -8713,7 +8713,7 @@ class AsyncRawEdrClient:
             Add metadata to the response by invoking meta functions. Documentation for [meta functions](https://docs.synqly.com/api-reference/meta-functions) is available. Not all meta functions are available at every endpoint.
 
         limit : typing.Optional[int]
-            Number of scores for endpoints to return. Defaults to 50.
+            Number of scores for endpoints to return. Defaults to 50. A page may hold fewer results than `limit`, or none, even when more remain; keep paging until the returned cursor is empty.
 
         cursor : typing.Optional[str]
             Start search from cursor position.
@@ -8818,7 +8818,7 @@ class AsyncRawEdrClient:
             Include the raw data from the EDR in the response. Defaults to `false`.
 
         limit : typing.Optional[int]
-            Number of events to return. Defaults to 50.
+            Number of events to return. Defaults to 50. A page may hold fewer results than `limit`, or none, even when more remain; keep paging until the returned cursor is empty.
 
         order : typing.Optional[typing.Union[str, typing.Sequence[str]]]
             Select a field to order the results by. To control the direction of the sorting, append
@@ -9042,7 +9042,7 @@ class AsyncRawEdrClient:
             Add metadata to the response by invoking meta functions. Documentation for [meta functions](https://docs.synqly.com/api-reference/meta-functions) is available. Not all meta functions are available at every endpoint.
 
         limit : typing.Optional[int]
-            Maximum number of notes to return. Defaults to 100.
+            Maximum number of notes to return. Defaults to 100. A page may hold fewer results than `limit`, or none, even when more remain; keep paging until the returned cursor is empty.
 
         cursor : typing.Optional[str]
             Cursor from a previous response to retrieve the next page of notes.

@@ -56,7 +56,7 @@ class GrcClient:
             Add metadata to the response by invoking meta functions. Documentation for [meta functions](https://docs.synqly.com/api-reference/meta-functions) is available. Not all meta functions are available at every endpoint.
 
         limit : typing.Optional[int]
-            Number of frameworks to return. Defaults to 100.
+            Number of frameworks to return. Defaults to 100. A page may hold fewer results than `limit`, or none, even when more remain; keep paging until the returned cursor is empty.
 
         order : typing.Optional[typing.Union[str, typing.Sequence[str]]]
             Ordering is not supported for frameworks in v1.
@@ -108,7 +108,7 @@ class GrcClient:
             Add metadata to the response by invoking meta functions. Documentation for [meta functions](https://docs.synqly.com/api-reference/meta-functions) is available. Not all meta functions are available at every endpoint.
 
         limit : typing.Optional[int]
-            Number of controls to return. Defaults to 100.
+            Number of controls to return. Defaults to 100. A page may hold fewer results than `limit`, or none, even when more remain; keep paging until the returned cursor is empty.
 
         order : typing.Optional[typing.Union[str, typing.Sequence[str]]]
             Order results by a supported field. Ascending by default; append `[desc]` for descending (or `[asc]`). Supported fields vary by provider; consult the [capabilities API](https://docs.synqly.com/api-reference/management/capabilities) for a given provider's coverage.
@@ -193,7 +193,7 @@ class GrcClient:
             Add metadata to the response by invoking meta functions. Documentation for [meta functions](https://docs.synqly.com/api-reference/meta-functions) is available. Not all meta functions are available at every endpoint.
 
         limit : typing.Optional[int]
-            Number of tests to return. Defaults to 100.
+            Number of tests to return. Defaults to 100. A page may hold fewer results than `limit`, or none, even when more remain; keep paging until the returned cursor is empty.
 
         order : typing.Optional[typing.Union[str, typing.Sequence[str]]]
             Order results by a supported field. Ascending by default; append `[desc]` for descending (or `[asc]`). Supported fields vary by provider; consult the [capabilities API](https://docs.synqly.com/api-reference/management/capabilities) for a given provider's coverage.
@@ -278,7 +278,7 @@ class GrcClient:
             Add metadata to the response by invoking meta functions. Documentation for [meta functions](https://docs.synqly.com/api-reference/meta-functions) is available. Not all meta functions are available at every endpoint.
 
         limit : typing.Optional[int]
-            Number of evidence artifacts to return. Defaults to 100.
+            Number of evidence artifacts to return. Defaults to 100. A page may hold fewer results than `limit`, or none, even when more remain; keep paging until the returned cursor is empty.
 
         order : typing.Optional[typing.Union[str, typing.Sequence[str]]]
             Order results by a supported field. Ascending by default; append `[desc]` for descending (or `[asc]`). Supported fields vary by provider; consult the [capabilities API](https://docs.synqly.com/api-reference/management/capabilities) for a given provider's coverage.
@@ -330,7 +330,7 @@ class GrcClient:
             Add metadata to the response by invoking meta functions. Documentation for [meta functions](https://docs.synqly.com/api-reference/meta-functions) is available. Not all meta functions are available at every endpoint.
 
         limit : typing.Optional[int]
-            Number of devices to return. Defaults to 100.
+            Number of devices to return. Defaults to 100. A page may hold fewer results than `limit`, or none, even when more remain; keep paging until the returned cursor is empty.
 
         order : typing.Optional[typing.Union[str, typing.Sequence[str]]]
             Order results by a supported field. Ascending by default; append `[desc]` for descending (or `[asc]`). Supported fields vary by provider; consult the [capabilities API](https://docs.synqly.com/api-reference/management/capabilities) for a given provider's coverage.
@@ -415,7 +415,7 @@ class GrcClient:
             Add metadata to the response by invoking meta functions. Documentation for [meta functions](https://docs.synqly.com/api-reference/meta-functions) is available. Not all meta functions are available at every endpoint.
 
         limit : typing.Optional[int]
-            Number of people to return. Defaults to 100.
+            Number of people to return. Defaults to 100. A page may hold fewer results than `limit`, or none, even when more remain; keep paging until the returned cursor is empty.
 
         order : typing.Optional[typing.Union[str, typing.Sequence[str]]]
             Order results by a supported field. Ascending by default; append `[desc]` for descending (or `[asc]`). Supported fields vary by provider; consult the [capabilities API](https://docs.synqly.com/api-reference/management/capabilities) for a given provider's coverage.
@@ -516,7 +516,7 @@ class AsyncGrcClient:
             Add metadata to the response by invoking meta functions. Documentation for [meta functions](https://docs.synqly.com/api-reference/meta-functions) is available. Not all meta functions are available at every endpoint.
 
         limit : typing.Optional[int]
-            Number of frameworks to return. Defaults to 100.
+            Number of frameworks to return. Defaults to 100. A page may hold fewer results than `limit`, or none, even when more remain; keep paging until the returned cursor is empty.
 
         order : typing.Optional[typing.Union[str, typing.Sequence[str]]]
             Ordering is not supported for frameworks in v1.
@@ -568,7 +568,7 @@ class AsyncGrcClient:
             Add metadata to the response by invoking meta functions. Documentation for [meta functions](https://docs.synqly.com/api-reference/meta-functions) is available. Not all meta functions are available at every endpoint.
 
         limit : typing.Optional[int]
-            Number of controls to return. Defaults to 100.
+            Number of controls to return. Defaults to 100. A page may hold fewer results than `limit`, or none, even when more remain; keep paging until the returned cursor is empty.
 
         order : typing.Optional[typing.Union[str, typing.Sequence[str]]]
             Order results by a supported field. Ascending by default; append `[desc]` for descending (or `[asc]`). Supported fields vary by provider; consult the [capabilities API](https://docs.synqly.com/api-reference/management/capabilities) for a given provider's coverage.
@@ -653,7 +653,7 @@ class AsyncGrcClient:
             Add metadata to the response by invoking meta functions. Documentation for [meta functions](https://docs.synqly.com/api-reference/meta-functions) is available. Not all meta functions are available at every endpoint.
 
         limit : typing.Optional[int]
-            Number of tests to return. Defaults to 100.
+            Number of tests to return. Defaults to 100. A page may hold fewer results than `limit`, or none, even when more remain; keep paging until the returned cursor is empty.
 
         order : typing.Optional[typing.Union[str, typing.Sequence[str]]]
             Order results by a supported field. Ascending by default; append `[desc]` for descending (or `[asc]`). Supported fields vary by provider; consult the [capabilities API](https://docs.synqly.com/api-reference/management/capabilities) for a given provider's coverage.
@@ -738,7 +738,7 @@ class AsyncGrcClient:
             Add metadata to the response by invoking meta functions. Documentation for [meta functions](https://docs.synqly.com/api-reference/meta-functions) is available. Not all meta functions are available at every endpoint.
 
         limit : typing.Optional[int]
-            Number of evidence artifacts to return. Defaults to 100.
+            Number of evidence artifacts to return. Defaults to 100. A page may hold fewer results than `limit`, or none, even when more remain; keep paging until the returned cursor is empty.
 
         order : typing.Optional[typing.Union[str, typing.Sequence[str]]]
             Order results by a supported field. Ascending by default; append `[desc]` for descending (or `[asc]`). Supported fields vary by provider; consult the [capabilities API](https://docs.synqly.com/api-reference/management/capabilities) for a given provider's coverage.
@@ -790,7 +790,7 @@ class AsyncGrcClient:
             Add metadata to the response by invoking meta functions. Documentation for [meta functions](https://docs.synqly.com/api-reference/meta-functions) is available. Not all meta functions are available at every endpoint.
 
         limit : typing.Optional[int]
-            Number of devices to return. Defaults to 100.
+            Number of devices to return. Defaults to 100. A page may hold fewer results than `limit`, or none, even when more remain; keep paging until the returned cursor is empty.
 
         order : typing.Optional[typing.Union[str, typing.Sequence[str]]]
             Order results by a supported field. Ascending by default; append `[desc]` for descending (or `[asc]`). Supported fields vary by provider; consult the [capabilities API](https://docs.synqly.com/api-reference/management/capabilities) for a given provider's coverage.
@@ -875,7 +875,7 @@ class AsyncGrcClient:
             Add metadata to the response by invoking meta functions. Documentation for [meta functions](https://docs.synqly.com/api-reference/meta-functions) is available. Not all meta functions are available at every endpoint.
 
         limit : typing.Optional[int]
-            Number of people to return. Defaults to 100.
+            Number of people to return. Defaults to 100. A page may hold fewer results than `limit`, or none, even when more remain; keep paging until the returned cursor is empty.
 
         order : typing.Optional[typing.Union[str, typing.Sequence[str]]]
             Order results by a supported field. Ascending by default; append `[desc]` for descending (or `[asc]`). Supported fields vary by provider; consult the [capabilities API](https://docs.synqly.com/api-reference/management/capabilities) for a given provider's coverage.

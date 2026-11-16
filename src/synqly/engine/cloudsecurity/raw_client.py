@@ -55,7 +55,7 @@ class RawCloudsecurityClient:
             Add metadata to the response by invoking meta functions. Documentation for [meta functions](https://docs.synqly.com/api-reference/meta-functions) is available. Not all meta functions are available at every endpoint.
 
         limit : typing.Optional[int]
-            Number of events to return. Defaults to 100.
+            Number of events to return. Defaults to 100. A page may hold fewer results than `limit`, or none, even when more remain; keep paging until the returned cursor is empty.
 
         order : typing.Optional[typing.Union[str, typing.Sequence[str]]]
             Select a field to order the results by. Defaults to `name`. To control the direction of the sorting, append `[asc]` or `[desc]` to the field name. For example, `name[asc]` will sort the results by `name` in ascending order. The ordering defaults to `asc` if not specified.
@@ -190,7 +190,7 @@ class RawCloudsecurityClient:
             Add metadata to the response by invoking meta functions. Documentation for [meta functions](https://docs.synqly.com/api-reference/meta-functions) is available. Not all meta functions are available at every endpoint.
 
         limit : typing.Optional[int]
-            Number of cloud resources to return. Defaults to 500.
+            Number of cloud resources to return. Defaults to 500. A page may hold fewer results than `limit`, or none, even when more remain; keep paging until the returned cursor is empty.
 
         order : typing.Optional[typing.Union[str, typing.Sequence[str]]]
             Select a field to order the results by. Defaults to `name`. To control the direction of the sorting, append `[asc]` or `[desc]` to the field name. For example, `name[asc]` will sort the results by `name` in ascending order. The ordering defaults to `asc` if not specified.
@@ -329,7 +329,7 @@ class RawCloudsecurityClient:
             Add metadata to the response by invoking meta functions. Documentation for [meta functions](https://docs.synqly.com/api-reference/meta-functions) is available. Not all meta functions are available at every endpoint.
 
         limit : typing.Optional[int]
-            Number of cloud resources to return. Defaults to 500.
+            Number of cloud resources to return. Defaults to 500. A page may hold fewer results than `limit`, or none, even when more remain; keep paging until the returned cursor is empty.
 
         order : typing.Optional[typing.Union[str, typing.Sequence[str]]]
             Select a field to order the results by. Defaults to `name`. To control the direction of the sorting, append `[asc]` or `[desc]` to the field name. For example, `name[asc]` will sort the results by `name` in ascending order. The ordering defaults to `asc` if not specified.
@@ -468,7 +468,7 @@ class RawCloudsecurityClient:
             Add metadata to the response by invoking meta functions. Documentation for [meta functions](https://docs.synqly.com/api-reference/meta-functions) is available. Not all meta functions are available at every endpoint.
 
         limit : typing.Optional[int]
-            Number of compliance findings to return. Defaults to 50.
+            Number of compliance findings to return. Defaults to 50. A page may hold fewer results than `limit`, or none, even when more remain; keep paging until the returned cursor is empty.
 
         cursor : typing.Optional[str]
             Start search from cursor position.
@@ -695,7 +695,7 @@ class RawCloudsecurityClient:
             Add metadata to the response by invoking meta functions. Documentation for [meta functions](https://docs.synqly.com/api-reference/meta-functions) is available. Not all meta functions are available at every endpoint.
 
         limit : typing.Optional[int]
-            Number of threats to return. Defaults to 100.
+            Number of threats to return. Defaults to 100. A page may hold fewer results than `limit`, or none, even when more remain; keep paging until the returned cursor is empty.
 
         order : typing.Optional[typing.Union[str, typing.Sequence[str]]]
             Select a field to order the results by. Defaults to `name`. To control the direction of the sorting, append `[asc]` or `[desc]` to the field name. For example, `name[asc]` will sort the results by `name` in ascending order. The ordering defaults to `asc` if not specified.
@@ -926,7 +926,7 @@ class AsyncRawCloudsecurityClient:
             Add metadata to the response by invoking meta functions. Documentation for [meta functions](https://docs.synqly.com/api-reference/meta-functions) is available. Not all meta functions are available at every endpoint.
 
         limit : typing.Optional[int]
-            Number of events to return. Defaults to 100.
+            Number of events to return. Defaults to 100. A page may hold fewer results than `limit`, or none, even when more remain; keep paging until the returned cursor is empty.
 
         order : typing.Optional[typing.Union[str, typing.Sequence[str]]]
             Select a field to order the results by. Defaults to `name`. To control the direction of the sorting, append `[asc]` or `[desc]` to the field name. For example, `name[asc]` will sort the results by `name` in ascending order. The ordering defaults to `asc` if not specified.
@@ -1061,7 +1061,7 @@ class AsyncRawCloudsecurityClient:
             Add metadata to the response by invoking meta functions. Documentation for [meta functions](https://docs.synqly.com/api-reference/meta-functions) is available. Not all meta functions are available at every endpoint.
 
         limit : typing.Optional[int]
-            Number of cloud resources to return. Defaults to 500.
+            Number of cloud resources to return. Defaults to 500. A page may hold fewer results than `limit`, or none, even when more remain; keep paging until the returned cursor is empty.
 
         order : typing.Optional[typing.Union[str, typing.Sequence[str]]]
             Select a field to order the results by. Defaults to `name`. To control the direction of the sorting, append `[asc]` or `[desc]` to the field name. For example, `name[asc]` will sort the results by `name` in ascending order. The ordering defaults to `asc` if not specified.
@@ -1200,7 +1200,7 @@ class AsyncRawCloudsecurityClient:
             Add metadata to the response by invoking meta functions. Documentation for [meta functions](https://docs.synqly.com/api-reference/meta-functions) is available. Not all meta functions are available at every endpoint.
 
         limit : typing.Optional[int]
-            Number of cloud resources to return. Defaults to 500.
+            Number of cloud resources to return. Defaults to 500. A page may hold fewer results than `limit`, or none, even when more remain; keep paging until the returned cursor is empty.
 
         order : typing.Optional[typing.Union[str, typing.Sequence[str]]]
             Select a field to order the results by. Defaults to `name`. To control the direction of the sorting, append `[asc]` or `[desc]` to the field name. For example, `name[asc]` will sort the results by `name` in ascending order. The ordering defaults to `asc` if not specified.
@@ -1339,7 +1339,7 @@ class AsyncRawCloudsecurityClient:
             Add metadata to the response by invoking meta functions. Documentation for [meta functions](https://docs.synqly.com/api-reference/meta-functions) is available. Not all meta functions are available at every endpoint.
 
         limit : typing.Optional[int]
-            Number of compliance findings to return. Defaults to 50.
+            Number of compliance findings to return. Defaults to 50. A page may hold fewer results than `limit`, or none, even when more remain; keep paging until the returned cursor is empty.
 
         cursor : typing.Optional[str]
             Start search from cursor position.
@@ -1566,7 +1566,7 @@ class AsyncRawCloudsecurityClient:
             Add metadata to the response by invoking meta functions. Documentation for [meta functions](https://docs.synqly.com/api-reference/meta-functions) is available. Not all meta functions are available at every endpoint.
 
         limit : typing.Optional[int]
-            Number of threats to return. Defaults to 100.
+            Number of threats to return. Defaults to 100. A page may hold fewer results than `limit`, or none, even when more remain; keep paging until the returned cursor is empty.
 
         order : typing.Optional[typing.Union[str, typing.Sequence[str]]]
             Select a field to order the results by. Defaults to `name`. To control the direction of the sorting, append `[asc]` or `[desc]` to the field name. For example, `name[asc]` will sort the results by `name` in ascending order. The ordering defaults to `asc` if not specified.

@@ -72,7 +72,7 @@ class RawSiemClient:
             Cursor to use to retrieve the next page of results.
 
         limit : typing.Optional[int]
-            Number of `Investigation` objects to return in this page. Defaults to 100.
+            Number of `Investigation` objects to return in this page. Defaults to 100. A page may hold fewer results than `limit`, or none, even when more remain; keep paging until the returned cursor is empty.
 
         order : typing.Optional[typing.Union[str, typing.Sequence[str]]]
             Select a field to order the results by.
@@ -929,7 +929,7 @@ class RawSiemClient:
             Cursor to use to retrieve the next page of results.
 
         limit : typing.Optional[int]
-            Number of log provider objects to return in this page. Defaults to 100.
+            Number of log provider objects to return in this page. Defaults to 100. A page may hold fewer results than `limit`, or none, even when more remain; keep paging until the returned cursor is empty.
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -1349,7 +1349,7 @@ class RawSiemClient:
             Cursor to use to retrieve the next page of results.
 
         limit : typing.Optional[int]
-            Number of events to return per page. Defaults to 100 with a maximum of 5000. If a provider has a maximum limit lower than 5000, the provider's maximum limit will be used instead.
+            Number of events to return per page. Defaults to 100 with a maximum of 5000. If a provider has a maximum limit lower than 5000, the provider's maximum limit will be used instead. A page may hold fewer results than `limit`, or none, even when more remain; keep paging until the returned cursor is empty.
 
         order : typing.Optional[typing.Union[str, typing.Sequence[str]]]
             Select a field to order the results by. Defaults to `time` descending (newest first). To control the direction of the sorting, append `[asc]` or `[desc]` to the field name. For example, `name[desc]` will sort the results by `name` in descending order. Bare `order=time` is descending. May be used multiple times to order by multiple fields, and the ordering is applied in the order the fields are specified.
@@ -1582,7 +1582,7 @@ class RawSiemClient:
             Cursor to use to retrieve the next page of results.
 
         limit : typing.Optional[int]
-            Number of `Account` objects to return in this page. Defaults to 100.
+            Number of `Account` objects to return in this page. Defaults to 100. A page may hold fewer results than `limit`, or none, even when more remain; keep paging until the returned cursor is empty.
 
         order : typing.Optional[typing.Union[str, typing.Sequence[str]]]
             Select a field to order the results by. Defaults to `time`. To control the direction of the sorting, append `[asc]` or `[desc]` to the field name. For example, `name[desc]` will sort the results by `name` in descending order. The ordering defaults to `asc` if not specified. May be used multiple times to order by multiple fields, and the ordering is applied in the order the fields are specified.
@@ -2281,7 +2281,7 @@ class AsyncRawSiemClient:
             Cursor to use to retrieve the next page of results.
 
         limit : typing.Optional[int]
-            Number of `Investigation` objects to return in this page. Defaults to 100.
+            Number of `Investigation` objects to return in this page. Defaults to 100. A page may hold fewer results than `limit`, or none, even when more remain; keep paging until the returned cursor is empty.
 
         order : typing.Optional[typing.Union[str, typing.Sequence[str]]]
             Select a field to order the results by.
@@ -3138,7 +3138,7 @@ class AsyncRawSiemClient:
             Cursor to use to retrieve the next page of results.
 
         limit : typing.Optional[int]
-            Number of log provider objects to return in this page. Defaults to 100.
+            Number of log provider objects to return in this page. Defaults to 100. A page may hold fewer results than `limit`, or none, even when more remain; keep paging until the returned cursor is empty.
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -3558,7 +3558,7 @@ class AsyncRawSiemClient:
             Cursor to use to retrieve the next page of results.
 
         limit : typing.Optional[int]
-            Number of events to return per page. Defaults to 100 with a maximum of 5000. If a provider has a maximum limit lower than 5000, the provider's maximum limit will be used instead.
+            Number of events to return per page. Defaults to 100 with a maximum of 5000. If a provider has a maximum limit lower than 5000, the provider's maximum limit will be used instead. A page may hold fewer results than `limit`, or none, even when more remain; keep paging until the returned cursor is empty.
 
         order : typing.Optional[typing.Union[str, typing.Sequence[str]]]
             Select a field to order the results by. Defaults to `time` descending (newest first). To control the direction of the sorting, append `[asc]` or `[desc]` to the field name. For example, `name[desc]` will sort the results by `name` in descending order. Bare `order=time` is descending. May be used multiple times to order by multiple fields, and the ordering is applied in the order the fields are specified.
@@ -3791,7 +3791,7 @@ class AsyncRawSiemClient:
             Cursor to use to retrieve the next page of results.
 
         limit : typing.Optional[int]
-            Number of `Account` objects to return in this page. Defaults to 100.
+            Number of `Account` objects to return in this page. Defaults to 100. A page may hold fewer results than `limit`, or none, even when more remain; keep paging until the returned cursor is empty.
 
         order : typing.Optional[typing.Union[str, typing.Sequence[str]]]
             Select a field to order the results by. Defaults to `time`. To control the direction of the sorting, append `[asc]` or `[desc]` to the field name. For example, `name[desc]` will sort the results by `name` in descending order. The ordering defaults to `asc` if not specified. May be used multiple times to order by multiple fields, and the ordering is applied in the order the fields are specified.

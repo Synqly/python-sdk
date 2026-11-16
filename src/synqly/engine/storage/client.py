@@ -50,7 +50,7 @@ class StorageClient:
             Cursor to fetch the next set of results.
 
         limit : typing.Optional[int]
-            Number of results to return. Default is 50.
+            Number of results to return. Default is 50. A page may hold fewer results than `limit`, or none, even when more remain; keep paging until the returned cursor is empty.
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -181,7 +181,7 @@ class AsyncStorageClient:
             Cursor to fetch the next set of results.
 
         limit : typing.Optional[int]
-            Number of results to return. Default is 50.
+            Number of results to return. Default is 50. A page may hold fewer results than `limit`, or none, even when more remain; keep paging until the returned cursor is empty.
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.

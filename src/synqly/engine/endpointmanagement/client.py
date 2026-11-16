@@ -51,7 +51,7 @@ class EndpointmanagementClient:
             Add metadata to the response by invoking meta functions. Documentation for [meta functions](https://docs.synqly.com/api-reference/meta-functions) is available. Not all meta functions are available at every endpoint.
 
         limit : typing.Optional[int]
-            Number of devices to return. Defaults to 50.
+            Number of devices to return. Defaults to 50. A page may hold fewer results than `limit`, or none, even when more remain; keep paging until the returned cursor is empty.
 
         cursor : typing.Optional[str]
             Start search from cursor position.
@@ -119,7 +119,7 @@ class EndpointmanagementClient:
             Add metadata to the response by invoking meta functions. Documentation for [meta functions](https://docs.synqly.com/api-reference/meta-functions) is available. Not all meta functions are available at every endpoint.
 
         limit : typing.Optional[int]
-            Number of compliance findings to return. Defaults to 50.
+            Number of compliance findings to return. Defaults to 50. A page may hold fewer results than `limit`, or none, even when more remain; keep paging until the returned cursor is empty.
 
         cursor : typing.Optional[str]
             Start search from cursor position.
@@ -376,7 +376,7 @@ class EndpointmanagementClient:
             Add metadata to the response by invoking meta functions. Documentation for [meta functions](https://docs.synqly.com/api-reference/meta-functions) is available. Not all meta functions are available at every endpoint.
 
         limit : typing.Optional[int]
-            Number of applications to return. Defaults to 50.
+            Number of applications to return. Defaults to 50. A page may hold fewer results than `limit`, or none, even when more remain; keep paging until the returned cursor is empty.
 
         cursor : typing.Optional[str]
             Start search from cursor position.
@@ -434,7 +434,7 @@ class AsyncEndpointmanagementClient:
             Add metadata to the response by invoking meta functions. Documentation for [meta functions](https://docs.synqly.com/api-reference/meta-functions) is available. Not all meta functions are available at every endpoint.
 
         limit : typing.Optional[int]
-            Number of devices to return. Defaults to 50.
+            Number of devices to return. Defaults to 50. A page may hold fewer results than `limit`, or none, even when more remain; keep paging until the returned cursor is empty.
 
         cursor : typing.Optional[str]
             Start search from cursor position.
@@ -502,7 +502,7 @@ class AsyncEndpointmanagementClient:
             Add metadata to the response by invoking meta functions. Documentation for [meta functions](https://docs.synqly.com/api-reference/meta-functions) is available. Not all meta functions are available at every endpoint.
 
         limit : typing.Optional[int]
-            Number of compliance findings to return. Defaults to 50.
+            Number of compliance findings to return. Defaults to 50. A page may hold fewer results than `limit`, or none, even when more remain; keep paging until the returned cursor is empty.
 
         cursor : typing.Optional[str]
             Start search from cursor position.
@@ -759,7 +759,7 @@ class AsyncEndpointmanagementClient:
             Add metadata to the response by invoking meta functions. Documentation for [meta functions](https://docs.synqly.com/api-reference/meta-functions) is available. Not all meta functions are available at every endpoint.
 
         limit : typing.Optional[int]
-            Number of applications to return. Defaults to 50.
+            Number of applications to return. Defaults to 50. A page may hold fewer results than `limit`, or none, even when more remain; keep paging until the returned cursor is empty.
 
         cursor : typing.Optional[str]
             Start search from cursor position.

@@ -58,7 +58,7 @@ class CustomClient:
             Cursor to use to retrieve the next page of results.
 
         limit : typing.Optional[int]
-            Number of `operation` objects to return in this page. Defaults to 100.
+            Number of `operation` objects to return in this page. Defaults to 100. A page may hold fewer results than `limit`, or none, even when more remain; keep paging until the returned cursor is empty.
 
         order : typing.Optional[typing.Union[str, typing.Sequence[str]]]
             Select a field to order the results by.
@@ -299,7 +299,7 @@ class AsyncCustomClient:
             Cursor to use to retrieve the next page of results.
 
         limit : typing.Optional[int]
-            Number of `operation` objects to return in this page. Defaults to 100.
+            Number of `operation` objects to return in this page. Defaults to 100. A page may hold fewer results than `limit`, or none, even when more remain; keep paging until the returned cursor is empty.
 
         order : typing.Optional[typing.Union[str, typing.Sequence[str]]]
             Select a field to order the results by.

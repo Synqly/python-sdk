@@ -53,7 +53,7 @@ class RawNetworksecurityClient:
             Add metadata to the response by invoking meta functions. Documentation for [meta functions](https://docs.synqly.com/api-reference/meta-functions) is available. Not all meta functions are available at every endpoint.
 
         limit : typing.Optional[int]
-            Number of traffic log configurations to return. Defaults to 100 with a maximum of 200. If a provider has a maximum limit lower than 200, the provider's maximum limit will be used instead.
+            Number of traffic log configurations to return. Defaults to 100 with a maximum of 200. If a provider has a maximum limit lower than 200, the provider's maximum limit will be used instead. A page may hold fewer results than `limit`, or none, even when more remain; keep paging until the returned cursor is empty.
 
         filter : typing.Optional[typing.Union[str, typing.Sequence[str]]]
             Filter results by this query. For more information on filtering, refer to our [Filtering Guide](https://docs.synqly.com/guides/connectors/networksecurity/query-filters). Defaults to no filter. If used more than once, the queries are ANDed together. No network security provider currently supports filters on this endpoint, so a request that includes a filter is rejected with a 400 error.
@@ -260,7 +260,7 @@ class RawNetworksecurityClient:
             Add metadata to the response by invoking meta functions. Documentation for [meta functions](https://docs.synqly.com/api-reference/meta-functions) is available. Not all meta functions are available at every endpoint.
 
         limit : typing.Optional[int]
-            Number of traffic events to return. Defaults to 100 with a maximum of 200. If a provider has a maximum limit lower than 200, the provider's maximum limit will be used instead.
+            Number of traffic events to return. Defaults to 100 with a maximum of 200. If a provider has a maximum limit lower than 200, the provider's maximum limit will be used instead. A page may hold fewer results than `limit`, or none, even when more remain; keep paging until the returned cursor is empty.
 
         filter : typing.Optional[typing.Union[str, typing.Sequence[str]]]
             Filter results by this query. For more information on filtering, refer to our [Filtering Guide](https://docs.synqly.com/guides/connectors/networksecurity/query-filters). Defaults to no filter. If used more than once, the queries are ANDed together. Network security providers support only the `time[gte]` and `time[lte]` filters on this endpoint, and any other filter is rejected with a 400 error. When no time filter is supplied, the query covers the most recent hour.
@@ -466,7 +466,7 @@ class RawNetworksecurityClient:
             Add metadata to the response by invoking meta functions. Documentation for [meta functions](https://docs.synqly.com/api-reference/meta-functions) is available. Not all meta functions are available at every endpoint.
 
         limit : typing.Optional[int]
-            Number of DNS log configurations to return. Defaults to 100 with a maximum of 200. If a provider has a maximum limit lower than 200, the provider's maximum limit will be used instead.
+            Number of DNS log configurations to return. Defaults to 100 with a maximum of 200. If a provider has a maximum limit lower than 200, the provider's maximum limit will be used instead. A page may hold fewer results than `limit`, or none, even when more remain; keep paging until the returned cursor is empty.
 
         filter : typing.Optional[typing.Union[str, typing.Sequence[str]]]
             Filter results by this query. For more information on filtering, refer to our [Filtering Guide](https://docs.synqly.com/guides/connectors/networksecurity/query-filters). Defaults to no filter. If used more than once, the queries are ANDed together. No network security provider currently supports filters on this endpoint, so a request that includes a filter is rejected with a 400 error.
@@ -673,7 +673,7 @@ class RawNetworksecurityClient:
             Add metadata to the response by invoking meta functions. Documentation for [meta functions](https://docs.synqly.com/api-reference/meta-functions) is available. Not all meta functions are available at every endpoint.
 
         limit : typing.Optional[int]
-            Number of DNS events to return. Defaults to 100 with a maximum of 200. If a provider has a maximum limit lower than 200, the provider's maximum limit will be used instead.
+            Number of DNS events to return. Defaults to 100 with a maximum of 200. If a provider has a maximum limit lower than 200, the provider's maximum limit will be used instead. A page may hold fewer results than `limit`, or none, even when more remain; keep paging until the returned cursor is empty.
 
         filter : typing.Optional[typing.Union[str, typing.Sequence[str]]]
             Filter results by this query. For more information on filtering, refer to our [Filtering Guide](https://docs.synqly.com/guides/connectors/networksecurity/query-filters). Defaults to no filter. If used more than once, the queries are ANDed together. Network security providers support only the `time[gte]` and `time[lte]` filters on this endpoint, and any other filter is rejected with a 400 error. When no time filter is supplied, the query covers the most recent hour.
@@ -880,7 +880,7 @@ class RawNetworksecurityClient:
             Add metadata to the response by invoking meta functions. Documentation for [meta functions](https://docs.synqly.com/api-reference/meta-functions) is available. Not all meta functions are available at every endpoint.
 
         limit : typing.Optional[int]
-            Number of firewall rules to return. Defaults to 100 with a maximum of 200. If a provider has a maximum limit lower than 200, the provider's maximum limit will be used instead.
+            Number of firewall rules to return. Defaults to 100 with a maximum of 200. If a provider has a maximum limit lower than 200, the provider's maximum limit will be used instead. A page may hold fewer results than `limit`, or none, even when more remain; keep paging until the returned cursor is empty.
 
         filter : typing.Optional[typing.Union[str, typing.Sequence[str]]]
             Filter results by this query. For more information on filtering, refer to our [Filtering Guide](https://docs.synqly.com/guides/connectors/networksecurity/query-filters). Defaults to no filter. If used more than once, the queries are ANDed together. No network security provider currently supports filters on this endpoint, so a request that includes a filter is rejected with a 400 error.
@@ -1091,7 +1091,7 @@ class AsyncRawNetworksecurityClient:
             Add metadata to the response by invoking meta functions. Documentation for [meta functions](https://docs.synqly.com/api-reference/meta-functions) is available. Not all meta functions are available at every endpoint.
 
         limit : typing.Optional[int]
-            Number of traffic log configurations to return. Defaults to 100 with a maximum of 200. If a provider has a maximum limit lower than 200, the provider's maximum limit will be used instead.
+            Number of traffic log configurations to return. Defaults to 100 with a maximum of 200. If a provider has a maximum limit lower than 200, the provider's maximum limit will be used instead. A page may hold fewer results than `limit`, or none, even when more remain; keep paging until the returned cursor is empty.
 
         filter : typing.Optional[typing.Union[str, typing.Sequence[str]]]
             Filter results by this query. For more information on filtering, refer to our [Filtering Guide](https://docs.synqly.com/guides/connectors/networksecurity/query-filters). Defaults to no filter. If used more than once, the queries are ANDed together. No network security provider currently supports filters on this endpoint, so a request that includes a filter is rejected with a 400 error.
@@ -1298,7 +1298,7 @@ class AsyncRawNetworksecurityClient:
             Add metadata to the response by invoking meta functions. Documentation for [meta functions](https://docs.synqly.com/api-reference/meta-functions) is available. Not all meta functions are available at every endpoint.
 
         limit : typing.Optional[int]
-            Number of traffic events to return. Defaults to 100 with a maximum of 200. If a provider has a maximum limit lower than 200, the provider's maximum limit will be used instead.
+            Number of traffic events to return. Defaults to 100 with a maximum of 200. If a provider has a maximum limit lower than 200, the provider's maximum limit will be used instead. A page may hold fewer results than `limit`, or none, even when more remain; keep paging until the returned cursor is empty.
 
         filter : typing.Optional[typing.Union[str, typing.Sequence[str]]]
             Filter results by this query. For more information on filtering, refer to our [Filtering Guide](https://docs.synqly.com/guides/connectors/networksecurity/query-filters). Defaults to no filter. If used more than once, the queries are ANDed together. Network security providers support only the `time[gte]` and `time[lte]` filters on this endpoint, and any other filter is rejected with a 400 error. When no time filter is supplied, the query covers the most recent hour.
@@ -1504,7 +1504,7 @@ class AsyncRawNetworksecurityClient:
             Add metadata to the response by invoking meta functions. Documentation for [meta functions](https://docs.synqly.com/api-reference/meta-functions) is available. Not all meta functions are available at every endpoint.
 
         limit : typing.Optional[int]
-            Number of DNS log configurations to return. Defaults to 100 with a maximum of 200. If a provider has a maximum limit lower than 200, the provider's maximum limit will be used instead.
+            Number of DNS log configurations to return. Defaults to 100 with a maximum of 200. If a provider has a maximum limit lower than 200, the provider's maximum limit will be used instead. A page may hold fewer results than `limit`, or none, even when more remain; keep paging until the returned cursor is empty.
 
         filter : typing.Optional[typing.Union[str, typing.Sequence[str]]]
             Filter results by this query. For more information on filtering, refer to our [Filtering Guide](https://docs.synqly.com/guides/connectors/networksecurity/query-filters). Defaults to no filter. If used more than once, the queries are ANDed together. No network security provider currently supports filters on this endpoint, so a request that includes a filter is rejected with a 400 error.
@@ -1711,7 +1711,7 @@ class AsyncRawNetworksecurityClient:
             Add metadata to the response by invoking meta functions. Documentation for [meta functions](https://docs.synqly.com/api-reference/meta-functions) is available. Not all meta functions are available at every endpoint.
 
         limit : typing.Optional[int]
-            Number of DNS events to return. Defaults to 100 with a maximum of 200. If a provider has a maximum limit lower than 200, the provider's maximum limit will be used instead.
+            Number of DNS events to return. Defaults to 100 with a maximum of 200. If a provider has a maximum limit lower than 200, the provider's maximum limit will be used instead. A page may hold fewer results than `limit`, or none, even when more remain; keep paging until the returned cursor is empty.
 
         filter : typing.Optional[typing.Union[str, typing.Sequence[str]]]
             Filter results by this query. For more information on filtering, refer to our [Filtering Guide](https://docs.synqly.com/guides/connectors/networksecurity/query-filters). Defaults to no filter. If used more than once, the queries are ANDed together. Network security providers support only the `time[gte]` and `time[lte]` filters on this endpoint, and any other filter is rejected with a 400 error. When no time filter is supplied, the query covers the most recent hour.
@@ -1918,7 +1918,7 @@ class AsyncRawNetworksecurityClient:
             Add metadata to the response by invoking meta functions. Documentation for [meta functions](https://docs.synqly.com/api-reference/meta-functions) is available. Not all meta functions are available at every endpoint.
 
         limit : typing.Optional[int]
-            Number of firewall rules to return. Defaults to 100 with a maximum of 200. If a provider has a maximum limit lower than 200, the provider's maximum limit will be used instead.
+            Number of firewall rules to return. Defaults to 100 with a maximum of 200. If a provider has a maximum limit lower than 200, the provider's maximum limit will be used instead. A page may hold fewer results than `limit`, or none, even when more remain; keep paging until the returned cursor is empty.
 
         filter : typing.Optional[typing.Union[str, typing.Sequence[str]]]
             Filter results by this query. For more information on filtering, refer to our [Filtering Guide](https://docs.synqly.com/guides/connectors/networksecurity/query-filters). Defaults to no filter. If used more than once, the queries are ANDed together. No network security provider currently supports filters on this endpoint, so a request that includes a filter is rejected with a 400 error.

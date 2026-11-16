@@ -53,7 +53,7 @@ class AppsecClient:
             Add metadata to the response by invoking meta functions. Documentation for [meta functions](https://docs.synqly.com/api-reference/meta-functions) is available. Not all meta functions are available at every endpoint.
 
         limit : typing.Optional[int]
-            Number of applications to return. Defaults to 100 with a maximum of 5000. If a provider has a maximum limit lower than 5000, the provider's maximum limit will be used instead.
+            Number of applications to return. Defaults to 100 with a maximum of 5000. If a provider has a maximum limit lower than 5000, the provider's maximum limit will be used instead. A page may hold fewer results than `limit`, or none, even when more remain; keep paging until the returned cursor is empty.
 
         filter : typing.Optional[typing.Union[str, typing.Sequence[str]]]
             Filter results by this query. For more information on filtering, refer to our [Filtering Guide](https://docs.synqly.com/guides/connectors/appsec/query-filters). Defaults to no filter. If used more than once, the queries are ANDed together.
@@ -103,7 +103,7 @@ class AppsecClient:
             Add metadata to the response by invoking meta functions. Documentation for [meta functions](https://docs.synqly.com/api-reference/meta-functions) is available. Not all meta functions are available at every endpoint.
 
         limit : typing.Optional[int]
-            Number of findings to return. Defaults to 100 with a maximum of 5000. If a provider has a maximum limit lower than 5000, the provider's maximum limit will be used instead.
+            Number of findings to return. Defaults to 100 with a maximum of 5000. If a provider has a maximum limit lower than 5000, the provider's maximum limit will be used instead. A page may hold fewer results than `limit`, or none, even when more remain; keep paging until the returned cursor is empty.
 
         filter : typing.Optional[typing.Union[str, typing.Sequence[str]]]
             Filter results by this query. For more information on filtering, refer to our [Filtering Guide](https://docs.synqly.com/guides/connectors/appsec/query-filters). Defaults to no filter. If used more than once, the queries are ANDed together.
@@ -151,7 +151,7 @@ class AppsecClient:
             Add metadata to the response by invoking meta functions. Documentation for [meta functions](https://docs.synqly.com/api-reference/meta-functions) is available. Not all meta functions are available at every endpoint.
 
         limit : typing.Optional[int]
-            Number of findings to return. Defaults to 100 with a maximum of 5000. If a provider has a maximum limit lower than 5000, the provider's maximum limit will be used instead.
+            Number of findings to return. Defaults to 100 with a maximum of 5000. If a provider has a maximum limit lower than 5000, the provider's maximum limit will be used instead. A page may hold fewer results than `limit`, or none, even when more remain; keep paging until the returned cursor is empty.
 
         filter : typing.Optional[typing.Union[str, typing.Sequence[str]]]
             Filter results by this query. For more information on filtering, refer to our [Filtering Guide](https://docs.synqly.com/guides/connectors/appsec/query-filters). Defaults to no filter. If used more than once, the queries are ANDed together.
@@ -263,7 +263,7 @@ class AppsecClient:
             Add metadata to the response by invoking meta functions. Documentation for [meta functions](https://docs.synqly.com/api-reference/meta-functions) is available. Not all meta functions are available at every endpoint.
 
         limit : typing.Optional[int]
-            Number of scan records to return. Defaults to 100 with a maximum of 5000. If a provider has a maximum limit lower than 5000, the provider's maximum limit will be used instead.
+            Number of scan records to return. Defaults to 100 with a maximum of 5000. If a provider has a maximum limit lower than 5000, the provider's maximum limit will be used instead. A page may hold fewer results than `limit`, or none, even when more remain; keep paging until the returned cursor is empty.
 
         cursor : typing.Optional[str]
             Start search from cursor position.
@@ -323,7 +323,7 @@ class AsyncAppsecClient:
             Add metadata to the response by invoking meta functions. Documentation for [meta functions](https://docs.synqly.com/api-reference/meta-functions) is available. Not all meta functions are available at every endpoint.
 
         limit : typing.Optional[int]
-            Number of applications to return. Defaults to 100 with a maximum of 5000. If a provider has a maximum limit lower than 5000, the provider's maximum limit will be used instead.
+            Number of applications to return. Defaults to 100 with a maximum of 5000. If a provider has a maximum limit lower than 5000, the provider's maximum limit will be used instead. A page may hold fewer results than `limit`, or none, even when more remain; keep paging until the returned cursor is empty.
 
         filter : typing.Optional[typing.Union[str, typing.Sequence[str]]]
             Filter results by this query. For more information on filtering, refer to our [Filtering Guide](https://docs.synqly.com/guides/connectors/appsec/query-filters). Defaults to no filter. If used more than once, the queries are ANDed together.
@@ -373,7 +373,7 @@ class AsyncAppsecClient:
             Add metadata to the response by invoking meta functions. Documentation for [meta functions](https://docs.synqly.com/api-reference/meta-functions) is available. Not all meta functions are available at every endpoint.
 
         limit : typing.Optional[int]
-            Number of findings to return. Defaults to 100 with a maximum of 5000. If a provider has a maximum limit lower than 5000, the provider's maximum limit will be used instead.
+            Number of findings to return. Defaults to 100 with a maximum of 5000. If a provider has a maximum limit lower than 5000, the provider's maximum limit will be used instead. A page may hold fewer results than `limit`, or none, even when more remain; keep paging until the returned cursor is empty.
 
         filter : typing.Optional[typing.Union[str, typing.Sequence[str]]]
             Filter results by this query. For more information on filtering, refer to our [Filtering Guide](https://docs.synqly.com/guides/connectors/appsec/query-filters). Defaults to no filter. If used more than once, the queries are ANDed together.
@@ -421,7 +421,7 @@ class AsyncAppsecClient:
             Add metadata to the response by invoking meta functions. Documentation for [meta functions](https://docs.synqly.com/api-reference/meta-functions) is available. Not all meta functions are available at every endpoint.
 
         limit : typing.Optional[int]
-            Number of findings to return. Defaults to 100 with a maximum of 5000. If a provider has a maximum limit lower than 5000, the provider's maximum limit will be used instead.
+            Number of findings to return. Defaults to 100 with a maximum of 5000. If a provider has a maximum limit lower than 5000, the provider's maximum limit will be used instead. A page may hold fewer results than `limit`, or none, even when more remain; keep paging until the returned cursor is empty.
 
         filter : typing.Optional[typing.Union[str, typing.Sequence[str]]]
             Filter results by this query. For more information on filtering, refer to our [Filtering Guide](https://docs.synqly.com/guides/connectors/appsec/query-filters). Defaults to no filter. If used more than once, the queries are ANDed together.
@@ -533,7 +533,7 @@ class AsyncAppsecClient:
             Add metadata to the response by invoking meta functions. Documentation for [meta functions](https://docs.synqly.com/api-reference/meta-functions) is available. Not all meta functions are available at every endpoint.
 
         limit : typing.Optional[int]
-            Number of scan records to return. Defaults to 100 with a maximum of 5000. If a provider has a maximum limit lower than 5000, the provider's maximum limit will be used instead.
+            Number of scan records to return. Defaults to 100 with a maximum of 5000. If a provider has a maximum limit lower than 5000, the provider's maximum limit will be used instead. A page may hold fewer results than `limit`, or none, even when more remain; keep paging until the returned cursor is empty.
 
         cursor : typing.Optional[str]
             Start search from cursor position.

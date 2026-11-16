@@ -66,7 +66,7 @@ class RawIdentityClient:
             Add metadata to the response by invoking meta functions. Documentation for [meta functions](https://docs.synqly.com/api-reference/meta-functions) is available. Not all meta functions are available at every endpoint.
 
         limit : typing.Optional[int]
-            Number of events to return. Defaults to 100.
+            Number of events to return. Defaults to 100. A page may hold fewer results than `limit`, or none, even when more remain; keep paging until the returned cursor is empty.
 
         cursor : typing.Optional[str]
             Start search from cursor position.
@@ -293,7 +293,7 @@ class RawIdentityClient:
             Add metadata to the response by invoking meta functions. Documentation for [meta functions](https://docs.synqly.com/api-reference/meta-functions) is available. Not all meta functions are available at every endpoint.
 
         limit : typing.Optional[int]
-            Number of events to return. Defaults to 100.
+            Number of events to return. Defaults to 100. A page may hold fewer results than `limit`, or none, even when more remain; keep paging until the returned cursor is empty.
 
         cursor : typing.Optional[str]
             Start search from cursor position.
@@ -520,7 +520,7 @@ class RawIdentityClient:
             Add metadata to the response by invoking meta functions. Documentation for [meta functions](https://docs.synqly.com/api-reference/meta-functions) is available. Not all meta functions are available at every endpoint.
 
         limit : typing.Optional[int]
-            Number of users to return. Defaults to 100.
+            Number of users to return. Defaults to 100. A page may hold fewer results than `limit`, or none, even when more remain; keep paging until the returned cursor is empty.
 
         cursor : typing.Optional[str]
             Start search from cursor position.
@@ -747,7 +747,7 @@ class RawIdentityClient:
             Add metadata to the response by invoking meta functions. Documentation for [meta functions](https://docs.synqly.com/api-reference/meta-functions) is available. Not all meta functions are available at every endpoint.
 
         limit : typing.Optional[int]
-            Number of applications to return. Defaults to 100.
+            Number of applications to return. Defaults to 100. A page may hold fewer results than `limit`, or none, even when more remain; keep paging until the returned cursor is empty.
 
         cursor : typing.Optional[str]
             Start search from cursor position.
@@ -974,7 +974,7 @@ class RawIdentityClient:
             Add metadata to the response by invoking meta functions. Documentation for [meta functions](https://docs.synqly.com/api-reference/meta-functions) is available. Not all meta functions are available at every endpoint.
 
         limit : typing.Optional[int]
-            Number of grants to return. Defaults to 100.
+            Number of grants to return. Defaults to 100. A page may hold fewer results than `limit`, or none, even when more remain; keep paging until the returned cursor is empty.
 
         cursor : typing.Optional[str]
             Start search from cursor position. A page may hold fewer than `limit` grants, or none; keep paging until the response carries no cursor.
@@ -1201,7 +1201,7 @@ class RawIdentityClient:
             Add metadata to the response by invoking meta functions. Documentation for [meta functions](https://docs.synqly.com/api-reference/meta-functions) is available. Not all meta functions are available at every endpoint.
 
         limit : typing.Optional[int]
-            Number of policies to return. Defaults to 100.
+            Number of policies to return. Defaults to 100. A page may hold fewer results than `limit`, or none, even when more remain; keep paging until the returned cursor is empty.
 
         cursor : typing.Optional[str]
             Start search from cursor position.
@@ -1427,7 +1427,7 @@ class RawIdentityClient:
             Add metadata to the response by invoking meta functions. Documentation for [meta functions](https://docs.synqly.com/api-reference/meta-functions) is available. Not all meta functions are available at every endpoint.
 
         limit : typing.Optional[int]
-            Number of users to return. Defaults to 100.
+            Number of users to return. Defaults to 100. A page may hold fewer results than `limit`, or none, even when more remain; keep paging until the returned cursor is empty.
 
         cursor : typing.Optional[str]
             Start search from cursor position.
@@ -1855,7 +1855,7 @@ class RawIdentityClient:
             Add metadata to the response by invoking meta functions. Documentation for [meta functions](https://docs.synqly.com/api-reference/meta-functions) is available. Not all meta functions are available at every endpoint.
 
         limit : typing.Optional[int]
-            Number of users to return. Defaults to 100.
+            Number of users to return. Defaults to 100. A page may hold fewer results than `limit`, or none, even when more remain; keep paging until the returned cursor is empty.
 
         cursor : typing.Optional[str]
             Start search from cursor position.
@@ -2284,7 +2284,7 @@ class RawIdentityClient:
             Add metadata to the response by invoking meta functions. Documentation for [meta functions](https://docs.synqly.com/api-reference/meta-functions) is available. Not all meta functions are available at every endpoint.
 
         limit : typing.Optional[int]
-            Number of users to return. Defaults to 100.
+            Number of users to return. Defaults to 100. A page may hold fewer results than `limit`, or none, even when more remain; keep paging until the returned cursor is empty.
 
         cursor : typing.Optional[str]
             Start search from cursor position.
@@ -3498,7 +3498,7 @@ class AsyncRawIdentityClient:
             Add metadata to the response by invoking meta functions. Documentation for [meta functions](https://docs.synqly.com/api-reference/meta-functions) is available. Not all meta functions are available at every endpoint.
 
         limit : typing.Optional[int]
-            Number of events to return. Defaults to 100.
+            Number of events to return. Defaults to 100. A page may hold fewer results than `limit`, or none, even when more remain; keep paging until the returned cursor is empty.
 
         cursor : typing.Optional[str]
             Start search from cursor position.
@@ -3725,7 +3725,7 @@ class AsyncRawIdentityClient:
             Add metadata to the response by invoking meta functions. Documentation for [meta functions](https://docs.synqly.com/api-reference/meta-functions) is available. Not all meta functions are available at every endpoint.
 
         limit : typing.Optional[int]
-            Number of events to return. Defaults to 100.
+            Number of events to return. Defaults to 100. A page may hold fewer results than `limit`, or none, even when more remain; keep paging until the returned cursor is empty.
 
         cursor : typing.Optional[str]
             Start search from cursor position.
@@ -3952,7 +3952,7 @@ class AsyncRawIdentityClient:
             Add metadata to the response by invoking meta functions. Documentation for [meta functions](https://docs.synqly.com/api-reference/meta-functions) is available. Not all meta functions are available at every endpoint.
 
         limit : typing.Optional[int]
-            Number of users to return. Defaults to 100.
+            Number of users to return. Defaults to 100. A page may hold fewer results than `limit`, or none, even when more remain; keep paging until the returned cursor is empty.
 
         cursor : typing.Optional[str]
             Start search from cursor position.
@@ -4179,7 +4179,7 @@ class AsyncRawIdentityClient:
             Add metadata to the response by invoking meta functions. Documentation for [meta functions](https://docs.synqly.com/api-reference/meta-functions) is available. Not all meta functions are available at every endpoint.
 
         limit : typing.Optional[int]
-            Number of applications to return. Defaults to 100.
+            Number of applications to return. Defaults to 100. A page may hold fewer results than `limit`, or none, even when more remain; keep paging until the returned cursor is empty.
 
         cursor : typing.Optional[str]
             Start search from cursor position.
@@ -4406,7 +4406,7 @@ class AsyncRawIdentityClient:
             Add metadata to the response by invoking meta functions. Documentation for [meta functions](https://docs.synqly.com/api-reference/meta-functions) is available. Not all meta functions are available at every endpoint.
 
         limit : typing.Optional[int]
-            Number of grants to return. Defaults to 100.
+            Number of grants to return. Defaults to 100. A page may hold fewer results than `limit`, or none, even when more remain; keep paging until the returned cursor is empty.
 
         cursor : typing.Optional[str]
             Start search from cursor position. A page may hold fewer than `limit` grants, or none; keep paging until the response carries no cursor.
@@ -4633,7 +4633,7 @@ class AsyncRawIdentityClient:
             Add metadata to the response by invoking meta functions. Documentation for [meta functions](https://docs.synqly.com/api-reference/meta-functions) is available. Not all meta functions are available at every endpoint.
 
         limit : typing.Optional[int]
-            Number of policies to return. Defaults to 100.
+            Number of policies to return. Defaults to 100. A page may hold fewer results than `limit`, or none, even when more remain; keep paging until the returned cursor is empty.
 
         cursor : typing.Optional[str]
             Start search from cursor position.
@@ -4859,7 +4859,7 @@ class AsyncRawIdentityClient:
             Add metadata to the response by invoking meta functions. Documentation for [meta functions](https://docs.synqly.com/api-reference/meta-functions) is available. Not all meta functions are available at every endpoint.
 
         limit : typing.Optional[int]
-            Number of users to return. Defaults to 100.
+            Number of users to return. Defaults to 100. A page may hold fewer results than `limit`, or none, even when more remain; keep paging until the returned cursor is empty.
 
         cursor : typing.Optional[str]
             Start search from cursor position.
@@ -5287,7 +5287,7 @@ class AsyncRawIdentityClient:
             Add metadata to the response by invoking meta functions. Documentation for [meta functions](https://docs.synqly.com/api-reference/meta-functions) is available. Not all meta functions are available at every endpoint.
 
         limit : typing.Optional[int]
-            Number of users to return. Defaults to 100.
+            Number of users to return. Defaults to 100. A page may hold fewer results than `limit`, or none, even when more remain; keep paging until the returned cursor is empty.
 
         cursor : typing.Optional[str]
             Start search from cursor position.
@@ -5716,7 +5716,7 @@ class AsyncRawIdentityClient:
             Add metadata to the response by invoking meta functions. Documentation for [meta functions](https://docs.synqly.com/api-reference/meta-functions) is available. Not all meta functions are available at every endpoint.
 
         limit : typing.Optional[int]
-            Number of users to return. Defaults to 100.
+            Number of users to return. Defaults to 100. A page may hold fewer results than `limit`, or none, even when more remain; keep paging until the returned cursor is empty.
 
         cursor : typing.Optional[str]
             Start search from cursor position.

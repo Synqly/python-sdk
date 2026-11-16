@@ -701,7 +701,7 @@ class RawTicketingClient:
             Cursor to use to retrieve the next page of results.
 
         limit : typing.Optional[int]
-            Number of `Projects` objects to return in this page. Defaults to 50.
+            Number of `Projects` objects to return in this page. Defaults to 50. A page may hold fewer results than `limit`, or none, even when more remain; keep paging until the returned cursor is empty.
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -915,7 +915,7 @@ class RawTicketingClient:
             Cursor to use to retrieve the next page of results.
 
         limit : typing.Optional[int]
-            Number of `Account` objects to return in this page. Defaults to 100.
+            Number of `Account` objects to return in this page. Defaults to 100. A page may hold fewer results than `limit`, or none, even when more remain; keep paging until the returned cursor is empty.
 
         order : typing.Optional[typing.Union[str, typing.Sequence[str]]]
             Select a field to order the results by. Defaults to `time`. To control the direction of the sorting, append `[asc]` or `[desc]` to the field name. For example, `name[desc]` will sort the results by `name` in descending order. The ordering defaults to `asc` if not specified. May be used multiple times to order by multiple fields, and the ordering is applied in the order the fields are specified.
@@ -4121,7 +4121,7 @@ class RawTicketingClient:
             Add metadata to the response by invoking meta functions. Documentation for [meta functions](https://docs.synqly.com/api-reference/meta-functions) is available. Not all meta functions are available at every endpoint.
 
         limit : typing.Optional[int]
-            Number of escalation policies to return. Defaults to 50.
+            Number of escalation policies to return. Defaults to 50. A page may hold fewer results than `limit`, or none, even when more remain; keep paging until the returned cursor is empty.
 
         cursor : typing.Optional[str]
             Start search from cursor position.
@@ -5168,7 +5168,7 @@ class AsyncRawTicketingClient:
             Cursor to use to retrieve the next page of results.
 
         limit : typing.Optional[int]
-            Number of `Projects` objects to return in this page. Defaults to 50.
+            Number of `Projects` objects to return in this page. Defaults to 50. A page may hold fewer results than `limit`, or none, even when more remain; keep paging until the returned cursor is empty.
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -5382,7 +5382,7 @@ class AsyncRawTicketingClient:
             Cursor to use to retrieve the next page of results.
 
         limit : typing.Optional[int]
-            Number of `Account` objects to return in this page. Defaults to 100.
+            Number of `Account` objects to return in this page. Defaults to 100. A page may hold fewer results than `limit`, or none, even when more remain; keep paging until the returned cursor is empty.
 
         order : typing.Optional[typing.Union[str, typing.Sequence[str]]]
             Select a field to order the results by. Defaults to `time`. To control the direction of the sorting, append `[asc]` or `[desc]` to the field name. For example, `name[desc]` will sort the results by `name` in descending order. The ordering defaults to `asc` if not specified. May be used multiple times to order by multiple fields, and the ordering is applied in the order the fields are specified.
@@ -8588,7 +8588,7 @@ class AsyncRawTicketingClient:
             Add metadata to the response by invoking meta functions. Documentation for [meta functions](https://docs.synqly.com/api-reference/meta-functions) is available. Not all meta functions are available at every endpoint.
 
         limit : typing.Optional[int]
-            Number of escalation policies to return. Defaults to 50.
+            Number of escalation policies to return. Defaults to 50. A page may hold fewer results than `limit`, or none, even when more remain; keep paging until the returned cursor is empty.
 
         cursor : typing.Optional[str]
             Start search from cursor position.
