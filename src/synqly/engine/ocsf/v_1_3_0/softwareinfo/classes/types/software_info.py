@@ -199,6 +199,11 @@ class SoftwareInfo(UncheckedBaseModel):
     The attributes that are not mapped to the event schema. The names and values of those attributes are specific to the event source.
     """
 
+    vulnerability_count: typing.Optional[int] = pydantic.Field(default=None)
+    """
+    The number of known vulnerabilities that affect the software, as reported by the event source.
+    """
+
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow")  # type: ignore # Pydantic v2
     else:

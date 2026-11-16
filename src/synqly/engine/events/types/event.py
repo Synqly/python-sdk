@@ -2600,6 +2600,7 @@ class Event_SoftwareInfo(UncheckedBaseModel):
     type_name: typing.Optional[str] = None
     type_uid: ocsf_v_1_3_0_softwareinfo_classes_types_type_uid_TypeUid
     unmapped: typing.Optional[ocsf_v_1_3_0_objects_types_object_Object] = None
+    vulnerability_count: typing.Optional[int] = None
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow")  # type: ignore # Pydantic v2
