@@ -605,20 +605,20 @@ class EdrClient:
     def delete_iocs(
         self,
         *,
+        ids: typing.Union[str, typing.Sequence[str]],
         meta: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
-        ids: typing.Optional[str] = None,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> DeleteIocsResponse:
         """
-        Deletes a list of iocs that match the input of ids in the query param
+        Deletes the indicators of compromise identified by `ids`.
 
         Parameters
         ----------
+        ids : typing.Union[str, typing.Sequence[str]]
+            IDs of the indicators to delete, each the `id` returned by Create IOCs or Query IOCs. Repeat the parameter for several IDs; a single value may also hold a comma-separated list.
+
         meta : typing.Optional[typing.Union[str, typing.Sequence[str]]]
             Add metadata to the response by invoking meta functions. Documentation for [meta functions](https://docs.synqly.com/api-reference/meta-functions) is available. Not all meta functions are available at every endpoint.
-
-        ids : typing.Optional[str]
-            list of ids to delete
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -627,7 +627,7 @@ class EdrClient:
         -------
         DeleteIocsResponse
         """
-        _response = self._raw_client.delete_iocs(meta=meta, ids=ids, request_options=request_options)
+        _response = self._raw_client.delete_iocs(ids=ids, meta=meta, request_options=request_options)
         return _response.data
 
     def query_ioa(
@@ -1589,20 +1589,20 @@ class AsyncEdrClient:
     async def delete_iocs(
         self,
         *,
+        ids: typing.Union[str, typing.Sequence[str]],
         meta: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
-        ids: typing.Optional[str] = None,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> DeleteIocsResponse:
         """
-        Deletes a list of iocs that match the input of ids in the query param
+        Deletes the indicators of compromise identified by `ids`.
 
         Parameters
         ----------
+        ids : typing.Union[str, typing.Sequence[str]]
+            IDs of the indicators to delete, each the `id` returned by Create IOCs or Query IOCs. Repeat the parameter for several IDs; a single value may also hold a comma-separated list.
+
         meta : typing.Optional[typing.Union[str, typing.Sequence[str]]]
             Add metadata to the response by invoking meta functions. Documentation for [meta functions](https://docs.synqly.com/api-reference/meta-functions) is available. Not all meta functions are available at every endpoint.
-
-        ids : typing.Optional[str]
-            list of ids to delete
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -1611,7 +1611,7 @@ class AsyncEdrClient:
         -------
         DeleteIocsResponse
         """
-        _response = await self._raw_client.delete_iocs(meta=meta, ids=ids, request_options=request_options)
+        _response = await self._raw_client.delete_iocs(ids=ids, meta=meta, request_options=request_options)
         return _response.data
 
     async def query_ioa(

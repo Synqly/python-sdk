@@ -2756,20 +2756,20 @@ class RawEdrClient:
     def delete_iocs(
         self,
         *,
+        ids: typing.Union[str, typing.Sequence[str]],
         meta: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
-        ids: typing.Optional[str] = None,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[DeleteIocsResponse]:
         """
-        Deletes a list of iocs that match the input of ids in the query param
+        Deletes the indicators of compromise identified by `ids`.
 
         Parameters
         ----------
+        ids : typing.Union[str, typing.Sequence[str]]
+            IDs of the indicators to delete, each the `id` returned by Create IOCs or Query IOCs. Repeat the parameter for several IDs; a single value may also hold a comma-separated list.
+
         meta : typing.Optional[typing.Union[str, typing.Sequence[str]]]
             Add metadata to the response by invoking meta functions. Documentation for [meta functions](https://docs.synqly.com/api-reference/meta-functions) is available. Not all meta functions are available at every endpoint.
-
-        ids : typing.Optional[str]
-            list of ids to delete
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -7451,20 +7451,20 @@ class AsyncRawEdrClient:
     async def delete_iocs(
         self,
         *,
+        ids: typing.Union[str, typing.Sequence[str]],
         meta: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
-        ids: typing.Optional[str] = None,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[DeleteIocsResponse]:
         """
-        Deletes a list of iocs that match the input of ids in the query param
+        Deletes the indicators of compromise identified by `ids`.
 
         Parameters
         ----------
+        ids : typing.Union[str, typing.Sequence[str]]
+            IDs of the indicators to delete, each the `id` returned by Create IOCs or Query IOCs. Repeat the parameter for several IDs; a single value may also hold a comma-separated list.
+
         meta : typing.Optional[typing.Union[str, typing.Sequence[str]]]
             Add metadata to the response by invoking meta functions. Documentation for [meta functions](https://docs.synqly.com/api-reference/meta-functions) is available. Not all meta functions are available at every endpoint.
-
-        ids : typing.Optional[str]
-            list of ids to delete
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
