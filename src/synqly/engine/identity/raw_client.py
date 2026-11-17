@@ -41,6 +41,9 @@ from .types.query_users_response import QueryUsersResponse
 from .types.user_id import UserId
 from pydantic import ValidationError
 
+# this is used as the default value for optional parameters
+OMIT = typing.cast(typing.Any, ...)
+
 
 class RawIdentityClient:
     def __init__(self, *, client_wrapper: SyncClientWrapper):
@@ -3104,6 +3107,216 @@ class RawIdentityClient:
                 "meta": meta,
             },
             request_options=request_options,
+        )
+        try:
+            if 200 <= _response.status_code < 300:
+                return HttpResponse(response=_response, data=None)
+            if _response.status_code == 400:
+                raise BadRequestError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 401:
+                raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 403:
+                raise ForbiddenError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 404:
+                raise NotFoundError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 405:
+                raise MethodNotAllowedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 409:
+                raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 415:
+                raise UnsupportedMediaTypeError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 429:
+                raise TooManyRequestsError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 500:
+                raise InternalServerError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 501:
+                raise NotImplementedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 502:
+                raise BadGatewayError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 503:
+                raise ServiceUnavailableError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 504:
+                raise GatewayTimeoutError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            _response_json = _response.json()
+        except JSONDecodeError:
+            raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response.text)
+        except ValidationError as e:
+            raise ParsingError(
+                status_code=_response.status_code, headers=dict(_response.headers), body=_response.json(), cause=e
+            )
+        raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
+
+    def revoke_programmatic_credential(
+        self,
+        user_id: UserId,
+        credential_uid: str,
+        *,
+        meta: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
+        resource_uid: typing.Optional[str] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> HttpResponse[None]:
+        """
+        Revokes one of a user's programmatic credentials. A programmatic credential is a secret software uses to act as a user or service account, such as an API key or access token; OCSF names them so. A user's credentials are listed in the `programmatic_credentials` field of the user that `get_user` returns. The user stays enabled.
+
+        Parameters
+        ----------
+        user_id : UserId
+
+        credential_uid : str
+            The `uid` of the programmatic credential, such as an API key ID, from the user's `programmatic_credentials` field.
+
+        meta : typing.Optional[typing.Union[str, typing.Sequence[str]]]
+            Add metadata to the response by invoking meta functions. Documentation for [meta functions](https://docs.synqly.com/api-reference/meta-functions) is available. Not all meta functions are available at every endpoint.
+
+        resource_uid : typing.Optional[str]
+            The `uid` of the credential's `resource`, from the user's `programmatic_credentials` field. Give it whenever the credential lists a `resource`; a credential that lists one cannot be revoked without it.
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        HttpResponse[None]
+        """
+        _response = self._client_wrapper.httpx_client.request(
+            f"v1/identity/users/{encode_path_param(user_id)}/programmatic-credentials/{encode_path_param(credential_uid)}/actions/revoke",
+            method="POST",
+            params={
+                "meta": meta,
+            },
+            json={
+                "resource_uid": resource_uid,
+            },
+            request_options=request_options,
+            omit=OMIT,
         )
         try:
             if 200 <= _response.status_code < 300:
@@ -6536,6 +6749,216 @@ class AsyncRawIdentityClient:
                 "meta": meta,
             },
             request_options=request_options,
+        )
+        try:
+            if 200 <= _response.status_code < 300:
+                return AsyncHttpResponse(response=_response, data=None)
+            if _response.status_code == 400:
+                raise BadRequestError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 401:
+                raise UnauthorizedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 402:
+                raise PaymentRequiredError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 403:
+                raise ForbiddenError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 404:
+                raise NotFoundError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 405:
+                raise MethodNotAllowedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 409:
+                raise ConflictError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 415:
+                raise UnsupportedMediaTypeError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 429:
+                raise TooManyRequestsError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 500:
+                raise InternalServerError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 501:
+                raise NotImplementedError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 502:
+                raise BadGatewayError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 503:
+                raise ServiceUnavailableError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            if _response.status_code == 504:
+                raise GatewayTimeoutError(
+                    headers=dict(_response.headers),
+                    body=typing.cast(
+                        Problem,
+                        construct_type(
+                            type_=Problem,  # type: ignore
+                            object_=_response.json(),
+                        ),
+                    ),
+                )
+            _response_json = _response.json()
+        except JSONDecodeError:
+            raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response.text)
+        except ValidationError as e:
+            raise ParsingError(
+                status_code=_response.status_code, headers=dict(_response.headers), body=_response.json(), cause=e
+            )
+        raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
+
+    async def revoke_programmatic_credential(
+        self,
+        user_id: UserId,
+        credential_uid: str,
+        *,
+        meta: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
+        resource_uid: typing.Optional[str] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> AsyncHttpResponse[None]:
+        """
+        Revokes one of a user's programmatic credentials. A programmatic credential is a secret software uses to act as a user or service account, such as an API key or access token; OCSF names them so. A user's credentials are listed in the `programmatic_credentials` field of the user that `get_user` returns. The user stays enabled.
+
+        Parameters
+        ----------
+        user_id : UserId
+
+        credential_uid : str
+            The `uid` of the programmatic credential, such as an API key ID, from the user's `programmatic_credentials` field.
+
+        meta : typing.Optional[typing.Union[str, typing.Sequence[str]]]
+            Add metadata to the response by invoking meta functions. Documentation for [meta functions](https://docs.synqly.com/api-reference/meta-functions) is available. Not all meta functions are available at every endpoint.
+
+        resource_uid : typing.Optional[str]
+            The `uid` of the credential's `resource`, from the user's `programmatic_credentials` field. Give it whenever the credential lists a `resource`; a credential that lists one cannot be revoked without it.
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        AsyncHttpResponse[None]
+        """
+        _response = await self._client_wrapper.httpx_client.request(
+            f"v1/identity/users/{encode_path_param(user_id)}/programmatic-credentials/{encode_path_param(credential_uid)}/actions/revoke",
+            method="POST",
+            params={
+                "meta": meta,
+            },
+            json={
+                "resource_uid": resource_uid,
+            },
+            request_options=request_options,
+            omit=OMIT,
         )
         try:
             if 200 <= _response.status_code < 300:

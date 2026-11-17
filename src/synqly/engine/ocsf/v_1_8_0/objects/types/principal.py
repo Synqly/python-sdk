@@ -63,6 +63,16 @@ class Principal(UncheckedBaseModel):
 from .access_grant import AccessGrant  # noqa: E402, I001
 from .application import Application  # noqa: E402, I001
 from .ldap_person import LdapPerson  # noqa: E402, I001
+from .programmatic_credential import ProgrammaticCredential  # noqa: E402, I001
+from .resource_details import ResourceDetails  # noqa: E402, I001
 from .user import User  # noqa: E402, I001
 
-update_forward_refs(Principal, AccessGrant=AccessGrant, Application=Application, LdapPerson=LdapPerson, User=User)
+update_forward_refs(
+    Principal,
+    AccessGrant=AccessGrant,
+    Application=Application,
+    LdapPerson=LdapPerson,
+    ProgrammaticCredential=ProgrammaticCredential,
+    ResourceDetails=ResourceDetails,
+    User=User,
+)

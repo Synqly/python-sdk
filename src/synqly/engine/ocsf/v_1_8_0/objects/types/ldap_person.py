@@ -168,6 +168,10 @@ class LdapPerson(UncheckedBaseModel):
             extra = pydantic.Extra.allow
 
 
+from .programmatic_credential import ProgrammaticCredential  # noqa: E402, I001
+from .resource_details import ResourceDetails  # noqa: E402, I001
 from .user import User  # noqa: E402, I001
 
-update_forward_refs(LdapPerson, User=User)
+update_forward_refs(
+    LdapPerson, ProgrammaticCredential=ProgrammaticCredential, ResourceDetails=ResourceDetails, User=User
+)

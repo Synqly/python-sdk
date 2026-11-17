@@ -175,6 +175,7 @@ class ResourceDetails(UncheckedBaseModel):
 
 
 from .ldap_person import LdapPerson  # noqa: E402, I001
+from .programmatic_credential import ProgrammaticCredential  # noqa: E402, I001
 from .user import User  # noqa: E402, I001
 
-update_forward_refs(ResourceDetails, LdapPerson=LdapPerson, User=User)
+update_forward_refs(ResourceDetails, LdapPerson=LdapPerson, ProgrammaticCredential=ProgrammaticCredential, User=User)

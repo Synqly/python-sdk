@@ -19,6 +19,9 @@ from .types.query_identity_risky_users_response import QueryIdentityRiskyUsersRe
 from .types.query_users_response import QueryUsersResponse
 from .types.user_id import UserId
 
+# this is used as the default value for optional parameters
+OMIT = typing.cast(typing.Any, ...)
+
 
 class IdentityClient:
     def __init__(self, *, client_wrapper: SyncClientWrapper):
@@ -630,6 +633,43 @@ class IdentityClient:
         None
         """
         _response = self._raw_client.expire_all_user_sessions(user_id, meta=meta, request_options=request_options)
+        return _response.data
+
+    def revoke_programmatic_credential(
+        self,
+        user_id: UserId,
+        credential_uid: str,
+        *,
+        meta: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
+        resource_uid: typing.Optional[str] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> None:
+        """
+        Revokes one of a user's programmatic credentials. A programmatic credential is a secret software uses to act as a user or service account, such as an API key or access token; OCSF names them so. A user's credentials are listed in the `programmatic_credentials` field of the user that `get_user` returns. The user stays enabled.
+
+        Parameters
+        ----------
+        user_id : UserId
+
+        credential_uid : str
+            The `uid` of the programmatic credential, such as an API key ID, from the user's `programmatic_credentials` field.
+
+        meta : typing.Optional[typing.Union[str, typing.Sequence[str]]]
+            Add metadata to the response by invoking meta functions. Documentation for [meta functions](https://docs.synqly.com/api-reference/meta-functions) is available. Not all meta functions are available at every endpoint.
+
+        resource_uid : typing.Optional[str]
+            The `uid` of the credential's `resource`, from the user's `programmatic_credentials` field. Give it whenever the credential lists a `resource`; a credential that lists one cannot be revoked without it.
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        None
+        """
+        _response = self._raw_client.revoke_programmatic_credential(
+            user_id, credential_uid, meta=meta, resource_uid=resource_uid, request_options=request_options
+        )
         return _response.data
 
     def get_user_picture(
@@ -1265,6 +1305,43 @@ class AsyncIdentityClient:
         None
         """
         _response = await self._raw_client.expire_all_user_sessions(user_id, meta=meta, request_options=request_options)
+        return _response.data
+
+    async def revoke_programmatic_credential(
+        self,
+        user_id: UserId,
+        credential_uid: str,
+        *,
+        meta: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
+        resource_uid: typing.Optional[str] = OMIT,
+        request_options: typing.Optional[RequestOptions] = None,
+    ) -> None:
+        """
+        Revokes one of a user's programmatic credentials. A programmatic credential is a secret software uses to act as a user or service account, such as an API key or access token; OCSF names them so. A user's credentials are listed in the `programmatic_credentials` field of the user that `get_user` returns. The user stays enabled.
+
+        Parameters
+        ----------
+        user_id : UserId
+
+        credential_uid : str
+            The `uid` of the programmatic credential, such as an API key ID, from the user's `programmatic_credentials` field.
+
+        meta : typing.Optional[typing.Union[str, typing.Sequence[str]]]
+            Add metadata to the response by invoking meta functions. Documentation for [meta functions](https://docs.synqly.com/api-reference/meta-functions) is available. Not all meta functions are available at every endpoint.
+
+        resource_uid : typing.Optional[str]
+            The `uid` of the credential's `resource`, from the user's `programmatic_credentials` field. Give it whenever the credential lists a `resource`; a credential that lists one cannot be revoked without it.
+
+        request_options : typing.Optional[RequestOptions]
+            Request-specific configuration.
+
+        Returns
+        -------
+        None
+        """
+        _response = await self._raw_client.revoke_programmatic_credential(
+            user_id, credential_uid, meta=meta, resource_uid=resource_uid, request_options=request_options
+        )
         return _response.data
 
     async def get_user_picture(

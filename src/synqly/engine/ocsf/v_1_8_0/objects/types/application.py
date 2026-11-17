@@ -17,7 +17,6 @@ from .graph import Graph
 from .group import Group
 from .key_value_object import KeyValueObject
 from .product import Product
-from .programmatic_credential import ProgrammaticCredential
 from .sbom import Sbom
 from .sso import Sso
 from .url import Url
@@ -123,7 +122,7 @@ class Application(UncheckedBaseModel):
     The software product that this application is an instance of, carrying product identity such as <code>vendor_name</code>, <code>cpe_name</code>, and canonical <code>version</code>.
     """
 
-    programmatic_credentials: typing.Optional[typing.List[ProgrammaticCredential]] = pydantic.Field(default=None)
+    programmatic_credentials: typing.Optional[typing.List["ProgrammaticCredential"]] = pydantic.Field(default=None)
     """
     The credentials registered for the application, such as client secrets and certificates.
     """
@@ -223,7 +222,16 @@ class Application(UncheckedBaseModel):
 
 
 from .ldap_person import LdapPerson  # noqa: E402, I001
+from .programmatic_credential import ProgrammaticCredential  # noqa: E402, I001
+from .resource_details import ResourceDetails  # noqa: E402, I001
 from .user import User  # noqa: E402, I001
 from .access_grant import AccessGrant  # noqa: E402, I001
 
-update_forward_refs(Application, AccessGrant=AccessGrant, LdapPerson=LdapPerson, User=User)
+update_forward_refs(
+    Application,
+    AccessGrant=AccessGrant,
+    LdapPerson=LdapPerson,
+    ProgrammaticCredential=ProgrammaticCredential,
+    ResourceDetails=ResourceDetails,
+    User=User,
+)

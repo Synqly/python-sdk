@@ -13,7 +13,6 @@ from .access_grant_consent_type_id import AccessGrantConsentTypeId
 from .access_grant_state_id import AccessGrantStateId
 from .access_grant_type_id import AccessGrantTypeId
 from .iam_role import IamRole
-from .resource_details import ResourceDetails
 
 
 class AccessGrant(UncheckedBaseModel):
@@ -76,7 +75,7 @@ class AccessGrant(UncheckedBaseModel):
     The permissions or scopes the grant gives. For example, <code>User.Read.All</code> or <code>openid</code>.
     """
 
-    resources: typing.Optional[typing.List[ResourceDetails]] = pydantic.Field(default=None)
+    resources: typing.Optional[typing.List["ResourceDetails"]] = pydantic.Field(default=None)
     """
     The resources the grant gives access to. For example, a cloud subscription or storage bucket.
     """
@@ -120,6 +119,17 @@ class AccessGrant(UncheckedBaseModel):
             extra = pydantic.Extra.allow
 
 
+from .ldap_person import LdapPerson  # noqa: E402, I001
+from .programmatic_credential import ProgrammaticCredential  # noqa: E402, I001
+from .resource_details import ResourceDetails  # noqa: E402, I001
+from .user import User  # noqa: E402, I001
 from .application import Application  # noqa: E402, I001
 
-update_forward_refs(AccessGrant, Application=Application)
+update_forward_refs(
+    AccessGrant,
+    Application=Application,
+    LdapPerson=LdapPerson,
+    ProgrammaticCredential=ProgrammaticCredential,
+    ResourceDetails=ResourceDetails,
+    User=User,
+)

@@ -19,7 +19,6 @@ from ....objects.types.metadata import Metadata
 from ....objects.types.object import Object
 from ....objects.types.observable import Observable
 from ....objects.types.remediation import Remediation
-from ....objects.types.resource_details import ResourceDetails
 from ....objects.types.vendor_attributes import VendorAttributes
 from .activity_id import ActivityId
 from .category_uid import CategoryUid
@@ -160,12 +159,12 @@ class ComplianceFinding(UncheckedBaseModel):
     Describes the recommended remediation steps to address identified issue(s).
     """
 
-    resource: typing.Optional[ResourceDetails] = pydantic.Field(default=None)
+    resource: typing.Optional["ResourceDetails"] = pydantic.Field(default=None)
     """
     Describes details about the resource that is the subject of the compliance check.
     """
 
-    resources: typing.Optional[typing.List[ResourceDetails]] = pydantic.Field(default=None)
+    resources: typing.Optional[typing.List["ResourceDetails"]] = pydantic.Field(default=None)
     """
     Describes details about the resource/resources that are the subject of the compliance check.
     """
@@ -254,4 +253,15 @@ class ComplianceFinding(UncheckedBaseModel):
             extra = pydantic.Extra.allow
 
 
-update_forward_refs(ComplianceFinding)
+from ....objects.types.ldap_person import LdapPerson  # noqa: E402, I001
+from ....objects.types.programmatic_credential import ProgrammaticCredential  # noqa: E402, I001
+from ....objects.types.resource_details import ResourceDetails  # noqa: E402, I001
+from ....objects.types.user import User  # noqa: E402, I001
+
+update_forward_refs(
+    ComplianceFinding,
+    LdapPerson=LdapPerson,
+    ProgrammaticCredential=ProgrammaticCredential,
+    ResourceDetails=ResourceDetails,
+    User=User,
+)

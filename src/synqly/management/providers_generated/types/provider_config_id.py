@@ -202,6 +202,11 @@ class ProviderConfigId(enum.StrEnum):
     Microsoft Teams
     """
 
+    CHAT_OPEN_AI_CHAT_GPT = "chat_openai_chatgpt"
+    """
+    OpenAI ChatGPT Enterprise
+    """
+
     CHAT_SLACK = "chat_slack"
     """
     Slack
@@ -475,6 +480,16 @@ class ProviderConfigId(enum.StrEnum):
     IDENTITY_OKTA_MOCK = "identity_okta_mock"
     """
     [MOCK] Okta Identity
+    """
+
+    IDENTITY_OPEN_AI_CHAT_GPT = "identity_openai_chatgpt"
+    """
+    OpenAI ChatGPT Enterprise
+    """
+
+    IDENTITY_OPEN_AI_PLATFORM = "identity_openai_platform"
+    """
+    OpenAI API Platform
     """
 
     IDENTITY_PING_ONE = "identity_pingone"
@@ -1023,6 +1038,7 @@ class ProviderConfigId(enum.StrEnum):
         assets_tenable_cloud_mock: typing.Callable[[], T_Result],
         chat_microsoft_copilot: typing.Callable[[], T_Result],
         chat_microsoft_teams: typing.Callable[[], T_Result],
+        chat_open_ai_chat_gpt: typing.Callable[[], T_Result],
         chat_slack: typing.Callable[[], T_Result],
         cloud_security_aws: typing.Callable[[], T_Result],
         cloud_security_aws_event_bridge_sqs: typing.Callable[[], T_Result],
@@ -1078,6 +1094,8 @@ class ProviderConfigId(enum.StrEnum):
         identity_greenhouse: typing.Callable[[], T_Result],
         identity_okta: typing.Callable[[], T_Result],
         identity_okta_mock: typing.Callable[[], T_Result],
+        identity_open_ai_chat_gpt: typing.Callable[[], T_Result],
+        identity_open_ai_platform: typing.Callable[[], T_Result],
         identity_ping_one: typing.Callable[[], T_Result],
         identity_ping_one_mock: typing.Callable[[], T_Result],
         identity_workday: typing.Callable[[], T_Result],
@@ -1255,6 +1273,8 @@ class ProviderConfigId(enum.StrEnum):
             return chat_microsoft_copilot()
         if self is ProviderConfigId.CHAT_MICROSOFT_TEAMS:
             return chat_microsoft_teams()
+        if self is ProviderConfigId.CHAT_OPEN_AI_CHAT_GPT:
+            return chat_open_ai_chat_gpt()
         if self is ProviderConfigId.CHAT_SLACK:
             return chat_slack()
         if self is ProviderConfigId.CLOUD_SECURITY_AWS:
@@ -1365,6 +1385,10 @@ class ProviderConfigId(enum.StrEnum):
             return identity_okta()
         if self is ProviderConfigId.IDENTITY_OKTA_MOCK:
             return identity_okta_mock()
+        if self is ProviderConfigId.IDENTITY_OPEN_AI_CHAT_GPT:
+            return identity_open_ai_chat_gpt()
+        if self is ProviderConfigId.IDENTITY_OPEN_AI_PLATFORM:
+            return identity_open_ai_platform()
         if self is ProviderConfigId.IDENTITY_PING_ONE:
             return identity_ping_one()
         if self is ProviderConfigId.IDENTITY_PING_ONE_MOCK:

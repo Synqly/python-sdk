@@ -25,7 +25,6 @@ from ....objects.types.object import Object
 from ....objects.types.observable import Observable
 from ....objects.types.policy import Policy
 from ....objects.types.remediation import Remediation
-from ....objects.types.resource_details import ResourceDetails
 from ....objects.types.vendor_attributes import VendorAttributes
 from ....objects.types.vulnerability import Vulnerability
 from .action_id import ActionId
@@ -241,7 +240,7 @@ class DetectionFinding(UncheckedBaseModel):
     Describes the recommended remediation steps to address identified issue(s).
     """
 
-    resources: typing.Optional[typing.List[ResourceDetails]] = pydantic.Field(default=None)
+    resources: typing.Optional[typing.List["ResourceDetails"]] = pydantic.Field(default=None)
     """
     Describes details about resources that were the target of the activity that triggered the finding.
     """
@@ -355,4 +354,15 @@ class DetectionFinding(UncheckedBaseModel):
             extra = pydantic.Extra.allow
 
 
-update_forward_refs(DetectionFinding)
+from ....objects.types.ldap_person import LdapPerson  # noqa: E402, I001
+from ....objects.types.programmatic_credential import ProgrammaticCredential  # noqa: E402, I001
+from ....objects.types.resource_details import ResourceDetails  # noqa: E402, I001
+from ....objects.types.user import User  # noqa: E402, I001
+
+update_forward_refs(
+    DetectionFinding,
+    LdapPerson=LdapPerson,
+    ProgrammaticCredential=ProgrammaticCredential,
+    ResourceDetails=ResourceDetails,
+    User=User,
+)

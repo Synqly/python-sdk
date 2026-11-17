@@ -7,5 +7,6 @@ UserTypeId is an enum, and the following values are allowed.
 1 - User: Regular user account.
 2 - Admin: Admin/root user account.
 3 - System: System account. For example, Windows computer accounts with a trailing dollar sign ($).
+4 - Service: Service account. For example, Windows service account.
 99 - Other: The type is not mapped. See the <code>type</code> attribute, which contains a data source specific value.
 """

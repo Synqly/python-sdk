@@ -479,9 +479,6 @@ from ...ocsf.v_1_3_0.objects.types.policy import Policy as ocsf_v_1_3_0_objects_
 from ...ocsf.v_1_3_0.objects.types.process import Process
 from ...ocsf.v_1_3_0.objects.types.product import Product as ocsf_v_1_3_0_objects_types_product_Product
 from ...ocsf.v_1_3_0.objects.types.remediation import Remediation as ocsf_v_1_3_0_objects_types_remediation_Remediation
-from ...ocsf.v_1_3_0.objects.types.resource_details import (
-    ResourceDetails as ocsf_v_1_3_0_objects_types_resource_details_ResourceDetails,
-)
 from ...ocsf.v_1_3_0.objects.types.scan import Scan
 from ...ocsf.v_1_3_0.objects.types.service import Service
 from ...ocsf.v_1_3_0.objects.types.session import Session
@@ -489,7 +486,6 @@ from ...ocsf.v_1_3_0.objects.types.sharing import Sharing as ocsf_v_1_3_0_object
 from ...ocsf.v_1_3_0.objects.types.ticket import Ticket
 from ...ocsf.v_1_3_0.objects.types.tls import Tls as ocsf_v_1_3_0_objects_types_tls_Tls
 from ...ocsf.v_1_3_0.objects.types.url import Url as ocsf_v_1_3_0_objects_types_url_Url
-from ...ocsf.v_1_3_0.objects.types.user import User as ocsf_v_1_3_0_objects_types_user_User
 from ...ocsf.v_1_3_0.objects.types.vulnerability import (
     Vulnerability as ocsf_v_1_3_0_objects_types_vulnerability_Vulnerability,
 )
@@ -717,9 +713,6 @@ from ...ocsf.v_1_4_0.objects.types.object import Object as ocsf_v_1_4_0_objects_
 from ...ocsf.v_1_4_0.objects.types.observable import Observable as ocsf_v_1_4_0_objects_types_observable_Observable
 from ...ocsf.v_1_4_0.objects.types.osint import Osint as ocsf_v_1_4_0_objects_types_osint_Osint
 from ...ocsf.v_1_4_0.objects.types.policy import Policy as ocsf_v_1_4_0_objects_types_policy_Policy
-from ...ocsf.v_1_4_0.objects.types.resource_details import (
-    ResourceDetails as ocsf_v_1_4_0_objects_types_resource_details_ResourceDetails,
-)
 from ...ocsf.v_1_4_0.objects.types.table import Table
 from ...ocsf.v_1_6_0.base.types.email_address import EmailAddress
 from ...ocsf.v_1_6_0.base.types.timestamp import Timestamp as ocsf_v_1_6_0_base_types_timestamp_Timestamp
@@ -1115,9 +1108,6 @@ from ...ocsf.v_1_8_0.objects.types.policy import Policy as ocsf_v_1_8_0_objects_
 from ...ocsf.v_1_8_0.objects.types.principal import Principal
 from ...ocsf.v_1_8_0.objects.types.product import Product as ocsf_v_1_8_0_objects_types_product_Product
 from ...ocsf.v_1_8_0.objects.types.remediation import Remediation as ocsf_v_1_8_0_objects_types_remediation_Remediation
-from ...ocsf.v_1_8_0.objects.types.resource_details import (
-    ResourceDetails as ocsf_v_1_8_0_objects_types_resource_details_ResourceDetails,
-)
 from ...ocsf.v_1_8_0.objects.types.sbom import Sbom
 from ...ocsf.v_1_8_0.objects.types.training_campaign import TrainingCampaign
 from ...ocsf.v_1_8_0.objects.types.url import Url as ocsf_v_1_8_0_objects_types_url_Url
@@ -1268,8 +1258,8 @@ class Event_AccountChange(UncheckedBaseModel):
     type_name: typing.Optional[str] = None
     type_uid: ocsf_v_1_3_0_accountchange_classes_types_type_uid_TypeUid
     unmapped: typing.Optional[ocsf_v_1_3_0_objects_types_object_Object] = None
-    user: ocsf_v_1_3_0_objects_types_user_User
-    user_result: typing.Optional[ocsf_v_1_3_0_objects_types_user_User] = None
+    user: "ocsf_v_1_3_0_objects_types_user_User"
+    user_result: typing.Optional["ocsf_v_1_3_0_objects_types_user_User"] = None
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow")  # type: ignore # Pydantic v2
@@ -1303,7 +1293,7 @@ class Event_ApiActivity(UncheckedBaseModel):
     observables: typing.Optional[typing.List[ocsf_v_1_3_0_objects_types_observable_Observable]] = None
     osint: typing.Optional[typing.List[ocsf_v_1_3_0_objects_types_osint_Osint]] = None
     raw_data: typing.Optional[str] = None
-    resources: typing.Optional[typing.List[ocsf_v_1_3_0_objects_types_resource_details_ResourceDetails]] = None
+    resources: typing.Optional[typing.List["ocsf_v_1_3_0_objects_types_resource_details_ResourceDetails"]] = None
     severity: typing.Optional[str] = None
     severity_id: ocsf_v_1_3_0_apiactivity_classes_types_severity_id_SeverityId
     src_endpoint: ocsf_v_1_3_0_objects_types_network_endpoint_NetworkEndpoint
@@ -1371,7 +1361,7 @@ class Event_ApplicationSecurityPostureFinding(UncheckedBaseModel):
     raw_data_hash: typing.Optional[ocsf_v_1_8_0_objects_types_fingerprint_Fingerprint] = None
     raw_data_size: typing.Optional[int] = None
     remediation: typing.Optional[ocsf_v_1_8_0_objects_types_remediation_Remediation] = None
-    resources: typing.Optional[typing.List[ocsf_v_1_8_0_objects_types_resource_details_ResourceDetails]] = None
+    resources: typing.Optional[typing.List["ocsf_v_1_8_0_objects_types_resource_details_ResourceDetails"]] = None
     risk_details: typing.Optional[str] = None
     risk_level: typing.Optional[str] = None
     risk_level_id: typing.Optional[
@@ -1509,7 +1499,7 @@ class Event_Authentication(UncheckedBaseModel):
     type_name: typing.Optional[str] = None
     type_uid: ocsf_v_1_3_0_authentication_classes_types_type_uid_TypeUid
     unmapped: typing.Optional[ocsf_v_1_3_0_objects_types_object_Object] = None
-    user: ocsf_v_1_3_0_objects_types_user_User
+    user: "ocsf_v_1_3_0_objects_types_user_User"
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow")  # type: ignore # Pydantic v2
@@ -1562,7 +1552,7 @@ class Event_AuthorizeSession(UncheckedBaseModel):
     type_name: typing.Optional[str] = None
     type_uid: ocsf_v_1_3_0_authorizesession_classes_types_type_uid_TypeUid
     unmapped: typing.Optional[ocsf_v_1_3_0_objects_types_object_Object] = None
-    user: ocsf_v_1_3_0_objects_types_user_User
+    user: "ocsf_v_1_3_0_objects_types_user_User"
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow")  # type: ignore # Pydantic v2
@@ -1646,8 +1636,8 @@ class Event_ComplianceFinding(UncheckedBaseModel):
     osint: typing.Optional[typing.List[ocsf_v_1_3_0_objects_types_osint_Osint]] = None
     raw_data: typing.Optional[str] = None
     remediation: typing.Optional[ocsf_v_1_3_0_objects_types_remediation_Remediation] = None
-    resource: typing.Optional[ocsf_v_1_3_0_objects_types_resource_details_ResourceDetails] = None
-    resources: typing.Optional[typing.List[ocsf_v_1_3_0_objects_types_resource_details_ResourceDetails]] = None
+    resource: typing.Optional["ocsf_v_1_3_0_objects_types_resource_details_ResourceDetails"] = None
+    resources: typing.Optional[typing.List["ocsf_v_1_3_0_objects_types_resource_details_ResourceDetails"]] = None
     severity: typing.Optional[str] = None
     severity_id: ocsf_v_1_3_0_compliancefinding_classes_types_severity_id_SeverityId
     start_time: typing.Optional[ocsf_v_1_3_0_base_types_timestamp_Timestamp] = None
@@ -1759,7 +1749,7 @@ class Event_DetectionFinding(UncheckedBaseModel):
     osint: typing.Optional[typing.List[ocsf_v_1_3_0_objects_types_osint_Osint]] = None
     raw_data: typing.Optional[str] = None
     remediation: typing.Optional[ocsf_v_1_3_0_objects_types_remediation_Remediation] = None
-    resources: typing.Optional[typing.List[ocsf_v_1_3_0_objects_types_resource_details_ResourceDetails]] = None
+    resources: typing.Optional[typing.List["ocsf_v_1_3_0_objects_types_resource_details_ResourceDetails"]] = None
     risk_details: typing.Optional[str] = None
     risk_level: typing.Optional[str] = None
     risk_level_id: typing.Optional[ocsf_v_1_3_0_detectionfinding_classes_types_risk_level_id_RiskLevelId] = None
@@ -2050,7 +2040,7 @@ class Event_GroupManagement(UncheckedBaseModel):
     osint: typing.Optional[typing.List[ocsf_v_1_3_0_objects_types_osint_Osint]] = None
     privileges: typing.Optional[typing.List[str]] = None
     raw_data: typing.Optional[str] = None
-    resource: typing.Optional[ocsf_v_1_3_0_objects_types_resource_details_ResourceDetails] = None
+    resource: typing.Optional["ocsf_v_1_3_0_objects_types_resource_details_ResourceDetails"] = None
     severity: typing.Optional[str] = None
     severity_id: ocsf_v_1_3_0_groupmanagement_classes_types_severity_id_SeverityId
     src_endpoint: typing.Optional[ocsf_v_1_3_0_objects_types_network_endpoint_NetworkEndpoint] = None
@@ -2066,7 +2056,7 @@ class Event_GroupManagement(UncheckedBaseModel):
     type_name: typing.Optional[str] = None
     type_uid: ocsf_v_1_3_0_groupmanagement_classes_types_type_uid_TypeUid
     unmapped: typing.Optional[ocsf_v_1_3_0_objects_types_object_Object] = None
-    user: typing.Optional[ocsf_v_1_3_0_objects_types_user_User] = None
+    user: typing.Optional["ocsf_v_1_3_0_objects_types_user_User"] = None
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow")  # type: ignore # Pydantic v2
@@ -2082,7 +2072,7 @@ class Event_IncidentFinding(UncheckedBaseModel):
     activity_id: ocsf_v_1_3_0_incidentfinding_classes_types_activity_id_ActivityId
     activity_name: typing.Optional[str] = None
     api: typing.Optional[ocsf_v_1_3_0_objects_types_api_Api] = None
-    assignee: typing.Optional[ocsf_v_1_3_0_objects_types_user_User] = None
+    assignee: typing.Optional["ocsf_v_1_3_0_objects_types_user_User"] = None
     assignee_group: typing.Optional[ocsf_v_1_3_0_objects_types_group_Group] = None
     attacks: typing.Optional[typing.List[ocsf_v_1_3_0_objects_types_attack_Attack]] = None
     category_name: typing.Optional[str] = None
@@ -2533,7 +2523,7 @@ class Event_SecurityFinding(UncheckedBaseModel):
     osint: typing.Optional[typing.List[ocsf_v_1_3_0_objects_types_osint_Osint]] = None
     process: typing.Optional[Process] = None
     raw_data: typing.Optional[str] = None
-    resources: typing.Optional[typing.List[ocsf_v_1_3_0_objects_types_resource_details_ResourceDetails]] = None
+    resources: typing.Optional[typing.List["ocsf_v_1_3_0_objects_types_resource_details_ResourceDetails"]] = None
     risk_level: typing.Optional[str] = None
     risk_level_id: typing.Optional[ocsf_v_1_3_0_securityfinding_classes_types_risk_level_id_RiskLevelId] = None
     risk_score: typing.Optional[int] = None
@@ -2635,7 +2625,7 @@ class Event_UserAccessManagement(UncheckedBaseModel):
     osint: typing.Optional[typing.List[ocsf_v_1_3_0_objects_types_osint_Osint]] = None
     privileges: typing.List[str]
     raw_data: typing.Optional[str] = None
-    resource: typing.Optional[ocsf_v_1_3_0_objects_types_resource_details_ResourceDetails] = None
+    resource: typing.Optional["ocsf_v_1_3_0_objects_types_resource_details_ResourceDetails"] = None
     severity: typing.Optional[str] = None
     severity_id: ocsf_v_1_3_0_useraccessmanagement_classes_types_severity_id_SeverityId
     src_endpoint: typing.Optional[ocsf_v_1_3_0_objects_types_network_endpoint_NetworkEndpoint] = None
@@ -2651,7 +2641,7 @@ class Event_UserAccessManagement(UncheckedBaseModel):
     type_name: typing.Optional[str] = None
     type_uid: ocsf_v_1_3_0_useraccessmanagement_classes_types_type_uid_TypeUid
     unmapped: typing.Optional[ocsf_v_1_3_0_objects_types_object_Object] = None
-    user: ocsf_v_1_3_0_objects_types_user_User
+    user: "ocsf_v_1_3_0_objects_types_user_User"
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow")  # type: ignore # Pydantic v2
@@ -2689,8 +2679,8 @@ class Event_VulnerabilityFinding(UncheckedBaseModel):
     observables: typing.Optional[typing.List[ocsf_v_1_3_0_objects_types_observable_Observable]] = None
     osint: typing.Optional[typing.List[ocsf_v_1_3_0_objects_types_osint_Osint]] = None
     raw_data: typing.Optional[str] = None
-    resource: typing.Optional[ocsf_v_1_3_0_objects_types_resource_details_ResourceDetails] = None
-    resources: typing.Optional[typing.List[ocsf_v_1_3_0_objects_types_resource_details_ResourceDetails]] = None
+    resource: typing.Optional["ocsf_v_1_3_0_objects_types_resource_details_ResourceDetails"] = None
+    resources: typing.Optional[typing.List["ocsf_v_1_3_0_objects_types_resource_details_ResourceDetails"]] = None
     severity: typing.Optional[str] = None
     severity_id: ocsf_v_1_3_0_vulnerabilityfinding_classes_types_severity_id_SeverityId
     start_time: typing.Optional[ocsf_v_1_3_0_base_types_timestamp_Timestamp] = None
@@ -3092,7 +3082,7 @@ class Event_CloudResourcesInventoryInfo(UncheckedBaseModel):
     policy: typing.Optional[ocsf_v_1_4_0_objects_types_policy_Policy] = None
     raw_data: typing.Optional[str] = None
     region: typing.Optional[str] = None
-    resources: typing.Optional[typing.List[ocsf_v_1_4_0_objects_types_resource_details_ResourceDetails]] = None
+    resources: typing.Optional[typing.List["ocsf_v_1_4_0_objects_types_resource_details_ResourceDetails"]] = None
     risk_details: typing.Optional[str] = None
     risk_level: typing.Optional[str] = None
     risk_level_id: typing.Optional[ocsf_v_1_4_0_cloudresourcesinventoryinfo_classes_types_risk_level_id_RiskLevelId] = (
@@ -3906,12 +3896,130 @@ Event = typing_extensions.Annotated[
     ],
     UnionMetadata(discriminant="class_name"),
 ]
+from ...ocsf.v_1_3_0.objects.types.programmatic_credential import (
+    ProgrammaticCredential as ocsf_v_1_3_0_objects_types_programmatic_credential_ProgrammaticCredential,
+)  # noqa: E402, I001
+from ...ocsf.v_1_3_0.objects.types.resource_details import (
+    ResourceDetails as ocsf_v_1_3_0_objects_types_resource_details_ResourceDetails,
+)  # noqa: E402, I001
+from ...ocsf.v_1_3_0.objects.types.user import User as ocsf_v_1_3_0_objects_types_user_User  # noqa: E402, I001
 from ...ocsf.v_1_8_0.objects.types.access_grant import AccessGrant  # noqa: E402, I001
 from ...ocsf.v_1_8_0.objects.types.application import Application  # noqa: E402, I001
 from ...ocsf.v_1_8_0.objects.types.ldap_person import LdapPerson  # noqa: E402, I001
+from ...ocsf.v_1_8_0.objects.types.programmatic_credential import (
+    ProgrammaticCredential as ocsf_v_1_8_0_objects_types_programmatic_credential_ProgrammaticCredential,
+)  # noqa: E402, I001
+from ...ocsf.v_1_8_0.objects.types.resource_details import (
+    ResourceDetails as ocsf_v_1_8_0_objects_types_resource_details_ResourceDetails,
+)  # noqa: E402, I001
 from ...ocsf.v_1_8_0.objects.types.user import User as ocsf_v_1_8_0_objects_types_user_User  # noqa: E402, I001
+from ...ocsf.v_1_4_0.objects.types.programmatic_credential import (
+    ProgrammaticCredential as ocsf_v_1_4_0_objects_types_programmatic_credential_ProgrammaticCredential,
+)  # noqa: E402, I001
+from ...ocsf.v_1_4_0.objects.types.resource_details import (
+    ResourceDetails as ocsf_v_1_4_0_objects_types_resource_details_ResourceDetails,
+)  # noqa: E402, I001
+from ...ocsf.v_1_4_0.objects.types.user import User as ocsf_v_1_4_0_objects_types_user_User  # noqa: E402, I001
 
-update_forward_refs(Event_ApplicationSecurityPostureFinding, AccessGrant=AccessGrant, Application=Application)
+update_forward_refs(
+    Event_AccountChange,
+    ProgrammaticCredential=ocsf_v_1_3_0_objects_types_programmatic_credential_ProgrammaticCredential,
+    ResourceDetails=ocsf_v_1_3_0_objects_types_resource_details_ResourceDetails,
+    User=ocsf_v_1_3_0_objects_types_user_User,
+)
+update_forward_refs(
+    Event_ApiActivity,
+    ProgrammaticCredential=ocsf_v_1_3_0_objects_types_programmatic_credential_ProgrammaticCredential,
+    ResourceDetails=ocsf_v_1_3_0_objects_types_resource_details_ResourceDetails,
+    User=ocsf_v_1_3_0_objects_types_user_User,
+)
+update_forward_refs(
+    Event_ApplicationSecurityPostureFinding,
+    AccessGrant=AccessGrant,
+    Application=Application,
+    LdapPerson=LdapPerson,
+    ProgrammaticCredential=ocsf_v_1_8_0_objects_types_programmatic_credential_ProgrammaticCredential,
+    ResourceDetails=ocsf_v_1_8_0_objects_types_resource_details_ResourceDetails,
+    User=ocsf_v_1_8_0_objects_types_user_User,
+)
+update_forward_refs(Event_EntityManagement)
+update_forward_refs(
+    Event_Authentication,
+    ProgrammaticCredential=ocsf_v_1_3_0_objects_types_programmatic_credential_ProgrammaticCredential,
+    ResourceDetails=ocsf_v_1_3_0_objects_types_resource_details_ResourceDetails,
+    User=ocsf_v_1_3_0_objects_types_user_User,
+)
+update_forward_refs(
+    Event_AuthorizeSession,
+    ProgrammaticCredential=ocsf_v_1_3_0_objects_types_programmatic_credential_ProgrammaticCredential,
+    ResourceDetails=ocsf_v_1_3_0_objects_types_resource_details_ResourceDetails,
+    User=ocsf_v_1_3_0_objects_types_user_User,
+)
+update_forward_refs(Event_BaseEvent)
+update_forward_refs(
+    Event_ComplianceFinding,
+    ProgrammaticCredential=ocsf_v_1_3_0_objects_types_programmatic_credential_ProgrammaticCredential,
+    ResourceDetails=ocsf_v_1_3_0_objects_types_resource_details_ResourceDetails,
+    User=ocsf_v_1_3_0_objects_types_user_User,
+)
+update_forward_refs(Event_DeviceConfigState)
+update_forward_refs(
+    Event_DetectionFinding,
+    ProgrammaticCredential=ocsf_v_1_3_0_objects_types_programmatic_credential_ProgrammaticCredential,
+    ResourceDetails=ocsf_v_1_3_0_objects_types_resource_details_ResourceDetails,
+    User=ocsf_v_1_3_0_objects_types_user_User,
+)
+update_forward_refs(Event_DnsActivity)
+update_forward_refs(Event_HttpActivity)
+update_forward_refs(Event_FileSystemActivity)
+update_forward_refs(
+    Event_GroupManagement,
+    ProgrammaticCredential=ocsf_v_1_3_0_objects_types_programmatic_credential_ProgrammaticCredential,
+    ResourceDetails=ocsf_v_1_3_0_objects_types_resource_details_ResourceDetails,
+    User=ocsf_v_1_3_0_objects_types_user_User,
+)
+update_forward_refs(
+    Event_IncidentFinding,
+    ProgrammaticCredential=ocsf_v_1_3_0_objects_types_programmatic_credential_ProgrammaticCredential,
+    ResourceDetails=ocsf_v_1_3_0_objects_types_resource_details_ResourceDetails,
+    User=ocsf_v_1_3_0_objects_types_user_User,
+)
+update_forward_refs(Event_DeviceInventoryInfo)
+update_forward_refs(Event_ModuleActivity)
+update_forward_refs(Event_NetworkActivity)
+update_forward_refs(Event_ProcessActivity)
+update_forward_refs(Event_ScanActivity)
+update_forward_refs(Event_ScheduledJobActivity)
+update_forward_refs(
+    Event_SecurityFinding,
+    ProgrammaticCredential=ocsf_v_1_3_0_objects_types_programmatic_credential_ProgrammaticCredential,
+    ResourceDetails=ocsf_v_1_3_0_objects_types_resource_details_ResourceDetails,
+    User=ocsf_v_1_3_0_objects_types_user_User,
+)
+update_forward_refs(Event_SoftwareInfo)
+update_forward_refs(
+    Event_UserAccessManagement,
+    ProgrammaticCredential=ocsf_v_1_3_0_objects_types_programmatic_credential_ProgrammaticCredential,
+    ResourceDetails=ocsf_v_1_3_0_objects_types_resource_details_ResourceDetails,
+    User=ocsf_v_1_3_0_objects_types_user_User,
+)
+update_forward_refs(
+    Event_VulnerabilityFinding,
+    ProgrammaticCredential=ocsf_v_1_3_0_objects_types_programmatic_credential_ProgrammaticCredential,
+    ResourceDetails=ocsf_v_1_3_0_objects_types_resource_details_ResourceDetails,
+    User=ocsf_v_1_3_0_objects_types_user_User,
+)
+update_forward_refs(Event_WebResourceAccessActivity)
+update_forward_refs(Event_ApplicationLifecycle)
+update_forward_refs(Event_FileHostingActivity)
+update_forward_refs(Event_EmailActivity)
+update_forward_refs(Event_CloudActivity)
+update_forward_refs(
+    Event_CloudResourcesInventoryInfo,
+    ProgrammaticCredential=ocsf_v_1_4_0_objects_types_programmatic_credential_ProgrammaticCredential,
+    ResourceDetails=ocsf_v_1_4_0_objects_types_resource_details_ResourceDetails,
+    User=ocsf_v_1_4_0_objects_types_user_User,
+)
 update_forward_refs(Event_NoteActivity)
 update_forward_refs(Event_SoftwareInventoryInfo)
 update_forward_refs(Event_ChatMessageActivity)
@@ -3921,6 +4029,8 @@ update_forward_refs(
     AccessGrant=AccessGrant,
     Application=Application,
     LdapPerson=LdapPerson,
+    ProgrammaticCredential=ocsf_v_1_8_0_objects_types_programmatic_credential_ProgrammaticCredential,
+    ResourceDetails=ocsf_v_1_8_0_objects_types_resource_details_ResourceDetails,
     User=ocsf_v_1_8_0_objects_types_user_User,
 )
 update_forward_refs(Event_AccessGrantInventoryInfo, AccessGrant=AccessGrant, Application=Application)
@@ -3928,7 +4038,14 @@ update_forward_refs(Event_ComplianceControlInventoryInfo)
 update_forward_refs(Event_ComplianceFrameworkInventoryInfo)
 update_forward_refs(Event_ComplianceTestInventoryInfo)
 update_forward_refs(Event_ComplianceEvidenceInventoryInfo)
+update_forward_refs(Event_EventLogActivity)
 update_forward_refs(Event_TrainingCampaignInventoryInfo)
 update_forward_refs(Event_PhishingSimulationInventoryInfo)
-update_forward_refs(Event_UserInventoryInfo, LdapPerson=LdapPerson, User=ocsf_v_1_8_0_objects_types_user_User)
+update_forward_refs(
+    Event_UserInventoryInfo,
+    LdapPerson=LdapPerson,
+    ProgrammaticCredential=ocsf_v_1_8_0_objects_types_programmatic_credential_ProgrammaticCredential,
+    ResourceDetails=ocsf_v_1_8_0_objects_types_resource_details_ResourceDetails,
+    User=ocsf_v_1_8_0_objects_types_user_User,
+)
 update_forward_refs(Event_OsintInventoryInfo)

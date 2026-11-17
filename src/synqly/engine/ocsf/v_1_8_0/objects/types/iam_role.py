@@ -9,8 +9,6 @@ from .....core.pydantic_utilities import IS_PYDANTIC_V2, update_forward_refs
 from .....core.unchecked_base_model import UncheckedBaseModel
 from .account import Account
 from .policy import Policy
-from .programmatic_credential import ProgrammaticCredential
-from .resource_details import ResourceDetails
 from .session import Session
 
 
@@ -39,12 +37,12 @@ class IamRole(UncheckedBaseModel):
     List of privileges assigned to a role.
     """
 
-    programmatic_credentials: typing.Optional[typing.List[ProgrammaticCredential]] = pydantic.Field(default=None)
+    programmatic_credentials: typing.Optional[typing.List["ProgrammaticCredential"]] = pydantic.Field(default=None)
     """
     Programmatic credential (API keys, access tokens, certificates, etc) associated with the role.
     """
 
-    resources: typing.Optional[typing.List[ResourceDetails]] = pydantic.Field(default=None)
+    resources: typing.Optional[typing.List["ResourceDetails"]] = pydantic.Field(default=None)
     """
     Resources that the role applies to.
     """
@@ -73,4 +71,15 @@ class IamRole(UncheckedBaseModel):
             extra = pydantic.Extra.allow
 
 
-update_forward_refs(IamRole)
+from .ldap_person import LdapPerson  # noqa: E402, I001
+from .programmatic_credential import ProgrammaticCredential  # noqa: E402, I001
+from .resource_details import ResourceDetails  # noqa: E402, I001
+from .user import User  # noqa: E402, I001
+
+update_forward_refs(
+    IamRole,
+    LdapPerson=LdapPerson,
+    ProgrammaticCredential=ProgrammaticCredential,
+    ResourceDetails=ResourceDetails,
+    User=User,
+)

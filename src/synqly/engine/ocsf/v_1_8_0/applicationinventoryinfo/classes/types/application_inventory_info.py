@@ -274,8 +274,16 @@ class ApplicationInventoryInfo(UncheckedBaseModel):
 from ....objects.types.access_grant import AccessGrant  # noqa: E402, I001
 from ....objects.types.application import Application  # noqa: E402, I001
 from ....objects.types.ldap_person import LdapPerson  # noqa: E402, I001
+from ....objects.types.programmatic_credential import ProgrammaticCredential  # noqa: E402, I001
+from ....objects.types.resource_details import ResourceDetails  # noqa: E402, I001
 from ....objects.types.user import User  # noqa: E402, I001
 
 update_forward_refs(
-    ApplicationInventoryInfo, AccessGrant=AccessGrant, Application=Application, LdapPerson=LdapPerson, User=User
+    ApplicationInventoryInfo,
+    AccessGrant=AccessGrant,
+    Application=Application,
+    LdapPerson=LdapPerson,
+    ProgrammaticCredential=ProgrammaticCredential,
+    ResourceDetails=ResourceDetails,
+    User=User,
 )

@@ -24,7 +24,6 @@ from ....objects.types.object import Object
 from ....objects.types.observable import Observable
 from ....objects.types.policy import Policy
 from ....objects.types.remediation import Remediation
-from ....objects.types.resource_details import ResourceDetails
 from ....objects.types.vendor_attributes import VendorAttributes
 from ....objects.types.vulnerability import Vulnerability
 from .action_id import ActionId
@@ -224,7 +223,7 @@ class ApplicationSecurityPostureFinding(UncheckedBaseModel):
     Describes the recommended remediation steps to address identified vulnerabilities or weaknesses.
     """
 
-    resources: typing.Optional[typing.List[ResourceDetails]] = pydantic.Field(default=None)
+    resources: typing.Optional[typing.List["ResourceDetails"]] = pydantic.Field(default=None)
     """
     Describes details about the resource/resources that are affected by the vulnerability/vulnerabilities.
     """
@@ -340,5 +339,17 @@ class ApplicationSecurityPostureFinding(UncheckedBaseModel):
 
 from ....objects.types.access_grant import AccessGrant  # noqa: E402, I001
 from ....objects.types.application import Application  # noqa: E402, I001
+from ....objects.types.ldap_person import LdapPerson  # noqa: E402, I001
+from ....objects.types.programmatic_credential import ProgrammaticCredential  # noqa: E402, I001
+from ....objects.types.resource_details import ResourceDetails  # noqa: E402, I001
+from ....objects.types.user import User  # noqa: E402, I001
 
-update_forward_refs(ApplicationSecurityPostureFinding, AccessGrant=AccessGrant, Application=Application)
+update_forward_refs(
+    ApplicationSecurityPostureFinding,
+    AccessGrant=AccessGrant,
+    Application=Application,
+    LdapPerson=LdapPerson,
+    ProgrammaticCredential=ProgrammaticCredential,
+    ResourceDetails=ResourceDetails,
+    User=User,
+)

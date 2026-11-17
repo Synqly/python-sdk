@@ -198,6 +198,14 @@ class UserInventory(UncheckedBaseModel):
 
 
 from ....objects.types.ldap_person import LdapPerson  # noqa: E402, I001
+from ....objects.types.programmatic_credential import ProgrammaticCredential  # noqa: E402, I001
+from ....objects.types.resource_details import ResourceDetails  # noqa: E402, I001
 from ....objects.types.user import User  # noqa: E402, I001
 
-update_forward_refs(UserInventory, LdapPerson=LdapPerson, User=User)
+update_forward_refs(
+    UserInventory,
+    LdapPerson=LdapPerson,
+    ProgrammaticCredential=ProgrammaticCredential,
+    ResourceDetails=ResourceDetails,
+    User=User,
+)

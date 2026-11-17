@@ -113,6 +113,8 @@ from .nucleus_credential import NucleusCredential
 from .o_365_management_activity_cloud import O365ManagementActivityCloud
 from .o_365_management_activity_credential import O365ManagementActivityCredential
 from .okta_credential import OktaCredential
+from .open_ai_admin_credential import OpenAiAdminCredential
+from .open_ai_chat_gpt_admin_credential import OpenAiChatGptAdminCredential
 from .open_search_credential import OpenSearchCredential
 from .open_text_application_security_credential import OpenTextApplicationSecurityCredential
 from .open_text_core_application_security_credential import OpenTextCoreApplicationSecurityCredential
@@ -703,6 +705,21 @@ class ProviderConfig_ChatMicrosoftTeams(UncheckedBaseModel):
     credential: TeamsGraphChatCredential
     team_id: typing.Optional[str] = None
     tenant_id: str
+
+    if IS_PYDANTIC_V2:
+        model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow")  # type: ignore # Pydantic v2
+    else:
+
+        class Config:
+            smart_union = True
+            extra = pydantic.Extra.allow
+
+
+class ProviderConfig_ChatOpenaiChatgpt(UncheckedBaseModel):
+    type: typing.Literal["chat_openai_chatgpt"] = "chat_openai_chatgpt"
+    credential: OpenAiChatGptAdminCredential
+    url: typing.Optional[str] = None
+    workspace_id: str
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow")  # type: ignore # Pydantic v2
@@ -1496,6 +1513,35 @@ class ProviderConfig_IdentityOkta(UncheckedBaseModel):
 class ProviderConfig_IdentityOktaMock(UncheckedBaseModel):
     type: typing.Literal["identity_okta_mock"] = "identity_okta_mock"
     dataset: IdentityOktaDataset
+
+    if IS_PYDANTIC_V2:
+        model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow")  # type: ignore # Pydantic v2
+    else:
+
+        class Config:
+            smart_union = True
+            extra = pydantic.Extra.allow
+
+
+class ProviderConfig_IdentityOpenaiChatgpt(UncheckedBaseModel):
+    type: typing.Literal["identity_openai_chatgpt"] = "identity_openai_chatgpt"
+    credential: OpenAiChatGptAdminCredential
+    url: typing.Optional[str] = None
+    workspace_id: str
+
+    if IS_PYDANTIC_V2:
+        model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow")  # type: ignore # Pydantic v2
+    else:
+
+        class Config:
+            smart_union = True
+            extra = pydantic.Extra.allow
+
+
+class ProviderConfig_IdentityOpenaiPlatform(UncheckedBaseModel):
+    type: typing.Literal["identity_openai_platform"] = "identity_openai_platform"
+    credential: OpenAiAdminCredential
+    url: typing.Optional[str] = None
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow")  # type: ignore # Pydantic v2
@@ -3035,6 +3081,7 @@ ProviderConfig = typing_extensions.Annotated[
         ProviderConfig_AssetsTenableCloudMock,
         ProviderConfig_ChatMicrosoftCopilot,
         ProviderConfig_ChatMicrosoftTeams,
+        ProviderConfig_ChatOpenaiChatgpt,
         ProviderConfig_ChatSlack,
         ProviderConfig_CloudsecurityAws,
         ProviderConfig_CloudsecurityAwseventbridgesqs,
@@ -3090,6 +3137,8 @@ ProviderConfig = typing_extensions.Annotated[
         ProviderConfig_IdentityGreenhouse,
         ProviderConfig_IdentityOkta,
         ProviderConfig_IdentityOktaMock,
+        ProviderConfig_IdentityOpenaiChatgpt,
+        ProviderConfig_IdentityOpenaiPlatform,
         ProviderConfig_IdentityPingone,
         ProviderConfig_IdentityPingoneMock,
         ProviderConfig_IdentityWorkday,

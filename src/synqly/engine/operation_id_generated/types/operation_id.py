@@ -108,6 +108,7 @@ class OperationId(enum.StrEnum):
     IDENTITY_QUERY_RISK_EVENTS = "identity_query_risk_events"
     IDENTITY_QUERY_RISKY_USERS = "identity_query_risky_users"
     IDENTITY_QUERY_USERS = "identity_query_users"
+    IDENTITY_REVOKE_PROGRAMMATIC_CREDENTIAL = "identity_revoke_programmatic_credential"
     INCIDENTRESPONSE_QUERY_ESCALATION_POLICIES = "incidentresponse_query_escalation_policies"
     INCIDENTRESPONSE_QUERY_ESCALATION_POLICY_USERS_ON_CALL = "incidentresponse_query_escalation_policy_users_on_call"
     NETWORKSECURITY_QUERY_DNS_EVENTS = "networksecurity_query_dns_events"
@@ -293,6 +294,7 @@ class OperationId(enum.StrEnum):
         identity_query_risk_events: typing.Callable[[], T_Result],
         identity_query_risky_users: typing.Callable[[], T_Result],
         identity_query_users: typing.Callable[[], T_Result],
+        identity_revoke_programmatic_credential: typing.Callable[[], T_Result],
         incidentresponse_query_escalation_policies: typing.Callable[[], T_Result],
         incidentresponse_query_escalation_policy_users_on_call: typing.Callable[[], T_Result],
         networksecurity_query_dns_events: typing.Callable[[], T_Result],
@@ -567,6 +569,8 @@ class OperationId(enum.StrEnum):
             return identity_query_risky_users()
         if self is OperationId.IDENTITY_QUERY_USERS:
             return identity_query_users()
+        if self is OperationId.IDENTITY_REVOKE_PROGRAMMATIC_CREDENTIAL:
+            return identity_revoke_programmatic_credential()
         if self is OperationId.INCIDENTRESPONSE_QUERY_ESCALATION_POLICIES:
             return incidentresponse_query_escalation_policies()
         if self is OperationId.INCIDENTRESPONSE_QUERY_ESCALATION_POLICY_USERS_ON_CALL:

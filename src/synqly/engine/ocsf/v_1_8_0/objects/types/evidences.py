@@ -26,7 +26,6 @@ from .job import Job
 from .network_connection_info import NetworkConnectionInfo
 from .network_endpoint import NetworkEndpoint
 from .process import Process
-from .resource_details import ResourceDetails
 from .script import Script
 from .tls import Tls
 from .url import Url
@@ -130,7 +129,7 @@ class Evidences(UncheckedBaseModel):
     Describes details about the DNS query associated to the activity that triggered the detection.
     """
 
-    resources: typing.Optional[typing.List[ResourceDetails]] = pydantic.Field(default=None)
+    resources: typing.Optional[typing.List["ResourceDetails"]] = pydantic.Field(default=None)
     """
     Describes details about the cloud resources directly related to activity that triggered the detection. For resources impacted by the detection, use <code>Affected Resources</code> at the top-level of the finding.
     """
@@ -185,6 +184,14 @@ class Evidences(UncheckedBaseModel):
 
 
 from .ldap_person import LdapPerson  # noqa: E402, I001
+from .programmatic_credential import ProgrammaticCredential  # noqa: E402, I001
+from .resource_details import ResourceDetails  # noqa: E402, I001
 from .user import User  # noqa: E402, I001
 
-update_forward_refs(Evidences, LdapPerson=LdapPerson, User=User)
+update_forward_refs(
+    Evidences,
+    LdapPerson=LdapPerson,
+    ProgrammaticCredential=ProgrammaticCredential,
+    ResourceDetails=ResourceDetails,
+    User=User,
+)

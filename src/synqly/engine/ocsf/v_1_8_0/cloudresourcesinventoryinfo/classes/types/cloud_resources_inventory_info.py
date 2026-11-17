@@ -25,7 +25,6 @@ from ....objects.types.metadata import Metadata
 from ....objects.types.object import Object
 from ....objects.types.observable import Observable
 from ....objects.types.policy import Policy
-from ....objects.types.resource_details import ResourceDetails
 from ....objects.types.table import Table
 from .action_id import ActionId
 from .activity_id import ActivityId
@@ -224,7 +223,7 @@ class CloudResourcesInventoryInfo(UncheckedBaseModel):
     The cloud region where the resource is located, e.g., <code>us-isof-south-1</code>, <code>eastus2</code>, <code>us-central1</code>, etc.
     """
 
-    resources: typing.Optional[typing.List[ResourceDetails]] = pydantic.Field(default=None)
+    resources: typing.Optional[typing.List["ResourceDetails"]] = pydantic.Field(default=None)
     """
     The cloud resource(s) that are being discovered by an inventory process. Use this object if there is not a direct object match in the class.
     """
@@ -333,4 +332,15 @@ class CloudResourcesInventoryInfo(UncheckedBaseModel):
             extra = pydantic.Extra.allow
 
 
-update_forward_refs(CloudResourcesInventoryInfo)
+from ....objects.types.ldap_person import LdapPerson  # noqa: E402, I001
+from ....objects.types.programmatic_credential import ProgrammaticCredential  # noqa: E402, I001
+from ....objects.types.resource_details import ResourceDetails  # noqa: E402, I001
+from ....objects.types.user import User  # noqa: E402, I001
+
+update_forward_refs(
+    CloudResourcesInventoryInfo,
+    LdapPerson=LdapPerson,
+    ProgrammaticCredential=ProgrammaticCredential,
+    ResourceDetails=ResourceDetails,
+    User=User,
+)

@@ -155,6 +155,8 @@ if typing.TYPE_CHECKING:
     from .process import Process
     from .process_integrity_id import ProcessIntegrityId
     from .product import Product
+    from .programmatic_credential import ProgrammaticCredential
+    from .programmatic_credential_type_id import ProgrammaticCredentialTypeId
     from .query_info import QueryInfo
     from .related_event import RelatedEvent
     from .remediation import Remediation
@@ -349,6 +351,8 @@ _dynamic_imports: typing.Dict[str, str] = {
     "Process": ".process",
     "ProcessIntegrityId": ".process_integrity_id",
     "Product": ".product",
+    "ProgrammaticCredential": ".programmatic_credential",
+    "ProgrammaticCredentialTypeId": ".programmatic_credential_type_id",
     "QueryInfo": ".query_info",
     "RelatedEvent": ".related_event",
     "Remediation": ".remediation",
@@ -567,6 +571,8 @@ __all__ = [
     "Process",
     "ProcessIntegrityId",
     "Product",
+    "ProgrammaticCredential",
+    "ProgrammaticCredentialTypeId",
     "QueryInfo",
     "RelatedEvent",
     "Remediation",

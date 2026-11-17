@@ -305,6 +305,14 @@ class Osint(UncheckedBaseModel):
 
 
 from .ldap_person import LdapPerson  # noqa: E402, I001
+from .programmatic_credential import ProgrammaticCredential  # noqa: E402, I001
+from .resource_details import ResourceDetails  # noqa: E402, I001
 from .user import User  # noqa: E402, I001
 
-update_forward_refs(Osint, LdapPerson=LdapPerson, User=User)
+update_forward_refs(
+    Osint,
+    LdapPerson=LdapPerson,
+    ProgrammaticCredential=ProgrammaticCredential,
+    ResourceDetails=ResourceDetails,
+    User=User,
+)

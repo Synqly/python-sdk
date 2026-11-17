@@ -9,7 +9,6 @@ from .....core.pydantic_utilities import IS_PYDANTIC_V2, update_forward_refs
 from .....core.unchecked_base_model import UncheckedBaseModel
 from .check_severity_id import CheckSeverityId
 from .check_status_id import CheckStatusId
-from .resource_details import ResourceDetails
 
 
 class Check(UncheckedBaseModel):
@@ -27,7 +26,7 @@ class Check(UncheckedBaseModel):
     The name or title of the compliance check. For example, CIS: <code>Ensure mounting of cramfs filesystems is disabled</code> or DISA STIG: <code>The Ubuntu operating system must implement DoD-approved encryption to protect the confidentiality of remote access sessions</code>.
     """
 
-    resource: typing.Optional[ResourceDetails] = pydantic.Field(default=None)
+    resource: typing.Optional["ResourceDetails"] = pydantic.Field(default=None)
     """
     Describes details about the resource that this check evaluated.
     """
@@ -76,4 +75,15 @@ class Check(UncheckedBaseModel):
             extra = pydantic.Extra.allow
 
 
-update_forward_refs(Check)
+from .ldap_person import LdapPerson  # noqa: E402, I001
+from .programmatic_credential import ProgrammaticCredential  # noqa: E402, I001
+from .resource_details import ResourceDetails  # noqa: E402, I001
+from .user import User  # noqa: E402, I001
+
+update_forward_refs(
+    Check,
+    LdapPerson=LdapPerson,
+    ProgrammaticCredential=ProgrammaticCredential,
+    ResourceDetails=ResourceDetails,
+    User=User,
+)

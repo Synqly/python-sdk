@@ -117,6 +117,7 @@ if typing.TYPE_CHECKING:
     from .channel_join_behavior import ChannelJoinBehavior
     from .chat_microsoft_copilot import ChatMicrosoftCopilot
     from .chat_microsoft_teams import ChatMicrosoftTeams
+    from .chat_open_ai_chat_gpt import ChatOpenAiChatGpt
     from .chat_slack import ChatSlack
     from .claroty_apiurl import ClarotyApiurl
     from .claroty_credential import ClarotyCredential, ClarotyCredential_Token, ClarotyCredential_TokenId
@@ -333,6 +334,8 @@ if typing.TYPE_CHECKING:
     from .identity_okta import IdentityOkta
     from .identity_okta_dataset import IdentityOktaDataset
     from .identity_okta_mock import IdentityOktaMock
+    from .identity_open_ai_chat_gpt import IdentityOpenAiChatGpt
+    from .identity_open_ai_platform import IdentityOpenAiPlatform
     from .identity_ping_one import IdentityPingOne
     from .identity_ping_one_dataset import IdentityPingOneDataset
     from .identity_ping_one_mock import IdentityPingOneMock
@@ -410,6 +413,16 @@ if typing.TYPE_CHECKING:
         OktaCredential_Token,
         OktaCredential_TokenId,
     )
+    from .open_ai_admin_credential import (
+        OpenAiAdminCredential,
+        OpenAiAdminCredential_Token,
+        OpenAiAdminCredential_TokenId,
+    )
+    from .open_ai_chat_gpt_admin_credential import (
+        OpenAiChatGptAdminCredential,
+        OpenAiChatGptAdminCredential_Token,
+        OpenAiChatGptAdminCredential_TokenId,
+    )
     from .open_search_credential import OpenSearchCredential, OpenSearchCredential_Basic, OpenSearchCredential_BasicId
     from .open_text_application_security_credential import (
         OpenTextApplicationSecurityCredential,
@@ -476,6 +489,7 @@ if typing.TYPE_CHECKING:
         ProviderConfig_AssetsTenableCloudMock,
         ProviderConfig_ChatMicrosoftCopilot,
         ProviderConfig_ChatMicrosoftTeams,
+        ProviderConfig_ChatOpenaiChatgpt,
         ProviderConfig_ChatSlack,
         ProviderConfig_CloudsecurityAws,
         ProviderConfig_CloudsecurityAwseventbridgesqs,
@@ -531,6 +545,8 @@ if typing.TYPE_CHECKING:
         ProviderConfig_IdentityGreenhouse,
         ProviderConfig_IdentityOkta,
         ProviderConfig_IdentityOktaMock,
+        ProviderConfig_IdentityOpenaiChatgpt,
+        ProviderConfig_IdentityOpenaiPlatform,
         ProviderConfig_IdentityPingone,
         ProviderConfig_IdentityPingoneMock,
         ProviderConfig_IdentityWorkday,
@@ -964,6 +980,7 @@ _dynamic_imports: typing.Dict[str, str] = {
     "ChannelJoinBehavior": ".channel_join_behavior",
     "ChatMicrosoftCopilot": ".chat_microsoft_copilot",
     "ChatMicrosoftTeams": ".chat_microsoft_teams",
+    "ChatOpenAiChatGpt": ".chat_open_ai_chat_gpt",
     "ChatSlack": ".chat_slack",
     "ClarotyApiurl": ".claroty_apiurl",
     "ClarotyCredential": ".claroty_credential",
@@ -1159,6 +1176,8 @@ _dynamic_imports: typing.Dict[str, str] = {
     "IdentityOkta": ".identity_okta",
     "IdentityOktaDataset": ".identity_okta_dataset",
     "IdentityOktaMock": ".identity_okta_mock",
+    "IdentityOpenAiChatGpt": ".identity_open_ai_chat_gpt",
+    "IdentityOpenAiPlatform": ".identity_open_ai_platform",
     "IdentityPingOne": ".identity_ping_one",
     "IdentityPingOneDataset": ".identity_ping_one_dataset",
     "IdentityPingOneMock": ".identity_ping_one_mock",
@@ -1240,6 +1259,12 @@ _dynamic_imports: typing.Dict[str, str] = {
     "OktaCredential_OAuthClientId": ".okta_credential",
     "OktaCredential_Token": ".okta_credential",
     "OktaCredential_TokenId": ".okta_credential",
+    "OpenAiAdminCredential": ".open_ai_admin_credential",
+    "OpenAiAdminCredential_Token": ".open_ai_admin_credential",
+    "OpenAiAdminCredential_TokenId": ".open_ai_admin_credential",
+    "OpenAiChatGptAdminCredential": ".open_ai_chat_gpt_admin_credential",
+    "OpenAiChatGptAdminCredential_Token": ".open_ai_chat_gpt_admin_credential",
+    "OpenAiChatGptAdminCredential_TokenId": ".open_ai_chat_gpt_admin_credential",
     "OpenSearchCredential": ".open_search_credential",
     "OpenSearchCredential_Basic": ".open_search_credential",
     "OpenSearchCredential_BasicId": ".open_search_credential",
@@ -1314,6 +1339,7 @@ _dynamic_imports: typing.Dict[str, str] = {
     "ProviderConfig_AssetsTenableCloudMock": ".provider_config",
     "ProviderConfig_ChatMicrosoftCopilot": ".provider_config",
     "ProviderConfig_ChatMicrosoftTeams": ".provider_config",
+    "ProviderConfig_ChatOpenaiChatgpt": ".provider_config",
     "ProviderConfig_ChatSlack": ".provider_config",
     "ProviderConfig_CloudsecurityAws": ".provider_config",
     "ProviderConfig_CloudsecurityAwseventbridgesqs": ".provider_config",
@@ -1369,6 +1395,8 @@ _dynamic_imports: typing.Dict[str, str] = {
     "ProviderConfig_IdentityGreenhouse": ".provider_config",
     "ProviderConfig_IdentityOkta": ".provider_config",
     "ProviderConfig_IdentityOktaMock": ".provider_config",
+    "ProviderConfig_IdentityOpenaiChatgpt": ".provider_config",
+    "ProviderConfig_IdentityOpenaiPlatform": ".provider_config",
     "ProviderConfig_IdentityPingone": ".provider_config",
     "ProviderConfig_IdentityPingoneMock": ".provider_config",
     "ProviderConfig_IdentityWorkday": ".provider_config",
@@ -1824,6 +1852,7 @@ __all__ = [
     "ChannelJoinBehavior",
     "ChatMicrosoftCopilot",
     "ChatMicrosoftTeams",
+    "ChatOpenAiChatGpt",
     "ChatSlack",
     "ClarotyApiurl",
     "ClarotyCredential",
@@ -2019,6 +2048,8 @@ __all__ = [
     "IdentityOkta",
     "IdentityOktaDataset",
     "IdentityOktaMock",
+    "IdentityOpenAiChatGpt",
+    "IdentityOpenAiPlatform",
     "IdentityPingOne",
     "IdentityPingOneDataset",
     "IdentityPingOneMock",
@@ -2100,6 +2131,12 @@ __all__ = [
     "OktaCredential_OAuthClientId",
     "OktaCredential_Token",
     "OktaCredential_TokenId",
+    "OpenAiAdminCredential",
+    "OpenAiAdminCredential_Token",
+    "OpenAiAdminCredential_TokenId",
+    "OpenAiChatGptAdminCredential",
+    "OpenAiChatGptAdminCredential_Token",
+    "OpenAiChatGptAdminCredential_TokenId",
     "OpenSearchCredential",
     "OpenSearchCredential_Basic",
     "OpenSearchCredential_BasicId",
@@ -2174,6 +2211,7 @@ __all__ = [
     "ProviderConfig_AssetsTenableCloudMock",
     "ProviderConfig_ChatMicrosoftCopilot",
     "ProviderConfig_ChatMicrosoftTeams",
+    "ProviderConfig_ChatOpenaiChatgpt",
     "ProviderConfig_ChatSlack",
     "ProviderConfig_CloudsecurityAws",
     "ProviderConfig_CloudsecurityAwseventbridgesqs",
@@ -2229,6 +2267,8 @@ __all__ = [
     "ProviderConfig_IdentityGreenhouse",
     "ProviderConfig_IdentityOkta",
     "ProviderConfig_IdentityOktaMock",
+    "ProviderConfig_IdentityOpenaiChatgpt",
+    "ProviderConfig_IdentityOpenaiPlatform",
     "ProviderConfig_IdentityPingone",
     "ProviderConfig_IdentityPingoneMock",
     "ProviderConfig_IdentityWorkday",

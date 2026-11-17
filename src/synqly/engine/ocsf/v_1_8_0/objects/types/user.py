@@ -13,7 +13,6 @@ from .account import Account
 from .enrollment import Enrollment
 from .group import Group
 from .organization import Organization
-from .programmatic_credential import ProgrammaticCredential
 from .user_risk_level_id import UserRiskLevelId
 from .user_type_id import UserTypeId
 
@@ -93,7 +92,7 @@ class User(UncheckedBaseModel):
     The telephone number of the user.
     """
 
-    programmatic_credentials: typing.Optional[typing.List[ProgrammaticCredential]] = pydantic.Field(default=None)
+    programmatic_credentials: typing.Optional[typing.List["ProgrammaticCredential"]] = pydantic.Field(default=None)
     """
     Details about the programmatic credential (API keys, access tokens, certificates, etc) associated to the user.
     """
@@ -143,5 +142,9 @@ class User(UncheckedBaseModel):
 
 
 from .ldap_person import LdapPerson  # noqa: E402, I001
+from .programmatic_credential import ProgrammaticCredential  # noqa: E402, I001
+from .resource_details import ResourceDetails  # noqa: E402, I001
 
-update_forward_refs(User, LdapPerson=LdapPerson)
+update_forward_refs(
+    User, LdapPerson=LdapPerson, ProgrammaticCredential=ProgrammaticCredential, ResourceDetails=ResourceDetails
+)

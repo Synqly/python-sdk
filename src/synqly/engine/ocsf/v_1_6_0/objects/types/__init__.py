@@ -203,6 +203,7 @@ if typing.TYPE_CHECKING:
     from .process_integrity_id import ProcessIntegrityId
     from .product import Product
     from .programmatic_credential import ProgrammaticCredential
+    from .programmatic_credential_type_id import ProgrammaticCredentialTypeId
     from .query_evidence import QueryEvidence
     from .query_evidence_query_type_id import QueryEvidenceQueryTypeId
     from .query_evidence_tcp_state_id import QueryEvidenceTcpStateId
@@ -481,6 +482,7 @@ _dynamic_imports: typing.Dict[str, str] = {
     "ProcessIntegrityId": ".process_integrity_id",
     "Product": ".product",
     "ProgrammaticCredential": ".programmatic_credential",
+    "ProgrammaticCredentialTypeId": ".programmatic_credential_type_id",
     "QueryEvidence": ".query_evidence",
     "QueryEvidenceQueryTypeId": ".query_evidence_query_type_id",
     "QueryEvidenceTcpStateId": ".query_evidence_tcp_state_id",
@@ -783,6 +785,7 @@ __all__ = [
     "ProcessIntegrityId",
     "Product",
     "ProgrammaticCredential",
+    "ProgrammaticCredentialTypeId",
     "QueryEvidence",
     "QueryEvidenceQueryTypeId",
     "QueryEvidenceTcpStateId",
