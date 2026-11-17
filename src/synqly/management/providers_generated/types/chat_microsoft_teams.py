@@ -18,7 +18,7 @@ class ChatMicrosoftTeams(UncheckedBaseModel):
     credential: TeamsGraphChatCredential
     team_id: typing.Optional[str] = pydantic.Field(default=None)
     """
-    Team identifier, required for querying team channels. If omitted, only user-scoped chats (DMs and group chats) can be queried.
+    Team identifier, required for reading and sending team channel messages. If omitted, only user-scoped chats (DMs and group chats) can be used.
     """
 
     tenant_id: str = pydantic.Field()
