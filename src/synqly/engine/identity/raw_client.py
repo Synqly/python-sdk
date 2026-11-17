@@ -2274,7 +2274,7 @@ class RawIdentityClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[GetGroupMembersResponse]:
         """
-        Returns list of `User` objects wrapped in an OCSF Entity Management event of type Read from the token-linked identity provider that are members in the group referenced by ID.
+        Returns the users who are members of the group. Group membership may be distinct from role assignments, even if the group and role share a name. For example, a group named `administrators` may have no members, even when there are users assigned an `administrator` role. This behavior may be provider dependent, see capabilities for provider specific details.
 
         Parameters
         ----------
@@ -5706,7 +5706,7 @@ class AsyncRawIdentityClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[GetGroupMembersResponse]:
         """
-        Returns list of `User` objects wrapped in an OCSF Entity Management event of type Read from the token-linked identity provider that are members in the group referenced by ID.
+        Returns the users who are members of the group. Group membership may be distinct from role assignments, even if the group and role share a name. For example, a group named `administrators` may have no members, even when there are users assigned an `administrator` role. This behavior may be provider dependent, see capabilities for provider specific details.
 
         Parameters
         ----------
