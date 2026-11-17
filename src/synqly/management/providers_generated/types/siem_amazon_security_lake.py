@@ -13,6 +13,8 @@ from .aws_region import AwsRegion
 class SiemAmazonSecurityLake(UncheckedBaseModel):
     """
     Configuration for Amazon Security Lake as a SIEM provider.
+
+    [Configuration guide](https://docs.synqly.com/guides/provider-configuration/amazonsecuritylake-siem-setup)
     """
 
     credential: AwsProviderCredential = pydantic.Field()

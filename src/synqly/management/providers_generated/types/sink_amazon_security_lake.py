@@ -13,6 +13,8 @@ from .aws_region import AwsRegion
 class SinkAmazonSecurityLake(UncheckedBaseModel):
     """
     Configuration for Amazon Security Lake as a Sink provider.
+
+    [Configuration guide](https://docs.synqly.com/guides/provider-configuration/amazonsecuritylake-sink-setup)
     """
 
     credential: AwsProviderCredential = pydantic.Field()
