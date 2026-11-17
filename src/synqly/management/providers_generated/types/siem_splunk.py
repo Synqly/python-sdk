@@ -38,7 +38,7 @@ class SiemSplunk(UncheckedBaseModel):
 
     search_service_url: str = pydantic.Field()
     """
-    URL used when connecting to the Splunk Search Service.
+    URL of the REST API on the splunkd management port.
     """
 
     skip_tls_verify: typing.Optional[bool] = pydantic.Field(default=None)
