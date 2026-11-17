@@ -28,7 +28,7 @@ class NetworkSecurityAzure(UncheckedBaseModel):
 
     dns_log_configuration_ids: typing.Optional[typing.List[str]] = pydantic.Field(default=None)
     """
-    Optional list of DNS log configuration IDs, in the form `{resourceId}|{category}`. Leave empty to include all DNS logging in the subscription.
+    Optional list of DNS log configuration IDs, each a DNS resolver policy or Azure Firewall resource ID and its DNS log category, in the form `{resourceId}|{category}`. Leave empty to include all DNS logging in the subscription.
     """
 
     subscription_id: str = pydantic.Field()
@@ -43,7 +43,7 @@ class NetworkSecurityAzure(UncheckedBaseModel):
 
     traffic_log_configuration_ids: typing.Optional[typing.List[str]] = pydantic.Field(default=None)
     """
-    Optional list of flow log resource IDs. Leave empty to include all flow logs in the subscription.
+    Optional list of Network Watcher flow log resource IDs. Leave empty to include all flow logs in the subscription.
     """
 
     if IS_PYDANTIC_V2:
