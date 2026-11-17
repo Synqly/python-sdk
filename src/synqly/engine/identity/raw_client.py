@@ -3081,7 +3081,7 @@ class RawIdentityClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[None]:
         """
-        Logs a user out of all current sessions so they must log in again.
+        Signs a user out of all current sessions so they must sign in again.
 
         Parameters
         ----------
@@ -6513,7 +6513,7 @@ class AsyncRawIdentityClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[None]:
         """
-        Logs a user out of all current sessions so they must log in again.
+        Signs a user out of all current sessions so they must sign in again.
 
         Parameters
         ----------

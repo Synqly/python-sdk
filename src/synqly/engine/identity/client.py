@@ -613,7 +613,7 @@ class IdentityClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> None:
         """
-        Logs a user out of all current sessions so they must log in again.
+        Signs a user out of all current sessions so they must sign in again.
 
         Parameters
         ----------
@@ -1248,7 +1248,7 @@ class AsyncIdentityClient:
         request_options: typing.Optional[RequestOptions] = None,
     ) -> None:
         """
-        Logs a user out of all current sessions so they must log in again.
+        Signs a user out of all current sessions so they must sign in again.
 
         Parameters
         ----------
