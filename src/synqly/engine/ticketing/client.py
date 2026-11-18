@@ -305,7 +305,7 @@ class TicketingClient:
             The ticket project.
 
         issue_type : typing.Optional[str]
-            The ticket's type.
+            The ticket's type. Some providers require it; the provider's capabilities say when. Accepted values are provider-specific; List Issue Types returns them where the provider supports it.
 
         parent : typing.Optional[str]
             Provider specific ID of the parent ticket.
@@ -1060,7 +1060,7 @@ class AsyncTicketingClient:
             The ticket project.
 
         issue_type : typing.Optional[str]
-            The ticket's type.
+            The ticket's type. Some providers require it; the provider's capabilities say when. Accepted values are provider-specific; List Issue Types returns them where the provider supports it.
 
         parent : typing.Optional[str]
             Provider specific ID of the parent ticket.
