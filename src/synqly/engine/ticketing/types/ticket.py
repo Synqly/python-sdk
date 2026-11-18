@@ -17,13 +17,13 @@ from .ticket_id import TicketId
 
 class Ticket(Base):
     """
-    Ticketing ticket
+    A ticket. `name` holds the ticket title, key or record number. The value of `name` is provider dependent. For more detail, see provider specific documentation in the [capabilities API](https://docs.synqly.com/api-reference/management/capabilities).
     """
 
     id: TicketId
     summary: str = pydantic.Field()
     """
-    Ticket summary.
+    The ticket title or short summary of the ticket. The value of this field is provider dependent. For more detail, see provider specific documentation in the [capabilities API](https://docs.synqly.com/api-reference/management/capabilities).
     """
 
     creator: typing.Optional[str] = pydantic.Field(default=None)
