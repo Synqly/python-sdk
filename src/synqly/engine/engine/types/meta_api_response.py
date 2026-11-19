@@ -7,13 +7,14 @@ import typing_extensions
 from ...core.pydantic_utilities import IS_PYDANTIC_V2
 from ...core.serialization import FieldMetadata
 from ...core.unchecked_base_model import UncheckedBaseModel
+from .meta_api_call_response import MetaApiCallResponse
 from .meta_api_primary_response import MetaApiPrimaryResponse
 
 
 class MetaApiResponse(UncheckedBaseModel):
     primary: typing.Optional[MetaApiPrimaryResponse] = None
     list_: typing_extensions.Annotated[
-        typing.Optional[typing.Dict[str, typing.List[str]]],
+        typing.Optional[typing.Dict[str, typing.List[MetaApiCallResponse]]],
         FieldMetadata(alias="list"),
         pydantic.Field(alias="list", description="All responses from backing API calls, indexed by endpoint URL."),
     ] = None

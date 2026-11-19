@@ -12,6 +12,7 @@ if typing.TYPE_CHECKING:
     from .base_resource_request import BaseResourceRequest
     from .messages_response import MessagesResponse
     from .meta_api import MetaApi
+    from .meta_api_call_response import MetaApiCallResponse
     from .meta_api_primary_response import MetaApiPrimaryResponse
     from .meta_api_response import MetaApiResponse
     from .meta_mapping import MetaMapping
@@ -29,6 +30,7 @@ _dynamic_imports: typing.Dict[str, str] = {
     "BaseResourceRequest": ".base_resource_request",
     "MessagesResponse": ".messages_response",
     "MetaApi": ".meta_api",
+    "MetaApiCallResponse": ".meta_api_call_response",
     "MetaApiPrimaryResponse": ".meta_api_primary_response",
     "MetaApiResponse": ".meta_api_response",
     "MetaMapping": ".meta_mapping",
@@ -70,6 +72,7 @@ __all__ = [
     "BaseResourceRequest",
     "MessagesResponse",
     "MetaApi",
+    "MetaApiCallResponse",
     "MetaApiPrimaryResponse",
     "MetaApiResponse",
     "MetaMapping",

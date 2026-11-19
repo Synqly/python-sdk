@@ -15,7 +15,17 @@ class MetaApiPrimaryResponse(UncheckedBaseModel):
 
     response: str = pydantic.Field()
     """
-    The response from the primary API request.
+    The response from the primary API request. It may be cut short; see `truncated`. Each response keeps at most its first 256 KiB, and one request keeps at most 16 MiB of responses in total.
+    """
+
+    truncated: typing.Optional[bool] = pydantic.Field(default=None)
+    """
+    True when `response` holds only the start of the response body. Absent otherwise.
+    """
+
+    total_bytes: typing.Optional[int] = pydantic.Field(default=None)
+    """
+    The size in bytes of the response body as received. Present when `truncated` is true.
     """
 
     if IS_PYDANTIC_V2:
