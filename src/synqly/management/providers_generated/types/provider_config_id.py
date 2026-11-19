@@ -377,6 +377,11 @@ class ProviderConfigId(enum.StrEnum):
     Microsoft 365 Management Activity
     """
 
+    EMAIL_SECURITY_SUBLIME = "emailsecurity_sublime"
+    """
+    Sublime Security
+    """
+
     ENDPOINTMANAGEMENT_AUTOMOX = "endpointmanagement_automox"
     """
     Automox
@@ -1073,6 +1078,7 @@ class ProviderConfigId(enum.StrEnum):
         email_security_mimecast_cloud_gateway: typing.Callable[[], T_Result],
         email_security_mimecast_cloud_gateway_mock: typing.Callable[[], T_Result],
         email_security_o_365_management_activity: typing.Callable[[], T_Result],
+        email_security_sublime: typing.Callable[[], T_Result],
         endpointmanagement_automox: typing.Callable[[], T_Result],
         endpointmanagement_bigfix: typing.Callable[[], T_Result],
         endpointmanagement_intune: typing.Callable[[], T_Result],
@@ -1343,6 +1349,8 @@ class ProviderConfigId(enum.StrEnum):
             return email_security_mimecast_cloud_gateway_mock()
         if self is ProviderConfigId.EMAIL_SECURITY_O_365_MANAGEMENT_ACTIVITY:
             return email_security_o_365_management_activity()
+        if self is ProviderConfigId.EMAIL_SECURITY_SUBLIME:
+            return email_security_sublime()
         if self is ProviderConfigId.ENDPOINTMANAGEMENT_AUTOMOX:
             return endpointmanagement_automox()
         if self is ProviderConfigId.ENDPOINTMANAGEMENT_BIGFIX:

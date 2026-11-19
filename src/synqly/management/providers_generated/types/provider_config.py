@@ -147,6 +147,7 @@ from .sonar_qube_credential import SonarQubeCredential
 from .sophos_credential import SophosCredential
 from .splunk_hec_token import SplunkHecToken
 from .splunk_search_credential import SplunkSearchCredential
+from .sublime_credential import SublimeCredential
 from .sumo_logic_collection_url import SumoLogicCollectionUrl
 from .sumo_logic_credential import SumoLogicCredential
 from .swimlane_credential import SwimlaneCredential
@@ -1216,6 +1217,20 @@ class ProviderConfig_EmailsecurityO365ManagementActivity(UncheckedBaseModel):
     credential: O365ManagementActivityCredential
     operations: typing.Optional[typing.List[str]] = None
     tenant_id: str
+
+    if IS_PYDANTIC_V2:
+        model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow")  # type: ignore # Pydantic v2
+    else:
+
+        class Config:
+            smart_union = True
+            extra = pydantic.Extra.allow
+
+
+class ProviderConfig_EmailsecuritySublime(UncheckedBaseModel):
+    type: typing.Literal["emailsecurity_sublime"] = "emailsecurity_sublime"
+    credential: SublimeCredential
+    url: str
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow")  # type: ignore # Pydantic v2
@@ -3116,6 +3131,7 @@ ProviderConfig = typing_extensions.Annotated[
         ProviderConfig_EmailsecurityMimecastCloudGateway,
         ProviderConfig_EmailsecurityMimecastCloudGatewayMock,
         ProviderConfig_EmailsecurityO365ManagementActivity,
+        ProviderConfig_EmailsecuritySublime,
         ProviderConfig_EndpointmanagementAutomox,
         ProviderConfig_EndpointmanagementBigfix,
         ProviderConfig_EndpointmanagementIntune,
