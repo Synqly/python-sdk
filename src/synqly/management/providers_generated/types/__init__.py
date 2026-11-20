@@ -119,6 +119,7 @@ if typing.TYPE_CHECKING:
     from .chat_microsoft_teams import ChatMicrosoftTeams
     from .chat_open_ai_chat_gpt import ChatOpenAiChatGpt
     from .chat_slack import ChatSlack
+    from .cisco_fmc_credential import CiscoFmcCredential, CiscoFmcCredential_Basic, CiscoFmcCredential_BasicId
     from .claroty_apiurl import ClarotyApiurl
     from .claroty_credential import ClarotyCredential, ClarotyCredential_Token, ClarotyCredential_TokenId
     from .cloud_security_aws import CloudSecurityAws
@@ -381,6 +382,7 @@ if typing.TYPE_CHECKING:
     )
     from .network_security_aws import NetworkSecurityAws
     from .network_security_azure import NetworkSecurityAzure
+    from .network_security_cisco_fmc import NetworkSecurityCiscoFmc
     from .network_security_google import NetworkSecurityGoogle
     from .ninja_one_credential import (
         NinjaOneCredential,
@@ -556,6 +558,7 @@ if typing.TYPE_CHECKING:
         ProviderConfig_IncidentresponsePagerduty,
         ProviderConfig_NetworksecurityAws,
         ProviderConfig_NetworksecurityAzure,
+        ProviderConfig_NetworksecurityCiscoFmc,
         ProviderConfig_NetworksecurityGoogle,
         ProviderConfig_NotificationsJira,
         ProviderConfig_NotificationsMockNotifications,
@@ -817,6 +820,15 @@ if typing.TYPE_CHECKING:
     from .ticketing_torq import TicketingTorq
     from .ticketing_xurrent import TicketingXurrent
     from .ticketing_zendesk import TicketingZendesk
+    from .tls_verification import (
+        TlsVerification,
+        TlsVerification_CustomCa,
+        TlsVerification_Skip,
+        TlsVerification_Verify,
+    )
+    from .tls_verification_custom_ca import TlsVerificationCustomCa
+    from .tls_verification_skip import TlsVerificationSkip
+    from .tls_verification_verify import TlsVerificationVerify
     from .torq_credential import TorqCredential, TorqCredential_OAuthClient, TorqCredential_OAuthClientId
     from .trellix_api_key_credential import (
         TrellixApiKeyCredential,
@@ -985,6 +997,9 @@ _dynamic_imports: typing.Dict[str, str] = {
     "ChatMicrosoftTeams": ".chat_microsoft_teams",
     "ChatOpenAiChatGpt": ".chat_open_ai_chat_gpt",
     "ChatSlack": ".chat_slack",
+    "CiscoFmcCredential": ".cisco_fmc_credential",
+    "CiscoFmcCredential_Basic": ".cisco_fmc_credential",
+    "CiscoFmcCredential_BasicId": ".cisco_fmc_credential",
     "ClarotyApiurl": ".claroty_apiurl",
     "ClarotyCredential": ".claroty_credential",
     "ClarotyCredential_Token": ".claroty_credential",
@@ -1236,6 +1251,7 @@ _dynamic_imports: typing.Dict[str, str] = {
     "MimecastCloudGatewayCredential_OAuthClientId": ".mimecast_cloud_gateway_credential",
     "NetworkSecurityAws": ".network_security_aws",
     "NetworkSecurityAzure": ".network_security_azure",
+    "NetworkSecurityCiscoFmc": ".network_security_cisco_fmc",
     "NetworkSecurityGoogle": ".network_security_google",
     "NinjaOneCredential": ".ninja_one_credential",
     "NinjaOneCredential_OAuthClient": ".ninja_one_credential",
@@ -1409,6 +1425,7 @@ _dynamic_imports: typing.Dict[str, str] = {
     "ProviderConfig_IncidentresponsePagerduty": ".provider_config",
     "ProviderConfig_NetworksecurityAws": ".provider_config",
     "ProviderConfig_NetworksecurityAzure": ".provider_config",
+    "ProviderConfig_NetworksecurityCiscoFmc": ".provider_config",
     "ProviderConfig_NetworksecurityGoogle": ".provider_config",
     "ProviderConfig_NotificationsJira": ".provider_config",
     "ProviderConfig_NotificationsMockNotifications": ".provider_config",
@@ -1660,6 +1677,13 @@ _dynamic_imports: typing.Dict[str, str] = {
     "TicketingTorq": ".ticketing_torq",
     "TicketingXurrent": ".ticketing_xurrent",
     "TicketingZendesk": ".ticketing_zendesk",
+    "TlsVerification": ".tls_verification",
+    "TlsVerificationCustomCa": ".tls_verification_custom_ca",
+    "TlsVerificationSkip": ".tls_verification_skip",
+    "TlsVerificationVerify": ".tls_verification_verify",
+    "TlsVerification_CustomCa": ".tls_verification",
+    "TlsVerification_Skip": ".tls_verification",
+    "TlsVerification_Verify": ".tls_verification",
     "TorqCredential": ".torq_credential",
     "TorqCredential_OAuthClient": ".torq_credential",
     "TorqCredential_OAuthClientId": ".torq_credential",
@@ -1862,6 +1886,9 @@ __all__ = [
     "ChatMicrosoftTeams",
     "ChatOpenAiChatGpt",
     "ChatSlack",
+    "CiscoFmcCredential",
+    "CiscoFmcCredential_Basic",
+    "CiscoFmcCredential_BasicId",
     "ClarotyApiurl",
     "ClarotyCredential",
     "ClarotyCredential_Token",
@@ -2113,6 +2140,7 @@ __all__ = [
     "MimecastCloudGatewayCredential_OAuthClientId",
     "NetworkSecurityAws",
     "NetworkSecurityAzure",
+    "NetworkSecurityCiscoFmc",
     "NetworkSecurityGoogle",
     "NinjaOneCredential",
     "NinjaOneCredential_OAuthClient",
@@ -2286,6 +2314,7 @@ __all__ = [
     "ProviderConfig_IncidentresponsePagerduty",
     "ProviderConfig_NetworksecurityAws",
     "ProviderConfig_NetworksecurityAzure",
+    "ProviderConfig_NetworksecurityCiscoFmc",
     "ProviderConfig_NetworksecurityGoogle",
     "ProviderConfig_NotificationsJira",
     "ProviderConfig_NotificationsMockNotifications",
@@ -2537,6 +2566,13 @@ __all__ = [
     "TicketingTorq",
     "TicketingXurrent",
     "TicketingZendesk",
+    "TlsVerification",
+    "TlsVerificationCustomCa",
+    "TlsVerificationSkip",
+    "TlsVerificationVerify",
+    "TlsVerification_CustomCa",
+    "TlsVerification_Skip",
+    "TlsVerification_Verify",
     "TorqCredential",
     "TorqCredential_OAuthClient",
     "TorqCredential_OAuthClientId",

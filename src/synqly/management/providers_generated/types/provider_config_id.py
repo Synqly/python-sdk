@@ -532,6 +532,11 @@ class ProviderConfigId(enum.StrEnum):
     Microsoft Azure Network Security
     """
 
+    NETWORK_SECURITY_CISCO_FMC = "networksecurity_cisco_fmc"
+    """
+    Cisco Secure Firewall (FMC)
+    """
+
     NETWORK_SECURITY_GOOGLE = "networksecurity_google"
     """
     Google Network Security
@@ -1109,6 +1114,7 @@ class ProviderConfigId(enum.StrEnum):
         incident_response_pager_duty: typing.Callable[[], T_Result],
         network_security_aws: typing.Callable[[], T_Result],
         network_security_azure: typing.Callable[[], T_Result],
+        network_security_cisco_fmc: typing.Callable[[], T_Result],
         network_security_google: typing.Callable[[], T_Result],
         notifications_jira: typing.Callable[[], T_Result],
         notifications_mock: typing.Callable[[], T_Result],
@@ -1411,6 +1417,8 @@ class ProviderConfigId(enum.StrEnum):
             return network_security_aws()
         if self is ProviderConfigId.NETWORK_SECURITY_AZURE:
             return network_security_azure()
+        if self is ProviderConfigId.NETWORK_SECURITY_CISCO_FMC:
+            return network_security_cisco_fmc()
         if self is ProviderConfigId.NETWORK_SECURITY_GOOGLE:
             return network_security_google()
         if self is ProviderConfigId.NOTIFICATIONS_JIRA:

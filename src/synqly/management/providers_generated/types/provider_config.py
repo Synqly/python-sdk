@@ -40,6 +40,7 @@ from .big_fix_credential import BigFixCredential
 from .bitdefender_credential import BitdefenderCredential
 from .bmc_helix_credential import BmcHelixCredential
 from .channel_join_behavior import ChannelJoinBehavior
+from .cisco_fmc_credential import CiscoFmcCredential
 from .claroty_apiurl import ClarotyApiurl
 from .claroty_credential import ClarotyCredential
 from .cloud_security_aws_events import CloudSecurityAwsEvents
@@ -162,6 +163,7 @@ from .tenable_sc_credential import TenableScCredential
 from .threat_fox_credential import ThreatFoxCredential
 from .ticketing_ivanti_dataset import TicketingIvantiDataset
 from .ticketing_pagerduty_dataset import TicketingPagerdutyDataset
+from .tls_verification import TlsVerification
 from .torq_credential import TorqCredential
 from .trellix_api_key_credential import TrellixApiKeyCredential
 from .trellix_credential import TrellixCredential
@@ -1670,6 +1672,22 @@ class ProviderConfig_NetworksecurityAzure(UncheckedBaseModel):
             extra = pydantic.Extra.allow
 
 
+class ProviderConfig_NetworksecurityCiscoFmc(UncheckedBaseModel):
+    type: typing.Literal["networksecurity_cisco_fmc"] = "networksecurity_cisco_fmc"
+    credential: CiscoFmcCredential
+    domain: typing.Optional[str] = None
+    tls_verification: typing.Optional[TlsVerification] = None
+    url: str
+
+    if IS_PYDANTIC_V2:
+        model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow")  # type: ignore # Pydantic v2
+    else:
+
+        class Config:
+            smart_union = True
+            extra = pydantic.Extra.allow
+
+
 class ProviderConfig_NetworksecurityGoogle(UncheckedBaseModel):
     type: typing.Literal["networksecurity_google"] = "networksecurity_google"
     credential: GoogleServiceAccountCredential
@@ -3162,6 +3180,7 @@ ProviderConfig = typing_extensions.Annotated[
         ProviderConfig_IncidentresponsePagerduty,
         ProviderConfig_NetworksecurityAws,
         ProviderConfig_NetworksecurityAzure,
+        ProviderConfig_NetworksecurityCiscoFmc,
         ProviderConfig_NetworksecurityGoogle,
         ProviderConfig_NotificationsJira,
         ProviderConfig_NotificationsMockNotifications,
