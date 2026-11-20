@@ -7,10 +7,16 @@ import typing
 import pydantic
 from ...core.pydantic_utilities import IS_PYDANTIC_V2, update_forward_refs
 from ...engine.types.api_query_response import ApiQueryResponse
+from ...engine.types.query_status import QueryStatus
 from ...ocsf.latest.events.types.detection_finding import DetectionFinding
 
 
 class QueryCloudSecurityThreatsResponse(ApiQueryResponse):
+    status: QueryStatus = pydantic.Field()
+    """
+    `PENDING` while the provider is still preparing results; repeat the request with the returned `cursor`. `COMPLETE` otherwise.
+    """
+
     result: typing.List[DetectionFinding] = pydantic.Field()
     """
     List of cloud security threats that match the query.

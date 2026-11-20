@@ -78,6 +78,7 @@ class CloudsecurityClient:
         filter: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
         cursor: typing.Optional[str] = None,
         include_raw_data: typing.Optional[bool] = None,
+        bulk: typing.Optional[bool] = None,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> QueryIomsResponse:
         """
@@ -103,6 +104,9 @@ class CloudsecurityClient:
         include_raw_data : typing.Optional[bool]
             Include the raw data from the CloudSecurity in the response. Defaults to `false`.
 
+        bulk : typing.Optional[bool]
+            Retrieve the full result set through the provider's bulk export, when it has one. Results are unordered, and the first responses may be empty with `status` set to `PENDING` while the export is prepared; repeat the request with the returned `cursor`. Providers without a bulk export ignore this parameter. Defaults to `false`.
+
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
 
@@ -117,6 +121,7 @@ class CloudsecurityClient:
             filter=filter,
             cursor=cursor,
             include_raw_data=include_raw_data,
+            bulk=bulk,
             request_options=request_options,
         )
         return _response.data
@@ -130,6 +135,7 @@ class CloudsecurityClient:
         filter: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
         cursor: typing.Optional[str] = None,
         include_raw_data: typing.Optional[bool] = None,
+        bulk: typing.Optional[bool] = None,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> QueryCloudResourceInventoryResponse:
         """
@@ -155,6 +161,9 @@ class CloudsecurityClient:
         include_raw_data : typing.Optional[bool]
             Include the raw data from the CloudSecurity in the response. Defaults to `false`.
 
+        bulk : typing.Optional[bool]
+            Retrieve the full result set through the provider's bulk export, when it has one. Results are unordered, and the first responses may be empty with `status` set to `PENDING` while the export is prepared; repeat the request with the returned `cursor`. Providers without a bulk export ignore this parameter. Defaults to `false`.
+
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
 
@@ -169,6 +178,7 @@ class CloudsecurityClient:
             filter=filter,
             cursor=cursor,
             include_raw_data=include_raw_data,
+            bulk=bulk,
             request_options=request_options,
         )
         return _response.data
@@ -234,6 +244,7 @@ class CloudsecurityClient:
         filter: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
         cursor: typing.Optional[str] = None,
         include_raw_data: typing.Optional[bool] = None,
+        bulk: typing.Optional[bool] = None,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> QueryCloudSecurityThreatsResponse:
         """
@@ -259,6 +270,9 @@ class CloudsecurityClient:
         include_raw_data : typing.Optional[bool]
             Include the raw data from the CloudSecurity in the response. Defaults to `false`.
 
+        bulk : typing.Optional[bool]
+            Retrieve the full result set through the provider's bulk export, when it has one. Results are unordered, and the first responses may be empty with `status` set to `PENDING` while the export is prepared; repeat the request with the returned `cursor`. Providers without a bulk export ignore this parameter. Defaults to `false`.
+
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
 
@@ -273,6 +287,7 @@ class CloudsecurityClient:
             filter=filter,
             cursor=cursor,
             include_raw_data=include_raw_data,
+            bulk=bulk,
             request_options=request_options,
         )
         return _response.data
@@ -344,6 +359,7 @@ class AsyncCloudsecurityClient:
         filter: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
         cursor: typing.Optional[str] = None,
         include_raw_data: typing.Optional[bool] = None,
+        bulk: typing.Optional[bool] = None,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> QueryIomsResponse:
         """
@@ -369,6 +385,9 @@ class AsyncCloudsecurityClient:
         include_raw_data : typing.Optional[bool]
             Include the raw data from the CloudSecurity in the response. Defaults to `false`.
 
+        bulk : typing.Optional[bool]
+            Retrieve the full result set through the provider's bulk export, when it has one. Results are unordered, and the first responses may be empty with `status` set to `PENDING` while the export is prepared; repeat the request with the returned `cursor`. Providers without a bulk export ignore this parameter. Defaults to `false`.
+
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
 
@@ -383,6 +402,7 @@ class AsyncCloudsecurityClient:
             filter=filter,
             cursor=cursor,
             include_raw_data=include_raw_data,
+            bulk=bulk,
             request_options=request_options,
         )
         return _response.data
@@ -396,6 +416,7 @@ class AsyncCloudsecurityClient:
         filter: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
         cursor: typing.Optional[str] = None,
         include_raw_data: typing.Optional[bool] = None,
+        bulk: typing.Optional[bool] = None,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> QueryCloudResourceInventoryResponse:
         """
@@ -421,6 +442,9 @@ class AsyncCloudsecurityClient:
         include_raw_data : typing.Optional[bool]
             Include the raw data from the CloudSecurity in the response. Defaults to `false`.
 
+        bulk : typing.Optional[bool]
+            Retrieve the full result set through the provider's bulk export, when it has one. Results are unordered, and the first responses may be empty with `status` set to `PENDING` while the export is prepared; repeat the request with the returned `cursor`. Providers without a bulk export ignore this parameter. Defaults to `false`.
+
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
 
@@ -435,6 +459,7 @@ class AsyncCloudsecurityClient:
             filter=filter,
             cursor=cursor,
             include_raw_data=include_raw_data,
+            bulk=bulk,
             request_options=request_options,
         )
         return _response.data
@@ -500,6 +525,7 @@ class AsyncCloudsecurityClient:
         filter: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
         cursor: typing.Optional[str] = None,
         include_raw_data: typing.Optional[bool] = None,
+        bulk: typing.Optional[bool] = None,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> QueryCloudSecurityThreatsResponse:
         """
@@ -525,6 +551,9 @@ class AsyncCloudsecurityClient:
         include_raw_data : typing.Optional[bool]
             Include the raw data from the CloudSecurity in the response. Defaults to `false`.
 
+        bulk : typing.Optional[bool]
+            Retrieve the full result set through the provider's bulk export, when it has one. Results are unordered, and the first responses may be empty with `status` set to `PENDING` while the export is prepared; repeat the request with the returned `cursor`. Providers without a bulk export ignore this parameter. Defaults to `false`.
+
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
 
@@ -539,6 +568,7 @@ class AsyncCloudsecurityClient:
             filter=filter,
             cursor=cursor,
             include_raw_data=include_raw_data,
+            bulk=bulk,
             request_options=request_options,
         )
         return _response.data
