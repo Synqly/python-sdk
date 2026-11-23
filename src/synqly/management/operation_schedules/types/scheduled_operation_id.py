@@ -20,6 +20,7 @@ class ScheduledOperationId(enum.StrEnum):
     EDR_QUERY_ALERTS = "edr_query_alerts"
     EDR_QUERY_APPLICATIONS = "edr_query_applications"
     EDR_QUERY_ENDPOINTS = "edr_query_endpoints"
+    EDR_QUERY_EXCLUSIONS = "edr_query_exclusions"
     EDR_QUERY_IOCS = "edr_query_iocs"
     EDR_QUERY_POLICIES = "edr_query_policies"
     EDR_QUERY_POSTURE_SCORE = "edr_query_posture_score"
@@ -68,6 +69,7 @@ class ScheduledOperationId(enum.StrEnum):
         edr_query_alerts: typing.Callable[[], T_Result],
         edr_query_applications: typing.Callable[[], T_Result],
         edr_query_endpoints: typing.Callable[[], T_Result],
+        edr_query_exclusions: typing.Callable[[], T_Result],
         edr_query_iocs: typing.Callable[[], T_Result],
         edr_query_policies: typing.Callable[[], T_Result],
         edr_query_posture_score: typing.Callable[[], T_Result],
@@ -117,6 +119,8 @@ class ScheduledOperationId(enum.StrEnum):
             return edr_query_applications()
         if self is ScheduledOperationId.EDR_QUERY_ENDPOINTS:
             return edr_query_endpoints()
+        if self is ScheduledOperationId.EDR_QUERY_EXCLUSIONS:
+            return edr_query_exclusions()
         if self is ScheduledOperationId.EDR_QUERY_IOCS:
             return edr_query_iocs()
         if self is ScheduledOperationId.EDR_QUERY_POLICIES:
