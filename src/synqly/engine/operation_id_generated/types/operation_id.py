@@ -126,15 +126,18 @@ class OperationId(enum.StrEnum):
     SECURITYAWARENESS_QUERY_TRAINING_CAMPAIGNS = "securityawareness_query_training_campaigns"
     SECURITYAWARENESS_QUERY_USERS = "securityawareness_query_users"
     SIEM_GET_ALERT = "siem_get_alert"
+    SIEM_GET_CASE = "siem_get_case"
     SIEM_GET_EVIDENCE = "siem_get_evidence"
     SIEM_GET_INVESTIGATION = "siem_get_investigation"
     SIEM_PATCH_INVESTIGATION = "siem_patch_investigation"
     SIEM_POST_EVENTS = "siem_post_events"
     SIEM_QUERY_ALERTS = "siem_query_alerts"
+    SIEM_QUERY_CASES = "siem_query_cases"
     SIEM_QUERY_EVENTS = "siem_query_events"
     SIEM_QUERY_INVESTIGATIONS = "siem_query_investigations"
     SIEM_QUERY_LOG_PROVIDERS = "siem_query_log_providers"
     SIEM_UPDATE_ALERT = "siem_update_alert"
+    SIEM_UPDATE_CASE = "siem_update_case"
     SINK_POST_EVENTS = "sink_post_events"
     SSF_GET_TRANSMITTER_URLS = "ssf_get_transmitter_urls"
     SSF_JWKS = "ssf_jwks"
@@ -312,15 +315,18 @@ class OperationId(enum.StrEnum):
         securityawareness_query_training_campaigns: typing.Callable[[], T_Result],
         securityawareness_query_users: typing.Callable[[], T_Result],
         siem_get_alert: typing.Callable[[], T_Result],
+        siem_get_case: typing.Callable[[], T_Result],
         siem_get_evidence: typing.Callable[[], T_Result],
         siem_get_investigation: typing.Callable[[], T_Result],
         siem_patch_investigation: typing.Callable[[], T_Result],
         siem_post_events: typing.Callable[[], T_Result],
         siem_query_alerts: typing.Callable[[], T_Result],
+        siem_query_cases: typing.Callable[[], T_Result],
         siem_query_events: typing.Callable[[], T_Result],
         siem_query_investigations: typing.Callable[[], T_Result],
         siem_query_log_providers: typing.Callable[[], T_Result],
         siem_update_alert: typing.Callable[[], T_Result],
+        siem_update_case: typing.Callable[[], T_Result],
         sink_post_events: typing.Callable[[], T_Result],
         ssf_get_transmitter_urls: typing.Callable[[], T_Result],
         ssf_jwks: typing.Callable[[], T_Result],
@@ -605,6 +611,8 @@ class OperationId(enum.StrEnum):
             return securityawareness_query_users()
         if self is OperationId.SIEM_GET_ALERT:
             return siem_get_alert()
+        if self is OperationId.SIEM_GET_CASE:
+            return siem_get_case()
         if self is OperationId.SIEM_GET_EVIDENCE:
             return siem_get_evidence()
         if self is OperationId.SIEM_GET_INVESTIGATION:
@@ -615,6 +623,8 @@ class OperationId(enum.StrEnum):
             return siem_post_events()
         if self is OperationId.SIEM_QUERY_ALERTS:
             return siem_query_alerts()
+        if self is OperationId.SIEM_QUERY_CASES:
+            return siem_query_cases()
         if self is OperationId.SIEM_QUERY_EVENTS:
             return siem_query_events()
         if self is OperationId.SIEM_QUERY_INVESTIGATIONS:
@@ -623,6 +633,8 @@ class OperationId(enum.StrEnum):
             return siem_query_log_providers()
         if self is OperationId.SIEM_UPDATE_ALERT:
             return siem_update_alert()
+        if self is OperationId.SIEM_UPDATE_CASE:
+            return siem_update_case()
         if self is OperationId.SINK_POST_EVENTS:
             return sink_post_events()
         if self is OperationId.SSF_GET_TRANSMITTER_URLS:
