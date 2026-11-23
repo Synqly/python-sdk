@@ -17,6 +17,14 @@ if typing.TYPE_CHECKING:
     from .meta_api_response import MetaApiResponse
     from .meta_mapping import MetaMapping
     from .meta_mapping_chains import MetaMappingChains
+    from .meta_mappings_applied import MetaMappingsApplied
+    from .meta_param_outcome import MetaParamOutcome
+    from .meta_poll_timeout import MetaPollTimeout
+    from .meta_provider_call import MetaProviderCall
+    from .meta_provider_calls import MetaProviderCalls
+    from .meta_provider_query import MetaProviderQuery
+    from .meta_resolved_param import MetaResolvedParam
+    from .meta_resolved_params import MetaResolvedParams
     from .meta_response import MetaResponse
     from .meta_stats import MetaStats
     from .object import Object
@@ -35,6 +43,14 @@ _dynamic_imports: typing.Dict[str, str] = {
     "MetaApiResponse": ".meta_api_response",
     "MetaMapping": ".meta_mapping",
     "MetaMappingChains": ".meta_mapping_chains",
+    "MetaMappingsApplied": ".meta_mappings_applied",
+    "MetaParamOutcome": ".meta_param_outcome",
+    "MetaPollTimeout": ".meta_poll_timeout",
+    "MetaProviderCall": ".meta_provider_call",
+    "MetaProviderCalls": ".meta_provider_calls",
+    "MetaProviderQuery": ".meta_provider_query",
+    "MetaResolvedParam": ".meta_resolved_param",
+    "MetaResolvedParams": ".meta_resolved_params",
     "MetaResponse": ".meta_response",
     "MetaStats": ".meta_stats",
     "Object": ".object",
@@ -77,6 +93,14 @@ __all__ = [
     "MetaApiResponse",
     "MetaMapping",
     "MetaMappingChains",
+    "MetaMappingsApplied",
+    "MetaParamOutcome",
+    "MetaPollTimeout",
+    "MetaProviderCall",
+    "MetaProviderCalls",
+    "MetaProviderQuery",
+    "MetaResolvedParam",
+    "MetaResolvedParams",
     "MetaResponse",
     "MetaStats",
     "Object",
