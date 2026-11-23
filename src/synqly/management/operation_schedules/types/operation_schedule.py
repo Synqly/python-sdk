@@ -40,6 +40,12 @@ class OperationSchedule(UncheckedBaseModel):
     Optional filters to apply when querying data from the source API.
     Format and available filters depend on the specific operation.
     Example: "severity[eq]critical" or "status[eq]active".
+    The same operation may be scheduled more than once with different
+    filters, for example once per `resource.type` value on a provider
+    that accepts one value per request. Each entry runs and keeps its
+    progress separately. Declaring the same operation twice with the
+    same filters is rejected, even when their order differs or a filter
+    is repeated.
     """
 
     backfill_from_time: typing.Optional[str] = pydantic.Field(default=None)
