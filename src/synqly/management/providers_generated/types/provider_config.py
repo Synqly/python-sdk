@@ -47,6 +47,7 @@ from .cloud_security_aws_events import CloudSecurityAwsEvents
 from .cloud_security_crowd_strike_dataset import CloudSecurityCrowdStrikeDataset
 from .cloud_security_event_bridge_sqs_queues import CloudSecurityEventBridgeSqsQueues
 from .copilot_chat_credential import CopilotChatCredential
+from .cribl_credential import CriblCredential
 from .crowd_strike_credential import CrowdStrikeCredential
 from .crowdstrike_hec_credential import CrowdstrikeHecCredential
 from .custom_endpoint import CustomEndpoint
@@ -2124,6 +2125,21 @@ class ProviderConfig_SinkAzureMonitorLogs(UncheckedBaseModel):
             extra = pydantic.Extra.allow
 
 
+class ProviderConfig_SinkCribl(UncheckedBaseModel):
+    type: typing.Literal["sink_cribl"] = "sink_cribl"
+    credential: typing.Optional[CriblCredential] = None
+    tls_verification: typing.Optional[TlsVerification] = None
+    url: str
+
+    if IS_PYDANTIC_V2:
+        model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow")  # type: ignore # Pydantic v2
+    else:
+
+        class Config:
+            smart_union = True
+            extra = pydantic.Extra.allow
+
+
 class ProviderConfig_SinkCrowdstrikeHec(UncheckedBaseModel):
     type: typing.Literal["sink_crowdstrike_hec"] = "sink_crowdstrike_hec"
     credential: CrowdstrikeHecCredential
@@ -3208,6 +3224,7 @@ ProviderConfig = typing_extensions.Annotated[
         ProviderConfig_SinkAwsSqs,
         ProviderConfig_SinkAzureBlob,
         ProviderConfig_SinkAzureMonitorLogs,
+        ProviderConfig_SinkCribl,
         ProviderConfig_SinkCrowdstrikeHec,
         ProviderConfig_SinkDatadog,
         ProviderConfig_SinkElasticsearch,

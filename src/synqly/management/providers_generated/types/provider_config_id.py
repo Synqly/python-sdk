@@ -672,6 +672,11 @@ class ProviderConfigId(enum.StrEnum):
     Microsoft Azure Monitor Logs
     """
 
+    SINK_CRIBL = "sink_cribl"
+    """
+    Cribl Stream
+    """
+
     SINK_CROWDSTRIKE_HEC = "sink_crowdstrike_hec"
     """
     CrowdStrike Falcon® Next-Gen SIEM (HEC)
@@ -1142,6 +1147,7 @@ class ProviderConfigId(enum.StrEnum):
         sink_aws_sqs: typing.Callable[[], T_Result],
         sink_azure_blob: typing.Callable[[], T_Result],
         sink_azure_monitor_logs: typing.Callable[[], T_Result],
+        sink_cribl: typing.Callable[[], T_Result],
         sink_crowdstrike_hec: typing.Callable[[], T_Result],
         sink_datadog: typing.Callable[[], T_Result],
         sink_elasticsearch: typing.Callable[[], T_Result],
@@ -1473,6 +1479,8 @@ class ProviderConfigId(enum.StrEnum):
             return sink_azure_blob()
         if self is ProviderConfigId.SINK_AZURE_MONITOR_LOGS:
             return sink_azure_monitor_logs()
+        if self is ProviderConfigId.SINK_CRIBL:
+            return sink_cribl()
         if self is ProviderConfigId.SINK_CROWDSTRIKE_HEC:
             return sink_crowdstrike_hec()
         if self is ProviderConfigId.SINK_DATADOG:

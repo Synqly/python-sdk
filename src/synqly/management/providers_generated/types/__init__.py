@@ -143,6 +143,7 @@ if typing.TYPE_CHECKING:
         CopilotChatCredential_OAuthClient,
         CopilotChatCredential_OAuthClientId,
     )
+    from .cribl_credential import CriblCredential, CriblCredential_Token, CriblCredential_TokenId
     from .crowd_strike_credential import (
         CrowdStrikeCredential,
         CrowdStrikeCredential_OAuthClient,
@@ -586,6 +587,7 @@ if typing.TYPE_CHECKING:
         ProviderConfig_SinkAwsSqs,
         ProviderConfig_SinkAzureBlob,
         ProviderConfig_SinkAzureMonitorLogs,
+        ProviderConfig_SinkCribl,
         ProviderConfig_SinkCrowdstrikeHec,
         ProviderConfig_SinkDatadog,
         ProviderConfig_SinkElasticsearch,
@@ -716,6 +718,7 @@ if typing.TYPE_CHECKING:
     from .sink_aws_sqs_events_per_message import SinkAwsSqsEventsPerMessage
     from .sink_azure_blob import SinkAzureBlob
     from .sink_azure_monitor_logs import SinkAzureMonitorLogs
+    from .sink_cribl import SinkCribl
     from .sink_crowdstrike_hec import SinkCrowdstrikeHec
     from .sink_datadog import SinkDatadog
     from .sink_elasticsearch import SinkElasticsearch
@@ -1024,6 +1027,9 @@ _dynamic_imports: typing.Dict[str, str] = {
     "CopilotChatCredential": ".copilot_chat_credential",
     "CopilotChatCredential_OAuthClient": ".copilot_chat_credential",
     "CopilotChatCredential_OAuthClientId": ".copilot_chat_credential",
+    "CriblCredential": ".cribl_credential",
+    "CriblCredential_Token": ".cribl_credential",
+    "CriblCredential_TokenId": ".cribl_credential",
     "CrowdStrikeCredential": ".crowd_strike_credential",
     "CrowdStrikeCredential_OAuthClient": ".crowd_strike_credential",
     "CrowdStrikeCredential_OAuthClientId": ".crowd_strike_credential",
@@ -1453,6 +1459,7 @@ _dynamic_imports: typing.Dict[str, str] = {
     "ProviderConfig_SinkAwsSqs": ".provider_config",
     "ProviderConfig_SinkAzureBlob": ".provider_config",
     "ProviderConfig_SinkAzureMonitorLogs": ".provider_config",
+    "ProviderConfig_SinkCribl": ".provider_config",
     "ProviderConfig_SinkCrowdstrikeHec": ".provider_config",
     "ProviderConfig_SinkDatadog": ".provider_config",
     "ProviderConfig_SinkElasticsearch": ".provider_config",
@@ -1571,6 +1578,7 @@ _dynamic_imports: typing.Dict[str, str] = {
     "SinkAwsSqsEventsPerMessage": ".sink_aws_sqs_events_per_message",
     "SinkAzureBlob": ".sink_azure_blob",
     "SinkAzureMonitorLogs": ".sink_azure_monitor_logs",
+    "SinkCribl": ".sink_cribl",
     "SinkCrowdstrikeHec": ".sink_crowdstrike_hec",
     "SinkDatadog": ".sink_datadog",
     "SinkElasticsearch": ".sink_elasticsearch",
@@ -1913,6 +1921,9 @@ __all__ = [
     "CopilotChatCredential",
     "CopilotChatCredential_OAuthClient",
     "CopilotChatCredential_OAuthClientId",
+    "CriblCredential",
+    "CriblCredential_Token",
+    "CriblCredential_TokenId",
     "CrowdStrikeCredential",
     "CrowdStrikeCredential_OAuthClient",
     "CrowdStrikeCredential_OAuthClientId",
@@ -2342,6 +2353,7 @@ __all__ = [
     "ProviderConfig_SinkAwsSqs",
     "ProviderConfig_SinkAzureBlob",
     "ProviderConfig_SinkAzureMonitorLogs",
+    "ProviderConfig_SinkCribl",
     "ProviderConfig_SinkCrowdstrikeHec",
     "ProviderConfig_SinkDatadog",
     "ProviderConfig_SinkElasticsearch",
@@ -2460,6 +2472,7 @@ __all__ = [
     "SinkAwsSqsEventsPerMessage",
     "SinkAzureBlob",
     "SinkAzureMonitorLogs",
+    "SinkCribl",
     "SinkCrowdstrikeHec",
     "SinkDatadog",
     "SinkElasticsearch",
