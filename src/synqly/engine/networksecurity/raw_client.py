@@ -42,6 +42,7 @@ class RawNetworksecurityClient:
         limit: typing.Optional[int] = None,
         filter: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
         cursor: typing.Optional[str] = None,
+        include_raw_data: typing.Optional[bool] = None,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[QueryTrafficLogConfigurationsResponse]:
         """
@@ -61,6 +62,9 @@ class RawNetworksecurityClient:
         cursor : typing.Optional[str]
             Start search from cursor position.
 
+        include_raw_data : typing.Optional[bool]
+            Include the raw data from the provider in the response. Defaults to `false`.
+
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
 
@@ -76,6 +80,7 @@ class RawNetworksecurityClient:
                 "limit": limit,
                 "filter": filter,
                 "cursor": cursor,
+                "include_raw_data": include_raw_data,
             },
             request_options=request_options,
         )
@@ -248,6 +253,7 @@ class RawNetworksecurityClient:
         limit: typing.Optional[int] = None,
         filter: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
         cursor: typing.Optional[str] = None,
+        include_raw_data: typing.Optional[bool] = None,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[QueryTrafficEventsResponse]:
         """
@@ -268,6 +274,9 @@ class RawNetworksecurityClient:
         cursor : typing.Optional[str]
             Start search from cursor position.
 
+        include_raw_data : typing.Optional[bool]
+            Include the raw data from the provider in the response. Defaults to `false`.
+
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
 
@@ -283,6 +292,7 @@ class RawNetworksecurityClient:
                 "limit": limit,
                 "filter": filter,
                 "cursor": cursor,
+                "include_raw_data": include_raw_data,
             },
             request_options=request_options,
         )
@@ -455,6 +465,7 @@ class RawNetworksecurityClient:
         limit: typing.Optional[int] = None,
         filter: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
         cursor: typing.Optional[str] = None,
+        include_raw_data: typing.Optional[bool] = None,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[QueryDnsLogConfigurationsResponse]:
         """
@@ -474,6 +485,9 @@ class RawNetworksecurityClient:
         cursor : typing.Optional[str]
             Start search from cursor position.
 
+        include_raw_data : typing.Optional[bool]
+            Include the raw data from the provider in the response. Defaults to `false`.
+
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
 
@@ -489,6 +503,7 @@ class RawNetworksecurityClient:
                 "limit": limit,
                 "filter": filter,
                 "cursor": cursor,
+                "include_raw_data": include_raw_data,
             },
             request_options=request_options,
         )
@@ -661,6 +676,7 @@ class RawNetworksecurityClient:
         limit: typing.Optional[int] = None,
         filter: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
         cursor: typing.Optional[str] = None,
+        include_raw_data: typing.Optional[bool] = None,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[QueryDnsEventsResponse]:
         """
@@ -681,6 +697,9 @@ class RawNetworksecurityClient:
         cursor : typing.Optional[str]
             Start search from cursor position.
 
+        include_raw_data : typing.Optional[bool]
+            Include the raw data from the provider in the response. Defaults to `false`.
+
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
 
@@ -696,6 +715,7 @@ class RawNetworksecurityClient:
                 "limit": limit,
                 "filter": filter,
                 "cursor": cursor,
+                "include_raw_data": include_raw_data,
             },
             request_options=request_options,
         )
@@ -868,6 +888,7 @@ class RawNetworksecurityClient:
         limit: typing.Optional[int] = None,
         filter: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
         cursor: typing.Optional[str] = None,
+        include_raw_data: typing.Optional[bool] = None,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> HttpResponse[QueryFirewallRulesResponse]:
         """
@@ -888,6 +909,9 @@ class RawNetworksecurityClient:
         cursor : typing.Optional[str]
             Start search from cursor position.
 
+        include_raw_data : typing.Optional[bool]
+            Include the raw data from the provider in the response. Defaults to `false`.
+
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
 
@@ -903,6 +927,7 @@ class RawNetworksecurityClient:
                 "limit": limit,
                 "filter": filter,
                 "cursor": cursor,
+                "include_raw_data": include_raw_data,
             },
             request_options=request_options,
         )
@@ -1080,6 +1105,7 @@ class AsyncRawNetworksecurityClient:
         limit: typing.Optional[int] = None,
         filter: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
         cursor: typing.Optional[str] = None,
+        include_raw_data: typing.Optional[bool] = None,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[QueryTrafficLogConfigurationsResponse]:
         """
@@ -1099,6 +1125,9 @@ class AsyncRawNetworksecurityClient:
         cursor : typing.Optional[str]
             Start search from cursor position.
 
+        include_raw_data : typing.Optional[bool]
+            Include the raw data from the provider in the response. Defaults to `false`.
+
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
 
@@ -1114,6 +1143,7 @@ class AsyncRawNetworksecurityClient:
                 "limit": limit,
                 "filter": filter,
                 "cursor": cursor,
+                "include_raw_data": include_raw_data,
             },
             request_options=request_options,
         )
@@ -1286,6 +1316,7 @@ class AsyncRawNetworksecurityClient:
         limit: typing.Optional[int] = None,
         filter: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
         cursor: typing.Optional[str] = None,
+        include_raw_data: typing.Optional[bool] = None,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[QueryTrafficEventsResponse]:
         """
@@ -1306,6 +1337,9 @@ class AsyncRawNetworksecurityClient:
         cursor : typing.Optional[str]
             Start search from cursor position.
 
+        include_raw_data : typing.Optional[bool]
+            Include the raw data from the provider in the response. Defaults to `false`.
+
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
 
@@ -1321,6 +1355,7 @@ class AsyncRawNetworksecurityClient:
                 "limit": limit,
                 "filter": filter,
                 "cursor": cursor,
+                "include_raw_data": include_raw_data,
             },
             request_options=request_options,
         )
@@ -1493,6 +1528,7 @@ class AsyncRawNetworksecurityClient:
         limit: typing.Optional[int] = None,
         filter: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
         cursor: typing.Optional[str] = None,
+        include_raw_data: typing.Optional[bool] = None,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[QueryDnsLogConfigurationsResponse]:
         """
@@ -1512,6 +1548,9 @@ class AsyncRawNetworksecurityClient:
         cursor : typing.Optional[str]
             Start search from cursor position.
 
+        include_raw_data : typing.Optional[bool]
+            Include the raw data from the provider in the response. Defaults to `false`.
+
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
 
@@ -1527,6 +1566,7 @@ class AsyncRawNetworksecurityClient:
                 "limit": limit,
                 "filter": filter,
                 "cursor": cursor,
+                "include_raw_data": include_raw_data,
             },
             request_options=request_options,
         )
@@ -1699,6 +1739,7 @@ class AsyncRawNetworksecurityClient:
         limit: typing.Optional[int] = None,
         filter: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
         cursor: typing.Optional[str] = None,
+        include_raw_data: typing.Optional[bool] = None,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[QueryDnsEventsResponse]:
         """
@@ -1719,6 +1760,9 @@ class AsyncRawNetworksecurityClient:
         cursor : typing.Optional[str]
             Start search from cursor position.
 
+        include_raw_data : typing.Optional[bool]
+            Include the raw data from the provider in the response. Defaults to `false`.
+
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
 
@@ -1734,6 +1778,7 @@ class AsyncRawNetworksecurityClient:
                 "limit": limit,
                 "filter": filter,
                 "cursor": cursor,
+                "include_raw_data": include_raw_data,
             },
             request_options=request_options,
         )
@@ -1906,6 +1951,7 @@ class AsyncRawNetworksecurityClient:
         limit: typing.Optional[int] = None,
         filter: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
         cursor: typing.Optional[str] = None,
+        include_raw_data: typing.Optional[bool] = None,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> AsyncHttpResponse[QueryFirewallRulesResponse]:
         """
@@ -1926,6 +1972,9 @@ class AsyncRawNetworksecurityClient:
         cursor : typing.Optional[str]
             Start search from cursor position.
 
+        include_raw_data : typing.Optional[bool]
+            Include the raw data from the provider in the response. Defaults to `false`.
+
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
 
@@ -1941,6 +1990,7 @@ class AsyncRawNetworksecurityClient:
                 "limit": limit,
                 "filter": filter,
                 "cursor": cursor,
+                "include_raw_data": include_raw_data,
             },
             request_options=request_options,
         )

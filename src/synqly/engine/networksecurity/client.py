@@ -34,6 +34,7 @@ class NetworksecurityClient:
         limit: typing.Optional[int] = None,
         filter: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
         cursor: typing.Optional[str] = None,
+        include_raw_data: typing.Optional[bool] = None,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> QueryTrafficLogConfigurationsResponse:
         """
@@ -53,6 +54,9 @@ class NetworksecurityClient:
         cursor : typing.Optional[str]
             Start search from cursor position.
 
+        include_raw_data : typing.Optional[bool]
+            Include the raw data from the provider in the response. Defaults to `false`.
+
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
 
@@ -61,7 +65,12 @@ class NetworksecurityClient:
         QueryTrafficLogConfigurationsResponse
         """
         _response = self._raw_client.query_traffic_log_configurations(
-            meta=meta, limit=limit, filter=filter, cursor=cursor, request_options=request_options
+            meta=meta,
+            limit=limit,
+            filter=filter,
+            cursor=cursor,
+            include_raw_data=include_raw_data,
+            request_options=request_options,
         )
         return _response.data
 
@@ -72,6 +81,7 @@ class NetworksecurityClient:
         limit: typing.Optional[int] = None,
         filter: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
         cursor: typing.Optional[str] = None,
+        include_raw_data: typing.Optional[bool] = None,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> QueryTrafficEventsResponse:
         """
@@ -92,6 +102,9 @@ class NetworksecurityClient:
         cursor : typing.Optional[str]
             Start search from cursor position.
 
+        include_raw_data : typing.Optional[bool]
+            Include the raw data from the provider in the response. Defaults to `false`.
+
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
 
@@ -100,7 +113,12 @@ class NetworksecurityClient:
         QueryTrafficEventsResponse
         """
         _response = self._raw_client.query_traffic_events(
-            meta=meta, limit=limit, filter=filter, cursor=cursor, request_options=request_options
+            meta=meta,
+            limit=limit,
+            filter=filter,
+            cursor=cursor,
+            include_raw_data=include_raw_data,
+            request_options=request_options,
         )
         return _response.data
 
@@ -111,6 +129,7 @@ class NetworksecurityClient:
         limit: typing.Optional[int] = None,
         filter: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
         cursor: typing.Optional[str] = None,
+        include_raw_data: typing.Optional[bool] = None,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> QueryDnsLogConfigurationsResponse:
         """
@@ -130,6 +149,9 @@ class NetworksecurityClient:
         cursor : typing.Optional[str]
             Start search from cursor position.
 
+        include_raw_data : typing.Optional[bool]
+            Include the raw data from the provider in the response. Defaults to `false`.
+
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
 
@@ -138,7 +160,12 @@ class NetworksecurityClient:
         QueryDnsLogConfigurationsResponse
         """
         _response = self._raw_client.query_dns_log_configurations(
-            meta=meta, limit=limit, filter=filter, cursor=cursor, request_options=request_options
+            meta=meta,
+            limit=limit,
+            filter=filter,
+            cursor=cursor,
+            include_raw_data=include_raw_data,
+            request_options=request_options,
         )
         return _response.data
 
@@ -149,6 +176,7 @@ class NetworksecurityClient:
         limit: typing.Optional[int] = None,
         filter: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
         cursor: typing.Optional[str] = None,
+        include_raw_data: typing.Optional[bool] = None,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> QueryDnsEventsResponse:
         """
@@ -169,6 +197,9 @@ class NetworksecurityClient:
         cursor : typing.Optional[str]
             Start search from cursor position.
 
+        include_raw_data : typing.Optional[bool]
+            Include the raw data from the provider in the response. Defaults to `false`.
+
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
 
@@ -177,7 +208,12 @@ class NetworksecurityClient:
         QueryDnsEventsResponse
         """
         _response = self._raw_client.query_dns_events(
-            meta=meta, limit=limit, filter=filter, cursor=cursor, request_options=request_options
+            meta=meta,
+            limit=limit,
+            filter=filter,
+            cursor=cursor,
+            include_raw_data=include_raw_data,
+            request_options=request_options,
         )
         return _response.data
 
@@ -188,6 +224,7 @@ class NetworksecurityClient:
         limit: typing.Optional[int] = None,
         filter: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
         cursor: typing.Optional[str] = None,
+        include_raw_data: typing.Optional[bool] = None,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> QueryFirewallRulesResponse:
         """
@@ -208,6 +245,9 @@ class NetworksecurityClient:
         cursor : typing.Optional[str]
             Start search from cursor position.
 
+        include_raw_data : typing.Optional[bool]
+            Include the raw data from the provider in the response. Defaults to `false`.
+
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
 
@@ -216,7 +256,12 @@ class NetworksecurityClient:
         QueryFirewallRulesResponse
         """
         _response = self._raw_client.query_firewall_rules(
-            meta=meta, limit=limit, filter=filter, cursor=cursor, request_options=request_options
+            meta=meta,
+            limit=limit,
+            filter=filter,
+            cursor=cursor,
+            include_raw_data=include_raw_data,
+            request_options=request_options,
         )
         return _response.data
 
@@ -243,6 +288,7 @@ class AsyncNetworksecurityClient:
         limit: typing.Optional[int] = None,
         filter: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
         cursor: typing.Optional[str] = None,
+        include_raw_data: typing.Optional[bool] = None,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> QueryTrafficLogConfigurationsResponse:
         """
@@ -262,6 +308,9 @@ class AsyncNetworksecurityClient:
         cursor : typing.Optional[str]
             Start search from cursor position.
 
+        include_raw_data : typing.Optional[bool]
+            Include the raw data from the provider in the response. Defaults to `false`.
+
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
 
@@ -270,7 +319,12 @@ class AsyncNetworksecurityClient:
         QueryTrafficLogConfigurationsResponse
         """
         _response = await self._raw_client.query_traffic_log_configurations(
-            meta=meta, limit=limit, filter=filter, cursor=cursor, request_options=request_options
+            meta=meta,
+            limit=limit,
+            filter=filter,
+            cursor=cursor,
+            include_raw_data=include_raw_data,
+            request_options=request_options,
         )
         return _response.data
 
@@ -281,6 +335,7 @@ class AsyncNetworksecurityClient:
         limit: typing.Optional[int] = None,
         filter: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
         cursor: typing.Optional[str] = None,
+        include_raw_data: typing.Optional[bool] = None,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> QueryTrafficEventsResponse:
         """
@@ -301,6 +356,9 @@ class AsyncNetworksecurityClient:
         cursor : typing.Optional[str]
             Start search from cursor position.
 
+        include_raw_data : typing.Optional[bool]
+            Include the raw data from the provider in the response. Defaults to `false`.
+
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
 
@@ -309,7 +367,12 @@ class AsyncNetworksecurityClient:
         QueryTrafficEventsResponse
         """
         _response = await self._raw_client.query_traffic_events(
-            meta=meta, limit=limit, filter=filter, cursor=cursor, request_options=request_options
+            meta=meta,
+            limit=limit,
+            filter=filter,
+            cursor=cursor,
+            include_raw_data=include_raw_data,
+            request_options=request_options,
         )
         return _response.data
 
@@ -320,6 +383,7 @@ class AsyncNetworksecurityClient:
         limit: typing.Optional[int] = None,
         filter: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
         cursor: typing.Optional[str] = None,
+        include_raw_data: typing.Optional[bool] = None,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> QueryDnsLogConfigurationsResponse:
         """
@@ -339,6 +403,9 @@ class AsyncNetworksecurityClient:
         cursor : typing.Optional[str]
             Start search from cursor position.
 
+        include_raw_data : typing.Optional[bool]
+            Include the raw data from the provider in the response. Defaults to `false`.
+
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
 
@@ -347,7 +414,12 @@ class AsyncNetworksecurityClient:
         QueryDnsLogConfigurationsResponse
         """
         _response = await self._raw_client.query_dns_log_configurations(
-            meta=meta, limit=limit, filter=filter, cursor=cursor, request_options=request_options
+            meta=meta,
+            limit=limit,
+            filter=filter,
+            cursor=cursor,
+            include_raw_data=include_raw_data,
+            request_options=request_options,
         )
         return _response.data
 
@@ -358,6 +430,7 @@ class AsyncNetworksecurityClient:
         limit: typing.Optional[int] = None,
         filter: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
         cursor: typing.Optional[str] = None,
+        include_raw_data: typing.Optional[bool] = None,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> QueryDnsEventsResponse:
         """
@@ -378,6 +451,9 @@ class AsyncNetworksecurityClient:
         cursor : typing.Optional[str]
             Start search from cursor position.
 
+        include_raw_data : typing.Optional[bool]
+            Include the raw data from the provider in the response. Defaults to `false`.
+
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
 
@@ -386,7 +462,12 @@ class AsyncNetworksecurityClient:
         QueryDnsEventsResponse
         """
         _response = await self._raw_client.query_dns_events(
-            meta=meta, limit=limit, filter=filter, cursor=cursor, request_options=request_options
+            meta=meta,
+            limit=limit,
+            filter=filter,
+            cursor=cursor,
+            include_raw_data=include_raw_data,
+            request_options=request_options,
         )
         return _response.data
 
@@ -397,6 +478,7 @@ class AsyncNetworksecurityClient:
         limit: typing.Optional[int] = None,
         filter: typing.Optional[typing.Union[str, typing.Sequence[str]]] = None,
         cursor: typing.Optional[str] = None,
+        include_raw_data: typing.Optional[bool] = None,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> QueryFirewallRulesResponse:
         """
@@ -417,6 +499,9 @@ class AsyncNetworksecurityClient:
         cursor : typing.Optional[str]
             Start search from cursor position.
 
+        include_raw_data : typing.Optional[bool]
+            Include the raw data from the provider in the response. Defaults to `false`.
+
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
 
@@ -425,6 +510,11 @@ class AsyncNetworksecurityClient:
         QueryFirewallRulesResponse
         """
         _response = await self._raw_client.query_firewall_rules(
-            meta=meta, limit=limit, filter=filter, cursor=cursor, request_options=request_options
+            meta=meta,
+            limit=limit,
+            filter=filter,
+            cursor=cursor,
+            include_raw_data=include_raw_data,
+            request_options=request_options,
         )
         return _response.data
