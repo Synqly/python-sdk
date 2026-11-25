@@ -64,7 +64,7 @@ class RawAssetsClient:
             Add metadata to the response by invoking meta functions. Documentation for [meta functions](https://docs.synqly.com/api-reference/meta-functions) is available. Not all meta functions are available at every endpoint.
 
         limit : typing.Optional[int]
-            Number of finding reports to return. Defaults to 50. A page may hold fewer results than `limit`, or none, even when more remain; keep paging until the returned cursor is empty.
+            Number of finding reports to return. Defaults to 100. A page may hold fewer results than `limit`, or none, even when more remain; keep paging until the returned cursor is empty.
 
         cursor : typing.Optional[str]
             Start search from cursor position.
@@ -1005,7 +1005,7 @@ class RawAssetsClient:
             Filter results by this query. For more information on filtering, refer to the [Assets Filtering Guide](https://docs.synqly.com/guides/connectors/assets/query-filters). Defaults to no filter. If used more than once, the queries are ANDed together.
 
         order : typing.Optional[str]
-            Results are returned in a fixed `package.name` ascending order. Passing `order` is rejected.
+            Results are returned in a fixed `package.name` ascending order. An `order` is ignored, and the response carries a problem in `messages` saying so.
 
         include_raw_data : typing.Optional[bool]
             Include the raw data from the provider in the response. Defaults to `false`.
@@ -1696,7 +1696,7 @@ class AsyncRawAssetsClient:
             Add metadata to the response by invoking meta functions. Documentation for [meta functions](https://docs.synqly.com/api-reference/meta-functions) is available. Not all meta functions are available at every endpoint.
 
         limit : typing.Optional[int]
-            Number of finding reports to return. Defaults to 50. A page may hold fewer results than `limit`, or none, even when more remain; keep paging until the returned cursor is empty.
+            Number of finding reports to return. Defaults to 100. A page may hold fewer results than `limit`, or none, even when more remain; keep paging until the returned cursor is empty.
 
         cursor : typing.Optional[str]
             Start search from cursor position.
@@ -2637,7 +2637,7 @@ class AsyncRawAssetsClient:
             Filter results by this query. For more information on filtering, refer to the [Assets Filtering Guide](https://docs.synqly.com/guides/connectors/assets/query-filters). Defaults to no filter. If used more than once, the queries are ANDed together.
 
         order : typing.Optional[str]
-            Results are returned in a fixed `package.name` ascending order. Passing `order` is rejected.
+            Results are returned in a fixed `package.name` ascending order. An `order` is ignored, and the response carries a problem in `messages` saying so.
 
         include_raw_data : typing.Optional[bool]
             Include the raw data from the provider in the response. Defaults to `false`.

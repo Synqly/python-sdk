@@ -159,7 +159,7 @@ class TicketingClient:
             Cursor to use to retrieve the next page of results.
 
         limit : typing.Optional[int]
-            Number of `Projects` objects to return in this page. Defaults to 50. A page may hold fewer results than `limit`, or none, even when more remain; keep paging until the returned cursor is empty.
+            Number of `Projects` objects to return in this page. Defaults to 100. A page may hold fewer results than `limit`, or none, even when more remain; keep paging until the returned cursor is empty.
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -745,7 +745,7 @@ class TicketingClient:
             Add metadata to the response by invoking meta functions. Documentation for [meta functions](https://docs.synqly.com/api-reference/meta-functions) is available. Not all meta functions are available at every endpoint.
 
         limit : typing.Optional[int]
-            Number of escalation policies to return. Defaults to 50. A page may hold fewer results than `limit`, or none, even when more remain; keep paging until the returned cursor is empty.
+            Number of escalation policies to return. Defaults to 100. A page may hold fewer results than `limit`, or none, even when more remain; keep paging until the returned cursor is empty.
 
         cursor : typing.Optional[str]
             Start search from cursor position.
@@ -914,7 +914,7 @@ class AsyncTicketingClient:
             Cursor to use to retrieve the next page of results.
 
         limit : typing.Optional[int]
-            Number of `Projects` objects to return in this page. Defaults to 50. A page may hold fewer results than `limit`, or none, even when more remain; keep paging until the returned cursor is empty.
+            Number of `Projects` objects to return in this page. Defaults to 100. A page may hold fewer results than `limit`, or none, even when more remain; keep paging until the returned cursor is empty.
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -1504,7 +1504,7 @@ class AsyncTicketingClient:
             Add metadata to the response by invoking meta functions. Documentation for [meta functions](https://docs.synqly.com/api-reference/meta-functions) is available. Not all meta functions are available at every endpoint.
 
         limit : typing.Optional[int]
-            Number of escalation policies to return. Defaults to 50. A page may hold fewer results than `limit`, or none, even when more remain; keep paging until the returned cursor is empty.
+            Number of escalation policies to return. Defaults to 100. A page may hold fewer results than `limit`, or none, even when more remain; keep paging until the returned cursor is empty.
 
         cursor : typing.Optional[str]
             Start search from cursor position.
